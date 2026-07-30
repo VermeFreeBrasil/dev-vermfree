@@ -10,36 +10,34 @@ export function defaultPeriodo(): Periodo {
   return { from: from.toISOString().slice(0, 10), to: to.toISOString().slice(0, 10) };
 }
 
-function dayKey(iso: string) {
-  return iso.slice(0, 10);
-}
-
-/* ---------------- VENDAS ---------------- */
+/* ---------------- VENDAS (fonte: public.compra_aprovada) ---------------- */
+// compra_aprovada só recebe pedidos já aprovados (populada por um pipeline externo
+// via n8n) — não existe conceito de cancelado/reembolso nessa tabela, então esses
+// campos ficam zerados no retorno.
 
 export async function fetchVendas(p: Periodo) {
   const { data: orders, error } = await supabaseAdmin
-    .from("shopify_orders")
+    .from("compra_aprovada")
     .select("*")
-    .gte("created_at", `${p.from}T00:00:00Z`)
-    .lte("created_at", `${p.to}T23:59:59Z`)
-    .order("created_at", { ascending: true });
+    .gte("data", p.from)
+    .lte("data", p.to)
+    .order("data", { ascending: true });
   if (error) throw new Error(error.message);
 
   const { data: cupons } = await supabaseAdmin.from("cupons_influencers").select("*");
   const mapaCupom = new Map((cupons ?? []).map((c) => [c.discount_code.toUpperCase(), c]));
 
-  // Apenas pedidos PAGOS entram no faturamento.
-  const pagos = (orders ?? []).filter((o) => o.status === "paid");
+  const pedidosList = orders ?? [];
 
-  const faturamento = pagos.reduce((s, o) => s + num(o.valor) - num(o.refund_total), 0);
-  const pedidos = pagos.length;
+  const faturamento = pedidosList.reduce((s, o) => s + num(o.valor), 0);
+  const pedidos = pedidosList.length;
   const ticketMedio = pedidos ? faturamento / pedidos : 0;
 
   const serieMap = new Map<string, { dia: string; valor: number; pedidos: number }>();
-  for (const o of pagos) {
-    const k = dayKey(o.created_at);
+  for (const o of pedidosList) {
+    const k = String(o.data).slice(0, 10);
     const cur = serieMap.get(k) ?? { dia: k, valor: 0, pedidos: 0 };
-    cur.valor += num(o.valor) - num(o.refund_total);
+    cur.valor += num(o.valor);
     cur.pedidos += 1;
     serieMap.set(k, cur);
   }
@@ -47,10 +45,10 @@ export async function fetchVendas(p: Periodo) {
 
   // Canais de tráfego: mutuamente exclusivos (somam 100%)
   const canalMap = new Map<string, { canal: string; valor: number; pedidos: number }>();
-  for (const o of pagos) {
+  for (const o of pedidosList) {
     const canal = (o.utm_source || "direto").toLowerCase();
     const cur = canalMap.get(canal) ?? { canal, valor: 0, pedidos: 0 };
-    cur.valor += num(o.valor) - num(o.refund_total);
+    cur.valor += num(o.valor);
     cur.pedidos += 1;
     canalMap.set(canal, cur);
   }
@@ -63,9 +61,9 @@ export async function fetchVendas(p: Periodo) {
     string,
     { code: string; influencer: string | null; excluido: boolean; valor: number; pedidos: number }
   >();
-  for (const o of pagos) {
-    if (!o.discount_code) continue;
-    const code = o.discount_code.toUpperCase();
+  for (const o of pedidosList) {
+    if (!o.cupom) continue;
+    const code = String(o.cupom).toUpperCase();
     const meta = mapaCupom.get(code);
     const cur =
       cupomMap.get(code) ??
@@ -76,7 +74,7 @@ export async function fetchVendas(p: Periodo) {
         valor: 0,
         pedidos: 0,
       };
-    cur.valor += num(o.valor) - num(o.refund_total);
+    cur.valor += num(o.valor);
     cur.pedidos += 1;
     cupomMap.set(code, cur);
   }
@@ -96,9 +94,9 @@ export async function fetchVendas(p: Periodo) {
     faturamento,
     pedidos,
     ticketMedio,
-    totalRegistros: (orders ?? []).length,
-    cancelados: (orders ?? []).filter((o) => o.status === "cancelled").length,
-    reembolsos: (orders ?? []).reduce((s, o) => s + num(o.refund_total), 0),
+    totalRegistros: pedidosList.length,
+    cancelados: 0,
+    reembolsos: 0,
     serie,
     canais,
     camadaCupons,
@@ -131,36 +129,44 @@ export async function runSyncEstoque() {
   return data as unknown;
 }
 
-/* ---------------- CAMPANHAS / ROAS ---------------- */
+/* ---------------- CAMPANHAS / ROAS (fonte: public.meta_ads) ---------------- */
+// meta_ads é alimentada por um pipeline externo, no nível de anúncio/dia, com
+// actions/action_values vindos crus da Graph API (JSON stringificado). Não tem
+// coluna de objective nem platform_position — por isso o breakdown de
+// posicionamento fica vazio e a "conversão contada" é sempre omni_purchase,
+// que é justamente a regra que o playbook pede (nunca somar todos os action
+// types juntos).
 
-export const OBJETIVO_CONVERSAO: Record<string, string> = {
-  OUTCOME_SALES: "omni_purchase",
-  LEADS: "lead",
-  ENGAGEMENT: "messaging_conversation_started_7d",
-  TRAFFIC: "link_click",
-  AWARENESS: "reach",
-};
+function actionValue(raw: string | null, type: string): number {
+  if (!raw) return 0;
+  try {
+    const arr = JSON.parse(raw) as Array<{ action_type: string; value: string }>;
+    const found = arr.find((a) => a.action_type === type);
+    return found ? Number(found.value ?? 0) : 0;
+  } catch {
+    return 0;
+  }
+}
 
 export async function fetchCampanhas(p: Periodo) {
   const { data: rows, error } = await supabaseAdmin
-    .from("meta_campanhas_diario")
-    .select("*")
-    .gte("dia", p.from)
-    .lte("dia", p.to);
+    .from("meta_ads")
+    .select("campaign_id, campaign_name, date_start, spend, impressions, clicks, reach, actions, action_values")
+    .gte("date_start", p.from)
+    .lte("date_start", p.to);
   if (error) throw new Error(error.message);
 
   const { data: orders } = await supabaseAdmin
-    .from("shopify_orders")
-    .select("valor, refund_total, status, utm_campaign, utm_source, created_at")
-    .eq("status", "paid")
-    .gte("created_at", `${p.from}T00:00:00Z`)
-    .lte("created_at", `${p.to}T23:59:59Z`);
+    .from("compra_aprovada")
+    .select("valor, utm_campaign")
+    .gte("data", p.from)
+    .lte("data", p.to);
 
   const vendasPorCampanha = new Map<string, number>();
   for (const o of orders ?? []) {
     if (!o.utm_campaign) continue;
-    const k = o.utm_campaign.toLowerCase();
-    vendasPorCampanha.set(k, (vendasPorCampanha.get(k) ?? 0) + num(o.valor) - num(o.refund_total));
+    const k = String(o.utm_campaign).toLowerCase();
+    vendasPorCampanha.set(k, (vendasPorCampanha.get(k) ?? 0) + num(o.valor));
   }
 
   type Agg = {
@@ -171,7 +177,6 @@ export async function fetchCampanhas(p: Periodo) {
     spend: number;
     impressions: number;
     clicks: number;
-    link_clicks: number;
     reach: number;
     conversions: number;
     purchases: number;
@@ -179,22 +184,23 @@ export async function fetchCampanhas(p: Periodo) {
   };
   const agg = new Map<string, Agg>();
   const totalGeral = { spend: 0, impressions: 0, clicks: 0, purchases: 0, purchase_value: 0 };
-  const posMap = new Map<string, { platform_position: string; spend: number; impressions: number; clicks: number; purchases: number }>();
   const serieMap = new Map<string, { dia: string; spend: number; purchase_value: number }>();
 
   for (const r of rows ?? []) {
-    const key = r.campaign_id;
+    const key = r.campaign_id ?? "sem-campanha";
+    const purchases = actionValue(r.actions, "omni_purchase");
+    const purchaseValue = actionValue(r.action_values, "omni_purchase");
+
     const cur: Agg =
       agg.get(key) ??
       {
-        campaign_id: r.campaign_id,
-        campaign_name: r.campaign_name ?? r.campaign_id,
-        objective: r.objective ?? "—",
-        conversion_type: r.conversion_type ?? OBJETIVO_CONVERSAO[r.objective ?? ""] ?? "—",
+        campaign_id: key,
+        campaign_name: r.campaign_name ?? key,
+        objective: "—",
+        conversion_type: "omni_purchase",
         spend: 0,
         impressions: 0,
         clicks: 0,
-        link_clicks: 0,
         reach: 0,
         conversions: 0,
         purchases: 0,
@@ -203,32 +209,24 @@ export async function fetchCampanhas(p: Periodo) {
     cur.spend += num(r.spend);
     cur.impressions += num(r.impressions);
     cur.clicks += num(r.clicks);
-    cur.link_clicks += num(r.link_clicks);
     cur.reach += num(r.reach);
-    cur.conversions += num(r.conversions);
-    // No agregado, apenas omni_purchase conta como compra.
-    cur.purchases += num(r.purchases);
-    cur.purchase_value += num(r.purchase_value);
+    // No agregado, apenas omni_purchase conta como compra/conversão.
+    cur.purchases += purchases;
+    cur.conversions += purchases;
+    cur.purchase_value += purchaseValue;
     agg.set(key, cur);
 
     totalGeral.spend += num(r.spend);
     totalGeral.impressions += num(r.impressions);
     totalGeral.clicks += num(r.clicks);
-    totalGeral.purchases += num(r.purchases);
-    totalGeral.purchase_value += num(r.purchase_value);
+    totalGeral.purchases += purchases;
+    totalGeral.purchase_value += purchaseValue;
 
-    const pos = r.platform_position ?? "all";
-    const pcur = posMap.get(pos) ?? { platform_position: pos, spend: 0, impressions: 0, clicks: 0, purchases: 0 };
-    pcur.spend += num(r.spend);
-    pcur.impressions += num(r.impressions);
-    pcur.clicks += num(r.clicks);
-    pcur.purchases += num(r.purchases);
-    posMap.set(pos, pcur);
-
-    const scur = serieMap.get(r.dia) ?? { dia: r.dia, spend: 0, purchase_value: 0 };
+    const dia = String(r.date_start).slice(0, 10);
+    const scur = serieMap.get(dia) ?? { dia, spend: 0, purchase_value: 0 };
     scur.spend += num(r.spend);
-    scur.purchase_value += num(r.purchase_value);
-    serieMap.set(r.dia, scur);
+    scur.purchase_value += purchaseValue;
+    serieMap.set(dia, scur);
   }
 
   const campanhas = [...agg.values()].map((c) => {
@@ -237,6 +235,7 @@ export async function fetchCampanhas(p: Periodo) {
       (vendasPorCampanha.get(c.campaign_name.toLowerCase()) ?? 0);
     return {
       ...c,
+      link_clicks: c.clicks,
       roasMeta: c.spend ? c.purchase_value / c.spend : 0,
       roasReal: c.spend ? vendasReais / c.spend : 0,
       vendasReais,
@@ -248,7 +247,14 @@ export async function fetchCampanhas(p: Periodo) {
   return {
     periodo: p,
     campanhas: campanhas.sort((a, b) => b.spend - a.spend),
-    posicionamentos: [...posMap.values()].sort((a, b) => b.spend - a.spend),
+    // meta_ads não tem breakdown de platform_position nesse pipeline — sem dado, sem gráfico.
+    posicionamentos: [] as Array<{
+      platform_position: string;
+      spend: number;
+      impressions: number;
+      clicks: number;
+      purchases: number;
+    }>,
     serie: [...serieMap.values()].sort((a, b) => a.dia.localeCompare(b.dia)),
     total: {
       ...totalGeral,
@@ -296,7 +302,7 @@ export async function deleteCupom(code: string) {
   return { ok: true };
 }
 
-/* ---------------- METAS ---------------- */
+/* ---------------- METAS (progresso calculado a partir de compra_aprovada) ---------------- */
 
 export async function fetchMetas() {
   const { data: metas, error } = await supabaseAdmin
@@ -316,13 +322,12 @@ export async function fetchMetas() {
   let progresso = { faturamento: 0, pedidos: 0 };
   if (ativa) {
     const { data: orders } = await supabaseAdmin
-      .from("shopify_orders")
-      .select("valor, refund_total")
-      .eq("status", "paid")
-      .gte("created_at", `${ativa.periodo_inicio}T00:00:00Z`)
-      .lte("created_at", `${ativa.periodo_fim}T23:59:59Z`);
+      .from("compra_aprovada")
+      .select("valor")
+      .gte("data", ativa.periodo_inicio)
+      .lte("data", ativa.periodo_fim);
     progresso = {
-      faturamento: (orders ?? []).reduce((s, o) => s + num(o.valor) - num(o.refund_total), 0),
+      faturamento: (orders ?? []).reduce((s, o) => s + num(o.valor), 0),
       pedidos: (orders ?? []).length,
     };
   }

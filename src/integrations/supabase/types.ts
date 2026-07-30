@@ -59,61 +59,62 @@ export type Database = {
         }
         Relationships: []
       }
-      meta_campanhas_diario: {
+      meta_ads: {
         Row: {
-          campaign_id: string
+          id: number
+          date: string | null
+          act_number: string | null
+          business_id: string | null
+          ad_id: string | null
+          ad_name: string | null
+          adset_id: string | null
+          adset_name: string | null
+          campaign_id: string | null
           campaign_name: string | null
-          clicks: number
-          conversion_type: string | null
-          conversions: number
-          dia: string
-          id: string
-          impressions: number
-          link_clicks: number
-          objective: string | null
-          platform_position: string
-          purchase_value: number
-          purchases: number
-          reach: number
-          spend: number
-          updated_at: string
+          date_start: string | null
+          date_stop: string | null
+          ctr: number | null
+          cpm: number | null
+          cpc: number | null
+          spend: number | null
+          clicks: number | null
+          impressions: number | null
+          reach: number | null
+          frequency: number | null
+          actions: string | null
+          action_values: string | null
+          cost_per_action_type: string | null
+          inserted_at: string | null
         }
-        Insert: {
-          campaign_id: string
-          campaign_name?: string | null
-          clicks?: number
-          conversion_type?: string | null
-          conversions?: number
-          dia: string
-          id?: string
-          impressions?: number
-          link_clicks?: number
-          objective?: string | null
-          platform_position?: string
-          purchase_value?: number
-          purchases?: number
-          reach?: number
-          spend?: number
-          updated_at?: string
+        Insert: Partial<Database["public"]["Tables"]["meta_ads"]["Row"]>
+        Update: Partial<Database["public"]["Tables"]["meta_ads"]["Row"]>
+        Relationships: []
+      }
+      compra_aprovada: {
+        Row: {
+          id: number
+          data: string
+          id_compra: number | null
+          email: string | null
+          nome: string | null
+          telefone: string | null
+          produto: string | null
+          valor: number
+          quantidade: string | null
+          desconto: string | null
+          frete: number | null
+          cupom: string | null
+          pagamento: string | null
+          utm_campaign: string | null
+          utm_source: string | null
+          utm_medium: string | null
+          utm_content: string | null
+          utm_term: string | null
+          quiz: string | null
+          plataforma: string | null
         }
-        Update: {
-          campaign_id?: string
-          campaign_name?: string | null
-          clicks?: number
-          conversion_type?: string | null
-          conversions?: number
-          dia?: string
-          id?: string
-          impressions?: number
-          link_clicks?: number
-          objective?: string | null
-          platform_position?: string
-          purchase_value?: number
-          purchases?: number
-          reach?: number
-          spend?: number
-          updated_at?: string
-        }
+        Insert: Partial<Database["public"]["Tables"]["compra_aprovada"]["Row"]>
+        Update: Partial<Database["public"]["Tables"]["compra_aprovada"]["Row"]>
         Relationships: []
       }
       metas: {
@@ -226,63 +227,6 @@ export type Database = {
           nome?: string | null
           sku?: string
           updated_at?: string
-        }
-        Relationships: []
-      }
-      shopify_orders: {
-        Row: {
-          created_at: string
-          currency: string
-          discount_code: string | null
-          financial_status: string | null
-          id: string
-          landing_site: string | null
-          order_number: string | null
-          refund_total: number
-          status: string
-          updated_at: string
-          utm_campaign: string | null
-          utm_content: string | null
-          utm_medium: string | null
-          utm_source: string | null
-          utm_term: string | null
-          valor: number
-        }
-        Insert: {
-          created_at?: string
-          currency?: string
-          discount_code?: string | null
-          financial_status?: string | null
-          id: string
-          landing_site?: string | null
-          order_number?: string | null
-          refund_total?: number
-          status?: string
-          updated_at?: string
-          utm_campaign?: string | null
-          utm_content?: string | null
-          utm_medium?: string | null
-          utm_source?: string | null
-          utm_term?: string | null
-          valor?: number
-        }
-        Update: {
-          created_at?: string
-          currency?: string
-          discount_code?: string | null
-          financial_status?: string | null
-          id?: string
-          landing_site?: string | null
-          order_number?: string | null
-          refund_total?: number
-          status?: string
-          updated_at?: string
-          utm_campaign?: string | null
-          utm_content?: string | null
-          utm_medium?: string | null
-          utm_source?: string | null
-          utm_term?: string | null
-          valor?: number
         }
         Relationships: []
       }
