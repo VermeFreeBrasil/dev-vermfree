@@ -94,7 +94,7 @@ const servidor = http.createServer(servir);
     var t = document.querySelector('[data-vf-presc-track]');
     return { sw: t.scrollWidth, cw: t.clientWidth, cards: t.querySelectorAll('.vf-presc__card').length };
   });
-  conferir('6 médicos cabem no trilho e ele rola', rola.cards === 6 && rola.sw > rola.cw, JSON.stringify(rola));
+  conferir('os 8 médicos cabem no trilho e ele rola', rola.cards === 8 && rola.sw > rola.cw, JSON.stringify(rola));
 
   const setasVisiveis = await p.evaluate(() => {
     var pv = document.querySelector('[data-vf-presc-prev]');
@@ -155,6 +155,24 @@ const servidor = http.createServer(servir);
   const larg2 = await p.evaluate(() =>
     [...document.querySelectorAll('.vf-presc__card')].map((c) => Math.round(c.getBoundingClientRect().width)));
   conferir('com 2 médicos o card não estica pra meia tela', Math.max(...larg2) <= 320, 'larguras: ' + larg2.join(','));
+
+  // ---------- prescritor sem foto ainda ----------
+  await p.goto(base + '/presc.html');
+  await p.waitForTimeout(400);
+  const semFoto = await p.evaluate(() => {
+    var phs = [...document.querySelectorAll('.vf-presc__img--placeholder')];
+    return {
+      n: phs.length,
+      textos: phs.map((e) => e.textContent.trim()),
+      preenche: phs.every((e) => {
+        var r = e.getBoundingClientRect();
+        var c = e.closest('.vf-presc__media').getBoundingClientRect();
+        return Math.abs(r.width - c.width) < 1 && Math.abs(r.height - c.height) < 1;
+      }),
+    };
+  });
+  conferir('card sem foto mostra iniciais', semFoto.n === 4 && semFoto.textos.join(',') === 'EB,KG,CM,GD', JSON.stringify(semFoto));
+  conferir('placeholder ocupa a área da foto inteira', semFoto.preenche, JSON.stringify(semFoto));
 
   conferir('nenhum erro de JS no fim', erros.length === 0, erros.join(' | '));
 

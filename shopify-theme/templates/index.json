@@ -267,13 +267,73 @@
             "instagram_handle": "@dra.raquelcembranelli",
             "instagram_url": "https://www.instagram.com/dra.raquelcembranelli/"
           }
+        },
+        "presc_eglife": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 30,
+            "name": "Dr. Eglife Brauher",
+            "credential": "CRM-BA 32.688",
+            "specialty": "Médico",
+            "instagram_handle": "",
+            "instagram_url": ""
+          }
+        },
+        "presc_kalil": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 30,
+            "name": "Dr. Kalil Gibran Ferreira Lima",
+            "credential": "CRM-BA 34.392",
+            "specialty": "Médico",
+            "instagram_handle": "",
+            "instagram_url": ""
+          }
+        },
+        "presc_carlos": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "",
+            "photo_zoom": 105,
+            "photo_focus_x": 50,
+            "photo_focus_y": 20,
+            "name": "Dr. Carlos Mateus Santos Osório",
+            "credential": "CRM-SP 215.405",
+            "specialty": "Médico",
+            "instagram_handle": "",
+            "instagram_url": ""
+          }
+        },
+        "presc_grace": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 30,
+            "name": "Dra. Grace Dessirre",
+            "credential": "CFO-SP 084169",
+            "specialty": "Cirurgiã-dentista",
+            "instagram_handle": "",
+            "instagram_url": ""
+          }
         }
       },
       "block_order": [
         "presc_1",
         "presc_2",
         "presc_3",
-        "presc_4"
+        "presc_4",
+        "presc_eglife",
+        "presc_kalil",
+        "presc_carlos",
+        "presc_grace"
       ],
       "settings": {
         "eyebrow": "AUTORIDADE MÉDICA",

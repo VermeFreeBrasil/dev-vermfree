@@ -39,9 +39,20 @@ const MEDICOS = [
     ig: 'drrobson_araujo', zoom: 160, fx: 60, fy: 18, frase: '' },
   { nome: 'Dra. Raquel Cembranelli', crm: 'CRO-SP 83.705', esp: 'Cirurgiã-dentista · odontologia integrativa',
     ig: 'dra.raquelcembranelli', zoom: 100, fx: 50, fy: 25, frase: '' },
-  { nome: 'Dra. Ana', crm: 'CRN-SP 12.345', esp: 'Nutrição', ig: 'ana', zoom: 100, fx: 50, fy: 30, frase: '' },
-  { nome: 'Dr. Sem Instagram', crm: 'CRM-RJ 55.111', esp: 'Clínica médica', ig: '', zoom: 100, fx: 50, fy: 30, frase: '' },
+  // Os quatro vindos da Botanika: sem foto, sem @ e sem frase — o estado
+  // real até as fotos subirem. É aqui que o placeholder de iniciais entra.
+  { nome: 'Dr. Eglife Brauher', crm: 'CRM-BA 32.688', esp: 'Médico', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 30, frase: '' },
+  { nome: 'Dr. Kalil Gibran Ferreira Lima', crm: 'CRM-BA 34.392', esp: 'Médico', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 30, frase: '' },
+  { nome: 'Dr. Carlos Mateus Santos Osório', crm: 'CRM-SP 215.405', esp: 'Médico', ig: '', semFoto: true, zoom: 105, fx: 50, fy: 20, frase: '' },
+  { nome: 'Dra. Grace Dessirre', crm: 'CFO-SP 084169', esp: 'Cirurgiã-dentista', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 30, frase: '' },
 ];
+
+// Mesmas iniciais que o Liquid monta: tira Dr./Dra. e pega a primeira letra
+// das duas primeiras palavras.
+function iniciais(nome) {
+  return nome.replace(/Dra?\./g, '').trim().split(/\s+/).slice(0, 2)
+    .map((w) => w.charAt(0).toUpperCase()).join('');
+}
 const CORES = ['#C9B79C', '#8C5A4A', '#3A3F4B', '#9AA37F', '#6E7A8A', '#B2887A'];
 
 const IG_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>';
@@ -52,9 +63,12 @@ function card(m, i) {
   const ig = m.ig
     ? `<a class="vf-presc__ig" href="https://www.instagram.com/${m.ig}/" target="_blank" rel="noopener nofollow" aria-label="Instagram de ${m.nome}">${IG_SVG}<span class="vf-presc__handle">@${m.ig}</span></a>`
     : '';
+  const media = m.semFoto
+    ? `<div class="vf-presc__img vf-presc__img--placeholder" aria-hidden="true">${iniciais(m.nome)}</div>`
+    : `<img src="${retrato(CORES[i % CORES.length], 150 + i * 20, 130 + i * 15)}" alt="${m.nome}" class="vf-presc__img" style="${style}">`;
   return `<article class="vf-presc__card${m.destaque ? ' is-destaque' : ''}">
     <div class="vf-presc__media">
-      <img src="${retrato(CORES[i % CORES.length], 150 + i * 20, 130 + i * 15)}" alt="${m.nome}" class="vf-presc__img" style="${style}">
+      ${media}
       <span class="vf-presc__selo">${m.crm}</span>
       ${m.destaque ? '<span class="vf-presc__fita">Curadoria científica</span>' : ''}
     </div>
@@ -104,7 +118,7 @@ ${cards}
   fs.writeFileSync(path.join(__dirname, arquivo), html);
 }
 
-pagina(6, 'presc.html');        // transborda -> carrossel
+pagina(8, 'presc.html');        // os 8 de hoje -> carrossel
 pagina(4, 'presc-quatro.html'); // estado real da loja hoje -> grade
 pagina(2, 'presc-poucos.html');
-console.log('presc.html (6), presc-quatro.html (4) e presc-poucos.html (2) gerados com o CSS e o JS reais da seção');
+console.log('presc.html (8), presc-quatro.html (4) e presc-poucos.html (2) gerados com o CSS e o JS reais da seção');
