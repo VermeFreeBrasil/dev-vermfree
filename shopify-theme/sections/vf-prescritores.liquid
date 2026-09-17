@@ -30,6 +30,10 @@
   Selo de credencial sobre a foto; um médico pode ser marcado como destaque
   (anel verde) para o curador do protocolo.
 
+  O botão do Instagram existe mas nasce desligado, num interruptor de seção.
+  Assim ele some da página sem que os @ configurados se percam — apagar os
+  campos seria perder o dado para sempre.
+
   Compatível com a v1: todos os IDs de setting antigos (photo, photo_filename,
   name, credential, specialty, instagram_handle, instagram_url) continuam os
   mesmos, então nenhum dado configurado se perde na troca.
@@ -188,7 +192,7 @@
                 {%- endif -%}
               </div>
 
-              {%- if ig != blank -%}
+              {%- if s.show_instagram and ig != blank -%}
                 <a
                   class="vf-presc__ig"
                   href="{{ ig_href }}"
@@ -517,6 +521,7 @@
     { "type": "header", "content": "Aparência" },
     { "type": "range", "id": "card_width", "label": "Largura do card", "min": 240, "max": 400, "step": 10, "unit": "px", "default": 300 },
     { "type": "text", "id": "highlight_label", "label": "Fita do destaque", "info": "Aparece no card marcado como destaque.", "default": "Curadoria científica" },
+    { "type": "checkbox", "id": "show_instagram", "label": "Mostrar botão do Instagram", "info": "Desligado, o @ de cada profissional continua guardado no bloco — é só religar aqui.", "default": false },
     { "type": "textarea", "id": "footnote", "label": "Observação no rodapé (opcional)", "info": "Ex.: aviso de que os profissionais não substituem consulta." }
   ],
   "blocks": [

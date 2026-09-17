@@ -29,23 +29,25 @@ function retrato(cor, rostoX, rostoY) {
 // A seção entrega a frase neutra vazia; aqui o vazio é o padrão e só o
 // primeiro médico tem frase própria, que é o cenário real de hoje.
 const FRASE_NEUTRA = '';
+const MOSTRAR_IG = false;   // o interruptor da seção, desligado
 const MEDICOS = [
   { nome: 'Dr. William Araújo', crm: 'CRM-MG 76.962', esp: 'Curadoria científica do protocolo VermeFree',
     ig: 'drwilliamaraujo', destaque: true, zoom: 100, fx: 50, fy: 30,
     frase: 'Acompanho a formulação desde o início e <strong>indico o protocolo</strong> aos meus pacientes.' },
   { nome: 'Dra. Giovanna Eller', crm: 'CRM-ES 20.998', esp: 'Nutróloga · saúde intestinal e emagrecimento',
-    ig: 'dra.giovannaeller', zoom: 130, fx: 45, fy: 22, frase: '' },
+    ig: 'dra.giovannaeller', zoom: 130, fx: 45, fy: 22,
+    frase: 'Saúde intestinal é a base de quase tudo que trato no consultório, e a VermeFree entra nessa conversa com <strong>seriedade de formulação</strong>.' },
   { nome: 'Dr. Robson Araújo', crm: 'CRM-MG 93.787', esp: 'Emagrecimento e saúde integrativa',
-    ig: 'drrobson_araujo', zoom: 160, fx: 60, fy: 18, frase: '' },
+    ig: 'drrobson_araujo', zoom: 160, fx: 60, fy: 18, frase: 'Acompanho pacientes em processos de emagrecimento e vejo a VermeFree como <strong>uma aliada segura</strong> na rotina deles.' },
   { nome: 'Dra. Raquel Cembranelli', crm: 'CRO-SP 83.705', esp: 'Cirurgiã-dentista · odontologia integrativa',
-    ig: 'dra.raquelcembranelli', zoom: 100, fx: 50, fy: 25, frase: '' },
+    ig: 'dra.raquelcembranelli', zoom: 100, fx: 50, fy: 25, frase: 'Na odontologia integrativa, qualidade não é opcional — por isso <strong>conheço e indico</strong> o protocolo VermeFree.' },
   // Os quatro vindos da Botanika: sem foto, sem @ e sem frase — o estado
   // real até as fotos subirem. É aqui que o placeholder de iniciais entra.
-  { nome: 'Dr. Eglife Brauher', crm: 'CRM-BA 32.688', esp: 'Médico', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 30, frase: '' },
-  { nome: 'Dr. Kalil Gibran Ferreira Lima', crm: 'CRM-BA 34.392', esp: 'Médico', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 30, frase: '' },
-  { nome: 'Dr. Carlos Mateus Santos Osório', crm: 'CRM-SP 215.405', esp: 'Médico', ig: '', semFoto: true, zoom: 105, fx: 50, fy: 20, frase: '' },
-  { nome: 'Dra. Grace Dessirre', crm: 'CFO-SP 084169', esp: 'Cirurgiã-dentista', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 30, frase: '' },
-  { nome: 'Dr. Thiago Barbosa Gonçalves', crm: 'CRM-ES 16.079', esp: 'Médico', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 22, frase: '' },
+  { nome: 'Dr. Eglife Brauher', crm: 'CRM-BA 32.688', esp: 'Médico', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 30, frase: 'Conheço de perto o protocolo da VermeFree e <strong>indico com tranquilidade</strong> aos meus pacientes.' },
+  { nome: 'Dr. Kalil Gibran Ferreira Lima', crm: 'CRM-BA 34.392', esp: 'Médico', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 30, frase: 'A VermeFree entrega o <strong>padrão de formulação</strong> que busco para indicar no consultório.' },
+  { nome: 'Dr. Carlos Mateus Santos Osório', crm: 'CRM-SP 215.405', esp: 'Médico', ig: '', semFoto: true, zoom: 105, fx: 50, fy: 20, frase: 'Indico a VermeFree pela <strong>consistência do protocolo</strong> e pelo cuidado na formulação.' },
+  { nome: 'Dra. Grace Dessirre', crm: 'CFO-SP 084169', esp: 'Cirurgiã-dentista', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 30, frase: 'Incluo a VermeFree no cuidado que ofereço, sempre com <strong>atenção à qualidade</strong>.' },
+  { nome: 'Dr. Thiago Barbosa Gonçalves', crm: 'CRM-ES 16.079', esp: 'Médico', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 22, frase: 'Desparasitação feita com critério faz diferença na rotina do paciente — e é isso que <strong>encontro na VermeFree</strong>.' },
 ];
 
 // Mesmas iniciais que o Liquid monta: tira Dr./Dra. e pega a primeira letra
@@ -61,7 +63,7 @@ const IG_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 function card(m, i) {
   const style = `object-position:${m.fx}% ${m.fy}%;transform:scale(${m.zoom / 100});`;
   const frase = m.frase || FRASE_NEUTRA;
-  const ig = m.ig
+  const ig = (MOSTRAR_IG && m.ig)
     ? `<a class="vf-presc__ig" href="https://www.instagram.com/${m.ig}/" target="_blank" rel="noopener nofollow" aria-label="Instagram de ${m.nome}">${IG_SVG}<span class="vf-presc__handle">@${m.ig}</span></a>`
     : '';
   const media = m.semFoto

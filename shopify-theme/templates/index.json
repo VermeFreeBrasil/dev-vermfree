@@ -235,7 +235,8 @@
             "instagram_url": "https://www.instagram.com/drwilliamaraujo/",
             "photo_zoom": 100,
             "photo_focus_x": 50,
-            "photo_focus_y": 25
+            "photo_focus_y": 25,
+            "quote": "<p>Acompanho a formulação desde o início e vejo no protocolo VermeFree o <strong>critério</strong> que busco para indicar aos meus pacientes.</p>"
           }
         },
         "presc_2": {
@@ -249,7 +250,8 @@
             "instagram_url": "https://www.instagram.com/dra.giovannaeller/",
             "photo_zoom": 100,
             "photo_focus_x": 50,
-            "photo_focus_y": 30
+            "photo_focus_y": 30,
+            "quote": "<p>Saúde intestinal é a base de quase tudo que trato no consultório, e a VermeFree entra nessa conversa com <strong>seriedade de formulação</strong>.</p>"
           }
         },
         "presc_3": {
@@ -263,7 +265,8 @@
             "instagram_url": "https://www.instagram.com/drrobson_araujo/",
             "photo_zoom": 100,
             "photo_focus_x": 50,
-            "photo_focus_y": 30
+            "photo_focus_y": 30,
+            "quote": "<p>Acompanho pacientes em processos de emagrecimento e vejo a VermeFree como <strong>uma aliada segura</strong> na rotina deles.</p>"
           }
         },
         "presc_4": {
@@ -277,7 +280,8 @@
             "instagram_url": "https://www.instagram.com/dra.raquelcembranelli/",
             "photo_zoom": 100,
             "photo_focus_x": 50,
-            "photo_focus_y": 30
+            "photo_focus_y": 30,
+            "quote": "<p>Na odontologia integrativa, qualidade não é opcional — por isso <strong>conheço e indico</strong> o protocolo VermeFree.</p>"
           }
         },
         "presc_eglife": {
@@ -291,7 +295,8 @@
             "credential": "CRM-BA 32.688",
             "specialty": "Médico",
             "instagram_handle": "",
-            "instagram_url": ""
+            "instagram_url": "",
+            "quote": "<p>Conheço de perto o protocolo da VermeFree e <strong>indico com tranquilidade</strong> aos meus pacientes.</p>"
           }
         },
         "presc_kalil": {
@@ -305,7 +310,8 @@
             "credential": "CRM-BA 34.392",
             "specialty": "Médico",
             "instagram_handle": "",
-            "instagram_url": ""
+            "instagram_url": "",
+            "quote": "<p>A VermeFree entrega o <strong>padrão de formulação</strong> que busco para indicar no consultório.</p>"
           }
         },
         "presc_carlos": {
@@ -319,7 +325,8 @@
             "credential": "CRM-SP 215.405",
             "specialty": "Médico",
             "instagram_handle": "",
-            "instagram_url": ""
+            "instagram_url": "",
+            "quote": "<p>Indico a VermeFree pela <strong>consistência do protocolo</strong> e pelo cuidado na formulação.</p>"
           }
         },
         "presc_grace": {
@@ -333,7 +340,8 @@
             "credential": "CFO-SP 084169",
             "specialty": "Cirurgiã-dentista",
             "instagram_handle": "",
-            "instagram_url": ""
+            "instagram_url": "",
+            "quote": "<p>Incluo a VermeFree no cuidado que ofereço, sempre com <strong>atenção à qualidade</strong>.</p>"
           }
         },
         "presc_thiago": {
@@ -347,7 +355,8 @@
             "credential": "CRM-ES 16.079",
             "specialty": "Médico",
             "instagram_handle": "",
-            "instagram_url": ""
+            "instagram_url": "",
+            "quote": "<p>Desparasitação feita com critério faz diferença na rotina do paciente — e é isso que <strong>encontro na VermeFree</strong>.</p>"
           }
         }
       },
@@ -365,7 +374,8 @@
       "settings": {
         "eyebrow": "AUTORIDADE MÉDICA",
         "heading": "Profissionais de saúde que recomendam a VermeFree",
-        "subheading": "Médicos e especialistas que conhecem o protocolo e indicam pros seus pacientes."
+        "subheading": "Médicos e especialistas que conhecem o protocolo e indicam pros seus pacientes.",
+        "show_instagram": false
       }
     },
     "vf_ugc_carrossel_cUgtig": {

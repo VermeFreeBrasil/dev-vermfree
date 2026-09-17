@@ -44,17 +44,22 @@ const servidor = http.createServer(servir);
 
   conferir('nenhum erro de JS', erros.length === 0, erros.join(' | '));
 
-  // ---------- o defeito nº1 da v1: botões do Instagram desalinhados ----------
+  // ---------- o defeito nº1 da v1: rodapé dos cards desalinhado ----------
+  // Era o botão do Instagram; com ele desligado, o que tem de fechar na
+  // mesma linha é o bloco de nome + especialidade.
   const topos = await p.evaluate(() => {
     var cards = [...document.querySelectorAll('.vf-presc__card')];
     return cards.map((c) => {
-      var a = c.querySelector('.vf-presc__ig');
+      var id = c.querySelector('.vf-presc__id');
       var r = c.getBoundingClientRect();
-      return a ? Math.round(r.bottom - a.getBoundingClientRect().bottom) : null;
+      return id ? Math.round(r.bottom - id.getBoundingClientRect().bottom) : null;
     }).filter((v) => v !== null);
   });
   const espalhamento = Math.max(...topos) - Math.min(...topos);
-  conferir('botões do Instagram alinhados no rodapé', espalhamento <= 1, 'variação de ' + espalhamento + 'px: ' + topos.join(','));
+  conferir('rodapé dos cards alinhado', espalhamento <= 1, 'variação de ' + espalhamento + 'px: ' + topos.join(','));
+
+  conferir('nenhum botão de Instagram na página',
+    await p.evaluate(() => document.querySelectorAll('.vf-presc__ig').length) === 0);
 
   // ---------- os cards têm a mesma altura ----------
   const alturas = await p.evaluate(() =>
@@ -79,8 +84,9 @@ const servidor = http.createServer(servir);
   const frases = await p.evaluate(() =>
     [...document.querySelectorAll('.vf-presc__card:not([data-vf-presc-clone]) .vf-presc__quote')]
       .map((q) => q.textContent.trim()));
-  conferir('sem frase neutra, só quem tem frase própria mostra frase', frases.length === 1, frases.length + ' frases: ' + frases.join(' | '));
-  conferir('card com frase própria mantém a dele', /Acompanho a formulação/.test(frases[0]), frases[0]);
+  conferir('todos os 9 têm frase', frases.length === 9 && frases.every((f) => f.length > 30), frases.length + ' frases');
+  conferir('nenhuma frase se repete', new Set(frases).size === 9, 'distintas: ' + new Set(frases).size);
+  conferir('cada frase é a do seu médico', /Acompanho a formulação/.test(frases[0]) && /odontologia integrativa/.test(frases[3]), frases[0]);
 
   // ---------- o defeito nº3: enquadramento da foto ----------
   const foco = await p.evaluate(() => {
@@ -149,9 +155,9 @@ const servidor = http.createServer(servir);
   const depois = await p.evaluate(() => document.querySelector('[data-vf-presc-track]').scrollLeft);
   conferir('arrastar com o mouse rola o trilho', depois > antes + 100, antes + ' -> ' + depois);
 
-  // Um arrasto que termina em cima do card não pode virar clique no @.
+  // Um arrasto que termina em cima do card não pode virar clique num link.
   const abriu = await p.evaluate(() => {
-    var a = document.querySelector('.vf-presc__ig');
+    var a = document.querySelector('.vf-presc__card a') || document.querySelector('.vf-presc__card');
     var r = a.getBoundingClientRect();
     return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
   });
@@ -162,7 +168,7 @@ const servidor = http.createServer(servir);
   for (let i = 1; i <= 8; i++) await p.mouse.move(abriu.x + 200 - i * 25, abriu.y);
   await p.mouse.up();
   await p.waitForTimeout(500);
-  conferir('arrastar e soltar em cima do card não abre o Instagram', !navegou);
+  conferir('arrastar e soltar em cima do card não navega', !navegou);
 
   // ---------- 4 médicos: grade, todos visíveis de uma vez ----------
   // Era a queixa: o carrossel escondia o quarto card no desktop.
