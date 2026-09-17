@@ -78,8 +78,7 @@ const servidor = http.createServer(servir);
   // ---------- frase neutra no card sem frase própria ----------
   const frases = await p.evaluate(() =>
     [...document.querySelectorAll('.vf-presc__quote')].map((q) => q.textContent.trim()));
-  conferir('todo card tem frase', frases.length === 6 && frases.every((f) => f.length > 10), frases.length + ' frases');
-  conferir('card sem frase própria cai na neutra', /indico aos meus pacientes/.test(frases[1]), frases[1]);
+  conferir('sem frase neutra, só quem tem frase própria mostra frase', frases.length === 1, frases.length + ' frases: ' + frases.join(' | '));
   conferir('card com frase própria mantém a dele', /Acompanho a formulação/.test(frases[0]), frases[0]);
 
   // ---------- o defeito nº3: enquadramento da foto ----------
@@ -110,6 +109,33 @@ const servidor = http.createServer(servir);
   const depois = await p.evaluate(() => document.querySelector('[data-vf-presc-track]').scrollLeft);
   conferir('seta avança o trilho', depois > antes, antes + ' -> ' + depois);
 
+  // ---------- 4 médicos: grade, todos visíveis de uma vez ----------
+  // Era a queixa: o carrossel escondia o quarto card no desktop.
+  await p.goto(base + '/presc-quatro.html');
+  await p.waitForTimeout(400);
+  const quatro = await p.evaluate(() => {
+    var t = document.querySelector('[data-vf-presc-track]');
+    var tr = t.getBoundingClientRect();
+    var cards = [...t.querySelectorAll('.vf-presc__card')];
+    var vw = document.documentElement.clientWidth;
+    return {
+      n: cards.length,
+      display: getComputedStyle(t).display,
+      transbordo: t.scrollWidth - t.clientWidth,
+      setaEscondida: document.querySelector('[data-vf-presc-prev]').hidden
+        || getComputedStyle(document.querySelector('[data-vf-presc-prev]')).display === 'none',
+      todosNaTela: cards.every((c) => {
+        var r = c.getBoundingClientRect();
+        return r.left >= -0.5 && r.right <= vw + 0.5 && r.width > 100;
+      }),
+      larguras: cards.map((c) => Math.round(c.getBoundingClientRect().width)),
+    };
+  });
+  conferir('com 4 médicos o trilho vira grade', quatro.display === 'grid', JSON.stringify(quatro));
+  conferir('os 4 aparecem de uma vez, nenhum fora da tela', quatro.todosNaTela && quatro.n === 4, JSON.stringify(quatro));
+  conferir('grade não transborda', quatro.transbordo <= 0, JSON.stringify(quatro));
+  conferir('na grade as setas somem', quatro.setaEscondida, JSON.stringify(quatro));
+
   // ---------- poucos médicos: sem seta inútil, sem corte ----------
   await p.goto(base + '/presc-poucos.html');
   await p.waitForTimeout(400);
@@ -126,6 +152,9 @@ const servidor = http.createServer(servir);
   });
   conferir('sem transbordo, as setas somem', poucos.escondida, JSON.stringify(poucos));
   conferir('com 2 médicos nenhum card fica cortado', !poucos.cortado, JSON.stringify(poucos));
+  const larg2 = await p.evaluate(() =>
+    [...document.querySelectorAll('.vf-presc__card')].map((c) => Math.round(c.getBoundingClientRect().width)));
+  conferir('com 2 médicos o card não estica pra meia tela', Math.max(...larg2) <= 320, 'larguras: ' + larg2.join(','));
 
   conferir('nenhum erro de JS no fim', erros.length === 0, erros.join(' | '));
 

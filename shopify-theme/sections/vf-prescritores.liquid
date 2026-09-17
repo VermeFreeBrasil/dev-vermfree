@@ -16,10 +16,12 @@
     como a referência da Botanika resolve — e a Shopify não tem crop por foto.
   - Teto de blocos. Era 6, virou 14: o carrossel não se importa com quantos.
 
-  O que é novo de conteúdo: cada médico pode ter uma frase. Quando o bloco não
-  tem frase própria, cai na "frase neutra" da seção, então o card nunca nasce
-  vazio. Selo de credencial sobre a foto; um médico pode ser marcado como
-  destaque (anel verde) para o curador do protocolo.
+  O que é novo de conteúdo: cada médico pode ter uma frase própria. Existe uma
+  "frase neutra" de seção como rede, mas ela nasce vazia de propósito — a
+  mesma frase repetida em quatro cards lê como preenchimento, e uma frase
+  entre aspas embaixo de um nome e um CRM é declaração daquele profissional.
+  Selo de credencial sobre a foto; um médico pode ser marcado como destaque
+  (anel verde) para o curador do protocolo.
 
   Compatível com a v1: todos os IDs de setting antigos (photo, photo_filename,
   name, credential, specialty, instagram_handle, instagram_url) continuam os
@@ -42,11 +44,23 @@
   endfor
 -%}
 
+{%- liquid
+  comment
+    Até 4 médicos cabem lado a lado num desktop: vira grade e todos aparecem
+    de uma vez, que é mais forte para uma seção de autoridade. Do quinto em
+    diante vira carrossel. No celular é sempre carrossel — não há largura.
+  endcomment
+  assign grade = false
+  if total <= 4
+    assign grade = true
+  endif
+-%}
+
 {%- if total > 0 -%}
 <section
   class="vf-presc"
   aria-labelledby="vf-presc-heading-{{ uid }}"
-  style="--vf-presc-card: {{ s.card_width | default: 300 }}px;"
+  style="--vf-presc-card: {{ s.card_width | default: 300 }}px; --vf-presc-n: {{ total }};"
 >
   <div class="vf-presc__container">
     {%- if s.eyebrow != blank -%}
@@ -60,7 +74,7 @@
     {%- endif -%}
   </div>
 
-  <div class="vf-presc__carousel" data-vf-presc="{{ uid }}">
+  <div class="vf-presc__carousel{% if grade %} vf-presc__carousel--grade{% endif %}" data-vf-presc="{{ uid }}">
     <button type="button" class="vf-presc__nav vf-presc__nav--prev" data-vf-presc-prev aria-label="Anterior">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
@@ -87,7 +101,16 @@
               assign frase = s.neutral_quote
             endif
 
+            comment
+              O @ e o link se completam nos dois sentidos. A home tinha só o
+              link preenchido e o campo do @ vazio, e como a régua antiga
+              exigia o @ o botão simplesmente não existia lá. Agora o @ sai
+              da própria URL quando o campo está vazio.
+            endcomment
             assign ig = b.instagram_handle | replace: '@', '' | strip
+            if ig == blank and b.instagram_url != blank
+              assign ig = b.instagram_url | split: '?' | first | split: '/' | last | replace: '@', '' | strip
+            endif
             assign ig_href = b.instagram_url
             if ig_href == blank and ig != blank
               assign ig_href = 'https://www.instagram.com/' | append: ig | append: '/'
@@ -312,6 +335,23 @@
     font-size: 12.5px; line-height: 1.5; color: #8A937F;
   }
 
+  /* Grade: até 4 médicos aparecem todos de uma vez no desktop. A
+     especificidade maior vence o padding largo do trilho em telas grandes. */
+  @media (min-width: 990px) {
+    .vf-presc__carousel--grade .vf-presc__track {
+      display: grid;
+      grid-template-columns: repeat(var(--vf-presc-n, 4), minmax(0, 1fr));
+      overflow: visible;
+      padding-left: 0; padding-right: 0;
+      /* a grade só ocupa o que os cards pedem: com 2 médicos ela não estica
+         dois cards para meia tela cada. */
+      width: min(100% - 40px, 1180px, calc(var(--vf-presc-n, 4) * var(--vf-presc-card, 300px) + (var(--vf-presc-n, 4) - 1) * 20px));
+      margin-left: auto; margin-right: auto;
+    }
+    .vf-presc__carousel--grade .vf-presc__card { flex: none; width: 100%; max-width: none; }
+    .vf-presc__carousel--grade .vf-presc__nav { display: none; }
+  }
+
   @media (max-width: 749px) {
     .vf-presc__card { flex-basis: min(72vw, 290px); max-width: min(72vw, 290px); }
     .vf-presc__track { gap: 14px; padding-left: 16px; padding-right: 16px; }
@@ -364,7 +404,7 @@
     { "type": "text", "id": "heading", "label": "Título", "default": "Profissionais de saúde que recomendam a VermeFree" },
     { "type": "textarea", "id": "subheading", "label": "Subtítulo", "default": "Médicos e especialistas que conhecem o protocolo e indicam pros seus pacientes." },
     { "type": "header", "content": "Frases" },
-    { "type": "textarea", "id": "neutral_quote", "label": "Frase neutra", "info": "Usada nos cards que ainda não têm frase própria. Deixe vazio para não mostrar frase nenhuma.", "default": "Conheço o protocolo VermeFree e indico aos meus pacientes." },
+    { "type": "textarea", "id": "neutral_quote", "label": "Frase neutra", "info": "Repetida em todo card que não tem frase própria — por isso vem vazia. Uma frase entre aspas embaixo de um nome e um CRM é declaração daquele profissional: preencha a frase real de cada um no bloco dele." },
     { "type": "header", "content": "Aparência" },
     { "type": "range", "id": "card_width", "label": "Largura do card", "min": 240, "max": 400, "step": 10, "unit": "px", "default": 300 },
     { "type": "text", "id": "highlight_label", "label": "Fita do destaque", "info": "Aparece no card marcado como destaque.", "default": "Curadoria científica" },

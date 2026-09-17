@@ -26,7 +26,9 @@ function retrato(cor, rostoX, rostoY) {
 // Casos difíceis de propósito: especialidade de 1 e de 3 linhas no mesmo
 // trilho (era o que desalinhava os botões), @ comprido (era o que vazava),
 // card sem frase própria (cai na neutra) e card sem @ nenhum.
-const FRASE_NEUTRA = 'Conheço o protocolo VermeFree e indico aos meus pacientes.';
+// A seção entrega a frase neutra vazia; aqui o vazio é o padrão e só o
+// primeiro médico tem frase própria, que é o cenário real de hoje.
+const FRASE_NEUTRA = '';
 const MEDICOS = [
   { nome: 'Dr. William Araújo', crm: 'CRM-MG 76.962', esp: 'Curadoria científica do protocolo VermeFree',
     ig: 'drwilliamaraujo', destaque: true, zoom: 100, fx: 50, fy: 30,
@@ -57,7 +59,7 @@ function card(m, i) {
       ${m.destaque ? '<span class="vf-presc__fita">Curadoria científica</span>' : ''}
     </div>
     <div class="vf-presc__body">
-      <blockquote class="vf-presc__quote">${frase}</blockquote>
+      ${frase ? `<blockquote class="vf-presc__quote">${frase}</blockquote>` : ''}
       <div class="vf-presc__id">
         <h3 class="vf-presc__name">${m.nome}</h3>
         <p class="vf-presc__specialty">${m.esp}</p>
@@ -69,6 +71,7 @@ function card(m, i) {
 
 function pagina(quantos, arquivo) {
   const cards = MEDICOS.slice(0, quantos).map(card).join('\n');
+  const grade = quantos <= 4;
   const html = `<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,13 +83,13 @@ ${css}
 </style>
 </head><body>
 <div class="antes">acima</div>
-<section class="vf-presc" aria-labelledby="h-${UID}" style="--vf-presc-card: 300px;">
+<section class="vf-presc" aria-labelledby="h-${UID}" style="--vf-presc-card: 300px; --vf-presc-n: ${quantos};">
   <div class="vf-presc__container">
     <span class="vf-presc__eyebrow">AUTORIDADE MÉDICA</span>
     <h2 id="h-${UID}" class="vf-presc__heading">Profissionais de saúde que recomendam a VermeFree</h2>
     <p class="vf-presc__subheading">Médicos e especialistas que conhecem o protocolo e indicam pros seus pacientes.</p>
   </div>
-  <div class="vf-presc__carousel" data-vf-presc="${UID}">
+  <div class="vf-presc__carousel${grade ? ' vf-presc__carousel--grade' : ''}" data-vf-presc="${UID}">
     <button type="button" class="vf-presc__nav vf-presc__nav--prev" data-vf-presc-prev aria-label="Anterior">&lt;</button>
     <div class="vf-presc__track" data-vf-presc-track>
 ${cards}
@@ -101,6 +104,7 @@ ${cards}
   fs.writeFileSync(path.join(__dirname, arquivo), html);
 }
 
-pagina(6, 'presc.html');
+pagina(6, 'presc.html');        // transborda -> carrossel
+pagina(4, 'presc-quatro.html'); // estado real da loja hoje -> grade
 pagina(2, 'presc-poucos.html');
-console.log('presc.html (6 médicos) e presc-poucos.html (2) gerados com o CSS e o JS reais da seção');
+console.log('presc.html (6), presc-quatro.html (4) e presc-poucos.html (2) gerados com o CSS e o JS reais da seção');
