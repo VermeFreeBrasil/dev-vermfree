@@ -466,6 +466,19 @@
         {%- endif -%}
 
         {%- comment -%}
+          STORIES (destaques em vídeo) — blocos do tipo "stories".
+          Cada bloco é uma régua. O filtro por handle dentro do bloco
+          decide em qual produto ela aparece, então o template padrão
+          pode carregar uma régua genérica e uma por produto sem
+          precisar de template novo.
+        {%- endcomment -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'stories' -%}
+            {% render 'vf-stories-rail', block: block, product: product, mode: 'pdp' %}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- comment -%}
           DEPOIMENTOS (carrossel de fotos) — estilo Botanika
           Carrossel horizontal com fotos de clientes, logo abaixo do CTA.
           Prioridade 1: blocos "Depoimento (foto)" cadastrados no editor.
@@ -565,19 +578,6 @@
             <span class="vf-pdp__frete-mini-text"><strong>Frete grátis sem mínimo</strong> nesse pedido — válido só hoje e amanhã.</span>
           </div>
         {%- endif -%}
-
-        {%- comment -%}
-          STORIES (destaques em vídeo) — blocos do tipo "stories".
-          Cada bloco é uma régua. O filtro por handle dentro do bloco
-          decide em qual produto ela aparece, então o template padrão
-          pode carregar uma régua genérica e uma por produto sem
-          precisar de template novo.
-        {%- endcomment -%}
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'stories' -%}
-            {% render 'vf-stories-rail', block: block, product: product, mode: 'pdp' %}
-          {%- endif -%}
-        {%- endfor -%}
 
         {%- comment -%} ACCORDIONS de info extra {%- endcomment -%}
         <div class="vf-pdp__accordions">
