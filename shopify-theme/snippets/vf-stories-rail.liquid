@@ -1,0 +1,401 @@
+{%- comment -%}
+  ============================================================
+  vf-stories-rail.liquid — Régua de stories: círculos estilo
+  Instagram que abrem o visualizador em tela cheia.
+
+  USO
+    {% render 'vf-stories-rail', block: block, product: product, mode: 'pdp' %}
+
+  Renderiza o visualizador junto (ele se deduplica sozinho),
+  então quem chama não precisa lembrar de fazer isso.
+
+  FILTRO POR PRODUTO
+    Os campos "Mostrar só nestes produtos" e "Não mostrar nestes
+    produtos" comparam com product.handle. Vazio = vale para
+    todos. É assim que um template compartilhado por dois
+    produtos — aqui, product.json serve o Adulto e o Óleo de
+    Alho — mostra réguas diferentes em cada um, sem precisar de
+    template novo nem de apontar o produto no cadastro.
+
+  QUALIDADE DE VÍDEO
+    O círculo usa a menor versão mp4 (480p na Shopify): são
+    68 pixels na tela, não faz sentido baixar 1080p. A tela
+    cheia usa a maior até 720p — mesma escolha do tema de
+    origem, e 2,5 Mbps de 1080p num story vertical é peso sem
+    ganho visível.
+
+  DUAS ARMADILHAS QUE O CÓDIGO DRIBLA
+    1. play() nunca vem logo depois de load(): o navegador
+       cancela com AbortError e o círculo fica parado. E o
+       sintoma engana, porque o primeiro que ganha a corrida
+       funciona e os outros não.
+    2. A capa não é o quadro zero. Muito vídeo abre com fade a
+       partir do preto, e a régua viraria uma fileira de
+       círculos escuros — inclusive as miniaturas que a própria
+       Shopify gera, que são literalmente o quadro zero. Por
+       isso avançamos para ~1s antes de mostrar.
+
+  DESEMPENHO
+    Só toca o círculo de fato visível (IntersectionObserver,
+    threshold 0.5). Sair da tela ou da rolagem horizontal pausa,
+    e abrir a tela cheia pausa todos — sete vídeos rodando atrás
+    de uma sobreposição opaca travam celular fraco à toa.
+  ============================================================
+{%- endcomment -%}
+
+{%- liquid
+  assign bs = block.settings
+  assign uid = block.id
+
+  comment
+    Filtro por handle. Vazio vale para todos.
+  endcomment
+  assign mostrar = true
+  assign so_estes = bs.only_handles | default: '' | replace: ' ', '' | downcase
+  assign nestes_nao = bs.exclude_handles | default: '' | replace: ' ', '' | downcase
+
+  if so_estes != blank
+    assign mostrar = false
+    assign lista_sim = so_estes | split: ','
+    for h in lista_sim
+      if h == product.handle
+        assign mostrar = true
+      endif
+    endfor
+  endif
+
+  if nestes_nao != blank
+    assign lista_nao = nestes_nao | split: ','
+    for h in lista_nao
+      if h == product.handle
+        assign mostrar = false
+      endif
+    endfor
+  endif
+
+  assign tem_video = false
+  for i in (1..8)
+    assign chave = 'story' | append: i | append: '_video'
+    if bs[chave] != blank
+      assign tem_video = true
+    endif
+  endfor
+-%}
+
+{%- if mostrar and tem_video -%}
+  {% render 'vf-stories-viewer' %}
+
+  <div class="vfsr" data-vfsr="{{ uid }}" {{ block.shopify_attributes }}>
+    {%- if bs.heading != blank -%}
+      <h3 class="vfsr__heading">{{ bs.heading }}</h3>
+    {%- endif -%}
+
+    <div class="vfsr__row">
+      {%- assign indice = 0 -%}
+      {%- for i in (1..8) -%}
+        {%- assign k_video = 'story' | append: i | append: '_video' -%}
+        {%- assign k_capa = 'story' | append: i | append: '_cover' -%}
+        {%- assign k_legenda = 'story' | append: i | append: '_label' -%}
+        {%- assign video = bs[k_video] -%}
+
+        {%- if video != blank -%}
+          {%- liquid
+            assign menor = blank
+            assign menor_h = 99999
+            for s in video.sources
+              if s.format == 'mp4' and s.height < menor_h
+                assign menor_h = s.height
+                assign menor = s
+              endif
+            endfor
+          -%}
+          {%- assign capa_url = bs[k_capa] | image_url: width: 220 -%}
+
+          <button type="button" class="vfsr__item" data-vfsr-open="{{ indice }}">
+            <span class="vfsr__ring">
+              <span class="vfsr__avatar">
+                {%- if capa_url != blank -%}
+                  <img src="{{ capa_url }}" alt="" loading="lazy" width="68" height="68">
+                {%- elsif menor != blank -%}
+                  <video
+                    class="vfsr__thumb"
+                    data-vfsr-thumb
+                    muted
+                    loop
+                    playsinline
+                    webkit-playsinline
+                    preload="none"
+                    tabindex="-1"
+                    aria-hidden="true"
+                  >
+                    <source src="{{ menor.url }}" type="{{ menor.mime_type }}">
+                  </video>
+                {%- else -%}
+                  <span class="vfsr__ph"></span>
+                {%- endif -%}
+              </span>
+            </span>
+            {%- if bs[k_legenda] != blank -%}
+              <span class="vfsr__label">{{ bs[k_legenda] }}</span>
+            {%- endif -%}
+          </button>
+          {%- assign indice = indice | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- capture dados -%}
+      {%- assign primeiro = true -%}
+      {%- for i in (1..8) -%}
+        {%- assign k_video = 'story' | append: i | append: '_video' -%}
+        {%- assign video = bs[k_video] -%}
+        {%- if video != blank -%}
+          {%- liquid
+            assign menor = blank
+            assign menor_h = 99999
+            assign melhor = blank
+            assign melhor_h = 0
+            for s in video.sources
+              if s.format == 'mp4'
+                if s.height < menor_h
+                  assign menor_h = s.height
+                  assign menor = s
+                endif
+                if s.height <= 720 and s.height > melhor_h
+                  assign melhor_h = s.height
+                  assign melhor = s
+                endif
+              endif
+            endfor
+            if melhor == blank
+              assign melhor = menor
+            endif
+          -%}
+          {%- if melhor != blank -%}
+            {%- unless primeiro -%},{%- endunless -%}
+            {%- assign primeiro = false -%}
+            {
+              "sources": [{"src": {{ melhor.url | json }}, "type": {{ melhor.mime_type | json }}}],
+              "eyebrow": {{ bs.eyebrow | default: '' | json }},
+              "offer": {{ bs.offer | default: '' | json }},
+              "badge": {{ bs.badge | default: '' | json }},
+              "cta": {{ bs.cta_label | default: 'Adicionar ao carrinho' | json }},
+              "mode": {{ mode | default: 'pdp' | json }}
+              {%- if product != blank -%}
+                ,"product": {
+                  "title": {{ product.title | json }},
+                  "url": {{ product.url | json }},
+                  "image": {{ product.featured_image | image_url: width: 200 | json }},
+                  "price": {{ product.price | money | json }},
+                  "variants": {{ product.variants.size }},
+                  "vid": {{ product.selected_or_first_available_variant.id | json }},
+                  "available": {{ product.available | json }}
+                }
+              {%- else -%}
+                ,"product": null
+              {%- endif -%}
+            }
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    <script type="application/json" data-vfsr-data>[{{ dados | strip }}]</script>
+  </div>
+
+  <style>
+    .vfsr { margin: 6px 0 22px; }
+    .vfsr__heading {
+      margin: 0 0 12px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--vf-text, #1A1A1A);
+    }
+    .vfsr__row {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding: 4px 2px 6px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .vfsr__row::-webkit-scrollbar { display: none; }
+    .vfsr__item {
+      flex: 0 0 auto;
+      width: 76px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: pointer;
+      color: inherit;
+      font: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .vfsr__ring {
+      display: block;
+      width: 68px;
+      height: 68px;
+      padding: 3px;
+      border-radius: 50%;
+      background: linear-gradient(140deg, var(--vf-green, #5EBC43), var(--vf-green-dark, #1B5E20));
+    }
+    .vfsr__avatar {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #11150E;
+      border: 2px solid var(--vf-surface, #FFFFFF);
+    }
+    .vfsr__avatar img,
+    .vfsr__thumb,
+    .vfsr__ph {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .vfsr__thumb { background: #11150E; pointer-events: none; }
+    .vfsr__ph { background: linear-gradient(140deg, #E6EDE0, #D3DECA); }
+    .vfsr__label {
+      font-size: 11.5px;
+      font-weight: 600;
+      line-height: 1.2;
+      text-align: center;
+      color: var(--vf-text, #1A1A1A);
+      max-width: 76px;
+    }
+    .vfsr__item:focus-visible .vfsr__ring {
+      outline: 2px solid var(--vf-green-dark, #1B5E20);
+      outline-offset: 3px;
+    }
+  </style>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var raiz = document.querySelector('[data-vfsr="{{ uid }}"]');
+      if (!raiz || !window.VFStories) return;
+
+      var dados = raiz.querySelector('[data-vfsr-data]');
+      var itens = [];
+      try { itens = JSON.parse(dados.textContent) || []; } catch (e) { itens = []; }
+      if (!itens.length) return;
+
+      window.VFStories.register('{{ uid }}', itens);
+
+      raiz.addEventListener('click', function (evento) {
+        var alvo = evento.target.closest('[data-vfsr-open]');
+        if (!alvo) return;
+        window.VFStories.open('{{ uid }}', parseInt(alvo.getAttribute('data-vfsr-open'), 10) || 0, alvo);
+      });
+
+      var capas = raiz.querySelectorAll('video[data-vfsr-thumb]');
+      if (!capas.length) return;
+
+      // Armadilha 4: o quadro zero costuma ser preto. Avança ~1s antes de
+      // mostrar; se o navegador recusar o seek, fica no zero mesmo.
+      function prepararCapa(v) {
+        if (v.getAttribute('data-vfsr-primed')) return;
+        v.setAttribute('data-vfsr-primed', '1');
+        var buscou = false;
+        var buscar = function () {
+          if (buscou) return;
+          var d = v.duration;
+          var t = (isFinite(d) && d > 0) ? Math.min(1, d * 0.3) : 1;
+          if (!(t > 0)) return;
+          buscou = true;
+          try { v.currentTime = t; } catch (e) { buscou = false; }
+        };
+        v.addEventListener('loadedmetadata', buscar);
+        v.addEventListener('loadeddata', buscar);
+
+        // Só força carregamento se ainda não houver metadados. Chamar load()
+        // aqui com o vídeo já carregado dispara um recarregamento que
+        // descarta o seek — e a capa volta para o quadro preto, que é
+        // exatamente o que este código existe para evitar.
+        if (v.readyState >= 1) {
+          buscar();
+        } else if (v.preload === 'none') {
+          v.preload = 'metadata';
+          v.load();
+        }
+      }
+
+      // Armadilha 2: espera ter dados antes de tocar. Um vídeo já preparado
+      // só retoma, sem recarregar.
+      function tocar(v) {
+        if (v.getAttribute('data-vfsr-armed')) {
+          var retomada = v.play();
+          if (retomada && retomada.catch) retomada.catch(function () {});
+          return;
+        }
+        v.setAttribute('data-vfsr-armed', '1');
+
+        var comecou = false;
+        var comecar = function () {
+          if (comecou) return;
+          comecou = true;
+          var tocando = v.play();
+          if (tocando && tocando.catch) {
+            tocando.catch(function () {
+              comecou = false;
+              prepararCapa(v);
+            });
+          }
+        };
+
+        v.addEventListener('loadeddata', comecar);
+        v.addEventListener('canplay', comecar);
+        if (v.preload !== 'auto') { v.preload = 'auto'; v.load(); }
+        if (v.readyState >= 2) comecar();
+      }
+
+      function visivel(v) {
+        var r = v.getBoundingClientRect();
+        if (!r.width || !r.height) return false;
+        var altura = window.innerHeight || document.documentElement.clientHeight;
+        var largura = window.innerWidth || document.documentElement.clientWidth;
+        return r.bottom > 0 && r.top < altura && r.right > 0 && r.left < largura;
+      }
+
+      var congelado = false;
+
+      if ('IntersectionObserver' in window) {
+        var observador = new IntersectionObserver(function (entradas) {
+          for (var i = 0; i < entradas.length; i++) {
+            var v = entradas[i].target;
+            if (entradas[i].isIntersecting && !congelado) {
+              tocar(v);
+            } else {
+              v.pause();
+            }
+          }
+        }, { threshold: 0.5 });
+        for (var i = 0; i < capas.length; i++) observador.observe(capas[i]);
+      } else {
+        for (var j = 0; j < capas.length; j++) tocar(capas[j]);
+      }
+
+      // Tela cheia aberta: nada tocando atrás dela.
+      document.addEventListener('vfstories:open', function () {
+        congelado = true;
+        for (var i = 0; i < capas.length; i++) capas[i].pause();
+      });
+
+      document.addEventListener('vfstories:close', function () {
+        congelado = false;
+        for (var i = 0; i < capas.length; i++) {
+          if (visivel(capas[i])) tocar(capas[i]);
+        }
+      });
+    })();
+  </script>
+{%- endif -%}

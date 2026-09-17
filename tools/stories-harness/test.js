@@ -5,6 +5,7 @@ const path = require('path');
 const { chromium } = require('playwright');
 
 const DIR = __dirname;
+const PADRAO = 'index.html';
 const TIPOS = { '.html': 'text/html', '.webm': 'video/webm', '.png': 'image/png' };
 
 const resultados = [];
@@ -14,13 +15,30 @@ function conferir(nome, condicao, detalhe) {
   if (condicao) ok(nome); else falhou(nome, detalhe || 'condição falsa');
 }
 
-const servidor = http.createServer((req, res) => {
+function servir(req, res) {
   const url = req.url.split('?')[0];
-  const arquivo = path.join(DIR, url === '/' ? 'index.html' : url);
+  const arquivo = path.join(DIR, url === '/' ? PADRAO : url);
   if (!arquivo.startsWith(DIR) || !fs.existsSync(arquivo)) { res.writeHead(404); return res.end(); }
-  res.writeHead(200, { 'Content-Type': TIPOS[path.extname(arquivo)] || 'application/octet-stream' });
+  const tipo = TIPOS[path.extname(arquivo)] || 'application/octet-stream';
+  const tamanho = fs.statSync(arquivo).size;
+  // Range é obrigatório: sem ele o Chrome trata o vídeo como não-buscável e
+  // prende currentTime em zero. A CDN da Shopify atende Range.
+  const faixa = req.headers.range && /bytes=(\d*)-(\d*)/.exec(req.headers.range);
+  if (faixa) {
+    const inicio = faixa[1] ? parseInt(faixa[1], 10) : 0;
+    const fim = faixa[2] ? parseInt(faixa[2], 10) : tamanho - 1;
+    res.writeHead(206, {
+      'Content-Type': tipo, 'Accept-Ranges': 'bytes',
+      'Content-Range': 'bytes ' + inicio + '-' + fim + '/' + tamanho,
+      'Content-Length': fim - inicio + 1
+    });
+    return fs.createReadStream(arquivo, { start: inicio, end: fim }).pipe(res);
+  }
+  res.writeHead(200, { 'Content-Type': tipo, 'Accept-Ranges': 'bytes', 'Content-Length': tamanho });
   fs.createReadStream(arquivo).pipe(res);
-});
+}
+
+const servidor = http.createServer(servir);
 
 const estado = () => ({});
 

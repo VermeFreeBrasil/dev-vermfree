@@ -537,6 +537,12 @@
       document.body.style.overflow = prevBodyOverflow;
     }
 
+    // Quem chama o visualizador precisa saber que ele abriu, para pausar o
+    // que estiver tocando atrás da sobreposição.
+    function avisar(nome) {
+      document.dispatchEvent(new CustomEvent('vfstories:' + nome));
+    }
+
     function open(id, index, trigger) {
       var list = registry[id];
       if (!list || !list.length) return;
@@ -547,8 +553,10 @@
       }
       lastTrigger = trigger || null;
 
+      var acabouDeAbrir = false;
       if (!isOpen) {
         isOpen = true;
+        acabouDeAbrir = true;
         current = -1;
         muted = false;
         video.muted = false;
@@ -557,6 +565,7 @@
         lockScroll();
       }
 
+      if (acabouDeAbrir) avisar('open');
       show(index || 0);
       if (closeEl.focus) closeEl.focus();
     }
@@ -580,6 +589,7 @@
         try { lastTrigger.focus(); } catch (e) {}
       }
       lastTrigger = null;
+      avisar('close');
     }
 
     // ---------- aviso de "adicionado" ----------

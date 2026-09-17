@@ -1,0 +1,682 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "vf-pdp-main",
+      "settings": {
+        "show_vendor": true,
+        "fallback_title": "Protocolo Adulto VermeFree",
+        "short_desc": "30 dias pra tirar o que estava te puxando pra baixo. 4 ativos em sinergia, padrão farmacêutico, sem química que derruba. A partir de 10 anos.",
+        "installment_10x_value": 4093,
+        "show_age_badge": true,
+        "age_badge_text": "Indicado a partir de 10 anos",
+        "show_sticky_cta": true,
+        "show_rating": true,
+        "rating_score": "4.9",
+        "rating_count": "218",
+        "how_to_take": "<p><strong>Protocolo de 30 dias em 2 fases:</strong></p><p><strong>Fase 1 — Preparação hepática · 15 dias antes da Lua Nova:</strong> Silimarina, 2x ao dia (manhã e noite).</p><p><strong>Fase 2 — Início na Lua Nova · 15 dias:</strong> Tintura (3ml, 3x ao dia, antes do café, almoço e jantar), Óleo de Orégano (1 cápsula, 3x ao dia, junto com a tintura) e Ornitina (1 cápsula, 1x ao dia, meia hora antes de deitar).</p><p>Cronograma completo enviado junto com o kit escolhido.</p>"
+      },
+      "blocks": {
+        "dep1": {
+          "type": "depoimento",
+          "settings": {}
+        },
+        "dep2": {
+          "type": "depoimento",
+          "settings": {}
+        },
+        "dep3": {
+          "type": "depoimento",
+          "settings": {}
+        },
+        "dep4": {
+          "type": "depoimento",
+          "settings": {}
+        },
+        "stories_adulto": {
+          "type": "stories",
+          "settings": {
+            "heading": "Tire suas dúvidas",
+            "only_handles": "protocolo-desparasitacao-adulto-vermefree",
+            "exclude_handles": "",
+            "eyebrow": "MAIS VENDIDO",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho",
+            "story1_video": "shopify://files/videos/VF-DR-SINAIS.mp4",
+            "story1_label": "Os sinais",
+            "story2_video": "shopify://files/videos/VF-DR-12SINAIS.mp4",
+            "story2_label": "12 sinais",
+            "story3_video": "shopify://files/videos/VF-DR-ELIMINA.mp4",
+            "story3_label": "Como elimina",
+            "story4_video": "shopify://files/videos/VF-DR-DIFERENCAS.mp4",
+            "story4_label": "Diferenças",
+            "story5_video": "shopify://files/videos/VF-DUVIDAS.mp4",
+            "story5_label": "Dúvidas",
+            "story6_video": "shopify://files/videos/VF-DRDIOGO-UNBOX.mp4",
+            "story6_label": "Unboxing"
+          }
+        }
+      },
+      "block_order": [
+        "dep1",
+        "dep2",
+        "dep3",
+        "dep4",
+        "stories_adulto"
+      ]
+    },
+    "beneficios-objecoes": {
+      "type": "vf-pdp-benefits",
+      "settings": {
+        "eyebrow": "BENEFÍCIOS & DÚVIDAS",
+        "heading": "Por que escolher o protocolo VermeFree",
+        "subheading": "Desparasitação natural, com critério — e resposta pra dúvida que todo mundo tem antes de comprar."
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0827/3267/9387/files/pdp-adulto-01-oregano-frontal.jpg?v=1778772118",
+            "badge": "Vegetal 100%",
+            "title": "Natural, sem química pesada",
+            "text": "Fitoterápico com critério — apoia a rotina de limpeza natural.",
+            "accent": "green",
+            "featured": false
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0827/3267/9387/files/produto-card-1-adulto_901f4e4f-5bf9-4919-aa54-382006a76276.png?v=1779135064",
+            "badge": "Como funciona",
+            "title": "O protocolo completo",
+            "text": "4 frascos que agem juntos, do preparo à desparasitação.",
+            "accent": "green",
+            "featured": false
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0827/3267/9387/files/pdp-adulto-07-silimarina.jpg?v=1778772118",
+            "badge": "A dúvida mais comum",
+            "title": "E depois do protocolo?",
+            "text": "É rotina: 2 a 4x por ano, na lua nova. 🌙",
+            "accent": "amber",
+            "featured": true
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0827/3267/9387/files/pdp-adulto-05-tintura-gota.jpg?v=1778772119",
+            "badge": "Simples na rotina",
+            "title": "3ml na água, 3x ao dia",
+            "text": "Encaixa fácil no dia a dia.",
+            "accent": "green",
+            "featured": false
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ]
+    },
+    "estatistica": {
+      "type": "vf-pdp-estatistica",
+      "settings": {
+        "image_filename": "lp-personagem-1-julia.jpg",
+        "image_alt": "Mulher segurando frasco VermeFree",
+        "eyebrow": "O QUE NINGUÉM TE CONTA",
+        "stat_number": "1 em 3",
+        "stat_label": "brasileiros tem parasita intestinal nesse exato momento.",
+        "body_text": "E quase ninguém sabe. Os sintomas se confundem com cansaço, stress, má alimentação. Por isso o protocolo VermeFree existe — pra quem cansou de tratar consequência e quer tratar causa.",
+        "source": "Dados Fiocruz · Ministério da Saúde"
+      }
+    },
+    "volta-pra-voce": {
+      "type": "vf-pdp-volta-pra-voce",
+      "settings": {
+        "eyebrow": "O QUE VOLTA PRA VOCÊ",
+        "heading": "Não é só sobre eliminar. É sobre o que volta.",
+        "subheading": "Quando o corpo para de gastar energia mantendo o que não devia estar lá, sobra disposição pra viver. É isso que os 30 dias devolvem.",
+        "card_1_title": "Energia que volta",
+        "card_1_text": "Acordar e já querer levantar. Aquela disposição que você tinha aos 25 não foi embora — só estava sendo gasta em outro lugar.",
+        "card_2_title": "Sono inteiro",
+        "card_2_text": "Dormir e só acordar de manhã. Sem bruxismo, sem agitação noturna, sem aquela coceira sem motivo às 3 da madrugada.",
+        "card_3_title": "Barriga leve",
+        "card_3_text": "Comer e sentir prazer de novo. Sem peso, sem inchaço, sem aquela sensação de \"comi demais\" depois de uma porção normal.",
+        "card_4_title": "Pele com viço",
+        "card_4_text": "O brilho da pele e do cabelo voltam quando o sistema interno está em ordem. Espelho fica mais amigo.",
+        "footer_quote": "Você não vai virar outra pessoa. Vai voltar a ser quem era antes do cansaço virar normal."
+      }
+    },
+    "ingredientes-detalhe": {
+      "type": "vf-pdp-ingredientes-detalhe",
+      "blocks": {
+        "ing-1": {
+          "type": "ingredient",
+          "settings": {
+            "fallback_filename": "lp-macro-nogueira.jpg",
+            "name": "Nogueira Negra",
+            "latin_name": "Juglans nigra",
+            "description": "A planta que age direto no parasita adulto. Sem ela, você só mata filhote — o pai continua lá produzindo ovo.",
+            "function_tag": "Pega o adulto"
+          }
+        },
+        "ing-2": {
+          "type": "ingredient",
+          "settings": {
+            "fallback_filename": "lp-macro-cravo.jpg",
+            "name": "Cravo",
+            "latin_name": "Syzygium aromaticum",
+            "description": "Eugenol que destrói ovo e larva. Sem isso, em 30 dias volta tudo. Por isso protocolo de uma cápsula só falha.",
+            "function_tag": "Mata o ovo"
+          }
+        },
+        "ing-3": {
+          "type": "ingredient",
+          "settings": {
+            "fallback_filename": "lp-macro-absinto.jpg",
+            "name": "Absinto",
+            "latin_name": "Artemisia absinthium",
+            "description": "Amargo que parasita odeia há mil anos. Tradição de uso comprovada pela medicina chinesa, ayurveda e europeia.",
+            "function_tag": "Tradicional"
+          }
+        },
+        "ing-4": {
+          "type": "ingredient",
+          "settings": {
+            "fallback_filename": "lp-macro-oregano.jpg",
+            "name": "Óleo de Orégano",
+            "latin_name": "Origanum vulgare",
+            "description": "70% de carvacrol — concentração de farmácia, não de tempero de pizza. É o ativo que faz a sinergia funcionar.",
+            "function_tag": "Sinergia"
+          }
+        },
+        "ing-5": {
+          "type": "ingredient",
+          "settings": {
+            "fallback_filename": "lp-macro-cardo-mariano.jpg",
+            "name": "Cardo Mariano",
+            "latin_name": "Silybum marianum",
+            "description": "Protege seu fígado enquanto o resto do protocolo trabalha. Por isso você não passa mal como passaria com antiparasitário comum.",
+            "function_tag": "Protege o fígado"
+          }
+        }
+      },
+      "block_order": [
+        "ing-1",
+        "ing-2",
+        "ing-3",
+        "ing-4",
+        "ing-5"
+      ],
+      "settings": {
+        "eyebrow": "O QUE TEM DENTRO",
+        "heading": "Cinco plantas. Uma única missão.",
+        "subheading": "Cada uma cobre uma fase do ciclo do parasita. Trabalhando juntas, não deixam ovo, larva ou adulto pra trás. Sem química pesada."
+      }
+    },
+    "como-tomar": {
+      "type": "vf-pdp-como-tomar",
+      "blocks": {
+        "phase-1": {
+          "type": "phase",
+          "settings": {
+            "phase_label": "FASE 1",
+            "phase_title": "Preparação",
+            "phase_duration": "Início: 15 dias antes da lua nova",
+            "phase_intro": "Antes do antiparasitário entrar em ação, seu fígado precisa estar pronto. Por isso a Silimarina vem primeiro — diferente de qualquer protocolo de cápsula avulsa.",
+            "dose_1_label": "Silimarina",
+            "dose_1_instruction": "1 cápsula após o café da manhã + 1 cápsula após o jantar. Todos os dias por 15 dias."
+          }
+        },
+        "phase-2": {
+          "type": "phase",
+          "settings": {
+            "phase_label": "FASE 2",
+            "phase_title": "Início na Lua Nova",
+            "phase_duration": "Duração: 15 dias",
+            "phase_intro": "Com o fígado preparado, os três ativos entram juntos. Sinergia farmacêutica em ação.",
+            "dose_1_label": "Tintura",
+            "dose_1_instruction": "Diluir 3ml em um pouco de água, 3 vezes ao dia — antes do café da manhã, almoço e jantar.",
+            "dose_2_label": "Óleo de Orégano (70% carvacrol)",
+            "dose_2_instruction": "1 cápsula 3 vezes ao dia — antes do café, almoço e jantar. Tomar junto com a tintura.",
+            "dose_3_label": "Ornitina",
+            "dose_3_instruction": "1 cápsula 1 vez ao dia, meia hora antes de deitar. Apoio hepático durante o sono."
+          }
+        }
+      },
+      "block_order": [
+        "phase-1",
+        "phase-2"
+      ],
+      "settings": {
+        "eyebrow": "COMO TOMAR — BULA OFICIAL",
+        "heading": "Duas fases. Trinta dias. Cronograma certinho.",
+        "subheading": "A bula completa por dosagem e horário. 15 dias preparando o fígado, 15 dias na ação. Sem inventar nada — você segue à risca.",
+        "cycle_image_filename": "lp-ciclo-30-dias.jpg",
+        "warning_text": "Contraindicado para pessoas com sensibilidade ao álcool, gestantes e lactantes. Toma medicamento contínuo? Fala com seu médico antes de começar."
+      }
+    },
+    "comparativo": {
+      "type": "vf-comparativo",
+      "settings": {}
+    },
+    "calendario": {
+      "type": "vf-pdp-calendario-lua-nova",
+      "settings": {}
+    },
+    "aviso-idade": {
+      "type": "vf-pdp-aviso-idade",
+      "settings": {
+        "title": "Protocolo Adulto: a partir de 10 anos."
+      }
+    },
+    "personagens": {
+      "type": "vf-pdp-personagens",
+      "blocks": {
+        "p-1": {
+          "type": "pessoa",
+          "settings": {
+            "fallback_filename": "lp-personagem-1-julia.jpg",
+            "quote": "Em 2 semanas eu já dormia melhor e parei de inchar depois de comer.",
+            "name": "Júlia",
+            "meta": "32 anos · São Paulo"
+          }
+        },
+        "p-2": {
+          "type": "pessoa",
+          "settings": {
+            "fallback_filename": "lp-personagem-2-mariana.jpg",
+            "quote": "Tinha tomado antiparasitário antes e fiquei mal. Aqui, zero. E senti diferença na pele.",
+            "name": "Mariana",
+            "meta": "45 anos · Belo Horizonte"
+          }
+        },
+        "p-3": {
+          "type": "pessoa",
+          "settings": {
+            "fallback_filename": "lp-personagem-3-amanda.jpg",
+            "quote": "Acabou o ciclo e eu não quero parar. O suporte por WhatsApp valeu cada centavo.",
+            "name": "Amanda",
+            "meta": "28 anos · Salvador"
+          }
+        }
+      },
+      "block_order": [
+        "p-1",
+        "p-2",
+        "p-3"
+      ],
+      "settings": {
+        "eyebrow": "GENTE QUE JÁ TESTOU",
+        "heading": "Mulheres que pararam de aceitar o cansaço como normal.",
+        "subheading": "30 dias depois, elas voltaram pra contar como foi. Nenhuma delas recebeu nada pra falar bem."
+      }
+    },
+    "depoimentos": {
+      "type": "vf-depoimentos",
+      "settings": {}
+    },
+    "stats": {
+      "type": "vf-pdp-stats",
+      "blocks": {
+        "row-1": {
+          "type": "row",
+          "settings": {
+            "label": "Ciclo completo",
+            "value": "30 dias",
+            "highlight": true
+          }
+        },
+        "row-2": {
+          "type": "row",
+          "settings": {
+            "label": "Ativos trabalhando juntos",
+            "value": "4 ativos",
+            "highlight": true
+          }
+        },
+        "row-3": {
+          "type": "row",
+          "settings": {
+            "label": "Tipos de parasita combatidos",
+            "value": "+100",
+            "highlight": true
+          }
+        },
+        "row-4": {
+          "type": "row",
+          "settings": {
+            "label": "Idade indicada",
+            "value": "10 anos +"
+          }
+        },
+        "row-5": {
+          "type": "row",
+          "settings": {
+            "label": "Padrão de produção",
+            "value": "Farmacêutico · Brasil"
+          }
+        },
+        "row-6": {
+          "type": "row",
+          "settings": {
+            "label": "100% vegetal",
+            "value": "Sim"
+          }
+        },
+        "row-7": {
+          "type": "row",
+          "settings": {
+            "label": "Metais pesados",
+            "value": "Livre"
+          }
+        },
+        "row-8": {
+          "type": "row",
+          "settings": {
+            "label": "Sintéticos que derrubam",
+            "value": "Zero"
+          }
+        }
+      },
+      "block_order": [
+        "row-1",
+        "row-2",
+        "row-3",
+        "row-4",
+        "row-5",
+        "row-6",
+        "row-7",
+        "row-8"
+      ],
+      "settings": {
+        "eyebrow": "FICHA TÉCNICA",
+        "heading": "Tudo o que tem no seu protocolo.",
+        "subheading": "Os números por trás da formulação. Sem promessa, só padrão farmacêutico.",
+        "footnote": "Produto fitoterápico baseado em literatura científica."
+      }
+    },
+    "faq": {
+      "type": "vf-pdp-faq",
+      "blocks": {
+        "q-1": {
+          "type": "question",
+          "settings": {
+            "question": "Quando devo iniciar o protocolo?",
+            "answer": "<p>Sempre na <strong>Lua Nova</strong>. No protocolo adulto, a preparação hepática começa 15 dias antes da Lua Nova. No infantil, o protocolo já começa direto na Lua Nova — a preparação é feita todo dia, junto com a desparasitação.</p>"
+          }
+        },
+        "q-2": {
+          "type": "question",
+          "settings": {
+            "question": "O que é a Fase 1?",
+            "answer": "<p>É a <strong>preparação hepática</strong>. Ela deixa o fígado pronto pra fase seguinte. No protocolo adulto, dura 15 dias, usa só a Silimarina, e acontece antes da Lua Nova.</p>"
+          }
+        },
+        "q-3": {
+          "type": "question",
+          "settings": {
+            "question": "O que é a Fase 2?",
+            "answer": "<p>É a <strong>desparasitação em si</strong> — sempre começa na Lua Nova. No protocolo adulto dura 15 dias, com a Tintura, o Óleo de Orégano e a Ornitina agindo juntos.</p>"
+          }
+        },
+        "q-4": {
+          "type": "question",
+          "settings": {
+            "question": "Por que o protocolo infantil é diferente do adulto?",
+            "answer": "<p>Porque a criança recebe a fórmula de preparação hepática <strong>todos os dias</strong>, junto com a de desparasitação — não precisa de uma fase separada antes de começar, como no protocolo adulto.</p>"
+          }
+        },
+        "q-5": {
+          "type": "question",
+          "settings": {
+            "question": "Preciso dar as duas tinturas pro meu filho?",
+            "answer": "<p>Sim. As duas fazem parte do protocolo Kids — a de <strong>preparação hepática</strong> e a de <strong>desparasitação</strong> trabalham em conjunto.</p>"
+          }
+        },
+        "q-6": {
+          "type": "question",
+          "settings": {
+            "question": "Como administro as duas tinturas?",
+            "answer": "<p>Primeiro a de preparação hepática. Espera <strong>15 minutos</strong> e dá a de desparasitação. As duas, 3 vezes ao dia.</p>"
+          }
+        },
+        "q-7": {
+          "type": "question",
+          "settings": {
+            "question": "Posso dar as duas juntas, no mesmo momento?",
+            "answer": "<p>Pode, sim — se a rotina da casa dificultar esperar os 15 minutos entre uma e outra. O efeito continua o mesmo.</p>"
+          }
+        },
+        "q-8": {
+          "type": "question",
+          "settings": {
+            "question": "Posso diluir as tinturas?",
+            "answer": "<p>Pode, e recomendamos. Dilui na quantidade indicada pra idade, em água ou suco.</p>"
+          }
+        },
+        "q-9": {
+          "type": "question",
+          "settings": {
+            "question": "Posso misturar a tintura no suco?",
+            "answer": "<p>Sim. Ajuda bastante na aceitação, principalmente com os pequenos.</p>"
+          }
+        },
+        "q-10": {
+          "type": "question",
+          "settings": {
+            "question": "Por que é recomendado diluir a tintura?",
+            "answer": "<p>As tinturas são à base de álcool. Diluir facilita a administração e deixa o sabor mais suave — melhora bastante a aceitação da criança.</p>"
+          }
+        },
+        "q-11": {
+          "type": "question",
+          "settings": {
+            "question": "A dosagem da tabela vale pra cada tintura ou pra soma das duas?",
+            "answer": "<p>Vale pra <strong>cada uma</strong>. Se a tabela indica 3ml pra idade do seu filho, são 3ml da hepática <strong>e</strong> 3ml da desparasitação — não é 3ml dividido entre as duas.</p>"
+          }
+        },
+        "q-12": {
+          "type": "question",
+          "settings": {
+            "question": "Posso dividir a dose diária em mais vezes?",
+            "answer": "<p>Pode, desde que mantenha o total do dia. O importante é não ultrapassar a dose diária recomendada pra idade.</p>"
+          }
+        },
+        "q-13": {
+          "type": "question",
+          "settings": {
+            "question": "Quanto tempo dura o protocolo?",
+            "answer": "<p><strong>30 dias</strong>, tanto no adulto quanto no infantil.</p>"
+          }
+        },
+        "q-14": {
+          "type": "question",
+          "settings": {
+            "question": "O protocolo é individual?",
+            "answer": "<p>Sim — cada kit é montado pra uma pessoa. Se mais de uma pessoa da casa for fazer, cada uma precisa do seu próprio kit.</p>"
+          }
+        },
+        "q-15": {
+          "type": "question",
+          "settings": {
+            "question": "Toda a família precisa fazer o protocolo junto?",
+            "answer": "<p>Não precisa, mas todos podem se beneficiar se fizerem ao mesmo tempo — por isso existe o <strong>Kit Família</strong>, sincronizado na mesma Lua Nova.</p>"
+          }
+        },
+        "q-16": {
+          "type": "question",
+          "settings": {
+            "question": "O protocolo pode causar alguma reação?",
+            "answer": "<p>Pode. Sintomas leves como náusea, vômito ou diarreia podem acontecer, e geralmente passam rápido. Se persistir ou incomodar muito, fala com a gente ou com seu médico.</p>"
+          }
+        },
+        "q-17": {
+          "type": "question",
+          "settings": {
+            "question": "Posso repetir o protocolo depois?",
+            "answer": "<p>Pode — de <strong>1 a 4 vezes por ano</strong>, sempre com um intervalo mínimo de 3 meses entre um ciclo e outro.</p>"
+          }
+        },
+        "q-18": {
+          "type": "question",
+          "settings": {
+            "question": "Qual a idade mínima do Kit Kids?",
+            "answer": "<p>Acima de <strong>2 anos</strong>.</p>"
+          }
+        },
+        "q-19": {
+          "type": "question",
+          "settings": {
+            "question": "Posso usar grávida ou amamentando?",
+            "answer": "<p><strong>Não.</strong> Não é indicado pra gestantes nem lactantes.</p>"
+          }
+        },
+        "q-20": {
+          "type": "question",
+          "settings": {
+            "question": "Qual a validade dos kits?",
+            "answer": "<p><strong>Kit Kids:</strong> 6 meses. <strong>Kit Adulto:</strong> 1 ano.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q-1",
+        "q-2",
+        "q-3",
+        "q-4",
+        "q-5",
+        "q-6",
+        "q-7",
+        "q-8",
+        "q-9",
+        "q-10",
+        "q-11",
+        "q-12",
+        "q-13",
+        "q-14",
+        "q-15",
+        "q-16",
+        "q-17",
+        "q-18",
+        "q-19",
+        "q-20"
+      ],
+      "settings": {
+        "eyebrow": "ANTES DE COMPRAR",
+        "heading": "Toda dúvida que você tem, outras pessoas também tiveram.",
+        "subheading": "Antes de pedir, leia essas 20 perguntas. Se ainda restar dúvida, manda mensagem no WhatsApp — a gente responde rápido.",
+        "support_label": "Sem robô, sem chatbot.",
+        "support_text": "Pessoa de verdade respondendo do outro lado. WhatsApp e e-mail, resposta em até 4h úteis.",
+        "cta_text": "Ainda tem dúvidas? Fale conosco clicando no botão abaixo.",
+        "cta_label": "Falar no WhatsApp",
+        "cta_url": "https://l.vermefree.com.br/atendimento"
+      }
+    },
+    "cta-final": {
+      "type": "vf-cta-final",
+      "settings": {
+        "heading": "Desparasite agora.",
+        "subheading": "Frete pra todo Brasil. Parcelado em até 3x sem juros.",
+        "button_label": "Garantir meu protocolo",
+        "button_link": "/products/1-kit-vermefree-adulto",
+        "background_color": "#5EBC43",
+        "text_color": "#FFFFFF"
+      }
+    },
+    "vf_prescritores_pdp": {
+      "type": "vf-prescritores",
+      "settings": {},
+      "blocks": {
+        "presc_1": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-william-araujo.jpg",
+            "name": "Dr. William Araújo",
+            "credential": "CRM-MG 76.962",
+            "specialty": "Curadoria científica do protocolo VermeFree",
+            "instagram_handle": "@drwilliamaraujo",
+            "instagram_url": "https://www.instagram.com/drwilliamaraujo/"
+          }
+        },
+        "presc_2": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-giovanna-eller.jpg",
+            "name": "Dra. Giovanna Eller",
+            "credential": "CRM-ES 20.998",
+            "specialty": "Nutróloga · saúde intestinal e emagrecimento",
+            "instagram_handle": "@dra.giovannaeller",
+            "instagram_url": "https://www.instagram.com/dra.giovannaeller/"
+          }
+        },
+        "presc_3": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-robson-araujo.jpg",
+            "name": "Dr. Robson Araújo",
+            "credential": "CRM-MG 93.787",
+            "specialty": "Emagrecimento e saúde integrativa",
+            "instagram_handle": "@drrobson_araujo",
+            "instagram_url": "https://www.instagram.com/drrobson_araujo/"
+          }
+        },
+        "presc_4": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-raquel-cembranelli.jpg",
+            "name": "Dra. Raquel Cembranelli",
+            "credential": "CRO-SP 83.705",
+            "specialty": "Cirurgiã-dentista · odontologia integrativa",
+            "instagram_handle": "@dra.raquelcembranelli",
+            "instagram_url": "https://www.instagram.com/dra.raquelcembranelli/"
+          }
+        }
+      },
+      "block_order": [
+        "presc_1",
+        "presc_2",
+        "presc_3",
+        "presc_4"
+      ]
+    },
+    "vf_cross_familia": {
+      "type": "vf-pdp-cross-familia",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "beneficios-objecoes",
+    "estatistica",
+    "volta-pra-voce",
+    "ingredientes-detalhe",
+    "vf_prescritores_pdp",
+    "como-tomar",
+    "comparativo",
+    "calendario",
+    "aviso-idade",
+    "personagens",
+    "depoimentos",
+    "stats",
+    "faq",
+    "vf_cross_familia",
+    "cta-final"
+  ]
+}
