@@ -64,3 +64,15 @@ carrossel não arrancar um vídeo que está tocando, cada vídeo abrir com o **s
 próprio produto**, vídeo sem produto abrir sem cartão, o payload do
 `/cart/add.js` e o guard `template.name == 'index'` — fora da home nenhum card
 é clicável e o visualizador nem é renderizado.
+
+## Seletor de kits
+
+`npm run test:kits` reconstrói o seletor com o CSS e o **JS reais da seção**
+(as duas condicionais Liquid são renderizadas para o handle do Adulto) e dirige
+a escolha: ordem na tela, qual card vem ativo, a quantidade que vai no form e
+na barra fixa, a legenda, a barra de vantagem e as mensagens.
+
+Existe porque a ordem dos kits é conversão pura. A lógica em JS é agnóstica à
+ordem — lê o card com `.is-active` e o `data-qty`, nunca a posição —, então
+inverter a escada é mexer só nos dados do Liquid. Este teste é o que prova que
+continua sendo verdade.

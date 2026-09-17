@@ -267,7 +267,7 @@
                 <p class="vf-pdp__kits-legend">{{ section.settings.kits_legend }} <strong id="vf-pdp-kits-legend-value">{{ section.settings.tier1_title }}</strong></p>
               {%- endif -%}
 
-              {%- comment -%} Selecao invertida (3/2/1) so nos protocolos {%- endcomment -%}
+              {%- comment -%} Escada crescente (1/2/3) nos protocolos, com 1 Kit pré-selecionado {%- endcomment -%}
               {%- assign kit_is_protocol = false -%}
               {%- assign kit_proto_handles = 'protocolo-desparasitacao-adulto-vermefree,antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos,antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos' | split: ',' -%}
               {%- if kit_proto_handles contains product.handle -%}{%- assign kit_is_protocol = true -%}{%- endif -%}
@@ -281,14 +281,14 @@
 
               <div class="vf-pdp__kits-grid" id="vf-pdp-kits-grid">
                 {%- if kit_is_protocol -%}
-                  {%- assign kit_proto_qtys = '3,2,1' | split: ',' -%}
+                  {%- assign kit_proto_qtys = '1,2,3' | split: ',' -%}
                   {%- comment -%} Adulto: 2 kits com 5% OFF (desconto automatico "5% OFF · 2 Protocolos Adulto", por produto, min 2). Kids seguem sem o 5% ate a acao ser estendida. {%- endcomment -%}
                   {%- if product.handle == 'protocolo-desparasitacao-adulto-vermefree' -%}
-                    {%- assign kit_proto_discs = '10,5,0' | split: ',' -%}
+                    {%- assign kit_proto_discs = '0,5,10' | split: ',' -%}
                   {%- else -%}
-                    {%- assign kit_proto_discs = '10,0,0' | split: ',' -%}
+                    {%- assign kit_proto_discs = '0,0,10' | split: ',' -%}
                   {%- endif -%}
-                  {%- assign kit_proto_titles = '3 Kits,2 Kits,1 Kit' | split: ',' -%}
+                  {%- assign kit_proto_titles = '1 Kit,2 Kits,3 Kits' | split: ',' -%}
                   {%- for idx in (0..2) -%}
                     {%- assign t_qty = kit_proto_qtys[idx] | plus: 0 -%}
                     {%- assign t_disc = kit_proto_discs[idx] | plus: 0 -%}
@@ -1790,7 +1790,7 @@
         m = '🎉 Vantagem máxima: 10% OFF + frete grátis desbloqueados';
       } else if (qty === 2) {
         kitbarEl.classList.add('vf-pdp__kitbar--mid');
-        m = {% if product.handle == 'protocolo-desparasitacao-adulto-vermefree' %}'🎉 5% OFF + frete grátis · volte pra 3 Kits e ganhe 10% OFF'{% else %}'🚚 Frete grátis garantido — volte pra 3 Kits e ganhe 10% OFF'{% endif %};
+        m = {% if product.handle == 'protocolo-desparasitacao-adulto-vermefree' %}'🎉 5% OFF + frete grátis · leve 3 Kits e ganhe 10% OFF'{% else %}'🚚 Frete grátis garantido — leve 3 Kits e ganhe 10% OFF'{% endif %};
       } else {
         kitbarEl.classList.add('vf-pdp__kitbar--low');
         m = {% if product.handle == 'protocolo-desparasitacao-adulto-vermefree' %}'Leve 2 e ganhe 5% OFF · leve 3 e ganhe 10% OFF'{% else %}'Leve 2 e ganhe frete grátis · leve 3 e ganhe 10% OFF'{% endif %};

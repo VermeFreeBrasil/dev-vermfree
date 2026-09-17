@@ -5,10 +5,11 @@
   "scripts": {
     "clips": "node make-clips.js",
     "build": "node build-page.js",
-    "test": "node build-page.js && node test.js && node build-rail-page.js && node test-rail.js && node build-pdp-page.js && node test-pdp.js && node build-home-page.js && node test-home.js",
+    "test": "node build-page.js && node test.js && node build-rail-page.js && node test-rail.js && node build-pdp-page.js && node test-pdp.js && node build-home-page.js && node test-home.js && node build-kits-page.js && node test-kits.js",
     "shot": "node shot.js",
     "test:pdp": "node build-pdp-page.js && node test-pdp.js",
-    "test:home": "node build-home-page.js && node test-home.js"
+    "test:home": "node build-home-page.js && node test-home.js",
+    "test:kits": "node build-kits-page.js && node test-kits.js"
   },
   "dependencies": {
     "playwright": "1.63.0"
