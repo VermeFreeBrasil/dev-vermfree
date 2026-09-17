@@ -1,0 +1,507 @@
+{%- comment -%}
+  vf-ugc-carrossel.liquid — Carrossel de UGCs (prova social) pra home.
+  Scroll horizontal com deslize (touch/drag) + setas. Cada slide é uma foto 4:5.
+  Posicionar logo abaixo do hero. Imagens em blocks (image_picker).
+
+  STORIES COMPRÁVEIS (somente na home): além das fotos, a seção aceita blocos
+  de vídeo. Eles ficam com a mesma cara dos cards de foto — mesmo formato,
+  mesma rolagem — e tocam sozinhos, mudos, só enquanto visíveis. Ao tocar,
+  abrem em tela cheia com o cartão de compra do produto escolhido naquele
+  bloco. Cada vídeo tem o seu produto: a régua aqui é variada, não é a PDP.
+
+  Vídeo sem produto configurado abre em tela cheia sem cartão, sem quebrar.
+
+  O guard é template.name == 'index'. Fora da home os vídeos continuam
+  aparecendo como cards, mas não abrem tela cheia — se um dia alguém puser
+  esta seção numa página de produto, o visualizador não vai brotar lá.
+{%- endcomment -%}
+
+{%- liquid
+  assign modo_loja = false
+  if template.name == 'index'
+    assign modo_loja = true
+  endif
+
+  assign tem_video = false
+  for block in section.blocks
+    if block.type == 'video' and block.settings.video != blank
+      assign tem_video = true
+    endif
+  endfor
+
+  assign compravel = false
+  if modo_loja and tem_video
+    assign compravel = true
+  endif
+-%}
+
+<section class="vf-ugc" data-vf-ugc data-vf-ugc-id="{{ section.id }}">
+  <div class="vf-container">
+    {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+      <header class="vf-ugc__head">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="vf-ugc__title">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p class="vf-ugc__sub">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+  </div>
+
+  <div class="vf-ugc__wrap">
+    <button type="button" class="vf-ugc__arrow vf-ugc__arrow--prev" data-vf-ugc-prev aria-label="Anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+
+    <div class="vf-ugc__track" data-vf-ugc-track>
+      {%- assign indice_video = 0 -%}
+      {%- for block in section.blocks -%}
+
+        {%- if block.type == 'video' -%}
+          {%- if block.settings.video != blank -%}
+            {%- liquid
+              comment
+                O card tem ~170px no celular: usa a menor versão mp4 (480p na
+                Shopify). O filtro por format não é cosmético — cada vídeo
+                também tem um .m3u8, e um <source> de HLS não toca no Chrome.
+              endcomment
+              assign menor = blank
+              assign menor_h = 99999
+              for s in block.settings.video.sources
+                if s.format == 'mp4' and s.height < menor_h
+                  assign menor_h = s.height
+                  assign menor = s
+                endif
+              endfor
+            -%}
+            {%- assign capa_url = block.settings.cover | image_url: width: 720 -%}
+
+            <div class="vf-ugc__slide vf-ugc__slide--video" {{ block.shopify_attributes }}>
+              {%- if menor != blank -%}
+                <video
+                  class="vf-ugc__vid"
+                  data-vfu-video
+                  {%- if capa_url != blank %} poster="{{ capa_url }}"{% endif %}
+                  muted
+                  loop
+                  playsinline
+                  webkit-playsinline
+                  preload="none"
+                  tabindex="-1"
+                  aria-hidden="true"
+                >
+                  <source src="{{ menor.url }}" type="{{ menor.mime_type }}">
+                </video>
+                <span class="vf-ugc__play" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </span>
+              {%- else -%}
+                <div class="vf-ugc__placeholder">Vídeo ainda processando</div>
+              {%- endif -%}
+
+              {%- if compravel and menor != blank -%}
+                <button
+                  type="button"
+                  class="vf-ugc__tap"
+                  data-vfu-open="{{ indice_video }}"
+                  aria-label="{{ block.settings.caption | default: 'Abrir vídeo em tela cheia' | escape }}"
+                ></button>
+              {%- endif -%}
+
+              {%- if block.settings.caption != blank -%}
+                <span class="vf-ugc__caption">{{ block.settings.caption }}</span>
+              {%- endif -%}
+            </div>
+            {%- assign indice_video = indice_video | plus: 1 -%}
+          {%- endif -%}
+
+        {%- else -%}
+          <div class="vf-ugc__slide" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 720 }}"
+                srcset="{{ block.settings.image | image_url: width: 480 }} 480w, {{ block.settings.image | image_url: width: 720 }} 720w"
+                sizes="(max-width: 750px) 70vw, 320px"
+                alt="{{ block.settings.alt | escape | default: 'Cliente VermeFree' }}"
+                width="720" height="900"
+                loading="lazy">
+            {%- else -%}
+              <div class="vf-ugc__placeholder">Adicione uma foto</div>
+            {%- endif -%}
+            {%- if block.settings.caption != blank -%}
+              <span class="vf-ugc__caption">{{ block.settings.caption }}</span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+      {%- endfor -%}
+    </div>
+
+    <button type="button" class="vf-ugc__arrow vf-ugc__arrow--next" data-vf-ugc-next aria-label="Próximo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+{%- if compravel -%}
+  {% render 'vf-stories-viewer' %}
+
+  {%- capture dados_stories -%}
+    {%- assign primeiro = true -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'video' and block.settings.video != blank -%}
+        {%- liquid
+          comment
+            Tela cheia usa a maior versão até 720p — mesma escolha da régua
+            da PDP. 2,5 Mbps de 1080p num story vertical é peso sem ganho.
+          endcomment
+          assign menor = blank
+          assign menor_h = 99999
+          assign melhor = blank
+          assign melhor_h = 0
+          for s in block.settings.video.sources
+            if s.format == 'mp4'
+              if s.height < menor_h
+                assign menor_h = s.height
+                assign menor = s
+              endif
+              if s.height <= 720 and s.height > melhor_h
+                assign melhor_h = s.height
+                assign melhor = s
+              endif
+            endif
+          endfor
+          if melhor == blank
+            assign melhor = menor
+          endif
+        -%}
+        {%- if melhor != blank -%}
+          {%- unless primeiro -%},{%- endunless -%}
+          {%- assign primeiro = false -%}
+          {%- assign p = block.settings.product -%}
+          {
+            "sources": [{"src": {{ melhor.url | json }}, "type": {{ melhor.mime_type | json }}}],
+            "eyebrow": {{ block.settings.eyebrow | default: '' | json }},
+            "offer": {{ block.settings.offer | default: '' | json }},
+            "badge": {{ block.settings.badge | default: '' | json }},
+            "cta": {{ block.settings.cta_label | default: 'Adicionar ao carrinho' | json }},
+            "mode": "home"
+            {%- if p != blank -%}
+              ,"product": {
+                "title": {{ p.title | json }},
+                "url": {{ p.url | json }},
+                "image": {{ p.featured_image | image_url: width: 200 | json }},
+                "price": {{ p.price | money | json }},
+                "variants": {{ p.variants.size }},
+                "vid": {{ p.selected_or_first_available_variant.id | json }},
+                "available": {{ p.available | json }}
+              }
+            {%- else -%}
+              ,"product": null
+            {%- endif -%}
+          }
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  <script type="application/json" data-vfu-data="{{ section.id }}">[{{ dados_stories | strip }}]</script>
+{%- endif -%}
+
+{% stylesheet %}
+  .vf-ugc { padding: 40px 0 48px; background: var(--vf-bg, #FAF7F0); overflow: hidden; }
+  .vf-ugc__head { text-align: center; margin-bottom: 24px; }
+  .vf-ugc__title {
+    margin: 0 0 6px; font-family: var(--font-heading, inherit);
+    font-size: clamp(24px, 3.4vw, 34px); color: var(--vf-text, #1A1A1A);
+  }
+  .vf-ugc__sub { margin: 0; color: var(--vf-muted, #666); font-size: 15px; }
+
+  .vf-ugc__wrap { position: relative; }
+  .vf-ugc__track {
+    display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; scroll-behavior: smooth;
+    padding: 4px 16px; scrollbar-width: none;
+  }
+  .vf-ugc__track::-webkit-scrollbar { display: none; }
+  @media (min-width: 990px) {
+    .vf-ugc__track { padding: 4px max(16px, calc((100vw - 1200px) / 2)); }
+  }
+
+  .vf-ugc__slide {
+    position: relative; flex: 0 0 auto;
+    /* mobile: 2 fotos por vez (metade da largura menos o gap e o padding) */
+    width: calc((100vw - 32px - 14px) / 2); aspect-ratio: 4 / 5;
+    border-radius: 16px; overflow: hidden; scroll-snap-align: start;
+    background: var(--vf-beige, #F0EADD); box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  }
+  @media (min-width: 750px) { .vf-ugc__slide { width: 300px; scroll-snap-align: center; } }
+  .vf-ugc__slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vf-ugc__placeholder {
+    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+    color: var(--vf-muted, #999); font-size: 13px;
+  }
+  .vf-ugc__caption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 20px 14px 12px; color: #fff; font-size: 13px; font-weight: 600;
+    background: linear-gradient(transparent, rgba(0,0,0,.55));
+  }
+
+  /* ---- cards de vídeo (stories compráveis, só na home) ---- */
+  .vf-ugc__slide--video { background: #11150E; }
+  .vf-ugc__vid {
+    width: 100%; height: 100%; object-fit: cover; display: block; background: #11150E;
+    pointer-events: none;
+  }
+  .vf-ugc__play {
+    position: absolute; top: 10px; right: 10px; z-index: 2;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(0,0,0,.45); color: #fff;
+    display: flex; align-items: center; justify-content: center; pointer-events: none;
+  }
+  .vf-ugc__play svg { width: 16px; height: 16px; margin-left: 1px; }
+  .vf-ugc__tap {
+    position: absolute; inset: 0; top: 0; right: 0; bottom: 0; left: 0;
+    z-index: 3; border: 0; padding: 0; background: transparent; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .vf-ugc__tap:focus-visible { outline: 3px solid var(--vf-green, #5EBC43); outline-offset: -3px; }
+
+  .vf-ugc__arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+    width: 42px; height: 42px; border-radius: 50%; border: 0; cursor: pointer;
+    background: #fff; color: var(--vf-text, #1A1A1A); box-shadow: 0 2px 10px rgba(0,0,0,.15);
+    display: none; align-items: center; justify-content: center; transition: background .15s;
+  }
+  .vf-ugc__arrow:hover { background: var(--vf-green, #16A34A); color: #fff; }
+  .vf-ugc__arrow svg { width: 20px; height: 20px; }
+  .vf-ugc__arrow--prev { left: 12px; }
+  .vf-ugc__arrow--next { right: 12px; }
+  @media (min-width: 990px) { .vf-ugc__arrow { display: flex; } }
+{% endstylesheet %}
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-vf-ugc]');
+    if (!root) return;
+    var track = root.querySelector('[data-vf-ugc-track]');
+    var prev = root.querySelector('[data-vf-ugc-prev]');
+    var next = root.querySelector('[data-vf-ugc-next]');
+    if (!track) return;
+
+    var AUTOPLAY_MS = 3000;
+    var autoTimer = null;
+
+    function step() {
+      var slide = track.querySelector('.vf-ugc__slide');
+      return slide ? slide.getBoundingClientRect().width + 14 : 300;
+    }
+
+    // Um vídeo tocando na tela significa que o cliente está assistindo, não
+    // navegando. Deslizar o carrossel por baixo dele arrancaria o vídeo da
+    // vista a cada 3 segundos.
+    function assistindo() {
+      var videos = track.querySelectorAll('video[data-vfu-video]');
+      for (var i = 0; i < videos.length; i++) {
+        if (!videos[i].paused) return true;
+      }
+      return false;
+    }
+
+    function goNext() {
+      if (assistindo()) return;
+      // loop: se chegou (quase) no fim, volta ao início
+      var atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      if (atEnd) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: step(), behavior: 'smooth' });
+      }
+    }
+    function goPrev() { track.scrollBy({ left: -step(), behavior: 'smooth' }); }
+
+    if (next) next.addEventListener('click', function () { goNext(); restart(); });
+    if (prev) prev.addEventListener('click', function () { goPrev(); restart(); });
+
+    // ===== Autoplay 3s =====
+    function start() {
+      stop();
+      autoTimer = setInterval(goNext, AUTOPLAY_MS);
+    }
+    function stop() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+    function restart() { stop(); start(); }
+
+    // pausa quando o usuário interage; retoma depois
+    ['mouseenter', 'touchstart', 'pointerdown'].forEach(function (ev) {
+      root.addEventListener(ev, stop, { passive: true });
+    });
+    ['mouseleave', 'touchend', 'pointerup'].forEach(function (ev) {
+      root.addEventListener(ev, function () { restart(); }, { passive: true });
+    });
+    // pausa quando a aba não está visível (economiza e evita "pulos")
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { stop(); } else { start(); }
+    });
+
+    // respeita quem prefere menos movimento
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) start();
+
+    // drag pra arrastar no desktop
+    var isDown = false, startX, scrollLeft;
+    track.addEventListener('mousedown', function (e) {
+      isDown = true; track.classList.add('is-dragging');
+      startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft;
+    });
+    ['mouseleave', 'mouseup'].forEach(function (ev) {
+      track.addEventListener(ev, function () { isDown = false; track.classList.remove('is-dragging'); });
+    });
+    track.addEventListener('mousemove', function (e) {
+      if (!isDown) return; e.preventDefault();
+      var x = e.pageX - track.offsetLeft;
+      track.scrollLeft = scrollLeft - (x - startX) * 1.5;
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    'use strict';
+
+    // Vem do Liquid como true/false em vez de envolver o bloco inteiro numa
+    // condicional: assim este script continua sendo JavaScript válido, que dá
+    // para passar no node --check sem renderizar o tema.
+    var compravel = {{ compravel | json }};
+
+    var raiz = document.querySelector('[data-vf-ugc-id="{{ section.id }}"]');
+    if (!raiz) return;
+
+    var videos = raiz.querySelectorAll('video[data-vfu-video]');
+
+    // ---- toca só o card de fato visível ----
+    // Armadilha 2: play() nunca vem logo depois de load(). O navegador cancela
+    // com AbortError e o card fica parado — e o sintoma engana, porque o
+    // primeiro que ganha a corrida funciona e os outros não.
+    function tocar(v) {
+      if (v.getAttribute('data-vfu-armed')) {
+        var retomada = v.play();
+        if (retomada && retomada.catch) retomada.catch(function () {});
+        return;
+      }
+      v.setAttribute('data-vfu-armed', '1');
+
+      var comecou = false;
+      var comecar = function () {
+        if (comecou) return;
+        comecou = true;
+        var tocando = v.play();
+        if (tocando && tocando.catch) tocando.catch(function () { comecou = false; });
+      };
+
+      v.addEventListener('loadeddata', comecar);
+      v.addEventListener('canplay', comecar);
+      if (v.preload !== 'auto') { v.preload = 'auto'; v.load(); }
+      if (v.readyState >= 2) comecar();
+    }
+
+    var congelado = false;
+
+    if (videos.length && 'IntersectionObserver' in window) {
+      var observador = new IntersectionObserver(function (entradas) {
+        for (var i = 0; i < entradas.length; i++) {
+          var v = entradas[i].target;
+          if (entradas[i].isIntersecting && !congelado) {
+            tocar(v);
+          } else {
+            v.pause();
+          }
+        }
+      }, { threshold: 0.6 });
+      for (var i = 0; i < videos.length; i++) observador.observe(videos[i]);
+    } else {
+      for (var j = 0; j < videos.length; j++) tocar(videos[j]);
+    }
+
+    // ---- stories compráveis (só na home) ----
+    if (!compravel || !window.VFStories) return;
+
+    var dados = document.querySelector('[data-vfu-data="{{ section.id }}"]');
+    if (!dados) return;
+    var itens = [];
+    try { itens = JSON.parse(dados.textContent) || []; } catch (e) { itens = []; }
+    if (!itens.length) return;
+
+    window.VFStories.register('{{ section.id }}', itens);
+
+    raiz.addEventListener('click', function (evento) {
+      var alvo = evento.target.closest('[data-vfu-open]');
+      if (!alvo) return;
+      window.VFStories.open('{{ section.id }}', parseInt(alvo.getAttribute('data-vfu-open'), 10) || 0, alvo);
+    });
+
+    // Nada tocando atrás da sobreposição opaca.
+    document.addEventListener('vfstories:open', function () {
+      congelado = true;
+      for (var i = 0; i < videos.length; i++) videos[i].pause();
+    });
+
+    document.addEventListener('vfstories:close', function () {
+      congelado = false;
+      for (var i = 0; i < videos.length; i++) {
+        var r = videos[i].getBoundingClientRect();
+        var dentro = r.width && r.height && r.bottom > 0 && r.right > 0 &&
+          r.top < (window.innerHeight || 0) && r.left < (window.innerWidth || 0);
+        if (dentro) tocar(videos[i]);
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "VF UGC Carrossel",
+  "tag": "section",
+  "class": "section section--vf-ugc",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Clientes de verdade, resultados de verdade" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Milhares de famílias já se cuidam com a VermeFree." },
+    { "type": "paragraph", "content": "Na home, os blocos de vídeo abrem em tela cheia com o cartão de compra. Escolha o produto dentro de cada bloco de vídeo. Nas outras páginas os vídeos aparecem como cards normais, sem abrir." }
+  ],
+  "blocks": [
+    {
+      "type": "ugc",
+      "name": "Foto UGC",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Foto (formato 4:5)" },
+        { "type": "text", "id": "caption", "label": "Legenda (opcional)" },
+        { "type": "text", "id": "alt", "label": "Texto alternativo (acessibilidade)" }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Vídeo (creator)",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Vídeo" },
+        { "type": "image_picker", "id": "cover", "label": "Capa (opcional)", "info": "Sem capa, o próprio vídeo mostra o primeiro quadro até começar a tocar." },
+        { "type": "text", "id": "caption", "label": "Legenda (opcional)" },
+        { "type": "header", "content": "Produto deste vídeo (só vale na home)" },
+        { "type": "product", "id": "product", "label": "Produto", "info": "Sem produto, o vídeo abre em tela cheia sem cartão de compra." },
+        { "type": "text", "id": "eyebrow", "label": "Linha de cima", "info": "Ex.: MAIS VENDIDO. Vazio esconde." },
+        { "type": "text", "id": "offer", "label": "Linha de oferta", "info": "Vazio mostra o preço do produto." },
+        { "type": "text", "id": "badge", "label": "Selo do canto", "info": "Ex.: NOVO. Vazio esconde." },
+        { "type": "text", "id": "cta_label", "label": "Texto do botão", "default": "Adicionar ao carrinho", "info": "Produto com mais de uma opção leva para a página do produto." }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "VF UGC Carrossel",
+      "blocks": [
+        { "type": "ugc" }, { "type": "ugc" }, { "type": "ugc" }, { "type": "ugc" },
+        { "type": "ugc" }, { "type": "ugc" }, { "type": "ugc" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -54,3 +54,13 @@ A régua se protege com `width: 0; min-width: 100%`: zera o que ela reivindica d
 largura no cálculo intrínseco e volta ao tamanho da coluna depois que ela já foi
 resolvida. `max-width: 100%` sozinho não resolve — porcentagem é ignorada no
 cálculo de tamanho intrínseco.
+
+## Carrossel da home
+
+`npm run test:home` reconstrói o carrossel com o CSS e os **dois scripts reais**
+da seção e gera duas páginas: uma como home (compráveis) e outra fora da home.
+Cobre overflow em seis larguras, tocar só o card visível, o autoplay do
+carrossel não arrancar um vídeo que está tocando, cada vídeo abrir com o **seu
+próprio produto**, vídeo sem produto abrir sem cartão, o payload do
+`/cart/add.js` e o guard `template.name == 'index'` — fora da home nenhum card
+é clicável e o visualizador nem é renderizado.
