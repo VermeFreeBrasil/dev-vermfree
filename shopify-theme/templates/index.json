@@ -373,12 +373,64 @@
             "badge": "",
             "cta_label": "Adicionar ao carrinho"
           }
+        },
+        "vid_diferenca": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-DIFERENCAS.mp4",
+            "caption": "Qual a diferença",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_3sinais": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-3SINAIS.mp4",
+            "caption": "3 sinais",
+            "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_pet": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-PET.mp4",
+            "caption": "Pet em casa",
+            "product": "kit-familia-vermefree-2-adultos-2-criancas",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_amamentacao": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-AMAMENTACAO.mp4",
+            "caption": "Amamentação",
+            "product": "",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
         }
       },
       "block_order": [
         "vid_unbox",
+        "vid_sinais",
         "vid_familia",
-        "vid_sinais"
+        "vid_diferenca",
+        "vid_3sinais",
+        "vid_pet",
+        "vid_amamentacao"
       ],
       "name": "VF UGC Carrossel",
       "settings": {
