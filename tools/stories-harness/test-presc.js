@@ -77,7 +77,8 @@ const servidor = http.createServer(servir);
 
   // ---------- frase neutra no card sem frase própria ----------
   const frases = await p.evaluate(() =>
-    [...document.querySelectorAll('.vf-presc__quote')].map((q) => q.textContent.trim()));
+    [...document.querySelectorAll('.vf-presc__card:not([data-vf-presc-clone]) .vf-presc__quote')]
+      .map((q) => q.textContent.trim()));
   conferir('sem frase neutra, só quem tem frase própria mostra frase', frases.length === 1, frases.length + ' frases: ' + frases.join(' | '));
   conferir('card com frase própria mantém a dele', /Acompanho a formulação/.test(frases[0]), frases[0]);
 
@@ -94,20 +95,74 @@ const servidor = http.createServer(servir);
     var t = document.querySelector('[data-vf-presc-track]');
     return { sw: t.scrollWidth, cw: t.clientWidth, cards: t.querySelectorAll('.vf-presc__card').length };
   });
-  conferir('os 8 médicos cabem no trilho e ele rola', rola.cards === 8 && rola.sw > rola.cw, JSON.stringify(rola));
+  conferir('os 9 médicos rolam no trilho', rola.cards >= 9 && rola.sw > rola.cw, JSON.stringify(rola));
 
-  const setasVisiveis = await p.evaluate(() => {
-    var pv = document.querySelector('[data-vf-presc-prev]');
-    return !pv.hidden;
+  conferir('nenhuma seta na página', await p.evaluate(() => document.querySelectorAll('.vf-presc__nav').length) === 0);
+
+  // ---------- laço infinito ----------
+  const laco = await p.evaluate(() => {
+    var t = document.querySelector('[data-vf-presc-track]');
+    var clones = t.querySelectorAll('[data-vf-presc-clone]');
+    var reais = t.children.length - clones.length;
+    return {
+      total: t.children.length, reais: reais, clones: clones.length,
+      scroll: t.scrollLeft,
+      cloneEscondido: [].every.call(clones, (c) => c.getAttribute('aria-hidden') === 'true'),
+      cloneForaDoTab: [].every.call(t.querySelectorAll('[data-vf-presc-clone] a'), (a) => a.tabIndex === -1),
+    };
   });
-  conferir('com transbordo, as setas aparecem', setasVisiveis);
+  conferir('um conjunto clonado de cada lado', laco.reais === 9 && laco.clones === 18, JSON.stringify(laco));
+  conferir('começa no conjunto do meio, não na ponta', laco.scroll > 100, 'scrollLeft ' + laco.scroll);
+  conferir('clone não é lido nem tabulável', laco.cloneEscondido && laco.cloneForaDoTab, JSON.stringify(laco));
 
-  // ---------- a seta anda mesmo ----------
+  // Rolar até quase o fim tem de voltar para o meio, sem bater na ponta.
+  const volta = await p.evaluate(async () => {
+    var t = document.querySelector('[data-vf-presc-track]');
+    var w = t.children[9].offsetLeft - t.children[0].offsetLeft;
+    t.scrollLeft = w * 1.9;
+    await new Promise((r) => setTimeout(r, 400));
+    return { w: Math.round(w), depois: Math.round(t.scrollLeft), max: t.scrollWidth - t.clientWidth };
+  });
+  conferir('perto do fim, a rolagem volta um conjunto', volta.depois < volta.w * 1.5, JSON.stringify(volta));
+  conferir('nunca encosta no fim do trilho', volta.depois < volta.max - 10, JSON.stringify(volta));
+
+  const inicio = await p.evaluate(async () => {
+    var t = document.querySelector('[data-vf-presc-track]');
+    var w = t.children[9].offsetLeft - t.children[0].offsetLeft;
+    t.scrollLeft = w * 0.1;
+    await new Promise((r) => setTimeout(r, 400));
+    return { w: Math.round(w), depois: Math.round(t.scrollLeft) };
+  });
+  conferir('perto do começo, avança um conjunto', inicio.depois > inicio.w * 0.5, JSON.stringify(inicio));
+
+  // ---------- arrastar com o mouse ----------
   const antes = await p.evaluate(() => document.querySelector('[data-vf-presc-track]').scrollLeft);
-  await p.click('[data-vf-presc-next]');
-  await p.waitForTimeout(600);
+  const cx = await p.evaluate(() => {
+    var r = document.querySelector('[data-vf-presc-track]').getBoundingClientRect();
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+  });
+  await p.mouse.move(cx.x, cx.y);
+  await p.mouse.down();
+  for (let i = 1; i <= 8; i++) await p.mouse.move(cx.x - i * 30, cx.y);
+  await p.mouse.up();
+  await p.waitForTimeout(400);
   const depois = await p.evaluate(() => document.querySelector('[data-vf-presc-track]').scrollLeft);
-  conferir('seta avança o trilho', depois > antes, antes + ' -> ' + depois);
+  conferir('arrastar com o mouse rola o trilho', depois > antes + 100, antes + ' -> ' + depois);
+
+  // Um arrasto que termina em cima do card não pode virar clique no @.
+  const abriu = await p.evaluate(() => {
+    var a = document.querySelector('.vf-presc__ig');
+    var r = a.getBoundingClientRect();
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+  });
+  let navegou = false;
+  p.once('popup', () => { navegou = true; });
+  await p.mouse.move(abriu.x + 200, abriu.y);
+  await p.mouse.down();
+  for (let i = 1; i <= 8; i++) await p.mouse.move(abriu.x + 200 - i * 25, abriu.y);
+  await p.mouse.up();
+  await p.waitForTimeout(500);
+  conferir('arrastar e soltar em cima do card não abre o Instagram', !navegou);
 
   // ---------- 4 médicos: grade, todos visíveis de uma vez ----------
   // Era a queixa: o carrossel escondia o quarto card no desktop.
@@ -122,8 +177,8 @@ const servidor = http.createServer(servir);
       n: cards.length,
       display: getComputedStyle(t).display,
       transbordo: t.scrollWidth - t.clientWidth,
-      setaEscondida: document.querySelector('[data-vf-presc-prev]').hidden
-        || getComputedStyle(document.querySelector('[data-vf-presc-prev]')).display === 'none',
+      semSeta: document.querySelectorAll('.vf-presc__nav').length === 0,
+      semClone: t.querySelectorAll('[data-vf-presc-clone]').length === 0,
       todosNaTela: cards.every((c) => {
         var r = c.getBoundingClientRect();
         return r.left >= -0.5 && r.right <= vw + 0.5 && r.width > 100;
@@ -134,23 +189,25 @@ const servidor = http.createServer(servir);
   conferir('com 4 médicos o trilho vira grade', quatro.display === 'grid', JSON.stringify(quatro));
   conferir('os 4 aparecem de uma vez, nenhum fora da tela', quatro.todosNaTela && quatro.n === 4, JSON.stringify(quatro));
   conferir('grade não transborda', quatro.transbordo <= 0, JSON.stringify(quatro));
-  conferir('na grade as setas somem', quatro.setaEscondida, JSON.stringify(quatro));
+  conferir('grade não tem seta nem clone', quatro.semSeta && quatro.semClone, JSON.stringify(quatro));
 
   // ---------- poucos médicos: sem seta inútil, sem corte ----------
   await p.goto(base + '/presc-poucos.html');
   await p.waitForTimeout(400);
   const poucos = await p.evaluate(() => {
     var t = document.querySelector('[data-vf-presc-track]');
-    var pv = document.querySelector('[data-vf-presc-prev]');
     var cards = [...t.querySelectorAll('.vf-presc__card')];
     var tr = t.getBoundingClientRect();
     var cortado = cards.some((c) => {
       var r = c.getBoundingClientRect();
       return r.left < tr.left - 0.5 || r.right > tr.right + 0.5;
     });
-    return { escondida: pv.hidden, transbordo: t.scrollWidth - t.clientWidth, cortado: cortado };
+    return {
+      escondida: document.querySelectorAll('.vf-presc__nav').length === 0,
+      transbordo: t.scrollWidth - t.clientWidth, cortado: cortado,
+    };
   });
-  conferir('sem transbordo, as setas somem', poucos.escondida, JSON.stringify(poucos));
+  conferir('sem transbordo, nada de seta', poucos.escondida, JSON.stringify(poucos));
   conferir('com 2 médicos nenhum card fica cortado', !poucos.cortado, JSON.stringify(poucos));
   const larg2 = await p.evaluate(() =>
     [...document.querySelectorAll('.vf-presc__card')].map((c) => Math.round(c.getBoundingClientRect().width)));
@@ -160,7 +217,7 @@ const servidor = http.createServer(servir);
   await p.goto(base + '/presc.html');
   await p.waitForTimeout(400);
   const semFoto = await p.evaluate(() => {
-    var phs = [...document.querySelectorAll('.vf-presc__img--placeholder')];
+    var phs = [...document.querySelectorAll('.vf-presc__card:not([data-vf-presc-clone]) .vf-presc__img--placeholder')];
     return {
       n: phs.length,
       textos: phs.map((e) => e.textContent.trim()),
@@ -171,8 +228,45 @@ const servidor = http.createServer(servir);
       }),
     };
   });
-  conferir('card sem foto mostra iniciais', semFoto.n === 4 && semFoto.textos.join(',') === 'EB,KG,CM,GD', JSON.stringify(semFoto));
+  conferir('card sem foto mostra iniciais', semFoto.n === 5 && semFoto.textos.join(',') === 'EB,KG,CM,GD,TB', JSON.stringify(semFoto));
   conferir('placeholder ocupa a área da foto inteira', semFoto.preenche, JSON.stringify(semFoto));
+
+  // ---------- deslize com o dedo ----------
+  // O pedido era este: arrastar com o dedo, sem seta. Quem rola aqui é o
+  // navegador; o que se testa é que o laço infinito não atrapalha.
+  const ctxT = await b.newContext({ viewport: { width: 390, height: 780 }, hasTouch: true, isMobile: true });
+  const pt = await ctxT.newPage();
+  const errosT = [];
+  pt.on('pageerror', (e) => errosT.push(String(e)));
+  await pt.goto(base + '/presc.html');
+  await pt.waitForTimeout(500);
+
+  const caixa = await pt.evaluate(() => {
+    var r = document.querySelector('[data-vf-presc-track]').getBoundingClientRect();
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+  });
+  const antesT = await pt.evaluate(() => document.querySelector('[data-vf-presc-track]').scrollLeft);
+  await pt.touchscreen.tap(caixa.x, caixa.y);
+  // Um deslize curto primeiro: tem de andar e ficar andado.
+  await pt.evaluate(() => { document.querySelector('[data-vf-presc-track]').scrollLeft += 700; });
+  await pt.waitForTimeout(300);
+  const curto = await pt.evaluate(() => document.querySelector('[data-vf-presc-track]').scrollLeft);
+
+  // Depois vários deslizes longos, para provar que não encalha na ponta.
+  for (let volta = 0; volta < 4; volta++) {
+    await pt.evaluate(() => { document.querySelector('[data-vf-presc-track]').scrollLeft += 900; });
+    await pt.waitForTimeout(250);
+  }
+  const depoisT = await pt.evaluate(() => {
+    var t = document.querySelector('[data-vf-presc-track]');
+    var w = t.children[9].offsetLeft - t.children[0].offsetLeft;
+    return { x: t.scrollLeft, w: Math.round(w), max: t.scrollWidth - t.clientWidth };
+  });
+  conferir('no celular o trilho anda com o deslize', curto > antesT + 500, antesT + ' -> ' + curto);
+  conferir('deslizando muito, continua longe das duas pontas',
+    depoisT.x > 20 && depoisT.x < depoisT.max - 20, JSON.stringify(depoisT));
+  conferir('nenhum erro de JS no celular', errosT.length === 0, errosT.join(' | '));
+  await ctxT.close();
 
   conferir('nenhum erro de JS no fim', erros.length === 0, erros.join(' | '));
 

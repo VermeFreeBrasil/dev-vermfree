@@ -45,6 +45,7 @@ const MEDICOS = [
   { nome: 'Dr. Kalil Gibran Ferreira Lima', crm: 'CRM-BA 34.392', esp: 'Médico', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 30, frase: '' },
   { nome: 'Dr. Carlos Mateus Santos Osório', crm: 'CRM-SP 215.405', esp: 'Médico', ig: '', semFoto: true, zoom: 105, fx: 50, fy: 20, frase: '' },
   { nome: 'Dra. Grace Dessirre', crm: 'CFO-SP 084169', esp: 'Cirurgiã-dentista', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 30, frase: '' },
+  { nome: 'Dr. Thiago Barbosa Gonçalves', crm: 'CRM-ES 16.079', esp: 'Médico', ig: '', semFoto: true, zoom: 100, fx: 50, fy: 22, frase: '' },
 ];
 
 // Mesmas iniciais que o Liquid monta: tira Dr./Dra. e pega a primeira letra
@@ -103,12 +104,10 @@ ${css}
     <h2 id="h-${UID}" class="vf-presc__heading">Profissionais de saúde que recomendam a VermeFree</h2>
     <p class="vf-presc__subheading">Médicos e especialistas que conhecem o protocolo e indicam pros seus pacientes.</p>
   </div>
-  <div class="vf-presc__carousel${grade ? ' vf-presc__carousel--grade' : ''}" data-vf-presc="${UID}">
-    <button type="button" class="vf-presc__nav vf-presc__nav--prev" data-vf-presc-prev aria-label="Anterior">&lt;</button>
+  <div class="vf-presc__carousel${grade ? ' vf-presc__carousel--grade' : ''}" data-vf-presc="${UID}"${grade ? '' : ' data-vf-presc-infinito'}>
     <div class="vf-presc__track" data-vf-presc-track>
 ${cards}
     </div>
-    <button type="button" class="vf-presc__nav vf-presc__nav--next" data-vf-presc-next aria-label="Próximo">&gt;</button>
   </div>
 </section>
 <div class="depois">abaixo</div>
@@ -118,7 +117,7 @@ ${cards}
   fs.writeFileSync(path.join(__dirname, arquivo), html);
 }
 
-pagina(8, 'presc.html');        // os 8 de hoje -> carrossel
+pagina(9, 'presc.html');        // os 9 de hoje -> carrossel infinito
 pagina(4, 'presc-quatro.html'); // estado real da loja hoje -> grade
 pagina(2, 'presc-poucos.html');
-console.log('presc.html (8), presc-quatro.html (4) e presc-poucos.html (2) gerados com o CSS e o JS reais da seção');
+console.log('presc.html (9), presc-quatro.html (4) e presc-poucos.html (2) gerados com o CSS e o JS reais da seção');

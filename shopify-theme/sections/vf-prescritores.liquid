@@ -16,6 +16,13 @@
     como a referência da Botanika resolve — e a Shopify não tem crop por foto.
   - Teto de blocos. Era 6, virou 14: o carrossel não se importa com quantos.
 
+  Até 4 médicos a seção vira grade e mostra todos de uma vez. Do quinto em
+  diante é carrossel, e aí ele é infinito: o JS clona o conjunto de cards de
+  cada lado e devolve a rolagem um conjunto para trás/para frente quando ela
+  se aproxima da ponta. Como os três conjuntos são idênticos, o salto é
+  invisível e a rolagem nunca trava no fim. Não há setas: no dedo quem rola é
+  o navegador, e no mouse há arrasto.
+
   O que é novo de conteúdo: cada médico pode ter uma frase própria. Existe uma
   "frase neutra" de seção como rede, mas ela nasce vazia de propósito — a
   mesma frase repetida em quatro cards lê como preenchimento, e uma frase
@@ -33,8 +40,8 @@
   assign uid = section.id | replace: '_', '' | replace: '-', ''
 
   comment
-    Conta os blocos preenchidos. Serve só para o carrossel saber se deve
-    mostrar as setas — com 3 cards num desktop largo não sobra o que rolar.
+    Conta os blocos preenchidos: é o que decide grade x carrossel, e o que
+    a grade usa como número de colunas.
   endcomment
   assign total = 0
   for block in section.blocks
@@ -74,11 +81,11 @@
     {%- endif -%}
   </div>
 
-  <div class="vf-presc__carousel{% if grade %} vf-presc__carousel--grade{% endif %}" data-vf-presc="{{ uid }}">
-    <button type="button" class="vf-presc__nav vf-presc__nav--prev" data-vf-presc-prev aria-label="Anterior">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-    </button>
-
+  <div
+    class="vf-presc__carousel{% if grade %} vf-presc__carousel--grade{% endif %}"
+    data-vf-presc="{{ uid }}"
+    {% unless grade %}data-vf-presc-infinito{% endunless %}
+  >
     <div class="vf-presc__track" data-vf-presc-track>
       {%- for block in section.blocks -%}
         {%- if block.type == 'prescritor' -%}
@@ -144,6 +151,7 @@
                   width="600" height="750"
                   class="vf-presc__img"
                   style="{{ img_style }}"
+                  draggable="false"
                 >
               {%- elsif b.photo_filename != blank -%}
                 <img
@@ -152,6 +160,7 @@
                   loading="lazy"
                   class="vf-presc__img"
                   style="{{ img_style }}"
+                  draggable="false"
                 >
               {%- else -%}
                 <div class="vf-presc__img vf-presc__img--placeholder" aria-hidden="true">{{ iniciais }}</div>
@@ -196,10 +205,6 @@
         {%- endif -%}
       {%- endfor -%}
     </div>
-
-    <button type="button" class="vf-presc__nav vf-presc__nav--next" data-vf-presc-next aria-label="Próximo">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-    </button>
   </div>
 
   {%- if s.footnote != blank -%}
@@ -241,7 +246,11 @@
   .vf-presc__carousel { position: relative; margin-top: clamp(28px, 4vw, 40px); }
   .vf-presc__track {
     display: flex; gap: 20px; align-items: stretch;
-    overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    /* Sem scroll-behavior: smooth. Ele só valia para as setas, que saíram, e
+       atrapalha: com ele, cada scrollLeft escrito no arrasto vira uma
+       animação — os quadros brigam entre si e o card não acompanha o dedo.
+       O mesmo valeria para o salto do laço infinito. */
     -webkit-overflow-scrolling: touch; scrollbar-width: none;
     padding: 8px 20px 12px;
     justify-content: flex-start;
@@ -332,21 +341,15 @@
   /* handle comprido trunca em vez de vazar pela borda do card */
   .vf-presc__handle { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-  /* ---------- setas ---------- */
-  .vf-presc__nav {
-    position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
-    width: 42px; height: 42px; border-radius: 50%;
-    border: 1px solid rgba(27, 94, 32, .16); background: #fff; color: #1B5E20;
-    display: inline-flex; align-items: center; justify-content: center;
-    cursor: pointer; box-shadow: 0 6px 18px rgba(22, 48, 26, .12);
-    transition: background .15s, color .15s, opacity .15s;
+  /* ---------- arrasto ---------- */
+  /* No dedo quem rola é o próprio navegador. No desktop não há mais seta,
+     então o mouse precisa poder arrastar — daí o cursor de mão. */
+  @media (hover: hover) and (pointer: fine) {
+    .vf-presc__carousel:not(.vf-presc__carousel--grade) .vf-presc__track { cursor: grab; }
+    .vf-presc__track.is-arrastando { cursor: grabbing; }
   }
-  .vf-presc__nav svg { width: 20px; height: 20px; }
-  .vf-presc__nav:hover { background: #1B5E20; color: #fff; }
-  .vf-presc__nav--prev { left: 8px; }
-  .vf-presc__nav--next { right: 8px; }
-  .vf-presc__nav[hidden] { display: none; }
-  @media (max-width: 1024px) { .vf-presc__nav { display: none; } }
+  .vf-presc__track.is-arrastando { user-select: none; -webkit-user-select: none; }
+  .vf-presc__img { -webkit-user-drag: none; user-drag: none; }
 
   .vf-presc__footnote {
     margin: 18px auto 0; max-width: 680px;
@@ -367,7 +370,6 @@
       margin-left: auto; margin-right: auto;
     }
     .vf-presc__carousel--grade .vf-presc__card { flex: none; width: 100%; max-width: none; }
-    .vf-presc__carousel--grade .vf-presc__nav { display: none; }
   }
 
   @media (max-width: 749px) {
@@ -382,33 +384,122 @@
     var carrossel = document.querySelector('[data-vf-presc="{{ uid }}"]');
     if (!carrossel) return;
     var trilho = carrossel.querySelector('[data-vf-presc-track]');
-    var anterior = carrossel.querySelector('[data-vf-presc-prev]');
-    var proximo = carrossel.querySelector('[data-vf-presc-next]');
     if (!trilho) return;
 
-    function passo() {
-      var card = trilho.querySelector('.vf-presc__card');
-      var l = card ? card.getBoundingClientRect().width : trilho.clientWidth * 0.8;
-      return l + 20;
+    var infinito = carrossel.hasAttribute('data-vf-presc-infinito');
+    var originais = [].slice.call(trilho.children);
+    var n = originais.length;
+
+    // ---------- laço infinito ----------
+    // Um conjunto clonado de cada lado do real. Como os três são idênticos,
+    // devolver a rolagem um conjunto para trás ou para frente é invisível —
+    // e a rolagem nunca chega na ponta, então nunca "trava" no fim.
+    function clonar(antes) {
+      var frag = document.createDocumentFragment();
+      for (var i = 0; i < n; i++) {
+        var k = originais[i].cloneNode(true);
+        k.setAttribute('aria-hidden', 'true');
+        k.setAttribute('data-vf-presc-clone', '');
+        var focaveis = k.querySelectorAll('a, button');
+        for (var j = 0; j < focaveis.length; j++) focaveis[j].tabIndex = -1;
+        frag.appendChild(k);
+      }
+      if (antes) trilho.insertBefore(frag, trilho.firstChild);
+      else trilho.appendChild(frag);
     }
 
-    // Sem transbordo não há o que rolar: as setas saem do caminho em vez de
-    // ficarem ali sem efeito.
-    function ajustarSetas() {
-      var sobra = trilho.scrollWidth - trilho.clientWidth > 4;
-      if (anterior) anterior.hidden = !sobra;
-      if (proximo) proximo.hidden = !sobra;
+    // Avanço de um conjunto, medido no DOM: pega o gap junto, ao contrário de
+    // dividir o scrollWidth por 3 (que erra por um gap).
+    function larguraConjunto() {
+      var f = trilho.children;
+      if (f.length < n + 1) return 0;
+      return f[n].offsetLeft - f[0].offsetLeft;
     }
 
-    if (anterior) anterior.addEventListener('click', function () { trilho.scrollBy({ left: -passo(), behavior: 'smooth' }); });
-    if (proximo) proximo.addEventListener('click', function () { trilho.scrollBy({ left: passo(), behavior: 'smooth' }); });
-
-    ajustarSetas();
-    if (window.ResizeObserver) {
-      new ResizeObserver(ajustarSetas).observe(trilho);
-    } else {
-      window.addEventListener('resize', ajustarSetas);
+    function saltar(x) {
+      // O snap briga com um scrollLeft escrito na mão: desliga, salta,
+      // força o reflow e devolve.
+      var snap = trilho.style.scrollSnapType;
+      var comp = trilho.style.scrollBehavior;
+      trilho.style.scrollSnapType = 'none';
+      trilho.style.scrollBehavior = 'auto';
+      trilho.scrollLeft = x;
+      void trilho.offsetWidth;
+      trilho.style.scrollSnapType = snap;
+      trilho.style.scrollBehavior = comp;
     }
+
+    function normalizar() {
+      var w = larguraConjunto();
+      if (!w) return;
+      var x = trilho.scrollLeft;
+      if (x < w * 0.5) saltar(x + w);
+      else if (x >= w * 1.5) saltar(x - w);
+    }
+
+    var relogio;
+    function aoRolar() {
+      var w = larguraConjunto();
+      if (!w) return;
+      var x = trilho.scrollLeft;
+      // Perto da ponta não dá para esperar: corrige na hora, senão o dedo
+      // bate no fim. No meio, espera a inércia acabar — saltar durante o
+      // impulso mata o deslize no iOS.
+      if (x < w * 0.15 || x > w * 1.85) { normalizar(); return; }
+      clearTimeout(relogio);
+      relogio = setTimeout(normalizar, 140);
+    }
+
+    if (infinito && n > 1) {
+      clonar(true);
+      clonar(false);
+      saltar(larguraConjunto());
+      trilho.addEventListener('scroll', aoRolar, { passive: true });
+      window.addEventListener('resize', function () {
+        // Cards mudam de largura no resize; reancora no conjunto do meio.
+        saltar(larguraConjunto());
+      });
+    }
+
+    // ---------- arrastar com o mouse ----------
+    // No toque o navegador já faz, e melhor. Isto é só para o desktop, que
+    // ficou sem seta.
+    var arrastando = false, x0 = 0, s0 = 0, andou = 0;
+
+    trilho.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      arrastando = true;
+      andou = 0;
+      x0 = e.clientX;
+      s0 = trilho.scrollLeft;
+      trilho.style.scrollSnapType = 'none';
+      trilho.classList.add('is-arrastando');
+    });
+
+    window.addEventListener('pointermove', function (e) {
+      if (!arrastando) return;
+      var d = e.clientX - x0;
+      if (Math.abs(d) > andou) andou = Math.abs(d);
+      trilho.scrollLeft = s0 - d;
+      e.preventDefault();
+    }, { passive: false });
+
+    function soltar() {
+      if (!arrastando) return;
+      arrastando = false;
+      trilho.style.scrollSnapType = '';
+      trilho.classList.remove('is-arrastando');
+      normalizar();
+    }
+    window.addEventListener('pointerup', soltar);
+    window.addEventListener('pointercancel', soltar);
+
+    // Arrastar não é clicar: sem isto, soltar o mouse em cima de um card
+    // abriria o Instagram do médico.
+    trilho.addEventListener('click', function (e) {
+      if (andou > 6) { e.preventDefault(); e.stopPropagation(); }
+      andou = 0;
+    }, true);
   })();
 </script>
 

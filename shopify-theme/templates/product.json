@@ -717,7 +717,10 @@
             "credential": "CRM-MG 76.962",
             "specialty": "Curadoria científica do protocolo VermeFree",
             "instagram_handle": "@drwilliamaraujo",
-            "instagram_url": "https://www.instagram.com/drwilliamaraujo/"
+            "instagram_url": "https://www.instagram.com/drwilliamaraujo/",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 24
           }
         },
         "presc_2": {
@@ -728,7 +731,10 @@
             "credential": "CRM-ES 20.998",
             "specialty": "Nutróloga · saúde intestinal e emagrecimento",
             "instagram_handle": "@dra.giovannaeller",
-            "instagram_url": "https://www.instagram.com/dra.giovannaeller/"
+            "instagram_url": "https://www.instagram.com/dra.giovannaeller/",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 30
           }
         },
         "presc_3": {
@@ -739,7 +745,10 @@
             "credential": "CRM-MG 93.787",
             "specialty": "Emagrecimento e saúde integrativa",
             "instagram_handle": "@drrobson_araujo",
-            "instagram_url": "https://www.instagram.com/drrobson_araujo/"
+            "instagram_url": "https://www.instagram.com/drrobson_araujo/",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 30
           }
         },
         "presc_4": {
@@ -750,16 +759,19 @@
             "credential": "CRO-SP 83.705",
             "specialty": "Cirurgiã-dentista · odontologia integrativa",
             "instagram_handle": "@dra.raquelcembranelli",
-            "instagram_url": "https://www.instagram.com/dra.raquelcembranelli/"
+            "instagram_url": "https://www.instagram.com/dra.raquelcembranelli/",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 30
           }
         },
         "presc_eglife": {
           "type": "prescritor",
           "settings": {
-            "photo_filename": "",
-            "photo_zoom": 100,
+            "photo_filename": "vf-prescritor-eglife-brauher.jpg",
+            "photo_zoom": 140,
             "photo_focus_x": 50,
-            "photo_focus_y": 30,
+            "photo_focus_y": 6,
             "name": "Dr. Eglife Brauher",
             "credential": "CRM-BA 32.688",
             "specialty": "Médico",
@@ -770,10 +782,10 @@
         "presc_kalil": {
           "type": "prescritor",
           "settings": {
-            "photo_filename": "",
+            "photo_filename": "vf-prescritor-kalil-gibran.jpg",
             "photo_zoom": 100,
             "photo_focus_x": 50,
-            "photo_focus_y": 30,
+            "photo_focus_y": 22,
             "name": "Dr. Kalil Gibran Ferreira Lima",
             "credential": "CRM-BA 34.392",
             "specialty": "Médico",
@@ -784,10 +796,10 @@
         "presc_carlos": {
           "type": "prescritor",
           "settings": {
-            "photo_filename": "",
-            "photo_zoom": 105,
+            "photo_filename": "vf-prescritor-carlos-osorio.jpg",
+            "photo_zoom": 115,
             "photo_focus_x": 50,
-            "photo_focus_y": 20,
+            "photo_focus_y": 58,
             "name": "Dr. Carlos Mateus Santos Osório",
             "credential": "CRM-SP 215.405",
             "specialty": "Médico",
@@ -798,13 +810,27 @@
         "presc_grace": {
           "type": "prescritor",
           "settings": {
-            "photo_filename": "",
+            "photo_filename": "vf-prescritor-grace-dessirre.jpg",
             "photo_zoom": 100,
             "photo_focus_x": 50,
-            "photo_focus_y": 30,
+            "photo_focus_y": 26,
             "name": "Dra. Grace Dessirre",
             "credential": "CFO-SP 084169",
             "specialty": "Cirurgiã-dentista",
+            "instagram_handle": "",
+            "instagram_url": ""
+          }
+        },
+        "presc_thiago": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-thiago-goncalves.jpg",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 22,
+            "name": "Dr. Thiago Barbosa Gonçalves",
+            "credential": "CRM-ES 16.079",
+            "specialty": "Médico",
             "instagram_handle": "",
             "instagram_url": ""
           }
@@ -818,7 +844,8 @@
         "presc_eglife",
         "presc_kalil",
         "presc_carlos",
-        "presc_grace"
+        "presc_grace",
+        "presc_thiago"
       ]
     },
     "vf_cross_familia": {

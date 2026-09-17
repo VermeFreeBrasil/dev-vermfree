@@ -101,6 +101,12 @@ um `@` comprido, um card sem frase própria e um sem Instagram.
 Cada teste corresponde a um defeito que a v1 tinha: botões do Instagram
 desalinhados (agora o corpo estica e o botão fica no rodapé), `@` vazando pela
 borda, foto sem enquadramento (zoom e foco X/Y por bloco) e a grade que só
-servia pra 4 médicos. Mais: frase neutra entrando onde não há frase própria,
-setas sumindo quando não há o que rolar, e nenhum card cortado com poucos
-médicos.
+servia pra 4 médicos.
+
+Do quinto médico em diante o trilho é um **carrossel infinito sem setas**, e é
+o que a maior parte do teste cobre: um conjunto de cards clonado de cada lado,
+clones fora do leitor de tela e do tab, a rolagem voltando um conjunto antes de
+encostar na ponta (dos dois lados), o arrasto com o mouse no desktop, o
+deslize no celular, e um arrasto que termina em cima de um card **não** virando
+clique no Instagram do médico. Com até 4 médicos nada disso existe: vira grade,
+sem clone e sem seta.
