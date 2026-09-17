@@ -37,3 +37,20 @@ multivariante na PDP e na home), o payload do `/cart/add.js`, os dois contadores
 de carrinho do tema, o botão não coberto pelas zonas de toque, story sem fonte
 sendo pulado, e o cenário de `play()` recusado pelo navegador — provando que
 todos os stories tocam, não só o primeiro.
+
+## Teste de responsividade da PDP
+
+`npm run test:pdp` reconstrói a coluna de compra com o **CSS real da seção**
+(mesmo grid, mesmas classes, mesma folha de estilo) e mede overflow horizontal
+em 320, 360, 390, 414, 768 e 1280px.
+
+Ele existe porque a primeira versão da régua quebrava o mobile: a coluna é uma
+faixa de grid `1fr`, cujo tamanho mínimo é o conteúdo. Seis círculos de 76px
+fixos somam 530px, então num aparelho de 390px a página inteira virava 554px —
+o cabeçalho ficava mais estreito que o conteúdo e a régua nem rolava, porque a
+coluna havia crescido para caber nela.
+
+A régua se protege com `width: 0; min-width: 100%`: zera o que ela reivindica de
+largura no cálculo intrínseco e volta ao tamanho da coluna depois que ela já foi
+resolvida. `max-width: 100%` sozinho não resolve — porcentagem é ignorada no
+cálculo de tamanho intrínseco.

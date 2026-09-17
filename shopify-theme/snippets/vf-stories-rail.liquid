@@ -203,7 +203,18 @@
   </div>
 
   <style>
-    .vfsr { margin: 18px 0 22px; }
+    .vfsr {
+      margin: 18px 0 22px;
+      /* A coluna de compra da PDP é uma faixa de grid 1fr, cujo mínimo é o
+         conteúdo. Círculos de 76px fixos somam mais que a tela do celular e
+         empurravam a página inteira para 554px num aparelho de 390px — o
+         cabeçalho ficava mais estreito que o conteúdo e a régua nem rolava,
+         porque a coluna tinha crescido para caber nela.
+         width:0 zera o que a régua reivindica de largura; min-width:100% a
+         traz de volta ao tamanho da coluna depois que ela já foi resolvida. */
+      width: 0;
+      min-width: 100%;
+    }
     .vfsr__heading {
       margin: 0 0 12px;
       font-size: 14px;
@@ -216,6 +227,7 @@
       display: flex;
       gap: 14px;
       overflow-x: auto;
+      max-width: 100%;
       padding: 4px 2px 6px;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
