@@ -447,9 +447,15 @@
             <span aria-hidden="true">&rarr;</span>
           </button>
 
-          <button type="submit" name="checkout" class="vf-pdp__cta vf-pdp__cta--secondary{% if pdp_frete_promo %} vf-pdp__cta--promo-outline{% endif %}" {% if product.available == false %}disabled{% endif %}>
-            {% if pdp_frete_promo %}🚚 Comprar com frete grátis{% else %}Comprar agora{% endif %}
-          </button>
+          {%- comment -%}
+            Havia aqui um segundo botão, "Comprar agora", com name="checkout".
+            Ele levava para o mesmo lugar que o verde: name="checkout" só tem
+            efeito no form da página do carrinho (que posta em /cart), e este
+            posta em /cart/add — ali o parâmetro é ignorado e a Shopify manda
+            para o carrinho do mesmo jeito. Dois botões, um destino.
+            Se um dia quiserem checkout direto de verdade, o caminho é o botão
+            de pagamento acelerado: {{ form | payment_button }}.
+          {%- endcomment -%}
         </form>
 
         {%- comment -%}
