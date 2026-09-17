@@ -90,3 +90,17 @@ Existe porque a ordem dos kits é conversão pura. A lógica em JS é agnóstica
 ordem — lê o card com `.is-active` e o `data-qty`, nunca a posição —, então
 inverter a escada é mexer só nos dados do Liquid. Este teste é o que prova que
 continua sendo verdade.
+
+## Prescritores (autoridade médica)
+
+`npm run test:presc` reconstrói a seção com o CSS e o JS reais e monta dois
+cenários: seis médicos (transborda) e dois (não transborda). A página é feita
+de casos difíceis de propósito — especialidade de 1 e de 3 linhas lado a lado,
+um `@` comprido, um card sem frase própria e um sem Instagram.
+
+Cada teste corresponde a um defeito que a v1 tinha: botões do Instagram
+desalinhados (agora o corpo estica e o botão fica no rodapé), `@` vazando pela
+borda, foto sem enquadramento (zoom e foco X/Y por bloco) e a grade que só
+servia pra 4 médicos. Mais: frase neutra entrando onde não há frase própria,
+setas sumindo quando não há o que rolar, e nenhum card cortado com poucos
+médicos.

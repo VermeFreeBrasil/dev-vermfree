@@ -1,0 +1,409 @@
+{%- comment -%}
+  vf-prescritores — Autoridade médica / conselho de prescritores da VermeFree
+
+  v2. A v1 era uma grade fixa de 4 colunas com foto, nome, credencial e
+  Instagram. Funcionava com exatamente 4 médicos e quebrava com 5. Esta versão
+  troca a grade por um carrossel com rolagem por deslize (mesma gramática do
+  carrossel de UGC e da régua de stories) e resolve o que estava torto:
+
+  - Altura dos cards. O corpo agora estica e o botão do Instagram fica colado
+    no rodapé (margin-top: auto), então especialidades de 1 e de 3 linhas não
+    desalinham mais os botões.
+  - @ comprido vazando. O botão tem largura máxima e o handle trunca com
+    reticências em vez de escapar pela borda do card.
+  - Enquadramento das fotos. Retrato de corpo inteiro num recorte 4:5 deixa o
+    rosto minúsculo. Cada bloco ganhou zoom e posição do rosto (X/Y), que é
+    como a referência da Botanika resolve — e a Shopify não tem crop por foto.
+  - Teto de blocos. Era 6, virou 14: o carrossel não se importa com quantos.
+
+  O que é novo de conteúdo: cada médico pode ter uma frase. Quando o bloco não
+  tem frase própria, cai na "frase neutra" da seção, então o card nunca nasce
+  vazio. Selo de credencial sobre a foto; um médico pode ser marcado como
+  destaque (anel verde) para o curador do protocolo.
+
+  Compatível com a v1: todos os IDs de setting antigos (photo, photo_filename,
+  name, credential, specialty, instagram_handle, instagram_url) continuam os
+  mesmos, então nenhum dado configurado se perde na troca.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign uid = section.id | replace: '_', '' | replace: '-', ''
+
+  comment
+    Conta os blocos preenchidos. Serve só para o carrossel saber se deve
+    mostrar as setas — com 3 cards num desktop largo não sobra o que rolar.
+  endcomment
+  assign total = 0
+  for block in section.blocks
+    if block.type == 'prescritor'
+      assign total = total | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if total > 0 -%}
+<section
+  class="vf-presc"
+  aria-labelledby="vf-presc-heading-{{ uid }}"
+  style="--vf-presc-card: {{ s.card_width | default: 300 }}px;"
+>
+  <div class="vf-presc__container">
+    {%- if s.eyebrow != blank -%}
+      <span class="vf-presc__eyebrow">{{ s.eyebrow }}</span>
+    {%- endif -%}
+    {%- if s.heading != blank -%}
+      <h2 id="vf-presc-heading-{{ uid }}" class="vf-presc__heading">{{ s.heading }}</h2>
+    {%- endif -%}
+    {%- if s.subheading != blank -%}
+      <p class="vf-presc__subheading">{{ s.subheading }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="vf-presc__carousel" data-vf-presc="{{ uid }}">
+    <button type="button" class="vf-presc__nav vf-presc__nav--prev" data-vf-presc-prev aria-label="Anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+
+    <div class="vf-presc__track" data-vf-presc-track>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'prescritor' -%}
+          {%- liquid
+            assign b = block.settings
+
+            comment
+              Enquadramento: object-position move o rosto para dentro do
+              recorte, scale aproxima. 30% na vertical porque rosto quase
+              nunca está no meio geométrico de um retrato.
+            endcomment
+            assign fx = b.photo_focus_x | default: 50
+            assign fy = b.photo_focus_y | default: 30
+            assign zoom_pct = b.photo_zoom | default: 100
+            assign zoom = zoom_pct | times: 1.0 | divided_by: 100
+            assign img_style = 'object-position:' | append: fx | append: '% ' | append: fy | append: '%;transform:scale(' | append: zoom | append: ');'
+
+            assign frase = b.quote
+            if frase == blank
+              assign frase = s.neutral_quote
+            endif
+
+            assign ig = b.instagram_handle | replace: '@', '' | strip
+            assign ig_href = b.instagram_url
+            if ig_href == blank and ig != blank
+              assign ig_href = 'https://www.instagram.com/' | append: ig | append: '/'
+            endif
+          -%}
+          <article
+            class="vf-presc__card{% if b.highlight %} is-destaque{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="vf-presc__media">
+              {%- if b.photo != blank -%}
+                <img
+                  src="{{ b.photo | image_url: width: 600 }}"
+                  srcset="{{ b.photo | image_url: width: 360 }} 360w, {{ b.photo | image_url: width: 600 }} 600w"
+                  sizes="(max-width: 750px) 72vw, 300px"
+                  alt="{{ b.name | escape }}"
+                  loading="lazy"
+                  width="600" height="750"
+                  class="vf-presc__img"
+                  style="{{ img_style }}"
+                >
+              {%- elsif b.photo_filename != blank -%}
+                <img
+                  src="{{ b.photo_filename | asset_url }}"
+                  alt="{{ b.name | escape }}"
+                  loading="lazy"
+                  class="vf-presc__img"
+                  style="{{ img_style }}"
+                >
+              {%- else -%}
+                <div class="vf-presc__img vf-presc__img--placeholder"></div>
+              {%- endif -%}
+
+              {%- if b.credential != blank -%}
+                <span class="vf-presc__selo">{{ b.credential }}</span>
+              {%- endif -%}
+              {%- if b.highlight and s.highlight_label != blank -%}
+                <span class="vf-presc__fita">{{ s.highlight_label }}</span>
+              {%- endif -%}
+            </div>
+
+            <div class="vf-presc__body">
+              {%- if frase != blank -%}
+                <blockquote class="vf-presc__quote">{{ frase }}</blockquote>
+              {%- endif -%}
+
+              <div class="vf-presc__id">
+                {%- if b.name != blank -%}
+                  <h3 class="vf-presc__name">{{ b.name }}</h3>
+                {%- endif -%}
+                {%- if b.specialty != blank -%}
+                  <p class="vf-presc__specialty">{{ b.specialty }}</p>
+                {%- endif -%}
+              </div>
+
+              {%- if ig != blank -%}
+                <a
+                  class="vf-presc__ig"
+                  href="{{ ig_href }}"
+                  target="_blank"
+                  rel="noopener nofollow"
+                  aria-label="Instagram de {{ b.name | escape }}"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 2 .24 2.4.42.6.23 1 .5 1.5 1 .4.4.7.9 1 1.5.18.4.36 1.2.42 2.4.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.24 2-.42 2.4-.23.6-.5 1-1 1.5-.4.4-.9.7-1.5 1-.4.18-1.2.36-2.4.42-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-2-.24-2.4-.42-.6-.23-1-.5-1.5-1-.4-.4-.7-.9-1-1.5-.18-.4-.36-1.2-.42-2.4C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.24-2 .42-2.4.23-.6.5-1 1-1.5.4-.4.9-.7 1.5-1 .4-.18 1.2-.36 2.4-.42C8.4 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5 0-4.75.07-1 .05-1.55.21-1.9.35-.48.19-.82.41-1.18.77-.36.36-.58.7-.77 1.18-.14.35-.3.9-.35 1.9C3 9.5 3 9.86 3 13s0 3.5.07 4.75c.05 1 .21 1.55.35 1.9.19.48.41.82.77 1.18.36.36.7.58 1.18.77.35.14.9.3 1.9.35C7.5 22 7.86 22 11 22h1c3.14 0 3.5 0 4.75-.07 1-.05 1.55-.21 1.9-.35.48-.19.82-.41 1.18-.77.36-.36.58-.7.77-1.18.14-.35.3-.9.35-1.9.07-1.25.07-1.61.07-4.75s0-3.5-.07-4.75c-.05-1-.21-1.55-.35-1.9a3.17 3.17 0 0 0-.77-1.18 3.17 3.17 0 0 0-1.18-.77c-.35-.14-.9-.3-1.9-.35C15.5 4 15.14 4 12 4zm0 3.4a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2zm0 1.8a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6zm4.8-2a1.08 1.08 0 1 1 0 2.16 1.08 1.08 0 0 1 0-2.16z"/></svg>
+                  <span class="vf-presc__handle">@{{ ig }}</span>
+                </a>
+              {%- endif -%}
+            </div>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <button type="button" class="vf-presc__nav vf-presc__nav--next" data-vf-presc-next aria-label="Próximo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+
+  {%- if s.footnote != blank -%}
+    <div class="vf-presc__container">
+      <p class="vf-presc__footnote">{{ s.footnote }}</p>
+    </div>
+  {%- endif -%}
+</section>
+{%- endif -%}
+
+{% stylesheet %}
+  .vf-presc {
+    background: #FAFAF7;
+    padding: clamp(44px, 6.5vw, 76px) 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    /* a seção inteira precisa poder encolher dentro de uma coluna de grid;
+       max-width em % é ignorado no cálculo intrínseco, width:0 não é. */
+    width: 0;
+    min-width: 100%;
+    overflow: hidden;
+  }
+  .vf-presc__container { max-width: 1180px; margin: 0 auto; padding: 0 20px; text-align: center; }
+
+  .vf-presc__eyebrow {
+    display: inline-block; font-size: 12px; font-weight: 800; color: #5EBC43;
+    text-transform: uppercase; letter-spacing: .16em; margin-bottom: 10px;
+  }
+  .vf-presc__heading {
+    font-family: 'Caprasimo', Georgia, serif; font-weight: 400;
+    font-size: clamp(25px, 3.4vw, 38px); line-height: 1.15; color: #1B5E20;
+    margin: 0 0 12px; letter-spacing: -.015em;
+  }
+  .vf-presc__subheading {
+    font-size: 15.5px; line-height: 1.55; color: #5B6B5B;
+    max-width: 620px; margin: 0 auto;
+  }
+
+  /* ---------- carrossel ---------- */
+  .vf-presc__carousel { position: relative; margin-top: clamp(28px, 4vw, 40px); }
+  .vf-presc__track {
+    display: flex; gap: 20px; align-items: stretch;
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    padding: 8px 20px 12px;
+    justify-content: flex-start;
+    /* com poucos médicos o trilho centraliza; quando passa da largura, o
+       "safe" evita o bug clássico de center + overflow comer os primeiros. */
+    justify-content: safe center;
+  }
+  .vf-presc__track::-webkit-scrollbar { display: none; }
+  @media (min-width: 1240px) {
+    .vf-presc__track { padding-left: max(20px, calc((100vw - 1180px) / 2)); padding-right: max(20px, calc((100vw - 1180px) / 2)); }
+  }
+
+  .vf-presc__card {
+    flex: 0 0 var(--vf-presc-card, 300px);
+    max-width: var(--vf-presc-card, 300px);
+    scroll-snap-align: center;
+    display: flex; flex-direction: column;
+    background: #fff; border: 1px solid #ECEBE4; border-radius: 20px;
+    overflow: hidden; box-sizing: border-box;
+    box-shadow: 0 6px 20px rgba(22, 48, 26, .05);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .vf-presc__card:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(22, 48, 26, .10); }
+  .vf-presc__card.is-destaque { border-color: #5EBC43; box-shadow: 0 0 0 2px rgba(94,188,67,.22), 0 10px 28px rgba(94,188,67,.16); }
+
+  /* ---------- foto ---------- */
+  .vf-presc__media { position: relative; width: 100%; aspect-ratio: 4 / 5; background: #EFF3EA; overflow: hidden; }
+  .vf-presc__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vf-presc__img--placeholder { background: linear-gradient(135deg, #C0DE96, #5EBC43); }
+
+  .vf-presc__selo {
+    position: absolute; left: 12px; bottom: 12px; z-index: 2;
+    background: rgba(255,255,255,.94); color: #16301A;
+    font-size: 11px; font-weight: 800; letter-spacing: .03em;
+    padding: 5px 10px; border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.18); backdrop-filter: blur(2px);
+    max-width: calc(100% - 24px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .vf-presc__fita {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    background: #1B5E20; color: #fff;
+    font-size: 10.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+    padding: 5px 10px; border-radius: 999px; box-shadow: 0 2px 8px rgba(0,0,0,.22);
+    max-width: calc(100% - 24px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+
+  /* ---------- corpo ---------- */
+  .vf-presc__body {
+    flex: 1 1 auto;                 /* estica: é isto que alinha os botões */
+    display: flex; flex-direction: column;
+    padding: 16px 18px 18px; text-align: left;
+  }
+  .vf-presc__quote {
+    margin: 0 0 14px; padding: 0;
+    font-size: 14px; line-height: 1.55; color: #46513F; font-style: italic;
+  }
+  .vf-presc__quote::before { content: '\201C'; }
+  .vf-presc__quote::after { content: '\201D'; }
+  .vf-presc__quote p { margin: 0; display: inline; }
+  .vf-presc__quote strong, .vf-presc__quote b { font-weight: 700; font-style: normal; color: #16301A; }
+
+  .vf-presc__id { margin-top: auto; }   /* empurra nome + botão para o rodapé */
+  .vf-presc__name {
+    font-family: 'Caprasimo', Georgia, serif; font-weight: 400;
+    font-size: 18px; line-height: 1.2; color: #16301A; margin: 0;
+    letter-spacing: -.005em;
+  }
+  .vf-presc__specialty {
+    margin: 5px 0 0; font-size: 13px; line-height: 1.4;
+    color: #5B6B5B; font-weight: 600;
+  }
+
+  .vf-presc__ig {
+    margin-top: 12px; align-self: flex-start;
+    display: inline-flex; align-items: center; gap: 7px;
+    max-width: 100%; min-width: 0; box-sizing: border-box;
+    background: #1B5E20; color: #fff; text-decoration: none;
+    font-size: 12.5px; font-weight: 700; padding: 7px 13px; border-radius: 999px;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .vf-presc__ig:hover { background: #5EBC43; transform: translateY(-1px); }
+  .vf-presc__ig svg { width: 15px; height: 15px; flex: 0 0 auto; }
+  /* handle comprido trunca em vez de vazar pela borda do card */
+  .vf-presc__handle { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ---------- setas ---------- */
+  .vf-presc__nav {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid rgba(27, 94, 32, .16); background: #fff; color: #1B5E20;
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 6px 18px rgba(22, 48, 26, .12);
+    transition: background .15s, color .15s, opacity .15s;
+  }
+  .vf-presc__nav svg { width: 20px; height: 20px; }
+  .vf-presc__nav:hover { background: #1B5E20; color: #fff; }
+  .vf-presc__nav--prev { left: 8px; }
+  .vf-presc__nav--next { right: 8px; }
+  .vf-presc__nav[hidden] { display: none; }
+  @media (max-width: 1024px) { .vf-presc__nav { display: none; } }
+
+  .vf-presc__footnote {
+    margin: 18px auto 0; max-width: 680px;
+    font-size: 12.5px; line-height: 1.5; color: #8A937F;
+  }
+
+  @media (max-width: 749px) {
+    .vf-presc__card { flex-basis: min(72vw, 290px); max-width: min(72vw, 290px); }
+    .vf-presc__track { gap: 14px; padding-left: 16px; padding-right: 16px; }
+  }
+{% endstylesheet %}
+
+<script>
+  (function () {
+    'use strict';
+    var carrossel = document.querySelector('[data-vf-presc="{{ uid }}"]');
+    if (!carrossel) return;
+    var trilho = carrossel.querySelector('[data-vf-presc-track]');
+    var anterior = carrossel.querySelector('[data-vf-presc-prev]');
+    var proximo = carrossel.querySelector('[data-vf-presc-next]');
+    if (!trilho) return;
+
+    function passo() {
+      var card = trilho.querySelector('.vf-presc__card');
+      var l = card ? card.getBoundingClientRect().width : trilho.clientWidth * 0.8;
+      return l + 20;
+    }
+
+    // Sem transbordo não há o que rolar: as setas saem do caminho em vez de
+    // ficarem ali sem efeito.
+    function ajustarSetas() {
+      var sobra = trilho.scrollWidth - trilho.clientWidth > 4;
+      if (anterior) anterior.hidden = !sobra;
+      if (proximo) proximo.hidden = !sobra;
+    }
+
+    if (anterior) anterior.addEventListener('click', function () { trilho.scrollBy({ left: -passo(), behavior: 'smooth' }); });
+    if (proximo) proximo.addEventListener('click', function () { trilho.scrollBy({ left: passo(), behavior: 'smooth' }); });
+
+    ajustarSetas();
+    if (window.ResizeObserver) {
+      new ResizeObserver(ajustarSetas).observe(trilho);
+    } else {
+      window.addEventListener('resize', ajustarSetas);
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "VF Prescritores",
+  "tag": "section",
+  "class": "vf-prescritores-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "AUTORIDADE MÉDICA" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Profissionais de saúde que recomendam a VermeFree" },
+    { "type": "textarea", "id": "subheading", "label": "Subtítulo", "default": "Médicos e especialistas que conhecem o protocolo e indicam pros seus pacientes." },
+    { "type": "header", "content": "Frases" },
+    { "type": "textarea", "id": "neutral_quote", "label": "Frase neutra", "info": "Usada nos cards que ainda não têm frase própria. Deixe vazio para não mostrar frase nenhuma.", "default": "Conheço o protocolo VermeFree e indico aos meus pacientes." },
+    { "type": "header", "content": "Aparência" },
+    { "type": "range", "id": "card_width", "label": "Largura do card", "min": 240, "max": 400, "step": 10, "unit": "px", "default": 300 },
+    { "type": "text", "id": "highlight_label", "label": "Fita do destaque", "info": "Aparece no card marcado como destaque.", "default": "Curadoria científica" },
+    { "type": "textarea", "id": "footnote", "label": "Observação no rodapé (opcional)", "info": "Ex.: aviso de que os profissionais não substituem consulta." }
+  ],
+  "blocks": [
+    {
+      "type": "prescritor",
+      "name": "Prescritor",
+      "settings": [
+        { "type": "image_picker", "id": "photo", "label": "Foto", "info": "Se vazio, cai no nome de arquivo abaixo." },
+        { "type": "text", "id": "photo_filename", "label": "Arquivo em assets/ (fallback)", "info": "Ex.: vf-prescritor-william-araujo.jpg" },
+        { "type": "range", "id": "photo_zoom", "label": "Zoom da foto", "min": 100, "max": 200, "step": 5, "unit": "%", "default": 100 },
+        { "type": "range", "id": "photo_focus_x", "label": "Posição do rosto · horizontal", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 50 },
+        { "type": "range", "id": "photo_focus_y", "label": "Posição do rosto · vertical", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 30 },
+        { "type": "header", "content": "Identificação" },
+        { "type": "text", "id": "name", "label": "Nome", "default": "Dr. Nome Sobrenome" },
+        { "type": "text", "id": "credential", "label": "Credencial (CRM/CRO)", "info": "Vira o selo sobre a foto.", "default": "CRM 00000" },
+        { "type": "text", "id": "specialty", "label": "Especialidade", "default": "Especialista em..." },
+        { "type": "richtext", "id": "quote", "label": "Frase do profissional (opcional)", "info": "Vazio usa a frase neutra da seção. Use negrito para destacar um trecho." },
+        { "type": "checkbox", "id": "highlight", "label": "Marcar como destaque", "default": false },
+        { "type": "header", "content": "Instagram" },
+        { "type": "text", "id": "instagram_handle", "label": "@ do Instagram", "default": "@usuario" },
+        { "type": "url", "id": "instagram_url", "label": "Link do Instagram", "info": "Vazio monta o link a partir do @." }
+      ]
+    }
+  ],
+  "max_blocks": 14,
+  "presets": [
+    {
+      "name": "VF Prescritores",
+      "blocks": [
+        { "type": "prescritor", "settings": { "photo_filename": "vf-prescritor-william-araujo.jpg", "name": "Dr. William Araújo", "credential": "CRM-MG 76.962", "specialty": "Curadoria científica do protocolo VermeFree", "instagram_handle": "@drwilliamaraujo", "instagram_url": "https://www.instagram.com/drwilliamaraujo/", "highlight": true } },
+        { "type": "prescritor", "settings": { "photo_filename": "vf-prescritor-giovanna-eller.jpg", "name": "Dra. Giovanna Eller", "credential": "CRM-ES 20.998", "specialty": "Nutróloga · saúde intestinal e emagrecimento", "instagram_handle": "@dra.giovannaeller", "instagram_url": "https://www.instagram.com/dra.giovannaeller/" } },
+        { "type": "prescritor", "settings": { "photo_filename": "vf-prescritor-robson-araujo.jpg", "name": "Dr. Robson Araújo", "credential": "CRM-MG 93.787", "specialty": "Emagrecimento e saúde integrativa", "instagram_handle": "@drrobson_araujo", "instagram_url": "https://www.instagram.com/drrobson_araujo/" } },
+        { "type": "prescritor", "settings": { "photo_filename": "vf-prescritor-raquel-cembranelli.jpg", "name": "Dra. Raquel Cembranelli", "credential": "CRO-SP 83.705", "specialty": "Cirurgiã-dentista · odontologia integrativa", "instagram_handle": "@dra.raquelcembranelli", "instagram_url": "https://www.instagram.com/dra.raquelcembranelli/" } }
+      ]
+    }
+  ],
+  "enabled_on": { "templates": ["index", "product"] }
+}
+{% endschema %}
