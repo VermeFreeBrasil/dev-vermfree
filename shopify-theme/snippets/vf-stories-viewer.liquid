@@ -1,0 +1,780 @@
+{%- comment -%}
+  ============================================================
+  vf-stories-viewer.liquid — Visualizador de stories em tela
+  cheia. Motor compartilhado entre a régua de stories da PDP e
+  o carrossel de UGC da home: quem chama só monta a lista e
+  abre, nunca reimplementa o player.
+
+  COMO USAR
+    {% render 'vf-stories-viewer' %}   (uma vez por página)
+
+    window.VFStories.register('<id>', [ ...itens... ]);
+    window.VFStories.open('<id>', indice, elementoQueAbriu);
+    window.VFStories.close();
+
+  FORMATO DE CADA ITEM
+    {
+      "sources": [ { "src": "...", "type": "video/mp4" } ],
+      "poster":  "https://...",          // opcional
+      "eyebrow": "MAIS VENDIDO",         // vazio esconde
+      "offer":   "Ganhe 5 sachês",       // vazio usa product.price
+      "badge":   "LANÇAMENTO",           // vazio esconde
+      "cta":     "Adicionar ao carrinho",
+      "mode":    "pdp" | "home",
+      "product": null | {                // null = story sem cartão
+        "title": "...", "url": "/products/x", "image": "https://...",
+        "price": "R$ 347,00", "variants": 1, "vid": "123", "available": true
+      }
+    }
+
+  DECISÕES QUE CUSTARAM RETRABALHO (não mexer sem ler)
+
+  1. play() nunca é chamado logo depois de load(). O navegador
+     cancela a promise com AbortError e o vídeo fica parado — e
+     o sintoma engana, porque o primeiro que ganha a corrida
+     funciona e os outros não. Aqui: load(), espera
+     loadeddata/canplay, e só então play(). Um token por
+     carregamento descarta eventos de um story que o cliente já
+     abandonou.
+
+  2. O nó é movido para o <body> ao carregar. Se ficar dentro de
+     um ancestral com transform, position:fixed passa a se
+     ancorar nele e o "tela cheia" quebra no desktop.
+
+  3. As zonas de toque param 150px acima da base. Cobrindo a tela
+     inteira, elas engolem o clique do botão de compra — que
+     ainda por cima recebe z-index maior.
+
+  4. Este tema NÃO tem gaveta de carrinho: o ícone do header é um
+     link direto para /cart. Então o botão adiciona por
+     /cart/add.js, mostra um aviso e atualiza o contador do
+     header — o cliente continua dentro do story.
+  ============================================================
+{%- endcomment -%}
+
+<div
+  class="vfst"
+  data-vfst-root
+  id="vf-stories-viewer"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Stories"
+  hidden
+>
+  <div class="vfst__stage">
+    <video class="vfst__video" data-vfst-video playsinline webkit-playsinline preload="auto"></video>
+
+    <div class="vfst__bars" data-vfst-bars></div>
+
+    <button type="button" class="vfst__btn vfst__close" data-vfst-close aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+        <path d="M18 6L6 18"></path><path d="M6 6l12 12"></path>
+      </svg>
+    </button>
+    <button type="button" class="vfst__btn vfst__sound" data-vfst-sound aria-label="Ativar ou desativar o som" aria-pressed="true">
+      <svg class="vfst__ic vfst__ic--on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M15.5 8.5a5 5 0 010 7"></path><path d="M18.5 5.5a9 9 0 010 13"></path>
+      </svg>
+      <svg class="vfst__ic vfst__ic--off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M22 9l-6 6"></path><path d="M16 9l6 6"></path>
+      </svg>
+    </button>
+
+    <button type="button" class="vfst__tap vfst__tap--prev" data-vfst-prev aria-label="Story anterior"></button>
+    <button type="button" class="vfst__tap vfst__tap--next" data-vfst-next aria-label="Próximo story"></button>
+
+    <div class="vfst__toast" data-vfst-toast role="status" hidden>
+      <span>Adicionado ao carrinho</span>
+      <a class="vfst__toast-link" href="{{ routes.cart_url }}">Ver carrinho</a>
+    </div>
+
+    <div class="vfst__card" data-vfst-card hidden>
+      <div class="vfst__card-top">
+        <img class="vfst__thumb" data-vfst-thumb alt="" width="56" height="56" hidden>
+        <div class="vfst__texts">
+          <span class="vfst__eyebrow" data-vfst-eyebrow hidden></span>
+          <span class="vfst__name" data-vfst-name></span>
+          <span class="vfst__offer" data-vfst-offer></span>
+        </div>
+        <span class="vfst__badge" data-vfst-badge hidden></span>
+      </div>
+      <button type="button" class="vfst__cta" data-vfst-cta></button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .vfst {
+    position: fixed;
+    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: 100000;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .vfst[hidden] { display: none !important; }
+
+  .vfst__stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: #000;
+  }
+
+  /* contain, não cover: estes vídeos têm texto na tela e cover cortaria a legenda. */
+  .vfst__video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+  }
+
+  .vfst__bars {
+    position: absolute;
+    top: calc(10px + env(safe-area-inset-top, 0px));
+    left: 10px;
+    right: 10px;
+    display: flex;
+    gap: 4px;
+    z-index: 4;
+  }
+  .vfst__bar {
+    flex: 1 1 0;
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+  }
+  .vfst__bar-fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: #fff;
+  }
+
+  .vfst__btn {
+    position: absolute;
+    z-index: 5;
+    top: calc(26px + env(safe-area-inset-top, 0px));
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+  }
+  .vfst__btn:hover { background: rgba(0, 0, 0, 0.7); }
+  .vfst__btn svg { width: 20px; height: 20px; display: block; }
+  .vfst__close { right: 14px; }
+  .vfst__sound { right: 62px; }
+  /* Ícone em SVG, não emoji: emoji depende da fonte do sistema e em alguns
+     Android vira quadradinho. O resto do tema também usa SVG. */
+  .vfst__sound .vfst__ic--off { display: none; }
+  .vfst__sound.is-muted .vfst__ic--on { display: none; }
+  .vfst__sound.is-muted .vfst__ic--off { display: block; }
+
+  /* Armadilha 5: param 150px acima da base para não engolir o botão de compra. */
+  .vfst__tap {
+    position: absolute;
+    top: 0;
+    bottom: 150px;
+    width: 34%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    z-index: 3;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .vfst__tap--prev { left: 0; }
+  .vfst__tap--next { right: 0; }
+
+  .vfst__card {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    z-index: 6;
+    padding: 12px;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+  .vfst__card[hidden] { display: none !important; }
+
+  .vfst__card-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .vfst__thumb {
+    flex: 0 0 auto;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    object-fit: contain;
+    background: #f2f4f9;
+  }
+  .vfst__thumb[hidden] { display: none !important; }
+  .vfst__texts {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1 1 auto;
+    padding-right: 80px;
+  }
+  .vfst__eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b7392;
+  }
+  .vfst__eyebrow[hidden] { display: none !important; }
+  .vfst__name {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--vf-text, #1A1A1A);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .vfst__offer {
+    margin-top: 2px;
+    font-size: 13px;
+    color: #4a5270;
+  }
+  .vfst__badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: var(--vf-green-light, #C0DE96);
+    color: var(--vf-green-dark, #1B5E20);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .vfst__badge[hidden] { display: none !important; }
+
+  /* Mesmo visual do CTA primário da PDP, para não parecer enxerto. */
+  .vfst__cta {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 14px 16px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    background: var(--vf-green, #5EBC43);
+    color: #fff;
+    box-shadow: 0 2px 0 var(--vf-green-dark, #1B5E20);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .vfst__cta:hover:not(:disabled) {
+    background: var(--vf-green-dark, #1B5E20);
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 var(--vf-green-dark, #1B5E20);
+  }
+  .vfst__cta:disabled {
+    opacity: 0.65;
+    cursor: default;
+    box-shadow: none;
+  }
+
+  .vfst__toast {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: calc(172px + env(safe-area-inset-bottom, 0px));
+    z-index: 8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: var(--vf-green-dark, #1B5E20);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+  .vfst__toast[hidden] { display: none !important; }
+  .vfst__toast-link {
+    color: #fff;
+    font-weight: 800;
+    text-decoration: underline;
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  (function () {
+    'use strict';
+
+    // O snippet pode acabar renderizado mais de uma vez (PDP e home na mesma
+    // página, ou duas seções pedindo o visualizador). Só o primeiro nó vive.
+    if (window.VFStories) {
+      var dupes = document.querySelectorAll('[data-vfst-root]');
+      for (var d = 0; d < dupes.length; d++) {
+        if (dupes[d] !== window.VFStories._root && dupes[d].parentNode) {
+          dupes[d].parentNode.removeChild(dupes[d]);
+        }
+      }
+      return;
+    }
+
+    var root = document.querySelector('[data-vfst-root]');
+    if (!root) return;
+
+    var video = root.querySelector('[data-vfst-video]');
+    var barsEl = root.querySelector('[data-vfst-bars]');
+    var closeEl = root.querySelector('[data-vfst-close]');
+    var soundEl = root.querySelector('[data-vfst-sound]');
+    var prevEl = root.querySelector('[data-vfst-prev]');
+    var nextEl = root.querySelector('[data-vfst-next]');
+    var toastEl = root.querySelector('[data-vfst-toast]');
+    var cardEl = root.querySelector('[data-vfst-card]');
+    var thumbEl = root.querySelector('[data-vfst-thumb]');
+    var eyebrowEl = root.querySelector('[data-vfst-eyebrow]');
+    var nameEl = root.querySelector('[data-vfst-name]');
+    var offerEl = root.querySelector('[data-vfst-offer]');
+    var badgeEl = root.querySelector('[data-vfst-badge]');
+    var ctaEl = root.querySelector('[data-vfst-cta]');
+    if (!video || !barsEl || !closeEl || !cardEl || !ctaEl) return;
+
+    // Armadilha 3: position:fixed se ancora em qualquer ancestral com
+    // transform. No <body> isso não acontece.
+    if (root.parentNode !== document.body) document.body.appendChild(root);
+
+    var registry = {};
+    var items = [];
+    var bars = [];
+    var current = -1;
+    var isOpen = false;
+    var muted = false;
+    var loadToken = 0;
+    var lastTrigger = null;
+    var toastTimer = null;
+    var prevHtmlOverflow = '';
+    var prevBodyOverflow = '';
+
+    // ---------- barras de progresso ----------
+
+    function buildBars(total) {
+      barsEl.innerHTML = '';
+      bars = [];
+      for (var i = 0; i < total; i++) {
+        var bar = document.createElement('span');
+        bar.className = 'vfst__bar';
+        var fill = document.createElement('i');
+        fill.className = 'vfst__bar-fill';
+        bar.appendChild(fill);
+        barsEl.appendChild(bar);
+        bars.push(fill);
+      }
+    }
+
+    function paintBars() {
+      for (var i = 0; i < bars.length; i++) {
+        bars[i].style.width = i < current ? '100%' : '0%';
+      }
+    }
+
+    // ---------- som ----------
+
+    function updateSound() {
+      if (muted) {
+        soundEl.classList.add('is-muted');
+      } else {
+        soundEl.classList.remove('is-muted');
+      }
+      soundEl.setAttribute('aria-pressed', muted ? 'false' : 'true');
+    }
+
+    // ---------- cartão de compra ----------
+
+    function renderCard(item) {
+      var product = item.product;
+
+      if (!product) {
+        cardEl.hidden = true;
+        return;
+      }
+      cardEl.hidden = false;
+
+      if (product.image) {
+        thumbEl.src = product.image;
+        thumbEl.alt = product.title || '';
+        thumbEl.hidden = false;
+      } else {
+        thumbEl.removeAttribute('src');
+        thumbEl.hidden = true;
+      }
+
+      eyebrowEl.textContent = item.eyebrow || '';
+      eyebrowEl.hidden = !item.eyebrow;
+
+      nameEl.textContent = product.title || '';
+      offerEl.textContent = item.offer || product.price || '';
+
+      if (item.badge) {
+        badgeEl.textContent = item.badge;
+        badgeEl.hidden = false;
+      } else {
+        badgeEl.hidden = true;
+      }
+
+      ctaEl.disabled = false;
+      if (!product.available) {
+        ctaEl.textContent = 'Esgotado';
+        ctaEl.disabled = true;
+      } else if (product.variants > 1 || !product.vid) {
+        // Nunca adiciona às cegas um produto com sabor/tamanho.
+        ctaEl.textContent = item.mode === 'pdp' ? 'Escolher opção' : 'Ver produto';
+      } else {
+        ctaEl.textContent = item.cta || 'Adicionar ao carrinho';
+      }
+    }
+
+    // ---------- player ----------
+
+    function startPlay(token) {
+      var playing = video.play();
+      if (!playing || !playing.catch) return;
+      playing.catch(function () {
+        if (token !== loadToken) return;
+        // Autoplay bloqueado pelo navegador: cai para mudo e tenta de novo.
+        muted = true;
+        video.muted = true;
+        updateSound();
+        var retry = video.play();
+        if (retry && retry.catch) retry.catch(function () {});
+      });
+    }
+
+    function show(index) {
+      if (!items.length) { close(); return; }
+      if (index < 0) index = 0;
+      if (index >= items.length) { close(); return; }
+
+      var item = items[index];
+
+      // Story sem fonte utilizável: pula na direção em que o cliente ia.
+      if (!item || !item.sources || !item.sources.length) {
+        if (index >= current) { show(index + 1); } else { show(index - 1); }
+        return;
+      }
+
+      current = index;
+      var token = ++loadToken;
+
+      video.pause();
+      while (video.firstChild) video.removeChild(video.firstChild);
+      video.removeAttribute('poster');
+
+      for (var s = 0; s < item.sources.length; s++) {
+        var source = document.createElement('source');
+        source.src = item.sources[s].src;
+        if (item.sources[s].type) source.type = item.sources[s].type;
+        video.appendChild(source);
+      }
+      if (item.poster) video.setAttribute('poster', item.poster);
+      video.muted = muted;
+
+      paintBars();
+      renderCard(item);
+
+      // Armadilha 2: load() primeiro, play() só quando houver dados.
+      var onReady = function () {
+        video.removeEventListener('loadeddata', onReady);
+        video.removeEventListener('canplay', onReady);
+        if (token !== loadToken) return;
+        startPlay(token);
+      };
+      video.addEventListener('loadeddata', onReady);
+      video.addEventListener('canplay', onReady);
+      video.load();
+    }
+
+    // ---------- abrir e fechar ----------
+
+    function lockScroll() {
+      prevHtmlOverflow = document.documentElement.style.overflow;
+      prevBodyOverflow = document.body.style.overflow;
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function unlockScroll() {
+      document.documentElement.style.overflow = prevHtmlOverflow;
+      document.body.style.overflow = prevBodyOverflow;
+    }
+
+    function open(id, index, trigger) {
+      var list = registry[id];
+      if (!list || !list.length) return;
+
+      if (items !== list) {
+        items = list;
+        buildBars(items.length);
+      }
+      lastTrigger = trigger || null;
+
+      if (!isOpen) {
+        isOpen = true;
+        current = -1;
+        muted = false;
+        video.muted = false;
+        updateSound();
+        root.hidden = false;
+        lockScroll();
+      }
+
+      show(index || 0);
+      if (closeEl.focus) closeEl.focus();
+    }
+
+    function close() {
+      if (!isOpen) return;
+      isOpen = false;
+      loadToken++; // invalida qualquer carregamento em voo
+      root.hidden = true;
+      hideToast();
+
+      video.pause();
+      while (video.firstChild) video.removeChild(video.firstChild);
+      video.removeAttribute('src');
+      video.load(); // solta o buffer
+      current = -1;
+
+      unlockScroll();
+
+      if (lastTrigger && lastTrigger.focus) {
+        try { lastTrigger.focus(); } catch (e) {}
+      }
+      lastTrigger = null;
+    }
+
+    // ---------- aviso de "adicionado" ----------
+
+    function showToast() {
+      toastEl.hidden = false;
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(hideToast, 4000);
+    }
+
+    function hideToast() {
+      if (toastTimer) { clearTimeout(toastTimer); toastTimer = null; }
+      toastEl.hidden = true;
+    }
+
+    // ---------- contador do carrinho ----------
+
+    function refreshCartCount() {
+      return fetch('/cart.js', { headers: { Accept: 'application/json' } })
+        .then(function (response) { return response.ok ? response.json() : null; })
+        .then(function (cart) {
+          if (!cart) return;
+          var count = cart.item_count || 0;
+
+          // Contador do header deste tema.
+          var headerCounts = document.querySelectorAll('[data-vf-cart-count]');
+          for (var i = 0; i < headerCounts.length; i++) {
+            headerCounts[i].textContent = String(count);
+            if (count > 0) {
+              headerCounts[i].removeAttribute('hidden');
+            } else {
+              headerCounts[i].setAttribute('hidden', '');
+            }
+          }
+
+          // O snippet cart-icon usa outro atributo e a classe is-empty.
+          var iconCounts = document.querySelectorAll('[data-cart-count]');
+          for (var j = 0; j < iconCounts.length; j++) {
+            iconCounts[j].textContent = String(count);
+            if (count > 0) {
+              iconCounts[j].classList.remove('is-empty');
+            } else {
+              iconCounts[j].classList.add('is-empty');
+            }
+          }
+        })
+        .catch(function () {});
+    }
+
+    // ---------- botão de compra ----------
+
+    ctaEl.addEventListener('click', function () {
+      var item = items[current];
+      if (!item || !item.product) return;
+
+      var product = item.product;
+      if (!product.available) return;
+
+      // Mais de uma variante: nunca escolhe por conta própria.
+      if (product.variants > 1 || !product.vid) {
+        if (item.mode === 'pdp') { close(); return; }
+        if (product.url) window.location.href = product.url;
+        return;
+      }
+
+      var label = ctaEl.textContent;
+      ctaEl.disabled = true;
+      ctaEl.textContent = 'Adicionando...';
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: JSON.stringify({ items: [{ id: product.vid, quantity: 1 }] })
+      })
+        .then(function (response) {
+          return response.json().then(function (data) {
+            if (!response.ok) throw new Error((data && data.description) || 'erro');
+            return data;
+          });
+        })
+        .then(function () {
+          refreshCartCount();
+          showToast();
+          ctaEl.disabled = false;
+          ctaEl.textContent = label;
+        })
+        .catch(function () {
+          ctaEl.textContent = 'Tente de novo';
+          setTimeout(function () {
+            ctaEl.disabled = false;
+            ctaEl.textContent = label;
+          }, 1600);
+        });
+    });
+
+    // ---------- eventos do vídeo ----------
+
+    video.addEventListener('timeupdate', function () {
+      if (current < 0 || !bars[current]) return;
+      var duration = video.duration;
+      if (!duration || !isFinite(duration) || duration <= 0) return;
+      bars[current].style.width = ((video.currentTime / duration) * 100) + '%';
+    });
+
+    video.addEventListener('ended', function () {
+      show(current + 1);
+    });
+
+    // Fonte quebrada não pode travar a sequência.
+    video.addEventListener('error', function () {
+      if (!isOpen) return;
+      show(current + 1);
+    });
+
+    // ---------- controles ----------
+
+    closeEl.addEventListener('click', close);
+    if (prevEl) prevEl.addEventListener('click', function () { show(current - 1); });
+    if (nextEl) nextEl.addEventListener('click', function () { show(current + 1); });
+
+    soundEl.addEventListener('click', function () {
+      muted = !muted;
+      video.muted = muted;
+      updateSound();
+      if (!muted && isOpen && video.paused) {
+        var playing = video.play();
+        if (playing && playing.catch) playing.catch(function () {});
+      }
+    });
+
+    // No desktop sobra tela preta dos lados do palco: clicar ali fecha.
+    root.addEventListener('click', function (event) {
+      if (event.target === root) close();
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (!isOpen) return;
+      if (event.key === 'Escape') {
+        close();
+      } else if (event.key === 'ArrowRight') {
+        show(current + 1);
+      } else if (event.key === 'ArrowLeft') {
+        show(current - 1);
+      }
+    });
+
+    var touchX = null;
+    var touchY = null;
+
+    root.addEventListener('touchstart', function (event) {
+      if (!event.touches || event.touches.length !== 1) {
+        touchX = null;
+        touchY = null;
+        return;
+      }
+      touchX = event.touches[0].clientX;
+      touchY = event.touches[0].clientY;
+    }, { passive: true });
+
+    root.addEventListener('touchend', function (event) {
+      if (touchY === null || !event.changedTouches || !event.changedTouches.length) return;
+      var dx = event.changedTouches[0].clientX - touchX;
+      var dy = event.changedTouches[0].clientY - touchY;
+      // Só fecha em arrasto claramente vertical: um swipe diagonal não pode
+      // fechar o story sem querer.
+      if (dy > 90 && Math.abs(dy) > Math.abs(dx)) close();
+      touchX = null;
+      touchY = null;
+    }, { passive: true });
+
+    // Aba escondida não fica tocando vídeo.
+    document.addEventListener('visibilitychange', function () {
+      if (!isOpen) return;
+      if (document.hidden) {
+        video.pause();
+      } else {
+        var playing = video.play();
+        if (playing && playing.catch) playing.catch(function () {});
+      }
+    });
+
+    // ---------- API pública ----------
+
+    window.VFStories = {
+      _root: root,
+      register: function (id, list) {
+        if (!id || !list || !list.length) return;
+        registry[id] = list;
+      },
+      open: open,
+      close: close
+    };
+  })();
+</script>

@@ -1,0 +1,12 @@
+{
+  "name": "vf-stories-harness",
+  "private": true,
+  "description": "Harness local do visualizador de stories do tema Shopify da VermeFree.",
+  "scripts": {
+    "clips": "node make-clips.js",
+    "build": "node build-page.js",
+    "test": "node build-page.js && node test.js",
+    "shot": "node shot.js"
+  },
+  "dependencies": { "playwright": "1.63.0" }
+}
