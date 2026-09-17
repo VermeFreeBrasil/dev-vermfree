@@ -284,12 +284,48 @@
     "vf_ugc_carrossel_cUgtig": {
       "type": "vf-ugc-carrossel",
       "blocks": {
-        "vid_julia": {
+        "vid_italo": {
           "type": "video",
           "settings": {
-            "video": "shopify://files/videos/juliacolares_1789564802_3987479106072886720_32556032.mp4",
-            "caption": "Na prática",
+            "video": "shopify://files/videos/Depoimento VermeFree - ítalo - Semana do cliente.MOV",
+            "caption": "Depoimento",
             "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_3sinais": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-3SINAIS.mp4",
+            "caption": "3 sinais",
+            "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_juliana": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-JULIANA-UNBOX.mp4",
+            "caption": "Unboxing",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_cuidado": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-CUIDADO.mp4",
+            "caption": "Pra família toda",
+            "product": "kit-familia-vermefree-2-adultos-2-criancas",
             "eyebrow": "",
             "offer": "",
             "badge": "",
@@ -301,18 +337,6 @@
           "settings": {
             "video": "shopify://files/videos/VF-DRDIOGO-UNBOX.mp4",
             "caption": "Chegou em casa",
-            "product": "kit-familia-vermefree-2-adultos-2-criancas",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        },
-        "vid_italo": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/Depoimento VermeFree - ítalo - Semana do cliente.MOV",
-            "caption": "Depoimento",
             "product": "protocolo-desparasitacao-adulto-vermefree",
             "eyebrow": "",
             "offer": "",
@@ -332,48 +356,12 @@
             "cta_label": "Adicionar ao carrinho"
           }
         },
-        "vid_juliana": {
+        "vid_elimina": {
           "type": "video",
           "settings": {
-            "video": "shopify://files/videos/VF-JULIANA-UNBOX.mp4",
-            "caption": "Unboxing",
-            "product": "protocolo-desparasitacao-adulto-vermefree",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        },
-        "vid_diferenca": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/VF-DR-DIFERENCAS.mp4",
-            "caption": "Qual a diferença",
+            "video": "shopify://files/videos/VF-DR-ELIMINA.mp4",
+            "caption": "Como age",
             "product": "antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        },
-        "vid_gravida": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/Grávida não desparasita tráfego.MOV",
-            "caption": "Grávidas",
-            "product": "",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        },
-        "vid_3sinais": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/VF-DR-3SINAIS.mp4",
-            "caption": "3 sinais",
-            "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
             "eyebrow": "",
             "offer": "",
             "badge": "",
@@ -382,14 +370,13 @@
         }
       },
       "block_order": [
-        "vid_julia",
-        "vid_unbox",
         "vid_italo",
-        "vid_pet",
+        "vid_3sinais",
         "vid_juliana",
-        "vid_diferenca",
-        "vid_gravida",
-        "vid_3sinais"
+        "vid_cuidado",
+        "vid_unbox",
+        "vid_pet",
+        "vid_elimina"
       ],
       "name": "VF UGC Carrossel",
       "settings": {
