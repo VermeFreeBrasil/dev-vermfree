@@ -282,6 +282,13 @@
       text-align: center;
       color: var(--vf-text, #1A1A1A);
       max-width: 76px;
+      /* Legenda longa não pode virar três linhas e desalinhar a régua: o
+         texto vem do editor e ninguém controla o tamanho. */
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .vfsr__item:focus-visible .vfsr__ring {
       outline: 2px solid var(--vf-green-dark, #1B5E20);

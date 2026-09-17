@@ -15,8 +15,8 @@ const cssSecao = secao.match(/\{% stylesheet %\}([\s\S]*?)\{% endstylesheet %\}/
 const rail = semComentario(fs.readFileSync(RAIL, 'utf8')).replace(/\{\{\s*uid\s*\}\}/g, 'teste');
 const cssRail = rail.match(/<style>([\s\S]*?)<\/style>/)[1];
 
-const N = 6;
-const rotulos = ['Os sinais', '12 sinais', 'Como elimina', 'Diferenças', 'Dúvidas', 'Unboxing'];
+const N = 8;
+const rotulos = ['Os sinais', 'Na prática', '12 sinais', 'Depoimento', 'Como age', 'Grávidas', 'Unboxing', 'Dúvidas'];
 const circulos = rotulos.slice(0, N).map((r, i) => `
         <button type="button" class="vfsr__item" data-vfsr-open="${i}">
           <span class="vfsr__ring"><span class="vfsr__avatar"><span class="vfsr__ph"></span></span></span>
