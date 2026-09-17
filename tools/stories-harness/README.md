@@ -110,3 +110,13 @@ encostar na ponta (dos dois lados), o arrasto com o mouse no desktop, o
 deslize no celular, e um arrasto que termina em cima de um card **não** virando
 clique no Instagram do médico. Com até 4 médicos nada disso existe: vira grade,
 sem clone e sem seta.
+
+## Valores das templates x schema (`npm run check`)
+
+`check-settings.js` lê o `{% schema %}` de cada seção e confere os valores
+gravados nas templates contra ele: `range` dentro de min/max e no passo certo,
+`select` dentro das opções.
+
+Existe porque a Shopify só reclama disso na hora do upload — um
+`photo_focus_y: 24` num range de passo 5 passa em qualquer validação de JSON e
+só é recusado quando o arquivo já está subindo. Roda antes do resto da suíte.

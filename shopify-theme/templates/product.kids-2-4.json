@@ -657,7 +657,7 @@
             "instagram_url": "https://www.instagram.com/drwilliamaraujo/",
             "photo_zoom": 100,
             "photo_focus_x": 50,
-            "photo_focus_y": 24
+            "photo_focus_y": 25
           }
         },
         "presc_2": {
@@ -708,7 +708,7 @@
             "photo_filename": "vf-prescritor-eglife-brauher.jpg",
             "photo_zoom": 140,
             "photo_focus_x": 50,
-            "photo_focus_y": 6,
+            "photo_focus_y": 5,
             "name": "Dr. Eglife Brauher",
             "credential": "CRM-BA 32.688",
             "specialty": "Médico",
@@ -722,7 +722,7 @@
             "photo_filename": "vf-prescritor-kalil-gibran.jpg",
             "photo_zoom": 100,
             "photo_focus_x": 50,
-            "photo_focus_y": 22,
+            "photo_focus_y": 20,
             "name": "Dr. Kalil Gibran Ferreira Lima",
             "credential": "CRM-BA 34.392",
             "specialty": "Médico",
@@ -736,7 +736,7 @@
             "photo_filename": "vf-prescritor-carlos-osorio.jpg",
             "photo_zoom": 115,
             "photo_focus_x": 50,
-            "photo_focus_y": 58,
+            "photo_focus_y": 60,
             "name": "Dr. Carlos Mateus Santos Osório",
             "credential": "CRM-SP 215.405",
             "specialty": "Médico",
@@ -750,7 +750,7 @@
             "photo_filename": "vf-prescritor-grace-dessirre.jpg",
             "photo_zoom": 100,
             "photo_focus_x": 50,
-            "photo_focus_y": 26,
+            "photo_focus_y": 25,
             "name": "Dra. Grace Dessirre",
             "credential": "CFO-SP 084169",
             "specialty": "Cirurgiã-dentista",
@@ -764,7 +764,7 @@
             "photo_filename": "vf-prescritor-thiago-goncalves.jpg",
             "photo_zoom": 100,
             "photo_focus_x": 50,
-            "photo_focus_y": 22,
+            "photo_focus_y": 20,
             "name": "Dr. Thiago Barbosa Gonçalves",
             "credential": "CRM-ES 16.079",
             "specialty": "Médico",
