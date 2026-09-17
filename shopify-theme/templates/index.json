@@ -284,60 +284,6 @@
     "vf_ugc_carrossel_cUgtig": {
       "type": "vf-ugc-carrossel",
       "blocks": {
-        "ugc_QphzaQ": {
-          "type": "ugc",
-          "settings": {
-            "image": "shopify://shop_images/01-carrossel.png",
-            "caption": "",
-            "alt": ""
-          },
-          "disabled": true
-        },
-        "ugc_faBUke": {
-          "type": "ugc",
-          "settings": {
-            "image": "shopify://shop_images/06-carrossel.png",
-            "caption": "",
-            "alt": ""
-          },
-          "disabled": true
-        },
-        "ugc_ULkdzy": {
-          "type": "ugc",
-          "settings": {
-            "image": "shopify://shop_images/07-carrossel.png",
-            "caption": "",
-            "alt": ""
-          },
-          "disabled": true
-        },
-        "ugc_qDTNkE": {
-          "type": "ugc",
-          "settings": {
-            "image": "shopify://shop_images/02-carrossel.png",
-            "caption": "",
-            "alt": ""
-          },
-          "disabled": true
-        },
-        "ugc_mJpDRq": {
-          "type": "ugc",
-          "settings": {
-            "image": "shopify://shop_images/05-carrossel.png",
-            "caption": "",
-            "alt": ""
-          },
-          "disabled": true
-        },
-        "ugc_HHBQzM": {
-          "type": "ugc",
-          "settings": {
-            "image": "shopify://shop_images/ugc-05-adulto-senhora.png",
-            "caption": "",
-            "alt": ""
-          },
-          "disabled": true
-        },
         "vid_unbox": {
           "type": "video",
           "settings": {
