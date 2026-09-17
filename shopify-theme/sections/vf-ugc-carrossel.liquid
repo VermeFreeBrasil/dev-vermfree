@@ -3,7 +3,7 @@
   Scroll horizontal com deslize (touch/drag) + setas. Cada slide é uma foto 4:5.
   Posicionar logo abaixo do hero. Imagens em blocks (image_picker).
 
-  STORIES COMPRÁVEIS (somente na home): além das fotos, a seção aceita blocos
+  STORIES COMPRÁVEIS (home e PDPs): além das fotos, a seção aceita blocos
   de vídeo. Eles ficam com a mesma cara dos cards de foto — mesmo formato,
   mesma rolagem — e tocam sozinhos, mudos, só enquanto visíveis. Ao tocar,
   abrem em tela cheia com o cartão de compra do produto escolhido naquele
@@ -11,15 +11,53 @@
 
   Vídeo sem produto configurado abre em tela cheia sem cartão, sem quebrar.
 
-  O guard é template.name == 'index'. Fora da home os vídeos continuam
-  aparecendo como cards, mas não abrem tela cheia — se um dia alguém puser
-  esta seção numa página de produto, o visualizador não vai brotar lá.
+  O guard é template.name: 'index' ou 'product'. Em qualquer outro template
+  os vídeos continuam aparecendo como cards, mas não abrem tela cheia — se
+  um dia alguém puser esta seção numa página institucional, o visualizador
+  não vai brotar lá.
+
+  Numa PDP o cartão do card que aponta pro produto da própria página entra
+  em modo 'pdp' (variação fecha o story e deixa escolher ali mesmo). Os
+  outros seguem em modo 'home' e levam pra PDP deles — é venda cruzada.
+
+  Como product.json é compartilhado por mais de um produto, os campos
+  "Mostrar só nestes produtos" / "Não mostrar nestes produtos" filtram por
+  product.handle — mesma régua do snippet vf-stories-rail. Vazio vale para
+  todos, e numa página sem produto (a home) o filtro nem entra em jogo.
 {%- endcomment -%}
 
 {%- liquid
   assign modo_loja = false
-  if template.name == 'index'
+  if template.name == 'index' or template.name == 'product'
     assign modo_loja = true
+  endif
+
+  comment
+    Filtro por handle, só faz sentido numa página de produto. Vazio = todos.
+  endcomment
+  assign mostrar = true
+  if template.name == 'product'
+    assign so_estes = section.settings.only_handles | default: '' | replace: ' ', '' | downcase
+    assign nestes_nao = section.settings.exclude_handles | default: '' | replace: ' ', '' | downcase
+
+    if so_estes != blank
+      assign mostrar = false
+      assign lista_sim = so_estes | split: ','
+      for h in lista_sim
+        if h == product.handle
+          assign mostrar = true
+        endif
+      endfor
+    endif
+
+    if nestes_nao != blank
+      assign lista_nao = nestes_nao | split: ','
+      for h in lista_nao
+        if h == product.handle
+          assign mostrar = false
+        endif
+      endfor
+    endif
   endif
 
   assign tem_video = false
@@ -30,10 +68,12 @@
   endfor
 
   assign compravel = false
-  if modo_loja and tem_video
+  if modo_loja and tem_video and mostrar
     assign compravel = true
   endif
 -%}
+
+{%- if mostrar -%}
 
 <section class="vf-ugc" data-vf-ugc data-vf-ugc-id="{{ section.id }}">
   <div class="vf-container">
@@ -180,13 +220,25 @@
           {%- unless primeiro -%},{%- endunless -%}
           {%- assign primeiro = false -%}
           {%- assign p = block.settings.product -%}
+          {%- liquid
+            comment
+              Numa PDP, o card cujo produto é o da própria página usa modo
+              'pdp': um produto com variação fecha o story e deixa escolher
+              ali mesmo, em vez de recarregar a página onde o cliente já
+              está. Os demais ficam em 'home' e levam pra PDP deles.
+            endcomment
+            assign modo_item = 'home'
+            if template.name == 'product' and p != blank and p.id == product.id
+              assign modo_item = 'pdp'
+            endif
+          -%}
           {
             "sources": [{"src": {{ melhor.url | json }}, "type": {{ melhor.mime_type | json }}}],
             "eyebrow": {{ block.settings.eyebrow | default: '' | json }},
             "offer": {{ block.settings.offer | default: '' | json }},
             "badge": {{ block.settings.badge | default: '' | json }},
             "cta": {{ block.settings.cta_label | default: 'Adicionar ao carrinho' | json }},
-            "mode": "home"
+            "mode": {{ modo_item | json }}
             {%- if p != blank -%}
               ,"product": {
                 "title": {{ p.title | json }},
@@ -206,6 +258,7 @@
     {%- endfor -%}
   {%- endcapture -%}
   <script type="application/json" data-vfu-data="{{ section.id }}">[{{ dados_stories | strip }}]</script>
+{%- endif -%}
 {%- endif -%}
 
 {% stylesheet %}
@@ -471,7 +524,10 @@
   "settings": [
     { "type": "text", "id": "heading", "label": "Título", "default": "Clientes de verdade, resultados de verdade" },
     { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Milhares de famílias já se cuidam com a VermeFree." },
-    { "type": "paragraph", "content": "Na home, os blocos de vídeo abrem em tela cheia com o cartão de compra. Escolha o produto dentro de cada bloco de vídeo. Nas outras páginas os vídeos aparecem como cards normais, sem abrir." }
+    { "type": "paragraph", "content": "Na home e nas páginas de produto, os blocos de vídeo abrem em tela cheia com o cartão de compra. Escolha o produto dentro de cada bloco de vídeo. Nos demais templates os vídeos aparecem como cards normais, sem abrir." },
+    { "type": "header", "content": "Em quais produtos aparecer" },
+    { "type": "text", "id": "only_handles", "label": "Mostrar só nestes produtos", "info": "Handles separados por vírgula. Vazio = todos. Só vale em página de produto." },
+    { "type": "text", "id": "exclude_handles", "label": "Não mostrar nestes produtos", "info": "Handles separados por vírgula." }
   ],
   "blocks": [
     {
@@ -490,12 +546,12 @@
         { "type": "video", "id": "video", "label": "Vídeo" },
         { "type": "image_picker", "id": "cover", "label": "Capa (opcional)", "info": "Sem capa, o próprio vídeo mostra o primeiro quadro até começar a tocar." },
         { "type": "text", "id": "caption", "label": "Legenda (opcional)" },
-        { "type": "header", "content": "Produto deste vídeo (só vale na home)" },
+        { "type": "header", "content": "Produto deste vídeo (home e páginas de produto)" },
         { "type": "product", "id": "product", "label": "Produto", "info": "Sem produto, o vídeo abre em tela cheia sem cartão de compra." },
         { "type": "text", "id": "eyebrow", "label": "Linha de cima", "info": "Ex.: MAIS VENDIDO. Vazio esconde." },
         { "type": "text", "id": "offer", "label": "Linha de oferta", "info": "Vazio mostra o preço do produto." },
         { "type": "text", "id": "badge", "label": "Selo do canto", "info": "Ex.: NOVO. Vazio esconde." },
-        { "type": "text", "id": "cta_label", "label": "Texto do botão", "default": "Adicionar ao carrinho", "info": "Produto com mais de uma opção leva para a página do produto." }
+        { "type": "text", "id": "cta_label", "label": "Texto do botão", "default": "Adicionar ao carrinho", "info": "Produto com mais de uma opção leva para a página do produto — a não ser que já seja o produto da página aberta." }
       ]
     }
   ],

@@ -62,8 +62,22 @@ da seção e gera duas páginas: uma como home (compráveis) e outra fora da hom
 Cobre overflow em seis larguras, tocar só o card visível, o autoplay do
 carrossel não arrancar um vídeo que está tocando, cada vídeo abrir com o **seu
 próprio produto**, vídeo sem produto abrir sem cartão, o payload do
-`/cart/add.js` e o guard `template.name == 'index'` — fora da home nenhum card
-é clicável e o visualizador nem é renderizado.
+`/cart/add.js` e o guard de template — num template que não é `index` nem
+`product` nenhum card é clicável e o visualizador nem é renderizado.
+
+## Carrossel na PDP (régua + carrossel na mesma página)
+
+`npm run test:pdp-carrossel` monta uma PDP com as **duas** superfícies de
+stories: a régua de círculos dentro do `main` e o carrossel UGC logo abaixo.
+Cada uma renderiza `vf-stories-viewer`, então a página nasce com dois
+`[data-vfst-root]`.
+
+É o teste que existe por causa disso: confere que sobra **um só** visualizador
+no DOM, que o root que sobrou é o que a API usa, e que as duas superfícies
+conseguem abrir na mesma página — a régua trazendo o produto da página e o
+carrossel trazendo o produto daquele vídeo (venda cruzada). Fecha checando o
+`/cart/add.js` e o contador do header, mais overflow em seis larguras com as
+duas seções empilhadas.
 
 ## Seletor de kits
 
