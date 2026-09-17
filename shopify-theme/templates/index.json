@@ -290,7 +290,8 @@
             "image": "shopify://shop_images/01-carrossel.png",
             "caption": "",
             "alt": ""
-          }
+          },
+          "disabled": true
         },
         "ugc_faBUke": {
           "type": "ugc",
@@ -298,7 +299,8 @@
             "image": "shopify://shop_images/06-carrossel.png",
             "caption": "",
             "alt": ""
-          }
+          },
+          "disabled": true
         },
         "ugc_ULkdzy": {
           "type": "ugc",
@@ -306,7 +308,8 @@
             "image": "shopify://shop_images/07-carrossel.png",
             "caption": "",
             "alt": ""
-          }
+          },
+          "disabled": true
         },
         "ugc_qDTNkE": {
           "type": "ugc",
@@ -314,7 +317,8 @@
             "image": "shopify://shop_images/02-carrossel.png",
             "caption": "",
             "alt": ""
-          }
+          },
+          "disabled": true
         },
         "ugc_mJpDRq": {
           "type": "ugc",
@@ -322,7 +326,8 @@
             "image": "shopify://shop_images/05-carrossel.png",
             "caption": "",
             "alt": ""
-          }
+          },
+          "disabled": true
         },
         "ugc_HHBQzM": {
           "type": "ugc",
@@ -330,7 +335,8 @@
             "image": "shopify://shop_images/ugc-05-adulto-senhora.png",
             "caption": "",
             "alt": ""
-          }
+          },
+          "disabled": true
         },
         "vid_unbox": {
           "type": "video",
@@ -370,15 +376,9 @@
         }
       },
       "block_order": [
-        "ugc_QphzaQ",
         "vid_unbox",
-        "ugc_faBUke",
-        "ugc_ULkdzy",
         "vid_familia",
-        "ugc_qDTNkE",
-        "ugc_mJpDRq",
-        "vid_sinais",
-        "ugc_HHBQzM"
+        "vid_sinais"
       ],
       "name": "VF UGC Carrossel",
       "settings": {
