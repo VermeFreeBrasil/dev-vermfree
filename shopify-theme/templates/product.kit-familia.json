@@ -13,6 +13,7 @@
       "type": "vf-pdp-main",
       "settings": {
         "show_vendor": true,
+        "kits_enabled": false,
         "fallback_title": "Kit Família VermeFree · 2 Adultos + 2 Crianças",
         "short_desc": "Protocolo de desparasitação pra família inteira em 30 dias. Pai, mãe, 1 criança 2-4 anos e 1 criança 5-9 anos — sincronizados na mesma lua nova. 15% off + frete grátis.",
         "installment_10x_value": 13565,
@@ -75,111 +76,6 @@
         "dep4",
         "stories"
       ]
-    },
-    "vf_ugc_pdp": {
-      "type": "vf-ugc-carrossel",
-      "blocks": {
-        "vid_italo": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/Depoimento VermeFree - ítalo - Semana do cliente.MOV",
-            "caption": "Depoimento",
-            "product": "protocolo-desparasitacao-adulto-vermefree",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        },
-        "vid_3sinais": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/VF-DR-3SINAIS.mp4",
-            "caption": "3 sinais",
-            "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        },
-        "vid_juliana": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/VF-JULIANA-UNBOX.mp4",
-            "caption": "Unboxing",
-            "product": "protocolo-desparasitacao-adulto-vermefree",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        },
-        "vid_cuidado": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/VF-DR-CUIDADO.mp4",
-            "caption": "Pra família toda",
-            "product": "kit-familia-vermefree-2-adultos-2-criancas",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        },
-        "vid_unbox": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/VF-DRDIOGO-UNBOX.mp4",
-            "caption": "Chegou em casa",
-            "product": "protocolo-desparasitacao-adulto-vermefree",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        },
-        "vid_pet": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/VF-DR-PET.mp4",
-            "caption": "Pet em casa",
-            "product": "kit-familia-vermefree-2-adultos-2-criancas",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        },
-        "vid_elimina": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/VF-DR-ELIMINA.mp4",
-            "caption": "Como age",
-            "product": "antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        }
-      },
-      "block_order": [
-        "vid_italo",
-        "vid_3sinais",
-        "vid_juliana",
-        "vid_cuidado",
-        "vid_unbox",
-        "vid_pet",
-        "vid_elimina"
-      ],
-      "name": "VF UGC Carrossel",
-      "settings": {
-        "heading": "O protocolo de desparasitação nº 1",
-        "subheading": "Milhares de famílias já se cuidam com a VermeFree.",
-        "only_handles": "protocolo-desparasitacao-adulto-vermefree,antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos,antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos,kit-familia-vermefree-2-adultos-2-criancas",
-        "exclude_handles": ""
-      }
     },
     "beneficios-objecoes": {
       "type": "vf-pdp-benefits",
@@ -517,7 +413,7 @@
         "heading": "Proteja sua família agora.",
         "subheading": "15% OFF + Frete grátis. 1 ciclo, 3 protocolos, 30 dias.",
         "button_label": "Garantir o Kit Família",
-        "button_link": "/products/4-kit-vermefree-familia",
+        "button_link": "/products/kit-familia-vermefree-2-adultos-2-criancas",
         "background_color": "#5EBC43",
         "text_color": "#FFFFFF"
       }
@@ -679,6 +575,111 @@
     "vf_cross_familia": {
       "type": "vf-pdp-cross-familia",
       "settings": {}
+    },
+    "vf_ugc_pdp": {
+      "type": "vf-ugc-carrossel",
+      "blocks": {
+        "vid_italo": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Depoimento VermeFree - ítalo - Semana do cliente.MOV",
+            "caption": "Depoimento",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_3sinais": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-3SINAIS.mp4",
+            "caption": "3 sinais",
+            "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_juliana": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-JULIANA-UNBOX.mp4",
+            "caption": "Unboxing",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_cuidado": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-CUIDADO.mp4",
+            "caption": "Pra família toda",
+            "product": "kit-familia-vermefree-2-adultos-2-criancas",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_unbox": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DRDIOGO-UNBOX.mp4",
+            "caption": "Chegou em casa",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_pet": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-PET.mp4",
+            "caption": "Pet em casa",
+            "product": "kit-familia-vermefree-2-adultos-2-criancas",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_elimina": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-ELIMINA.mp4",
+            "caption": "Como age",
+            "product": "antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        }
+      },
+      "block_order": [
+        "vid_italo",
+        "vid_3sinais",
+        "vid_juliana",
+        "vid_cuidado",
+        "vid_unbox",
+        "vid_pet",
+        "vid_elimina"
+      ],
+      "name": "VF UGC Carrossel",
+      "settings": {
+        "heading": "O protocolo de desparasitação nº 1",
+        "subheading": "Milhares de famílias já se cuidam com a VermeFree.",
+        "only_handles": "protocolo-desparasitacao-adulto-vermefree,antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos,antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos,kit-familia-vermefree-2-adultos-2-criancas",
+        "exclude_handles": ""
+      }
     }
   },
   "order": [

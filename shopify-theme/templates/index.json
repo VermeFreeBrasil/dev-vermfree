@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
@@ -14,10 +5,9 @@
       "blocks": {
         "slide_DRHzwH": {
           "type": "slide",
-          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/bannermf01desk.png",
-            "image_mobile": "shopify://shop_images/banner01vfmobile.png",
+            "image": "shopify://shop_images/hf_20260913_182921_0b432034-4315-48da-b56a-038407860a65.png",
+            "image_mobile": "shopify://shop_images/hf_20260913_182920_17fe03c4-64bd-421c-8ffa-2bb8dc2d8c60.png",
             "heading": "",
             "subheading": "",
             "button_label": "",
@@ -77,6 +67,18 @@
         "slide_height": "medium"
       }
     },
+    "vf_semana_cliente_banner": {
+      "type": "vf-semana-cliente-banner",
+      "settings": {
+        "preview": false,
+        "heading": "Nosso obrigado por você cuidar da sua família.",
+        "subheading": "O preço aparece cheio na página — o desconto entra automático no carrinho, conforme a quantidade de protocolos.",
+        "cta_label": "Escolher meu protocolo",
+        "cta_link": "#vf-kit-heading",
+        "bg_color": "#1b5e20",
+        "accent_color": "#a8d84a"
+      }
+    },
     "vf_selos_ticker_XXLt48": {
       "type": "vf-selos-ticker",
       "blocks": {
@@ -134,7 +136,8 @@
       "name": "VF Selos Ticker",
       "settings": {
         "duration": 30,
-        "preview_frete_promo": false
+        "preview_frete_promo": false,
+        "preview_semana_cliente": true
       }
     },
     "vf_kit_selector_PC6A6N": {
@@ -215,6 +218,7 @@
       "settings": {
         "heading": "Escolha seu protocolo.",
         "subheading": "3 formulas para cada fase da vida. Mesma seriedade. Mesmo resultado.",
+        "preview_semana_cliente": true,
         "preview_frete_promo": false,
         "promo_badge_text": "🚨 Só até amanhã",
         "promo_title": "Frete grátis sem mínimo em qualquer protocolo",
@@ -725,7 +729,7 @@
       "type": "vf-cta-final",
       "settings": {
         "heading": "Comece sua desparasitação agora!",
-        "subheading": "Frete pra todo Brasil. Parcelado em ate 3x sem juros.",
+        "subheading": "Semana do Cliente: frete grátis sem mínimo + desconto automático no carrinho.",
         "button_label": "Conhecer protocolos",
         "button_link": "#vf-kit-heading",
         "background_color": "#5ebc43",
@@ -815,6 +819,7 @@
   },
   "order": [
     "hero",
+    "vf_semana_cliente_banner",
     "vf_selos_ticker_XXLt48",
     "vf_kit_selector_PC6A6N",
     "vf_ugc_carrossel_cUgtig",
