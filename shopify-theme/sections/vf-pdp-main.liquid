@@ -161,6 +161,18 @@
         {%- if pdp_today == '2026-07-30' or pdp_today == '2026-07-31' or section.settings.preview_frete_promo -%}
           {%- assign pdp_frete_promo = true -%}
         {%- endif -%}
+        {%- comment -%} SEMANA DO CLIENTE 13-19/09: desconto automatico no carrinho (5/7/9%), frete gratis sem minimo, brinde de 1 oleo so dia 14. Sem cupom publico. {%- endcomment -%}
+        {%- assign pdp_sc = false -%}
+        {%- if pdp_today >= '2026-09-13' and pdp_today <= '2026-09-19' -%}
+          {%- assign pdp_sc = true -%}
+        {%- endif -%}
+        {%- if section.settings.preview_semana_cliente -%}
+          {%- assign pdp_sc = true -%}
+        {%- endif -%}
+        {%- assign pdp_is_dia14 = false -%}
+        {%- if pdp_today == '2026-09-14' -%}
+          {%- assign pdp_is_dia14 = true -%}
+        {%- endif -%}
         <div class="vf-pdp__price-box{% if pdp_frete_promo %} vf-pdp__price-box--promo{% endif %}"
              data-unit-price="{{ unit_price_cents }}"
              data-installment-10x="{{ installment_10x_cents }}"
@@ -267,7 +279,7 @@
                 <p class="vf-pdp__kits-legend">{{ section.settings.kits_legend }} <strong id="vf-pdp-kits-legend-value">{{ section.settings.tier1_title }}</strong></p>
               {%- endif -%}
 
-              {%- comment -%} Escada crescente (1/2/3) nos protocolos, com 1 Kit pré-selecionado {%- endcomment -%}
+              {%- comment -%} Selecao invertida (3/2/1) so nos protocolos {%- endcomment -%}
               {%- assign kit_is_protocol = false -%}
               {%- assign kit_proto_handles = 'protocolo-desparasitacao-adulto-vermefree,antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos,antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos' | split: ',' -%}
               {%- if kit_proto_handles contains product.handle -%}{%- assign kit_is_protocol = true -%}{%- endif -%}
@@ -281,9 +293,15 @@
 
               <div class="vf-pdp__kits-grid" id="vf-pdp-kits-grid">
                 {%- if kit_is_protocol -%}
+                  {%- comment -%} Seletor PROGRESSIVO: 1 -> 2 -> 3 kits (1 Kit pre-selecionado via forloop.first). {%- endcomment -%}
                   {%- assign kit_proto_qtys = '1,2,3' | split: ',' -%}
-                  {%- comment -%} Adulto: 2 kits com 5% OFF (desconto automatico "5% OFF · 2 Protocolos Adulto", por produto, min 2). Kids seguem sem o 5% ate a acao ser estendida. {%- endcomment -%}
-                  {%- if product.handle == 'protocolo-desparasitacao-adulto-vermefree' -%}
+                  {%- comment -%}
+                    Semana do Cliente: escada AUTOMATICA 5% (1un) / 5% (2un) / 7% (3un) — bate com o checkout.
+                    Fora da campanha volta pro padrao (adulto 0/5/10, kids 0/0/10).
+                  {%- endcomment -%}
+                  {%- if pdp_sc -%}
+                    {%- assign kit_proto_discs = '5,5,7' | split: ',' -%}
+                  {%- elsif product.handle == 'protocolo-desparasitacao-adulto-vermefree' -%}
                     {%- assign kit_proto_discs = '0,5,10' | split: ',' -%}
                   {%- else -%}
                     {%- assign kit_proto_discs = '0,0,10' | split: ',' -%}
@@ -300,6 +318,8 @@
                     {%- assign t_badge1 = '' -%}
                     {%- assign t_badge2 = '' -%}
                     {%- assign t_msg = '' -%}
+                    {%- comment -%} Semana do Cliente: frete gratis sem minimo -> selo em TODOS os cards (inclusive 1 Kit). {%- endcomment -%}
+                    {%- if pdp_sc -%}{%- assign t_badge2 = 'Frete grátis' -%}{%- endif -%}
                     {%- if t_qty == 3 -%}
                       {%- assign t_badge1 = 'Mais vantajoso' -%}
                       {%- assign t_badge2 = 'Frete grátis' -%}
@@ -434,13 +454,23 @@
             </div>
           {%- endif -%}
 
-          {%- comment -%} FAIXA CUPOM 5OFF (discreta, elegante) {%- endcomment -%}
-          <div class="vf-pdp__cupom-badge">
-            <span class="vf-pdp__cupom-badge-icon">🎟️</span>
-            <span class="vf-pdp__cupom-badge-text">
-              Use o cupom <strong>5OFF</strong> no checkout e ganhe <strong>5% de desconto</strong>
-            </span>
-          </div>
+          {%- comment -%} FAIXA — Semana do Cliente (desconto automatico) ou 5OFF padrao {%- endcomment -%}
+          {%- if pdp_sc -%}
+            <div class="vf-pdp__cupom-badge vf-pdp__cupom-badge--sc">
+              <span class="vf-pdp__cupom-badge-icon">🎁</span>
+              <span class="vf-pdp__cupom-badge-text">
+                <strong class="vf-pdp__cupom-badge-tag">SEMANA DO CLIENTE</strong>
+                Desconto <strong>automático no carrinho</strong>: 5% em 1, 7% em 3 ou 9% em 5 protocolos · 🚚 frete grátis sem mínimo{% if pdp_is_dia14 %} · 🎁 <strong>só hoje</strong>: 1 Óleo de Alho de brinde{% endif %}
+              </span>
+            </div>
+          {%- else -%}
+            <div class="vf-pdp__cupom-badge">
+              <span class="vf-pdp__cupom-badge-icon">🎟️</span>
+              <span class="vf-pdp__cupom-badge-text">
+                Use o cupom <strong>5OFF</strong> no checkout e ganhe <strong>5% de desconto</strong>
+              </span>
+            </div>
+          {%- endif -%}
 
           <button type="submit" class="vf-pdp__cta vf-pdp__cta--primary{% if pdp_frete_promo %} vf-pdp__cta--promo{% endif %}" {% if product.available == false %}disabled{% endif %}>
             {% if product.available == false %}Esgotado{% elsif pdp_frete_promo %}🚚 Garantir com frete grátis{% else %}Adicionar ao carrinho{% endif %}
@@ -1243,6 +1273,31 @@
     margin-bottom: 4px;
     line-height: 1.35;
   }
+  /* Faixa cupom — Semana do Cliente (destaque) */
+  .vf-pdp__cupom-badge--sc {
+    align-items: flex-start;
+    background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
+    border: 0;
+    padding: 14px 16px;
+    box-shadow: 0 6px 18px rgba(27,94,32,0.22);
+    animation: vf-pdp-sc-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes vf-pdp-sc-pulse {
+    0%, 100% { box-shadow: 0 6px 18px rgba(27,94,32,0.22); }
+    50% { box-shadow: 0 6px 26px rgba(27,94,32,0.40); }
+  }
+  .vf-pdp__cupom-badge--sc .vf-pdp__cupom-badge-icon { font-size: 20px; }
+  .vf-pdp__cupom-badge--sc .vf-pdp__cupom-badge-text { color: #ffffff; font-weight: 600; }
+  .vf-pdp__cupom-badge--sc .vf-pdp__cupom-badge-text strong { color: #ffffff; background: transparent; }
+  .vf-pdp__cupom-badge-tag {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #A8D84A !important;
+    margin-bottom: 3px;
+    font-weight: 800 !important;
+  }
   .vf-pdp__cupom-badge-icon {
     font-size: 18px;
     flex-shrink: 0;
@@ -1788,18 +1843,20 @@
     var kitbarMsg = document.getElementById('vf-pdp-kitbar-msg');
     function updateKitbar(qty) {
       if (!kitbarEl) return;
-      var pct = qty >= 3 ? 100 : (qty === 2 ? 50 : 8);
+      var pct = qty >= 5 ? 100 : (qty >= 3 ? 80 : (qty === 2 ? 55 : 25));
       if (kitbarFill) kitbarFill.style.width = pct + '%';
       kitbarEl.classList.remove('vf-pdp__kitbar--mid', 'vf-pdp__kitbar--low');
       var m;
-      if (qty >= 3) {
-        m = '🎉 Vantagem máxima: 10% OFF + frete grátis desbloqueados';
+      if (qty >= 5) {
+        m = '🎉 Vantagem máxima: 9% OFF + frete grátis';
+      } else if (qty >= 3) {
+        m = '🎉 7% OFF + frete grátis · leve 5 e chegue a 9% OFF';
       } else if (qty === 2) {
         kitbarEl.classList.add('vf-pdp__kitbar--mid');
-        m = {% if product.handle == 'protocolo-desparasitacao-adulto-vermefree' %}'🎉 5% OFF + frete grátis · leve 3 Kits e ganhe 10% OFF'{% else %}'🚚 Frete grátis garantido — leve 3 Kits e ganhe 10% OFF'{% endif %};
+        m = '5% OFF + frete grátis · falta 1 Kit pra 7% OFF';
       } else {
         kitbarEl.classList.add('vf-pdp__kitbar--low');
-        m = {% if product.handle == 'protocolo-desparasitacao-adulto-vermefree' %}'Leve 2 e ganhe 5% OFF · leve 3 e ganhe 10% OFF'{% else %}'Leve 2 e ganhe frete grátis · leve 3 e ganhe 10% OFF'{% endif %};
+        m = 'Você já tem 5% OFF + frete grátis · leve 3 Kits e suba pra 7% OFF';
       }
       if (kitbarMsg) kitbarMsg.textContent = m;
     }
@@ -1965,6 +2022,13 @@
       "label": "🔴 PRÉVIA: forçar visual da promo de frete grátis (30-31/07)",
       "info": "Ative só pra testar/ver como fica. Desative depois — nos dias 30 e 31/07 ela liga sozinha, não precisa disso.",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "preview_semana_cliente",
+      "label": "🎁 Forçar visual da Semana do Cliente (desconto automático)",
+      "info": "Neste tema de campanha fica ligado. De 13 a 19/09 também liga sozinho pela data. A faixa do Óleo grátis só aparece no dia 14 (data real).",
+      "default": true
     },
     {
       "type": "text",
@@ -2623,4 +2687,3 @@
   }
 }
 {% endschema %}
-

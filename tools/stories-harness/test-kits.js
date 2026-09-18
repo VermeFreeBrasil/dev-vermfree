@@ -36,8 +36,13 @@ const conferir = (n, c, d) => resultados.push([c ? 'PASSOU' : 'FALHOU', c ? n : 
   conferir('quantidade do form começa em 1', e.qty === '1', 'qty=' + e.qty);
   conferir('quantidade da barra fixa começa em 1', e.stickyQty === '1', e.stickyQty);
   conferir('legenda diz 1 Kit', e.legenda === '1 Kit', e.legenda);
-  conferir('barra de vantagem começa baixa', e.barra === '8%', e.barra);
-  conferir('mensagem convida a subir', /Leve 2/.test(e.msg), e.msg);
+  // A régua de desconto muda por campanha (a Semana do Cliente vai até 5
+  // unidades, 5/7/9%). Então aqui se afere comportamento, não a cópia exata:
+  // a barra cresce com a quantidade e a mensagem sempre aponta pra cima.
+  const pct = (v) => parseInt(String(v), 10);
+  const barra1 = e.barra;
+  conferir('barra de vantagem começa baixa', pct(e.barra) < 40, e.barra);
+  conferir('mensagem de 1 Kit aponta pra cima', /leve|suba|falta/i.test(e.msg), e.msg);
   conferir('nenhuma mensagem manda "voltar"', !/volte/i.test(e.msg), e.msg);
 
   // subir para 3 Kits
@@ -48,8 +53,10 @@ const conferir = (n, c, d) => resultados.push([c ? 'PASSOU' : 'FALHOU', c ? n : 
   conferir('quantidade vai para 3', e.qty === '3', e.qty);
   conferir('barra fixa acompanha', e.stickyQty === '3', e.stickyQty);
   conferir('legenda acompanha', e.legenda === '3 Kits', e.legenda);
-  conferir('barra de vantagem enche', e.barra === '100%', e.barra);
-  conferir('mensagem de vantagem máxima', /Vantagem máxima/.test(e.msg), e.msg);
+  const barra3 = e.barra;
+  conferir('barra de vantagem sobe com 3 Kits', pct(barra3) > pct(barra1), barra1 + ' -> ' + barra3);
+  conferir('mensagem de 3 Kits comemora o desconto', /%\s*OFF/i.test(e.msg) && /🎉/.test(e.msg), e.msg);
+  conferir('3 Kits não manda "voltar"', !/volte/i.test(e.msg), e.msg);
 
   // 2 Kits
   await p.click('.vf-pdp__kit-card[data-qty="2"]');
@@ -57,9 +64,10 @@ const conferir = (n, c, d) => resultados.push([c ? 'PASSOU' : 'FALHOU', c ? n : 
   e = await estado();
   conferir('clicar em 2 Kits seleciona 2 Kits', (e.ativo || '').trim() === '2 Kits', e.ativo);
   conferir('quantidade vai para 2', e.qty === '2', e.qty);
-  conferir('barra pela metade', e.barra === '50%', e.barra);
+  conferir('barra de 2 Kits fica entre 1 e 3', pct(e.barra) > pct(barra1) && pct(e.barra) < pct(barra3),
+    barra1 + ' < ' + e.barra + ' < ' + barra3);
   conferir('mensagem de 2 Kits convida a subir, não a voltar',
-    /leve 3 Kits/i.test(e.msg) && !/volte/i.test(e.msg), e.msg);
+    /leve|falta|suba/i.test(e.msg) && !/volte/i.test(e.msg), e.msg);
 
   // voltar para 1 Kit
   await p.click('.vf-pdp__kit-card[data-qty="1"]');
