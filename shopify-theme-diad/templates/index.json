@@ -1,0 +1,823 @@
+{
+  "sections": {
+    "hero": {
+      "type": "vf-hero-slideshow",
+      "blocks": {
+        "slide_DRHzwH": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/bannervfdesk.png",
+            "image_mobile": "shopify://shop_images/bannervfmob.png",
+            "heading": "",
+            "subheading": "",
+            "button_label": "",
+            "button_link": "shopify://products/protocolo-desparasitacao-adulto-vermefree",
+            "text_position": "left",
+            "text_color": "#ffffff"
+          }
+        },
+        "slide_bHKeca": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/banner_verm.png",
+            "image_mobile": "shopify://shop_images/hf_20260730_195707_89377a11-faa6-4011-b596-d92d07b71c8f.png",
+            "heading": "",
+            "subheading": "",
+            "button_label": "",
+            "button_link": "shopify://products/kit-familia-vermefree-2-adultos-2-criancas",
+            "text_position": "left",
+            "text_color": "#ffffff"
+          }
+        },
+        "slide_YMyUE7": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/banner-3-kids-5a9.png",
+            "image_mobile": "shopify://shop_images/banner-mobile-3-kids-5a9.png",
+            "heading": "",
+            "subheading": "",
+            "button_label": "",
+            "button_link": "shopify://products/antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
+            "text_position": "left",
+            "text_color": "#ffffff"
+          }
+        },
+        "slide_e7C8jd": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/banner-2-kids-2a4.png",
+            "image_mobile": "shopify://shop_images/banner-mobile-2-kids-2a4.png",
+            "heading": "",
+            "subheading": "",
+            "button_label": "",
+            "button_link": "shopify://products/antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
+            "text_position": "left",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "slide_DRHzwH",
+        "slide_bHKeca",
+        "slide_YMyUE7",
+        "slide_e7C8jd"
+      ],
+      "settings": {
+        "auto_rotate": true,
+        "slide_height": "medium"
+      }
+    },
+    "vf_selos_ticker_XXLt48": {
+      "type": "vf-selos-ticker",
+      "blocks": {
+        "selo_HmyRpe": {
+          "type": "selo",
+          "settings": {
+            "icon": "leaf",
+            "text": "Vegetal 100%"
+          }
+        },
+        "selo_dKezFF": {
+          "type": "selo",
+          "settings": {
+            "icon": "shield",
+            "text": "Metais Free"
+          }
+        },
+        "selo_M7nD49": {
+          "type": "selo",
+          "settings": {
+            "icon": "check",
+            "text": "Auxilia na desparasitação"
+          }
+        },
+        "selo_LeUaik": {
+          "type": "selo",
+          "settings": {
+            "icon": "flask",
+            "text": "Padrão Farmacêutico"
+          }
+        },
+        "selo_8PpUd8": {
+          "type": "selo",
+          "settings": {
+            "icon": "globe",
+            "text": "Manipulado no Brasil"
+          }
+        },
+        "selo_BcAeDT": {
+          "type": "selo",
+          "settings": {
+            "icon": "heart",
+            "text": "Cruelty Free"
+          }
+        }
+      },
+      "block_order": [
+        "selo_HmyRpe",
+        "selo_dKezFF",
+        "selo_M7nD49",
+        "selo_LeUaik",
+        "selo_8PpUd8",
+        "selo_BcAeDT"
+      ],
+      "name": "VF Selos Ticker",
+      "settings": {
+        "duration": 30,
+        "preview_frete_promo": true
+      }
+    },
+    "vf_kit_selector_PC6A6N": {
+      "type": "vf-kit-selector",
+      "blocks": {
+        "kit_eYcicG": {
+          "type": "kit",
+          "settings": {
+            "image": "shopify://shop_images/produto-card-1-adulto_901f4e4f-5bf9-4919-aa54-382006a76276.png",
+            "badge": "+ Vendido",
+            "badge_style": "best",
+            "name": "Protocolo Adulto",
+            "age_label": "10 anos +",
+            "description": "A formula completa para o adulto.",
+            "price": "R$ 347,00",
+            "installment": "10x de R$ 40,93",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "product_link": "shopify://products/protocolo-desparasitacao-adulto-vermefree",
+            "cta_label": "Quero esse"
+          }
+        },
+        "kit_8L7xpX": {
+          "type": "kit",
+          "settings": {
+            "image": "shopify://shop_images/produto-card-2-kids-2a4.png",
+            "badge": "Kids",
+            "badge_style": "kids",
+            "name": "Protocolo Kids",
+            "age_label": "2 a 4 anos",
+            "description": "Formula para crianças, sem efeitos que derrubam.",
+            "price": "R$ 270,00",
+            "installment": "10x de R$ 31,85",
+            "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
+            "product_link": "shopify://products/antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
+            "cta_label": "Quero esse"
+          }
+        },
+        "kit_Req96g": {
+          "type": "kit",
+          "settings": {
+            "image": "shopify://shop_images/produto-card-3-kids-5a9-v2.png",
+            "badge": "Kids",
+            "badge_style": "kids",
+            "name": "Protocolo Kids",
+            "age_label": "5 a 9 anos",
+            "description": "Dose ajustada para criança em idade escolar.",
+            "price": "R$ 389,00",
+            "installment": "10x de R$ 45,89",
+            "product": "antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
+            "product_link": "shopify://products/antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
+            "cta_label": "Quero esse"
+          }
+        },
+        "kit_FTXWQM": {
+          "type": "kit",
+          "settings": {
+            "image": "shopify://shop_images/produto-card-4-kit-familia-crop.png",
+            "badge": "Família · 4 protocolos",
+            "badge_style": "family",
+            "name": "Kit Família",
+            "age_label": "Todos juntos",
+            "description": "Os 4 protocolos juntos, mais barato que comprar separado.",
+            "price": "R$ 1.150,00",
+            "installment": "10x de R$ 135,65",
+            "product": "kit-familia-vermefree-2-adultos-2-criancas",
+            "product_link": "shopify://products/kit-familia-vermefree-2-adultos-2-criancas",
+            "cta_label": "Quero o kit"
+          }
+        }
+      },
+      "block_order": [
+        "kit_eYcicG",
+        "kit_8L7xpX",
+        "kit_Req96g",
+        "kit_FTXWQM"
+      ],
+      "name": "VF Kit Selector",
+      "settings": {
+        "heading": "Escolha seu protocolo.",
+        "subheading": "3 formulas para cada fase da vida. Mesma seriedade. Mesmo resultado.",
+        "preview_frete_promo": true,
+        "promo_badge_text": "🚨 Dia D · só hoje, 09/09",
+        "promo_title": "12% OFF em tudo, frete grátis e óleo de alho de brinde",
+        "promo_subtitle": "O desconto entra sozinho no carrinho, sem cupom: 12% em tudo, 15% levando 3 unidades e 18% a partir de 5. Frete grátis pra qualquer valor de compra, em qualquer canto do Brasil (fora do Dia D, só acima de R$ 399). E o Manual da Desparasitação chega em PDF no seu e-mail depois da compra."
+      }
+    },
+    "vf_prescritores_home": {
+      "type": "vf-prescritores",
+      "blocks": {
+        "presc_1": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-william-araujo.jpg",
+            "name": "Dr. William Araújo",
+            "credential": "CRM-MG 76.962",
+            "specialty": "Curadoria científica do protocolo VermeFree",
+            "instagram_handle": "@drwilliamaraujo",
+            "instagram_url": "https://www.instagram.com/drwilliamaraujo/",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 25,
+            "quote": "<p>Acompanho a formulação desde o início e vejo no protocolo VermeFree o <strong>critério</strong> que busco para indicar aos meus pacientes.</p>"
+          }
+        },
+        "presc_2": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-giovanna-eller.jpg",
+            "name": "Dra. Giovanna Eller",
+            "credential": "CRM-ES 20.998",
+            "specialty": "Nutróloga · saúde intestinal e emagrecimento",
+            "instagram_handle": "@dra.giovannaeller",
+            "instagram_url": "https://www.instagram.com/dra.giovannaeller/",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 30,
+            "quote": "<p>Saúde intestinal é a base de quase tudo que trato no consultório, e a VermeFree entra nessa conversa com <strong>seriedade de formulação</strong>.</p>"
+          }
+        },
+        "presc_3": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-robson-araujo.jpg",
+            "name": "Dr. Robson Araújo",
+            "credential": "CRM-MG 93.787",
+            "specialty": "Emagrecimento e saúde integrativa",
+            "instagram_handle": "@drrobson_araujo",
+            "instagram_url": "https://www.instagram.com/drrobson_araujo/",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 30,
+            "quote": "<p>Acompanho pacientes em processos de emagrecimento e vejo a VermeFree como <strong>uma aliada segura</strong> na rotina deles.</p>"
+          }
+        },
+        "presc_4": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-raquel-cembranelli.jpg",
+            "name": "Dra. Raquel Cembranelli",
+            "credential": "CRO-SP 83.705",
+            "specialty": "Cirurgiã-dentista · odontologia integrativa",
+            "instagram_handle": "@dra.raquelcembranelli",
+            "instagram_url": "https://www.instagram.com/dra.raquelcembranelli/",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 30,
+            "quote": "<p>Na odontologia integrativa, qualidade não é opcional — por isso <strong>conheço e indico</strong> o protocolo VermeFree.</p>"
+          }
+        },
+        "presc_eglife": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-eglife-brauher.jpg",
+            "photo_zoom": 140,
+            "photo_focus_x": 50,
+            "photo_focus_y": 5,
+            "name": "Dr. Eglife Brauher",
+            "credential": "CRM-BA 32.688",
+            "specialty": "Médico",
+            "instagram_handle": "",
+            "instagram_url": "",
+            "quote": "<p>Conheço de perto o protocolo da VermeFree e <strong>indico com tranquilidade</strong> aos meus pacientes.</p>"
+          }
+        },
+        "presc_kalil": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-kalil-gibran.jpg",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 20,
+            "name": "Dr. Kalil Gibran Ferreira Lima",
+            "credential": "CRM-BA 34.392",
+            "specialty": "Médico",
+            "instagram_handle": "",
+            "instagram_url": "",
+            "quote": "<p>A VermeFree entrega o <strong>padrão de formulação</strong> que busco para indicar no consultório.</p>"
+          }
+        },
+        "presc_carlos": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-carlos-osorio.jpg",
+            "photo_zoom": 115,
+            "photo_focus_x": 50,
+            "photo_focus_y": 60,
+            "name": "Dr. Carlos Mateus Santos Osório",
+            "credential": "CRM-SP 215.405",
+            "specialty": "Médico",
+            "instagram_handle": "",
+            "instagram_url": "",
+            "quote": "<p>Indico a VermeFree pela <strong>consistência do protocolo</strong> e pelo cuidado na formulação.</p>"
+          }
+        },
+        "presc_grace": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-grace-dessirre.jpg",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 25,
+            "name": "Dra. Grace Dessirre",
+            "credential": "CFO-SP 084169",
+            "specialty": "Cirurgiã-dentista",
+            "instagram_handle": "",
+            "instagram_url": "",
+            "quote": "<p>Incluo a VermeFree no cuidado que ofereço, sempre com <strong>atenção à qualidade</strong>.</p>"
+          }
+        },
+        "presc_thiago": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-thiago-goncalves.jpg",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 20,
+            "name": "Dr. Thiago Barbosa Gonçalves",
+            "credential": "CRM-ES 16.079",
+            "specialty": "Médico",
+            "instagram_handle": "",
+            "instagram_url": "",
+            "quote": "<p>Desparasitação feita com critério faz diferença na rotina do paciente — e é isso que <strong>encontro na VermeFree</strong>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "presc_1",
+        "presc_2",
+        "presc_3",
+        "presc_4",
+        "presc_eglife",
+        "presc_kalil",
+        "presc_carlos",
+        "presc_grace",
+        "presc_thiago"
+      ],
+      "settings": {
+        "eyebrow": "AUTORIDADE MÉDICA",
+        "heading": "Profissionais de saúde que recomendam a VermeFree",
+        "subheading": "Médicos e especialistas que conhecem o protocolo e indicam pros seus pacientes.",
+        "show_instagram": false
+      }
+    },
+    "vf_ugc_carrossel_cUgtig": {
+      "type": "vf-ugc-carrossel",
+      "blocks": {
+        "vid_italo": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Depoimento VermeFree - ítalo - Semana do cliente.MOV",
+            "caption": "Depoimento",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_3sinais": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-3SINAIS.mp4",
+            "caption": "3 sinais",
+            "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_juliana": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-JULIANA-UNBOX.mp4",
+            "caption": "Unboxing",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_cuidado": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-CUIDADO.mp4",
+            "caption": "Pra família toda",
+            "product": "kit-familia-vermefree-2-adultos-2-criancas",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_unbox": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DRDIOGO-UNBOX.mp4",
+            "caption": "Chegou em casa",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_pet": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-PET.mp4",
+            "caption": "Pet em casa",
+            "product": "kit-familia-vermefree-2-adultos-2-criancas",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_elimina": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-ELIMINA.mp4",
+            "caption": "Como age",
+            "product": "antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        }
+      },
+      "block_order": [
+        "vid_italo",
+        "vid_3sinais",
+        "vid_juliana",
+        "vid_cuidado",
+        "vid_unbox",
+        "vid_pet",
+        "vid_elimina"
+      ],
+      "name": "VF UGC Carrossel",
+      "settings": {
+        "heading": "O protocolo de desparasitação nº 1",
+        "subheading": "Milhares de famílias já se cuidam com a VermeFree."
+      }
+    },
+    "foto_beneficios": {
+      "type": "vf-foto-beneficios",
+      "blocks": {
+        "benefit_aWBXzy": {
+          "type": "benefit",
+          "settings": {
+            "icon": "leaf",
+            "title": "Intestino mais leve",
+            "description": "Inchaço, gases e desconforto que pareciam normais começam a desaparecer."
+          }
+        },
+        "benefit_43PwjV": {
+          "type": "benefit",
+          "settings": {
+            "icon": "moon",
+            "title": "Sono restaurador",
+            "description": "Ranger de dente e acordar de madrugada têm gatilho parasitário pouco falado."
+          }
+        },
+        "benefit_XwhKkK": {
+          "type": "benefit",
+          "settings": {
+            "icon": "spark",
+            "title": "Energia que volta",
+            "description": "Parasita rouba nutriente. Sem ele competindo, o corpo absorve o que come e a disposição volta."
+          }
+        },
+        "benefit_dVJm4x": {
+          "type": "benefit",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Pele e cabelo respiram",
+            "description": "Quando o intestino limpa, a pele clareia e o cabelo para de cair sem motivo."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_aWBXzy",
+        "benefit_43PwjV",
+        "benefit_XwhKkK",
+        "benefit_dVJm4x"
+      ],
+      "settings": {
+        "eyebrow": "Protocolo fitoterápico",
+        "heading": "Você e toda sua família livre de parasitas e com muito mais saúde",
+        "heading_emoji": "💚",
+        "credential": "<p><strong>+5 ativos vegetais</strong> em sinergia, formulados em padrão farmacêutico no Brasil.</p>",
+        "image": "shopify://shop_images/asset-03-foto-beijo.png"
+      }
+    },
+    "vf_stats_CFNXpD": {
+      "type": "vf-stats",
+      "blocks": {
+        "stat_Vrxy8C": {
+          "type": "stat",
+          "settings": {
+            "icon": "shield",
+            "number": "100% vegetal",
+            "label": "e livre de metais pesados",
+            "microcopy": "Com laudo de cada lote, em padrão farmacêutico brasileiro."
+          }
+        },
+        "stat_VTRdbP": {
+          "type": "stat",
+          "settings": {
+            "icon": "calendar",
+            "number": "30 dias",
+            "label": "do início ao fim",
+            "microcopy": "Cronograma completo entregue por e-mail no dia da compra."
+          }
+        },
+        "stat_N94acf": {
+          "type": "stat",
+          "settings": {
+            "icon": "leaf",
+            "number": "5 ervas",
+            "label": "em sinergia farmacêutica",
+            "microcopy": "Nogueira, Cravo, Absinto, Orégano e Cardo Mariano juntos."
+          }
+        }
+      },
+      "block_order": [
+        "stat_Vrxy8C",
+        "stat_VTRdbP",
+        "stat_N94acf"
+      ],
+      "name": "VF Stats",
+      "settings": {
+        "eyebrow": "O protocolo por dentro",
+        "heading": "O que tem dentro de cada protocolo.",
+        "subheading": "Cada número conta a história da formulação. Nada sobra, nada falta.",
+        "footnote": "Composição validada pelo padrão farmacêutico brasileiro.",
+        "background_color": "#ffffff"
+      }
+    },
+    "vf_ingredientes_KNFjBF": {
+      "type": "vf-ingredientes",
+      "blocks": {
+        "ingredient_fF8MGK": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/asset-10-nogueira-negra_4d637a50-2192-4226-873d-1ba00856ce67.png",
+            "name": "Nogueira Negra",
+            "description": "A erva-base de toda fitoterapia antiparasitária séria. Age no corpo do parasita adulto."
+          }
+        },
+        "ingredient_CHPQnT": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/asset-11-cravo.png",
+            "name": "Cravo-da-Índia",
+            "description": "Eugenol natural que quebra ovos e larvas — a fase que outros antiparasitários deixam viva."
+          }
+        },
+        "ingredient_ttDajC": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/asset-12-absinto.png",
+            "name": "Absinto",
+            "description": "Tradição milenar contra vermes intestinais. Combate o parasita onde ele se instala."
+          }
+        },
+        "ingredient_6JCKFc": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/asset-13-oregano.png",
+            "name": "Óleo essencial de Orégano (70% carvacrol)",
+            "description": "Concentração farmacêutica. Atinge bactérias e fungos que crescem junto com o parasita."
+          }
+        },
+        "ingredient_qx6qPN": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/asset-14-cardo-mariano.png",
+            "name": "Cardo Mariano",
+            "description": "Silimarina que protege o fígado do 'lixo' que sai do parasita morto. Por isso ninguém passa mal."
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_fF8MGK",
+        "ingredient_CHPQnT",
+        "ingredient_ttDajC",
+        "ingredient_6JCKFc",
+        "ingredient_qx6qPN"
+      ],
+      "name": "VF Ingredientes",
+      "settings": {
+        "heading": "As ervas que tiram parasita do corpo de verdade.",
+        "subheading": "5 ativos em sinergia. Cada um ataca uma fase do parasita — do biofilme aos ovos.",
+        "background_color": "#e8f3da"
+      }
+    },
+    "comparativo": {
+      "type": "vf-comparativo",
+      "settings": {
+        "heading": "Por que somos diferentes.",
+        "subheading": "<p>Um protocolo fitoterápico completo, com <strong>5 ativos vegetais em sinergia</strong>, formulado em padrão farmacêutico pra apoiar a rotina de desparasitação da família.</p>",
+        "header_bg": "#1a1a1a",
+        "accent_color": "#5ebc43"
+      }
+    },
+    "vf_depoimentos_L6cxzN": {
+      "type": "vf-depoimentos",
+      "blocks": {
+        "review_4h4UCj": {
+          "type": "review",
+          "settings": {
+            "name": "Carla",
+            "location": "Curitiba",
+            "age": "38",
+            "content": "Inchaco sumiu, sono voltou. Recomendo de coracao.",
+            "stars": 5
+          }
+        },
+        "review_HJxLTk": {
+          "type": "review",
+          "settings": {
+            "name": "Rafael",
+            "location": "BH",
+            "age": "45",
+            "content": "Tava cansado ha anos. 30 dias depois, voltei a treinar.",
+            "stars": 5
+          }
+        },
+        "review_p3U4wB": {
+          "type": "review",
+          "settings": {
+            "name": "Juliana",
+            "location": "SP",
+            "age": "mae do Pedro (3)",
+            "content": "Meu filho ficou agitado e sem apetite. Dei o Kids 2-4 e voltou ao normal.",
+            "stars": 5
+          }
+        },
+        "review_mi4nqL": {
+          "type": "review",
+          "settings": {
+            "name": "Patricia",
+            "location": "Floripa",
+            "age": "mae da Sofia (7)",
+            "content": "Minha filha tinha coceira a noite. Sumiu. Vale o investimento.",
+            "stars": 5
+          }
+        },
+        "review_cUttzM": {
+          "type": "review",
+          "settings": {
+            "name": "Marcos",
+            "location": "Recife",
+            "age": "52",
+            "content": "Procurava algo natural. Protocolo serio, dose certa.",
+            "stars": 5
+          }
+        },
+        "review_QwGH7X": {
+          "type": "review",
+          "settings": {
+            "name": "Aline",
+            "location": "POA",
+            "age": "mae de 2",
+            "content": "Eu, marido e meus dois filhos no Kit Familia. Casa inteira leve em 30 dias.",
+            "stars": 5
+          }
+        }
+      },
+      "block_order": [
+        "review_4h4UCj",
+        "review_HJxLTk",
+        "review_p3U4wB",
+        "review_mi4nqL",
+        "review_cUttzM",
+        "review_QwGH7X"
+      ],
+      "name": "VF Depoimentos",
+      "settings": {
+        "heading": "Historias reais",
+        "subheading": "Quem ja fez conta o que mudou."
+      }
+    },
+    "cta_final": {
+      "type": "vf-cta-final",
+      "settings": {
+        "heading": "Comece sua desparasitação agora!",
+        "subheading": "Frete pra todo Brasil. Parcelado em ate 3x sem juros.",
+        "button_label": "Conhecer protocolos",
+        "button_link": "#vf-kit-heading",
+        "background_color": "#5ebc43",
+        "text_color": "#ffffff"
+      }
+    },
+    "vf_faq_JdUfcX": {
+      "type": "vf-faq",
+      "blocks": {
+        "question_ybLGkc": {
+          "type": "question",
+          "settings": {
+            "question": "Como tomar o protocolo?",
+            "answer": "<p>Você recebe o cronograma completo dentro do seu kit. O protocolo é iniciado no próximo ciclo lunar, respeitando a tradição fitoterápica.</p>"
+          }
+        },
+        "question_cwBjma": {
+          "type": "question",
+          "settings": {
+            "question": "Tem efeitos colaterais?",
+            "answer": "<p>O potencializador prepara o corpo antes do protocolo principal começar. A maioria das pessoas não sente nada além de mais disposição.</p>"
+          }
+        },
+        "question_wj46gK": {
+          "type": "question",
+          "settings": {
+            "question": "É seguro para crianças?",
+            "answer": "<p>Sim, a partir de 2 anos. Temos duas formulações específicas: <strong>Kids 2 a 4 anos</strong> e <strong>Kids 5 a 9 anos</strong>, cada uma com dosagem ajustada para a faixa etária.</p>"
+          }
+        },
+        "question_LgeWx3": {
+          "type": "question",
+          "settings": {
+            "question": "Posso tomar com outros remédios?",
+            "answer": "<p>Em geral sim. Recomendamos espaçar 2 horas entre o protocolo e outros medicamentos. Se você usa medicação contínua, converse com seu profissional de saúde antes de começar.</p>"
+          }
+        },
+        "question_33GnDh": {
+          "type": "question",
+          "settings": {
+            "question": "Em quanto tempo o produto chega?",
+            "answer": "<p>De 5 a 9 dias úteis para todo o Brasil, dependendo da sua região. Frete grátis automático no Kit Família.</p>"
+          }
+        },
+        "question_ERDHnn": {
+          "type": "question",
+          "settings": {
+            "question": "Em quanto tempo sinto diferença?",
+            "answer": "<p>A maioria nota mudanças sutis a partir da 2ª semana — mais energia, intestino mais leve, sono mais profundo. O protocolo completo dura 30 dias.</p>"
+          }
+        },
+        "question_GDDwRR": {
+          "type": "question",
+          "settings": {
+            "question": "É vegano e livre de metais pesados?",
+            "answer": "<p>Sim. <strong>100% vegetal</strong> e <strong>livre de metais pesados</strong>, com laudo de cada lote. Sem componentes de origem animal, sem corantes artificiais, sem açúcar adicionado.</p>"
+          }
+        },
+        "question_fbiKRR": {
+          "type": "question",
+          "settings": {
+            "question": "E se eu não gostar do produto?",
+            "answer": "<p>Você tem garantia de 7 dias a partir do recebimento. Se não rolar, devolve e a gente reembolsa 100% (desde que o produto não tenha sido aberto e/ou danificado).</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_ybLGkc",
+        "question_cwBjma",
+        "question_wj46gK",
+        "question_LgeWx3",
+        "question_33GnDh",
+        "question_ERDHnn",
+        "question_GDDwRR",
+        "question_fbiKRR"
+      ],
+      "name": "VF FAQ",
+      "settings": {
+        "eyebrow": "Dúvidas comuns",
+        "heading": "Perguntas que recebemos todo dia.",
+        "subheading": "Tirou todas as dúvidas? Se ainda restou alguma, a gente responde por aqui.",
+        "support_label": "Fala com a gente",
+        "support_cta": "Atendimento por WhatsApp",
+        "support_link": "https://api.whatsapp.com/send/?phone=553131573845&text=Ol%C3%A1,%20preciso%20de%20ajuda!&type=phone_number&app_absent=0"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "vf_selos_ticker_XXLt48",
+    "vf_kit_selector_PC6A6N",
+    "vf_ugc_carrossel_cUgtig",
+    "vf_prescritores_home",
+    "foto_beneficios",
+    "vf_stats_CFNXpD",
+    "vf_ingredientes_KNFjBF",
+    "comparativo",
+    "vf_depoimentos_L6cxzN",
+    "cta_final",
+    "vf_faq_JdUfcX"
+  ]
+}
