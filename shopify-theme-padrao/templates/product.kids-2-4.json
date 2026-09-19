@@ -1,0 +1,836 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "beneficios-objecoes": {
+      "type": "vf-pdp-benefits",
+      "settings": {
+        "eyebrow": "BENEFÍCIOS & DÚVIDAS",
+        "heading": "Por que as mães escolhem o VermeFree Kids",
+        "subheading": "Cuidado natural, com critério — e resposta pra dúvida que toda mãe tem antes de comprar."
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0827/3267/9387/files/hf_20260830_021044_fbaa5146-cd5b-4000-9433-d84a53443133.png?v=1788056191",
+            "badge": "Vegetal 100%",
+            "title": "Natural, sem química pesada",
+            "text": "Fitoterápico que a criança aceita bem.",
+            "accent": "green",
+            "featured": false
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0827/3267/9387/files/hf_20260830_021044_8aa13767-c210-487b-889d-3dae355c8a8e.png?v=1788056191",
+            "badge": "Feito com critério",
+            "title": "Dose certa por idade",
+            "text": "Cada idade tem a sua dose — na medida certa.",
+            "accent": "green",
+            "featured": false
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0827/3267/9387/files/hf_20260830_021420_70523994-5375-4a33-804f-5d4ef4bc077f.png?v=1788056191",
+            "badge": "A dúvida nº1 das mães",
+            "title": "E depois do protocolo?",
+            "text": "É rotina: 1 a 4x por ano, na lua nova. 🌙",
+            "accent": "amber",
+            "featured": true
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0827/3267/9387/files/hf_20260830_021044_368a0d8b-1efd-4970-856b-e354a7ac99f0.png?v=1788056191",
+            "badge": "Simples na rotina",
+            "title": "Diluiu, deu, pronto",
+            "text": "Diluída em água, 3x ao dia, por 30 dias.",
+            "accent": "green",
+            "featured": false
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ]
+    },
+    "main": {
+      "type": "vf-pdp-main",
+      "settings": {
+        "show_vendor": true,
+        "fallback_title": "VermeFree Kids · 2 a 4 anos",
+        "short_desc": "Protocolo natural de desparasitação infantil. 2 tinturas com dosagem por idade, sabor que a criança aceita, sem química pesada. 30 dias.",
+        "installment_10x_value": 3185,
+        "show_age_badge": true,
+        "age_badge_text": "Indicado de 2 a 4 anos",
+        "show_sticky_cta": true,
+        "show_rating": true,
+        "rating_score": "4.9",
+        "rating_count": "164",
+        "how_to_take": "<p><strong>Protocolo de 30 dias, início direto na Lua Nova.</strong></p><p>Usa <strong>duas tinturas</strong>: Preparação Hepática e Desparasitação. A hepática é administrada <strong>15 minutos antes</strong> da de desparasitação, 3x ao dia.</p><p>As duas podem ser diluídas em água ou suco. A dose indicada pela idade vale <strong>para cada uma</strong> das tinturas — veja a tabela completa mais abaixo, na seção \"Como tomar\".</p><p>Cronograma completo enviado junto com o kit escolhido.</p>",
+        "composition": "<p><strong>Tintura Antiparasitária:</strong> Nogueira Negra, Cravo, Erva-Santa-Maria, Absinto e Berberis em concentração adaptada para crianças.</p><p><strong>Fórmula de Suporte:</strong> formulação que prepara o organismo da criança para receber a antiparasitária com mais conforto.</p><p><strong>Enzima natural de sabor:</strong> adoça suavemente sem usar açúcar nem adoçante químico — pra criança aceitar sem briga.</p>",
+        "benefits": "<p><strong>Energia pra brincar.</strong> Aquela vontade infinita de correr volta.</p><p><strong>Sono inteiro.</strong> Sem bruxismo, sem agitação noturna.</p><p><strong>Apetite saudável.</strong> Comer com vontade de novo.</p><p><strong>Foco e bom humor.</strong> A criança que você lembra, de volta.</p><p><strong>Pele com viço.</strong> O brilho da infância no rosto.</p>"
+      },
+      "blocks": {
+        "dep1": {
+          "type": "depoimento",
+          "settings": {}
+        },
+        "dep2": {
+          "type": "depoimento",
+          "settings": {}
+        },
+        "dep3": {
+          "type": "depoimento",
+          "settings": {}
+        },
+        "dep4": {
+          "type": "depoimento",
+          "settings": {}
+        },
+        "stories": {
+          "type": "stories",
+          "settings": {
+            "heading": "Tire suas dúvidas",
+            "only_handles": "",
+            "exclude_handles": "",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho",
+            "story1_video": "shopify://files/videos/VF-DR-SINAIS-02.mp4",
+            "story1_label": "Os sinais",
+            "story2_video": "shopify://files/videos/juliacolares_1789564802_3987479106072886720_32556032.mp4",
+            "story2_label": "Na prática",
+            "story3_video": "shopify://files/videos/VF-DR-12SINAIS.mp4",
+            "story3_label": "12 sinais",
+            "story4_video": "shopify://files/videos/VF-AMAMENTACAO.mp4",
+            "story4_label": "Amamentar",
+            "story5_video": "shopify://files/videos/VF-DUVIDAS.mp4",
+            "story5_label": "Dúvidas",
+            "story6_video": "shopify://files/videos/Grávida não desparasita tráfego.MOV",
+            "story6_label": "Grávidas",
+            "story7_video": "shopify://files/videos/taylouzadaq_1789779492_3989280496591394079_17821605.mp4",
+            "story7_label": "Relato"
+          }
+        }
+      },
+      "block_order": [
+        "dep1",
+        "dep2",
+        "dep3",
+        "dep4",
+        "stories"
+      ]
+    },
+    "vf_ugc_pdp": {
+      "type": "vf-ugc-carrossel",
+      "blocks": {
+        "vid_italo": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Depoimento VermeFree - ítalo - Semana do cliente.MOV",
+            "caption": "Depoimento",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_3sinais": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-3SINAIS.mp4",
+            "caption": "3 sinais",
+            "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_juliana": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-JULIANA-UNBOX.mp4",
+            "caption": "Unboxing",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_cuidado": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-CUIDADO.mp4",
+            "caption": "Pra família toda",
+            "product": "kit-familia-vermefree-2-adultos-2-criancas",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_unbox": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DRDIOGO-UNBOX.mp4",
+            "caption": "Chegou em casa",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_pet": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-PET.mp4",
+            "caption": "Pet em casa",
+            "product": "kit-familia-vermefree-2-adultos-2-criancas",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_elimina": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-ELIMINA.mp4",
+            "caption": "Como age",
+            "product": "antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_ludi": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/ludiloures_1789657351_3988254232838355061_195622712.mp4",
+            "caption": "Relato",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        }
+      },
+      "block_order": [
+        "vid_italo",
+        "vid_3sinais",
+        "vid_juliana",
+        "vid_cuidado",
+        "vid_unbox",
+        "vid_pet",
+        "vid_elimina",
+        "vid_ludi"
+      ],
+      "name": "VF UGC Carrossel",
+      "settings": {
+        "heading": "O protocolo de desparasitação nº 1",
+        "subheading": "Milhares de famílias já se cuidam com a VermeFree.",
+        "only_handles": "protocolo-desparasitacao-adulto-vermefree,antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos,antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos,kit-familia-vermefree-2-adultos-2-criancas",
+        "exclude_handles": ""
+      }
+    },
+    "estatistica": {
+      "type": "vf-pdp-estatistica-kids",
+      "settings": {
+        "image_filename": "lp-kids-hero-mae-filha.jpg",
+        "image_alt": "Mãe dando VermeFree Kids para a filha sorridente",
+        "eyebrow": "O QUE NENHUMA MÃE QUER OUVIR",
+        "stat_number": "1 a cada 2",
+        "stat_label": "crianças no Brasil tem ou já teve parasita intestinal.",
+        "body_text": "E os sintomas são confundidos com cansaço, falta de apetite, bruxismo, agitação. VermeFree Kids foi formulado pra desparasitar com segurança, com dosagem por idade e sem química pesada.",
+        "source": "Dados Fiocruz · OPAS · pesquisa em escolas públicas"
+      }
+    },
+    "volta-kids": {
+      "type": "vf-pdp-volta-kids",
+      "settings": {}
+    },
+    "ingredientes-detalhe": {
+      "type": "vf-pdp-ingredientes-detalhe",
+      "blocks": {
+        "ing-1": {
+          "type": "ingredient",
+          "settings": {
+            "fallback_filename": "lp-macro-nogueira.jpg",
+            "name": "Nogueira Negra",
+            "latin_name": "Juglans nigra",
+            "description": "A planta-base da fitoterapia infantil antiparasitária. Em dosagem reduzida e segura para crianças.",
+            "function_tag": "Antiparasitário"
+          }
+        },
+        "ing-2": {
+          "type": "ingredient",
+          "settings": {
+            "fallback_filename": "lp-macro-cravo.jpg",
+            "name": "Cravo",
+            "latin_name": "Syzygium aromaticum",
+            "description": "Eugenol natural que age sobre ovos e larvas. Concentração adaptada pra criança.",
+            "function_tag": "Anti-ovos"
+          }
+        },
+        "ing-3": {
+          "type": "ingredient",
+          "settings": {
+            "fallback_filename": "lp-macro-absinto.jpg",
+            "name": "Erva-Santa-Maria",
+            "latin_name": "Chenopodium ambrosioides",
+            "description": "Tradição milenar contra parasitas intestinais infantis. Usada por mães há gerações.",
+            "function_tag": "Tradicional"
+          }
+        },
+        "ing-4": {
+          "type": "ingredient",
+          "settings": {
+            "fallback_filename": "lp-macro-oregano.jpg",
+            "name": "Berberis",
+            "latin_name": "Berberis vulgaris",
+            "description": "Apoio digestivo natural durante o protocolo. Suaviza a ação das outras plantas.",
+            "function_tag": "Apoio digestivo"
+          }
+        },
+        "ing-5": {
+          "type": "ingredient",
+          "settings": {
+            "fallback_filename": "lp-macro-cardo-mariano.jpg",
+            "name": "Cardo Mariano",
+            "latin_name": "Silybum marianum",
+            "description": "Silimarina infantil que protege o fígado da criança durante os 30 dias.",
+            "function_tag": "Protege o fígado"
+          }
+        }
+      },
+      "block_order": [
+        "ing-1",
+        "ing-2",
+        "ing-3",
+        "ing-4",
+        "ing-5"
+      ],
+      "settings": {
+        "eyebrow": "O QUE TEM DENTRO",
+        "heading": "Cinco plantas. Dosagem pra criança.",
+        "subheading": "As mesmas plantas que adultos usam há séculos, agora em concentração e diluição seguras pra criança de 2 anos pra cima."
+      }
+    },
+    "como-tomar": {
+      "type": "vf-pdp-como-tomar-kids",
+      "settings": {}
+    },
+    "comparativo": {
+      "type": "vf-comparativo",
+      "settings": {}
+    },
+    "calendario": {
+      "type": "vf-pdp-calendario-lua-nova",
+      "settings": {}
+    },
+    "personagens": {
+      "type": "vf-pdp-personagens-kids",
+      "blocks": {
+        "p-1": {
+          "type": "pessoa",
+          "settings": {
+            "fallback_filename": "lp-kids-personagem-1.jpg",
+            "name": "Camila",
+            "child_info": "Mãe da Lia · 3 anos",
+            "meta": "São Paulo · SP"
+          }
+        },
+        "p-2": {
+          "type": "pessoa",
+          "settings": {
+            "fallback_filename": "lp-kids-personagem-2.jpg",
+            "name": "Roberta",
+            "child_info": "Mãe do Pedro · 4 anos",
+            "meta": "Belo Horizonte · MG"
+          }
+        },
+        "p-3": {
+          "type": "pessoa",
+          "settings": {
+            "fallback_filename": "lp-kids-personagem-3.jpg",
+            "name": "Tatiana",
+            "child_info": "Mãe do Davi · 3 anos",
+            "meta": "Salvador · BA"
+          }
+        }
+      },
+      "block_order": [
+        "p-1",
+        "p-2",
+        "p-3"
+      ],
+      "settings": {}
+    },
+    "stats": {
+      "type": "vf-pdp-stats",
+      "blocks": {
+        "row-1": {
+          "type": "row",
+          "settings": {
+            "label": "Ciclo completo",
+            "value": "30 dias",
+            "highlight": true
+          }
+        },
+        "row-2": {
+          "type": "row",
+          "settings": {
+            "label": "Tinturas no kit",
+            "value": "2 fórmulas",
+            "highlight": true
+          }
+        },
+        "row-3": {
+          "type": "row",
+          "settings": {
+            "label": "Idade indicada",
+            "value": "2 a 4 anos",
+            "highlight": true
+          }
+        },
+        "row-4": {
+          "type": "row",
+          "settings": {
+            "label": "Modo de uso",
+            "value": "Diluído em água"
+          }
+        },
+        "row-5": {
+          "type": "row",
+          "settings": {
+            "label": "Padrão de produção",
+            "value": "Farmacêutico · Brasil"
+          }
+        },
+        "row-6": {
+          "type": "row",
+          "settings": {
+            "label": "100% vegetal",
+            "value": "Sim"
+          }
+        },
+        "row-7": {
+          "type": "row",
+          "settings": {
+            "label": "Metais pesados",
+            "value": "Livre"
+          }
+        },
+        "row-8": {
+          "type": "row",
+          "settings": {
+            "label": "Sintéticos pesados",
+            "value": "Zero"
+          }
+        }
+      },
+      "block_order": [
+        "row-1",
+        "row-2",
+        "row-3",
+        "row-4",
+        "row-5",
+        "row-6",
+        "row-7",
+        "row-8"
+      ],
+      "settings": {
+        "eyebrow": "FICHA TÉCNICA",
+        "heading": "Tudo o que tem no kit Kids.",
+        "subheading": "Sem promessa, só padrão farmacêutico adaptado pra criança.",
+        "footnote": "Produto fitoterápico infantil baseado em literatura científica."
+      }
+    },
+    "faq": {
+      "type": "vf-pdp-faq",
+      "blocks": {
+        "q-1": {
+          "type": "question",
+          "settings": {
+            "question": "Quando devo iniciar o protocolo?",
+            "answer": "<p>Sempre na <strong>Lua Nova</strong>. No protocolo adulto, a preparação hepática começa 15 dias antes da Lua Nova. No infantil, o protocolo já começa direto na Lua Nova — a preparação é feita todo dia, junto com a desparasitação.</p>"
+          }
+        },
+        "q-2": {
+          "type": "question",
+          "settings": {
+            "question": "O que é a Fase 1?",
+            "answer": "<p>É a <strong>preparação hepática</strong>. Ela deixa o fígado pronto pra fase seguinte. No protocolo adulto, dura 15 dias, usa só a Silimarina, e acontece antes da Lua Nova.</p>"
+          }
+        },
+        "q-3": {
+          "type": "question",
+          "settings": {
+            "question": "O que é a Fase 2?",
+            "answer": "<p>É a <strong>desparasitação em si</strong> — sempre começa na Lua Nova. No protocolo adulto dura 15 dias, com a Tintura, o Óleo de Orégano e a Ornitina agindo juntos.</p>"
+          }
+        },
+        "q-4": {
+          "type": "question",
+          "settings": {
+            "question": "Por que o protocolo infantil é diferente do adulto?",
+            "answer": "<p>Porque a criança recebe a fórmula de preparação hepática <strong>todos os dias</strong>, junto com a de desparasitação — não precisa de uma fase separada antes de começar, como no protocolo adulto.</p>"
+          }
+        },
+        "q-5": {
+          "type": "question",
+          "settings": {
+            "question": "Preciso dar as duas tinturas pro meu filho?",
+            "answer": "<p>Sim. As duas fazem parte do protocolo Kids — a de <strong>preparação hepática</strong> e a de <strong>desparasitação</strong> trabalham em conjunto.</p>"
+          }
+        },
+        "q-6": {
+          "type": "question",
+          "settings": {
+            "question": "Como administro as duas tinturas?",
+            "answer": "<p>Primeiro a de preparação hepática. Espera <strong>15 minutos</strong> e dá a de desparasitação. As duas, 3 vezes ao dia.</p>"
+          }
+        },
+        "q-7": {
+          "type": "question",
+          "settings": {
+            "question": "Posso dar as duas juntas, no mesmo momento?",
+            "answer": "<p>Pode, sim — se a rotina da casa dificultar esperar os 15 minutos entre uma e outra. O efeito continua o mesmo.</p>"
+          }
+        },
+        "q-8": {
+          "type": "question",
+          "settings": {
+            "question": "Posso diluir as tinturas?",
+            "answer": "<p>Pode, e recomendamos. Dilui na quantidade indicada pra idade, em água ou suco.</p>"
+          }
+        },
+        "q-9": {
+          "type": "question",
+          "settings": {
+            "question": "Posso misturar a tintura no suco?",
+            "answer": "<p>Sim. Ajuda bastante na aceitação, principalmente com os pequenos.</p>"
+          }
+        },
+        "q-10": {
+          "type": "question",
+          "settings": {
+            "question": "Por que é recomendado diluir a tintura?",
+            "answer": "<p>As tinturas são à base de álcool. Diluir facilita a administração e deixa o sabor mais suave — melhora bastante a aceitação da criança.</p>"
+          }
+        },
+        "q-11": {
+          "type": "question",
+          "settings": {
+            "question": "A dosagem da tabela vale pra cada tintura ou pra soma das duas?",
+            "answer": "<p>Vale pra <strong>cada uma</strong>. Se a tabela indica 3ml pra idade do seu filho, são 3ml da hepática <strong>e</strong> 3ml da desparasitação — não é 3ml dividido entre as duas.</p>"
+          }
+        },
+        "q-12": {
+          "type": "question",
+          "settings": {
+            "question": "Posso dividir a dose diária em mais vezes?",
+            "answer": "<p>Pode, desde que mantenha o total do dia. O importante é não ultrapassar a dose diária recomendada pra idade.</p>"
+          }
+        },
+        "q-13": {
+          "type": "question",
+          "settings": {
+            "question": "Quanto tempo dura o protocolo?",
+            "answer": "<p><strong>30 dias</strong>, tanto no adulto quanto no infantil.</p>"
+          }
+        },
+        "q-14": {
+          "type": "question",
+          "settings": {
+            "question": "O protocolo é individual?",
+            "answer": "<p>Sim — cada kit é montado pra uma pessoa. Se mais de uma pessoa da casa for fazer, cada uma precisa do seu próprio kit.</p>"
+          }
+        },
+        "q-15": {
+          "type": "question",
+          "settings": {
+            "question": "Toda a família precisa fazer o protocolo junto?",
+            "answer": "<p>Não precisa, mas todos podem se beneficiar se fizerem ao mesmo tempo — por isso existe o <strong>Kit Família</strong>, sincronizado na mesma Lua Nova.</p>"
+          }
+        },
+        "q-16": {
+          "type": "question",
+          "settings": {
+            "question": "O protocolo pode causar alguma reação?",
+            "answer": "<p>Pode. Sintomas leves como náusea, vômito ou diarreia podem acontecer, e geralmente passam rápido. Se persistir ou incomodar muito, fala com a gente ou com seu médico.</p>"
+          }
+        },
+        "q-17": {
+          "type": "question",
+          "settings": {
+            "question": "Posso repetir o protocolo depois?",
+            "answer": "<p>Pode — de <strong>1 a 4 vezes por ano</strong>, sempre com um intervalo mínimo de 3 meses entre um ciclo e outro.</p>"
+          }
+        },
+        "q-18": {
+          "type": "question",
+          "settings": {
+            "question": "Qual a idade mínima do Kit Kids?",
+            "answer": "<p>Acima de <strong>2 anos</strong>.</p>"
+          }
+        },
+        "q-19": {
+          "type": "question",
+          "settings": {
+            "question": "Posso usar grávida ou amamentando?",
+            "answer": "<p><strong>Não.</strong> Não é indicado pra gestantes nem lactantes.</p>"
+          }
+        },
+        "q-20": {
+          "type": "question",
+          "settings": {
+            "question": "Qual a validade dos kits?",
+            "answer": "<p><strong>Kit Kids:</strong> 6 meses. <strong>Kit Adulto:</strong> 1 ano.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q-1",
+        "q-2",
+        "q-3",
+        "q-4",
+        "q-5",
+        "q-6",
+        "q-7",
+        "q-8",
+        "q-9",
+        "q-10",
+        "q-11",
+        "q-12",
+        "q-13",
+        "q-14",
+        "q-15",
+        "q-16",
+        "q-17",
+        "q-18",
+        "q-19",
+        "q-20"
+      ],
+      "settings": {
+        "eyebrow": "ANTES DE COMPRAR",
+        "heading": "Toda dúvida que você tem, outras mães também tiveram.",
+        "subheading": "Antes de pedir, leia essas 20 perguntas. Se ainda restar dúvida, manda mensagem no WhatsApp.",
+        "support_label": "Sem robô, sem chatbot.",
+        "support_text": "Pessoa de verdade respondendo do outro lado. WhatsApp e e-mail, resposta em até 4h úteis.",
+        "cta_text": "Ainda tem dúvidas? Fale conosco clicando no botão abaixo.",
+        "cta_label": "Falar no WhatsApp",
+        "cta_url": "https://l.vermefree.com.br/atendimento"
+      }
+    },
+    "cta-final": {
+      "type": "vf-cta-final",
+      "settings": {
+        "heading": "Desparasite seu filho agora.",
+        "subheading": "Frete pra todo Brasil. Parcelado em até 3x sem juros.",
+        "button_label": "Garantir o kit Kids",
+        "button_link": "/products/1-kit-vermefree-kids-criancas-de-2-a-4-anos",
+        "background_color": "#5EBC43",
+        "text_color": "#FFFFFF"
+      }
+    },
+    "vf_prescritores_pdp": {
+      "type": "vf-prescritores",
+      "settings": {
+        "show_instagram": false
+      },
+      "blocks": {
+        "presc_1": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-william-araujo.jpg",
+            "name": "Dr. William Araújo",
+            "credential": "CRM-MG 76.962",
+            "specialty": "Curadoria científica do protocolo VermeFree",
+            "instagram_handle": "@drwilliamaraujo",
+            "instagram_url": "https://www.instagram.com/drwilliamaraujo/",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 25,
+            "quote": "<p>Acompanho a formulação desde o início e vejo no protocolo VermeFree o <strong>critério</strong> que busco para indicar aos meus pacientes.</p>"
+          }
+        },
+        "presc_2": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-giovanna-eller.jpg",
+            "name": "Dra. Giovanna Eller",
+            "credential": "CRM-ES 20.998",
+            "specialty": "Nutróloga · saúde intestinal e emagrecimento",
+            "instagram_handle": "@dra.giovannaeller",
+            "instagram_url": "https://www.instagram.com/dra.giovannaeller/",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 30,
+            "quote": "<p>Saúde intestinal é a base de quase tudo que trato no consultório, e a VermeFree entra nessa conversa com <strong>seriedade de formulação</strong>.</p>"
+          }
+        },
+        "presc_3": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-robson-araujo.jpg",
+            "name": "Dr. Robson Araújo",
+            "credential": "CRM-MG 93.787",
+            "specialty": "Emagrecimento e saúde integrativa",
+            "instagram_handle": "@drrobson_araujo",
+            "instagram_url": "https://www.instagram.com/drrobson_araujo/",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 30,
+            "quote": "<p>Acompanho pacientes em processos de emagrecimento e vejo a VermeFree como <strong>uma aliada segura</strong> na rotina deles.</p>"
+          }
+        },
+        "presc_4": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-raquel-cembranelli.jpg",
+            "name": "Dra. Raquel Cembranelli",
+            "credential": "CRO-SP 83.705",
+            "specialty": "Cirurgiã-dentista · odontologia integrativa",
+            "instagram_handle": "@dra.raquelcembranelli",
+            "instagram_url": "https://www.instagram.com/dra.raquelcembranelli/",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 30,
+            "quote": "<p>Na odontologia integrativa, qualidade não é opcional — por isso <strong>conheço e indico</strong> o protocolo VermeFree.</p>"
+          }
+        },
+        "presc_eglife": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-eglife-brauher.jpg",
+            "photo_zoom": 140,
+            "photo_focus_x": 50,
+            "photo_focus_y": 5,
+            "name": "Dr. Eglife Brauher",
+            "credential": "CRM-BA 32.688",
+            "specialty": "Médico",
+            "instagram_handle": "",
+            "instagram_url": "",
+            "quote": "<p>Conheço de perto o protocolo da VermeFree e <strong>indico com tranquilidade</strong> aos meus pacientes.</p>"
+          }
+        },
+        "presc_kalil": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-kalil-gibran.jpg",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 20,
+            "name": "Dr. Kalil Gibran Ferreira Lima",
+            "credential": "CRM-BA 34.392",
+            "specialty": "Médico",
+            "instagram_handle": "",
+            "instagram_url": "",
+            "quote": "<p>A VermeFree entrega o <strong>padrão de formulação</strong> que busco para indicar no consultório.</p>"
+          }
+        },
+        "presc_carlos": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-carlos-osorio.jpg",
+            "photo_zoom": 115,
+            "photo_focus_x": 50,
+            "photo_focus_y": 60,
+            "name": "Dr. Carlos Mateus Santos Osório",
+            "credential": "CRM-SP 215.405",
+            "specialty": "Médico",
+            "instagram_handle": "",
+            "instagram_url": "",
+            "quote": "<p>Indico a VermeFree pela <strong>consistência do protocolo</strong> e pelo cuidado na formulação.</p>"
+          }
+        },
+        "presc_grace": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-grace-dessirre.jpg",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 25,
+            "name": "Dra. Grace Dessirre",
+            "credential": "CFO-SP 084169",
+            "specialty": "Cirurgiã-dentista",
+            "instagram_handle": "",
+            "instagram_url": "",
+            "quote": "<p>Incluo a VermeFree no cuidado que ofereço, sempre com <strong>atenção à qualidade</strong>.</p>"
+          }
+        },
+        "presc_thiago": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-thiago-goncalves.jpg",
+            "photo_zoom": 100,
+            "photo_focus_x": 50,
+            "photo_focus_y": 20,
+            "name": "Dr. Thiago Barbosa Gonçalves",
+            "credential": "CRM-ES 16.079",
+            "specialty": "Médico",
+            "instagram_handle": "",
+            "instagram_url": "",
+            "quote": "<p>Desparasitação feita com critério faz diferença na rotina do paciente — e é isso que <strong>encontro na VermeFree</strong>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "presc_1",
+        "presc_2",
+        "presc_3",
+        "presc_4",
+        "presc_eglife",
+        "presc_kalil",
+        "presc_carlos",
+        "presc_grace",
+        "presc_thiago"
+      ]
+    },
+    "vf_cross_familia": {
+      "type": "vf-pdp-cross-familia",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "vf_ugc_pdp",
+    "beneficios-objecoes",
+    "estatistica",
+    "volta-kids",
+    "ingredientes-detalhe",
+    "vf_prescritores_pdp",
+    "como-tomar",
+    "comparativo",
+    "calendario",
+    "personagens",
+    "stats",
+    "faq",
+    "vf_cross_familia",
+    "cta-final"
+  ]
+}
