@@ -5,7 +5,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const RAIZ = '/home/user/dev-vermfree/shopify-theme';
+// Aceita o espelho como argumento: os temas divergem e cada um tem o seu.
+const RAIZ = process.argv[2]
+  ? path.resolve(process.argv[2])
+  : '/home/user/dev-vermfree/shopify-theme';
 const semComentarioJson = (t) => t.replace(/\/\*[\s\S]*?\*\//, '');
 
 function schemas() {

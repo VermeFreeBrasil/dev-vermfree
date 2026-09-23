@@ -5,10 +5,12 @@
 const fs = require('fs');
 const path = require('path');
 
-const RAIL = '/home/user/dev-vermfree/shopify-theme/snippets/vf-stories-rail.liquid';
+// RAIL e N dão pra trocar por variável de ambiente: os temas divergem (o do
+// Judge.me tem 16 espaços) e a régua cheia é outro caso de layout.
+const RAIL = process.env.VF_RAIL || '/home/user/dev-vermfree/shopify-theme/snippets/vf-stories-rail.liquid';
 const VIEWER = '/home/user/dev-vermfree/shopify-theme/snippets/vf-stories-viewer.liquid';
 const UID = 'teste';
-const N = 6;
+const N = Number(process.env.VF_N || 6);
 
 const semComentario = (t) => t.replace(/\{%-?\s*comment\s*-?%\}[\s\S]*?\{%-?\s*endcomment\s*-?%\}/g, '');
 
@@ -22,7 +24,7 @@ const viewer = semComentario(fs.readFileSync(VIEWER, 'utf8'))
   .replace(/\{\{\s*routes\.cart_url\s*\}\}/g, '/cart');
 if (/\{[{%]/.test(viewer)) throw new Error('sobrou Liquid no visualizador');
 
-const clipes = ['clip1', 'clip2', 'clip3', 'clip1', 'clip2', 'clip3'];
+const clipes = Array.from({ length: N }, (_, i) => 'clip' + ((i % 3) + 1));
 
 const circulos = clipes.slice(0, N).map((c, i) => `
   <button type="button" class="vfsr__item" data-vfsr-open="${i}">

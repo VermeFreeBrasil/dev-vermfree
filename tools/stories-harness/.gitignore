@@ -1,4 +1,5 @@
 node_modules/
 media/
-index.html
+*.html
+package-lock.json
 shot-*.png

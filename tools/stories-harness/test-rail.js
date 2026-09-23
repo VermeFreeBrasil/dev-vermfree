@@ -59,7 +59,9 @@ const servidor = http.createServer(servir);
   await page.waitForTimeout(1600);
 
   let e = await estados();
-  conferir('seis círculos na régua', e.length === 6, 'tinha ' + e.length);
+  // A régua é montada com VF_N círculos (6 por padrão, 15 na do Judge.me).
+  const N_ESPERADO = Number(process.env.VF_N || 6);
+  conferir('um círculo por vídeo na régua', e.length === N_ESPERADO, 'tinha ' + e.length + ', esperava ' + N_ESPERADO);
   conferir('círculos visíveis estão tocando', e.filter((x) => x.dentro).every((x) => !x.paused),
     JSON.stringify(e.map((x) => x.dentro + ':' + x.paused)));
   conferir('mais de um círculo toca ao mesmo tempo (não só o primeiro)',

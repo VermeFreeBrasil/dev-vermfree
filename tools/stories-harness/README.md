@@ -120,3 +120,22 @@ gravados nas templates contra ele: `range` dentro de min/max e no passo certo,
 Existe porque a Shopify só reclama disso na hora do upload — um
 `photo_focus_y: 24` num range de passo 5 passa em qualquer validação de JSON e
 só é recusado quando o arquivo já está subindo. Roda antes do resto da suíte.
+
+Sem argumento ele confere o espelho `shopify-theme/`. Os outros temas
+divergiram, então o espelho vai como argumento:
+
+```
+node check-settings.js ../../shopify-theme-judgeme
+```
+
+## Testando uma régua de outro tema
+
+`build-rail-page.js` aceita duas variáveis de ambiente: `VF_RAIL` (caminho do
+snippet, para um tema cujo `vf-stories-rail.liquid` divergiu) e `VF_N` (quantos
+círculos montar). O Judge.me tem 16 espaços em vez de 8, e a régua cheia é
+outro caso de layout:
+
+```
+VF_RAIL=../../shopify-theme-judgeme/snippets/vf-stories-rail.liquid VF_N=15 \
+  node build-rail-page.js && VF_N=15 node test-rail.js
+```
