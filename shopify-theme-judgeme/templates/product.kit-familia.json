@@ -161,11 +161,11 @@
             "cta_label": "Adicionar ao carrinho"
           }
         },
-        "vid_3sinais": {
+        "vid_produto": {
           "type": "video",
           "settings": {
-            "video": "shopify://files/videos/VF-DR-3SINAIS.mp4",
-            "caption": "3 sinais",
+            "video": "shopify://files/videos/VÍDEO DO PRODUTO.MOV",
+            "caption": "O produto",
             "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
             "eyebrow": "",
             "offer": "",
@@ -179,6 +179,42 @@
             "video": "shopify://files/videos/VF-JULIANA-UNBOX.mp4",
             "caption": "Unboxing",
             "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_3sinais": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/VF-DR-3SINAIS.mp4",
+            "caption": "3 sinais",
+            "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_ludi": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/ludiloures_1789657351_3988254232838355061_195622712.mp4",
+            "caption": "Relato",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "eyebrow": "",
+            "offer": "",
+            "badge": "",
+            "cta_label": "Adicionar ao carrinho"
+          }
+        },
+        "vid_protokids": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/ENTRA O PROTOCOLO VERMEFREE KIDS.MOV",
+            "caption": "O protocolo Kids",
+            "product": "antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
             "eyebrow": "",
             "offer": "",
             "badge": "",
@@ -221,30 +257,6 @@
             "cta_label": "Adicionar ao carrinho"
           }
         },
-        "vid_elimina": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/VF-DR-ELIMINA.mp4",
-            "caption": "Como age",
-            "product": "antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        },
-        "vid_ludi": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/ludiloures_1789657351_3988254232838355061_195622712.mp4",
-            "caption": "Relato",
-            "product": "protocolo-desparasitacao-adulto-vermefree",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        },
         "vid_rotina": {
           "type": "video",
           "settings": {
@@ -257,23 +269,11 @@
             "cta_label": "Adicionar ao carrinho"
           }
         },
-        "vid_produto": {
+        "vid_elimina": {
           "type": "video",
           "settings": {
-            "video": "shopify://files/videos/VÍDEO DO PRODUTO.MOV",
-            "caption": "O produto",
-            "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
-            "eyebrow": "",
-            "offer": "",
-            "badge": "",
-            "cta_label": "Adicionar ao carrinho"
-          }
-        },
-        "vid_protokids": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/ENTRA O PROTOCOLO VERMEFREE KIDS.MOV",
-            "caption": "O protocolo Kids",
+            "video": "shopify://files/videos/VF-DR-ELIMINA.mp4",
+            "caption": "Como age",
             "product": "antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
             "eyebrow": "",
             "offer": "",
@@ -284,16 +284,16 @@
       },
       "block_order": [
         "vid_italo",
-        "vid_3sinais",
+        "vid_produto",
         "vid_juliana",
+        "vid_3sinais",
+        "vid_ludi",
+        "vid_protokids",
         "vid_cuidado",
         "vid_unbox",
         "vid_pet",
-        "vid_elimina",
-        "vid_ludi",
         "vid_rotina",
-        "vid_produto",
-        "vid_protokids"
+        "vid_elimina"
       ],
       "name": "VF UGC Carrossel",
       "settings": {
