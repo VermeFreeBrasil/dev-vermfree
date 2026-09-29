@@ -73,8 +73,44 @@
     .portrait img{position:absolute;max-width:none;width:112.95%;height:112.95%;left:-12.95%;top:-6.475%;object-fit:fill;transform:none}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
   </style>
+  <!-- Google tag (gtag.js): Google Ads, GA4 e tag do Merchant Center -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W0NZM1LHSN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('set', 'linker', {domains: ['vermefree.com.br']});
+    gtag('config', 'G-W0NZM1LHSN');
+    gtag('config', 'AW-18193701893');
+    gtag('config', 'GT-M3483NW7');
+  </script>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '867430254699991');
+    fbq('init', '2239781696850189');
+    fbq('track', 'PageView');
+  </script>
+  <!-- Cliques nos links da bio: evento bio_click (GA4/Ads) e BioClick (Meta) -->
+  <script>
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="http"]');
+      if (!a) return;
+      var label = (a.getAttribute('aria-label') || a.textContent || '').replace(/\s+/g, ' ').trim();
+      gtag('event', 'bio_click', {link_text: label, link_url: a.href, transport_type: 'beacon'});
+      fbq('trackCustom', 'BioClick', {link_text: label, link_url: a.href});
+    });
+  </script>
 </head>
 <body>
+  <noscript>
+    <img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=867430254699991&amp;ev=PageView&amp;noscript=1">
+    <img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2239781696850189&amp;ev=PageView&amp;noscript=1">
+  </noscript>
   <a class="skip" href="#links">Ir para os links</a>
   <div class="shell">
     <header class="masthead">
