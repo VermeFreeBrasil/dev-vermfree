@@ -1,0 +1,782 @@
+{
+  "schema_version": "1.0",
+  "reference": {
+    "id": "REF-PIN-01",
+    "source_type": "arquivo",
+    "media_path": null,
+    "source_url": null,
+    "sha256": "25b93f93e02a6e3c924c391a9bac70e5f35bc5f7ee8c8b3d4176ccdbbef527e8",
+    "duration_s": 40.867,
+    "width_px": 720,
+    "height_px": 1280,
+    "fps": 30,
+    "variable_fps": false,
+    "audio_present": true,
+    "time_origin": "início do arquivo fornecido (Pinterest (1).mp4)",
+    "source_offset_s": null,
+    "audio_codec": "aac",
+    "audio_channels": 2,
+    "audio_sample_rate_hz": 44100,
+    "integrated_loudness_lufs": -15.2,
+    "media_note": "Vídeo de referência 'Pinterest (1).mp4' (sha256 acima) não incluído no repositório: é conteúdo de terceiros. Os tempos e evidências valem para esse arquivo."
+  },
+  "coverage": {
+    "visual": {
+      "status": "completa",
+      "intervals": [
+        {
+          "start_s": 0.0,
+          "end_s": 40.867,
+          "method": "folha de contato a 2 fps de todo o arquivo + detecção de cena + revisão a 10 fps em 4.6–5.4, 7.0–7.8, 22.2–23.2"
+        }
+      ],
+      "point_record_ids": [],
+      "gaps": [],
+      "limitations": [
+        "entre amostras de 0.5 s, movimentos rápidos foram inferidos pelo blur visível; fronteiras marcadas 'aproximado' têm ~±0.25 s"
+      ]
+    },
+    "audio": {
+      "status": "indisponivel",
+      "intervals": [],
+      "point_record_ids": [],
+      "gaps": [
+        {
+          "start_s": 0.0,
+          "end_s": 40.867,
+          "reason": "ambiente sem reprodução de áudio; só medições de nível (silencedetect, ebur128)"
+        }
+      ],
+      "limitations": [
+        "voz, música e SFX não distinguidos"
+      ]
+    },
+    "transcription": {
+      "status": "indisponivel",
+      "intervals": [],
+      "point_record_ids": [],
+      "gaps": [
+        {
+          "start_s": 0.0,
+          "end_s": 40.867,
+          "reason": "nenhuma ferramenta de transcrição instalada; não foi instalada por presunção"
+        }
+      ],
+      "limitations": [
+        "texto na tela não foi usado como transcrição"
+      ]
+    }
+  },
+  "evidence": [
+    {
+      "id": "E01",
+      "record_ids": [
+        "R01"
+      ],
+      "start_s": 0.0,
+      "end_s": 0.87,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "apresentador falando; tela cheia 9:16, plano médio, mesa com braçadeira de pressão em primeiro plano; transição: corte para fundo preto com texto em motion blur horizontal",
+      "artifact_path": null
+    },
+    {
+      "id": "E02",
+      "record_ids": [
+        "R02"
+      ],
+      "start_s": 0.87,
+      "end_s": 1.4,
+      "time_precision": "aproximado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "palavra-chave em movimento; fundo preto sólido; transição: texto atravessa a tela com blur e dá lugar ao card",
+      "artifact_path": null
+    },
+    {
+      "id": "E03",
+      "record_ids": [
+        "R03"
+      ],
+      "start_s": 1.4,
+      "end_s": 2.3,
+      "time_precision": "aproximado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "b-roll 3D (vaso sanguíneo); card vertical arredondado centralizado sobre preto; transição: card sai deslizando para a direita com blur; fundo clareia",
+      "artifact_path": null
+    },
+    {
+      "id": "E04",
+      "record_ids": [
+        "R04"
+      ],
+      "start_s": 2.3,
+      "end_s": 3.73,
+      "time_precision": "aproximado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "tipografia cinética pura; fundo branco/off-white; transição: corte seco para o apresentador (detectado em 3.73)",
+      "artifact_path": null
+    },
+    {
+      "id": "E05",
+      "record_ids": [
+        "R05"
+      ],
+      "start_s": 3.73,
+      "end_s": 5.0,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25 + revisão a 10 fps",
+      "description": "apresentador falando; tela cheia, plano médio; transição: vídeo encolhe em card arredondado com sombra sobre fundo branco (~4.9–5.1)",
+      "artifact_path": null
+    },
+    {
+      "id": "E06",
+      "record_ids": [
+        "R06"
+      ],
+      "start_s": 5.0,
+      "end_s": 5.9,
+      "time_precision": "aproximado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25 + revisão a 10 fps",
+      "description": "pergunta-gancho; apresentador dentro de card vertical com sombra, fundo branco; transição: card e texto saem para a direita com blur",
+      "artifact_path": null
+    },
+    {
+      "id": "E07",
+      "record_ids": [
+        "R07"
+      ],
+      "start_s": 5.9,
+      "end_s": 7.4,
+      "time_precision": "aproximado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25 + revisão a 10 fps",
+      "description": "resposta em imagem de apoio; card horizontal com sombra sobre branco; transição: card sobe e o próximo card entra por baixo (vertical, com blur); fundo passa a preto",
+      "artifact_path": null
+    },
+    {
+      "id": "E08",
+      "record_ids": [
+        "R08"
+      ],
+      "start_s": 7.4,
+      "end_s": 8.97,
+      "time_precision": "aproximado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25 + revisão a 10 fps",
+      "description": "b-roll de hábito (pular corda); card horizontal arredondado sobre preto; transição: corte para o apresentador (8.97)",
+      "artifact_path": null
+    },
+    {
+      "id": "E09",
+      "record_ids": [
+        "R09"
+      ],
+      "start_s": 8.97,
+      "end_s": 10.17,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "apresentador falando; tela cheia, plano mais fechado que R05 (aparente punch-in); transição: corte para fundo branco com card",
+      "artifact_path": null
+    },
+    {
+      "id": "E10",
+      "record_ids": [
+        "R10"
+      ],
+      "start_s": 10.17,
+      "end_s": 14.73,
+      "time_precision": "aproximado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "lista que acumula (3 hábitos); cards horizontais empilhados verticalmente sobre branco, entrando um a um; transição: corte para o apresentador (14.73)",
+      "artifact_path": null
+    },
+    {
+      "id": "E11",
+      "record_ids": [
+        "R11"
+      ],
+      "start_s": 14.73,
+      "end_s": 18.67,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "apresentador falando; tela cheia plano médio; transição: corte para preto (18.67)",
+      "artifact_path": null
+    },
+    {
+      "id": "E12",
+      "record_ids": [
+        "R12"
+      ],
+      "start_s": 18.67,
+      "end_s": 19.77,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "palavra de alerta; fundo preto; transição: corte para o apresentador",
+      "artifact_path": null
+    },
+    {
+      "id": "E13",
+      "record_ids": [
+        "R13"
+      ],
+      "start_s": 19.77,
+      "end_s": 21.0,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "apresentador falando; tela cheia; transição: corte para branco com card",
+      "artifact_path": null
+    },
+    {
+      "id": "E14",
+      "record_ids": [
+        "R14"
+      ],
+      "start_s": 21.0,
+      "end_s": 22.4,
+      "time_precision": "aproximado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25 + revisão a 10 fps",
+      "description": "b-roll (tomar comprimido); card horizontal sobre branco; transição: card e texto deslizam para a esquerda com blur",
+      "artifact_path": null
+    },
+    {
+      "id": "E15",
+      "record_ids": [
+        "R15"
+      ],
+      "start_s": 22.4,
+      "end_s": 23.0,
+      "time_precision": "aproximado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25 + revisão a 10 fps",
+      "description": "apresentador em card; card vertical com sombra; frase pequena acima; transição: card cresce até tela cheia (~22.9–23.1)",
+      "artifact_path": null
+    },
+    {
+      "id": "E16",
+      "record_ids": [
+        "R16"
+      ],
+      "start_s": 23.0,
+      "end_s": 24.1,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "apresentador falando; tela cheia; transição: corte para branco (24.1)",
+      "artifact_path": null
+    },
+    {
+      "id": "E17",
+      "record_ids": [
+        "R17"
+      ],
+      "start_s": 24.1,
+      "end_s": 27.0,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "frase espalhada pela tela; fundo branco; transição: corte para o apresentador (27.0)",
+      "artifact_path": null
+    },
+    {
+      "id": "E18",
+      "record_ids": [
+        "R18"
+      ],
+      "start_s": 27.0,
+      "end_s": 30.73,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "apresentador falando; tela cheia; transição: corte para animação 3D (30.73)",
+      "artifact_path": null
+    },
+    {
+      "id": "E19",
+      "record_ids": [
+        "R19"
+      ],
+      "start_s": 30.73,
+      "end_s": 32.03,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "consequência 1 (artéria); b-roll 3D tela cheia; transição: corte (32.03)",
+      "artifact_path": null
+    },
+    {
+      "id": "E20",
+      "record_ids": [
+        "R20"
+      ],
+      "start_s": 32.03,
+      "end_s": 32.63,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "consequência 2 (cérebro/vasos); b-roll 3D tela cheia; transição: corte (32.63)",
+      "artifact_path": null
+    },
+    {
+      "id": "E21",
+      "record_ids": [
+        "R21"
+      ],
+      "start_s": 32.63,
+      "end_s": 33.7,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "consequência 3 (rins); b-roll 3D tela cheia; transição: corte (33.7)",
+      "artifact_path": null
+    },
+    {
+      "id": "E22",
+      "record_ids": [
+        "R22"
+      ],
+      "start_s": 33.7,
+      "end_s": 38.63,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "fechamento + recomendação; tela cheia; transição: corte para end card (38.63)",
+      "artifact_path": null
+    },
+    {
+      "id": "E23",
+      "record_ids": [
+        "R23"
+      ],
+      "start_s": 38.63,
+      "end_s": 40.867,
+      "time_precision": "verificado",
+      "method": "folha de contato a 2 fps (ffmpeg) + detecção de cena ffmpeg scene>0.25",
+      "description": "end card de perfil; fundo gradiente escuro azul/vermelho; transição: fim do arquivo",
+      "artifact_path": null
+    }
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "category": "enquadramento",
+      "status": "observado",
+      "statement": "Apresentador em plano médio fixo 9:16, mesa e braçadeira de pressão sempre em primeiro plano; mesma tomada base em todo o vídeo.",
+      "evidence_ids": [
+        "E01",
+        "E05",
+        "E11",
+        "E22"
+      ],
+      "limitations": []
+    },
+    {
+      "id": "F02",
+      "category": "crop_zoom_tracking",
+      "status": "observado",
+      "statement": "O vídeo do apresentador alterna entre tela cheia e card arredondado com sombra sobre fundo branco; a transição é uma mudança de escala contínua (tela cheia→card em ~4.9–5.1 s; card→tela cheia em ~22.9–23.1 s).",
+      "evidence_ids": [
+        "E05",
+        "E06",
+        "E15",
+        "E16"
+      ],
+      "limitations": [
+        "medido a 10 fps; curva de easing exata não verificável"
+      ]
+    },
+    {
+      "id": "F03",
+      "category": "crop_zoom_tracking",
+      "status": "inferido",
+      "statement": "R09 aparenta enquadramento mais fechado (punch-in) que os demais planos do apresentador.",
+      "evidence_ids": [
+        "E09"
+      ],
+      "limitations": [
+        "pode ser outra tomada ou crop digital; não separável"
+      ]
+    },
+    {
+      "id": "F04",
+      "category": "tipografia_hierarquia",
+      "status": "observado",
+      "statement": "Hierarquia em 2–3 níveis: palavras de ligação pequenas em sans bold; uma palavra-chave por frase muito grande, alternando sans black e serif de alto contraste (às vezes condensada); palavras-chave às vezes com preenchimento translúcido ou cor de destaque.",
+      "evidence_ids": [
+        "E01",
+        "E08",
+        "E09",
+        "E16",
+        "E17",
+        "E19"
+      ],
+      "limitations": [
+        "família tipográfica exata não identificada"
+      ]
+    },
+    {
+      "id": "F05",
+      "category": "tipografia_hierarquia",
+      "status": "observado",
+      "statement": "Composição espalhada: palavras pequenas distribuídas em escada/zigue-zague pela tela enquanto a frase se acumula; palavras-chave gigantes ancoram a composição.",
+      "evidence_ids": [
+        "E06",
+        "E08",
+        "E17"
+      ],
+      "limitations": []
+    },
+    {
+      "id": "F06",
+      "category": "cor_luz",
+      "status": "observado",
+      "statement": "Três fundos de apoio alternados: off-white (cards e texto preto), preto (texto branco/vermelho) e b-roll; cor de destaque usada em poucas palavras (verde-azulado, vermelho texturizado, ciano sobre vermelho, dourado claro).",
+      "evidence_ids": [
+        "E03",
+        "E04",
+        "E12",
+        "E13",
+        "E19"
+      ],
+      "limitations": [
+        "valores de cor amostrados de vídeo comprimido"
+      ]
+    },
+    {
+      "id": "F07",
+      "category": "legendas",
+      "status": "observado",
+      "statement": "Não há legenda contínua: só 1–4 palavras visíveis por vez, posicionadas no centro do peito do apresentador, trocando por grupo de palavras.",
+      "evidence_ids": [
+        "E05",
+        "E11",
+        "E22"
+      ],
+      "limitations": [
+        "sincronismo com a fala não verificado: áudio não foi ouvido"
+      ]
+    },
+    {
+      "id": "F08",
+      "category": "elementos_insercoes",
+      "status": "observado",
+      "statement": "Inserções em cards arredondados com sombra (b-roll de hábitos, comprimido, trecho de filme) e b-roll 3D médico em tela cheia; listas viram cards empilhados que entram um a um.",
+      "evidence_ids": [
+        "E03",
+        "E07",
+        "E10",
+        "E14",
+        "E19",
+        "E20",
+        "E21"
+      ],
+      "limitations": [
+        "origem e licença dos b-rolls desconhecidas; trecho de filme é conteúdo de terceiros"
+      ]
+    },
+    {
+      "id": "F09",
+      "category": "transicoes",
+      "status": "observado",
+      "statement": "Transições predominantes: deslize horizontal/vertical com motion blur forte; escala tela cheia↔card; cortes secos entre apresentador e telas de texto.",
+      "evidence_ids": [
+        "E02",
+        "E03",
+        "E06",
+        "E07",
+        "E14",
+        "E05",
+        "E15"
+      ],
+      "limitations": [
+        "preset ou plugin não identificável"
+      ]
+    },
+    {
+      "id": "F10",
+      "category": "composicao_camadas",
+      "status": "observado",
+      "statement": "Texto grande frequentemente cruza a borda do card (fica à frente); cards projetam sombra suave sobre fundo branco criando profundidade.",
+      "evidence_ids": [
+        "E03",
+        "E06",
+        "E07",
+        "E14"
+      ],
+      "limitations": []
+    },
+    {
+      "id": "F11",
+      "category": "alfa_3d",
+      "status": "nao_verificavel",
+      "statement": "Não foi observada oclusão de texto atrás do apresentador; o texto fica sempre à frente. Animações 3D médicas parecem material pronto de banco, não gerado na edição.",
+      "evidence_ids": [],
+      "limitations": [
+        "sem projeto original; origem dos 3D não comprovada"
+      ]
+    },
+    {
+      "id": "F12",
+      "category": "ritmo_pausas",
+      "status": "observado",
+      "statement": "Troca visual em média a cada ~1.2 s; planos do apresentador duram 1–5 s; inserções de texto/b-roll 0.5–1.6 s; lista de consequências com cortes que encurtam (1.3 → 0.6 → 1.1 s).",
+      "evidence_ids": [
+        "E19",
+        "E20",
+        "E21",
+        "E11",
+        "E22"
+      ],
+      "limitations": [
+        "duração medida por detecção de cena + 2 fps; precisão ~±0.25 s em fronteiras aproximadas"
+      ]
+    },
+    {
+      "id": "F13",
+      "category": "audio_musica_sfx",
+      "status": "nao_verificavel",
+      "statement": "Há faixa AAC estéreo 44.1 kHz, audível de forma contínua (nenhum silêncio ≥0.3 s abaixo de -35 dB; loudness integrado medido -15.2 LUFS). Voz, música e SFX não puderam ser distinguidos.",
+      "evidence_ids": [],
+      "limitations": [
+        "sem escuta nem transcrição neste ambiente"
+      ]
+    },
+    {
+      "id": "F14",
+      "category": "fala_movimento",
+      "status": "inferido",
+      "statement": "O texto na tela parece acompanhar a fala palavra-chave por palavra-chave, e as inserções ilustram literalmente o substantivo destacado (hábito citado → b-roll do hábito; órgão citado → 3D do órgão).",
+      "evidence_ids": [
+        "E10",
+        "E19",
+        "E20",
+        "E21"
+      ],
+      "limitations": [
+        "sincronismo não verificado sem áudio; inferido pela correspondência texto↔imagem"
+      ]
+    },
+    {
+      "id": "F15",
+      "category": "elementos_insercoes",
+      "status": "observado",
+      "statement": "Encerramento com end card animado de perfil de rede social (avatar, nome, selo, botão seguir que muda de estado).",
+      "evidence_ids": [
+        "E23"
+      ],
+      "limitations": [
+        "identidade do perfil é de terceiros"
+      ]
+    }
+  ],
+  "reusable_rules": [
+    {
+      "id": "RU1",
+      "finding_ids": [
+        "F04",
+        "F07"
+      ],
+      "scope": "recorrente",
+      "trigger": "Cada frase falada tem uma ideia central",
+      "action": "Mostrar 1–4 palavras por vez sobre o apresentador; a palavra-chave gigante (sans black ou serif), as demais pequenas",
+      "hold": "Enquanto a frase é dita",
+      "exit": "Troca no próximo grupo de palavras",
+      "preserve": "Rosto livre; texto no centro do peito",
+      "avoid": "Legenda contínua palavra por palavra; mais de uma palavra gigante ao mesmo tempo",
+      "required_materials": [
+        "vídeo do usuário",
+        "transcrição do vídeo destino"
+      ],
+      "validation": "Palavra-chave legível em 1 frame pausado; rosto nunca coberto",
+      "adaptation_notes": "Ajustar as duas famílias tipográficas à identidade da marca"
+    },
+    {
+      "id": "RU2",
+      "finding_ids": [
+        "F02",
+        "F09"
+      ],
+      "scope": "recorrente",
+      "trigger": "A fala faz uma pergunta ou muda de assunto",
+      "action": "Encolher o vídeo do apresentador em card arredondado com sombra sobre fundo claro e abrir espaço para texto ou inserto; voltar a tela cheia por escala inversa",
+      "hold": "0.6–1 s (referência)",
+      "exit": "Escala de volta para tela cheia ou deslize com blur",
+      "preserve": "Continuidade da fala; card nunca corta o rosto",
+      "avoid": "Usar em toda frase; perde força",
+      "required_materials": [
+        "vídeo do usuário"
+      ],
+      "validation": "Transição sem salto de enquadramento",
+      "adaptation_notes": "Se não houver fundo claro na marca, usar cor sólida da marca"
+    },
+    {
+      "id": "RU3",
+      "finding_ids": [
+        "F08",
+        "F14"
+      ],
+      "scope": "recorrente",
+      "trigger": "A fala cita um objeto, hábito ou consequência concreta",
+      "action": "Mostrar b-roll literal daquilo dentro de card ou em tela cheia, com a palavra sobreposta",
+      "hold": "~0.6–1.6 s por item (referência)",
+      "exit": "Corte ou deslize com blur",
+      "preserve": "Relação literal palavra↔imagem",
+      "avoid": "Imagem genérica sem relação; trechos de filme de terceiros",
+      "required_materials": [
+        "b-roll próprio ou licenciado"
+      ],
+      "validation": "Cada inserto explicável pela palavra que acompanha",
+      "adaptation_notes": "Sem b-roll: usar tela só-tipografia (RU5)"
+    },
+    {
+      "id": "RU4",
+      "finding_ids": [
+        "F08",
+        "F12"
+      ],
+      "scope": "pontual",
+      "trigger": "A fala enumera 3 itens",
+      "action": "Empilhar cards que entram um a um e permanecem até a lista completar",
+      "hold": "Até o último item",
+      "exit": "Corte de volta ao apresentador",
+      "preserve": "Ordem da fala",
+      "avoid": "Mostrar todos de uma vez",
+      "required_materials": [
+        "1 visual por item"
+      ],
+      "validation": "Lista legível ao final",
+      "adaptation_notes": "Funciona também com ícones/fotos de produto"
+    },
+    {
+      "id": "RU5",
+      "finding_ids": [
+        "F05",
+        "F06"
+      ],
+      "scope": "recorrente",
+      "trigger": "Frase-chave que merece ênfase sem imagem",
+      "action": "Tela só-texto (fundo branco ou preto) com palavras espalhadas e 1–2 palavras gigantes",
+      "hold": "1–3 s",
+      "exit": "Corte seco",
+      "preserve": "Contraste alto; poucas palavras grandes",
+      "avoid": "Blocos de texto longos",
+      "required_materials": [
+        "nenhum além da fala"
+      ],
+      "validation": "Leitura completa antes do corte",
+      "adaptation_notes": "Cor de destaque da marca em 1 palavra"
+    },
+    {
+      "id": "RU6",
+      "finding_ids": [
+        "F09"
+      ],
+      "scope": "recorrente",
+      "trigger": "Passagem entre insertos",
+      "action": "Deslize rápido horizontal ou vertical com motion blur forte",
+      "hold": "~0.2–0.3 s",
+      "exit": "Próximo elemento já no lugar",
+      "preserve": "Direção consistente",
+      "avoid": "Transições variadas demais",
+      "required_materials": [
+        "nenhum"
+      ],
+      "validation": "Sem frames vazios longos",
+      "adaptation_notes": "Teste de amostra antes de repetir"
+    },
+    {
+      "id": "RU7",
+      "finding_ids": [
+        "F12"
+      ],
+      "scope": "proposta_condicional",
+      "trigger": "Sequência de consequências ou riscos",
+      "action": "Encurtar progressivamente os planos para dar sensação de acúmulo",
+      "hold": "Itens de 0.6–1.3 s (referência)",
+      "exit": "Volta ao apresentador",
+      "preserve": "Clareza de cada item",
+      "avoid": "Cortes tão curtos que o texto não seja lido",
+      "required_materials": [
+        "visuais por item"
+      ],
+      "validation": "Cada palavra legível a 1x",
+      "adaptation_notes": "Depende de testar leitura no vídeo destino"
+    },
+    {
+      "id": "RU8",
+      "finding_ids": [
+        "F15"
+      ],
+      "scope": "proposta_condicional",
+      "trigger": "Fim do vídeo",
+      "action": "End card com o perfil/marca do usuário e CTA animado",
+      "hold": "~2 s",
+      "exit": "Fim",
+      "preserve": "Identidade própria",
+      "avoid": "Copiar o perfil ou layout da referência",
+      "required_materials": [
+        "logo/foto/nome do usuário"
+      ],
+      "validation": "Nome e CTA legíveis",
+      "adaptation_notes": "Pode virar CTA de compra em vez de seguir"
+    }
+  ],
+  "routing": [
+    {
+      "skill_id": "cp-estilo-por-referencia",
+      "reason": "aplicar a receita ao vídeo destino do Drive",
+      "finding_ids": [
+        "F02",
+        "F04",
+        "F09"
+      ],
+      "rule_ids": [
+        "RU1",
+        "RU2",
+        "RU6"
+      ],
+      "when_to_load": "quando o vídeo destino estiver acessível"
+    },
+    {
+      "skill_id": "cp-lettering-com-hierarquia",
+      "reason": "hierarquia de 2–3 níveis é o traço principal",
+      "finding_ids": [
+        "F04",
+        "F05"
+      ],
+      "rule_ids": [
+        "RU1",
+        "RU5"
+      ],
+      "when_to_load": "na montagem da tipografia"
+    },
+    {
+      "skill_id": "cp-apresentador-em-cena",
+      "reason": "alternância tela cheia↔card",
+      "finding_ids": [
+        "F01",
+        "F02"
+      ],
+      "rule_ids": [
+        "RU2"
+      ],
+      "when_to_load": "ao definir enquadramentos"
+    },
+    {
+      "skill_id": "cp-direcao-de-edicao",
+      "reason": "escolher onde entram insertos e telas de texto",
+      "finding_ids": [
+        "F08",
+        "F12",
+        "F14"
+      ],
+      "rule_ids": [
+        "RU3",
+        "RU4",
+        "RU7"
+      ],
+      "when_to_load": "ao montar a sequência"
+    }
+  ],
+  "limitations": [
+    "áudio e fala não verificados: sincronismo texto↔fala é inferido",
+    "fontes exatas não identificadas",
+    "b-rolls e trecho de filme são de terceiros e não podem ser reutilizados",
+    "origem das animações 3D desconhecida"
+  ],
+  "outputs": {
+    "report": "referencia-de-edicao.md",
+    "timeline": "mapa-de-cenas.csv",
+    "recipe": "receita-visual.json",
+    "recreation_prompt": "prompt-de-recriacao.txt"
+  }
+}
