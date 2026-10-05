@@ -23,7 +23,10 @@
       assign vf_rating_value = vf_jdgm_data.average_rating | times: 1.0
     endif
   endif
-  assign vf_rating_display = vf_rating_value | round: 1 | append: '' | replace: '.', ','
+  assign vf_rating_x10 = vf_rating_value | times: 10 | round
+  assign vf_rating_int = vf_rating_x10 | divided_by: 10 | floor
+  assign vf_rating_dec = vf_rating_x10 | modulo: 10
+  assign vf_rating_display = vf_rating_int | append: ',' | append: vf_rating_dec
   if vf_rating_count == 1
     assign vf_rating_word = 'avaliação'
   else

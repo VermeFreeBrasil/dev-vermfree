@@ -19,7 +19,10 @@
     assign jdgm_count = jdgm_data.number_of_reviews | times: 1
     assign jdgm_avg = jdgm_data.average_rating | times: 1.0
   endif
-  assign jdgm_avg_display = jdgm_avg | round: 1 | append: '' | replace: '.', ','
+  assign jdgm_avg_x10 = jdgm_avg | times: 10 | round
+  assign jdgm_avg_int = jdgm_avg_x10 | divided_by: 10 | floor
+  assign jdgm_avg_dec = jdgm_avg_x10 | modulo: 10
+  assign jdgm_avg_display = jdgm_avg_int | append: ',' | append: jdgm_avg_dec
   if jdgm_count == 1
     assign jdgm_word = 'avaliação'
   else
@@ -55,7 +58,7 @@
         {%- if jdgm_count > 0 -%}
           <div class="vf-jdgm__score" aria-label="Nota média {{ jdgm_avg_display }} de 5, com base em {{ jdgm_count }} {{ jdgm_word }}">
             <span class="vf-jdgm__score-num" aria-hidden="true">{{ jdgm_avg_display }}</span>
-            {%- render 'vf-stars', rating: jdgm_avg, size: 22 -%}
+            {%- render 'vf-stars', rating: jdgm_avg, size: 20 -%}
             <span class="vf-jdgm__score-count" aria-hidden="true">{{ jdgm_count }} {{ jdgm_word }}</span>
           </div>
 
@@ -64,7 +67,7 @@
               {%- for row in jdgm_data.histogram -%}
                 <li class="vf-jdgm__hist-row" aria-label="{{ row.rating }} estrelas: {{ row.frequency }}">
                   <span class="vf-jdgm__hist-label" aria-hidden="true">
-                    {{ row.rating }}
+                    {{- row.rating -}}
                     <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
                   </span>
                   <span class="vf-jdgm__hist-bar" aria-hidden="true">
@@ -78,13 +81,16 @@
         {%- else -%}
           <div class="vf-jdgm__empty">
             {%- render 'vf-stars', rating: 0, size: 22 -%}
-            <p>Ainda não há avaliações. Já fez o protocolo? Conta pra gente como foi.</p>
+            <p>Ainda não há avaliações por aqui.</p>
           </div>
         {%- endif -%}
 
         {%- if section.settings.write_label != blank -%}
           <div class="vf-jdgm__cta">
+            <p class="vf-jdgm__cta-title">Já fez o protocolo?</p>
+            <p class="vf-jdgm__cta-text">Conta pra gente como foi. Sua avaliação ajuda outras famílias a decidir.</p>
             <button type="button" class="vf-jdgm__write" data-vf-jdgm-write>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
               {{ section.settings.write_label | escape }}
             </button>
           </div>
@@ -92,7 +98,7 @@
       </div>
 
       {%- if jdgm_count > 0 -%}
-        <p class="vf-jdgm__note">Mostrando as avaliações mais recentes — {{ jdgm_count }} no total.</p>
+        <p class="vf-jdgm__note">Mostrando as avaliações mais recentes · {{ jdgm_count }} no total</p>
       {%- endif -%}
 
       <div class="vf-jdgm__widget">
@@ -129,279 +135,148 @@
   </script>
 
   <style>
-    #shopify-section-{{ section.id }} .vf-jdgm {
+    /* Escopo: #avaliacoes (id único da seção na página) */
+    #avaliacoes.vf-jdgm {
+      --vf-jdgm-gold: #F5B301;
+      --vf-jdgm-line: #ECECE6;
       background: var(--vf-bg, #FAFAFA);
-      padding: var(--section-padding, 80px 16px);
+      padding: clamp(56px, 7vw, 88px) 16px;
       color: var(--vf-text, #1A1A1A);
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       --jdgm-primary-color: var(--vf-green, #5EBC43);
-      --jdgm-secondary-color: rgba(94, 188, 67, .10);
-      --jdgm-star-color: #FBBF24;
-      --jdgm-write-review-bg-color: var(--vf-green, #5EBC43);
-      --jdgm-write-review-text-color: #FFFFFF;
+      --jdgm-star-color: var(--vf-jdgm-gold);
       --jdgm-paginate-color: var(--vf-green-dark, #1B5E20);
-      --jdgm-reviewer-name-color: var(--vf-text, #1A1A1A);
-      --jdgm-border-radius: var(--card-radius, 16px);
     }
-    #shopify-section-{{ section.id }} .vf-jdgm__inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+    #avaliacoes .vf-jdgm__inner { max-width: 1040px; margin: 0 auto; }
 
     /* ---------- Título ---------- */
-    #shopify-section-{{ section.id }} .vf-jdgm__head {
-      text-align: center;
-      margin: 0 auto 36px;
-      max-width: 680px;
+    #avaliacoes .vf-jdgm__head { text-align: center; max-width: 640px; margin: 0 auto 32px; }
+    #avaliacoes .vf-jdgm__eyebrow {
+      display: inline-block; margin: 0 0 12px; padding: 6px 14px; border-radius: 999px;
+      background: #E7F6E1; color: var(--vf-green-dark, #1B5E20);
+      font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
     }
-    #shopify-section-{{ section.id }} .vf-jdgm__eyebrow {
-      margin: 0 0 10px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
+    #avaliacoes .vf-jdgm__heading {
+      margin: 0 0 10px; font-family: 'Caprasimo', Georgia, serif; font-weight: 400;
+      font-size: clamp(30px, 4vw, 44px); line-height: 1.12; letter-spacing: -.01em;
       color: var(--vf-green-dark, #1B5E20);
     }
-    #shopify-section-{{ section.id }} .vf-jdgm__heading {
-      margin: 0 0 10px;
-      font-family: 'Caprasimo', Georgia, serif;
-      font-weight: 400;
-      font-size: clamp(28px, 3.8vw, 40px);
-      line-height: 1.15;
-      color: var(--vf-green-dark, #1B5E20);
-    }
-    #shopify-section-{{ section.id }} .vf-jdgm__sub {
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.55;
-      color: #5B5B5B;
-    }
+    #avaliacoes .vf-jdgm__sub { margin: 0; font-size: 16px; line-height: 1.55; color: #5B5B5B; }
 
-    /* ---------- Resumo: nota + distribuição + botão ---------- */
-    #shopify-section-{{ section.id }} .vf-jdgm__summary {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-      align-items: center;
-      padding: 0 0 28px;
-      border-bottom: 1px solid var(--vf-border, #E8E8E8);
+    /* ---------- Card de resumo ---------- */
+    #avaliacoes .vf-jdgm__summary {
+      display: grid; grid-template-columns: 1fr; gap: 24px; align-items: center;
+      padding: 28px 22px; background: #FFFFFF; border: 1px solid var(--vf-jdgm-line);
+      border-radius: 20px; box-shadow: 0 10px 30px rgba(27, 94, 32, .06);
+      margin-bottom: 20px;
     }
-    #shopify-section-{{ section.id }} .vf-jdgm__score {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      text-align: center;
+    #avaliacoes .vf-jdgm__score { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+    #avaliacoes .vf-jdgm__score-num {
+      font-family: 'Caprasimo', Georgia, serif; font-size: 64px; line-height: .95; color: var(--vf-text, #1A1A1A);
     }
-    #shopify-section-{{ section.id }} .vf-jdgm__score-num {
-      font-family: 'Caprasimo', Georgia, serif;
-      font-size: 56px;
-      line-height: 1;
-      color: var(--vf-text, #1A1A1A);
+    #avaliacoes .vf-jdgm__score .vf-stars__fill { color: var(--vf-jdgm-gold); }
+    #avaliacoes .vf-jdgm__score-count { font-size: 14px; font-weight: 500; color: #6B6B6B; }
+
+    #avaliacoes .vf-jdgm__hist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; width: 100%; }
+    #avaliacoes .vf-jdgm__hist-row {
+      display: grid; grid-template-columns: 30px 1fr 24px; align-items: center; gap: 12px;
+      font-size: 13px; font-weight: 600; color: var(--vf-text, #1A1A1A);
     }
-    #shopify-section-{{ section.id }} .vf-jdgm__score-count {
-      font-size: 14px;
-      color: #6B6B6B;
+    #avaliacoes .vf-jdgm__hist-label { display: inline-flex; align-items: center; gap: 4px; }
+    #avaliacoes .vf-jdgm__hist-label svg { display: block; width: 13px; height: 13px; max-width: none; color: var(--vf-jdgm-gold); flex-shrink: 0; }
+    #avaliacoes .vf-jdgm__hist-bar { position: relative; height: 10px; border-radius: 999px; background: #F1F1EC; overflow: hidden; }
+    #avaliacoes .vf-jdgm__hist-bar > span {
+      position: absolute; top: 0; left: 0; bottom: 0; border-radius: 999px;
+      background: linear-gradient(90deg, #F5B301, #FBCB45);
     }
-    #shopify-section-{{ section.id }} .vf-jdgm__hist {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      width: 100%;
+    #avaliacoes .vf-jdgm__hist-count { text-align: right; font-weight: 500; color: #8A8A8A; }
+
+    #avaliacoes .vf-jdgm__empty { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; color: #5B5B5B; }
+    #avaliacoes .vf-jdgm__empty p { margin: 0; font-size: 15px; }
+
+    #avaliacoes .vf-jdgm__cta {
+      display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
+      padding-top: 22px; border-top: 1px solid var(--vf-jdgm-line);
     }
-    #shopify-section-{{ section.id }} .vf-jdgm__hist-row {
-      display: grid;
-      grid-template-columns: 34px 1fr 28px;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--vf-text, #1A1A1A);
+    #avaliacoes .vf-jdgm__cta-title { margin: 0; font-family: 'Caprasimo', Georgia, serif; font-size: 20px; line-height: 1.2; color: var(--vf-text, #1A1A1A); }
+    #avaliacoes .vf-jdgm__cta-text { margin: 0 0 8px; font-size: 14px; line-height: 1.5; color: #6B6B6B; max-width: 30ch; }
+    #avaliacoes .vf-jdgm__write {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; min-height: 50px; padding: 0 22px; border: 0; border-radius: 999px;
+      background: var(--vf-green, #5EBC43); color: #FFFFFF;
+      font-family: 'Inter', system-ui, sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap; cursor: pointer;
+      box-shadow: 0 6px 18px rgba(94, 188, 67, .30); transition: background .2s ease, transform .2s ease;
     }
-    #shopify-section-{{ section.id }} .vf-jdgm__hist-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-    #shopify-section-{{ section.id }} .vf-jdgm__hist-label svg {
-      width: 13px;
-      height: 13px;
-      color: #FBBF24;
-      flex-shrink: 0;
-    }
-    #shopify-section-{{ section.id }} .vf-jdgm__hist-bar {
-      position: relative;
-      height: 8px;
-      border-radius: 999px;
-      background: #ECECEC;
-      overflow: hidden;
-    }
-    #shopify-section-{{ section.id }} .vf-jdgm__hist-bar > span {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      border-radius: 999px;
-      background: #FBBF24;
-    }
-    #shopify-section-{{ section.id }} .vf-jdgm__hist-count {
-      text-align: right;
-      font-weight: 500;
-      color: #6B6B6B;
-    }
-    #shopify-section-{{ section.id }} .vf-jdgm__empty {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      text-align: center;
-      color: #5B5B5B;
-    }
-    #shopify-section-{{ section.id }} .vf-jdgm__empty p {
-      margin: 0;
-      font-size: 15px;
-    }
-    #shopify-section-{{ section.id }} .vf-jdgm__cta {
-      display: flex;
-      justify-content: center;
-    }
-    #shopify-section-{{ section.id }} .vf-jdgm__write {
-      width: 100%;
-      min-height: 50px;
-      padding: 0 28px;
-      border: 0;
-      border-radius: 999px;
-      background: var(--vf-green, #5EBC43);
-      color: #FFFFFF;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(94, 188, 67, .28);
-      transition: background .2s ease, transform .2s ease;
-    }
-    #shopify-section-{{ section.id }} .vf-jdgm__write:hover {
-      background: var(--vf-green-dark, #1B5E20);
-      transform: translateY(-1px);
-    }
-    #shopify-section-{{ section.id }} .vf-jdgm__note {
-      margin: 16px 0 0;
-      font-size: 13px;
-      color: #6B6B6B;
-    }
+    #avaliacoes .vf-jdgm__write svg { display: block; width: 17px; height: 17px; flex-shrink: 0; }
+    #avaliacoes .vf-jdgm__write:hover { background: var(--vf-green-dark, #1B5E20); transform: translateY(-1px); }
+
+    #avaliacoes .vf-jdgm__note { margin: 8px 0 14px; font-size: 13px; font-weight: 500; color: #8A8A8A; }
 
     @media (min-width: 750px) {
-      #shopify-section-{{ section.id }} .vf-jdgm__summary {
-        grid-template-columns: auto minmax(0, 380px) 1fr;
-        gap: 48px;
+      #avaliacoes .vf-jdgm__summary {
+        grid-template-columns: 170px minmax(0, 1fr) 310px; gap: 0; padding: 32px 8px;
       }
-      #shopify-section-{{ section.id }} .vf-jdgm__summary:has(.vf-jdgm__empty) {
-        grid-template-columns: 1fr auto;
-      }
-      #shopify-section-{{ section.id }} .vf-jdgm__score {
-        min-width: 150px;
-      }
-      #shopify-section-{{ section.id }} .vf-jdgm__score-num {
-        font-size: 64px;
-      }
-      #shopify-section-{{ section.id }} .vf-jdgm__empty {
-        align-items: flex-start;
-        text-align: left;
-      }
-      #shopify-section-{{ section.id }} .vf-jdgm__cta {
-        justify-content: flex-end;
-      }
-      #shopify-section-{{ section.id }} .vf-jdgm__write {
-        width: auto;
-      }
+      #avaliacoes .vf-jdgm__summary > * { padding: 0 32px; }
+      #avaliacoes .vf-jdgm__summary > * + * { border-left: 1px solid var(--vf-jdgm-line); }
+      #avaliacoes .vf-jdgm__summary:has(.vf-jdgm__empty) { grid-template-columns: minmax(0, 1fr) 310px; }
+      #avaliacoes .vf-jdgm__cta { padding-top: 0; border-top: 0; }
+      #avaliacoes .vf-jdgm__score-num { font-size: 72px; }
     }
 
-    /* ---------- Lista do Judge.me ---------- */
-    #shopify-section-{{ section.id }} .vf-jdgm--custom-header .jdgm-rev-widg__title,
-    #shopify-section-{{ section.id }} .vf-jdgm--custom-header .jdgm-rev-widg__summary,
-    #shopify-section-{{ section.id }} .vf-jdgm--custom-header .jdgm-histogram,
-    #shopify-section-{{ section.id }} .vf-jdgm--custom-header .jdgm-write-rev-link,
-    #shopify-section-{{ section.id }} .vf-jdgm--custom-header .jdgm-widget-actions-wrapper {
-      display: none !important;
+    /* ---------- Lista do Judge.me (cards) ---------- */
+    #avaliacoes.vf-jdgm--custom-header .jdgm-rev-widg__header > *:not(.jdgm-form-wrapper) { display: none !important; }
+    #avaliacoes.vf-jdgm--custom-header .jdgm-rev-widg__header { margin: 0 !important; padding: 0 !important; border: 0 !important; min-height: 0 !important; }
+    #avaliacoes .jdgm-rev-widg { padding: 0 !important; margin: 0 !important; border: 0 !important; background: transparent !important; }
+    #avaliacoes .jdgm-rev-widg__body { border: 0 !important; margin: 0 !important; padding: 0 !important; }
+    #avaliacoes .jdgm-rev-widg__sort-wrapper { display: flex; justify-content: flex-end; margin: 0 0 12px; border: 0 !important; }
+    #avaliacoes .jdgm-rev-widg__reviews { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    #avaliacoes .jdgm-rev {
+      position: relative; margin: 0 !important; padding: 22px 22px 20px !important;
+      background: #FFFFFF; border: 1px solid var(--vf-jdgm-line) !important; border-radius: 18px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .03);
     }
-    #shopify-section-{{ section.id }} .vf-jdgm--custom-header .jdgm-rev-widg__header {
-      margin: 0 !important;
-      padding: 0 !important;
-      border: 0 !important;
+    #avaliacoes .jdgm-rev:first-child { border-top: 1px solid var(--vf-jdgm-line) !important; }
+    #avaliacoes .jdgm-star, #avaliacoes .jdgm-star:before { color: var(--vf-jdgm-gold) !important; }
+    #avaliacoes .jdgm-rev__rating { font-size: 15px; }
+    #avaliacoes .jdgm-rev__icon {
+      width: 40px !important; height: 40px !important; line-height: 40px !important;
+      border-radius: 50% !important; background: #E7F6E1 !important; color: var(--vf-green-dark, #1B5E20) !important;
+      font-weight: 700; font-size: 16px; text-align: center; overflow: visible;
     }
-    #shopify-section-{{ section.id }} .vf-jdgm__widget .jdgm-rev-widg {
-      padding: 0 !important;
-      border: 0 !important;
-      background: transparent !important;
+    #avaliacoes .jdgm-rev__icon:after { border-radius: 50%; }
+    #avaliacoes .jdgm-rev__author, #avaliacoes .jdgm-rev__body, #avaliacoes .jdgm-rev__title, #avaliacoes .jdgm-rev__timestamp {
+      font-family: 'Inter', system-ui, sans-serif !important;
     }
-    #shopify-section-{{ section.id }} .jdgm-star {
-      color: #FBBF24 !important;
+    #avaliacoes .jdgm-rev__author { font-size: 15px; font-weight: 700; color: var(--vf-text, #1A1A1A); }
+    #avaliacoes .jdgm-rev__timestamp { font-size: 12.5px; color: #8A8A8A; }
+    #avaliacoes .jdgm-rev__buyer-badge {
+      display: inline-flex !important; align-items: center; margin-left: 6px;
+      padding: 3px 10px !important; border: 0 !important; border-radius: 999px !important;
+      background: #E7F6E1 !important; color: #1B5E20 !important;
+      font-size: 11px !important; font-weight: 700 !important; line-height: 1.3 !important; vertical-align: middle;
     }
-    #shopify-section-{{ section.id }} .jdgm-rev {
-      padding: 24px 0 !important;
-      border-top: 0 !important;
-      border-bottom: 1px solid var(--vf-border, #E8E8E8) !important;
-    }
-    #shopify-section-{{ section.id }} .jdgm-rev__body,
-    #shopify-section-{{ section.id }} .jdgm-rev__title,
-    #shopify-section-{{ section.id }} .jdgm-rev__author,
-    #shopify-section-{{ section.id }} .jdgm-rev__timestamp {
-      font-family: 'Inter', system-ui, sans-serif;
-    }
-    #shopify-section-{{ section.id }} .jdgm-rev__author {
-      font-weight: 700;
-      color: var(--vf-text, #1A1A1A);
-    }
-    #shopify-section-{{ section.id }} .jdgm-rev__timestamp {
-      font-size: 13px;
-      color: #8A8A8A;
-    }
-    #shopify-section-{{ section.id }} .jdgm-rev__body {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #333333;
-    }
-    #shopify-section-{{ section.id }} .jdgm-rev__buyer-badge {
-      background: #E7F6E1 !important;
-      color: #1B5E20 !important;
-      border: 0 !important;
-      border-radius: 999px !important;
-      padding: 2px 9px !important;
-      font-size: 11px !important;
-      font-weight: 600 !important;
-    }
-    #shopify-section-{{ section.id }} .jdgm-rev__pic-img {
-      border-radius: 12px;
-    }
-    #shopify-section-{{ section.id }} .jdgm-paginate__page.jdgm-curt {
-      color: var(--vf-green-dark, #1B5E20) !important;
-      font-weight: 700;
-    }
-    #shopify-section-{{ section.id }} .jdgm-form-wrapper {
-      margin: 24px 0;
-      padding: 24px;
-      background: #FFFFFF;
-      border-radius: var(--card-radius, 16px);
-      box-shadow: 0 2px 12px rgba(0, 0, 0, .05);
-    }
-    #shopify-section-{{ section.id }} .jdgm-submit-rev {
-      background: var(--vf-green, #5EBC43) !important;
-      color: #FFFFFF !important;
-      border: 0 !important;
-      border-radius: 999px !important;
-      font-weight: 700 !important;
-    }
+    #avaliacoes .jdgm-rev__content { margin-top: 12px; }
+    #avaliacoes .jdgm-rev__title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    #avaliacoes .jdgm-rev__body { font-size: 15px; line-height: 1.6; color: #333333; }
+    #avaliacoes .jdgm-rev__body p { margin: 0; }
+    #avaliacoes .jdgm-rev__pic-img { border-radius: 12px; }
+    #avaliacoes .jdgm-rev__actions { margin-top: 10px; }
 
-    @media (max-width: 749px) {
-      #shopify-section-{{ section.id }} .vf-jdgm {
-        padding: 48px 16px;
-      }
-      #shopify-section-{{ section.id }} .vf-jdgm__head {
-        margin-bottom: 28px;
-      }
+    #avaliacoes .jdgm-paginate { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 24px; }
+    #avaliacoes .jdgm-paginate__page {
+      display: inline-flex; align-items: center; justify-content: center; min-width: 38px; height: 38px; padding: 0 10px;
+      border-radius: 999px; border: 1px solid var(--vf-jdgm-line); background: #FFFFFF;
+      color: var(--vf-text, #1A1A1A) !important; font-weight: 600; text-decoration: none;
+    }
+    #avaliacoes .jdgm-paginate__page.jdgm-curt { background: var(--vf-green, #5EBC43); border-color: var(--vf-green, #5EBC43); color: #FFFFFF !important; }
+
+    #avaliacoes .jdgm-form-wrapper {
+      margin: 0 0 24px; padding: 24px; background: #FFFFFF;
+      border: 1px solid var(--vf-jdgm-line); border-radius: 20px;
+    }
+    #avaliacoes .jdgm-submit-rev {
+      background: var(--vf-green, #5EBC43) !important; color: #FFFFFF !important; border: 0 !important;
+      border-radius: 999px !important; font-weight: 700 !important; padding: 12px 24px !important;
     }
   </style>
 {%- endif -%}
