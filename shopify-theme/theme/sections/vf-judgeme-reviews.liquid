@@ -1,0 +1,463 @@
+{%- comment -%}
+  vf-judgeme-reviews.liquid — Avaliações reais de clientes (Judge.me).
+  Posição no PDP: depois de "Historias reais", antes do FAQ.
+  Âncora de rolagem: #avaliacoes (estrelas do topo e barra sticky levam pra cá).
+
+  Topo próprio da VermeFree: nota média, estrelas, distribuição 5★→1★
+  e botão "Escreva uma avaliação", com dados do metafield
+  judgeme.review_widget_data. Abaixo, a lista do widget oficial do
+  Judge.me (paginação, formulário, fotos) com o cabeçalho padrão dele
+  escondido e o visual ajustado à marca.
+  Depende do app embed judgeme_core estar ativo no tema.
+{%- endcomment -%}
+
+{%- liquid
+  assign jdgm_data = product.metafields.judgeme.review_widget_data.value
+  assign jdgm_count = 0
+  assign jdgm_avg = 0
+  if jdgm_data.number_of_reviews
+    assign jdgm_count = jdgm_data.number_of_reviews | times: 1
+    assign jdgm_avg = jdgm_data.average_rating | times: 1.0
+  endif
+  assign jdgm_avg_display = jdgm_avg | round: 1 | append: '' | replace: '.', ','
+  if jdgm_count == 1
+    assign jdgm_word = 'avaliação'
+  else
+    assign jdgm_word = 'avaliações'
+  endif
+
+  assign render_block = true
+  if section.settings.hide_until_reviews and jdgm_count == 0
+    assign render_block = false
+  endif
+-%}
+
+{%- if render_block -%}
+  <div
+    class="vf-jdgm{% if section.settings.hide_jdgm_header %} vf-jdgm--custom-header{% endif %}"
+    id="avaliacoes"
+    data-vf-jdgm
+  >
+    <div class="vf-jdgm__inner">
+      <div class="vf-jdgm__head">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="vf-jdgm__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="vf-jdgm__heading">{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p class="vf-jdgm__sub">{{ section.settings.subheading | escape }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="vf-jdgm__summary">
+        {%- if jdgm_count > 0 -%}
+          <div class="vf-jdgm__score" aria-label="Nota média {{ jdgm_avg_display }} de 5, com base em {{ jdgm_count }} {{ jdgm_word }}">
+            <span class="vf-jdgm__score-num" aria-hidden="true">{{ jdgm_avg_display }}</span>
+            {%- render 'vf-stars', rating: jdgm_avg, size: 22 -%}
+            <span class="vf-jdgm__score-count" aria-hidden="true">{{ jdgm_count }} {{ jdgm_word }}</span>
+          </div>
+
+          {%- if jdgm_data.histogram.size > 0 -%}
+            <ul class="vf-jdgm__hist" aria-label="Distribuição das notas">
+              {%- for row in jdgm_data.histogram -%}
+                <li class="vf-jdgm__hist-row" aria-label="{{ row.rating }} estrelas: {{ row.frequency }}">
+                  <span class="vf-jdgm__hist-label" aria-hidden="true">
+                    {{ row.rating }}
+                    <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+                  </span>
+                  <span class="vf-jdgm__hist-bar" aria-hidden="true">
+                    <span style="width: {{ row.percentage }}%;"></span>
+                  </span>
+                  <span class="vf-jdgm__hist-count" aria-hidden="true">{{ row.frequency }}</span>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        {%- else -%}
+          <div class="vf-jdgm__empty">
+            {%- render 'vf-stars', rating: 0, size: 22 -%}
+            <p>Ainda não há avaliações. Já fez o protocolo? Conta pra gente como foi.</p>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.write_label != blank -%}
+          <div class="vf-jdgm__cta">
+            <button type="button" class="vf-jdgm__write" data-vf-jdgm-write>
+              {{ section.settings.write_label | escape }}
+            </button>
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if jdgm_count > 0 -%}
+        <p class="vf-jdgm__note">Mostrando as avaliações mais recentes — {{ jdgm_count }} no total.</p>
+      {%- endif -%}
+
+      <div class="vf-jdgm__widget">
+        <div
+          id="judgeme_product_reviews"
+          class="jdgm-widget jdgm-review-widget"
+          data-product-title="{{ product.title | escape }}"
+          data-id="{{ product.id }}"
+        >
+          {{ product.metafields.judgeme.widget }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      document.querySelectorAll('[data-vf-jdgm]').forEach(function(root) {
+        var btn = root.querySelector('[data-vf-jdgm-write]');
+        if (!btn || btn.dataset.vfBound) return;
+        btn.dataset.vfBound = '1';
+        btn.addEventListener('click', function() {
+          var widget = root.querySelector('.vf-jdgm__widget');
+          var link = root.querySelector('.jdgm-write-rev-link');
+          if (link) link.click();
+          setTimeout(function() {
+            var form = root.querySelector('.jdgm-form-wrapper') || root.querySelector('.jdgm-form');
+            var target = (form && form.offsetParent !== null) ? form : widget;
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 200);
+        });
+      });
+    })();
+  </script>
+
+  <style>
+    #shopify-section-{{ section.id }} .vf-jdgm {
+      background: var(--vf-bg, #FAFAFA);
+      padding: var(--section-padding, 80px 16px);
+      color: var(--vf-text, #1A1A1A);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      --jdgm-primary-color: var(--vf-green, #5EBC43);
+      --jdgm-secondary-color: rgba(94, 188, 67, .10);
+      --jdgm-star-color: #FBBF24;
+      --jdgm-write-review-bg-color: var(--vf-green, #5EBC43);
+      --jdgm-write-review-text-color: #FFFFFF;
+      --jdgm-paginate-color: var(--vf-green-dark, #1B5E20);
+      --jdgm-reviewer-name-color: var(--vf-text, #1A1A1A);
+      --jdgm-border-radius: var(--card-radius, 16px);
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ---------- Título ---------- */
+    #shopify-section-{{ section.id }} .vf-jdgm__head {
+      text-align: center;
+      margin: 0 auto 36px;
+      max-width: 680px;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__eyebrow {
+      margin: 0 0 10px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--vf-green-dark, #1B5E20);
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__heading {
+      margin: 0 0 10px;
+      font-family: 'Caprasimo', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(28px, 3.8vw, 40px);
+      line-height: 1.15;
+      color: var(--vf-green-dark, #1B5E20);
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__sub {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.55;
+      color: #5B5B5B;
+    }
+
+    /* ---------- Resumo: nota + distribuição + botão ---------- */
+    #shopify-section-{{ section.id }} .vf-jdgm__summary {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: center;
+      padding: 0 0 28px;
+      border-bottom: 1px solid var(--vf-border, #E8E8E8);
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__score {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__score-num {
+      font-family: 'Caprasimo', Georgia, serif;
+      font-size: 56px;
+      line-height: 1;
+      color: var(--vf-text, #1A1A1A);
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__score-count {
+      font-size: 14px;
+      color: #6B6B6B;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__hist {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__hist-row {
+      display: grid;
+      grid-template-columns: 34px 1fr 28px;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--vf-text, #1A1A1A);
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__hist-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__hist-label svg {
+      width: 13px;
+      height: 13px;
+      color: #FBBF24;
+      flex-shrink: 0;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__hist-bar {
+      position: relative;
+      height: 8px;
+      border-radius: 999px;
+      background: #ECECEC;
+      overflow: hidden;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__hist-bar > span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      border-radius: 999px;
+      background: #FBBF24;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__hist-count {
+      text-align: right;
+      font-weight: 500;
+      color: #6B6B6B;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+      color: #5B5B5B;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__empty p {
+      margin: 0;
+      font-size: 15px;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__cta {
+      display: flex;
+      justify-content: center;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__write {
+      width: 100%;
+      min-height: 50px;
+      padding: 0 28px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--vf-green, #5EBC43);
+      color: #FFFFFF;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(94, 188, 67, .28);
+      transition: background .2s ease, transform .2s ease;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__write:hover {
+      background: var(--vf-green-dark, #1B5E20);
+      transform: translateY(-1px);
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__note {
+      margin: 16px 0 0;
+      font-size: 13px;
+      color: #6B6B6B;
+    }
+
+    @media (min-width: 750px) {
+      #shopify-section-{{ section.id }} .vf-jdgm__summary {
+        grid-template-columns: auto minmax(0, 380px) 1fr;
+        gap: 48px;
+      }
+      #shopify-section-{{ section.id }} .vf-jdgm__summary:has(.vf-jdgm__empty) {
+        grid-template-columns: 1fr auto;
+      }
+      #shopify-section-{{ section.id }} .vf-jdgm__score {
+        min-width: 150px;
+      }
+      #shopify-section-{{ section.id }} .vf-jdgm__score-num {
+        font-size: 64px;
+      }
+      #shopify-section-{{ section.id }} .vf-jdgm__empty {
+        align-items: flex-start;
+        text-align: left;
+      }
+      #shopify-section-{{ section.id }} .vf-jdgm__cta {
+        justify-content: flex-end;
+      }
+      #shopify-section-{{ section.id }} .vf-jdgm__write {
+        width: auto;
+      }
+    }
+
+    /* ---------- Lista do Judge.me ---------- */
+    #shopify-section-{{ section.id }} .vf-jdgm--custom-header .jdgm-rev-widg__title,
+    #shopify-section-{{ section.id }} .vf-jdgm--custom-header .jdgm-rev-widg__summary,
+    #shopify-section-{{ section.id }} .vf-jdgm--custom-header .jdgm-histogram,
+    #shopify-section-{{ section.id }} .vf-jdgm--custom-header .jdgm-write-rev-link,
+    #shopify-section-{{ section.id }} .vf-jdgm--custom-header .jdgm-widget-actions-wrapper {
+      display: none !important;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm--custom-header .jdgm-rev-widg__header {
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+    }
+    #shopify-section-{{ section.id }} .vf-jdgm__widget .jdgm-rev-widg {
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+    #shopify-section-{{ section.id }} .jdgm-star {
+      color: #FBBF24 !important;
+    }
+    #shopify-section-{{ section.id }} .jdgm-rev {
+      padding: 24px 0 !important;
+      border-top: 0 !important;
+      border-bottom: 1px solid var(--vf-border, #E8E8E8) !important;
+    }
+    #shopify-section-{{ section.id }} .jdgm-rev__body,
+    #shopify-section-{{ section.id }} .jdgm-rev__title,
+    #shopify-section-{{ section.id }} .jdgm-rev__author,
+    #shopify-section-{{ section.id }} .jdgm-rev__timestamp {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    #shopify-section-{{ section.id }} .jdgm-rev__author {
+      font-weight: 700;
+      color: var(--vf-text, #1A1A1A);
+    }
+    #shopify-section-{{ section.id }} .jdgm-rev__timestamp {
+      font-size: 13px;
+      color: #8A8A8A;
+    }
+    #shopify-section-{{ section.id }} .jdgm-rev__body {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #333333;
+    }
+    #shopify-section-{{ section.id }} .jdgm-rev__buyer-badge {
+      background: #E7F6E1 !important;
+      color: #1B5E20 !important;
+      border: 0 !important;
+      border-radius: 999px !important;
+      padding: 2px 9px !important;
+      font-size: 11px !important;
+      font-weight: 600 !important;
+    }
+    #shopify-section-{{ section.id }} .jdgm-rev__pic-img {
+      border-radius: 12px;
+    }
+    #shopify-section-{{ section.id }} .jdgm-paginate__page.jdgm-curt {
+      color: var(--vf-green-dark, #1B5E20) !important;
+      font-weight: 700;
+    }
+    #shopify-section-{{ section.id }} .jdgm-form-wrapper {
+      margin: 24px 0;
+      padding: 24px;
+      background: #FFFFFF;
+      border-radius: var(--card-radius, 16px);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .05);
+    }
+    #shopify-section-{{ section.id }} .jdgm-submit-rev {
+      background: var(--vf-green, #5EBC43) !important;
+      color: #FFFFFF !important;
+      border: 0 !important;
+      border-radius: 999px !important;
+      font-weight: 700 !important;
+    }
+
+    @media (max-width: 749px) {
+      #shopify-section-{{ section.id }} .vf-jdgm {
+        padding: 48px 16px;
+      }
+      #shopify-section-{{ section.id }} .vf-jdgm__head {
+        margin-bottom: 28px;
+      }
+    }
+  </style>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "VF Avaliações Judge.me",
+  "tag": "section",
+  "class": "vf-jdgm-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Avaliações reais coletadas pelo Judge.me. Requer o app embed Judge.me ativo no tema. As estrelas do topo da página levam até aqui (#avaliacoes)."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Avaliações de quem já usa"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subtítulo",
+      "default": "Avaliações reais e verificadas de clientes VermeFree."
+    },
+    {
+      "type": "text",
+      "id": "write_label",
+      "label": "Texto do botão de avaliar",
+      "default": "Escreva uma avaliação"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_jdgm_header",
+      "label": "Esconder o cabeçalho padrão do Judge.me",
+      "info": "Evita repetir nota e botão, já que o topo desta seção mostra os dois.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_until_reviews",
+      "label": "Esconder a seção enquanto não houver avaliação publicada",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "VF Avaliações Judge.me"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,25 @@
+{%- comment -%}
+  vf-stars — 5 estrelas com preenchimento proporcional à nota (ex.: 4,6 = 92%).
+  Uso: {% render 'vf-stars', rating: 4.6, size: 16 %}
+  Cores e tamanho: CSS .vf-stars em vf-pdp-main.liquid.
+{%- endcomment -%}
+{%- liquid
+  assign vf_stars_rating = rating | default: 0 | times: 1.0
+  if vf_stars_rating > 5
+    assign vf_stars_rating = 5
+  endif
+  assign vf_stars_pct = vf_stars_rating | divided_by: 5.0 | times: 100 | round: 1
+  assign vf_stars_size = size | default: 16
+-%}
+<span class="vf-stars" style="--vf-star-size: {{ vf_stars_size }}px;" aria-hidden="true">
+  <span class="vf-stars__base">
+    {%- for i in (1..5) -%}
+      <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+    {%- endfor -%}
+  </span>
+  <span class="vf-stars__fill" style="width: {{ vf_stars_pct }}%;">
+    {%- for i in (1..5) -%}
+      <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+    {%- endfor -%}
+  </span>
+</span>

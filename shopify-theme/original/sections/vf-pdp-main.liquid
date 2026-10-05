@@ -1,0 +1,2746 @@
+{%- comment -%}
+  vf-pdp-main — PDP principal estilo DTC premium
+  Layout: galeria (sticky) à esquerda + buy box (sticky) à direita
+  Mobile: galeria em cima, buy box embaixo
+  Inclui: stars, preço com parcelado em destaque, lista de componentes, CTAs, selos
+{%- endcomment -%}
+
+<section class="vf-pdp" aria-label="Detalhes do produto">
+  <div class="vf-pdp__container">
+
+    {%- comment -%}
+      GALERIA
+      Prioridade 1: product.images (cadastradas no admin Shopify)
+      Prioridade 2: fallback estático com fotos reais V2 (asset_url)
+                    usado em preview antes do produto estar cadastrado
+    {%- endcomment -%}
+    <div class="vf-pdp__gallery">
+      {%- if product.images.size > 0 -%}
+        {%- assign main_img = product.featured_image -%}
+        <div class="vf-pdp__main-image">
+          <img
+            src="{{ main_img | image_url: width: 1000 }}"
+            alt="{{ main_img.alt | default: product.title | escape }}"
+            width="1000"
+            height="1000"
+            loading="eager"
+            class="vf-pdp__img"
+            id="vf-pdp-main-img"
+          >
+        </div>
+
+        {%- if product.images.size > 1 -%}
+          <div class="vf-pdp__thumbs">
+            {%- for image in product.images limit: 12 -%}
+              <button
+                type="button"
+                class="vf-pdp__thumb {% if forloop.first %}is-active{% endif %}"
+                data-src="{{ image | image_url: width: 1000 }}"
+                aria-label="Ver imagem {{ forloop.index }}"
+              >
+                <img
+                  src="{{ image | image_url: width: 200 }}"
+                  alt=""
+                  width="200"
+                  height="200"
+                  loading="lazy"
+                >
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+      {%- else -%}
+        {%- comment -%} Fallback: fotos reais V2 do produto Adulto {%- endcomment -%}
+        {%- assign fallback_main = 'pdp-adulto-01-oregano-frontal.jpg' | asset_url -%}
+        <div class="vf-pdp__main-image">
+          <img
+            src="{{ fallback_main }}"
+            alt="Protocolo Adulto VermeFree — Óleo Essencial de Orégano"
+            width="1000"
+            height="1000"
+            loading="eager"
+            class="vf-pdp__img"
+            id="vf-pdp-main-img"
+          >
+        </div>
+        <div class="vf-pdp__thumbs">
+          {%- assign fallback_thumbs = 'pdp-adulto-01-oregano-frontal.jpg,pdp-adulto-02-oregano-flatlay.jpg,pdp-adulto-03-oregano-deitado-capsulas.jpg,pdp-adulto-05-tintura-gota.jpg,pdp-adulto-06-ornitina.jpg,pdp-adulto-07-silimarina.jpg,kit-familia-01-todos-frascos.jpg' | split: ',' -%}
+          {%- for filename in fallback_thumbs -%}
+            <button
+              type="button"
+              class="vf-pdp__thumb {% if forloop.first %}is-active{% endif %}"
+              data-src="{{ filename | asset_url }}"
+              aria-label="Ver imagem {{ forloop.index }}"
+            >
+              <img
+                src="{{ filename | asset_url }}"
+                alt=""
+                width="200"
+                height="200"
+                loading="lazy"
+              >
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} BUY BOX {%- endcomment -%}
+    <div class="vf-pdp__buy">
+      <div class="vf-pdp__buy-inner">
+
+        {%- if product.vendor != blank and section.settings.show_vendor -%}
+          <p class="vf-pdp__vendor">{{ product.vendor }}</p>
+        {%- endif -%}
+
+        <h1 class="vf-pdp__title">{{ product.title | default: section.settings.fallback_title }}</h1>
+
+        {%- if section.settings.show_age_badge -%}
+          <span class="vf-pdp__age-badge" aria-label="Indicação de idade">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            {{ section.settings.age_badge_text }}
+          </span>
+        {%- endif -%}
+
+        <a class="vf-pdp__protocol-link" href="#como-tomar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="9" y1="14" x2="15" y2="14"/>
+            <line x1="9" y1="18" x2="15" y2="18"/>
+          </svg>
+          Ver o protocolo completo
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+
+        {%- if section.settings.show_rating -%}
+          <div class="vf-pdp__rating" aria-label="Avaliação {{ section.settings.rating_score }} de 5 estrelas">
+            <span class="vf-pdp__stars" aria-hidden="true">
+              {% for i in (1..5) %}
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+              {% endfor %}
+            </span>
+            <span class="vf-pdp__rating-text">
+              <strong>{{ section.settings.rating_score }}</strong>
+              ({{ section.settings.rating_count }} avaliações)
+            </span>
+          </div>
+        {%- endif -%}
+
+        {%- if product.description != blank -%}
+          <p class="vf-pdp__short">{{ product.description | strip_html | truncatewords: 30 }}</p>
+        {%- elsif section.settings.short_desc != blank -%}
+          <p class="vf-pdp__short">{{ section.settings.short_desc }}</p>
+        {%- endif -%}
+
+        {%- comment -%}
+          PREÇO — 10x destaque
+          Parcela 10x fixa por produto (via section setting "installment_10x_value" em centavos).
+          Cai em fallback calculado se setting estiver vazio.
+        {%- endcomment -%}
+        {%- assign installment_10x_cents = section.settings.installment_10x_value | default: 0 -%}
+        {%- assign unit_price_cents = 34700 -%}
+        {%- if product != blank and product.selected_or_first_available_variant != blank -%}
+          {%- assign unit_price_cents = product.selected_or_first_available_variant.price -%}
+        {%- endif -%}
+        {%- assign installment_ratio = 0.11796 -%}
+        {%- if installment_10x_cents > 0 and unit_price_cents > 0 -%}
+          {%- assign installment_ratio = installment_10x_cents | times: 1.0 | divided_by: unit_price_cents -%}
+        {%- endif -%}
+        {%- comment -%}
+          PROMO TEMPORARIA — frete gratis sem minimo, so quinta 30/07 e
+          sexta 31/07/2026 (mesma janela do desconto agendado no Shopify).
+          Data pega do fuso da loja ('now'), entao liga/desliga sozinho.
+        {%- endcomment -%}
+        {%- assign pdp_today = 'now' | date: '%Y-%m-%d' -%}
+        {%- assign pdp_frete_promo = false -%}
+        {%- if pdp_today == '2026-07-30' or pdp_today == '2026-07-31' or section.settings.preview_frete_promo -%}
+          {%- assign pdp_frete_promo = true -%}
+        {%- endif -%}
+        <div class="vf-pdp__price-box{% if pdp_frete_promo %} vf-pdp__price-box--promo{% endif %}"
+             data-unit-price="{{ unit_price_cents }}"
+             data-installment-10x="{{ installment_10x_cents }}"
+             data-frete-promo="{{ pdp_frete_promo }}">
+          {%- if product != blank and product.selected_or_first_available_variant != blank -%}
+            {%- assign current_variant = product.selected_or_first_available_variant -%}
+            {%- assign price = current_variant.price -%}
+            {%- assign compare = current_variant.compare_at_price -%}
+            {%- if compare > price -%}
+              <span class="vf-pdp__compare" id="vf-pdp-compare">de {{ compare | money }}</span>
+            {%- endif -%}
+            {%- if installment_10x_cents > 0 -%}
+              <p class="vf-pdp__installment" id="vf-pdp-installment">
+                10x de {{ installment_10x_cents | money }}
+              </p>
+            {%- else -%}
+              <p class="vf-pdp__installment" id="vf-pdp-installment">
+                3x de {{ price | divided_by: 3 | money }} sem juros
+              </p>
+            {%- endif -%}
+            <p class="vf-pdp__price-cash" id="vf-pdp-cash">
+              ou {{ price | money }} à vista
+            </p>
+          {%- else -%}
+            <p class="vf-pdp__installment" id="vf-pdp-installment">10x de R$ 40,93</p>
+            <p class="vf-pdp__price-cash" id="vf-pdp-cash">ou R$ 347 à vista</p>
+          {%- endif -%}
+
+          <div class="vf-pdp__volume-badge" id="vf-pdp-volume-badge" hidden>
+            <span class="vf-pdp__volume-badge-icon">🎁</span>
+            <span class="vf-pdp__volume-badge-text" id="vf-pdp-volume-badge-text"></span>
+          </div>
+        </div>
+
+        {%- comment -%} COMPONENTES DO PROTOCOLO {%- endcomment -%}
+        {%- assign has_component = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'component' -%}
+            {%- assign has_component = true -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if has_component -%}
+          <div class="vf-pdp__components">
+            <p class="vf-pdp__components-label">O que vem no protocolo:</p>
+            <ul class="vf-pdp__components-list">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'component' -%}
+                  <li class="vf-pdp__component" {{ block.shopify_attributes }}>
+                    <span class="vf-pdp__component-check" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg>
+                    </span>
+                    <span class="vf-pdp__component-text">
+                      <strong>{{ block.settings.name }}</strong>
+                      {%- if block.settings.spec != blank -%}
+                        <span class="vf-pdp__component-spec">{{ block.settings.spec }}</span>
+                      {%- endif -%}
+                    </span>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} VARIANTS / QUANTITY / CTA {%- endcomment -%}
+        <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="vf-pdp__form">
+          {%- if product.has_only_default_variant == false -%}
+            <div class="vf-pdp__variants">
+              {%- for option in product.options_with_values -%}
+                <label class="vf-pdp__variant-label">{{ option.name }}</label>
+                <div class="vf-pdp__variant-options">
+                  {%- for value in option.values -%}
+                    <label class="vf-pdp__pill">
+                      <input type="radio" name="options[{{ option.name }}]" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %}>
+                      <span>{{ value }}</span>
+                    </label>
+                  {%- endfor -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" id="vf-pdp-qty" name="quantity" value="1">
+
+          {%- comment -%}
+            SELETOR DE KITS (estilo Botanika)
+            Cards clicaveis que definem a quantidade. Tiers configuraveis
+            via section settings, com os mesmos descontos que ja existiam
+            no stepper (3=10%, 5=15%, 8=20%).
+          {%- endcomment -%}
+          {%- if section.settings.kits_enabled -%}
+            <div class="vf-pdp__kits" role="radiogroup" aria-label="Escolha a quantidade de kits">
+              {%- if section.settings.kits_socialproof_enabled -%}
+                <div class="vf-pdp__kits-social">
+                  <span class="vf-pdp__kits-stars" aria-hidden="true">★★★★★</span>
+                  {%- if section.settings.kits_socialproof_text != blank -%}
+                    <span class="vf-pdp__kits-social-text">{{ section.settings.kits_socialproof_text }}</span>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.kits_legend != blank -%}
+                <p class="vf-pdp__kits-legend">{{ section.settings.kits_legend }} <strong id="vf-pdp-kits-legend-value">{{ section.settings.tier1_title }}</strong></p>
+              {%- endif -%}
+
+              {%- comment -%} Escada crescente (1/2/3) nos protocolos, com 1 Kit pré-selecionado {%- endcomment -%}
+              {%- assign kit_is_protocol = false -%}
+              {%- assign kit_proto_handles = 'protocolo-desparasitacao-adulto-vermefree,antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos,antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos' | split: ',' -%}
+              {%- if kit_proto_handles contains product.handle -%}{%- assign kit_is_protocol = true -%}{%- endif -%}
+
+              {%- if kit_is_protocol -%}
+                <div class="vf-pdp__kitbar" id="vf-pdp-kitbar">
+                  <div class="vf-pdp__kitbar-track"><div class="vf-pdp__kitbar-fill" id="vf-pdp-kitbar-fill"></div></div>
+                  <p class="vf-pdp__kitbar-msg" id="vf-pdp-kitbar-msg"></p>
+                </div>
+              {%- endif -%}
+
+              <div class="vf-pdp__kits-grid" id="vf-pdp-kits-grid">
+                {%- if kit_is_protocol -%}
+                  {%- assign kit_proto_qtys = '1,2,3' | split: ',' -%}
+                  {%- comment -%} Adulto: 2 kits com 5% OFF (desconto automatico "5% OFF · 2 Protocolos Adulto", por produto, min 2). Kids seguem sem o 5% ate a acao ser estendida. {%- endcomment -%}
+                  {%- if product.handle == 'protocolo-desparasitacao-adulto-vermefree' -%}
+                    {%- assign kit_proto_discs = '0,5,10' | split: ',' -%}
+                  {%- else -%}
+                    {%- assign kit_proto_discs = '0,0,10' | split: ',' -%}
+                  {%- endif -%}
+                  {%- assign kit_proto_titles = '1 Kit,2 Kits,3 Kits' | split: ',' -%}
+                  {%- for idx in (0..2) -%}
+                    {%- assign t_qty = kit_proto_qtys[idx] | plus: 0 -%}
+                    {%- assign t_disc = kit_proto_discs[idx] | plus: 0 -%}
+                    {%- assign t_title = kit_proto_titles[idx] -%}
+                    {%- assign t_total = unit_price_cents | times: t_qty -%}
+                    {%- assign t_disc_amt = t_total | times: t_disc | divided_by: 100 -%}
+                    {%- assign t_price = t_total | minus: t_disc_amt -%}
+                    {%- assign t_installment = t_price | times: installment_ratio | round -%}
+                    {%- assign t_badge1 = '' -%}
+                    {%- assign t_badge2 = '' -%}
+                    {%- assign t_msg = '' -%}
+                    {%- if t_qty == 3 -%}
+                      {%- assign t_badge1 = 'Mais vantajoso' -%}
+                      {%- assign t_badge2 = 'Frete grátis' -%}
+                      {%- assign t_msg = 'Seu ano de desparasitação natural, garantido 🌙' -%}
+                    {%- elsif t_qty == 2 -%}
+                      {%- assign t_badge2 = 'Frete grátis' -%}
+                    {%- endif -%}
+                    <div class="vf-pdp__kit-card{% if forloop.first %} is-active{% endif %}" data-qty="{{ t_qty }}" data-discount="{{ t_disc }}" role="radio" aria-checked="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="0">
+                      {%- if t_badge1 != blank or t_badge2 != blank -%}
+                        <div class="vf-pdp__kit-badges">
+                          {%- if t_badge1 != blank -%}<span class="vf-pdp__kit-badge vf-pdp__kit-badge--1">{{ t_badge1 }}</span>{%- endif -%}
+                          {%- if t_badge2 != blank -%}<span class="vf-pdp__kit-badge vf-pdp__kit-badge--2">{{ t_badge2 }}</span>{%- endif -%}
+                        </div>
+                      {%- endif -%}
+                      <div class="vf-pdp__kit-row">
+                        <span class="vf-pdp__kit-radio" aria-hidden="true"></span>
+                        <div class="vf-pdp__kit-image">
+                          {%- if product.featured_image != blank -%}<img src="{{ product.featured_image | image_url: width: 200 }}" alt="{{ t_title | escape }}" loading="lazy">{%- else -%}<div class="vf-pdp__kit-image-ph"></div>{%- endif -%}
+                        </div>
+                        <div class="vf-pdp__kit-info">
+                          <span class="vf-pdp__kit-title">{{ t_title }}</span>
+                          <div class="vf-pdp__kit-pricing">
+                            <span class="vf-pdp__kit-installments-label">10x de</span>
+                            <span class="vf-pdp__kit-installment-value" data-installment>{{ t_installment | money }}</span>
+                          </div>
+                          <div class="vf-pdp__kit-cash">
+                            <span class="vf-pdp__kit-cash-or">ou</span>
+                            <span class="vf-pdp__kit-cash-value" data-total>{{ t_price | money }}</span>
+                            <span class="vf-pdp__kit-cash-label">à vista</span>
+                            {%- if t_disc > 0 -%}<s class="vf-pdp__kit-compare" data-compare>{{ t_total | money }}</s>{%- endif -%}
+                          </div>
+                          {%- if t_disc > 0 -%}<span class="vf-pdp__kit-discount">{{ t_disc }}% OFF · você economiza <span data-save>{{ t_disc_amt | money }}</span></span>{%- endif -%}
+                        </div>
+                      </div>
+                      {%- if t_msg != blank -%}<div class="vf-pdp__kit-message">{{ t_msg }}</div>{%- endif -%}
+                    </div>
+                  {%- endfor -%}
+                {%- else -%}
+                {%- for i in (1..4) -%}
+                  {%- assign tier_key = i | prepend: 'tier' -%}
+                  {%- assign enabled_key = tier_key | append: '_enabled' -%}
+                  {%- if section.settings[enabled_key] -%}
+                    {%- assign qty_key = tier_key | append: '_quantity' -%}
+                    {%- assign disc_key = tier_key | append: '_discount' -%}
+                    {%- assign title_key = tier_key | append: '_title' -%}
+                    {%- assign image_key = tier_key | append: '_image' -%}
+                    {%- assign badge1_key = tier_key | append: '_badge1' -%}
+                    {%- assign badge2_key = tier_key | append: '_badge2' -%}
+                    {%- assign msg_key = tier_key | append: '_message' -%}
+
+                    {%- assign t_qty = section.settings[qty_key] -%}
+                    {%- assign t_disc = section.settings[disc_key] -%}
+                    {%- assign t_image = section.settings[image_key] -%}
+                    {%- assign t_total = unit_price_cents | times: t_qty -%}
+                    {%- assign t_disc_amt = t_total | times: t_disc | divided_by: 100 -%}
+                    {%- assign t_price = t_total | minus: t_disc_amt -%}
+                    {%- assign t_installment = t_price | times: installment_ratio | round -%}
+                    {%- assign t_badge2 = section.settings[badge2_key] -%}
+                    {%- if pdp_frete_promo -%}
+                      {%- assign t_badge2 = 'Frete grátis' -%}
+                    {%- endif -%}
+                    {%- assign has_badges = false -%}
+                    {%- if section.settings[badge1_key] != blank or t_badge2 != blank -%}
+                      {%- assign has_badges = true -%}
+                    {%- endif -%}
+
+                    <div
+                      class="vf-pdp__kit-card{% if forloop.first %} is-active{% endif %}{% if pdp_frete_promo %} vf-pdp__kit-card--promo{% endif %}"
+                      data-qty="{{ t_qty }}"
+                      data-discount="{{ t_disc }}"
+                      role="radio"
+                      aria-checked="{% if forloop.first %}true{% else %}false{% endif %}"
+                      tabindex="0"
+                    >
+                      {%- if pdp_frete_promo -%}
+                        <span class="vf-pdp__kit-promo-ribbon">🚚 FRETE GRÁTIS HOJE</span>
+                      {%- endif -%}
+                      {%- if has_badges -%}
+                        <div class="vf-pdp__kit-badges">
+                          {%- if section.settings[badge1_key] != blank -%}
+                            <span class="vf-pdp__kit-badge vf-pdp__kit-badge--1">{{ section.settings[badge1_key] }}</span>
+                          {%- endif -%}
+                          {%- if t_badge2 != blank -%}
+                            <span class="vf-pdp__kit-badge vf-pdp__kit-badge--2">{{ t_badge2 }}</span>
+                          {%- endif -%}
+                        </div>
+                      {%- endif -%}
+
+                      <div class="vf-pdp__kit-row">
+                        <span class="vf-pdp__kit-radio" aria-hidden="true"></span>
+
+                        <div class="vf-pdp__kit-image">
+                          {%- if t_image != blank -%}
+                            <img src="{{ t_image | image_url: width: 200 }}" alt="{{ section.settings[title_key] | escape }}" loading="lazy">
+                          {%- elsif product.featured_image != blank -%}
+                            <img src="{{ product.featured_image | image_url: width: 200 }}" alt="{{ section.settings[title_key] | escape }}" loading="lazy">
+                          {%- else -%}
+                            <div class="vf-pdp__kit-image-ph"></div>
+                          {%- endif -%}
+                        </div>
+
+                        <div class="vf-pdp__kit-info">
+                          <span class="vf-pdp__kit-title">{{ section.settings[title_key] }}</span>
+
+                          <div class="vf-pdp__kit-pricing">
+                            <span class="vf-pdp__kit-installments-label">10x de</span>
+                            <span class="vf-pdp__kit-installment-value" data-installment>{{ t_installment | money }}</span>
+                          </div>
+                          <div class="vf-pdp__kit-cash">
+                            <span class="vf-pdp__kit-cash-or">ou</span>
+                            <span class="vf-pdp__kit-cash-value" data-total>{{ t_price | money }}</span>
+                            <span class="vf-pdp__kit-cash-label">à vista</span>
+                            {%- if t_disc > 0 -%}
+                              <s class="vf-pdp__kit-compare" data-compare>{{ t_total | money }}</s>
+                            {%- endif -%}
+                          </div>
+
+                          {%- if t_disc > 0 -%}
+                            <span class="vf-pdp__kit-discount">{{ t_disc }}% OFF · você economiza <span data-save>{{ t_disc_amt | money }}</span></span>
+                          {%- endif -%}
+                        </div>
+                      </div>
+
+                      {%- if section.settings[msg_key] != blank -%}
+                        <div class="vf-pdp__kit-message">{{ section.settings[msg_key] }}</div>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} FAIXA CUPOM 5OFF (discreta, elegante) {%- endcomment -%}
+          <div class="vf-pdp__cupom-badge">
+            <span class="vf-pdp__cupom-badge-icon">🎟️</span>
+            <span class="vf-pdp__cupom-badge-text">
+              Use o cupom <strong>5OFF</strong> no checkout e ganhe <strong>5% de desconto</strong>
+            </span>
+          </div>
+
+          <button type="submit" class="vf-pdp__cta vf-pdp__cta--primary{% if pdp_frete_promo %} vf-pdp__cta--promo{% endif %}" {% if product.available == false %}disabled{% endif %}>
+            {% if product.available == false %}Esgotado{% elsif pdp_frete_promo %}🚚 Garantir com frete grátis{% else %}Adicionar ao carrinho{% endif %}
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+
+          {%- comment -%}
+            Havia aqui um segundo botão, "Comprar agora", com name="checkout".
+            Ele levava para o mesmo lugar que o verde: name="checkout" só tem
+            efeito no form da página do carrinho (que posta em /cart), e este
+            posta em /cart/add — ali o parâmetro é ignorado e a Shopify manda
+            para o carrinho do mesmo jeito. Dois botões, um destino.
+            Se um dia quiserem checkout direto de verdade, o caminho é o botão
+            de pagamento acelerado: {{ form | payment_button }}.
+          {%- endcomment -%}
+        </form>
+
+        {%- comment -%}
+          CHAMADA DE FRETE GRÁTIS (promo 30-31/07) — logo acima dos depoimentos.
+        {%- endcomment -%}
+        {%- if pdp_frete_promo -%}
+          <div class="vf-pdp__frete-promo">
+            <span class="vf-pdp__frete-promo-icon" aria-hidden="true">🚚</span>
+            <div class="vf-pdp__frete-promo-copy">
+              <strong>FRETE GRÁTIS SEM MÍNIMO</strong>
+              <span>Só hoje e amanhã, pra todo o Brasil. Acaba em <strong class="vf-ann-countdown" data-countdown="2026-08-01T00:00:00-03:00">--:--:--</strong></span>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%}
+          STORIES (destaques em vídeo) — blocos do tipo "stories".
+          Cada bloco é uma régua. O filtro por handle dentro do bloco
+          decide em qual produto ela aparece, então o template padrão
+          pode carregar uma régua genérica e uma por produto sem
+          precisar de template novo.
+        {%- endcomment -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'stories' -%}
+            {% render 'vf-stories-rail', block: block, product: product, mode: 'pdp' %}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- comment -%}
+          DEPOIMENTOS (carrossel de fotos) — estilo Botanika
+          Carrossel horizontal com fotos de clientes, logo abaixo do CTA.
+          Prioridade 1: blocos "Depoimento (foto)" cadastrados no editor.
+          Prioridade 2: fallback com reposts reais de clientes (asset_url),
+                        usado enquanto os blocos não tiverem foto.
+        {%- endcomment -%}
+        {%- assign has_depoimento = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'depoimento' and block.settings.photo != blank -%}
+            {%- assign has_depoimento = true -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- assign fallback_reposts = 'vf-depoimento-01.jpg,vf-depoimento-02.jpg,vf-depoimento-03.jpg,vf-depoimento-04.jpg,vf-depoimento-05.jpg,vf-depoimento-06.jpg,vf-depoimento-07.jpg,vf-depoimento-08.jpg,vf-depoimento-09.jpg,vf-depoimento-10.jpg' | split: ',' -%}
+        {%- if has_depoimento or fallback_reposts.size > 0 or request.design_mode -%}
+          <div class="vf-pdp__dep">
+            {%- if section.settings.depoimentos_heading != blank -%}
+              <h3 class="vf-pdp__dep-title">{{ section.settings.depoimentos_heading }}</h3>
+            {%- endif -%}
+            {%- if section.settings.depoimentos_subheading != blank -%}
+              <p class="vf-pdp__dep-sub">{{ section.settings.depoimentos_subheading }}</p>
+            {%- endif -%}
+            <div class="vf-pdp__dep-row">
+              {%- if has_depoimento -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'depoimento' -%}
+                    {%- if block.settings.photo != blank -%}
+                      <div class="vf-pdp__dep-card" {{ block.shopify_attributes }}>
+                        <div class="vf-pdp__dep-media">
+                          <img
+                            src="{{ block.settings.photo | image_url: width: 640 }}"
+                            alt="{{ block.settings.name | default: 'Depoimento VermeFree' | escape }}"
+                            loading="lazy"
+                            class="vf-pdp__dep-img"
+                          >
+                        </div>
+                        {%- if block.settings.quote != blank or block.settings.name != blank -%}
+                          <div class="vf-pdp__dep-info">
+                            <span class="vf-pdp__dep-stars" aria-hidden="true">★★★★★</span>
+                            {%- if block.settings.quote != blank -%}
+                              <span class="vf-pdp__dep-quote">{{ block.settings.quote }}</span>
+                            {%- endif -%}
+                            {%- if block.settings.name != blank -%}
+                              <span class="vf-pdp__dep-name">{{ block.settings.name }}</span>
+                            {%- endif -%}
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    {%- elsif request.design_mode -%}
+                      <div class="vf-pdp__dep-card vf-pdp__dep-card--placeholder" {{ block.shopify_attributes }}>
+                        <div class="vf-pdp__dep-media"><div class="vf-pdp__dep-ph"></div></div>
+                      </div>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- else -%}
+                {%- comment -%} Fallback: reposts reais de clientes (screenshots de Stories) {%- endcomment -%}
+                {%- for filename in fallback_reposts -%}
+                  <div class="vf-pdp__dep-card vf-pdp__dep-card--repost">
+                    <div class="vf-pdp__dep-media vf-pdp__dep-media--repost">
+                      <img
+                        src="{{ filename | asset_url }}"
+                        alt="Cliente VermeFree compartilhando o protocolo"
+                        loading="lazy"
+                        class="vf-pdp__dep-img"
+                      >
+                    </div>
+                  </div>
+                {%- endfor -%}
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} BADGES DE CONFIANÇA {%- endcomment -%}
+        <ul class="vf-pdp__badges">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19C5 10 11 5 20 5c0 9-6 14-15 14z"/></svg>
+            <span>Vegetal 100%</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3 8-8 9-5-1-8-4-8-9V6z"/></svg>
+            <span>Metais Free</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18l-2 12H5L3 8z"/><path d="M8 8V5a4 4 0 0 1 8 0v3"/></svg>
+            <span>Frete 5-9 dias</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>Compra segura</span>
+          </li>
+        </ul>
+
+        {%- if pdp_frete_promo -%}
+          <div class="vf-pdp__frete-mini">
+            <span class="vf-pdp__frete-mini-icon" aria-hidden="true">🚚</span>
+            <span class="vf-pdp__frete-mini-text"><strong>Frete grátis sem mínimo</strong> nesse pedido — válido só hoje e amanhã.</span>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} ACCORDIONS de info extra {%- endcomment -%}
+        <div class="vf-pdp__accordions">
+          {%- if section.settings.how_to_take != blank -%}
+            <details class="vf-pdp__accordion">
+              <summary>Como tomar<span class="vf-pdp__acc-icon" aria-hidden="true"></span></summary>
+              <div class="vf-pdp__acc-content">{{ section.settings.how_to_take }}</div>
+            </details>
+          {%- endif -%}
+          {%- if section.settings.composition != blank -%}
+            <details class="vf-pdp__accordion">
+              <summary>Composição completa<span class="vf-pdp__acc-icon" aria-hidden="true"></span></summary>
+              <div class="vf-pdp__acc-content">{{ section.settings.composition }}</div>
+            </details>
+          {%- endif -%}
+          {%- if section.settings.benefits != blank -%}
+            <details class="vf-pdp__accordion">
+              <summary>Benefícios do VermeFree<span class="vf-pdp__acc-icon" aria-hidden="true"></span></summary>
+              <div class="vf-pdp__acc-content">{{ section.settings.benefits }}</div>
+            </details>
+          {%- endif -%}
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{%- if section.settings.show_sticky_cta -%}
+  {%- comment -%} STICKY CTA BAR — aparece após scroll {%- endcomment -%}
+  <div class="vf-pdp-sticky" id="vf-pdp-sticky" data-trigger-px="800" aria-hidden="true">
+    <div class="vf-pdp-sticky__inner">
+      <div class="vf-pdp-sticky__product">
+        {%- if product.featured_image -%}
+          <img
+            src="{{ product.featured_image | image_url: width: 120 }}"
+            alt=""
+            class="vf-pdp-sticky__thumb"
+            width="60"
+            height="60"
+            loading="lazy">
+        {%- endif -%}
+        <div class="vf-pdp-sticky__info">
+          <span class="vf-pdp-sticky__name">{{ product.title | default: section.settings.fallback_title | truncate: 38 }}</span>
+          <span class="vf-pdp-sticky__price" id="vf-pdp-sticky-price">
+            {%- if product != blank and product.selected_or_first_available_variant != blank -%}
+              {%- assign sticky_price = product.selected_or_first_available_variant.price -%}
+              {%- if installment_10x_cents > 0 -%}
+                <strong>10x {{ installment_10x_cents | money }}</strong>
+              {%- else -%}
+                <strong>3x {{ sticky_price | divided_by: 3 | money }}</strong>
+              {%- endif -%}
+              <span>ou {{ sticky_price | money }} à vista</span>
+            {%- else -%}
+              <strong>10x R$ 40,93</strong>
+              <span>ou R$ 347 à vista</span>
+            {%- endif -%}
+          </span>
+        </div>
+      </div>
+
+      <div class="vf-pdp-sticky__actions">
+        <div class="vf-pdp-sticky__qty">
+          <button type="button" class="vf-pdp-sticky__qty-btn" data-action="minus" aria-label="Diminuir quantidade">−</button>
+          <input
+            type="number"
+            id="vf-pdp-sticky-qty"
+            value="1"
+            min="1"
+            class="vf-pdp-sticky__qty-input"
+            aria-label="Quantidade">
+          <button type="button" class="vf-pdp-sticky__qty-btn" data-action="plus" aria-label="Aumentar quantidade">+</button>
+        </div>
+        <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="vf-pdp-sticky__form">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" id="vf-pdp-sticky-qty-hidden" value="1">
+          <button
+            type="submit"
+            class="vf-pdp-sticky__cta{% if pdp_frete_promo %} vf-pdp-sticky__cta--promo{% endif %}"
+            {% if product.available == false %}disabled{% endif %}>
+            {% if product.available == false %}Esgotado{% elsif pdp_frete_promo %}🚚 Garantir frete grátis{% else %}Adicionar ao carrinho{% endif %}
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .vf-pdp {
+    background: #FFFFFF;
+    padding: 32px 0 64px;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  .vf-pdp__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .vf-pdp__gallery { display: flex; flex-direction: column; gap: 12px; }
+  .vf-pdp__main-image {
+    aspect-ratio: 1 / 1;
+    background: #F5EDE0;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .vf-pdp__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vf-pdp__img--placeholder { color: #5EBC43; opacity: 0.4; padding: 60px; }
+  .vf-pdp__img--placeholder svg { width: 100%; height: 100%; }
+
+  .vf-pdp__thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .vf-pdp__thumb {
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    background: #F5EDE0;
+    cursor: pointer;
+    padding: 0;
+    transition: border-color 0.2s ease;
+  }
+  .vf-pdp__thumb:hover { border-color: #C0DE96; }
+  .vf-pdp__thumb.is-active { border-color: var(--vf-green-dark, #1B5E20); }
+  .vf-pdp__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vf-pdp__thumb--placeholder { background: #F5EDE0; }
+
+  .vf-pdp__buy-inner { display: flex; flex-direction: column; gap: 16px; }
+
+  .vf-pdp__vendor {
+    font-size: 12px;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .vf-pdp__title {
+    font-family: 'Caprasimo', Georgia, serif;
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1.15;
+    margin: 0;
+    color: var(--vf-green-dark, #1B5E20);
+    letter-spacing: -0.01em;
+    font-weight: 400;
+  }
+  .vf-pdp__age-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1B5E20;
+    background: #E8F3DA;
+    padding: 5px 12px;
+    border-radius: 999px;
+    letter-spacing: 0.4px;
+    margin-top: 4px;
+  }
+  .vf-pdp__age-badge svg { width: 14px; height: 14px; }
+  .vf-pdp__protocol-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 10px 16px;
+    background: #E8F3DA;
+    border: 1px solid rgba(27, 94, 32, 0.2);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1B5E20;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+    align-self: flex-start;
+    max-width: 100%;
+    flex-wrap: wrap;
+    line-height: 1.3;
+  }
+  .vf-pdp__protocol-link:hover {
+    background: #1B5E20;
+    color: #fff;
+    transform: translateY(-1px);
+  }
+  .vf-pdp__protocol-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .vf-pdp__protocol-link span { transition: transform 0.2s ease; }
+  .vf-pdp__protocol-link:hover span { transform: translateX(3px); }
+
+  .vf-pdp__rating { display: flex; align-items: center; gap: 8px; }
+  .vf-pdp__stars { display: inline-flex; color: #FBBF24; }
+  .vf-pdp__stars svg { width: 16px; height: 16px; }
+  .vf-pdp__rating-text { font-size: 13px; color: #555; }
+  .vf-pdp__rating-text strong { color: #1A1A1A; margin-right: 2px; }
+
+  .vf-pdp__short {
+    font-size: 16px;
+    line-height: 1.55;
+    color: #1A1A1A;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .vf-pdp__price-box {
+    background: #F0FDF4;
+    border: 1px solid #DCFCE7;
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .vf-pdp__compare {
+    font-size: 13px;
+    color: #777;
+    text-decoration: line-through;
+  }
+  .vf-pdp__installment {
+    font-family: 'Caprasimo', Georgia, serif;
+    font-size: clamp(22px, 2.8vw, 28px);
+    color: var(--vf-green-dark, #1B5E20);
+    line-height: 1.15;
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+  .vf-pdp__price-cash { font-size: 14px; color: #555; margin: 0; font-weight: 500; }
+
+  /* Promo frete grátis — preço em vermelho, igual campanhas anteriores */
+  .vf-pdp__price-box--promo {
+    background: #FFF1F1;
+    border-color: #FFD4D4;
+    animation: vf-pdp-price-pulse 1.8s ease-in-out infinite;
+  }
+  .vf-pdp__price-box--promo .vf-pdp__installment { color: #E11D2E; }
+  .vf-pdp__price-box--promo .vf-pdp__price-cash { color: #C11524; font-weight: 700; }
+  @keyframes vf-pdp-price-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(225, 29, 46, 0.18); }
+    50% { box-shadow: 0 0 0 6px rgba(225, 29, 46, 0); }
+  }
+  .vf-pdp__pix {
+    font-size: 13px;
+    color: #1A1A1A;
+    margin: 6px 0 0;
+    padding-top: 8px;
+    border-top: 1px dashed #DCFCE7;
+  }
+  .vf-pdp__pix strong { color: var(--vf-green-dark, #1B5E20); }
+
+  .vf-pdp__volume-badge {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: linear-gradient(135deg, #FCD34D 0%, #FBBF24 100%);
+    color: #1B5E20;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    box-shadow: 0 4px 12px rgba(252, 211, 77, 0.25);
+  }
+  .vf-pdp__volume-badge[hidden] { display: none; }
+  .vf-pdp__volume-badge-icon { font-size: 16px; flex-shrink: 0; }
+  .vf-pdp__volume-badge-text { flex: 1; }
+
+  .vf-pdp__components {
+    border: 1px solid #EFEFEF;
+    border-radius: 14px;
+    padding: 16px 18px;
+    background: #FAFAFA;
+  }
+  .vf-pdp__components-label {
+    font-family: 'Caprasimo', Georgia, serif;
+    font-size: 15px;
+    color: var(--vf-green-dark, #1B5E20);
+    margin: 0 0 12px;
+    font-weight: 400;
+  }
+  .vf-pdp__components-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .vf-pdp__component {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #1A1A1A;
+  }
+  .vf-pdp__component-check {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--vf-green, #5EBC43);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .vf-pdp__component-check svg { width: 12px; height: 12px; }
+  .vf-pdp__component-text { display: flex; flex-direction: column; }
+  .vf-pdp__component-text strong { font-weight: 600; }
+  .vf-pdp__component-spec { font-size: 12px; color: #777; margin-top: 2px; }
+
+  .vf-pdp__form { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+
+  .vf-pdp__variants { display: flex; flex-direction: column; gap: 8px; }
+  .vf-pdp__variant-label { font-size: 13px; font-weight: 600; color: #1A1A1A; }
+  .vf-pdp__variant-options { display: flex; gap: 8px; flex-wrap: wrap; }
+  .vf-pdp__pill {
+    cursor: pointer;
+    padding: 8px 16px;
+    border: 1px solid #E8E8E8;
+    border-radius: 999px;
+    font-size: 13px;
+    color: #1A1A1A;
+    transition: all 0.2s ease;
+  }
+  .vf-pdp__pill input { position: absolute; opacity: 0; }
+  .vf-pdp__pill:has(input:checked) {
+    background: var(--vf-green-dark, #1B5E20);
+    color: #fff;
+    border-color: var(--vf-green-dark, #1B5E20);
+  }
+
+  /* ==================== SELETOR DE KITS (estilo Botanika) ==================== */
+  .vf-pdp__kits { border: 0; padding: 0; margin: 4px 0 0; }
+
+  .vf-pdp__kits-social {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    color: #555;
+  }
+  .vf-pdp__kits-stars { color: #FBBF24; letter-spacing: 1px; font-size: 14px; line-height: 1; }
+  .vf-pdp__kits-social-text { font-weight: 600; color: #1A1A1A; }
+
+  .vf-pdp__kits-legend {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin: 0 0 10px;
+    padding: 0;
+  }
+  .vf-pdp__kits-legend #vf-pdp-kits-legend-value { color: var(--vf-green-dark, #1B5E20); font-weight: 700; }
+
+  .vf-pdp__kits-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .vf-pdp__kit-card {
+    position: relative;
+    background: #fff;
+    border: 2px solid #E8E8E8;
+    border-radius: 16px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .vf-pdp__kit-card:hover { border-color: #C0DE96; }
+  .vf-pdp__kit-card.is-active {
+    border-color: var(--vf-green, #5EBC43);
+    box-shadow: 0 0 0 1px var(--vf-green, #5EBC43), 0 8px 20px rgba(94, 188, 67, 0.12);
+  }
+
+  .vf-pdp__kit-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .vf-pdp__kit-badge {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .vf-pdp__kit-badge--1 { background: var(--vf-green-dark, #1B5E20); }
+  .vf-pdp__kit-badge--2 { background: #FBBF24; color: #1A1A1A; }
+
+  .vf-pdp__kit-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .vf-pdp__kit-radio {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #cacaca;
+    border-radius: 50%;
+    position: relative;
+    transition: border-color 0.2s ease;
+  }
+  .vf-pdp__kit-radio::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: transparent;
+    transition: background 0.2s ease;
+  }
+  .vf-pdp__kit-card.is-active .vf-pdp__kit-radio { border-color: var(--vf-green, #5EBC43); }
+  .vf-pdp__kit-card.is-active .vf-pdp__kit-radio::after { background: var(--vf-green, #5EBC43); }
+
+  .vf-pdp__kit-image {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    background: #F5EDE0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .vf-pdp__kit-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vf-pdp__kit-image-ph { width: 70%; height: 70%; border-radius: 8px; background: linear-gradient(135deg, #C0DE96, #5ebc43); }
+
+  .vf-pdp__kit-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .vf-pdp__kit-title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #1A1A1A;
+  }
+  .vf-pdp__kit-regular {
+    display: block;
+    font-size: 11.5px;
+    color: #888;
+  }
+
+  .vf-pdp__kit-pricing { display: flex; align-items: baseline; gap: 6px; line-height: 1.15; margin-top: 2px; }
+  .vf-pdp__kit-installments-label { font-size: 12.5px; color: #777; }
+  .vf-pdp__kit-installment-value {
+    font-weight: 800;
+    font-size: 19px;
+    color: var(--vf-green-dark, #1B5E20);
+    line-height: 1.15;
+  }
+
+  .vf-pdp__kit-cash { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; font-size: 12.5px; color: #666; }
+  .vf-pdp__kit-cash-value { font-weight: 700; color: #1A1A1A; }
+  .vf-pdp__kit-compare {
+    font-size: 11.5px;
+    color: #999;
+    text-decoration: line-through;
+  }
+
+  .vf-pdp__kit-discount {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--vf-green-dark, #1B5E20);
+    margin-top: 2px;
+  }
+  .vf-pdp__kit-discount span { text-decoration: none; }
+
+  .vf-pdp__kit-message {
+    background: var(--vf-green, #5EBC43);
+    color: #fff;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 8px;
+    line-height: 1.25;
+  }
+
+  /* ==================== KIT CARD — promo frete grátis (vermelho) ==================== */
+  .vf-pdp__kit-card--promo {
+    border-color: #E11D2E;
+    overflow: visible;
+  }
+  .vf-pdp__kit-card--promo.is-active {
+    border-color: #E11D2E;
+    box-shadow: 0 0 0 1px #E11D2E, 0 8px 20px rgba(225, 29, 46, 0.18);
+  }
+  .vf-pdp__kit-card--promo.is-active .vf-pdp__kit-radio { border-color: #E11D2E; }
+  .vf-pdp__kit-card--promo.is-active .vf-pdp__kit-radio::after { background: #E11D2E; }
+  .vf-pdp__kit-card--promo .vf-pdp__kit-installment-value,
+  .vf-pdp__kit-card--promo .vf-pdp__kit-discount {
+    color: #E11D2E;
+  }
+  .vf-pdp__kit-card--promo .vf-pdp__kit-cash-value { color: #C11524; }
+
+  .vf-pdp__kit-promo-ribbon {
+    position: absolute;
+    top: -12px;
+    left: 14px;
+    background: #E11D2E;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+    box-shadow: 0 3px 10px rgba(225, 29, 46, 0.4);
+    z-index: 2;
+    animation: vf-kit-ribbon-bounce 1.4s ease-in-out infinite;
+  }
+  @keyframes vf-kit-ribbon-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+
+  @media (max-width: 640px) {
+    .vf-pdp__kit-card { padding: 12px 12px; }
+    .vf-pdp__kit-image { width: 52px; height: 52px; }
+    .vf-pdp__kit-title { font-size: 15px; }
+    .vf-pdp__kit-installment-value { font-size: 18px; }
+  }
+
+  /* ==================== CHAMADA DE FRETE GRÁTIS (promo) ==================== */
+  .vf-pdp__frete-promo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #E11D2E;
+    color: #fff;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin: 4px 0 8px;
+    animation: vf-pdp-frete-pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes vf-pdp-frete-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(225, 29, 46, 0.35); }
+    50% { box-shadow: 0 0 0 8px rgba(225, 29, 46, 0); }
+  }
+  .vf-pdp__frete-promo-icon { font-size: 26px; flex-shrink: 0; line-height: 1; }
+  .vf-pdp__frete-promo-copy { display: flex; flex-direction: column; gap: 2px; }
+  .vf-pdp__frete-promo-copy strong:first-child {
+    font-size: 15px;
+    letter-spacing: 0.3px;
+  }
+  .vf-pdp__frete-promo-copy span {
+    font-size: 13px;
+    opacity: 0.95;
+  }
+  .vf-pdp__frete-promo-copy .vf-ann-countdown {
+    display: inline-block;
+    background: rgba(255,255,255,0.22);
+    padding: 1px 8px;
+    border-radius: 6px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+  }
+
+  /* ==================== DEPOIMENTOS (carrossel de fotos) ==================== */
+  .vf-pdp__dep { margin: 4px 0 8px; }
+  .vf-pdp__dep-title {
+    font-family: 'Caprasimo', Georgia, serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--vf-green-dark, #1B5E20);
+    margin: 0 0 4px;
+  }
+  .vf-pdp__dep-sub { font-size: 13px; color: #666; margin: 0 0 14px; }
+  .vf-pdp__dep-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 2px 0 10px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .vf-pdp__dep-row::-webkit-scrollbar { height: 6px; }
+  .vf-pdp__dep-row::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); border-radius: 999px; }
+  .vf-pdp__dep-card {
+    flex: 0 0 68%;
+    width: 68%;
+    scroll-snap-align: start;
+    background: #fff;
+    border: 1px solid #EFEFEF;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  }
+  .vf-pdp__dep-media { aspect-ratio: 4 / 5; background: #F5EDE0; }
+  .vf-pdp__dep-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vf-pdp__dep-ph { width: 100%; height: 100%; background: linear-gradient(135deg, #C0DE96, #5ebc43); opacity: 0.35; }
+  .vf-pdp__dep-info { padding: 9px 10px 11px; display: flex; flex-direction: column; gap: 3px; }
+  .vf-pdp__dep-stars { color: #FBBF24; font-size: 12px; letter-spacing: 1px; }
+  .vf-pdp__dep-quote { font-size: 12px; line-height: 1.35; color: #333; }
+  .vf-pdp__dep-name { font-weight: 700; font-size: 11.5px; color: #1A1A1A; }
+
+  /* Cards de repost (prints de Stories) — imagem inteira visivel, sem cortar, tamanho controlado */
+  .vf-pdp__dep-media--repost {
+    aspect-ratio: auto;
+    height: 260px;
+    background: #F0EEE9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .vf-pdp__dep-media--repost .vf-pdp__dep-img {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  @media (min-width: 750px) {
+    .vf-pdp__dep-card { flex-basis: 46%; width: 46%; }
+    .vf-pdp__dep-media--repost { height: 320px; }
+  }
+
+  /* ===== Faixa cupom 5OFF (discreta, elegante) ===== */
+  .vf-pdp__cupom-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: linear-gradient(90deg, #E8F3DA 0%, #F0FDF4 100%);
+    border: 1px dashed var(--vf-green-dark, #1B5E20);
+    border-radius: 10px;
+    margin-bottom: 4px;
+    line-height: 1.35;
+  }
+  .vf-pdp__cupom-badge-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .vf-pdp__cupom-badge-text {
+    font-size: 13.5px;
+    color: #1A1A1A;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+  }
+  .vf-pdp__cupom-badge-text strong {
+    color: var(--vf-green-dark, #1B5E20);
+    font-weight: 800;
+    background: #FFFFFF;
+    padding: 1px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.4px;
+  }
+
+  .vf-pdp__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+  .vf-pdp__cta--primary {
+    background: var(--vf-green, #5EBC43);
+    color: #fff;
+    box-shadow: 0 2px 0 var(--vf-green-dark, #1B5E20);
+  }
+  .vf-pdp__cta--primary:hover {
+    background: var(--vf-green-dark, #1B5E20);
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 var(--vf-green-dark, #1B5E20);
+  }
+  .vf-pdp__cta--secondary {
+    background: transparent;
+    color: var(--vf-green-dark, #1B5E20);
+    border-color: var(--vf-green-dark, #1B5E20);
+  }
+  .vf-pdp__cta--secondary:hover {
+    background: var(--vf-green-dark, #1B5E20);
+    color: #fff;
+  }
+  .vf-pdp__cta[disabled] { opacity: 0.5; cursor: not-allowed; }
+  .vf-pdp__cta span { transition: transform 0.2s ease; }
+  .vf-pdp__cta:hover span { transform: translateX(3px); }
+
+  /* Promo frete grátis — botões vermelhos com brilho passando */
+  .vf-pdp__cta--promo {
+    background: #E11D2E;
+    box-shadow: 0 2px 0 #A0121F;
+    position: relative;
+    overflow: hidden;
+  }
+  .vf-pdp__cta--promo:hover {
+    background: #C11524;
+    box-shadow: 0 1px 0 #A0121F;
+  }
+  .vf-pdp__cta--promo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.45), transparent);
+    animation: vf-cta-shimmer 2.4s ease-in-out infinite;
+  }
+  @keyframes vf-cta-shimmer {
+    0% { left: -60%; }
+    50% { left: 130%; }
+    100% { left: 130%; }
+  }
+  .vf-pdp__cta--promo-outline {
+    color: #E11D2E;
+    border-color: #E11D2E;
+  }
+  .vf-pdp__cta--promo-outline:hover {
+    background: #E11D2E;
+    color: #fff;
+  }
+
+  .vf-pdp__badges {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 16px 12px;
+    background: #FAFAFA;
+    border-radius: 12px;
+  }
+  .vf-pdp__badges li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    font-size: 11px;
+    color: #555;
+    font-weight: 600;
+  }
+  .vf-pdp__badges svg {
+    width: 24px;
+    height: 24px;
+    color: var(--vf-green-dark, #1B5E20);
+  }
+
+  .vf-pdp__frete-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #FFF1F1;
+    border: 1px dashed #E11D2E;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-top: 4px;
+  }
+  .vf-pdp__frete-mini-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    animation: vf-truck-wiggle 1.6s ease-in-out infinite;
+  }
+  @keyframes vf-truck-wiggle {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(3px); }
+  }
+  .vf-pdp__frete-mini-text {
+    font-size: 13px;
+    color: #C11524;
+    line-height: 1.4;
+  }
+  .vf-pdp__frete-mini-text strong { color: #E11D2E; }
+
+  .vf-pdp__accordions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .vf-pdp__accordion {
+    border: 1px solid #EFEFEF;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #FAFAFA;
+  }
+  .vf-pdp__accordion[open] {
+    background: #FFFFFF;
+    border-color: #C0DE96;
+  }
+  .vf-pdp__accordion summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 16px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Caprasimo', Georgia, serif;
+    font-size: 15px;
+    color: #1A1A1A;
+  }
+  .vf-pdp__accordion summary::-webkit-details-marker { display: none; }
+  .vf-pdp__acc-icon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+  .vf-pdp__acc-icon::before,
+  .vf-pdp__acc-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--vf-green-dark, #1B5E20);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .vf-pdp__acc-icon::before { width: 12px; height: 2px; }
+  .vf-pdp__acc-icon::after { width: 2px; height: 12px; transition: opacity 0.2s ease; }
+  .vf-pdp__accordion[open] .vf-pdp__acc-icon::after { opacity: 0; }
+  .vf-pdp__acc-content {
+    padding: 0 18px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1A1A1A;
+  }
+  .vf-pdp__acc-content p { margin: 0 0 8px; }
+  .vf-pdp__acc-content strong { color: var(--vf-green-dark, #1B5E20); }
+
+  @media (min-width: 990px) {
+    .vf-pdp { padding: 48px 0 80px; }
+    .vf-pdp__container {
+      grid-template-columns: 1.05fr 1fr;
+      gap: 56px;
+    }
+    .vf-pdp__gallery {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+    }
+  }
+
+  /* ==================== STICKY CTA BAR ==================== */
+  .vf-pdp-sticky {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #FFFFFF;
+    border-top: 1px solid #ECECEC;
+    box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.08);
+    z-index: 100;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .vf-pdp-sticky.is-visible {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  /* Espaço extra no final do body pra não cobrir o último conteúdo no mobile quando sticky está visível */
+  body:has(.vf-pdp-sticky.is-visible) {
+    padding-bottom: 168px;
+  }
+  @media (min-width: 750px) {
+    body:has(.vf-pdp-sticky.is-visible) {
+      padding-bottom: 96px;
+    }
+  }
+  .vf-pdp-sticky__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .vf-pdp-sticky__product {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .vf-pdp-sticky__thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #F5EDE0;
+  }
+  .vf-pdp-sticky__info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .vf-pdp-sticky__name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1A1A1A;
+    line-height: 1.25;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .vf-pdp-sticky__price {
+    font-size: 13px;
+    color: #555;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: baseline;
+  }
+  .vf-pdp-sticky__price strong {
+    font-family: 'Caprasimo', Georgia, serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #1B5E20;
+    letter-spacing: -0.005em;
+  }
+  .vf-pdp-sticky__price span {
+    font-size: 11.5px;
+    color: #777;
+  }
+
+  .vf-pdp-sticky__actions {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .vf-pdp-sticky__qty {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #E0E0E0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .vf-pdp-sticky__qty-btn {
+    background: transparent;
+    border: none;
+    width: 34px;
+    height: 44px;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    color: #1A1A1A;
+    padding: 0;
+    transition: background 0.15s ease;
+  }
+  .vf-pdp-sticky__qty-btn:hover { background: #F5F5F5; }
+  .vf-pdp-sticky__qty-input {
+    border: none;
+    width: 40px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1A1A1A;
+    background: transparent;
+    -moz-appearance: textfield;
+  }
+  .vf-pdp-sticky__qty-input::-webkit-inner-spin-button,
+  .vf-pdp-sticky__qty-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .vf-pdp-sticky__form { flex: 1; display: flex; }
+  .vf-pdp-sticky__cta {
+    flex: 1;
+    background: #5EBC43;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 0 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 0 #1B5E20;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+  }
+  .vf-pdp-sticky__cta:hover {
+    background: #1B5E20;
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 #1B5E20;
+  }
+  .vf-pdp-sticky__cta:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #999;
+    box-shadow: none;
+  }
+  .vf-pdp-sticky__cta span {
+    transition: transform 0.2s ease;
+  }
+  .vf-pdp-sticky__cta:hover span:not([aria-hidden]) {
+    transform: translateX(3px);
+  }
+  .vf-pdp-sticky__cta--promo {
+    background: #E11D2E;
+    box-shadow: 0 2px 0 #A0121F;
+  }
+  .vf-pdp-sticky__cta--promo:hover {
+    background: #C11524;
+    box-shadow: 0 1px 0 #A0121F;
+  }
+
+  @media (min-width: 750px) {
+    .vf-pdp-sticky__inner {
+      flex-direction: row;
+      align-items: center;
+      padding: 14px 24px;
+      gap: 24px;
+    }
+    .vf-pdp-sticky__product {
+      flex: 1;
+    }
+    .vf-pdp-sticky__thumb { width: 56px; height: 56px; }
+    .vf-pdp-sticky__name { font-size: 14px; }
+    .vf-pdp-sticky__price strong { font-size: 17px; }
+    .vf-pdp-sticky__actions { flex-shrink: 0; }
+    .vf-pdp-sticky__cta { font-size: 14px; padding: 0 28px; }
+  }
+  /* ===== Barra de evolucao (selecao invertida) ===== */
+  .vf-pdp__kitbar { margin: 2px 0 14px; }
+  .vf-pdp__kitbar-track { position: relative; height: 8px; border-radius: 999px; background: var(--vf-border, #E3E3DD); overflow: hidden; }
+  .vf-pdp__kitbar-fill { position: absolute; top: 0; bottom: 0; left: 0; width: 0; border-radius: 999px; background: linear-gradient(90deg, #5EBC43, #1B5E20); transition: width .35s ease; }
+  .vf-pdp__kitbar-msg { margin: 8px 0 0; font-size: 12.5px; font-weight: 700; line-height: 1.35; color: var(--vf-green-dark, #15803D); }
+  .vf-pdp__kitbar--mid .vf-pdp__kitbar-fill { background: linear-gradient(90deg, #5EBC43, #7FC96A); }
+  .vf-pdp__kitbar--low .vf-pdp__kitbar-fill { background: #C2410C; }
+  .vf-pdp__kitbar--low .vf-pdp__kitbar-msg { color: #C2410C; }
+{% endstylesheet %}
+
+<script>
+  (function() {
+    var thumbs = document.querySelectorAll('.vf-pdp__thumb[data-src]');
+    var mainImg = document.getElementById('vf-pdp-main-img');
+    thumbs.forEach(function(t) {
+      t.addEventListener('click', function() {
+        if (!mainImg) return;
+        mainImg.src = t.dataset.src;
+        thumbs.forEach(function(x) { x.classList.remove('is-active'); });
+        t.classList.add('is-active');
+      });
+    });
+
+    var qtyInput = document.getElementById('vf-pdp-qty');
+
+    /* ===== ATUALIZAÇÃO DE PREÇO COM DESCONTO PROGRESSIVO ===== */
+    var priceBox = document.querySelector('.vf-pdp__price-box');
+    var unitPriceCents = priceBox ? parseInt(priceBox.dataset.unitPrice, 10) || 0 : 0;
+    var elInstallment = document.getElementById('vf-pdp-installment');
+    var elCash = document.getElementById('vf-pdp-cash');
+    var elBadge = document.getElementById('vf-pdp-volume-badge');
+    var elBadgeText = document.getElementById('vf-pdp-volume-badge-text');
+
+    function formatBRL(cents) {
+      var value = cents / 100;
+      return 'R$ ' + value.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
+    function getDiscountPct(qty) {
+      if (qty >= 8) return 20;
+      if (qty >= 5) return 15;
+      if (qty >= 3) return 10;
+      return 0;
+    }
+
+    var freteGratisPromoAtiva = priceBox ? priceBox.dataset.fretePromo === 'true' : false;
+
+    var elStickyPrice = document.getElementById('vf-pdp-sticky-price');
+
+    // Valor fixo da parcela 10x (em centavos) vindo da section settings
+    var installment10xCents = priceBox ? parseInt(priceBox.dataset.installment10x, 10) || 0 : 0;
+    // Razão parcela10x/preço base (escala linear pra qualquer quantidade)
+    var INSTALLMENT_RATIO = (installment10xCents > 0 && unitPriceCents > 0)
+      ? (installment10xCents / unitPriceCents)
+      : 0.11796;  // fallback equivalente a ~3.12%/mês (R$347 → R$40,93)
+
+    function calc10xParcela(totalCents) {
+      // Escala linear preservando o valor fixo do setting
+      return Math.round(totalCents * INSTALLMENT_RATIO);
+    }
+
+    function updatePrices(qty) {
+      if (!unitPriceCents) return;
+      var subtotal = unitPriceCents * qty;
+      var discountPct = getDiscountPct(qty);
+      var totalWithDiscount = subtotal * (1 - discountPct / 100);
+      var installment;
+      if (qty === 1 && installment10xCents > 0) {
+        // qty=1: usa valor fixo do setting (mais preciso)
+        installment = installment10xCents;
+      } else {
+        // qty>1: escala linear sobre o total com desconto
+        installment = calc10xParcela(totalWithDiscount);
+      }
+
+      if (elInstallment) elInstallment.textContent = '10x de ' + formatBRL(installment);
+      if (elCash) elCash.textContent = 'ou ' + formatBRL(totalWithDiscount) + ' à vista';
+
+      // Sticky CTA price atualiza junto
+      if (elStickyPrice) {
+        elStickyPrice.innerHTML = '<strong>10x ' + formatBRL(installment) + '</strong><span>ou ' + formatBRL(totalWithDiscount) + ' à vista</span>';
+      }
+
+      if (elBadge && elBadgeText) {
+        // Promo 30-31/07: frete gratis sem minimo (ver data-frete-promo)
+        var FRETE_GRATIS_THRESHOLD = freteGratisPromoAtiva ? 0 : 39900; // R$ 399 em centavos
+        var temFreteGratis = totalWithDiscount >= FRETE_GRATIS_THRESHOLD;
+
+        if (freteGratisPromoAtiva) {
+          elBadgeText.textContent = '🚚 Frete grátis HOJE, sem valor mínimo!';
+          elBadge.hidden = false;
+          return;
+        }
+
+        if (discountPct > 0) {
+          var nextTier = discountPct === 10 ? 5 : (discountPct === 15 ? 8 : null);
+          var nextPct = discountPct === 10 ? 15 : (discountPct === 15 ? 20 : null);
+          var msg = '✓ ' + discountPct + '% OFF aplicado';
+          if (temFreteGratis) msg += ' · frete grátis ativo';
+          if (nextTier && qty < nextTier && nextTier <= kitMaxQty) {
+            msg += ' · adicione +' + (nextTier - qty) + ' pra ganhar ' + nextPct + '% off';
+          }
+          elBadgeText.textContent = msg;
+          elBadge.hidden = false;
+        } else if (temFreteGratis) {
+          elBadgeText.textContent = '✓ Frete grátis garantido';
+          elBadge.hidden = false;
+        } else {
+          var faltaCentavos = FRETE_GRATIS_THRESHOLD - totalWithDiscount;
+          var faltaBRL = 'R$ ' + (faltaCentavos / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+          elBadgeText.textContent = '🚚 Falta ' + faltaBRL + ' pra frete grátis';
+          elBadge.hidden = false;
+        }
+      }
+    }
+
+    /* Sincroniza buy box → sticky (definido aqui pra usar nos handlers abaixo) */
+    function syncBuyBoxToSticky(val) {
+      var sQty = document.getElementById('vf-pdp-sticky-qty');
+      var sQtyHidden = document.getElementById('vf-pdp-sticky-qty-hidden');
+      if (sQty) sQty.value = val;
+      if (sQtyHidden) sQtyHidden.value = val;
+    }
+
+    /* ===== SELETOR DE KITS (cards) ===== */
+    var kitCards = document.querySelectorAll('.vf-pdp__kit-card');
+    var kitMaxQty = 0;
+    kitCards.forEach(function(c) { var q = parseInt(c.dataset.qty, 10) || 0; if (q > kitMaxQty) kitMaxQty = q; });
+    var kitLegendValue = document.getElementById('vf-pdp-kits-legend-value');
+
+    function updateKitLegend(card) {
+      if (!kitLegendValue) return;
+      var title = card.querySelector('.vf-pdp__kit-title');
+      kitLegendValue.textContent = title ? title.textContent.trim() : '';
+    }
+
+    var kitbarEl = document.getElementById('vf-pdp-kitbar');
+    var kitbarFill = document.getElementById('vf-pdp-kitbar-fill');
+    var kitbarMsg = document.getElementById('vf-pdp-kitbar-msg');
+    function updateKitbar(qty) {
+      if (!kitbarEl) return;
+      var pct = qty >= 3 ? 100 : (qty === 2 ? 50 : 8);
+      if (kitbarFill) kitbarFill.style.width = pct + '%';
+      kitbarEl.classList.remove('vf-pdp__kitbar--mid', 'vf-pdp__kitbar--low');
+      var m;
+      if (qty >= 3) {
+        m = '🎉 Vantagem máxima: 10% OFF + frete grátis desbloqueados';
+      } else if (qty === 2) {
+        kitbarEl.classList.add('vf-pdp__kitbar--mid');
+        m = {% if product.handle == 'protocolo-desparasitacao-adulto-vermefree' %}'🎉 5% OFF + frete grátis · leve 3 Kits e ganhe 10% OFF'{% else %}'🚚 Frete grátis garantido — leve 3 Kits e ganhe 10% OFF'{% endif %};
+      } else {
+        kitbarEl.classList.add('vf-pdp__kitbar--low');
+        m = {% if product.handle == 'protocolo-desparasitacao-adulto-vermefree' %}'Leve 2 e ganhe 5% OFF · leve 3 e ganhe 10% OFF'{% else %}'Leve 2 e ganhe frete grátis · leve 3 e ganhe 10% OFF'{% endif %};
+      }
+      if (kitbarMsg) kitbarMsg.textContent = m;
+    }
+
+    function selectKitCard(card) {
+      kitCards.forEach(function(c) {
+        c.classList.remove('is-active');
+        c.setAttribute('aria-checked', 'false');
+      });
+      card.classList.add('is-active');
+      card.setAttribute('aria-checked', 'true');
+      updateKitLegend(card);
+
+      if (!qtyInput) return;
+      var qty = parseInt(card.dataset.qty, 10) || 1;
+      qtyInput.value = qty;
+      updatePrices(qty);
+      updateKitbar(qty);
+      syncBuyBoxToSticky(qty);
+    }
+
+    function syncActiveCardFromQty(qty) {
+      var matched = false;
+      kitCards.forEach(function(c) {
+        var isMatch = parseInt(c.dataset.qty, 10) === qty;
+        c.classList.toggle('is-active', isMatch);
+        c.setAttribute('aria-checked', isMatch ? 'true' : 'false');
+        if (isMatch) { matched = true; updateKitLegend(c); }
+      });
+      return matched;
+    }
+
+    kitCards.forEach(function(card) {
+      card.addEventListener('click', function() { selectKitCard(card); });
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          selectKitCard(card);
+        }
+      });
+    });
+
+    var initialActiveCard = document.querySelector('.vf-pdp__kit-card.is-active');
+    if (initialActiveCard) {
+      updateKitLegend(initialActiveCard);
+      var initialQty = parseInt(initialActiveCard.dataset.qty, 10) || 1;
+      if (qtyInput) qtyInput.value = initialQty;
+      updatePrices(initialQty);
+      updateKitbar(initialQty);
+      syncBuyBoxToSticky(initialQty);
+    }
+
+    if (qtyInput) {
+      qtyInput.addEventListener('change', function() {
+        var v = parseInt(qtyInput.value, 10) || 1;
+        if (v < 1) v = 1;
+        qtyInput.value = v;
+        updatePrices(v);
+        syncBuyBoxToSticky(v);
+      });
+      qtyInput.addEventListener('input', function() {
+        var v = parseInt(qtyInput.value, 10) || 1;
+        if (v >= 1) {
+          updatePrices(v);
+          syncBuyBoxToSticky(v);
+        }
+      });
+      // Estado inicial
+      updatePrices(parseInt(qtyInput.value, 10) || 1);
+      syncBuyBoxToSticky(parseInt(qtyInput.value, 10) || 1);
+    }
+
+    /* ===== STICKY CTA BAR ===== */
+    var sticky = document.getElementById('vf-pdp-sticky');
+    if (sticky) {
+      var triggerPx = parseInt(sticky.dataset.triggerPx, 10) || 600;
+      var ticking = false;
+      function onScroll() {
+        if (window.scrollY > triggerPx) {
+          sticky.classList.add('is-visible');
+          sticky.setAttribute('aria-hidden', 'false');
+        } else {
+          sticky.classList.remove('is-visible');
+          sticky.setAttribute('aria-hidden', 'true');
+        }
+        ticking = false;
+      }
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // Sticky qty buttons + sync com input hidden
+      var stickyQty = document.getElementById('vf-pdp-sticky-qty');
+      var stickyQtyHidden = document.getElementById('vf-pdp-sticky-qty-hidden');
+      var stickyBtns = sticky.querySelectorAll('.vf-pdp-sticky__qty-btn');
+      function syncStickyQty() {
+        if (!stickyQty || !stickyQtyHidden) return;
+        var v = parseInt(stickyQty.value, 10) || 1;
+        if (v < 1) v = 1;
+        stickyQty.value = v;
+        stickyQtyHidden.value = v;
+      }
+      stickyBtns.forEach(function(b) {
+        b.addEventListener('click', function() {
+          if (!stickyQty) return;
+          var val = parseInt(stickyQty.value, 10) || 1;
+          if (b.dataset.action === 'plus') val++;
+          else if (b.dataset.action === 'minus' && val > 1) val--;
+          stickyQty.value = val;
+          syncStickyQty();
+          // Sincroniza com o input do buy box e recalcula preços
+          if (qtyInput) {
+            qtyInput.value = val;
+            updatePrices(val);
+            syncActiveCardFromQty(val);
+          }
+        });
+      });
+      if (stickyQty) {
+        stickyQty.addEventListener('change', function() {
+          syncStickyQty();
+          if (qtyInput) {
+            qtyInput.value = stickyQty.value;
+            updatePrices(parseInt(stickyQty.value, 10) || 1);
+            syncActiveCardFromQty(parseInt(stickyQty.value, 10) || 1);
+          }
+        });
+        stickyQty.addEventListener('input', function() {
+          syncStickyQty();
+          if (qtyInput) {
+            qtyInput.value = stickyQty.value;
+            updatePrices(parseInt(stickyQty.value, 10) || 1);
+            syncActiveCardFromQty(parseInt(stickyQty.value, 10) || 1);
+          }
+        });
+      }
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "VF PDP Main",
+  "tag": "section",
+  "class": "vf-pdp-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Configurações gerais"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Mostrar nome da marca acima do título",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "preview_frete_promo",
+      "label": "🔴 PRÉVIA: forçar visual da promo de frete grátis (30-31/07)",
+      "info": "Ative só pra testar/ver como fica. Desative depois — nos dias 30 e 31/07 ela liga sozinha, não precisa disso.",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "fallback_title",
+      "label": "Título de fallback (se não tiver produto cadastrado)",
+      "default": "Protocolo Adulto VermeFree"
+    },
+    {
+      "type": "textarea",
+      "id": "short_desc",
+      "label": "Descrição curta (fallback)",
+      "default": "Protocolo fitoterápico completo em 30 dias. A combinação que combate mais de 100 tipos de parasitas, sem efeitos que derrubam."
+    },
+    {
+      "type": "header",
+      "content": "Parcelamento em destaque"
+    },
+    {
+      "type": "number",
+      "id": "installment_10x_value",
+      "label": "Parcela 10x em CENTAVOS (ex: 4093 = R$ 40,93)",
+      "info": "Adulto: 4093 · Kids 2-4: 3185 · Kids 5-9: 4589 · Família: 13565",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Aviso de idade"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_age_badge",
+      "label": "Mostrar badge de idade sob o título",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "age_badge_text",
+      "label": "Texto do badge",
+      "default": "Indicado a partir de 10 anos"
+    },
+    {
+      "type": "header",
+      "content": "Sticky CTA"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sticky_cta",
+      "label": "Mostrar barra sticky fixa de CTA após scroll",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Avaliações"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Mostrar estrelas e número de avaliações",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "rating_score",
+      "label": "Nota",
+      "default": "4.9"
+    },
+    {
+      "type": "text",
+      "id": "rating_count",
+      "label": "Número de avaliações",
+      "default": "218"
+    },
+    {
+      "type": "header",
+      "content": "Accordions de informação"
+    },
+    {
+      "type": "richtext",
+      "id": "how_to_take",
+      "label": "Como tomar",
+      "default": "<p><strong>Protocolo de 30 dias em 2 fases:</strong></p><p><strong>Fase 1 — Preparação hepática · 15 dias antes da Lua Nova:</strong> Silimarina, 2x ao dia (manhã e noite).</p><p><strong>Fase 2 — Início na Lua Nova · 15 dias:</strong> Tintura (3ml, 3x ao dia, antes do café, almoço e jantar), Óleo de Orégano (1 cápsula, 3x ao dia, junto com a tintura) e Ornitina (1 cápsula, 1x ao dia, meia hora antes de deitar).</p><p>Cronograma completo enviado junto com o kit escolhido.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "composition",
+      "label": "Composição",
+      "default": "<p><strong>Tintura Antiparasitária 150ml:</strong> Nogueira Negra, Cravo, Erva-Santa-Maria, Absinto e Berberis.</p><p><strong>Cápsula Óleo de Orégano 200mg:</strong> Origanum vulgare padronizado em 70% de carvacrol.</p><p><strong>Cápsula Ornitina 550mg:</strong> Aminoácido de apoio hepático.</p><p><strong>Cápsula Silimarina 200mg:</strong> Cardo Mariano para proteção do fígado.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "benefits",
+      "label": "Benefícios do VermeFree",
+      "default": "<p><strong>Energia que volta.</strong> Sem aquele cansaço que parece não ter explicação.</p><p><strong>Sono inteiro.</strong> Dorme e só acorda de manhã — sem bruxismo, sem agitação noturna.</p><p><strong>Digestão leve.</strong> Comer sem inchaço, sem peso, sem desconforto após as refeições.</p><p><strong>Pele e cabelo com viço.</strong> O brilho volta quando o sistema interno está em ordem.</p><p><strong>Foco e humor estáveis.</strong> O eixo intestino-cérebro responde quando o intestino está limpo.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Seletor de kits (estilo Botanika)"
+    },
+    {
+      "type": "checkbox",
+      "id": "kits_enabled",
+      "label": "Mostrar seletor de kits em cards",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "kits_socialproof_enabled",
+      "label": "Mostrar prova social acima dos cards",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "kits_socialproof_text",
+      "label": "Texto da prova social",
+      "default": "+3 mil protocolos vendidos"
+    },
+    {
+      "type": "text",
+      "id": "kits_legend",
+      "label": "Texto acima dos cards",
+      "default": "Escolha a quantidade:"
+    },
+    {
+      "type": "header",
+      "content": "Kit — Tier 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "tier1_enabled",
+      "label": "Ativar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tier1_title",
+      "label": "Título",
+      "default": "1 Kit"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier1_image",
+      "label": "Imagem (opcional, usa a foto principal do produto se vazio)"
+    },
+    {
+      "type": "range",
+      "id": "tier1_quantity",
+      "label": "Quantidade",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "tier1_discount",
+      "label": "Desconto %",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "tier1_badge1",
+      "label": "Badge 1"
+    },
+    {
+      "type": "text",
+      "id": "tier1_badge2",
+      "label": "Badge 2"
+    },
+    {
+      "type": "text",
+      "id": "tier1_message",
+      "label": "Mensagem extra"
+    },
+    {
+      "type": "header",
+      "content": "Kit — Tier 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "tier2_enabled",
+      "label": "Ativar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tier2_title",
+      "label": "Título",
+      "default": "3 Kits"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier2_image",
+      "label": "Imagem (opcional, usa a foto principal do produto se vazio)"
+    },
+    {
+      "type": "range",
+      "id": "tier2_quantity",
+      "label": "Quantidade",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "tier2_discount",
+      "label": "Desconto %",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "tier2_badge1",
+      "label": "Badge 1",
+      "default": "Mais vendido"
+    },
+    {
+      "type": "text",
+      "id": "tier2_badge2",
+      "label": "Badge 2",
+      "default": "Frete grátis"
+    },
+    {
+      "type": "text",
+      "id": "tier2_message",
+      "label": "Mensagem extra"
+    },
+    {
+      "type": "header",
+      "content": "Kit — Tier 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "tier3_enabled",
+      "label": "Ativar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tier3_title",
+      "label": "Título",
+      "default": "5 Kits"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier3_image",
+      "label": "Imagem (opcional, usa a foto principal do produto se vazio)"
+    },
+    {
+      "type": "range",
+      "id": "tier3_quantity",
+      "label": "Quantidade",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "tier3_discount",
+      "label": "Desconto %",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 15
+    },
+    {
+      "type": "text",
+      "id": "tier3_badge1",
+      "label": "Badge 1",
+      "default": "Menor preço"
+    },
+    {
+      "type": "text",
+      "id": "tier3_badge2",
+      "label": "Badge 2",
+      "default": "Frete grátis"
+    },
+    {
+      "type": "text",
+      "id": "tier3_message",
+      "label": "Mensagem extra",
+      "default": "Frete grátis + brinde surpresa"
+    },
+    {
+      "type": "header",
+      "content": "Kit — Tier 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "tier4_enabled",
+      "label": "Ativar",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "tier4_title",
+      "label": "Título",
+      "default": "8 Kits"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier4_image",
+      "label": "Imagem (opcional, usa a foto principal do produto se vazio)"
+    },
+    {
+      "type": "range",
+      "id": "tier4_quantity",
+      "label": "Quantidade",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "tier4_discount",
+      "label": "Desconto %",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 20
+    },
+    {
+      "type": "text",
+      "id": "tier4_badge1",
+      "label": "Badge 1",
+      "default": "Menor preço"
+    },
+    {
+      "type": "text",
+      "id": "tier4_badge2",
+      "label": "Badge 2",
+      "default": "Frete grátis"
+    },
+    {
+      "type": "text",
+      "id": "tier4_message",
+      "label": "Mensagem extra",
+      "default": "Frete grátis + brinde surpresa"
+    },
+    {
+      "type": "header",
+      "content": "Depoimentos (carrossel de fotos)"
+    },
+    {
+      "type": "text",
+      "id": "depoimentos_heading",
+      "label": "Título",
+      "default": "O que dizem nossos clientes"
+    },
+    {
+      "type": "text",
+      "id": "depoimentos_subheading",
+      "label": "Subtítulo",
+      "default": "Histórias reais de quem já eliminou os parasitas com a VermeFree."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "component",
+      "name": "Componente do protocolo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nome do componente",
+          "default": "Tintura Antiparasitária"
+        },
+        {
+          "type": "text",
+          "id": "spec",
+          "label": "Especificação (volume/dosagem)",
+          "default": "150ml · 5 ervas em sinergia"
+        }
+      ]
+    },
+    {
+      "type": "depoimento",
+      "name": "Depoimento (foto)",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Foto do cliente"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nome (opcional)"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Frase (opcional)"
+        }
+      ]
+    },
+    {
+      "type": "stories",
+      "name": "Stories em vídeo",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Régua de círculos estilo Stories, dentro da coluna de informações. Cada destaque é um vídeo vertical que toca sozinho, mudo, só enquanto está visível. Ao tocar, abre em tela cheia com o cartão de compra deste produto."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título da régua (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "only_handles",
+          "label": "Mostrar só nestes produtos",
+          "info": "Handles separados por vírgula. Vazio = todos os produtos que usam este template."
+        },
+        {
+          "type": "text",
+          "id": "exclude_handles",
+          "label": "Não mostrar nestes produtos",
+          "info": "Handles separados por vírgula."
+        },
+        {
+          "type": "header",
+          "content": "Cartão de compra dentro da tela cheia"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Linha de cima",
+          "info": "Ex.: MAIS VENDIDO. Vazio esconde."
+        },
+        {
+          "type": "text",
+          "id": "offer",
+          "label": "Linha de oferta",
+          "info": "Vazio mostra o preço do produto."
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Selo do canto",
+          "info": "Ex.: NOVO. Vazio esconde."
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "Texto do botão",
+          "default": "Adicionar ao carrinho",
+          "info": "Produto com mais de uma opção mostra 'Escolher opção' e fecha o story."
+        },
+        {
+          "type": "header",
+          "content": "Destaque 1"
+        },
+        {
+          "type": "video",
+          "id": "story1_video",
+          "label": "Vídeo 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "story1_cover",
+          "label": "Capa 1 (opcional)",
+          "info": "Sem capa, o próprio vídeo mostra um quadro real."
+        },
+        {
+          "type": "text",
+          "id": "story1_label",
+          "label": "Legenda 1"
+        },
+        {
+          "type": "header",
+          "content": "Destaque 2"
+        },
+        {
+          "type": "video",
+          "id": "story2_video",
+          "label": "Vídeo 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "story2_cover",
+          "label": "Capa 2 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story2_label",
+          "label": "Legenda 2"
+        },
+        {
+          "type": "header",
+          "content": "Destaque 3"
+        },
+        {
+          "type": "video",
+          "id": "story3_video",
+          "label": "Vídeo 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "story3_cover",
+          "label": "Capa 3 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story3_label",
+          "label": "Legenda 3"
+        },
+        {
+          "type": "header",
+          "content": "Destaque 4"
+        },
+        {
+          "type": "video",
+          "id": "story4_video",
+          "label": "Vídeo 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "story4_cover",
+          "label": "Capa 4 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story4_label",
+          "label": "Legenda 4"
+        },
+        {
+          "type": "header",
+          "content": "Destaque 5"
+        },
+        {
+          "type": "video",
+          "id": "story5_video",
+          "label": "Vídeo 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "story5_cover",
+          "label": "Capa 5 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story5_label",
+          "label": "Legenda 5"
+        },
+        {
+          "type": "header",
+          "content": "Destaque 6"
+        },
+        {
+          "type": "video",
+          "id": "story6_video",
+          "label": "Vídeo 6"
+        },
+        {
+          "type": "image_picker",
+          "id": "story6_cover",
+          "label": "Capa 6 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story6_label",
+          "label": "Legenda 6"
+        },
+        {
+          "type": "header",
+          "content": "Destaque 7"
+        },
+        {
+          "type": "video",
+          "id": "story7_video",
+          "label": "Vídeo 7"
+        },
+        {
+          "type": "image_picker",
+          "id": "story7_cover",
+          "label": "Capa 7 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story7_label",
+          "label": "Legenda 7"
+        },
+        {
+          "type": "header",
+          "content": "Destaque 8"
+        },
+        {
+          "type": "video",
+          "id": "story8_video",
+          "label": "Vídeo 8"
+        },
+        {
+          "type": "image_picker",
+          "id": "story8_cover",
+          "label": "Capa 8 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story8_label",
+          "label": "Legenda 8"
+        },
+        {
+          "type": "video",
+          "id": "story9_video",
+          "label": "Vídeo 9"
+        },
+        {
+          "type": "image_picker",
+          "id": "story9_cover",
+          "label": "Capa 9 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story9_label",
+          "label": "Legenda 9"
+        },
+        {
+          "type": "video",
+          "id": "story10_video",
+          "label": "Vídeo 10"
+        },
+        {
+          "type": "image_picker",
+          "id": "story10_cover",
+          "label": "Capa 10 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story10_label",
+          "label": "Legenda 10"
+        },
+        {
+          "type": "video",
+          "id": "story11_video",
+          "label": "Vídeo 11"
+        },
+        {
+          "type": "image_picker",
+          "id": "story11_cover",
+          "label": "Capa 11 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story11_label",
+          "label": "Legenda 11"
+        },
+        {
+          "type": "video",
+          "id": "story12_video",
+          "label": "Vídeo 12"
+        },
+        {
+          "type": "image_picker",
+          "id": "story12_cover",
+          "label": "Capa 12 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story12_label",
+          "label": "Legenda 12"
+        },
+        {
+          "type": "video",
+          "id": "story13_video",
+          "label": "Vídeo 13"
+        },
+        {
+          "type": "image_picker",
+          "id": "story13_cover",
+          "label": "Capa 13 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story13_label",
+          "label": "Legenda 13"
+        },
+        {
+          "type": "video",
+          "id": "story14_video",
+          "label": "Vídeo 14"
+        },
+        {
+          "type": "image_picker",
+          "id": "story14_cover",
+          "label": "Capa 14 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story14_label",
+          "label": "Legenda 14"
+        },
+        {
+          "type": "video",
+          "id": "story15_video",
+          "label": "Vídeo 15"
+        },
+        {
+          "type": "image_picker",
+          "id": "story15_cover",
+          "label": "Capa 15 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story15_label",
+          "label": "Legenda 15"
+        },
+        {
+          "type": "video",
+          "id": "story16_video",
+          "label": "Vídeo 16"
+        },
+        {
+          "type": "image_picker",
+          "id": "story16_cover",
+          "label": "Capa 16 (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "story16_label",
+          "label": "Legenda 16"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "VF PDP Main",
+      "blocks": [
+        {
+          "type": "component",
+          "settings": {
+            "name": "Tintura Antiparasitária",
+            "spec": "150ml · 5 ervas em sinergia"
+          }
+        },
+        {
+          "type": "component",
+          "settings": {
+            "name": "Cápsula Óleo de Orégano",
+            "spec": "200mg · 70% carvacrol"
+          }
+        },
+        {
+          "type": "component",
+          "settings": {
+            "name": "Cápsula Ornitina",
+            "spec": "550mg · apoio hepático"
+          }
+        },
+        {
+          "type": "component",
+          "settings": {
+            "name": "Cápsula Silimarina",
+            "spec": "200mg · cardo mariano"
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}
+
