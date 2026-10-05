@@ -127,9 +127,25 @@
   <script>
     (function() {
       document.querySelectorAll('[data-vf-jdgm]').forEach(function(root) {
+        if (root.dataset.vfBound) return;
+        root.dataset.vfBound = '1';
+        // Paginação: se, depois de carregar a nova página, a lista estiver fora da tela, rola até ela.
+        root.addEventListener('click', function(e) {
+          if (!e.target.closest || !e.target.closest('.jdgm-paginate__page')) return;
+          var widget = root.querySelector('.vf-jdgm__widget');
+          if (!widget) return;
+          [600, 1400].forEach(function(ms) {
+            setTimeout(function() {
+              var top = widget.getBoundingClientRect().top;
+              if (top < -20 || top > window.innerHeight * 0.6) {
+                widget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }, ms);
+          });
+        });
+
         var btn = root.querySelector('[data-vf-jdgm-write]');
-        if (!btn || btn.dataset.vfBound) return;
-        btn.dataset.vfBound = '1';
+        if (!btn) return;
         btn.addEventListener('click', function() {
           var widget = root.querySelector('.vf-jdgm__widget');
           var link = root.querySelector('.jdgm-write-rev-link');
@@ -235,8 +251,15 @@
     }
 
     /* ---------- Lista do Judge.me (cards) ---------- */
-    #avaliacoes.vf-jdgm--custom-header .jdgm-rev-widg__header > *:not(.jdgm-form-wrapper) { display: none !important; }
-    #avaliacoes.vf-jdgm--custom-header .jdgm-rev-widg__header { margin: 0 !important; padding: 0 !important; border: 0 !important; min-height: 0 !important; }
+    /* Esconde o cabeçalho do Judge.me sem display:none: ele continua na página com posição real,
+       senão o Judge.me calcula posição 0 e joga a tela pro topo ao trocar de página. */
+    #avaliacoes.vf-jdgm--custom-header .jdgm-rev-widg__header > *:not(.jdgm-form-wrapper) {
+      position: absolute !important; width: 1px !important; height: 1px !important; margin: -1px !important;
+      padding: 0 !important; border: 0 !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important; opacity: 0 !important; pointer-events: none !important;
+    }
+    #avaliacoes .vf-jdgm__widget { scroll-margin-top: 96px; }
+    #avaliacoes.vf-jdgm--custom-header .jdgm-rev-widg__header { position: relative !important; margin: 0 !important; padding: 0 !important; border: 0 !important; min-height: 0 !important; }
     #avaliacoes .jdgm-rev-widg { padding: 0 !important; margin: 0 !important; border: 0 !important; background: transparent !important; }
     #avaliacoes .jdgm-rev-widg__body { border: 0 !important; margin: 0 !important; padding: 0 !important; }
     #avaliacoes .jdgm-rev-widg__sort-wrapper { display: flex; justify-content: flex-end; margin: 0 0 12px; border: 0 !important; }
