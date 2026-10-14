@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/preparar-edicao.sh",
+            "timeout": 150
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(ffmpeg:*)",
+      "Bash(ffprobe:*)",
+      "Bash(pip install faster-whisper:*)",
+      "Bash(pip install -q faster-whisper:*)",
+      "Bash(python3 .claude/skills/editar-videos-drive/scripts/transcrever.py:*)",
+      "Bash(.claude/skills/editar-videos-drive/scripts/baixar-drive.sh:*)",
+      "Bash(npx remotion:*)",
+      "mcp__Google_Drive__search_files",
+      "mcp__Google_Drive__get_file_metadata"
+    ]
+  }
+}
