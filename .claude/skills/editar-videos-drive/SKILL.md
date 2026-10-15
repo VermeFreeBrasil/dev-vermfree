@@ -49,5 +49,5 @@ python3 -c "import faster_whisper" && which ffmpeg
 ## 6. Entregar
 
 - Envie cada MP4 ao usuário com `SendUserFile` e informe o caminho absoluto completo.
-- Se o usuário pedir os arquivos no Drive, use o conector para criar o arquivo apenas se o tamanho couber no limite. Caso contrário, diga isso e entregue pelo chat.
+- Se o usuário pedir os arquivos no Drive, suba com `scripts/subir-drive.sh <id-ou-link-da-pasta> <arquivo> ...` (API do Drive, sem limite de tamanho; pula nomes que já existem na pasta). Ele precisa dos segredos `GDRIVE_CLIENT_ID`, `GDRIVE_CLIENT_SECRET` e `GDRIVE_REFRESH_TOKEN` e da rede liberando `oauth2.googleapis.com` e `www.googleapis.com`. Se faltar algo, diga exatamente o quê e aponte a seção **Subir para o Drive** de [COMO-USAR](../../../edicao-de-video/COMO-USAR.md); entregue pelo chat enquanto isso. Não use o conector para vídeos: ele só aceita o conteúdo embutido na chamada.
 - Termine com uma nota curta por vídeo: regras aplicadas, adaptações e limites (palavras incertas da transcrição, trechos sem imagem de apoio).
