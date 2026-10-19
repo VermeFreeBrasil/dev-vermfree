@@ -1,0 +1,499 @@
+{
+  "name": "VermeFree - Pedido de avaliação por WhatsApp (8 dias após a compra)",
+  "nodes": [
+    {
+      "id": "a1",
+      "name": "Todo dia 10h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 10 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "a2",
+      "name": "Rodar manualmente",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        200
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "a3",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        100
+      ],
+      "parameters": {
+        "mode": "manual",
+        "includeOtherFields": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "modo_teste",
+              "name": "modo_teste",
+              "value": true,
+              "type": "boolean"
+            },
+            {
+              "id": "telefone_teste",
+              "name": "telefone_teste",
+              "value": "55319XXXXXXXX",
+              "type": "string"
+            },
+            {
+              "id": "dias_apos_compra",
+              "name": "dias_apos_compra",
+              "value": 8,
+              "type": "number"
+            },
+            {
+              "id": "cupom",
+              "name": "cupom",
+              "value": "AVALIEI10",
+              "type": "string"
+            },
+            {
+              "id": "cupom_descricao",
+              "name": "cupom_descricao",
+              "value": "10% de desconto na próxima compra",
+              "type": "string"
+            },
+            {
+              "id": "loja_url",
+              "name": "loja_url",
+              "value": "https://vermefree.com.br",
+              "type": "string"
+            },
+            {
+              "id": "tag_enviado",
+              "name": "tag_enviado",
+              "value": "review-whatsapp-enviado",
+              "type": "string"
+            },
+            {
+              "id": "tag_optout",
+              "name": "tag_optout",
+              "value": "whatsapp-optout",
+              "type": "string"
+            },
+            {
+              "id": "shopify_dominio",
+              "name": "shopify_dominio",
+              "value": "q0pfbm-az.myshopify.com",
+              "type": "string"
+            },
+            {
+              "id": "shopify_api_versao",
+              "name": "shopify_api_versao",
+              "value": "2026-07",
+              "type": "string"
+            },
+            {
+              "id": "shopify_client_id",
+              "name": "shopify_client_id",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "shopify_client_secret",
+              "name": "shopify_client_secret",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "shopify_token_fixo",
+              "name": "shopify_token_fixo",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "whatsapp_provedor",
+              "name": "whatsapp_provedor",
+              "value": "evolution",
+              "type": "string"
+            },
+            {
+              "id": "whatsapp_url",
+              "name": "whatsapp_url",
+              "value": "https://SUA-API/message/sendText/SUA-INSTANCIA",
+              "type": "string"
+            },
+            {
+              "id": "whatsapp_header_nome",
+              "name": "whatsapp_header_nome",
+              "value": "apikey",
+              "type": "string"
+            },
+            {
+              "id": "whatsapp_header_valor",
+              "name": "whatsapp_header_valor",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "espera_min_seg",
+              "name": "espera_min_seg",
+              "value": 45,
+              "type": "number"
+            },
+            {
+              "id": "espera_max_seg",
+              "name": "espera_max_seg",
+              "value": 120,
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "a4",
+      "name": "Shopify: gerar token",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        100
+      ],
+      "onError": "continueRegularOutput",
+      "alwaysOutputData": true,
+      "notes": "Gera o token de acesso do app Shopify (válido por 24h). Se você usa um token fixo shpat_..., preencha shopify_token_fixo no Config e este nó é ignorado.",
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $('Config').first().json.shopify_dominio }}/admin/oauth/access_token",
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "grant_type",
+              "value": "client_credentials"
+            },
+            {
+              "name": "client_id",
+              "value": "={{ $('Config').first().json.shopify_client_id }}"
+            },
+            {
+              "name": "client_secret",
+              "value": "={{ $('Config').first().json.shopify_client_secret }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "a5",
+      "name": "Janela de datas",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        100
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Calcula o dia da compra (hoje - N dias, fuso de São Paulo) e monta a busca na Shopify.\nconst cfg = $('Config').first().json;\nconst dias = Number(cfg.dias_apos_compra) || 8;\n\nconst inicio = $now.setZone('America/Sao_Paulo').minus({ days: dias }).startOf('day');\nconst fim = inicio.plus({ days: 1 });\n\nconst q = [\n  `created_at:>='${inicio.toUTC().toISO({ suppressMilliseconds: true })}'`,\n  `created_at:<'${fim.toUTC().toISO({ suppressMilliseconds: true })}'`,\n  'financial_status:paid',\n  '-status:cancelled',\n  `-tag:${cfg.tag_enviado}`,\n].join(' ');\n\nconst query = `query Pedidos($q: String!) {\n  orders(first: 250, query: $q, sortKey: CREATED_AT) {\n    nodes {\n      id\n      name\n      createdAt\n      cancelledAt\n      displayFulfillmentStatus\n      tags\n      phone\n      shippingAddress { firstName phone }\n      billingAddress { firstName phone }\n      customer { id firstName tags }\n      lineItems(first: 10) { nodes { title product { handle title } } }\n    }\n    pageInfo { hasNextPage }\n  }\n}`;\n\nreturn [{ json: { dia_da_compra: inicio.toFormat('dd/MM/yyyy'), q, body: { query, variables: { q } } } }];\n"
+      }
+    },
+    {
+      "id": "a6",
+      "name": "Shopify: buscar pedidos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        100
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $('Config').first().json.shopify_dominio }}/admin/api/{{ $('Config').first().json.shopify_api_versao }}/graphql.json",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Shopify-Access-Token",
+              "value": "={{ $('Config').first().json.shopify_token_fixo || $('Shopify: gerar token').first().json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.body) }}",
+        "options": {}
+      }
+    },
+    {
+      "id": "a7",
+      "name": "Montar mensagens",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        100
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Filtra os pedidos e monta uma mensagem por cliente.\nconst cfg = $('Config').first().json;\nconst resp = $input.first().json;\nif (resp.errors) throw new Error('Shopify: ' + JSON.stringify(resp.errors));\nconst pedidos = resp?.data?.orders?.nodes ?? [];\n\nconst PULAR = [cfg.tag_enviado, cfg.tag_optout].filter(Boolean);\nconst temTag = (tags) => (tags || []).some((t) => PULAR.includes(t));\n\nfunction normalizaTelefone(bruto) {\n  let d = String(bruto || '').replace(/\\D/g, '');\n  if (d.startsWith('00')) d = d.slice(2);\n  if (d.startsWith('55') && (d.length === 12 || d.length === 13)) return d;\n  if (d.length === 10 || d.length === 11) return '55' + d;\n  return null;\n}\n\nfunction primeiroNome(nome) {\n  const p = String(nome || '').trim().split(/\\s+/)[0] || '';\n  return p ? p.charAt(0).toUpperCase() + p.slice(1).toLowerCase() : '';\n}\n\n// \"Protocolo ... | VermeFree Adulto\" -> \"VermeFree Adulto\"; \"Kit ... · 2 Adultos\" -> \"Kit ...\"\nfunction nomeCurto(titulo) {\n  const t = String(titulo || '');\n  if (t.includes('|')) return t.split('|')[1].trim();\n  if (t.includes('·')) return t.split('·')[0].trim();\n  return t.trim();\n}\n\nconst saudacoes = ['Oi', 'Olá', 'Oii'];\nconst vistos = new Set();\nconst saida = [];\n\nfor (const p of pedidos) {\n  if (p.cancelledAt) continue;\n  // Só pede avaliação se o pedido já foi despachado.\n  if (!['FULFILLED', 'PARTIALLY_FULFILLED'].includes(p.displayFulfillmentStatus)) continue;\n  if (temTag(p.tags) || temTag(p.customer?.tags)) continue;\n\n  let telefone = normalizaTelefone(p.shippingAddress?.phone || p.billingAddress?.phone || p.phone);\n  if (!telefone || vistos.has(telefone)) continue;\n  vistos.add(telefone);\n\n  const itens = (p.lineItems?.nodes || []).filter((li) => li.product?.handle);\n  if (!itens.length) continue;\n  // Prioriza o protocolo/kit; o óleo de alho só entra se for o único item.\n  const principal = itens.find((li) => !li.product.handle.startsWith('oleo-de-alho')) || itens[0];\n\n  const nome = primeiroNome(p.shippingAddress?.firstName || p.customer?.firstName || p.billingAddress?.firstName);\n  const produto = nomeCurto(principal.product.title || principal.title);\n  const link = `${cfg.loja_url}/products/${principal.product.handle}?utm_source=whatsapp&utm_medium=pos-compra&utm_campaign=avaliacao#avaliacoes`;\n  const oi = saudacoes[Math.floor(Math.random() * saudacoes.length)];\n\n  const texto = [\n    `${oi}${nome ? ', ' + nome : ''}! Aqui é da VermeFree 💚`,\n    '',\n    `Seu *${produto}* já chegou aí? Esperamos que esteja gostando!`,\n    '',\n    'Queria te pedir um favorzinho: conta pra gente como está sendo a sua experiência, de preferência com uma *foto ou vídeo* do produto 📸',\n    `👉 ${link}`,\n    '',\n    `Como agradecimento, você ganha *${cfg.cupom_descricao}* com o cupom *${cfg.cupom}* 🎁`,\n    '',\n    'Sua avaliação ajuda outras famílias a cuidarem da saúde também. Obrigada! 🙏',\n    '',\n    '_Se não quiser receber esse tipo de mensagem, é só responder SAIR._',\n  ].join('\\n');\n\n  saida.push({ pedido: p.name, pedido_id: p.id, cliente_id: p.customer?.id || null, nome, telefone, produto, link, texto });\n}\n\nlet lista = saida;\nif (cfg.modo_teste) {\n  const tel = normalizaTelefone(cfg.telefone_teste);\n  if (!tel) throw new Error('Modo teste ligado: preencha telefone_teste no nó Config.');\n  lista = saida.slice(0, 1).map((m) => ({ ...m, telefone: tel, texto: '[TESTE ' + m.pedido + ']\\n' + m.texto }));\n}\n\nreturn lista.map((m) => {\n  // Corpo do envio conforme o provedor de WhatsApp escolhido no Config.\n  const provedor = String(cfg.whatsapp_provedor || 'evolution').toLowerCase();\n  const payload = provedor === 'zapi'\n    ? { phone: m.telefone, message: m.texto }\n    : { number: m.telefone, text: m.texto };\n\n  // Marca pedido e cliente para não mandar de novo. No modo teste nada é marcado.\n  let tagBody;\n  if (cfg.modo_teste) {\n    tagBody = { query: '{ shop { name } }' };\n  } else if (m.cliente_id) {\n    tagBody = {\n      query: 'mutation($o: ID!, $c: ID!, $t: [String!]!) { o: tagsAdd(id: $o, tags: $t) { userErrors { message } } c: tagsAdd(id: $c, tags: $t) { userErrors { message } } }',\n      variables: { o: m.pedido_id, c: m.cliente_id, t: [cfg.tag_enviado] },\n    };\n  } else {\n    tagBody = {\n      query: 'mutation($o: ID!, $t: [String!]!) { o: tagsAdd(id: $o, tags: $t) { userErrors { message } } }',\n      variables: { o: m.pedido_id, t: [cfg.tag_enviado] },\n    };\n  }\n  return { json: { ...m, payload, tagBody } };\n});\n"
+      }
+    },
+    {
+      "id": "a8",
+      "name": "Uma por vez",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1440,
+        100
+      ],
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      }
+    },
+    {
+      "id": "a9",
+      "name": "Enviar WhatsApp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1680,
+        200
+      ],
+      "onError": "continueErrorOutput",
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Config').first().json.whatsapp_url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "={{ $('Config').first().json.whatsapp_header_nome }}",
+              "value": "={{ $('Config').first().json.whatsapp_header_valor }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.payload) }}",
+        "options": {
+          "timeout": 30000
+        }
+      }
+    },
+    {
+      "id": "a10",
+      "name": "Shopify: marcar enviado",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1920,
+        120
+      ],
+      "onError": "continueRegularOutput",
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $('Config').first().json.shopify_dominio }}/admin/api/{{ $('Config').first().json.shopify_api_versao }}/graphql.json",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Shopify-Access-Token",
+              "value": "={{ $('Config').first().json.shopify_token_fixo || $('Shopify: gerar token').first().json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($('Uma por vez').item.json.tagBody) }}",
+        "options": {}
+      }
+    },
+    {
+      "id": "a11",
+      "name": "Pausa entre envios",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2160,
+        200
+      ],
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random() * ($('Config').first().json.espera_max_seg - $('Config').first().json.espera_min_seg + 1)) + $('Config').first().json.espera_min_seg }}",
+        "unit": "seconds"
+      }
+    },
+    {
+      "id": "a12",
+      "name": "Fim",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        0
+      ],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Todo dia 10h": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rodar manualmente": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Shopify: gerar token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Shopify: gerar token": {
+      "main": [
+        [
+          {
+            "node": "Janela de datas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Janela de datas": {
+      "main": [
+        [
+          {
+            "node": "Shopify: buscar pedidos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Shopify: buscar pedidos": {
+      "main": [
+        [
+          {
+            "node": "Montar mensagens",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar mensagens": {
+      "main": [
+        [
+          {
+            "node": "Uma por vez",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Uma por vez": {
+      "main": [
+        [
+          {
+            "node": "Fim",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Enviar WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Shopify: marcar enviado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Pausa entre envios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Shopify: marcar enviado": {
+      "main": [
+        [
+          {
+            "node": "Pausa entre envios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pausa entre envios": {
+      "main": [
+        [
+          {
+            "node": "Uma por vez",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo"
+  },
+  "pinData": {}
+}
