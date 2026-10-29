@@ -2,6 +2,8 @@
 
 Atualizado em: **29/10/2026** (fim do dia), a partir da exportação do Alliance OS.
 
+**Regra (29/10): este arquivo é o placar oficial. Quando o Alliance trava a conclusão, marcamos aqui e o Pedro replica lá quando liberar.**
+
 Legenda: ⬜ falta · 🟡 fazendo · ✅ feito · ⛔ travado (depende de alguém) · ⏸️ remarcar
 
 Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da entrega, o que falta).
@@ -20,7 +22,7 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 | ⬜ | 23/10/2026 18h00 | GROWTH · SITE E SEO — Criar a página "VermeFree funciona?" com as avaliações do Judge.me | `mcp-1792086904834-8-6e1f2` | ATRASADA 5 dia(s) |
 | ⬜ | 23/10/2026 18h00 | GROWTH · SITE E SEO — Incorporar o quiz em uma página do site | `mcp-1792086906954-9-802d3` | ATRASADA 5 dia(s) |
 | ⬜ | 27/10/2026 18h00 | GROWTH · SITE E SEO — Criar a página de manifesto da VermeFree | `mcp-1792086908845-10-76679` | ATRASADA 1 dia(s) |
-| 🟡 | 29/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar a landing page de captação para o grupo | `mcp-1793231113158-4-83595` | 29/10: LP + trava prontas no tema "🛠️ 11/11 captação · LP + trava (EM TESTE)", página /pages/grupo-vip criada. Falta: link da Sarah, Pedro publicar o tema, enviar ao Otávio. ATRASADA 1 dia(s); depende: BLACK FRIDAY · 11/11 — Criar o grupo VIP do 11/11 e mandar os links para todo mundo (Sarah Brito, a fazer) |
+| 🟡 | 29/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar a landing page de captação para o grupo | `mcp-1793231113158-4-83595` | **29/10: LP v7 APROVADA pelo Pedro** (vermefree.com.br/pages/grupo-vip). Trava 01/11 00h → 11/11 07h programada. Falta: link da Sarah nos botões + teste no celular + rastreio; Pedro publicar o tema; enviar ao Otávio. Alliance não deixa concluir (depende da tarefa da Sarah): Pedro marca lá quando liberar. |
 | ⬜ | 29/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 10 criativos estáticos de captação | `mcp-1793231113158-6-09be2` | ATRASADA 1 dia(s) |
 | ⬜ | 30/10/2026 18h00 | GROWTH · SITE E SEO — Criar a LP comparativa VermeFree x remédios | `mcp-1792086910707-11-e980c` |  |
 | ⬜ | 30/10/2026 18h00 | GROWTH · SITE, SEO E CRO | `mcp-1792086890297-1-520da` |  |
