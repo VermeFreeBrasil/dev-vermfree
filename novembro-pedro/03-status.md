@@ -86,7 +86,7 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 |---|---|---|---|---|
 | ⬜ | 26/10/2026 18h00 | LANÇAMENTO REVITA DERMA — Criar o manual de como usar o kit | `task-1793216211344-bhs8s` | ATRASADA 2 dia(s) |
 | ⬜ | 30/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar a landing page de captação para o grupo | `mcp-1793231913181-1-05ebd` | depende: BLACK FRIDAY · 11/11 — Criar o grupo VIP do 11/11 e mandar os links para todo mundo (Sarah Brito, a fazer) |
-| ⬜ | 30/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 10 criativos estáticos de captação | `mcp-1793231913182-3-6bd0e` |  |
+| 🟡 | 30/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 10 criativos estáticos de captação | `mcp-1793231913182-3-6bd0e` | 29/10: 10 copies aprovadas (criativos/11-11-captacao-revita-10-estaticos-copy.md). Falta: artes (precisa site/assets da Revita). |
 | ⬜ | 30/10/2026 12h00 | BLACK FRIDAY · ESQUENTA 11/11 — Configurar o cashback na Shopify | `mcp-1793231079065-20-7ec35` |  |
 | ⬜ | 30/10/2026 12h00 | BLACK FRIDAY — Criar os 15 primeiros estáticos universais | `mcp-1793230872256-13-8d678` |  |
 | ⬜ | 30/10/2026 14h00 | BLACK FRIDAY — Editar os 20 primeiros vídeos universais | `mcp-1793230872256-10-62c3f` | depende: BLACK FRIDAY — Gravar os 20 primeiros vídeos universais (Maria Fernanda, Gabriel Ferreira, Vitor Gutierrez, a fazer) |
@@ -137,5 +137,5 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 | St | Prazo | Tarefa | ID | Obs |
 |---|---|---|---|---|
 | ⬜ | 30/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar a landing page de captação para o grupo | `mcp-1793219208869-17-9fa23` | depende: BLACK FRIDAY · 11/11 — Criar o grupo VIP do 11/11 e mandar os links para todo mundo (Sarah Brito, a fazer) |
-| ⬜ | 30/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 10 criativos estáticos de captação | `mcp-1793219208869-19-784a4` |  |
+| 🟡 | 30/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 10 criativos estáticos de captação | `mcp-1793219208869-19-784a4` | 29/10: 10 copies aprovadas (criativos/11-11-captacao-botanika-10-estaticos-copy.md). Falta: artes (botanikabrasil.com.br bloqueado na rede do ambiente). |
 | ⬜ | 30/10/2026 12h00 | BLACK FRIDAY — Criar os 15 primeiros estáticos universais | `mcp-1793220047120-8-702b7` |  |
