@@ -242,10 +242,22 @@
         rail.scrollTo({ left: fim ? 0 : rail.scrollLeft + 182, behavior: 'smooth' });
       }, 2600);
     }
+    // Rastreio: os pixels da loja rodam isolados (web pixels), então a LP carrega o próprio fbq
+    // só para o Lead (sem PageView, que o app já manda) e manda o lead ao GA4 e ao Google Ads.
+    var META = {{ section.settings.meta_pixels | default: '' | split: ',' | json }};
+    var GA4 = {{ section.settings.ga4_id | default: '' | json }};
+    var ADS = {{ section.settings.ads_id | default: '' | json }};
+    var ADS_LABEL = {{ section.settings.ads_lead_label | default: '' | json }};
+    if (META.length) {
+      !function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); }; if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s); }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      META.forEach(function (id) { id = id.trim(); if (id) window.fbq('init', id); });
+    }
+    if (GA4 && window.gtag) window.gtag('config', GA4, { send_page_view: false });
     document.querySelectorAll('[data-vv-cta]').forEach(function (el) {
       el.addEventListener('click', function () {
-        try { if (window.fbq) window.fbq('track', 'Lead', { content_name: 'Grupo VIP 11/11' }); } catch (e) {}
-        try { if (window.gtag) window.gtag('event', 'generate_lead', { event_label: 'grupo_vip_1111', transport_type: 'beacon' }); } catch (e) {}
+        try { if (META.length && window.fbq) window.fbq('track', 'Lead', { content_name: 'Grupo VIP 11/11' }); } catch (e) {}
+        try { if (window.gtag && GA4) window.gtag('event', 'generate_lead', { send_to: GA4, lead_source: 'grupo_vip_1111', transport_type: 'beacon' }); } catch (e) {}
+        try { if (window.gtag && ADS && ADS_LABEL) window.gtag('event', 'conversion', { send_to: ADS + '/' + ADS_LABEL, transport_type: 'beacon' }); } catch (e) {}
         try { if (window.Shopify && Shopify.analytics && Shopify.analytics.publish) Shopify.analytics.publish('vf_grupo_vip_click', { campanha: '11/11' }); } catch (e) {}
       });
     });
@@ -259,7 +271,12 @@
     { "type": "url", "id": "link_grupo", "label": "Link do grupo VIP (rastreado, da Sarah)" },
     { "type": "text", "id": "data_alvo", "label": "Contagem até (ISO)", "default": "2026-11-11T00:00:00-03:00" },
     { "type": "image_picker", "id": "logo", "label": "Logo" },
-    { "type": "image_picker", "id": "foto", "label": "Foto em arco" }
+    { "type": "image_picker", "id": "foto", "label": "Foto em arco" },
+    { "type": "header", "content": "Rastreio do clique no botão (Lead)" },
+    { "type": "text", "id": "meta_pixels", "label": "Pixels da Meta (separados por vírgula)", "default": "2239781696850189,867430254699991" },
+    { "type": "text", "id": "ga4_id", "label": "GA4 (evento generate_lead)", "default": "G-W0NZM1LHSN" },
+    { "type": "text", "id": "ads_id", "label": "Google Ads (conta)", "default": "AW-18193701893" },
+    { "type": "text", "id": "ads_lead_label", "label": "Google Ads: rótulo da conversão Lead Grupo VIP", "info": "Criar a conversão no Google Ads e colar aqui só o rótulo (o que vem depois da barra)." }
   ],
   "presets": [{ "name": "VF Grupo VIP 11/11" }]
 }
