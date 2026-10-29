@@ -38,7 +38,8 @@ Pasta de memória do mês. Quem for retomar o acompanhamento (eu, Claude, ou o p
 
 ## VermeFree — planejamento de novembro (Planejamento 2.0)
 
-- **Meta 1 do mês:** R$ 721,5 mil. Verba de marketing: R$ 120 mil sem imposto.
+- **Metas do mês:** Meta 1 (do plano) R$ 721,5 mil · Meta 2 (+20%) R$ 865,8 mil · Meta 3 (+44%) R$ 1,04 mi. Verba de marketing: R$ 120 mil sem imposto.
+- **Calendário oficial passado ao time (29/10):** `fontes/calendario-estrategico-vermefree-novembro.pdf` — antecipação e captação 30/10 a 10/11 (site trancado até 11/11 07h) · Dia D 11/11 · Verme November 12–19/11 · Verme Week 20–26/11 · Verme Friday 27–28/11 · Free Monday 30/11.
 - **Drivers:** custo/sessão R$ 2 · conversão 2,5% · ticket R$ 500 · retenção 10% · aprovação 90%.
 - **Mix de canais:** orgânico/IG 32,3% · direto/SEO 24,9% · CRM 20,8% · tráfego 14,8% · influência 5% · atendimento 2,1%.
 - **Cupons do mês:** só o de influenciadora, **2%** (antes 5%), acumula com tudo. **Sem** cupom de primeira compra, Nova Saúde ou roleta. Volta ao normal em 01/12 00h (salvo decisão do Vitor).
