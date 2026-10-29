@@ -1,88 +1,146 @@
 {%- comment -%}
-  vf-grupo-vip — LP de captura (squeeze) do Grupo VIP do 11/11 (/pages/grupo-vip).
-  Uma tela só: foto real do site, título, botão e contagem. Fundo claro, verde da marca.
-  Não abre a oferta. Clique: Lead (Meta, se houver fbq), generate_lead (Google)
-  e vf_grupo_vip_click (pixels personalizados).
+  vf-grupo-vip — LP de captura do Grupo VIP · VermeFree November (/pages/grupo-vip).
+  Identidade do Calendário Estratégico de novembro: floresta, verde vivo, lima, Caprasimo.
+  Mensagem aprovada: "o maior desconto da história da VermeFree" (sem %, sem data de oferta).
+  Clique: Lead (Meta, se houver fbq), generate_lead (Google) e vf_grupo_vip_click.
 {%- endcomment -%}
 {%- assign link = section.settings.link_grupo | default: '#' -%}
-<main class="sq">
-  <figure class="sq-photo">
-    {%- if section.settings.foto != blank -%}
-      {{ section.settings.foto | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high', alt: 'Família VermeFree' }}
-    {%- else -%}
-      <img src="{{ 'lp-familia-sofa.jpg' | asset_img_url: '1400x' }}" alt="Família VermeFree" width="1400" height="1400" fetchpriority="high">
-    {%- endif -%}
-  </figure>
+{%- capture wa -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.5 7.8L3 21l1.7-4.5A9 9 0 1 1 21 11.5Z"/><path d="m8 7 2 3-1 1c1 2 2 3 4 4l1-1 3 1c0 2-2 3-4 2-4-1-7-5-7-7 0-2 1-3 2-3Z"/></svg>{%- endcapture -%}
 
-  <section class="sq-box">
-    {%- if section.settings.logo != blank -%}
-      {{ section.settings.logo | image_url: width: 300 | image_tag: class: 'sq-logo', alt: 'VermeFree' }}
-    {%- endif -%}
-    <p class="sq-eyebrow">Grupo VIP · 11/11</p>
-    <h1>O maior dia do ano chega <em>primeiro no Grupo VIP</em></h1>
-    <p class="sq-sub">No dia 11/11, quem está no grupo recebe o acesso à oferta <strong>à 00h</strong>, 7 horas antes de todo mundo.</p>
+<div class="bk">
+  <p class="bk-top"><span class="bk-dot"></span>11/11 · 00h · acesso antecipado só no Grupo VIP</p>
 
-    <a class="sq-btn" href="{{ link }}" data-sq-cta target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.5 7.8L3 21l1.7-4.5A9 9 0 1 1 21 11.5Z"/><path d="m8 7 2 3-1 1c1 2 2 3 4 4l1-1 3 1c0 2-2 3-4 2-4-1-7-5-7-7 0-2 1-3 2-3Z"/></svg>
-      Quero entrar no Grupo VIP
-    </a>
-    <p class="sq-micro">Grátis · Sem spam · Sai quando quiser</p>
+  <section class="bk-hero">
+    <div class="bk-wrap bk-hero__grid">
+      <div class="bk-copy">
+        {%- if section.settings.logo != blank -%}
+          {{ section.settings.logo | image_url: width: 320 | image_tag: class: 'bk-logo', alt: 'VermeFree' }}
+        {%- endif -%}
+        <p class="bk-kicker">VermeFree <span>November</span></p>
+        <h1>O maior desconto da história da VermeFree <em>abre primeiro no Grupo VIP.</em></h1>
+        <p class="bk-sub">Dia 11/11, à meia-noite, o grupo recebe o acesso antes de todo mundo. A loja só abre para todos às 7h.</p>
 
-    <div class="sq-timer" data-sq-timer aria-label="Contagem regressiva para o 11/11">
-      <span>Abre no grupo em</span>
-      <b data-d>--</b><small>d</small><b data-h>--</b><small>h</small><b data-m>--</b><small>min</small><b data-s>--</b><small>s</small>
+        <figure class="bk-prod bk-prod--m">
+          {{ section.settings.produto | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', alt: 'Kit Família VermeFree' }}
+        </figure>
+
+        <div class="bk-timer" data-bk-timer aria-label="Contagem regressiva para o 11/11">
+          <div><b data-d>--</b><small>dias</small></div>
+          <div><b data-h>--</b><small>horas</small></div>
+          <div><b data-m>--</b><small>min</small></div>
+          <div><b data-s>--</b><small>seg</small></div>
+        </div>
+
+        <a class="bk-btn" href="{{ link }}" data-bk-cta target="_blank" rel="noopener">{{ wa }}Quero entrar no Grupo VIP</a>
+        <p class="bk-micro">Grátis · só os administradores enviam mensagens · sai quando quiser</p>
+      </div>
+
+      <figure class="bk-prod bk-prod--d">
+        {{ section.settings.produto | image_url: width: 1400 | image_tag: loading: 'eager', alt: 'Kit Família VermeFree' }}
+      </figure>
     </div>
-    <p class="sq-aviso" data-sq-aviso hidden>A loja reabre para todos dia 11/11 às 7h.</p>
   </section>
-</main>
+
+  <section class="bk-why">
+    <div class="bk-wrap">
+      <ul class="bk-perks">
+        <li><b>00h</b><span>Você compra 7 horas antes de abrir para todos</span></li>
+        <li><b>100</b><span>primeiros pedidos ganham cashback</span></li>
+        <li><b>300</b><span>primeiros pedidos concorrem a um kit VermeFree</span></li>
+      </ul>
+
+      <div class="bk-month">
+        <p class="bk-month__t">Um mês inteiro de ofertas. Quem está no grupo fica sabendo primeiro.</p>
+        <ol>
+          <li class="is-d"><b>11/11</b><span>Dia D</span></li>
+          <li><b>12 a 19</b><span>Verme November</span></li>
+          <li><b>20 a 26</b><span>Verme Week</span></li>
+          <li class="is-d"><b>27 e 28</b><span>Verme Friday</span></li>
+          <li><b>30</b><span>Free Monday</span></li>
+        </ol>
+      </div>
+
+      <a class="bk-btn bk-btn--c" href="{{ link }}" data-bk-cta target="_blank" rel="noopener">{{ wa }}Entrar no Grupo VIP</a>
+      <p class="bk-aviso" data-bk-aviso hidden>Site fechado para o 11/11. A loja reabre para todos dia 11 às 7h.</p>
+    </div>
+  </section>
+</div>
 
 <style>
-  html,body{background:#fff}
-  .sq{--green:#5ebc43;--green-d:#3f9a2b;--dark:#1b5e20;--ink:#1a1a1a;--muted:#5b6560;--cream:#f7f8f3;
-    min-height:100svh;display:grid;grid-template-columns:1fr 1fr;background:#fff;color:var(--ink);font-family:Inter,Arial,sans-serif}
-  .sq *{box-sizing:border-box}
-  .sq [hidden]{display:none!important}
-  .sq h1,.sq p{margin:0}
-  .sq-photo{margin:0;position:relative;min-height:100svh}
-  .sq-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .sq-box{display:flex;flex-direction:column;justify-content:center;padding:48px clamp(32px,6vw,96px);max-width:640px}
-  .sq-logo{width:150px;height:auto;margin-bottom:40px}
-  .sq-eyebrow{display:inline-block;align-self:flex-start;background:#eaf6e4;color:var(--dark);font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;padding:6px 12px;border-radius:40px;margin-bottom:16px}
-  .sq h1{font-family:Caprasimo,Georgia,serif;font-weight:400;font-size:clamp(34px,3.6vw,52px);line-height:1.08;letter-spacing:-.02em}
-  .sq h1 em{font-style:normal;color:var(--green-d)}
-  .sq-sub{font-size:17px;line-height:1.55;color:var(--muted);margin:16px 0 26px}
-  .sq-sub strong{color:var(--ink)}
-  .sq-btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;border-radius:14px;background:var(--green);color:#fff;font-size:17px;font-weight:700;text-decoration:none;box-shadow:0 8px 22px #5ebc4359;transition:background .2s,transform .2s}
-  .sq-btn:hover{background:var(--green-d);transform:translateY(-1px)}
-  .sq-btn svg{width:22px;height:22px}
-  .sq-micro{text-align:center;font-size:13px;color:var(--muted);margin-top:10px}
-  .sq-timer{display:flex;align-items:baseline;justify-content:center;gap:3px;margin-top:22px;padding:12px;border-radius:12px;background:var(--cream);font-size:13px;color:var(--muted)}
-  .sq-timer span{margin-right:8px}
-  .sq-timer b{font-size:20px;color:var(--dark);font-variant-numeric:tabular-nums}
-  .sq-timer small{margin-right:8px}
-  .sq-aviso{text-align:center;font-size:12px;color:var(--muted);margin-top:10px}
-  @media(max-width:820px){
-    .sq{display:flex;flex-direction:column;min-height:100svh}
-    .sq-photo{min-height:0;height:40svh;max-height:none;flex-shrink:0}
-    .sq-photo img{object-position:50% 62%}
-    .sq-box{padding:16px 20px 18px;max-width:none;justify-content:flex-start;flex:1}
-    .sq-logo{width:112px;margin:0 auto 14px}
-    .sq-eyebrow{align-self:center;font-size:11px;margin-bottom:10px}
-    .sq h1{font-size:29px;text-align:center}
-    .sq-sub{font-size:15px;text-align:center;margin:10px 0 16px}
-    .sq-timer{margin-top:14px;padding:10px}
-    .sq-timer b{font-size:18px}
+  html,body{background:#102e21}
+  .bk{--bg:#102e21;--bg2:#173e2d;--card:#1c4733;--green:#6cc04a;--green-d:#58a83a;--lime:#c4e39a;--white:#fff;--muted:#bcd0bf;--serif:Caprasimo,Georgia,serif;--sans:Inter,Arial,sans-serif;
+    background:radial-gradient(ellipse 80% 60% at 75% 30%,#2d6a3f 0,transparent 60%),var(--bg);color:var(--white);font-family:var(--sans);-webkit-text-size-adjust:100%}
+  .bk *{box-sizing:border-box}
+  .bk [hidden]{display:none!important}
+  .bk h1,.bk p,.bk ul,.bk ol{margin:0;padding:0}
+  .bk a{text-decoration:none}
+  .bk-wrap{width:min(1160px,calc(100% - 48px));margin:0 auto}
+  .bk-top{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--lime);color:var(--bg);font-size:12px;font-weight:700;letter-spacing:.3px;padding:9px 14px;text-align:center}
+  .bk-dot{width:7px;height:7px;border-radius:50%;background:var(--bg);animation:bkp 1.4s infinite}
+  @keyframes bkp{50%{opacity:.25}}
+
+  .bk-hero{padding:44px 0 36px}
+  .bk-hero__grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .bk-logo{width:132px;height:auto;filter:brightness(0) invert(1);margin-bottom:34px}
+  .bk-kicker{font:400 clamp(30px,3.2vw,44px)/1 var(--serif);letter-spacing:-.02em;margin-bottom:18px}
+  .bk-kicker span{color:var(--green)}
+  .bk h1{font:700 clamp(22px,2.1vw,30px)/1.25 var(--sans);letter-spacing:-.02em;max-width:520px}
+  .bk h1 em{font-style:normal;color:var(--lime)}
+  .bk-sub{font-size:16px;line-height:1.6;color:var(--muted);margin:14px 0 26px;max-width:480px}
+  .bk-prod{margin:0}
+  .bk-prod img{width:100%;height:auto;display:block;filter:drop-shadow(0 30px 40px #00000066)}
+  .bk-prod--m{display:none}
+  .bk-timer{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:480px;margin-bottom:14px}
+  .bk-timer div{background:var(--card);border:1px solid #ffffff1a;border-radius:12px;text-align:center;padding:10px 0 8px}
+  .bk-timer b{display:block;font:400 30px/1 var(--serif);color:var(--white);font-variant-numeric:tabular-nums}
+  .bk-timer small{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+  .bk-btn{display:flex;align-items:center;justify-content:center;gap:10px;max-width:480px;min-height:60px;border-radius:14px;background:var(--green);color:var(--bg);font-size:17px;font-weight:800;box-shadow:0 12px 30px #6cc04a40;transition:transform .2s,background .2s}
+  .bk-btn:hover{background:var(--lime);transform:translateY(-2px)}
+  .bk-btn svg{width:22px;height:22px}
+  .bk-btn--c{margin:28px auto 0}
+  .bk-micro{max-width:480px;text-align:center;font-size:12px;color:var(--muted);margin-top:10px}
+
+  .bk-why{padding:8px 0 48px}
+  .bk-perks{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .bk-perks li{display:flex;align-items:center;gap:14px;background:var(--bg2);border:1px solid #ffffff14;border-radius:16px;padding:16px 18px}
+  .bk-perks b{font:400 32px/1 var(--serif);color:var(--lime);min-width:64px}
+  .bk-perks span{font-size:14px;line-height:1.4;color:#e4ede5}
+  .bk-month{margin-top:12px;background:var(--white);color:var(--bg);border-radius:16px;padding:18px 20px}
+  .bk-month__t{font-size:14px;font-weight:700;margin-bottom:12px}
+  .bk-month ol{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .bk-month li{background:#eef5e7;border-radius:10px;padding:10px 12px}
+  .bk-month li.is-d{background:var(--green);color:var(--bg)}
+  .bk-month li b{display:block;font-size:15px}
+  .bk-month li span{font-size:12px;opacity:.85}
+  .bk-aviso{text-align:center;font-size:12px;color:var(--muted);margin-top:12px}
+
+  @media(max-width:860px){
+    .bk-wrap{width:calc(100% - 36px)}
+    .bk-hero{padding:22px 0 8px}
+    .bk-hero__grid{display:block}
+    .bk-prod--d{display:none}
+    .bk-copy{text-align:center}
+    .bk-logo{width:108px;margin:0 auto 16px;display:block}
+    .bk-kicker{font-size:34px;margin-bottom:10px}
+    .bk h1{font-size:19px;margin:0 auto}
+    .bk-sub{font-size:14px;margin:8px auto 4px}
+    .bk-prod--m{display:block;width:min(310px,82%);margin:0 auto 4px}
+    .bk-timer,.bk-btn,.bk-micro{margin-left:auto;margin-right:auto}
+    .bk-timer b{font-size:24px}
+    .bk-btn{min-height:56px;font-size:16px}
+    .bk-why{padding:22px 0 36px}
+    .bk-perks{grid-template-columns:1fr;gap:8px}
+    .bk-perks li{padding:12px 14px}
+    .bk-perks b{font-size:26px;min-width:54px}
+    .bk-month ol{grid-template-columns:repeat(2,1fr)}
+    .bk-month li:first-child{grid-column:1/-1}
   }
-  @media(max-width:820px) and (max-height:700px){
-    .sq-photo{height:32svh}
-    .sq h1{font-size:26px}
-    .sq-logo{margin-bottom:10px}
-  }
+  @media(prefers-reduced-motion:reduce){.bk *{animation:none!important;transition:none!important}}
 </style>
 
 <script>
   (function () {
-    var t = document.querySelector('[data-sq-timer]');
+    var t = document.querySelector('[data-bk-timer]');
     if (t) {
       var alvo = new Date('{{ section.settings.data_alvo | default: "2026-11-11T00:00:00-03:00" }}').getTime();
       var pad = function (n) { return (n < 10 ? '0' : '') + n; };
@@ -96,10 +154,10 @@
       tick(); setInterval(tick, 1000);
     }
     if (window.vfTravaAtiva) {
-      var a = document.querySelector('[data-sq-aviso]');
+      var a = document.querySelector('[data-bk-aviso]');
       if (a) a.hidden = false;
     }
-    document.querySelectorAll('[data-sq-cta]').forEach(function (el) {
+    document.querySelectorAll('[data-bk-cta]').forEach(function (el) {
       el.addEventListener('click', function () {
         try { if (window.fbq) window.fbq('track', 'Lead', { content_name: 'Grupo VIP 11/11' }); } catch (e) {}
         try { if (window.gtag) window.gtag('event', 'generate_lead', { event_label: 'grupo_vip_1111', transport_type: 'beacon' }); } catch (e) {}
@@ -111,13 +169,13 @@
 
 {% schema %}
 {
-  "name": "VF Grupo VIP 11/11",
+  "name": "VF Grupo VIP November",
   "settings": [
     { "type": "url", "id": "link_grupo", "label": "Link do grupo VIP (rastreado, da Sarah)" },
     { "type": "text", "id": "data_alvo", "label": "Contagem até (ISO)", "default": "2026-11-11T00:00:00-03:00" },
     { "type": "image_picker", "id": "logo", "label": "Logo" },
-    { "type": "image_picker", "id": "foto", "label": "Foto" }
+    { "type": "image_picker", "id": "produto", "label": "Produto (PNG sem fundo)" }
   ],
-  "presets": [{ "name": "VF Grupo VIP 11/11" }]
+  "presets": [{ "name": "VF Grupo VIP November" }]
 }
 {% endschema %}
