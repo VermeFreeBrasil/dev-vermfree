@@ -23,7 +23,7 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 | ⬜ | 23/10/2026 18h00 | GROWTH · SITE E SEO — Incorporar o quiz em uma página do site | `mcp-1792086906954-9-802d3` | ATRASADA 5 dia(s) |
 | ⬜ | 27/10/2026 18h00 | GROWTH · SITE E SEO — Criar a página de manifesto da VermeFree | `mcp-1792086908845-10-76679` | ATRASADA 1 dia(s) |
 | 🟡 | 29/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar a landing page de captação para o grupo | `mcp-1793231113158-4-83595` | **29/10: LP v7 APROVADA pelo Pedro** (vermefree.com.br/pages/grupo-vip). Trava 01/11 00h → 11/11 07h programada. Falta: link da Sarah nos botões + teste no celular + rastreio; Pedro publicar o tema; enviar ao Otávio. Alliance não deixa concluir (depende da tarefa da Sarah): Pedro marca lá quando liberar. |
-| 🟡 | 29/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 10 criativos estáticos de captação | `mcp-1793231113158-6-09be2` | 29/10: 10 copies aprovadas; 20 artes (4:5 e 9:16) em criativos/11-11-captacao/png, aguardando aprovação. Depois: entregar ao Otávio. |
+| ✅ | 29/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 10 criativos estáticos de captação | `mcp-1793231113158-6-09be2` | **29/10: CONCLUÍDA (aprovada pelo Pedro).** 20 PNGs (4:5 e 9:16) em criativos/11-11-captacao/png, enviados ao Pedro para subir na pasta e repassar ao Otávio. Copy: criativos/11-11-captacao-10-estaticos-copy.md. **Marcar no Alliance.** |
 | ⬜ | 30/10/2026 18h00 | GROWTH · SITE E SEO — Criar a LP comparativa VermeFree x remédios | `mcp-1792086910707-11-e980c` |  |
 | ⬜ | 30/10/2026 18h00 | GROWTH · SITE, SEO E CRO | `mcp-1792086890297-1-520da` |  |
 | ⬜ | 02/11/2026 18h00 | PESQUISA DE INDICAÇÃO — Outubro / VERMEFREE | `mcp-1791310863649-b305122a` |  |

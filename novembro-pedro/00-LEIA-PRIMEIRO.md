@@ -11,6 +11,7 @@ Pasta de memória do mês. Quem for retomar o acompanhamento (eu, Claude, ou o p
 | `02-calendario.md` | Dia a dia de 29/10 a 02/12: o que vence, o que chega dos outros, reuniões | Quando um prazo mudar |
 | `03-status.md` | Placar: feito / fazendo / falta, tarefa por tarefa | **Todo dia**, no fim do expediente |
 | `04-decisoes-e-pendencias.md` | Perguntas para o Vitor, riscos, decisões tomadas | Sempre que surgir ou fechar uma |
+| `para-marcar-no-alliance.md` | O que concluímos aqui e falta o Pedro marcar no Alliance | Sempre que uma tarefa for aprovada |
 | `diario/AAAA-MM-DD.md` | Registro do dia: o que foi feito, o que travou, o que fica para amanhã | Todo dia |
 | `fontes/` | Exportação completa das tarefas do Alliance OS (29/10) | Só se reexportar |
 
