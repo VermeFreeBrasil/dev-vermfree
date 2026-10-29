@@ -6,7 +6,8 @@
       "settings": {
         "data_alvo": "2026-11-11T00:00:00-03:00",
         "logo": "shopify://shop_images/logo-shopify-medium.png",
-        "foto": "shopify://shop_images/vf-hero-pedestal.png"
+        "foto": "shopify://shop_images/vf-hero-pedestal.png",
+        "link_grupo": "https://sndflw.com/i/vermefree11-11"
       }
     }
   },
