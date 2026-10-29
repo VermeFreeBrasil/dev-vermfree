@@ -4,6 +4,8 @@ Atualizado em: **29/10/2026** (fim do dia), a partir da exportação do Alliance
 
 **REGRA FIXA (29/10): este chat faz SÓ tarefas da VermeFree. Revita e Botanika são só referência de dependência; nunca executar nada delas aqui. Se o Pedro citar Revita ou Botanika, parar e avisar.**
 
+**REGRA Nº 2 (Pedro, 29/10): o escopo é SÓ as tarefas das promoções de novembro da VermeFree e do cronograma passado (captação 11/11, Dia D 11/11, Recovery, Verme November, Verme Week, Verme Friday, Free Monday: criativos, vídeos, estáticos, LP, tema, oferta/frete/brinde/cashback/sorteio na Shopify). Fora do escopo: tarefas de GROWTH (SEO, CRO, LP comparativa, ManyChat, artigos, rodapé, quiz, manifesto etc.) e pesquisa de indicação. Não sugerir nem executar.**
+
 **Regra (29/10): este arquivo é o placar oficial. Quando o Alliance trava a conclusão, marcamos aqui e o Pedro replica lá quando liberar.**
 
 Legenda: ⬜ falta · 🟡 fazendo · ✅ feito · ⛔ travado (depende de alguém) · ⏸️ remarcar

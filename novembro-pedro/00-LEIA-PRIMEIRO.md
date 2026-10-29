@@ -17,6 +17,8 @@ Pasta de memória do mês. Quem for retomar o acompanhamento (eu, Claude, ou o p
 
 **REGRA Nº 1 (Pedro, 29/10): este chat executa SOMENTE tarefas da VERMEFREE. Nunca Revita, nunca Botanika. Se o Pedro citar Revita ou Botanika, travar na hora, avisar e não fazer nada. As seções de Revita/Botanika abaixo são só contexto.**
 
+**REGRA Nº 2 (Pedro, 29/10): o escopo é SÓ as tarefas das promoções de novembro da VermeFree e do cronograma passado (captação 11/11, Dia D 11/11, Recovery, Verme November, Verme Week, Verme Friday, Free Monday: criativos, vídeos, estáticos, LP, tema, oferta/frete/brinde/cashback/sorteio na Shopify). Fora do escopo: tarefas de GROWTH (SEO, CRO, LP comparativa, ManyChat, artigos, rodapé, quiz, manifesto etc.) e pesquisa de indicação. Não sugerir nem executar.**
+
 **Regra combinada:** nada é executado (Shopify, Alliance OS, disparos, publicações) sem o ok do Pedro no chat.
 
 **Rotina diária sugerida:**
