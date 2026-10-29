@@ -1,5 +1,7 @@
 # Calendário dia a dia — 29/10 a 02/12
 
+> **REGRA Nº 1: só VermeFree neste chat. Linhas RV (Revita) e BT (Botanika) são só referência; não executar aqui.**
+
 Legenda: **VF** VermeFree · **RV** Revita/Derma · **BT** Botanika · ⬅️ chega de outra pessoa · ➡️ alguém espera por isto · 🔴 Dia D / virada no ar
 
 Horários são o prazo do Alliance OS. "Fazer" é a sugestão de quando trabalhar na tarefa (antes do prazo).

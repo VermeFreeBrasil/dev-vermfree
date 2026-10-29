@@ -1,5 +1,7 @@
 # Plano de execução — novembro 2026 (Pedro Lage)
 
+> **REGRA Nº 1: só VermeFree neste chat. Itens de Revita e Botanika neste plano NÃO são executados aqui.**
+
 Fonte: exportação do Alliance OS de 29/10 (`fontes/`) + fichas de oferta aprovadas + Planejamento 2.0.
 Total: **117 tarefas abertas** (67 VermeFree, 47 Revita/Derma, 3 Botanika). Das VermeFree, 10 estão atrasadas.
 

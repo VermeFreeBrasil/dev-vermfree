@@ -15,6 +15,8 @@ Pasta de memória do mês. Quem for retomar o acompanhamento (eu, Claude, ou o p
 | `diario/AAAA-MM-DD.md` | Registro do dia: o que foi feito, o que travou, o que fica para amanhã | Todo dia |
 | `fontes/` | Exportação completa das tarefas do Alliance OS (29/10) | Só se reexportar |
 
+**REGRA Nº 1 (Pedro, 29/10): este chat executa SOMENTE tarefas da VERMEFREE. Nunca Revita, nunca Botanika. Se o Pedro citar Revita ou Botanika, travar na hora, avisar e não fazer nada. As seções de Revita/Botanika abaixo são só contexto.**
+
 **Regra combinada:** nada é executado (Shopify, Alliance OS, disparos, publicações) sem o ok do Pedro no chat.
 
 **Rotina diária sugerida:**
