@@ -32,7 +32,7 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 | ⬜ | 30/10/2026 18h00 | GROWTH · SITE, SEO E CRO | `mcp-1792086890297-1-520da` |  |
 | ⬜ | 02/11/2026 18h00 | PESQUISA DE INDICAÇÃO — Outubro / VERMEFREE | `mcp-1791310863649-b305122a` |  |
 | ⬜ | 03/11/2026 18h00 | BLACK FRIDAY — Editar os 20 primeiros vídeos universais | `mcp-1793230900242-5-6b53a` |  |
-| 🟡 | 04/11/2026 18h00 | BLACK FRIDAY — Criar os 30 estáticos universais de venda | `mcp-1793230900242-7-a241c` | 29/10: 30 copies + 60 artes (4:5 e 9:16) prontas em criativos/universais/png, aguardando aprovação final. Depois: entregar ao Otávio. |
+| ✅ | 04/11/2026 18h00 | BLACK FRIDAY — Criar os 30 estáticos universais de venda | `mcp-1793230900242-7-a241c` | **29/10: CONCLUÍDA (aprovada pelo Pedro).** 60 PNGs em criativos/universais/png (zip enviado ao Pedro). Copy no Drive: https://docs.google.com/document/d/1kb6ioKK2LYx-v9eHSOCJLWyBJMg-aIzXjVgdFmSGklk/edit. **Marcar no Alliance.** |
 | ⬜ | 05/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar o cashback na Shopify | `mcp-1793231782749-4-43158` |  |
 | ⬜ | 05/11/2026 18h00 | BLACK FRIDAY — Editar os 30 vídeos universais restantes | `mcp-1793230900242-6-3696d` |  |
 | ⬜ | 05/11/2026 18h00 | BLACK FRIDAY — Editar os 50 vídeos universais de venda | `mcp-1793230900242-4-b0846` | depende: BLACK FRIDAY — Gravar os 50 vídeos universais de venda (Maria Fernanda, Gabriel Ferreira, Vitor Gutierrez, a fazer) |
