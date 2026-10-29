@@ -3,11 +3,13 @@
   Mesmo padrão da LP da Revita aprovada pelo Pedro: fundo claro, faixa vermelha,
   título com destaque vermelho, contagem em blocos, botão vermelho, foto em arco,
   oferta secreta + dentro x fora, carrossel de clientes e chamada final.
-  Depoimentos sem médico como aval e sem cupom (regras de novembro): 04, 05, 06, 07.
+  Carrossel: 4 vídeos de clientes (metaobjeto vf_depoimento) intercalados com 4 prints de stories.
+  Sem médico como aval e sem cupom (regras de novembro). Foto: produtos da home (vf-hero-pedestal).
 {%- endcomment -%}
 {%- assign link = section.settings.link_grupo | default: '#' -%}
 {%- capture wa -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.5 7.8L3 21l1.7-4.5A9 9 0 1 1 21 11.5Z"/><path d="m8 7 2 3-1 1c1 2 2 3 4 4l1-1 3 1c0 2-2 3-4 2-4-1-7-5-7-7 0-2 1-3 2-3Z"/></svg>{%- endcapture -%}
 {%- assign depos = '04,05,06,07' | split: ',' -%}
+{%- assign vids = 'daniela-3-perguntas,jessika-abre-kit-adulto,juliana-kids-embalagem,ester-kids-2-4' | split: ',' -%}
 
 <div class="vv">
   <p class="vv-top"><span></span>Acesso antecipado · abre 11/11 à 00h</p>
@@ -38,9 +40,7 @@
 
     <figure class="vv-photo">
       {%- if section.settings.foto != blank -%}
-        {{ section.settings.foto | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', alt: 'Família VermeFree' }}
-      {%- else -%}
-        <img src="{{ 'lp-familia-sofa.jpg' | asset_img_url: '1200x' }}" alt="Família VermeFree" width="1200" height="1200" fetchpriority="high">
+        {{ section.settings.foto | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', alt: 'Protocolos VermeFree Adulto e Kids' }}
       {%- endif -%}
       <figcaption>Protocolos Adulto, Kids e Kit Família com a <strong>maior condição do ano</strong>, só no dia 11.</figcaption>
     </figure>
@@ -79,8 +79,19 @@
     <p class="vv-ugc__k">Quem já usa</p>
     <h2>Famílias que já fizeram o protocolo. No 11/11 é a sua vez.</h2>
     <div class="vv-rail" data-vv-rail>
-      {%- for d in depos -%}
-        {%- assign f = 'vf-depoimento-' | append: d | append: '.jpg' -%}
+      {%- for i in (0..3) -%}
+        {%- assign dep = shop.metaobjects.vf_depoimento[vids[i]] -%}
+        {%- assign v = dep.video.value -%}
+        {%- if v -%}
+          {%- assign src = '' -%}
+          {%- for s in v.sources -%}{%- if src == '' and s.mime_type == 'video/mp4' -%}{%- assign src = s.url -%}{%- endif -%}{%- endfor -%}
+          <figure class="is-v" data-vv-video>
+            <video src="{{ src }}" poster="{{ v.preview_image | image_url: width: 400 }}" muted loop playsinline preload="none"></video>
+            <span class="vv-snd" aria-hidden="true">🔇</span>
+            <figcaption>{{ dep.nome.value }}</figcaption>
+          </figure>
+        {%- endif -%}
+        {%- assign f = 'vf-depoimento-' | append: depos[i] | append: '.jpg' -%}
         <figure><img src="{{ f | asset_img_url: '500x' }}" alt="Cliente VermeFree mostrando o protocolo" width="500" height="889" loading="lazy"></figure>
       {%- endfor -%}
     </div>
@@ -127,8 +138,8 @@
   .vv-checks{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;font-size:12px;color:var(--muted)}
   .vv-checks span::before{content:'✓ ';color:#2f9e44;font-weight:800}
 
-  .vv-photo{position:relative;margin:0;border-radius:220px 220px 22px 22px;overflow:hidden;aspect-ratio:4/4.4;background:#eee}
-  .vv-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 60%}
+  .vv-photo{position:relative;margin:0;border-radius:220px 220px 22px 22px;overflow:hidden;aspect-ratio:4/4.4;background:radial-gradient(ellipse 80% 60% at 50% 55%,#f3f8ee 0,#dcebd2 60%,#c7dfba 100%)}
+  .vv-photo img{position:absolute;left:4%;right:4%;top:12%;width:92%;height:70%;object-fit:contain;filter:drop-shadow(0 18px 22px #173e2d40)}
   .vv-photo figcaption{position:absolute;left:12px;right:12px;bottom:12px;background:#fffffff2;border-radius:10px;padding:10px 12px;font-size:12px;line-height:1.45;color:var(--ink)}
   .vv-photo figcaption strong{color:var(--red)}
 
@@ -157,7 +168,11 @@
   .vv-rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 max(20px,calc((100% - 1080px)/2)) 6px;scrollbar-width:none;justify-content:safe center}
   .vv-rail::-webkit-scrollbar{display:none}
   .vv-rail figure{flex:0 0 172px;margin:0;border-radius:14px;overflow:hidden;scroll-snap-align:center;aspect-ratio:9/16;background:#e6e1d6}
-  .vv-rail img{width:100%;height:100%;object-fit:cover;display:block}
+  .vv-rail img,.vv-rail video{width:100%;height:100%;object-fit:cover;display:block}
+  .vv-rail figure{position:relative}
+  .vv-rail .is-v{cursor:pointer;box-shadow:0 0 0 3px var(--red)}
+  .vv-rail .is-v figcaption{position:absolute;left:8px;bottom:8px;background:#000a;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px}
+  .vv-snd{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:#000a;display:grid;place-items:center;font-size:12px}
   .vv-final{font-size:clamp(20px,2.2vw,24px);font-weight:600;margin-top:28px;padding:0 20px}
   .vv-final em{font-style:normal;color:var(--red)}
   .vv-aviso{font-size:12px;color:var(--muted);margin-top:10px}
@@ -177,6 +192,7 @@
     .vv-btn{margin:0 auto}
     .vv-checks{justify-content:center}
     .vv-photo{width:100%;max-width:420px;margin:0 auto;aspect-ratio:1/1;border-radius:180px 180px 20px 20px}
+    .vv-photo img{top:10%;height:66%}
     .vv-mid{grid-template-columns:1fr}
     .vv-secret{padding:28px 20px}
     .vv-rail figure{flex-basis:150px}
@@ -201,10 +217,25 @@
       var a = document.querySelector('[data-vv-aviso]');
       if (a) a.hidden = false;
     }
+    var vs = document.querySelectorAll('[data-vv-video]');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { var v = e.target.querySelector('video'); if (e.isIntersecting) { v.play().catch(function () {}); } else { v.pause(); } });
+      }, { threshold: 0.6 });
+      vs.forEach(function (f) { io.observe(f); });
+    }
+    vs.forEach(function (f) {
+      f.addEventListener('click', function () {
+        var v = f.querySelector('video'), on = v.muted;
+        vs.forEach(function (o) { o.querySelector('video').muted = true; o.querySelector('.vv-snd').textContent = '🔇'; });
+        v.muted = !on; f.querySelector('.vv-snd').textContent = on ? '🔊' : '🔇';
+        if (on) { v.play().catch(function () {}); }
+      });
+    });
     var rail = document.querySelector('[data-vv-rail]');
     if (rail && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       var parado = false;
-      ['pointerdown', 'touchstart', 'wheel'].forEach(function (ev) { rail.addEventListener(ev, function () { parado = true; }, { passive: true }); });
+      ['pointerdown', 'touchstart', 'wheel', 'click'].forEach(function (ev) { rail.addEventListener(ev, function () { parado = true; }, { passive: true }); });
       setInterval(function () {
         if (parado || rail.scrollWidth <= rail.clientWidth) return;
         var fim = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
