@@ -4,10 +4,12 @@
     "main": {
       "type": "vf-grupo-vip",
       "settings": {
-        "link_grupo": "",
-        "data_alvo": "2026-11-11T00:00:00-03:00"
+        "data_alvo": "2026-11-11T00:00:00-03:00",
+        "logo": "shopify://shop_images/logo-shopify-medium.png"
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
