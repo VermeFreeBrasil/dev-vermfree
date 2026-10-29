@@ -26,7 +26,7 @@ Link da tarefa: https://alliance-os-sooty.vercel.app/?task=mcp-1793230900242-7-a
 | 15 | Família | Social | **Lua nova** é o momento de começar. | Comece o protocolo com o maior desconto da história da VermeFree. | Começar agora | Pedestal + lua |
 | 16 | Família | LP | Seu filho merece um cuidado **natural.** | VermeFree Kids, com dose por idade. No maior desconto da história. | Ver o Kids | Frasco Kids |
 | 17 | Família | Social | Um ritual para a família **inteira.** | 30 dias, um ciclo só, a casa toda junta. | Quero começar | Kit Família |
-| 18 | Prova social | LP | Milhares de famílias já fizeram. **Agora é a sua vez.** | O maior desconto da história da VermeFree está no ar. | Quero o meu | Prints de clientes |
+| 18 | Prova social | LP | Famílias de todo o Brasil já fizeram. **Agora é a sua vez.** | O maior desconto da história da VermeFree está no ar. | Quero o meu | Prints de clientes |
 | 19 | Prova social | Social | "Os recebidos esperando a vida adulta é diferente." | Clientes de verdade. Agora com o maior desconto da história. | Quero o meu | Print cliente (06) |
 | 20 | Prova social | LP | "Chegouuu. Tô dependendo da lua agora." | Seu protocolo chega em casa. Agora no maior desconto da história. | Garantir o meu | Print cliente (04) |
 | 21 | Prova social | Social | Família feliz é **família desparasitada.** | Faça como quem já começou, com o maior desconto da história da VermeFree. | Começar agora | Print cliente (07) |
