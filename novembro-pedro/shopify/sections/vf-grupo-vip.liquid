@@ -1,163 +1,217 @@
 {%- comment -%}
-  vf-grupo-vip — LP de captura do Grupo VIP · VermeFree November (/pages/grupo-vip).
-  Identidade do Calendário Estratégico de novembro: floresta, verde vivo, lima, Caprasimo.
-  Mensagem aprovada: "o maior desconto da história da VermeFree" (sem %, sem data de oferta).
-  Clique: Lead (Meta, se houver fbq), generate_lead (Google) e vf_grupo_vip_click.
+  vf-grupo-vip — LP de captura do Grupo VIP · 11/11 VermeFree (/pages/grupo-vip).
+  Mesmo padrão da LP da Revita aprovada pelo Pedro: fundo claro, faixa vermelha,
+  título com destaque vermelho, contagem em blocos, botão vermelho, foto em arco,
+  oferta secreta + dentro x fora, carrossel de clientes e chamada final.
+  Depoimentos sem médico como aval e sem cupom (regras de novembro): 04, 05, 06, 07.
 {%- endcomment -%}
 {%- assign link = section.settings.link_grupo | default: '#' -%}
-{%- capture wa -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.5 7.8L3 21l1.7-4.5A9 9 0 1 1 21 11.5Z"/><path d="m8 7 2 3-1 1c1 2 2 3 4 4l1-1 3 1c0 2-2 3-4 2-4-1-7-5-7-7 0-2 1-3 2-3Z"/></svg>{%- endcapture -%}
+{%- capture wa -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.5 7.8L3 21l1.7-4.5A9 9 0 1 1 21 11.5Z"/><path d="m8 7 2 3-1 1c1 2 2 3 4 4l1-1 3 1c0 2-2 3-4 2-4-1-7-5-7-7 0-2 1-3 2-3Z"/></svg>{%- endcapture -%}
+{%- assign depos = '04,05,06,07' | split: ',' -%}
 
-<div class="bk">
-  <p class="bk-top"><span class="bk-dot"></span>11/11 · 00h · acesso antecipado só no Grupo VIP</p>
+<div class="vv">
+  <p class="vv-top"><span></span>Acesso antecipado · abre 11/11 à 00h</p>
 
-  <section class="bk-hero">
-    <div class="bk-wrap bk-hero__grid">
-      <div class="bk-copy">
-        {%- if section.settings.logo != blank -%}
-          {{ section.settings.logo | image_url: width: 320 | image_tag: class: 'bk-logo', alt: 'VermeFree' }}
-        {%- endif -%}
-        <p class="bk-kicker">VermeFree <span>November</span></p>
-        <h1>O maior desconto da história da VermeFree <em>abre primeiro no Grupo VIP.</em></h1>
-        <p class="bk-sub">Dia 11/11, à meia-noite, o grupo recebe o acesso antes de todo mundo. A loja só abre para todos às 7h.</p>
+  <header class="vv-head">
+    {%- if section.settings.logo != blank -%}
+      {{ section.settings.logo | image_url: width: 300 | image_tag: class: 'vv-logo', alt: 'VermeFree' }}
+    {%- endif -%}
+  </header>
 
-        <figure class="bk-prod bk-prod--m">
-          {{ section.settings.produto | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', alt: 'Kit Família VermeFree' }}
-        </figure>
+  <section class="vv-wrap vv-hero">
+    <div class="vv-copy">
+      <p class="vv-badge">🔥 11.11 · só 24 horas</p>
+      <h1>O maior desconto da história da VermeFree <em>vai abrir primeiro no grupo.</em></h1>
+      <p class="vv-sub">A oferta fica em segredo até a meia-noite. Quem está no Grupo VIP recebe o link à 00h e sai na frente dos <strong>100 primeiros pedidos</strong>, que ganham cashback, e dos <strong>300 primeiros</strong>, que concorrem a um kit.</p>
 
-        <div class="bk-timer" data-bk-timer aria-label="Contagem regressiva para o 11/11">
-          <div><b data-d>--</b><small>dias</small></div>
-          <div><b data-h>--</b><small>horas</small></div>
-          <div><b data-m>--</b><small>min</small></div>
-          <div><b data-s>--</b><small>seg</small></div>
-        </div>
-
-        <a class="bk-btn" href="{{ link }}" data-bk-cta target="_blank" rel="noopener">{{ wa }}Quero entrar no Grupo VIP</a>
-        <p class="bk-micro">Grátis · só os administradores enviam mensagens · sai quando quiser</p>
+      <div class="vv-timer" data-vv-timer aria-label="Contagem regressiva para o 11/11">
+        <div><b data-d>--</b><small>dias</small></div>
+        <div><b data-h>--</b><small>horas</small></div>
+        <div><b data-m>--</b><small>min</small></div>
+        <div class="is-s"><b data-s>--</b><small>seg</small></div>
       </div>
+      <p class="vv-timer__l">para a oferta ser revelada no grupo</p>
 
-      <figure class="bk-prod bk-prod--d">
-        {{ section.settings.produto | image_url: width: 1400 | image_tag: loading: 'eager', alt: 'Kit Família VermeFree' }}
-      </figure>
+      <a class="vv-btn" href="{{ link }}" data-vv-cta target="_blank" rel="noopener">{{ wa }}Quero entrar no Grupo VIP</a>
+      <p class="vv-checks"><span>Gratuito</span><span>Só avisos</span><span>Sai quando quiser</span></p>
+    </div>
+
+    <figure class="vv-photo">
+      {%- if section.settings.foto != blank -%}
+        {{ section.settings.foto | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', alt: 'Família VermeFree' }}
+      {%- else -%}
+        <img src="{{ 'lp-familia-sofa.jpg' | asset_img_url: '1200x' }}" alt="Família VermeFree" width="1200" height="1200" fetchpriority="high">
+      {%- endif -%}
+      <figcaption>Protocolos Adulto, Kids e Kit Família com a <strong>maior condição do ano</strong>, só no dia 11.</figcaption>
+    </figure>
+  </section>
+
+  <section class="vv-wrap vv-mid">
+    <div class="vv-secret">
+      <p class="vv-secret__k">Oferta secreta</p>
+      <p class="vv-secret__t">Nem a gente pode contar ainda.</p>
+      <span class="vv-blur vv-blur--1"></span>
+      <span class="vv-blur vv-blur--2"></span>
+      <span class="vv-blur vv-blur--3"></span>
+      <p class="vv-secret__f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Revelada só no grupo, à 00h de 11/11</p>
+    </div>
+    <div class="vv-sides">
+      <div class="vv-side vv-side--out">
+        <p class="vv-side__h">Quem fica de fora</p>
+        <ul>
+          <li>Descobre a oferta só às 7h, quando o grupo já comprou</li>
+          <li>Disputa o que sobrar dos 100 cashbacks</li>
+          <li>Perde a maior condição do ano, que dura só 24 horas</li>
+        </ul>
+      </div>
+      <div class="vv-side vv-side--in">
+        <p class="vv-side__h">Quem está no Grupo VIP</p>
+        <ul>
+          <li>Recebe o link à 00h, antes de todo mundo</li>
+          <li>Sai na frente para estar entre os 100 e os 300 primeiros</li>
+          <li>É avisado da última chance das 20h</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="bk-why">
-    <div class="bk-wrap">
-      <ul class="bk-perks">
-        <li><b>00h</b><span>Você compra 7 horas antes de abrir para todos</span></li>
-        <li><b>100</b><span>primeiros pedidos ganham cashback</span></li>
-        <li><b>300</b><span>primeiros pedidos concorrem a um kit VermeFree</span></li>
-      </ul>
-
-      <div class="bk-month">
-        <p class="bk-month__t">Um mês inteiro de ofertas. Quem está no grupo fica sabendo primeiro.</p>
-        <ol>
-          <li class="is-d"><b>11/11</b><span>Dia D</span></li>
-          <li><b>12 a 19</b><span>Verme November</span></li>
-          <li><b>20 a 26</b><span>Verme Week</span></li>
-          <li class="is-d"><b>27 e 28</b><span>Verme Friday</span></li>
-          <li><b>30</b><span>Free Monday</span></li>
-        </ol>
-      </div>
-
-      <a class="bk-btn bk-btn--c" href="{{ link }}" data-bk-cta target="_blank" rel="noopener">{{ wa }}Entrar no Grupo VIP</a>
-      <p class="bk-aviso" data-bk-aviso hidden>Site fechado para o 11/11. A loja reabre para todos dia 11 às 7h.</p>
+  <section class="vv-ugc">
+    <p class="vv-ugc__k">Quem já usa</p>
+    <h2>Famílias que já fizeram o protocolo. No 11/11 é a sua vez.</h2>
+    <div class="vv-rail" data-vv-rail>
+      {%- for d in depos -%}
+        {%- assign f = 'vf-depoimento-' | append: d | append: '.jpg' -%}
+        <figure><img src="{{ f | asset_img_url: '500x' }}" alt="Cliente VermeFree mostrando o protocolo" width="500" height="889" loading="lazy"></figure>
+      {%- endfor -%}
     </div>
+    <p class="vv-final">Não deixe para depois. <em>O 11/11 não se repete.</em></p>
+    <a class="vv-btn vv-btn--c" href="{{ link }}" data-vv-cta target="_blank" rel="noopener">{{ wa }}Quero entrar no Grupo VIP</a>
+    <p class="vv-aviso" data-vv-aviso hidden>A loja está fechada para o 11/11 e reabre para todos dia 11 às 7h.</p>
+    <p class="vv-foot">VermeFree · O cuidado começa por dentro</p>
   </section>
 </div>
 
 <style>
-  html,body{background:#102e21}
-  .bk{--bg:#102e21;--bg2:#173e2d;--card:#1c4733;--green:#6cc04a;--green-d:#58a83a;--lime:#c4e39a;--white:#fff;--muted:#bcd0bf;--serif:Caprasimo,Georgia,serif;--sans:Inter,Arial,sans-serif;
-    background:radial-gradient(ellipse 80% 60% at 75% 30%,#2d6a3f 0,transparent 60%),var(--bg);color:var(--white);font-family:var(--sans);-webkit-text-size-adjust:100%}
-  .bk *{box-sizing:border-box}
-  .bk [hidden]{display:none!important}
-  .bk h1,.bk p,.bk ul,.bk ol{margin:0;padding:0}
-  .bk a{text-decoration:none}
-  .bk-wrap{width:min(1160px,calc(100% - 48px));margin:0 auto}
-  .bk-top{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--lime);color:var(--bg);font-size:12px;font-weight:700;letter-spacing:.3px;padding:9px 14px;text-align:center}
-  .bk-dot{width:7px;height:7px;border-radius:50%;background:var(--bg);animation:bkp 1.4s infinite}
-  @keyframes bkp{50%{opacity:.25}}
+  html,body{background:#fff}
+  .vv{--ink:#173e2d;--red:#d7262f;--red2:#b5121b;--muted:#5f6b64;--beige:#f5f2ea;--sans:Inter,Arial,sans-serif;
+    background:#fff;color:var(--ink);font-family:var(--sans);-webkit-text-size-adjust:100%}
+  .vv *{box-sizing:border-box}
+  .vv [hidden]{display:none!important}
+  .vv h1,.vv h2,.vv p,.vv ul{margin:0;padding:0}
+  .vv ul{list-style:none}
+  .vv a{text-decoration:none}
+  .vv svg{width:20px;height:20px;flex-shrink:0;stroke-linecap:round;stroke-linejoin:round}
+  .vv-wrap{width:min(1020px,calc(100% - 40px));margin:0 auto}
 
-  .bk-hero{padding:44px 0 36px}
-  .bk-hero__grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-  .bk-logo{width:132px;height:auto;filter:brightness(0) invert(1);margin-bottom:34px}
-  .bk-kicker{font:400 clamp(30px,3.2vw,44px)/1 var(--serif);letter-spacing:-.02em;margin-bottom:18px}
-  .bk-kicker span{color:var(--green)}
-  .bk h1{font:700 clamp(22px,2.1vw,30px)/1.25 var(--sans);letter-spacing:-.02em;max-width:520px}
-  .bk h1 em{font-style:normal;color:var(--lime)}
-  .bk-sub{font-size:16px;line-height:1.6;color:var(--muted);margin:14px 0 26px;max-width:480px}
-  .bk-prod{margin:0}
-  .bk-prod img{width:100%;height:auto;display:block;filter:drop-shadow(0 30px 40px #00000066)}
-  .bk-prod--m{display:none}
-  .bk-timer{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:480px;margin-bottom:14px}
-  .bk-timer div{background:var(--card);border:1px solid #ffffff1a;border-radius:12px;text-align:center;padding:10px 0 8px}
-  .bk-timer b{display:block;font:400 30px/1 var(--serif);color:var(--white);font-variant-numeric:tabular-nums}
-  .bk-timer small{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
-  .bk-btn{display:flex;align-items:center;justify-content:center;gap:10px;max-width:480px;min-height:60px;border-radius:14px;background:var(--green);color:var(--bg);font-size:17px;font-weight:800;box-shadow:0 12px 30px #6cc04a40;transition:transform .2s,background .2s}
-  .bk-btn:hover{background:var(--lime);transform:translateY(-2px)}
-  .bk-btn svg{width:22px;height:22px}
-  .bk-btn--c{margin:28px auto 0}
-  .bk-micro{max-width:480px;text-align:center;font-size:12px;color:var(--muted);margin-top:10px}
+  .vv-top{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--red);color:#fff;font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;padding:10px 14px;text-align:center}
+  .vv-top span{width:7px;height:7px;border-radius:50%;background:#fff;animation:vvp 1.2s infinite}
+  @keyframes vvp{50%{opacity:.25}}
+  .vv-head{display:flex;justify-content:center;padding:18px 0 6px}
+  .vv-logo{width:120px;height:auto}
 
-  .bk-why{padding:8px 0 48px}
-  .bk-perks{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .bk-perks li{display:flex;align-items:center;gap:14px;background:var(--bg2);border:1px solid #ffffff14;border-radius:16px;padding:16px 18px}
-  .bk-perks b{font:400 32px/1 var(--serif);color:var(--lime);min-width:64px}
-  .bk-perks span{font-size:14px;line-height:1.4;color:#e4ede5}
-  .bk-month{margin-top:12px;background:var(--white);color:var(--bg);border-radius:16px;padding:18px 20px}
-  .bk-month__t{font-size:14px;font-weight:700;margin-bottom:12px}
-  .bk-month ol{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-  .bk-month li{background:#eef5e7;border-radius:10px;padding:10px 12px}
-  .bk-month li.is-d{background:var(--green);color:var(--bg)}
-  .bk-month li b{display:block;font-size:15px}
-  .bk-month li span{font-size:12px;opacity:.85}
-  .bk-aviso{text-align:center;font-size:12px;color:var(--muted);margin-top:12px}
+  .vv-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:18px 0 36px}
+  .vv-badge{display:inline-block;border:1px solid #f6c9cb;background:#fdeceb;color:var(--red);font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:6px 12px;border-radius:40px;margin-bottom:16px}
+  .vv h1{font-size:clamp(34px,4.3vw,52px);line-height:1.08;font-weight:800;letter-spacing:-.035em}
+  .vv h1 em{font-style:normal;color:var(--red)}
+  .vv-sub{font-size:16px;line-height:1.6;color:var(--muted);margin:18px 0 22px;max-width:470px}
+  .vv-sub strong{color:var(--ink)}
+  .vv-timer{display:flex;gap:10px}
+  .vv-timer div{width:96px;background:var(--ink);color:#fff;border-radius:12px;text-align:center;padding:10px 0 8px;box-shadow:0 8px 18px #173e2d33}
+  .vv-timer div.is-s{background:var(--red);box-shadow:0 8px 18px #d7262f40}
+  .vv-timer b{display:block;font-size:30px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+  .vv-timer small{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;opacity:.75}
+  .vv-timer__l{font-size:12px;color:var(--muted);margin:6px 0 18px}
+  .vv-btn{display:flex;align-items:center;justify-content:center;gap:10px;max-width:420px;min-height:58px;border-radius:40px;background:linear-gradient(180deg,#e2333b,var(--red2));color:#fff;font-size:16px;font-weight:800;box-shadow:0 12px 26px #d7262f4d;transition:transform .2s}
+  .vv-btn:hover{transform:translateY(-2px)}
+  .vv-btn--c{margin:18px auto 0;width:calc(100% - 40px)}
+  .vv-checks{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;font-size:12px;color:var(--muted)}
+  .vv-checks span::before{content:'✓ ';color:#2f9e44;font-weight:800}
+
+  .vv-photo{position:relative;margin:0;border-radius:220px 220px 22px 22px;overflow:hidden;aspect-ratio:4/4.4;background:#eee}
+  .vv-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 60%}
+  .vv-photo figcaption{position:absolute;left:12px;right:12px;bottom:12px;background:#fffffff2;border-radius:10px;padding:10px 12px;font-size:12px;line-height:1.45;color:var(--ink)}
+  .vv-photo figcaption strong{color:var(--red)}
+
+  .vv-mid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-bottom:36px}
+  .vv-secret{background:radial-gradient(ellipse at 50% 0,#245a40 0,transparent 70%),var(--ink);color:#fff;border-radius:18px;padding:36px 28px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+  .vv-secret__k{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#ff8a80}
+  .vv-secret__t{font-size:20px;font-weight:600}
+  .vv-blur{display:block;height:20px;border-radius:20px;background:linear-gradient(90deg,#8fbf7a,#e0b86a,#8fbf7a);filter:blur(7px);opacity:.75}
+  .vv-blur--1{width:66%;height:26px}.vv-blur--2{width:84%}.vv-blur--3{width:52%}
+  .vv-secret__f{display:flex;align-items:center;gap:8px;font-size:13px;opacity:.9;margin-top:6px}
+  .vv-secret__f svg{width:15px;height:15px}
+  .vv-sides{display:grid;gap:12px}
+  .vv-side{border-radius:16px;padding:16px 18px}
+  .vv-side__h{font-size:14px;font-weight:800;margin-bottom:8px}
+  .vv-side li{position:relative;padding:4px 0 4px 20px;font-size:14px;line-height:1.45}
+  .vv-side--out{background:#fdeeee;border:1px solid #f6c9cb}
+  .vv-side--out .vv-side__h,.vv-side--out li::before{color:var(--red)}
+  .vv-side--out li::before{content:'✕';position:absolute;left:0;font-weight:900}
+  .vv-side--in{background:#eef7ec;border:1px solid #cde6c6}
+  .vv-side--in .vv-side__h,.vv-side--in li::before{color:#2f7d32}
+  .vv-side--in li::before{content:'✓';position:absolute;left:0;font-weight:900}
+
+  .vv-ugc{background:var(--beige);padding:44px 0 40px;text-align:center}
+  .vv-ugc__k{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#8a6d2b}
+  .vv-ugc h2{font-size:clamp(20px,2.2vw,26px);font-weight:600;letter-spacing:-.02em;margin:8px auto 20px;max-width:640px;padding:0 20px}
+  .vv-rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 max(20px,calc((100% - 1080px)/2)) 6px;scrollbar-width:none;justify-content:safe center}
+  .vv-rail::-webkit-scrollbar{display:none}
+  .vv-rail figure{flex:0 0 172px;margin:0;border-radius:14px;overflow:hidden;scroll-snap-align:center;aspect-ratio:9/16;background:#e6e1d6}
+  .vv-rail img{width:100%;height:100%;object-fit:cover;display:block}
+  .vv-final{font-size:clamp(20px,2.2vw,24px);font-weight:600;margin-top:28px;padding:0 20px}
+  .vv-final em{font-style:normal;color:var(--red)}
+  .vv-aviso{font-size:12px;color:var(--muted);margin-top:10px}
+  .vv-foot{font-size:12px;color:var(--muted);margin-top:18px}
 
   @media(max-width:860px){
-    .bk-wrap{width:calc(100% - 36px)}
-    .bk-hero{padding:22px 0 8px}
-    .bk-hero__grid{display:block}
-    .bk-prod--d{display:none}
-    .bk-copy{text-align:center}
-    .bk-logo{width:108px;margin:0 auto 16px;display:block}
-    .bk-kicker{font-size:34px;margin-bottom:10px}
-    .bk h1{font-size:19px;margin:0 auto}
-    .bk-sub{font-size:14px;margin:8px auto 4px}
-    .bk-prod--m{display:block;width:min(310px,82%);margin:0 auto 4px}
-    .bk-timer,.bk-btn,.bk-micro{margin-left:auto;margin-right:auto}
-    .bk-timer b{font-size:24px}
-    .bk-btn{min-height:56px;font-size:16px}
-    .bk-why{padding:22px 0 36px}
-    .bk-perks{grid-template-columns:1fr;gap:8px}
-    .bk-perks li{padding:12px 14px}
-    .bk-perks b{font-size:26px;min-width:54px}
-    .bk-month ol{grid-template-columns:repeat(2,1fr)}
-    .bk-month li:first-child{grid-column:1/-1}
+    .vv-head{padding:14px 0 0}
+    .vv-logo{width:104px}
+    .vv-hero{display:flex;flex-direction:column;gap:22px;padding:14px 0 24px}
+    .vv-copy{text-align:center}
+    .vv-badge{margin-bottom:12px}
+    .vv h1{font-size:31px}
+    .vv-sub{font-size:15px;margin:12px auto 16px}
+    .vv-timer{justify-content:center;gap:8px}
+    .vv-timer div{flex:1;max-width:80px}
+    .vv-timer b{font-size:26px}
+    .vv-btn{margin:0 auto}
+    .vv-checks{justify-content:center}
+    .vv-photo{width:100%;max-width:420px;margin:0 auto;aspect-ratio:1/1;border-radius:180px 180px 20px 20px}
+    .vv-mid{grid-template-columns:1fr}
+    .vv-secret{padding:28px 20px}
+    .vv-rail figure{flex-basis:150px}
   }
-  @media(prefers-reduced-motion:reduce){.bk *{animation:none!important;transition:none!important}}
+  @media(prefers-reduced-motion:reduce){.vv *{animation:none!important;transition:none!important}}
 </style>
 
 <script>
   (function () {
-    var t = document.querySelector('[data-bk-timer]');
-    if (t) {
-      var alvo = new Date('{{ section.settings.data_alvo | default: "2026-11-11T00:00:00-03:00" }}').getTime();
-      var pad = function (n) { return (n < 10 ? '0' : '') + n; };
-      var tick = function () {
-        var s = Math.floor(Math.max(0, alvo - Date.now()) / 1000);
-        t.querySelector('[data-d]').textContent = pad(Math.floor(s / 86400));
-        t.querySelector('[data-h]').textContent = pad(Math.floor(s % 86400 / 3600));
-        t.querySelector('[data-m]').textContent = pad(Math.floor(s % 3600 / 60));
-        t.querySelector('[data-s]').textContent = pad(s % 60);
-      };
-      tick(); setInterval(tick, 1000);
-    }
+    var alvo = new Date('{{ section.settings.data_alvo | default: "2026-11-11T00:00:00-03:00" }}').getTime();
+    var t = document.querySelector('[data-vv-timer]');
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    var tick = function () {
+      var s = Math.floor(Math.max(0, alvo - Date.now()) / 1000);
+      t.querySelector('[data-d]').textContent = pad(Math.floor(s / 86400));
+      t.querySelector('[data-h]').textContent = pad(Math.floor(s % 86400 / 3600));
+      t.querySelector('[data-m]').textContent = pad(Math.floor(s % 3600 / 60));
+      t.querySelector('[data-s]').textContent = pad(s % 60);
+    };
+    if (t) { tick(); setInterval(tick, 1000); }
     if (window.vfTravaAtiva) {
-      var a = document.querySelector('[data-bk-aviso]');
+      var a = document.querySelector('[data-vv-aviso]');
       if (a) a.hidden = false;
     }
-    document.querySelectorAll('[data-bk-cta]').forEach(function (el) {
+    var rail = document.querySelector('[data-vv-rail]');
+    if (rail && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var parado = false;
+      ['pointerdown', 'touchstart', 'wheel'].forEach(function (ev) { rail.addEventListener(ev, function () { parado = true; }, { passive: true }); });
+      setInterval(function () {
+        if (parado || rail.scrollWidth <= rail.clientWidth) return;
+        var fim = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
+        rail.scrollTo({ left: fim ? 0 : rail.scrollLeft + 182, behavior: 'smooth' });
+      }, 2600);
+    }
+    document.querySelectorAll('[data-vv-cta]').forEach(function (el) {
       el.addEventListener('click', function () {
         try { if (window.fbq) window.fbq('track', 'Lead', { content_name: 'Grupo VIP 11/11' }); } catch (e) {}
         try { if (window.gtag) window.gtag('event', 'generate_lead', { event_label: 'grupo_vip_1111', transport_type: 'beacon' }); } catch (e) {}
@@ -169,13 +223,13 @@
 
 {% schema %}
 {
-  "name": "VF Grupo VIP November",
+  "name": "VF Grupo VIP 11/11",
   "settings": [
     { "type": "url", "id": "link_grupo", "label": "Link do grupo VIP (rastreado, da Sarah)" },
     { "type": "text", "id": "data_alvo", "label": "Contagem até (ISO)", "default": "2026-11-11T00:00:00-03:00" },
     { "type": "image_picker", "id": "logo", "label": "Logo" },
-    { "type": "image_picker", "id": "produto", "label": "Produto (PNG sem fundo)" }
+    { "type": "image_picker", "id": "foto", "label": "Foto em arco" }
   ],
-  "presets": [{ "name": "VF Grupo VIP November" }]
+  "presets": [{ "name": "VF Grupo VIP 11/11" }]
 }
 {% endschema %}
