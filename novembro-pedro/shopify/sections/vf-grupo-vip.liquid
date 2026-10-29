@@ -1,0 +1,154 @@
+{%- comment -%}
+  vf-grupo-vip — LP de captação do Grupo VIP do 11/11 (/pages/grupo-vip).
+  Não abre a oferta. Usa o sistema visual vf-ds (vfl-*).
+  O link do grupo vem do campo "Link do grupo VIP" (enviado pela Sarah).
+  O clique dispara Lead no Pixel da Meta (quando disponível), conversão no Google
+  e o evento vf_grupo_vip_click para pixels personalizados.
+{%- endcomment -%}
+{%- assign link = section.settings.link_grupo | default: '#' -%}
+<section class="vfl vfgv">
+  <div class="vfgv-hero vfl--deep">
+    <div class="vfl-wrap vfgv-hero__in">
+      <p class="vfl-eyebrow">Grupo VIP VermeFree · 11/11</p>
+      <h1>11/11 VermeFree: o maior dia do ano chega <em>primeiro no Grupo VIP</em></h1>
+      <p class="vfl-lede">Quem está no grupo recebe o acesso à oferta <strong>à 00h do dia 11/11</strong>, 7 horas antes de abrir para todo mundo.</p>
+
+      <div class="vfgv-timer" data-vfgv-timer data-alvo="{{ section.settings.data_alvo | default: '2026-11-11T00:00:00-03:00' }}" aria-label="Contagem regressiva para o 11/11">
+        <div><b data-d>--</b><span>dias</span></div>
+        <div><b data-h>--</b><span>horas</span></div>
+        <div><b data-m>--</b><span>min</span></div>
+        <div><b data-s>--</b><span>seg</span></div>
+      </div>
+
+      <a class="vfl-btn vfl-btn--light vfgv-cta" href="{{ link }}" data-vfgv-cta target="_blank" rel="noopener">Quero entrar no Grupo VIP</a>
+      <p class="vfgv-nota">É grátis. O link leva sozinho para um grupo com vaga.</p>
+    </div>
+    {%- if section.settings.imagem != blank -%}
+      <div class="vfgv-hero__img">{{ section.settings.imagem | image_url: width: 1200 | image_tag: loading: 'eager', alt: 'Protocolos VermeFree' }}</div>
+    {%- else -%}
+      <div class="vfgv-hero__img"><img src="{{ 'kit-familia-01-todos-frascos.jpg' | asset_url }}" alt="Protocolos VermeFree" width="1200" height="1200" loading="eager"></div>
+    {%- endif -%}
+  </div>
+
+  <div class="vfl-section">
+    <div class="vfl-wrap">
+      <p class="vfl-eyebrow">Por que entrar agora</p>
+      <h2>Três motivos para estar <em>dentro do grupo</em> no 11/11</h2>
+      <div class="vfgv-cards">
+        <div class="vfgv-card">
+          <span class="vfgv-num">1</span>
+          <h3>Você compra antes de todo mundo</h3>
+          <p>O grupo recebe o acesso à meia-noite. A loja só abre para todos às 7h.</p>
+        </div>
+        <div class="vfgv-card">
+          <span class="vfgv-num">2</span>
+          <h3>Mais chance de entrar nos primeiros pedidos</h3>
+          <p>Os <strong>100 primeiros</strong> pedidos ganham cashback e os <strong>300 primeiros</strong> concorrem a um kit VermeFree.</p>
+        </div>
+        <div class="vfgv-card">
+          <span class="vfgv-num">3</span>
+          <h3>Sem spam</h3>
+          <p>Só os administradores mandam mensagens, e você sai quando quiser.</p>
+        </div>
+      </div>
+      <div class="vfgv-center">
+        <a class="vfl-btn vfgv-cta" href="{{ link }}" data-vfgv-cta target="_blank" rel="noopener">Quero entrar no Grupo VIP</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="vfl-section vfl--sage">
+    <div class="vfl-wrap vfgv-faq">
+      <p class="vfl-eyebrow">Dúvidas rápidas</p>
+      <h2>Antes de entrar</h2>
+      <details open><summary>Quando é a oferta?</summary><p>Dia 11/11. No grupo, o acesso abre à 00h; para todo mundo, às 7h. Os detalhes saem primeiro no grupo.</p></details>
+      <details><summary>Preciso pagar para entrar?</summary><p>Não. Entrar no grupo é grátis.</p></details>
+      <details><summary>E se o grupo lotar?</summary><p>O link leva sozinho para um grupo com vaga. É só clicar.</p></details>
+      <details><summary>Posso sair depois?</summary><p>Pode, a qualquer momento.</p></details>
+    </div>
+  </div>
+
+  <div class="vfl-section vfl--dark vfgv-final">
+    <div class="vfl-wrap">
+      <p class="vfgv-aviso" data-vfgv-aviso hidden>A loja está fechada se preparando para o 11/11 e reabre dia 11 às 7h para todos.</p>
+      <h2>Garanta seu lugar <em>antes da meia-noite do dia 11</em></h2>
+      <a class="vfl-btn vfl-btn--light vfgv-cta" href="{{ link }}" data-vfgv-cta target="_blank" rel="noopener">Quero entrar no Grupo VIP</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .vfgv-hero { display: grid; grid-template-columns: 1.1fr .9fr; align-items: stretch; min-height: 88vh; }
+  .vfgv-hero__in { padding: 72px 0; display: flex; flex-direction: column; justify-content: center; width: min(620px, calc(100% - 64px)); margin-left: auto; margin-right: 56px; }
+  .vfgv-hero h1 { font-size: clamp(2.3rem, 4.4vw, 4.2rem); }
+  .vfgv .vfl--deep h1 em, .vfgv .vfl--deep .vfl-eyebrow { color: var(--vf-lime); }
+  .vfgv-hero__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vfgv-timer { display: flex; gap: 10px; margin: 32px 0 28px; }
+  .vfgv-timer div { background: rgba(255,255,255,.08); border: 1px solid rgba(192,222,150,.35); border-radius: 16px; padding: 12px 0; width: 76px; text-align: center; }
+  .vfgv-timer b { display: block; font-family: Caprasimo, Georgia, serif; font-weight: 400; font-size: 2rem; line-height: 1; color: var(--vf-lime); }
+  .vfgv-timer span { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: #dae5d8; }
+  .vfgv-cta { font-size: 1.05rem; padding: 18px 34px; }
+  .vfgv-nota { margin-top: 14px; font-size: .85rem; color: #dae5d8; }
+  .vfgv-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .vfgv-card { background: #fff; border: 1px solid var(--vf-line); border-radius: var(--vf-radius); padding: 28px; }
+  .vfgv-card p { color: var(--vf-muted); margin-top: 10px; }
+  .vfgv-num { display: inline-flex; width: 38px; height: 38px; border-radius: 50%; background: var(--vf-lime); color: var(--vf-deep); align-items: center; justify-content: center; font-weight: 700; margin-bottom: 16px; }
+  .vfgv-center { text-align: center; margin-top: 40px; }
+  .vfgv-faq { max-width: 760px; }
+  .vfgv-faq h2 { margin-bottom: 24px; }
+  .vfgv-faq details { background: #fff; border-radius: 16px; padding: 18px 22px; margin-top: 12px; }
+  .vfgv-faq summary { font-weight: 650; cursor: pointer; }
+  .vfgv-faq details p { margin-top: 10px; color: var(--vf-muted); }
+  .vfgv-final { text-align: center; }
+  .vfgv-final h2 { margin-bottom: 32px; }
+  .vfgv-aviso { display: inline-block; background: rgba(192,222,150,.15); border-radius: 40px; padding: 10px 18px; margin-bottom: 24px; font-size: .9rem; }
+  @media (max-width: 860px) {
+    .vfgv-hero { grid-template-columns: 1fr; min-height: 0; }
+    .vfgv-hero__img { order: -1; max-height: 42vh; overflow: hidden; }
+    .vfgv-hero__in { width: calc(100% - 40px); margin: 0 auto; padding: 36px 0 48px; }
+    .vfgv-timer div { width: 23%; }
+    .vfgv-cta { width: 100%; }
+    .vfgv-cards { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  (function () {
+    var t = document.querySelector('[data-vfgv-timer]');
+    if (t) {
+      var alvo = new Date(t.getAttribute('data-alvo')).getTime();
+      var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+      var tick = function () {
+        var r = Math.max(0, alvo - Date.now()), s = Math.floor(r / 1000);
+        t.querySelector('[data-d]').textContent = pad(Math.floor(s / 86400));
+        t.querySelector('[data-h]').textContent = pad(Math.floor(s % 86400 / 3600));
+        t.querySelector('[data-m]').textContent = pad(Math.floor(s % 3600 / 60));
+        t.querySelector('[data-s]').textContent = pad(s % 60);
+      };
+      tick(); setInterval(tick, 1000);
+    }
+    if (window.vfTravaAtiva) {
+      var a = document.querySelector('[data-vfgv-aviso]');
+      if (a) a.hidden = false;
+    }
+    document.querySelectorAll('[data-vfgv-cta]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        try { if (window.fbq) window.fbq('track', 'Lead', { content_name: 'Grupo VIP 11/11' }); } catch (e) {}
+        try { if (window.gtag) window.gtag('event', 'generate_lead', { event_label: 'grupo_vip_1111' }); } catch (e) {}
+        try { if (window.Shopify && Shopify.analytics && Shopify.analytics.publish) Shopify.analytics.publish('vf_grupo_vip_click', { campanha: '11/11' }); } catch (e) {}
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "VF Grupo VIP 11/11",
+  "settings": [
+    { "type": "url", "id": "link_grupo", "label": "Link do grupo VIP (rastreado, da Sarah)" },
+    { "type": "text", "id": "data_alvo", "label": "Contagem até (ISO)", "default": "2026-11-11T00:00:00-03:00" },
+    { "type": "image_picker", "id": "imagem", "label": "Imagem do topo" }
+  ],
+  "presets": [{ "name": "VF Grupo VIP 11/11" }]
+}
+{% endschema %}

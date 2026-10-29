@@ -1,0 +1,35 @@
+{%- comment -%}
+  vf-trava-1111 — Trava do site durante a captação do 11/11 (ficha v2, aprovada pelo Vitor).
+  DOM 01/11 00h até QUA 11/11 07h (horário de Brasília): toda página vai para /pages/grupo-vip.
+  O grupo VIP compra a partir de 11/11 00h entrando por qualquer link com ?acesso=vip
+  (ex.: vermefree.com.br/collections/xxx?acesso=vip); o navegador guarda a liberação.
+  Testes: ?vf_trava=on simula a trava (só nesta aba) · ?vf_trava=off desliga a simulação.
+  Fora do período não faz nada. Não roda no editor de tema.
+{%- endcomment -%}
+{%- unless request.design_mode -%}
+<script>
+  (function () {
+    var INICIO = Date.parse('2026-11-01T00:00:00-03:00');
+    var FIM = Date.parse('2026-11-11T07:00:00-03:00');
+    var VIP_DESDE = Date.parse('2026-11-11T00:00:00-03:00');
+    var LP = '/pages/grupo-vip';
+    var LIVRES = [LP, '/policies/', '/pages/regulamento', '/pages/politica-de-privacidade', '/pages/trocas-e-devolucoes', '/account', '/apps/'];
+    var q = new URLSearchParams(location.search), agora = Date.now(), teste = false;
+    try {
+      if (q.get('vf_trava') === 'on') sessionStorage.setItem('vf_trava_teste', '1');
+      if (q.get('vf_trava') === 'off') sessionStorage.removeItem('vf_trava_teste');
+      teste = sessionStorage.getItem('vf_trava_teste') === '1';
+      if (q.get('acesso') === 'vip') localStorage.setItem('vf_vip_1111', '1');
+    } catch (e) {}
+    var noPeriodo = agora >= INICIO && agora < FIM;
+    if (!noPeriodo && !teste) return;
+    window.vfTravaAtiva = true;
+    var vip = false;
+    try { vip = localStorage.getItem('vf_vip_1111') === '1'; } catch (e) {}
+    if (vip && (teste || agora >= VIP_DESDE)) return;
+    var p = location.pathname;
+    for (var i = 0; i < LIVRES.length; i++) { if (p.indexOf(LIVRES[i]) === 0) return; }
+    location.replace(LP + location.search);
+  })();
+</script>
+{%- endunless -%}

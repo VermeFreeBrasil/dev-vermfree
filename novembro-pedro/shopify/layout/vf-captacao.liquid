@@ -1,0 +1,46 @@
+{%- comment -%}
+  vf-captacao.liquid — Layout das LPs de captação (tela cheia, sem cabeçalho e rodapé).
+  Igual ao vf-funil, mais Utmify e Google Ads (rastreio do tráfego de captação)
+  e a trava do 11/11.
+{%- endcomment -%}
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#102e23">
+    <title>{{ page_title }}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+    <meta name="description" content="Entre no Grupo VIP VermeFree e receba o acesso ao 11/11 à 00h, antes de todo mundo.">
+    <link rel="canonical" href="{{ canonical_url }}">
+    {%- if settings.favicon != blank -%}<link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">{%- endif -%}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Inter:wght@400;500;600;700&display=swap">
+    <meta property="og:site_name" content="{{ shop.name }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="11/11 VermeFree: chega primeiro no Grupo VIP">
+    <meta property="og:description" content="Quem está no grupo recebe o acesso à 00h do dia 11/11, 7 horas antes de todo mundo.">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <script>
+      window.pixelId = "6a14a41337e05da355d2c089";
+      var a = document.createElement("script");
+      a.setAttribute("async", ""); a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
+    {%- render 'vf-ds' -%}
+    {{ content_for_header }}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18193701893"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18193701893');
+    </script>
+    <style>body { margin: 0; background: var(--vf-paper); }</style>
+  </head>
+  <body class="template-{{ template | replace: '.', '-' | handle }}">
+    {{ content_for_layout }}
+  </body>
+</html>
