@@ -106,6 +106,21 @@
   </section>
 </div>
 
+<div class="vm" data-vm hidden role="dialog" aria-modal="true" aria-labelledby="vm-t">
+  <form class="vm-box" data-vm-form novalidate>
+    <button type="button" class="vm-x" data-vm-x aria-label="Fechar">×</button>
+    <p class="vm-k">🔥 Grupo VIP · 11.11</p>
+    <h3 id="vm-t">Falta só um passo para entrar no grupo</h3>
+    <p class="vm-s">Deixe seus dados para receber o link do maior desconto da história da VermeFree <b>antes de todo mundo</b>.</p>
+    <label>Nome<input name="nome" autocomplete="name" placeholder="Seu nome" required></label>
+    <label>E-mail<input name="email" type="email" autocomplete="email" inputmode="email" placeholder="voce@email.com" required></label>
+    <label>WhatsApp<input name="whatsapp" type="tel" autocomplete="tel" inputmode="numeric" placeholder="(11) 99999-9999" required></label>
+    <p class="vm-err" data-vm-err hidden>Confira os dados: nome, um e-mail válido e WhatsApp com DDD.</p>
+    <button class="vv-btn vm-go" type="submit">Entrar no Grupo VIP agora</button>
+    <p class="vm-lgpd">Seus dados ficam só com a VermeFree e servem para avisos do 11/11. Sem spam; você sai quando quiser.</p>
+  </form>
+</div>
+
 <style>
   html,body{background:#fff}
   .vv{--ink:#173e2d;--red:#d7262f;--red2:#b5121b;--muted:#5f6b64;--beige:#f5f2ea;--sans:Inter,Arial,sans-serif;
@@ -201,6 +216,23 @@
     .vv-secret{padding:28px 20px}
     .vv-rail figure{flex-basis:150px}
   }
+
+  .vm{position:fixed;inset:0;z-index:50;background:#0d1a14b3;display:flex;align-items:center;justify-content:center;padding:16px;font-family:Inter,Arial,sans-serif}
+  .vm[hidden]{display:none}
+  .vm-box{position:relative;width:min(440px,100%);background:#fff;border-radius:22px;padding:28px 24px 20px;color:#173e2d;box-shadow:0 30px 80px #0007;animation:vmIn .25s ease-out}
+  @keyframes vmIn{from{transform:translateY(20px);opacity:0}}
+  .vm-x{position:absolute;top:10px;right:12px;border:0;background:none;font-size:28px;line-height:1;color:#5f6b64;cursor:pointer}
+  .vm-k{display:inline-block;background:#fdeceb;color:#d7262f;border:1px solid #f6c9cb;font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:5px 10px;border-radius:30px;margin:0 0 10px}
+  .vm-box h3{margin:0 0 6px;font-size:23px;line-height:1.15;font-weight:800;letter-spacing:-.02em}
+  .vm-s{margin:0 0 14px;font-size:14px;line-height:1.5;color:#5f6b64}
+  .vm-s b{color:#173e2d}
+  .vm-box label{display:block;font-size:12px;font-weight:700;margin:0 0 10px}
+  .vm-box input{display:block;width:100%;box-sizing:border-box;margin-top:5px;padding:13px 14px;font:500 16px Inter,Arial,sans-serif;color:#173e2d;border:1.5px solid #d9e2dc;border-radius:12px;outline:none;background:#fafcfa}
+  .vm-box input:focus{border-color:#173e2d;background:#fff}
+  .vm-err{margin:0 0 8px;font-size:12.5px;color:#d7262f;font-weight:600}
+  .vm-go{width:100%;max-width:none;border:0;cursor:pointer;margin:6px 0 0;font-family:inherit;background:linear-gradient(180deg,#e2333b,#b5121b);color:#fff}
+  .vm-go[disabled]{opacity:.7;cursor:wait}
+  .vm-lgpd{margin:10px 0 0;font-size:11px;line-height:1.45;color:#8a948e;text-align:center}
   @media(prefers-reduced-motion:reduce){.vv *{animation:none!important;transition:none!important}}
 </style>
 
@@ -246,7 +278,7 @@
         rail.scrollTo({ left: fim ? 0 : rail.scrollLeft + 182, behavior: 'smooth' });
       }, 2600);
     }
-    // Rastreio (vip.vermefree.com.br): Meta (2 pixels) PageView + Lead no clique; GA4 generate_lead; Google Ads conversão quando houver rótulo.
+    // Rastreio (vip.vermefree.com.br): Meta (2 pixels) PageView + Lead no envio; GA4 generate_lead; Google Ads conversão quando houver rótulo.
     var META = ["2239781696850189","867430254699991"];
     var GA4 = "G-W0NZM1LHSN";
     var ADS = "AW-18193701893";
@@ -255,12 +287,43 @@
       !function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); }; if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s); }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
       META.forEach(function (id) { id = id.trim(); if (id) window.fbq('init', id); });
     }
-    document.querySelectorAll('[data-vv-cta]').forEach(function (el) {
-      el.addEventListener('click', function () {
-        try { if (META.length && window.fbq) window.fbq('track', 'Lead', { content_name: 'Grupo VIP 11/11' }); } catch (e) {}
-        try { if (window.gtag && GA4) window.gtag('event', 'generate_lead', { send_to: GA4, lead_source: 'grupo_vip_1111', transport_type: 'beacon' }); } catch (e) {}
-        try { if (window.gtag && ADS && ADS_LABEL) window.gtag('event', 'conversion', { send_to: ADS + '/' + ADS_LABEL, transport_type: 'beacon' }); } catch (e) {}
-      });
+    // Pop-up: o botão abre o formulário; ao enviar, dispara o Lead, manda ao ActiveCampaign (/api/lead) e leva ao grupo.
+    var GRUPO = 'https://sndflw.com/i/vermefree11-11';
+    var vm = document.querySelector('[data-vm]'), form = document.querySelector('[data-vm-form]');
+    var err = document.querySelector('[data-vm-err]'), go = form.querySelector('.vm-go');
+    var tel = form.elements.whatsapp;
+    tel.addEventListener('input', function () {
+      var d = tel.value.replace(/\D/g, '').slice(0, 11), o = d;
+      if (d.length > 2) o = '(' + d.slice(0, 2) + ') ' + d.slice(2);
+      if (d.length > 7) o = '(' + d.slice(0, 2) + ') ' + d.slice(2, d.length - 4) + '-' + d.slice(-4);
+      tel.value = o;
+    });
+    var abre = function (e) {
+      e.preventDefault();
+      vm.hidden = false; err.hidden = true;
+      setTimeout(function () { if (!form.contains(document.activeElement)) form.elements.nome.focus(); }, 50);
+      try { if (window.gtag) window.gtag('event', 'vip_abriu_formulario'); } catch (x) {}
+    };
+    var fecha = function () { vm.hidden = true; };
+    document.querySelectorAll('[data-vv-cta]').forEach(function (el) { el.addEventListener('click', abre); });
+    document.querySelector('[data-vm-x]').addEventListener('click', fecha);
+    vm.addEventListener('click', function (e) { if (e.target === vm) fecha(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fecha(); });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nome = form.elements.nome.value.trim(), email = form.elements.email.value.trim();
+      var fone = tel.value.replace(/\D/g, '');
+      if (!nome || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || fone.length < 10) { err.hidden = false; return; }
+      err.hidden = true; go.disabled = true; go.textContent = 'Entrando...';
+      var q = new URLSearchParams(location.search), utm = {};
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'].forEach(function (k) { if (q.get(k)) utm[k] = q.get(k); });
+      try { if (META.length && window.fbq) window.fbq('track', 'Lead', { content_name: 'Grupo VIP 11/11' }); } catch (x) {}
+      try { if (window.gtag && GA4) window.gtag('event', 'generate_lead', { send_to: GA4, lead_source: 'grupo_vip_1111', transport_type: 'beacon' }); } catch (x) {}
+      try { if (window.gtag && ADS && ADS_LABEL) window.gtag('event', 'conversion', { send_to: ADS + '/' + ADS_LABEL, transport_type: 'beacon' }); } catch (x) {}
+      var envio = fetch('/api/lead', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome: nome, email: email, whatsapp: fone, utm: utm, pagina: location.href }) }).catch(function () {});
+      var tempo = new Promise(function (r) { setTimeout(r, 2500); });
+      Promise.race([envio, tempo]).then(function () { location.href = GRUPO; });
     });
   })();
 </script>
