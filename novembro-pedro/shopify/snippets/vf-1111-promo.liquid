@@ -1,33 +1,38 @@
 {%- comment -%}
-  vf-1111-promo — "Eclipse 11.11", tema do Dia D da VermeFree (conceito aprovado pelo Pedro em 30/10).
-  Uma lua vai sendo coberta por um eclipse vermelho conforme as 24 horas do 11/11 passam: quando a lua fecha, o desconto acaba.
-  Liga sozinho em QUA 11/11 00h00 e desliga 23h59 (Brasília). Teste: ?vf_diad=on liga nesta aba · ?vf_diad=off desliga.
-  parte: 'barra' (faixa "ao vivo" + regras do dia, todas as páginas), 'home' (eclipse + monte seus 5 + clientes + perguntas)
-  ou 'pdp' (compra Eclipse no topo da página de produto + barra fixa no celular).
-  Oferta (ficha v2): 20% OFF em tudo + compre 4 leve 5 (o de menor valor) + Kit Kids 2-4 na compra de 4 + frete grátis sem mínimo
-  + 15% de cashback nos 100 primeiros + sorteio entre os 300 primeiros + guia e manual digitais.
+  vf-1111-promo · "Eclipse 11.11" (Dia D VermeFree). Liga sozinho em 11/11 00h–23h59 (Brasília); teste com ?vf_diad=on / off.
+  parte: 'barra' (todas as páginas), 'home' ou 'pdp'. Limite do Shopify: 50 mil caracteres por arquivo.
 {%- endcomment -%}
 {%- if parte == 'barra' -%}
 <style>
-  .ve{font-family:Inter,Arial,sans-serif}
-  .ve[hidden]{display:none!important}
-  html.ve-on #shopify-section-vf-announcement-bar{display:none!important}
-  /* no Dia D: a home vira só o Eclipse; na página de produto, o topo vira a compra Eclipse e saem o médico e os preços cheios */
-  html.ve-on body.template-index #main{display:none!important}
-  html.ve-on body[class*="template-product"] [id$="__main"],
-  html.ve-on body[class*="template-product"] [id*="__vf_curadoria"],
-  html.ve-on body[class*="template-product"] [id*="__vf_cross_familia"],
-  html.ve-on body[class*="template-product"] [id*="__cta-final"],
-  html.ve-on body[class*="template-product"] [id*="__cta_final"],
-  html.ve-on body[class*="template-product"] [id*="prescritores"]{display:none!important}
-  .ve-live{display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 16px;background:#000;color:#f6f5ec;border-bottom:1px solid #ffffff14;font-size:13px;letter-spacing:.3px;flex-wrap:wrap;text-align:center}
-  .ve-live .dot{display:inline-flex;align-items:center;gap:7px;color:#ff4a52;font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:1.5px}
-  .ve-live .dot:before{content:'';width:8px;height:8px;border-radius:50%;background:#ff3b44;box-shadow:0 0 0 4px #ff3b4433;animation:vePulse 1.4s infinite}
-  @keyframes vePulse{50%{box-shadow:0 0 0 8px #ff3b4400}}
-  .ve-live b{color:#fff}
-  .ve-live .t{font-variant-numeric:tabular-nums;color:#ff6b72;font-weight:800}
-  .ve-live a{background:#e0262f;color:#fff;font-weight:800;padding:6px 14px;border-radius:30px;text-decoration:none;font-size:12.5px}
-  @media(max-width:700px){.ve-live{font-size:11.5px;gap:4px 10px;padding:8px 12px}.ve-live .o{flex-basis:100%}}
+.ve{font-family:Inter,Arial,sans-serif}
+.ve[hidden]{display:none!important}
+html.ve-on #shopify-section-vf-announcement-bar{display:none!important}
+html.ve-on body.template-index #main{display:none!important}
+html.ve-on body[class*="template-product"] [id$="__main"],
+html.ve-on body[class*="template-product"] [id*="__vf_cross_familia"],
+html.ve-on body[class*="template-product"] [id*="__cta-final"],
+html.ve-on body[class*="template-product"] [id*="__cta_final"]{display:none!important}
+html.ve-on .vf-cur{background:#0b0f0d!important}
+html.ve-on .vf-cur__eyebrow{color:#c0de96!important}
+html.ve-on .vf-cur__title{color:#f6f5ec!important}
+html.ve-on .vf-cur__sub,html.ve-on .vf-cur__note{color:#9fb0a6!important}
+html.ve-on .vf-cur__card{background:#111614!important;border:1px solid #ffffff14!important;box-shadow:0 20px 50px #0008!important}
+html.ve-on .vf-cur__ph{background:#1a1f1c!important}
+html.ve-on .vf-cur__badge{background:#e0262f!important;color:#fff!important}
+html.ve-on .vf-cur__q{color:#f6f5ec!important}
+html.ve-on .vf-cur__name{color:#fff!important}
+html.ve-on .vf-cur__role{color:#ff6b72!important}
+html.ve-on .vf-cur span:not(.vf-cur__badge){color:#9fb0a6!important}
+html.ve-on .vf-cur__arrow{background:#070a08!important;color:#f6f5ec!important;border:1px solid #ffffff22!important}
+html.ve-on .vf-cur .is-on{background:#e0262f!important}
+.ve-live{display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 16px;background:#000;color:#f6f5ec;border-bottom:1px solid #ffffff14;font-size:13px;letter-spacing:.3px;flex-wrap:wrap;text-align:center}
+.ve-live .dot{display:inline-flex;align-items:center;gap:7px;color:#ff4a52;font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:1.5px}
+.ve-live .dot:before{content:'';width:8px;height:8px;border-radius:50%;background:#ff3b44;box-shadow:0 0 0 4px #ff3b4433;animation:vePulse 1.4s infinite}
+@keyframes vePulse{50%{box-shadow:0 0 0 8px #ff3b4400}}
+.ve-live b{color:#fff}
+.ve-live .t{font-variant-numeric:tabular-nums;color:#ff6b72;font-weight:800}
+.ve-live a{background:#e0262f;color:#fff;font-weight:800;padding:6px 14px;border-radius:30px;text-decoration:none;font-size:12.5px}
+@media(max-width:700px){.ve-live{font-size:11.5px;gap:4px 10px;padding:8px 12px}.ve-live .o{flex-basis:100%}}
 </style>
 <div class="ve ve-live" data-ve hidden>
   <span class="dot">Ao vivo</span>
@@ -37,22 +42,22 @@
 </div>
 <script>
   (function () {
-    var INI = Date.parse('2026-11-11T00:00:00-03:00'), FIM = Date.parse('2026-11-11T23:59:59-03:00');
-    var q = new URLSearchParams(location.search), sim = false;
-    try {
+  var INI = Date.parse('2026-11-11T00:00:00-03:00'), FIM = Date.parse('2026-11-11T23:59:59-03:00');
+  var q = new URLSearchParams(location.search), sim = false;
+  try {
       if (q.get('vf_diad') === 'on') sessionStorage.setItem('vf_diad', '1');
       if (q.get('vf_diad') === 'off') sessionStorage.removeItem('vf_diad');
       sim = sessionStorage.getItem('vf_diad') === '1';
-    } catch (e) {}
-    var agora = Date.now();
-    window.vfDiaD = sim || (agora >= INI && agora <= FIM);
-    if (!window.vfDiaD) return;
-    document.documentElement.classList.add('ve-on');
-    // na simulação, o "dia" é o dia de hoje em Brasília
-    var ini = INI, fim = FIM;
-    if (sim && (agora < INI || agora > FIM)) { var d = new Date(agora - 3 * 3600e3); d.setUTCHours(0, 0, 0, 0); ini = d.getTime() + 3 * 3600e3; fim = ini + 86399e3; }
-    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
-    var tick = function () {
+  } catch (e) {}
+  var agora = Date.now();
+  window.vfDiaD = sim || (agora >= INI && agora <= FIM);
+  if (!window.vfDiaD) return;
+  document.documentElement.classList.add('ve-on');
+  // na simulação, o "dia" é o dia de hoje em Brasília
+  var ini = INI, fim = FIM;
+  if (sim && (agora < INI || agora > FIM)) { var d = new Date(agora - 3 * 3600e3); d.setUTCHours(0, 0, 0, 0); ini = d.getTime() + 3 * 3600e3; fim = ini + 86399e3; }
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  var tick = function () {
       var now = Date.now(), s = Math.max(0, Math.floor((fim - now) / 1000));
       var f = Math.min(1, Math.max(0, (now - ini) / (fim - ini)));
       var txt = pad(Math.floor(s / 3600)) + 'h ' + pad(Math.floor(s % 3600 / 60)) + 'm ' + pad(s % 60) + 's';
@@ -61,10 +66,10 @@
       document.querySelectorAll('[data-ve-f]').forEach(function (el) { el.textContent = Math.round(f * 100) + '%'; });
       document.querySelectorAll('[data-ve-bar]').forEach(function (el) { el.style.width = (f * 100) + '%'; });
       document.querySelectorAll('[data-ve-sombra]').forEach(function (el) { el.style.left = (-108 + 104 * f) + '%'; });
-    };
-    var mostra = function () { document.querySelectorAll('[data-ve]').forEach(function (el) { el.hidden = false; }); tick(); };
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mostra); else mostra();
-    setInterval(tick, 1000);
+  };
+  var mostra = function () { document.querySelectorAll('[data-ve]').forEach(function (el) { el.hidden = false; }); tick(); };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mostra); else mostra();
+  setInterval(tick, 1000);
   })();
 </script>
 {%- elsif parte == 'home' or parte == 'pdp' -%}
@@ -74,169 +79,162 @@
 {%- assign fotos = 'vf-adulto-v4-02-o-que-vem.jpg,vf-kids-v4-02-o-que-vem-2a4.jpg,vf-kids-v4-02-o-que-vem-5a9.jpg,hf_20260901_183258_f5f799a0-6a03-4647-8804-494027e8e961.png' | split: ',' -%}
 {%- capture frasco -%}<svg viewBox="0 0 40 80" aria-hidden="true"><rect x="13" y="2" width="14" height="10" rx="2" fill="#1a1a1a"/><path d="M10 16h20l4 10v48a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V26z" fill="#6b3a12"/><rect x="6" y="38" width="28" height="26" fill="currentColor"/></svg>{%- endcapture -%}
 <style>
-  .ve-x{--ink:#070a08;--ink2:#0b0f0d;--card:#0e1311;--forest:#102e21;--lime:#c0de96;--red:#e0262f;--red2:#9e0f17;--cream:#f6f5ec;--mut:#9fb0a6;background:var(--ink);color:var(--cream);font-family:Inter,Arial,sans-serif}
-  .ve-x *{box-sizing:border-box}
-  .ve-x h1,.ve-x h2,.ve-x h3,.ve-x p{margin:0}
-  .ve-x .ve-wrap{width:min(1280px,100%);margin:0 auto}
-  .ve-x .cap{font-family:Caprasimo,Georgia,serif;font-weight:400}
-  .ve-x .ve-kick{display:inline-flex;gap:10px;align-items:center;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--lime);margin-bottom:16px;flex-wrap:wrap}
-  .ve-x .ve-kick span{background:var(--red);color:#fff;padding:5px 10px;border-radius:6px;letter-spacing:1px}
-  .ve-x .ve-kick b{color:#ff6b72;font-variant-numeric:tabular-nums;letter-spacing:.5px}
-  .ve-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(180deg,#ff3a43,#9e0f17);color:#fff;font-weight:800;font-size:18px;padding:20px 34px;border-radius:60px;box-shadow:0 0 0 6px #e0262f22,0 18px 40px #e0262f55;text-decoration:none;border:0;cursor:pointer;font-family:Inter,Arial,sans-serif}
-  .ve-btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none}
-  /* lua (grande e mini) */
-  .ve-moon{position:relative;aspect-ratio:1;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 38% 35%,#fbf8ea 0,#e9efd9 35%,#c0de96 75%,#93b874 100%);box-shadow:0 0 80px #c0de9640,0 0 200px #c0de9622,inset -20px -30px 60px #6f8f5555}
-  .ve-moon:after{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 18% 70%,#a7c08a55 0 7%,transparent 8%),radial-gradient(circle at 60% 28%,#a7c08a44 0 5%,transparent 6%),radial-gradient(circle at 72% 64%,#a7c08a44 0 9%,transparent 10%)}
-  .ve-sombra{position:absolute;top:-4%;width:108%;height:108%;border-radius:50%;left:-108%;transition:left 1s linear;background:radial-gradient(circle at 60% 50%,#2a0507 0,#5a0a10 55%,#8d121b 72%,#e0262f 76%,transparent 77%);mix-blend-mode:multiply;filter:blur(1px)}
-  .ve-bar{height:6px;border-radius:6px;background:#ffffff14;margin:8px 0 6px;overflow:hidden}
-  .ve-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e0262f,#ff6b72)}
-  /* frascos (slots) */
-  .ve-slots{display:flex;gap:12px;align-items:flex-end;justify-content:center;flex-wrap:wrap}
-  .ve-slot{width:96px;height:160px;border-radius:18px;border:1.5px dashed #ffffff25;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 4px 10px;position:relative;font-size:10.5px;color:var(--mut);text-align:center;background:none;font-family:inherit;color:#c0de96}
-  .ve-slot .n{position:absolute;top:8px;left:10px;font-size:11px;font-weight:700;color:var(--mut)}
-  .ve-slot .l{color:var(--mut)}
-  .ve-slot svg{width:52px;opacity:.16;margin-bottom:6px}
-  .ve-slot.on{border:1.5px solid #c0de9655;background:#c0de960d}
-  .ve-slot.on .l{color:var(--cream)}
-  .ve-slot.on svg{opacity:1}
-  .ve-slot.free{border:2px solid var(--red);background:radial-gradient(circle at 50% 60%,#e0262f22,transparent 70%);color:#ff6b72}
-  .ve-slot.free.on{background:radial-gradient(circle at 50% 60%,#e0262f44,transparent 70%);box-shadow:0 0 40px #e0262f66}
-  .ve-slot.free .tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;padding:5px 10px;border-radius:20px;white-space:nowrap}
-  .ve-plus{font-family:Caprasimo,Georgia,serif;font-size:34px;color:var(--lime);align-self:center}
-  .ve-gift{align-self:center;background:var(--lime);color:var(--forest);border-radius:16px;padding:12px 14px;font-weight:800;font-size:13.5px;line-height:1.3;width:148px;transform:rotate(-3deg);opacity:.3;transition:opacity .3s,transform .3s}
-  .ve-gift.on{opacity:1;transform:rotate(-3deg) scale(1.04)}
-  .ve-gift small{display:block;font-weight:600;font-size:11.5px;opacity:.8}
-  .ve-trilho{display:flex;gap:12px 36px;justify-content:center;padding:18px 16px;background:var(--red);color:#fff;font-weight:800;font-size:14px;letter-spacing:.5px;text-transform:uppercase;flex-wrap:wrap;text-align:center}
-  .ve-trilho span:before{content:'✦ ';color:#070a08}
+.ve-x{--ink:#070a08;--ink2:#0b0f0d;--card:#0e1311;--forest:#102e21;--lime:#c0de96;--red:#e0262f;--red2:#9e0f17;--cream:#f6f5ec;--mut:#9fb0a6;background:var(--ink);color:var(--cream);font-family:Inter,Arial,sans-serif}
+.ve-x *{box-sizing:border-box}
+.ve-x h1,.ve-x h2,.ve-x h3,.ve-x p{margin:0}
+.ve-x .ve-wrap{width:min(1280px,100%);margin:0 auto}
+.ve-x .cap{font-family:Caprasimo,Georgia,serif;font-weight:400}
+.ve-x .ve-kick{display:inline-flex;gap:10px;align-items:center;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--lime);margin-bottom:16px;flex-wrap:wrap}
+.ve-x .ve-kick span{background:var(--red);color:#fff;padding:5px 10px;border-radius:6px;letter-spacing:1px}
+.ve-x .ve-kick b{color:#ff6b72;font-variant-numeric:tabular-nums;letter-spacing:.5px}
+.ve-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(180deg,#ff3a43,#9e0f17);color:#fff;font-weight:800;font-size:18px;padding:20px 34px;border-radius:60px;box-shadow:0 0 0 6px #e0262f22,0 18px 40px #e0262f55;text-decoration:none;border:0;cursor:pointer;font-family:Inter,Arial,sans-serif}
+.ve-btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none}
+.ve-moon{position:relative;aspect-ratio:1;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 38% 35%,#fbf8ea 0,#e9efd9 35%,#c0de96 75%,#93b874 100%);box-shadow:0 0 80px #c0de9640,0 0 200px #c0de9622,inset -20px -30px 60px #6f8f5555}
+.ve-moon:after{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 18% 70%,#a7c08a55 0 7%,transparent 8%),radial-gradient(circle at 60% 28%,#a7c08a44 0 5%,transparent 6%),radial-gradient(circle at 72% 64%,#a7c08a44 0 9%,transparent 10%)}
+.ve-sombra{position:absolute;top:-4%;width:108%;height:108%;border-radius:50%;left:-108%;transition:left 1s linear;background:radial-gradient(circle at 60% 50%,#2a0507 0,#5a0a10 55%,#8d121b 72%,#e0262f 76%,transparent 77%);mix-blend-mode:multiply;filter:blur(1px)}
+.ve-bar{height:6px;border-radius:6px;background:#ffffff14;margin:8px 0 6px;overflow:hidden}
+.ve-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e0262f,#ff6b72)}
+.ve-slots{display:flex;gap:12px;align-items:flex-end;justify-content:center;flex-wrap:wrap}
+.ve-slot{width:96px;height:160px;border-radius:18px;border:1.5px dashed #ffffff25;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 4px 10px;position:relative;font-size:10.5px;color:var(--mut);text-align:center;background:none;font-family:inherit;color:#c0de96}
+.ve-slot .n{position:absolute;top:8px;left:10px;font-size:11px;font-weight:700;color:var(--mut)}
+.ve-slot .l{color:var(--mut)}
+.ve-slot svg{width:52px;opacity:.16;margin-bottom:6px}
+.ve-slot.on{border:1.5px solid #c0de9655;background:#c0de960d}
+.ve-slot.on .l{color:var(--cream)}
+.ve-slot.on svg{opacity:1}
+.ve-slot.free{border:2px solid var(--red);background:radial-gradient(circle at 50% 60%,#e0262f22,transparent 70%);color:#ff6b72}
+.ve-slot.free.on{background:radial-gradient(circle at 50% 60%,#e0262f44,transparent 70%);box-shadow:0 0 40px #e0262f66}
+.ve-slot.free .tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;padding:5px 10px;border-radius:20px;white-space:nowrap}
+.ve-plus{font-family:Caprasimo,Georgia,serif;font-size:34px;color:var(--lime);align-self:center}
+.ve-gift{align-self:center;background:var(--lime);color:var(--forest);border-radius:16px;padding:12px 14px;font-weight:800;font-size:13.5px;line-height:1.3;width:148px;transform:rotate(-3deg);opacity:.3;transition:opacity .3s,transform .3s}
+.ve-gift.on{opacity:1;transform:rotate(-3deg) scale(1.04)}
+.ve-gift small{display:block;font-weight:600;font-size:11.5px;opacity:.8}
+.ve-trilho{display:flex;gap:12px 36px;justify-content:center;padding:18px 16px;background:var(--red);color:#fff;font-weight:800;font-size:14px;letter-spacing:.5px;text-transform:uppercase;flex-wrap:wrap;text-align:center}
+.ve-trilho span:before{content:'✦ ';color:#070a08}
 </style>
 {%- endif -%}
 {%- if parte == 'home' -%}
 <style>
-  .ve-hero{position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 70% at 72% 45%,#1a1012 0,#070a08 60%)}
-  .ve-hero .ve-wrap{position:relative;padding:56px 48px 64px;display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center}
-  .ve-stars{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1px 1px at 12% 22%,#fff8,transparent),radial-gradient(1px 1px at 33% 78%,#fff6,transparent),radial-gradient(1.5px 1.5px at 58% 14%,#fff9,transparent),radial-gradient(1px 1px at 82% 66%,#fff5,transparent),radial-gradient(1px 1px at 91% 18%,#fff7,transparent),radial-gradient(1px 1px at 45% 52%,#fff4,transparent),radial-gradient(1.2px 1.2px at 6% 70%,#fff6,transparent),radial-gradient(1px 1px at 70% 90%,#fff5,transparent)}
-  .ve-hero h1{font-size:clamp(42px,4.6vw,66px);line-height:1.02;letter-spacing:-.5px;color:var(--cream)}
-  .ve-hero h1 em,.ve-x h2 em.r{font-style:normal;color:#ff3b44}
-  .ve-sub{margin:20px 0 26px!important;font-size:18px;line-height:1.5;color:#cfd8d2;max-width:520px}
-  .ve-sub b{color:#fff}
-  .ve-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-  .ve-left{font-size:14px;color:var(--mut)}.ve-left b{color:#fff;font-variant-numeric:tabular-nums}
-  .ve-moonwrap{display:flex;flex-direction:column;align-items:center}
-  .ve-hero .ve-moon{width:min(440px,80vw)}
-  .ve-n{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);font-family:Caprasimo,Georgia,serif;font-size:clamp(70px,8.4vw,118px);color:#070a08;letter-spacing:-3px;white-space:nowrap;mix-blend-mode:multiply;opacity:.92;z-index:1}
-  .ve-prog{margin-top:22px;width:min(440px,80vw);text-align:center;font-size:13px;color:var(--mut)}
-  .ve-x h2{font-size:clamp(30px,3vw,44px);line-height:1.05;color:var(--cream)}
-  .ve-x h2 em{font-style:normal;color:var(--lime)}
-  .ve-sec{padding:64px 48px;border-top:1px solid #ffffff10}
-  .ve-sec .ve-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:28px;flex-wrap:wrap}
-  .ve-sec .ve-head p{color:var(--mut);font-size:15px;line-height:1.5;max-width:460px}
-  /* monte seus 5 (seletor único) */
-  /* Monte seus 5: mesmo formato do montador da loja, nas cores do Eclipse */
-  .ve-monte{background:var(--ink2)}
-  .ve-mt-grid{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);border:1px solid #ffffff14;border-radius:26px;overflow:hidden;background:var(--card);box-shadow:0 20px 50px #0008}
-  .ve-mt-list{list-style:none;margin:0;padding:0;border-right:1px solid #ffffff10}
-  .ve-mt-row{position:relative;display:grid;grid-template-columns:170px minmax(0,1fr) auto;grid-template-areas:"im info q" "im more q";column-gap:26px;align-items:start;padding:24px 28px 24px 24px;border-bottom:1px solid #ffffff0d;cursor:pointer;transition:background .2s}
-  .ve-mt-row:last-child{border-bottom:0}
-  .ve-mt-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:transparent;transition:background .2s}
-  .ve-mt-row.on{background:#1a0d10}
-  .ve-mt-row.on::before{background:var(--red)}
-  .ve-mt-im{grid-area:im;align-self:center;position:relative;display:grid;place-items:center;width:170px;height:170px;border-radius:22px;background:radial-gradient(circle at 50% 60%,#26302b,#121815);border:1px solid #ffffff12}
-  .ve-mt-im img{width:94%;height:94%;object-fit:contain}
-  .ve-mt-tag{position:absolute;z-index:1;top:-8px;left:-6px;padding:4px 9px;border-radius:99px;background:var(--red);color:#fff;font:800 10px/1.15 Inter,Arial,sans-serif;letter-spacing:.04em;text-transform:uppercase}
-  .ve-mt-info{grid-area:info;min-width:0;align-self:end}
-  .ve-mt-age{margin:0!important;font:700 11.5px/1.3 Inter,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--lime)}
-  .ve-mt-n{margin:2px 0 6px!important;font:800 22px/1.2 Inter,Arial,sans-serif;color:#fff}
-  .ve-mt-n a{color:inherit;text-decoration:none}
-  .ve-mt-n a span{margin-left:6px;color:var(--red)}
-  .ve-mt-t{margin:0 0 8px!important;font-size:14.5px;line-height:1.4;color:var(--mut)}
-  .ve-mt-pr p{margin:0!important}
-  .ve-mt-was{font-size:13px;color:#7f8e86;line-height:1.2}
-  .ve-mt-was i{margin-left:3px;padding:1px 7px;border-radius:99px;background:var(--red);color:#fff;font-style:normal;font-size:11px;font-weight:800}
-  .ve-mt-3x{font:800 26px/1.15 Inter,Arial,sans-serif;color:#fff;letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .ve-mt-3x small{font-size:15px;color:#ff6b72}
-  .ve-mt-pix{font-size:13.5px;color:var(--mut);line-height:1.35}
-  .ve-mt-pix span{font-weight:700;color:#ff6b72}
-  .ve-mt-pix b{color:#fff;white-space:nowrap}
-  .ve-mt-more{grid-area:more;justify-self:start;align-self:start;margin-top:12px;display:inline-flex;align-items:center;gap:6px;padding:9px 17px;border:1.5px solid #ffffff22;border-radius:999px;font:800 13.5px/1.2 Inter,Arial,sans-serif;color:var(--cream);text-decoration:none;white-space:nowrap}
-  .ve-mt-more:hover{border-color:var(--red)}
-  .ve-mt-q{grid-area:q;align-self:center;display:flex;align-items:center;height:52px;border:1.5px solid #ffffff22;border-radius:999px;background:#070a08}
-  .ve-mt-row.on .ve-mt-q{border-color:var(--red);box-shadow:0 4px 16px #e0262f40}
-  .ve-mt-q button{width:44px;height:100%;padding:0;border:0;background:none;font:800 22px/1 Inter,Arial,sans-serif;color:#ff6b72;cursor:pointer}
-  .ve-mt-q output{min-width:22px;text-align:center;font:800 17px/1 Inter,Arial,sans-serif;color:#fff;font-variant-numeric:tabular-nums}
-  .ve-mt-sum{padding:34px 32px;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(ellipse 90% 60% at 50% 0,#3a0d12 0,#120709 70%);color:#fff}
-  .ve-mt-lad{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
-  .ve-mt-lad li{display:flex;flex-direction:column;align-items:center;padding:11px 6px 10px;border-radius:12px;background:#ffffff0d;border:1px solid #ffffff1a;text-align:center;color:#ffffff99;transition:background .25s,color .25s}
-  .ve-mt-lad li span{font-size:17px;line-height:1;filter:grayscale(1);opacity:.6}
-  .ve-mt-lad li b{margin-top:3px;font-size:13px;line-height:1.15}
-  .ve-mt-lad li small{font-size:11px;opacity:.8}
-  .ve-mt-lad li.on{background:var(--red);border-color:var(--red);color:#fff}
-  .ve-mt-lad li.on span{filter:none;opacity:1}
-  .ve-mt-next{margin:10px 0 0!important;min-height:1.35em;text-align:center;font-size:14px;line-height:1.35;color:#ffffffdd}
-  .ve-mt-next b{color:#ff8a90}
-  .ve-mt-tot{margin:14px 0 0;padding:14px 0 0;border-top:1px solid #ffffff1a}
-  .ve-mt-tot p{margin:0!important}
-  .ve-mt-tl{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px;color:#ffffffd9}
-  .ve-mt-tl s{color:#ffffff80}
-  .ve-mt-big{margin-top:2px!important;white-space:nowrap;font-variant-numeric:tabular-nums}
-  .ve-mt-big small{font-size:16px;font-weight:800;color:#ff8a90}
-  .ve-mt-big b{font-size:42px;font-weight:900;letter-spacing:-.02em}
-  .ve-mt-big span{font-size:13px;font-weight:700;color:#ff8a90}
-  .ve-mt-pixt{font-size:14px;color:#ffffffd9}
-  .ve-mt-pixt b{color:#fff}
-  .ve-mt-pixt em{font-style:normal;font-weight:700;color:var(--lime)}
-  .ve-mt-btn{width:100%;margin-top:16px;justify-content:center;min-height:60px;font-size:17px}
-  .ve-mt-btn:disabled{opacity:.45;cursor:default}
-  .ve-mt-note{margin:10px 0 0!important;font-size:12px;color:#ffffffa6;text-align:center}
-  /* clientes */
-  .ve-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}
-  .ve-rail::-webkit-scrollbar{display:none}
-  .ve-rail figure{flex:0 0 200px;margin:0;border-radius:18px;overflow:hidden;scroll-snap-align:start;aspect-ratio:9/16;background:#1a1f1c;position:relative}
-  .ve-rail img,.ve-rail video{width:100%;height:100%;object-fit:cover;display:block}
-  .ve-rail .is-v{box-shadow:0 0 0 3px var(--red);cursor:pointer}
-  .ve-rail figcaption{position:absolute;left:10px;bottom:10px;background:#000b;color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px}
-  .ve-rail .snd{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;background:#000b;display:grid;place-items:center;font-size:13px}
-  /* perguntas */
-  .ve-faq{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  .ve-faq details{background:var(--card);border:1px solid #ffffff12;border-radius:16px;padding:18px 20px}
-  .ve-faq summary{cursor:pointer;font-weight:800;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;gap:12px}
-  .ve-faq summary::-webkit-details-marker{display:none}
-  .ve-faq summary:after{content:'+';color:var(--lime);font-size:20px;line-height:1}
-  .ve-faq details[open] summary:after{content:'–'}
-  .ve-faq p{margin-top:10px!important;color:#cfd8d2;font-size:14.5px;line-height:1.55}
-  /* fechamento */
-  .ve-fim{text-align:center;padding:72px 24px 80px;background:radial-gradient(ellipse 50% 60% at 50% 40%,#1a1012 0,#070a08 70%)}
-  .ve-fim .ve-moon{width:160px;margin:0 auto 26px}
-  .ve-fim h2{max-width:720px;margin:0 auto}
-  .ve-fim p{color:var(--mut);margin:14px auto 26px!important;font-size:16px}
-  .ve-fim p b{color:#ff6b72;font-variant-numeric:tabular-nums}
-  .ve-fine{padding:14px 16px 26px;text-align:center;color:#6f7d75;font-size:12px;background:var(--ink)}
-  @media(max-width:860px){
-    .ve-hero .ve-wrap{grid-template-columns:1fr;padding:28px 18px 40px;gap:26px;text-align:center}
-    .ve-moonwrap{order:-1}
-    .ve-sub{margin:14px auto 20px!important;font-size:16px}
-    .ve-cta{justify-content:center}.ve-cta .ve-btn{width:100%}
-    .ve-sec{padding:40px 18px}
-    .ve-sec .ve-head{text-align:center;justify-content:center}
-    .ve-slots{gap:5px}.ve-slot{width:52px;height:96px;border-radius:12px;font-size:8.5px;padding-bottom:7px}.ve-slot svg{width:28px}.ve-slot .n{display:none}.ve-plus{font-size:22px}
-    .ve-gift{width:auto;margin-top:10px}
-    .ve-mt-grid{grid-template-columns:1fr;border-radius:22px}
-    .ve-mt-list{border-right:0}
-    .ve-mt-row{grid-template-columns:112px minmax(0,1fr);grid-template-areas:"im info" "im q" "im more";column-gap:14px;row-gap:10px;padding:18px 14px 18px 12px}
-    .ve-mt-im{width:112px;height:112px;border-radius:18px}
-    .ve-mt-tag{font-size:9px;padding:3px 7px}
-    .ve-mt-t{display:none}.ve-mt-n{font-size:17px}.ve-mt-3x{font-size:21px}.ve-mt-3x small{font-size:13px}.ve-mt-pix{font-size:12.5px}
-    .ve-mt-q{justify-self:start;height:44px}.ve-mt-q button{width:40px;font-size:20px}
-    .ve-mt-more{margin-top:0;padding:7px 13px;font-size:12.5px}
-    .ve-mt-sum{padding:20px 16px}
-    .ve-mt-big b{font-size:32px}
-    .ve-rail figure{flex-basis:150px}
-    .ve-faq{grid-template-columns:1fr}
-    .ve-trilho{font-size:12px;gap:8px 18px}
-  }
+.ve-hero{position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 70% at 72% 45%,#1a1012 0,#070a08 60%)}
+.ve-hero .ve-wrap{position:relative;padding:56px 48px 64px;display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center}
+.ve-stars{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1px 1px at 12% 22%,#fff8,transparent),radial-gradient(1px 1px at 33% 78%,#fff6,transparent),radial-gradient(1.5px 1.5px at 58% 14%,#fff9,transparent),radial-gradient(1px 1px at 82% 66%,#fff5,transparent),radial-gradient(1px 1px at 91% 18%,#fff7,transparent),radial-gradient(1px 1px at 45% 52%,#fff4,transparent),radial-gradient(1.2px 1.2px at 6% 70%,#fff6,transparent),radial-gradient(1px 1px at 70% 90%,#fff5,transparent)}
+.ve-hero h1{font-size:clamp(42px,4.6vw,66px);line-height:1.02;letter-spacing:-.5px;color:var(--cream)}
+.ve-hero h1 em,.ve-x h2 em.r{font-style:normal;color:#ff3b44}
+.ve-sub{margin:20px 0 26px!important;font-size:18px;line-height:1.5;color:#cfd8d2;max-width:520px}
+.ve-sub b{color:#fff}
+.ve-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.ve-left{font-size:14px;color:var(--mut)}.ve-left b{color:#fff;font-variant-numeric:tabular-nums}
+.ve-moonwrap{display:flex;flex-direction:column;align-items:center}
+.ve-hero .ve-moon{width:min(440px,80vw)}
+.ve-n{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);font-family:Caprasimo,Georgia,serif;font-size:clamp(70px,8.4vw,118px);color:#070a08;letter-spacing:-3px;white-space:nowrap;mix-blend-mode:multiply;opacity:.92;z-index:1}
+.ve-prog{margin-top:22px;width:min(440px,80vw);text-align:center;font-size:13px;color:var(--mut)}
+.ve-x h2{font-size:clamp(30px,3vw,44px);line-height:1.05;color:var(--cream)}
+.ve-x h2 em{font-style:normal;color:var(--lime)}
+.ve-sec{padding:64px 48px;border-top:1px solid #ffffff10}
+.ve-sec .ve-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:28px;flex-wrap:wrap}
+.ve-sec .ve-head p{color:var(--mut);font-size:15px;line-height:1.5;max-width:460px}
+.ve-monte{background:var(--ink2)}
+.ve-mt-grid{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);border:1px solid #ffffff14;border-radius:26px;overflow:hidden;background:var(--card);box-shadow:0 20px 50px #0008}
+.ve-mt-list{list-style:none;margin:0;padding:0;border-right:1px solid #ffffff10}
+.ve-mt-row{position:relative;display:grid;grid-template-columns:170px minmax(0,1fr) auto;grid-template-areas:"im info q" "im more q";column-gap:26px;align-items:start;padding:24px 28px 24px 24px;border-bottom:1px solid #ffffff0d;cursor:pointer;transition:background .2s}
+.ve-mt-row:last-child{border-bottom:0}
+.ve-mt-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:transparent;transition:background .2s}
+.ve-mt-row.on{background:#1a0d10}
+.ve-mt-row.on::before{background:var(--red)}
+.ve-mt-im{grid-area:im;align-self:center;position:relative;display:grid;place-items:center;width:170px;height:170px;border-radius:22px;background:radial-gradient(circle at 50% 60%,#26302b,#121815);border:1px solid #ffffff12}
+.ve-mt-im img{width:94%;height:94%;object-fit:contain}
+.ve-mt-tag{position:absolute;z-index:1;top:-8px;left:-6px;padding:4px 9px;border-radius:99px;background:var(--red);color:#fff;font:800 10px/1.15 Inter,Arial,sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.ve-mt-info{grid-area:info;min-width:0;align-self:end}
+.ve-mt-age{margin:0!important;font:700 11.5px/1.3 Inter,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--lime)}
+.ve-mt-n{margin:2px 0 6px!important;font:800 22px/1.2 Inter,Arial,sans-serif;color:#fff}
+.ve-mt-n a{color:inherit;text-decoration:none}
+.ve-mt-n a span{margin-left:6px;color:var(--red)}
+.ve-mt-t{margin:0 0 8px!important;font-size:14.5px;line-height:1.4;color:var(--mut)}
+.ve-mt-pr p{margin:0!important}
+.ve-mt-was{font-size:13px;color:#7f8e86;line-height:1.2}
+.ve-mt-was i{margin-left:3px;padding:1px 7px;border-radius:99px;background:var(--red);color:#fff;font-style:normal;font-size:11px;font-weight:800}
+.ve-mt-3x{font:800 26px/1.15 Inter,Arial,sans-serif;color:#fff;letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ve-mt-3x small{font-size:15px;color:#ff6b72}
+.ve-mt-pix{font-size:13.5px;color:var(--mut);line-height:1.35}
+.ve-mt-pix span{font-weight:700;color:#ff6b72}
+.ve-mt-pix b{color:#fff;white-space:nowrap}
+.ve-mt-more{grid-area:more;justify-self:start;align-self:start;margin-top:12px;display:inline-flex;align-items:center;gap:6px;padding:9px 17px;border:1.5px solid #ffffff22;border-radius:999px;font:800 13.5px/1.2 Inter,Arial,sans-serif;color:var(--cream);text-decoration:none;white-space:nowrap}
+.ve-mt-more:hover{border-color:var(--red)}
+.ve-mt-q{grid-area:q;align-self:center;display:flex;align-items:center;height:52px;border:1.5px solid #ffffff22;border-radius:999px;background:#070a08}
+.ve-mt-row.on .ve-mt-q{border-color:var(--red);box-shadow:0 4px 16px #e0262f40}
+.ve-mt-q button{width:44px;height:100%;padding:0;border:0;background:none;font:800 22px/1 Inter,Arial,sans-serif;color:#ff6b72;cursor:pointer}
+.ve-mt-q output{min-width:22px;text-align:center;font:800 17px/1 Inter,Arial,sans-serif;color:#fff;font-variant-numeric:tabular-nums}
+.ve-mt-sum{padding:34px 32px;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(ellipse 90% 60% at 50% 0,#3a0d12 0,#120709 70%);color:#fff}
+.ve-mt-lad{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.ve-mt-lad li{display:flex;flex-direction:column;align-items:center;padding:11px 6px 10px;border-radius:12px;background:#ffffff0d;border:1px solid #ffffff1a;text-align:center;color:#ffffff99;transition:background .25s,color .25s}
+.ve-mt-lad li span{font-size:17px;line-height:1;filter:grayscale(1);opacity:.6}
+.ve-mt-lad li b{margin-top:3px;font-size:13px;line-height:1.15}
+.ve-mt-lad li small{font-size:11px;opacity:.8}
+.ve-mt-lad li.on{background:var(--red);border-color:var(--red);color:#fff}
+.ve-mt-lad li.on span{filter:none;opacity:1}
+.ve-mt-next{margin:10px 0 0!important;min-height:1.35em;text-align:center;font-size:14px;line-height:1.35;color:#ffffffdd}
+.ve-mt-next b{color:#ff8a90}
+.ve-mt-tot{margin:14px 0 0;padding:14px 0 0;border-top:1px solid #ffffff1a}
+.ve-mt-tot p{margin:0!important}
+.ve-mt-tl{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px;color:#ffffffd9}
+.ve-mt-tl s{color:#ffffff80}
+.ve-mt-big{margin-top:2px!important;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ve-mt-big small{font-size:16px;font-weight:800;color:#ff8a90}
+.ve-mt-big b{font-size:42px;font-weight:900;letter-spacing:-.02em}
+.ve-mt-big span{font-size:13px;font-weight:700;color:#ff8a90}
+.ve-mt-pixt{font-size:14px;color:#ffffffd9}
+.ve-mt-pixt b{color:#fff}
+.ve-mt-pixt em{font-style:normal;font-weight:700;color:var(--lime)}
+.ve-mt-btn{width:100%;margin-top:16px;justify-content:center;min-height:60px;font-size:17px}
+.ve-mt-btn:disabled{opacity:.45;cursor:default}
+.ve-mt-note{margin:10px 0 0!important;font-size:12px;color:#ffffffa6;text-align:center}
+.ve-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}
+.ve-rail::-webkit-scrollbar{display:none}
+.ve-rail figure{flex:0 0 200px;margin:0;border-radius:18px;overflow:hidden;scroll-snap-align:start;aspect-ratio:9/16;background:#1a1f1c;position:relative}
+.ve-rail img,.ve-rail video{width:100%;height:100%;object-fit:cover;display:block}
+.ve-rail .is-v{box-shadow:0 0 0 3px var(--red);cursor:pointer}
+.ve-rail figcaption{position:absolute;left:10px;bottom:10px;background:#000b;color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px}
+.ve-rail .snd{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;background:#000b;display:grid;place-items:center;font-size:13px}
+.ve-faq{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.ve-faq details{background:var(--card);border:1px solid #ffffff12;border-radius:16px;padding:18px 20px}
+.ve-faq summary{cursor:pointer;font-weight:800;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.ve-faq summary::-webkit-details-marker{display:none}
+.ve-faq summary:after{content:'+';color:var(--lime);font-size:20px;line-height:1}
+.ve-faq details[open] summary:after{content:'–'}
+.ve-faq p{margin-top:10px!important;color:#cfd8d2;font-size:14.5px;line-height:1.55}
+.ve-fim{text-align:center;padding:72px 24px 80px;background:radial-gradient(ellipse 50% 60% at 50% 40%,#1a1012 0,#070a08 70%)}
+.ve-fim .ve-moon{width:160px;margin:0 auto 26px}
+.ve-fim h2{max-width:720px;margin:0 auto}
+.ve-fim p{color:var(--mut);margin:14px auto 26px!important;font-size:16px}
+.ve-fim p b{color:#ff6b72;font-variant-numeric:tabular-nums}
+.ve-fine{padding:14px 16px 26px;text-align:center;color:#6f7d75;font-size:12px;background:var(--ink)}
+@media(max-width:860px){
+  .ve-hero .ve-wrap{grid-template-columns:1fr;padding:28px 18px 40px;gap:26px;text-align:center}
+  .ve-moonwrap{order:-1}
+  .ve-sub{margin:14px auto 20px!important;font-size:16px}
+  .ve-cta{justify-content:center}.ve-cta .ve-btn{width:100%}
+  .ve-sec{padding:40px 18px}
+  .ve-sec .ve-head{text-align:center;justify-content:center}
+  .ve-slots{gap:5px}.ve-slot{width:52px;height:96px;border-radius:12px;font-size:8.5px;padding-bottom:7px}.ve-slot svg{width:28px}.ve-slot .n{display:none}.ve-plus{font-size:22px}
+  .ve-gift{width:auto;margin-top:10px}
+  .ve-mt-grid{grid-template-columns:1fr;border-radius:22px}
+  .ve-mt-list{border-right:0}
+  .ve-mt-row{grid-template-columns:112px minmax(0,1fr);grid-template-areas:"im info" "im q" "im more";column-gap:14px;row-gap:10px;padding:18px 14px 18px 12px}
+  .ve-mt-im{width:112px;height:112px;border-radius:18px}
+  .ve-mt-tag{font-size:9px;padding:3px 7px}
+  .ve-mt-t{display:none}.ve-mt-n{font-size:17px}.ve-mt-3x{font-size:21px}.ve-mt-3x small{font-size:13px}.ve-mt-pix{font-size:12.5px}
+  .ve-mt-q{justify-self:start;height:44px}.ve-mt-q button{width:40px;font-size:20px}
+  .ve-mt-more{margin-top:0;padding:7px 13px;font-size:12.5px}
+  .ve-mt-sum{padding:20px 16px}
+  .ve-mt-big b{font-size:32px}
+  .ve-rail figure{flex-basis:150px}
+  .ve-faq{grid-template-columns:1fr}
+  .ve-trilho{font-size:12px;gap:8px 18px}
+}
 </style>
 <div class="ve ve-x" data-ve hidden>
   <section class="ve-hero"><div class="ve-stars"></div>
-    <div class="ve-wrap">
+  <div class="ve-wrap">
       <div>
         <p class="ve-kick"><span>11.11</span> só hoje · até 23h59</p>
         <h1 class="cap">Quando a lua fechar, <em>o desconto acaba.</em></h1>
@@ -247,18 +245,18 @@
         <div class="ve-moon"><div class="ve-sombra" data-ve-sombra></div><div class="ve-n">11.11</div></div>
         <div class="ve-prog">o eclipse avança com o dia<div class="ve-bar"><i data-ve-bar></i></div><span data-ve-f>0%</span> do 11/11 já passou</div>
       </div>
-    </div>
+  </div>
   </section>
 
   <section class="ve-sec ve-monte" id="ve-monte"><div class="ve-wrap">
-    <div class="ve-head">
+  <div class="ve-head">
       <h2 class="cap">Monte seus 5. <em>O quinto é por nossa conta.</em></h2>
       <p>Escolha quantos de cada. Todos com 20% OFF; com 4, ganha um Kit Kids de 2 a 4 anos; com 5, o de menor valor sai grátis.</p>
-    </div>
-    {%- assign ages = 'A partir de 10 anos|Crianças pequenas|Idade escolar|Para a casa toda' | split: '|' -%}
-    {%- assign descs = 'Tintura de 5 ervas, Óleo de Orégano, Ornitina e Silimarina.|Duas tinturas com a dose da idade, diluídas em água ou suco.|Duas tinturas com a dose para a criança em idade escolar.|2 Adultos + Kids 2 a 4 + Kids 5 a 9, todo mundo no mesmo ciclo.' | split: '|' -%}
-    {%- assign pngs = 'vf-pv2-adulto.png,vf-pv2-kids-2a4.png,vf-pv2-kids-5a9.png,vf-pv2-kit-familia-v3.png' | split: ',' -%}
-    <div class="ve-mt-grid" data-ve-mt>
+  </div>
+  {%- assign ages = 'A partir de 10 anos|Crianças pequenas|Idade escolar|Para a casa toda' | split: '|' -%}
+  {%- assign descs = 'Tintura de 5 ervas, Óleo de Orégano, Ornitina e Silimarina.|Duas tinturas com a dose da idade, diluídas em água ou suco.|Duas tinturas com a dose para a criança em idade escolar.|2 Adultos + Kids 2 a 4 + Kids 5 a 9, todo mundo no mesmo ciclo.' | split: '|' -%}
+  {%- assign pngs = 'vf-pv2-adulto.png,vf-pv2-kids-2a4.png,vf-pv2-kids-5a9.png,vf-pv2-kit-familia-v3.png' | split: ',' -%}
+  <div class="ve-mt-grid" data-ve-mt>
       <ul class="ve-mt-list">
         {%- for h in handles -%}
           {%- assign p = all_products[h] -%}
@@ -306,14 +304,14 @@
         <button type="button" class="ve-btn ve-mt-btn" data-ve-go>Garantir meu protocolo →</button>
         <p class="ve-mt-note">🔒 Compra segura · Garantia de 7 dias · Só no 11/11</p>
       </div>
-    </div>
+  </div>
   </div></section>
 
   <div class="ve-trilho"><span>Frete grátis sem mínimo</span><span>15% de cashback nos 100 primeiros</span><span>Sorteio de um kit entre os 300 primeiros</span><span>Guia e manual digitais</span></div>
 
   <section class="ve-sec"><div class="ve-wrap">
-    <div class="ve-head"><h2 class="cap">Quem fez, <em>conta.</em></h2><p>Famílias que já passaram pelo protocolo. Toque no vídeo para ouvir.</p></div>
-    <div class="ve-rail" data-ve-rail>
+  <div class="ve-head"><h2 class="cap">Quem fez, <em>conta.</em></h2><p>Famílias que já passaram pelo protocolo. Toque no vídeo para ouvir.</p></div>
+  <div class="ve-rail" data-ve-rail>
       {%- assign vids = 'daniela-3-perguntas,jessika-abre-kit-adulto,juliana-kids-embalagem,ester-kids-2-4' | split: ',' -%}
       {%- assign depos = '04,05,06,07' | split: ',' -%}
       {%- for i in (0..3) -%}
@@ -327,33 +325,36 @@
         {%- assign stk = 'vf-depoimento-' | append: depos[i] | append: '.jpg' -%}{%- assign st = images[stk] -%}
         {%- if st -%}<figure>{{ st | image_url: width: 500 | image_tag: loading: 'lazy', alt: 'Cliente VermeFree com o protocolo' }}</figure>{%- endif -%}
       {%- endfor -%}
-    </div>
+  </div>
   </div></section>
 
+</div>
+<div data-ve-cur-slot></div>
+<div class="ve ve-x" data-ve hidden>
   <section class="ve-sec" style="background:var(--ink2)"><div class="ve-wrap">
-    <div class="ve-head"><h2 class="cap">Perguntas <em>do 11/11.</em></h2><p>Tudo o que vale hoje, sem letra miúda.</p></div>
-    <div class="ve-faq">
+  <div class="ve-head"><h2 class="cap">Perguntas <em>do 11/11.</em></h2><p>Tudo o que vale hoje, sem letra miúda.</p></div>
+  <div class="ve-faq">
       <details open><summary>Como funciona o compre 4, leve 5?</summary><p>Coloque 5 protocolos no carrinho: o de menor valor sai grátis. Vale para qualquer combinação e soma com os 20% OFF.</p></details>
       <details><summary>Como ganho o Kit Kids de 2 a 4 anos?</summary><p>Na compra de 4 protocolos, um Kit Kids de 2 a 4 anos vai de presente no seu pedido.</p></details>
       <details><summary>O que é o cashback de 15%?</summary><p>Os 100 primeiros pedidos do dia ganham 15% do valor pago em crédito para a próxima compra. O crédito fica disponível em até 3 dias e vale até 30/11 às 23h59.</p></details>
       <details><summary>E o sorteio?</summary><p>Os 300 primeiros pedidos do 11/11 concorrem a um kit VermeFree à escolha. O resultado sai no dia 13/11.</p></details>
       <details><summary>O frete é grátis mesmo?</summary><p>Sim. Hoje o frete é grátis para todos os pedidos, sem valor mínimo.</p></details>
       <details><summary>Até que horas vale?</summary><p>Até 23h59 de hoje, horário de Brasília. Quando a lua fechar, os preços voltam ao normal.</p></details>
-    </div>
+  </div>
   </div></section>
 
   <section class="ve-fim">
-    <div class="ve-moon"><div class="ve-sombra" data-ve-sombra></div></div>
-    <h2 class="cap">A lua fecha em <em class="r" data-ve-th>--</em>.</h2>
-    <p>Depois disso, o maior desconto da história da VermeFree só no ano que vem.</p>
-    <a class="ve-btn" href="#ve-monte">Montar meus 5 →</a>
+  <div class="ve-moon"><div class="ve-sombra" data-ve-sombra></div></div>
+  <h2 class="cap">A lua fecha em <em class="r" data-ve-th>--</em>.</h2>
+  <p>Depois disso, o maior desconto da história da VermeFree só no ano que vem.</p>
+  <a class="ve-btn" href="#ve-monte">Montar meus 5 →</a>
   </section>
   <p class="ve-fine">Só no dia 11/11, até 23h59 (horário de Brasília). Descontos aplicados automaticamente no carrinho. No compre 4 leve 5, sai grátis o item de menor valor.</p>
 </div>
 <script>
   (function () {
-    var mt = document.querySelector('[data-ve-mt]');
-    if (mt) {
+  var mt = document.querySelector('[data-ve-mt]');
+  if (mt) {
       var rows = [].slice.call(mt.querySelectorAll('[data-ve-row]')), go = mt.querySelector('[data-ve-go]');
       var $m = function (q) { return mt.querySelector(q); };
       var brl = function (c) { return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
@@ -393,10 +394,12 @@
           .then(function (res) { if (!res.ok) throw 0; location.href = '/cart'; }).catch(function () { desenha(); });
       });
       desenha();
-    }
-    var vs = document.querySelectorAll('[data-ve-video]');
-    if ('IntersectionObserver' in window) { var io = new IntersectionObserver(function (es) { es.forEach(function (e) { var v = e.target.querySelector('video'); if (e.isIntersecting) v.play().catch(function () {}); else v.pause(); }); }, { threshold: .6 }); vs.forEach(function (f) { io.observe(f); }); }
-    vs.forEach(function (f) { f.addEventListener('click', function () { var v = f.querySelector('video'), on = v.muted; vs.forEach(function (o) { o.querySelector('video').muted = true; o.querySelector('.snd').textContent = '🔇'; }); v.muted = !on; f.querySelector('.snd').textContent = on ? '🔊' : '🔇'; if (on) v.play().catch(function () {}); }); });
+  }
+  var poeCur = function () { if (!document.documentElement.classList.contains('ve-on')) return; var cur = document.querySelector('[id$="__vf_curadoria"]'), slot = document.querySelector('[data-ve-cur-slot]'); if (cur && slot) slot.appendChild(cur); };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', poeCur); else poeCur();
+  var vs = document.querySelectorAll('[data-ve-video]');
+  if ('IntersectionObserver' in window) { var io = new IntersectionObserver(function (es) { es.forEach(function (e) { var v = e.target.querySelector('video'); if (e.isIntersecting) v.play().catch(function () {}); else v.pause(); }); }, { threshold: .6 }); vs.forEach(function (f) { io.observe(f); }); }
+  vs.forEach(function (f) { f.addEventListener('click', function () { var v = f.querySelector('video'), on = v.muted; vs.forEach(function (o) { o.querySelector('video').muted = true; o.querySelector('.snd').textContent = '🔇'; }); v.muted = !on; f.querySelector('.snd').textContent = on ? '🔊' : '🔇'; if (on) v.play().catch(function () {}); }); });
   })();
 </script>
 {%- elsif parte == 'pdp' and product -%}
@@ -405,90 +408,89 @@
 {%- assign desc = product.description | strip_html | truncate: 150 -%}
 {%- if desc contains '%' -%}{%- assign desc = 'Protocolo de 30 dias para a casa toda: 2 adultos e 2 crianças, com a dose certa para cada um.' -%}{%- endif -%}
 <style>
-  .ve-pdp{background:radial-gradient(ellipse 55% 80% at 20% 30%,#1a1012 0,#070a08 62%)}
-  .ve-pdp .ve-wrap{padding:36px 48px 48px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:start}
-  .ve-gal{position:sticky;top:20px}
-  .ve-gal .main{border-radius:24px;overflow:hidden;background:#0e1311;border:1px solid #ffffff12;aspect-ratio:1;position:relative}
-  .ve-gal .main img{width:100%;height:100%;object-fit:cover;display:block}
-  .ve-gal .off{position:absolute;top:16px;left:16px;background:var(--red);color:#fff;font-weight:900;font-size:15px;padding:8px 14px;border-radius:30px;letter-spacing:.5px;box-shadow:0 8px 24px #e0262f66}
-  .ve-gal .th{display:flex;gap:10px;margin-top:12px;overflow-x:auto;scrollbar-width:none}
-  .ve-gal .th button{flex:0 0 74px;height:74px;border-radius:14px;overflow:hidden;border:2px solid transparent;padding:0;background:#0e1311;cursor:pointer}
-  .ve-gal .th button.on{border-color:var(--lime)}
-  .ve-gal .th img{width:100%;height:100%;object-fit:cover;display:block}
-  .ve-info h1{font-size:clamp(32px,3.2vw,46px);line-height:1.05;letter-spacing:-.3px;color:var(--cream)}
-  .ve-info .desc{margin-top:10px!important;color:var(--mut);font-size:15px;line-height:1.5}
-  .ve-pr{display:flex;align-items:center;gap:22px;margin:22px 0 6px;padding:18px 20px;border-radius:20px;background:#ffffff07;border:1px solid #ffffff12}
-  .ve-pr .mini{width:76px;flex:0 0 76px}
-  .ve-pr .mini + div{flex:1}
-  .ve-pr s{color:#7f8e86;font-size:15px}
-  .ve-pr strong{display:block;font-size:40px;color:#ff4a52;font-weight:900;letter-spacing:-1px;line-height:1.05}
-  .ve-pr small{color:var(--mut);font-size:12.5px}
-  .ve-pr small b{color:#ff6b72;font-variant-numeric:tabular-nums}
-  .ve-q h3{margin:24px 0 14px!important;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--lime)}
-  .ve-q .ve-slots{justify-content:flex-start}
-  .ve-q .ve-slot{cursor:pointer;width:78px;height:132px}
-  .ve-q .ve-slot svg{width:42px}
-  .ve-q .ve-gift{width:132px}
-  .ve-q .msg{margin-top:14px!important;font-size:14.5px;color:var(--mut)}
-  .ve-q .msg b{color:var(--cream)}
-  .ve-pay{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;flex-wrap:wrap}
-  .ve-pay .t small{display:block;color:var(--mut);font-size:12px;letter-spacing:1px;text-transform:uppercase}
-  .ve-pay .t b{font-size:28px;color:#fff;font-weight:900;letter-spacing:-.5px}
-  .ve-pay .ve-btn{flex:1;min-width:240px}
-  .ve-ul{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .ve-ul li{background:#ffffff07;border:1px solid #ffffff10;border-radius:14px;padding:12px 14px;font-size:13px;color:#cfd8d2;line-height:1.35}
-  .ve-ul li b{display:block;color:#fff;font-size:13.5px}
-  .ve-mix{display:inline-block;margin-top:16px;color:var(--lime);font-size:14px;font-weight:700}
-  .ve-stick{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#070a08f2;border-top:1px solid #ffffff1a;display:none;align-items:center;gap:12px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));font-family:Inter,Arial,sans-serif;color:#f6f5ec;backdrop-filter:blur(8px)}
-  .ve-stick .m{width:36px;flex:0 0 36px}
-  .ve-stick .tx{flex:1;line-height:1.2}
-  .ve-stick .tx b{font-size:18px;color:#ff4a52;font-weight:900}
-  .ve-stick .tx small{display:block;font-size:11.5px;color:#9fb0a6}
-  .ve-stick .tx small b{font-size:11.5px;color:#ff6b72;font-variant-numeric:tabular-nums}
-  .ve-stick a{background:linear-gradient(180deg,#ff3a43,#9e0f17);color:#fff;font-weight:800;padding:12px 20px;border-radius:40px;text-decoration:none;font-size:15px}
-  .ve-pdp .ve-wrap>*{min-width:0}
-  .ve-q .ve-gift{width:auto;flex:1 0 100%;max-width:330px;margin-top:12px}
-  .ve-fim{padding:70px 20px 80px;text-align:center;background:radial-gradient(ellipse 50% 70% at 50% 40%,#2a0d10 0,#070a08 70%)}
-  .ve-fim .ve-moon{width:120px;margin:0 auto 22px}
-  .ve-fim h2{margin:0 0 10px!important;color:var(--cream)!important}
-  html.ve-on body[class*="template-product"] #main .ve-x h2::before{display:none}
-  html.ve-on [data-ve-cta]{background:linear-gradient(180deg,#ff3a43,#9e0f17)!important;color:#fff!important;border-color:transparent!important;box-shadow:0 10px 30px #e0262f40!important}
-  .ve-fim p{color:var(--mut);margin:0 auto 24px!important;max-width:460px;font-size:15px}
-  .ve-fim .ve-btn{display:inline-flex;min-width:260px;justify-content:center}
-  /* Eclipse no resto da PDP: a lua fecha seção a seção */
-  html.ve-on body[class*="template-product"] #main {background:#070a08}
-  html.ve-on body[class*="template-product"] #main>.shopify-section{--f:0}
-  html.ve-on body[class*="template-product"] #main>.shopify-section:nth-of-type(2){--f:.2}html.ve-on body[class*="template-product"] #main>.shopify-section:nth-of-type(3){--f:.4}html.ve-on body[class*="template-product"] #main>.shopify-section:nth-of-type(4){--f:.6}html.ve-on body[class*="template-product"] #main>.shopify-section:nth-of-type(5){--f:.8}html.ve-on body[class*="template-product"] #main>.shopify-section:nth-of-type(n+6){--f:1}
-  html.ve-on body[class*="template-product"] #main .vf-dep,html.ve-on body[class*="template-product"] #main .vf-pdp-como-tomar,html.ve-on body[class*="template-product"] #main .vfx,html.ve-on body[class*="template-product"] #main .vf-ing,html.ve-on body[class*="template-product"] #main .vf-jdgm,html.ve-on body[class*="template-product"] #main .vf-faq,html.ve-on body[class*="template-product"] #main .vf-fam{background:#070a08!important;color:#b9c6bf}
-  html.ve-on body[class*="template-product"] #main>.shopify-section:nth-of-type(even)>*{background:#0b0f0d!important}
-  html.ve-on body[class*="template-product"] #main .vf-dep__card,html.ve-on body[class*="template-product"] #main .vf-pdp-como-tomar__phase,html.ve-on body[class*="template-product"] #main .vf-pdp-como-tomar__visual,html.ve-on body[class*="template-product"] #main .vf-cal__card,html.ve-on body[class*="template-product"] #main .vf-ing__card,html.ve-on body[class*="template-product"] #main .vf-jdgm__summary,html.ve-on body[class*="template-product"] #main .vf-jdgm__rev,html.ve-on body[class*="template-product"] #main .vf-faq__item,html.ve-on body[class*="template-product"] #main .vf-faq__support,html.ve-on body[class*="template-product"] #main .vf-fam__card{background:#111614!important;border-color:#ffffff14!important;box-shadow:none!important}
-  html.ve-on body[class*="template-product"] #main h2,html.ve-on body[class*="template-product"] #main h3,html.ve-on body[class*="template-product"] #main h4,html.ve-on body[class*="template-product"] #main summary,html.ve-on body[class*="template-product"] #main strong,html.ve-on body[class*="template-product"] #main .vf-faq__item button{color:#f6f5ec!important}
-  html.ve-on body[class*="template-product"] #main p,html.ve-on body[class*="template-product"] #main li,html.ve-on body[class*="template-product"] #main dd{color:#b9c6bf}
-  html.ve-on body[class*="template-product"] #main .vf-pdp-como-tomar__warning,html.ve-on body[class*="template-product"] #main .vf-pdp-como-tomar__warning p{color:#7a4a00!important}
-  html.ve-on body[class*="template-product"] #main .vf-cal__phone p,html.ve-on body[class*="template-product"] #main .vf-cal__phone strong,html.ve-on body[class*="template-product"] #main .vf-cal__phone h3{color:#153c2c!important}
-  html.ve-on body[class*="template-product"] #main h2::before{content:"";display:inline-block;width:.62em;height:.62em;margin-right:.32em;vertical-align:.02em;border-radius:50%;background:radial-gradient(circle at calc(150% - 100% * var(--f)) 50%,#3a0a0e 0 49%,transparent 50%),#e8dfc8;box-shadow:0 0 calc(4px + 14px * var(--f)) rgba(224,38,47,calc(.2 + .6 * var(--f)))}
-  @media(max-width:860px){
-    .ve-pdp .ve-wrap{grid-template-columns:minmax(0,1fr);padding:16px 16px 34px;gap:22px}
-    .ve-gal{position:static}
-    .ve-pr strong{font-size:34px}
-    .ve-q .ve-slots{justify-content:center;gap:5px}.ve-q .ve-slot{width:54px;height:98px;font-size:8.5px}.ve-q .ve-slot svg{width:28px}.ve-q .ve-slot .n{display:none}
-    .ve-q .ve-gift{width:auto;margin-top:8px}
-    .ve-q h3,.ve-q .msg{text-align:center}
-    .ve-pay .ve-btn{width:100%}
-    .ve-ul{grid-template-columns:1fr 1fr}
-    html.ve-on .ve-stick{display:flex}
-    html.ve-on body{padding-bottom:70px}
-  }
+.ve-pdp{background:radial-gradient(ellipse 55% 80% at 20% 30%,#1a1012 0,#070a08 62%)}
+.ve-pdp .ve-wrap{padding:36px 48px 48px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:start}
+.ve-gal{position:sticky;top:20px}
+.ve-gal .main{border-radius:24px;overflow:hidden;background:#0e1311;border:1px solid #ffffff12;aspect-ratio:1;position:relative}
+.ve-gal .main img{width:100%;height:100%;object-fit:cover;display:block}
+.ve-gal .off{position:absolute;top:16px;left:16px;background:var(--red);color:#fff;font-weight:900;font-size:15px;padding:8px 14px;border-radius:30px;letter-spacing:.5px;box-shadow:0 8px 24px #e0262f66}
+.ve-gal .th{display:flex;gap:10px;margin-top:12px;overflow-x:auto;scrollbar-width:none}
+.ve-gal .th button{flex:0 0 74px;height:74px;border-radius:14px;overflow:hidden;border:2px solid transparent;padding:0;background:#0e1311;cursor:pointer}
+.ve-gal .th button.on{border-color:var(--lime)}
+.ve-gal .th img{width:100%;height:100%;object-fit:cover;display:block}
+.ve-info h1{font-size:clamp(32px,3.2vw,46px);line-height:1.05;letter-spacing:-.3px;color:var(--cream)}
+.ve-info .desc{margin-top:10px!important;color:var(--mut);font-size:15px;line-height:1.5}
+.ve-pr{display:flex;align-items:center;gap:22px;margin:22px 0 6px;padding:18px 20px;border-radius:20px;background:#ffffff07;border:1px solid #ffffff12}
+.ve-pr .mini{width:76px;flex:0 0 76px}
+.ve-pr .mini + div{flex:1}
+.ve-pr s{color:#7f8e86;font-size:15px}
+.ve-pr strong{display:block;font-size:40px;color:#ff4a52;font-weight:900;letter-spacing:-1px;line-height:1.05}
+.ve-pr small{color:var(--mut);font-size:12.5px}
+.ve-pr small b{color:#ff6b72;font-variant-numeric:tabular-nums}
+.ve-q h3{margin:24px 0 14px!important;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--lime)}
+.ve-q .ve-slots{justify-content:flex-start}
+.ve-q .ve-slot{cursor:pointer;width:78px;height:132px}
+.ve-q .ve-slot svg{width:42px}
+.ve-q .ve-gift{width:132px}
+.ve-q .msg{margin-top:14px!important;font-size:14.5px;color:var(--mut)}
+.ve-q .msg b{color:var(--cream)}
+.ve-pay{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;flex-wrap:wrap}
+.ve-pay .t small{display:block;color:var(--mut);font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.ve-pay .t b{font-size:28px;color:#fff;font-weight:900;letter-spacing:-.5px}
+.ve-pay .ve-btn{flex:1;min-width:240px}
+.ve-ul{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ve-ul li{background:#ffffff07;border:1px solid #ffffff10;border-radius:14px;padding:12px 14px;font-size:13px;color:#cfd8d2;line-height:1.35}
+.ve-ul li b{display:block;color:#fff;font-size:13.5px}
+.ve-mix{display:inline-block;margin-top:16px;color:var(--lime);font-size:14px;font-weight:700}
+.ve-stick{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#070a08f2;border-top:1px solid #ffffff1a;display:none;align-items:center;gap:12px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));font-family:Inter,Arial,sans-serif;color:#f6f5ec;backdrop-filter:blur(8px)}
+.ve-stick .m{width:36px;flex:0 0 36px}
+.ve-stick .tx{flex:1;line-height:1.2}
+.ve-stick .tx b{font-size:18px;color:#ff4a52;font-weight:900}
+.ve-stick .tx small{display:block;font-size:11.5px;color:#9fb0a6}
+.ve-stick .tx small b{font-size:11.5px;color:#ff6b72;font-variant-numeric:tabular-nums}
+.ve-stick a{background:linear-gradient(180deg,#ff3a43,#9e0f17);color:#fff;font-weight:800;padding:12px 20px;border-radius:40px;text-decoration:none;font-size:15px}
+.ve-pdp .ve-wrap>*{min-width:0}
+.ve-q .ve-gift{width:auto;flex:1 0 100%;max-width:330px;margin-top:12px}
+.ve-fim{padding:70px 20px 80px;text-align:center;background:radial-gradient(ellipse 50% 70% at 50% 40%,#2a0d10 0,#070a08 70%)}
+.ve-fim .ve-moon{width:120px;margin:0 auto 22px}
+.ve-fim h2{margin:0 0 10px!important;color:var(--cream)!important}
+html.ve-on body[class*="template-product"] #main .ve-x h2::before{display:none}
+html.ve-on [data-ve-cta]{background:linear-gradient(180deg,#ff3a43,#9e0f17)!important;color:#fff!important;border-color:transparent!important;box-shadow:0 10px 30px #e0262f40!important}
+.ve-fim p{color:var(--mut);margin:0 auto 24px!important;max-width:460px;font-size:15px}
+.ve-fim .ve-btn{display:inline-flex;min-width:260px;justify-content:center}
+html.ve-on body[class*="template-product"] #main {background:#070a08}
+html.ve-on body[class*="template-product"] #main>.shopify-section{--f:0}
+html.ve-on body[class*="template-product"] #main>.shopify-section:nth-of-type(2){--f:.2}html.ve-on body[class*="template-product"] #main>.shopify-section:nth-of-type(3){--f:.4}html.ve-on body[class*="template-product"] #main>.shopify-section:nth-of-type(4){--f:.6}html.ve-on body[class*="template-product"] #main>.shopify-section:nth-of-type(5){--f:.8}html.ve-on body[class*="template-product"] #main>.shopify-section:nth-of-type(n+6){--f:1}
+html.ve-on body[class*="template-product"] #main .vf-dep,html.ve-on body[class*="template-product"] #main .vf-pdp-como-tomar,html.ve-on body[class*="template-product"] #main .vfx,html.ve-on body[class*="template-product"] #main .vf-ing,html.ve-on body[class*="template-product"] #main .vf-jdgm,html.ve-on body[class*="template-product"] #main .vf-faq,html.ve-on body[class*="template-product"] #main .vf-fam{background:#070a08!important;color:#b9c6bf}
+html.ve-on body[class*="template-product"] #main>.shopify-section:nth-of-type(even)>*{background:#0b0f0d!important}
+html.ve-on body[class*="template-product"] #main .vf-dep__card,html.ve-on body[class*="template-product"] #main .vf-pdp-como-tomar__phase,html.ve-on body[class*="template-product"] #main .vf-pdp-como-tomar__visual,html.ve-on body[class*="template-product"] #main .vf-cal__card,html.ve-on body[class*="template-product"] #main .vf-ing__card,html.ve-on body[class*="template-product"] #main .vf-jdgm__summary,html.ve-on body[class*="template-product"] #main .vf-jdgm__rev,html.ve-on body[class*="template-product"] #main .vf-faq__item,html.ve-on body[class*="template-product"] #main .vf-faq__support,html.ve-on body[class*="template-product"] #main .vf-fam__card{background:#111614!important;border-color:#ffffff14!important;box-shadow:none!important}
+html.ve-on body[class*="template-product"] #main h2,html.ve-on body[class*="template-product"] #main h3,html.ve-on body[class*="template-product"] #main h4,html.ve-on body[class*="template-product"] #main summary,html.ve-on body[class*="template-product"] #main strong,html.ve-on body[class*="template-product"] #main .vf-faq__item button{color:#f6f5ec!important}
+html.ve-on body[class*="template-product"] #main p,html.ve-on body[class*="template-product"] #main li,html.ve-on body[class*="template-product"] #main dd{color:#b9c6bf}
+html.ve-on body[class*="template-product"] #main .vf-pdp-como-tomar__warning,html.ve-on body[class*="template-product"] #main .vf-pdp-como-tomar__warning p{color:#7a4a00!important}
+html.ve-on body[class*="template-product"] #main .vf-cal__phone p,html.ve-on body[class*="template-product"] #main .vf-cal__phone strong,html.ve-on body[class*="template-product"] #main .vf-cal__phone h3{color:#153c2c!important}
+html.ve-on body[class*="template-product"] #main h2::before{content:"";display:inline-block;width:.62em;height:.62em;margin-right:.32em;vertical-align:.02em;border-radius:50%;background:radial-gradient(circle at calc(150% - 100% * var(--f)) 50%,#3a0a0e 0 49%,transparent 50%),#e8dfc8;box-shadow:0 0 calc(4px + 14px * var(--f)) rgba(224,38,47,calc(.2 + .6 * var(--f)))}
+@media(max-width:860px){
+  .ve-pdp .ve-wrap{grid-template-columns:minmax(0,1fr);padding:16px 16px 34px;gap:22px}
+  .ve-gal{position:static}
+  .ve-pr strong{font-size:34px}
+  .ve-q .ve-slots{justify-content:center;gap:5px}.ve-q .ve-slot{width:54px;height:98px;font-size:8.5px}.ve-q .ve-slot svg{width:28px}.ve-q .ve-slot .n{display:none}
+  .ve-q .ve-gift{width:auto;margin-top:8px}
+  .ve-q h3,.ve-q .msg{text-align:center}
+  .ve-pay .ve-btn{width:100%}
+  .ve-ul{grid-template-columns:1fr 1fr}
+  html.ve-on .ve-stick{display:flex}
+  html.ve-on body{padding-bottom:70px}
+}
 </style>
 <div class="ve ve-x" data-ve hidden>
   <section class="ve-pdp"><div class="ve-wrap">
-    <div class="ve-gal">
+  <div class="ve-gal">
       <div class="main"><span class="off">−20% hoje</span>{{ product.featured_image | image_url: width: 1100 | image_tag: loading: 'eager', alt: product.title, class: 've-main-img' }}</div>
       <div class="th">
         {%- for m in product.images limit: 6 -%}<button type="button" class="{% if forloop.first %}on{% endif %}" data-ve-th-img="{{ m | image_url: width: 1100 }}">{{ m | image_url: width: 160 | image_tag: loading: 'eager', alt: '' }}</button>{%- endfor -%}
       </div>
-    </div>
-    <div class="ve-info">
+  </div>
+  <div class="ve-info">
       <p class="ve-kick"><span>11.11</span> só hoje · a lua fecha em <b data-ve-t>--</b></p>
       <h1 class="cap">{{ titulo }}</h1>
       <p class="desc">{{ desc }}</p>
@@ -517,15 +519,15 @@
         <li><b>Guia e manual</b>digitais no seu e-mail</li>
       </ul>
       <a class="ve-mix" href="/#ve-monte">Quer misturar protocolos? Monte seus 5 →</a>
-    </div>
+  </div>
   </div></section>
 </div>
 <div class="ve ve-x" data-ve data-ve-fim hidden>
   <section class="ve-fim">
-    <div class="ve-moon"><div class="ve-sombra" data-ve-sombra></div></div>
-    <h2 class="cap">A lua fecha em <em class="r" data-ve-th>--</em>.</h2>
-    <p>Depois disso o {{ titulo }} volta para {{ v.price | money }}. Hoje sai por <b style="color:#ff6b72">{{ v.price | times: 0.8 | money }}</b>, e o 5º é por nossa conta.</p>
-    <a href="#" class="ve-btn" data-ve-stick-go>Quero o meu agora</a>
+  <div class="ve-moon"><div class="ve-sombra" data-ve-sombra></div></div>
+  <h2 class="cap">A lua fecha em <em class="r" data-ve-th>--</em>.</h2>
+  <p>Depois disso o {{ titulo }} volta para {{ v.price | money }}. Hoje sai por <b style="color:#ff6b72">{{ v.price | times: 0.8 | money }}</b>, e o 5º é por nossa conta.</p>
+  <a href="#" class="ve-btn" data-ve-stick-go>Quero o meu agora</a>
   </section>
 </div>
 <div class="ve ve-stick" data-ve hidden>
@@ -535,27 +537,27 @@
 </div>
 <script>
   (function () {
-    var box = document.querySelector('[data-ve-q-box]'); if (!box) return;
-    var preco = +box.dataset.preco, id = +box.dataset.id, n = 1;
-    var slots = box.querySelectorAll('[data-ve-n]'), gift = box.querySelector('[data-ve-gift]'), msg = box.querySelector('[data-ve-qmsg]');
-    var pay = box.querySelector('[data-ve-pay]'), buy = box.querySelector('[data-ve-buy]');
-    var brl = function (c) { return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
-    var desenha = function () {
+  var box = document.querySelector('[data-ve-q-box]'); if (!box) return;
+  var preco = +box.dataset.preco, id = +box.dataset.id, n = 1;
+  var slots = box.querySelectorAll('[data-ve-n]'), gift = box.querySelector('[data-ve-gift]'), msg = box.querySelector('[data-ve-qmsg]');
+  var pay = box.querySelector('[data-ve-pay]'), buy = box.querySelector('[data-ve-buy]');
+  var brl = function (c) { return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
+  var desenha = function () {
       slots.forEach(function (s) { s.classList.toggle('on', +s.dataset.veN <= n); });
       gift.classList.toggle('on', n >= 4);
       pay.textContent = brl(Math.round(preco * 0.8 * (n >= 5 ? n - 1 : n)));
       buy.textContent = 'Colocar ' + n + ' no carrinho';
       msg.innerHTML = n < 4 ? 'Leve <b>' + (4 - n) + ' a mais</b> e ganhe o Kit Kids de 2 a 4 anos.' : n === 4 ? '<b>Kit Kids garantido.</b> Mais 1 e o 5º sai grátis.' : '<b>5 frascos, pagando 4</b>, mais o Kit Kids de presente.';
-    };
-    slots.forEach(function (s) { s.addEventListener('click', function () { n = +s.dataset.veN; desenha(); }); });
-    buy.addEventListener('click', function () {
+  };
+  slots.forEach(function (s) { s.addEventListener('click', function () { n = +s.dataset.veN; desenha(); }); });
+  buy.addEventListener('click', function () {
       buy.disabled = true; buy.textContent = 'Colocando...';
       fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: [{ id: id, quantity: n }] }) })
         .then(function () { location.href = '/cart'; }).catch(function () { buy.disabled = false; desenha(); });
-    });
-    document.querySelectorAll('[data-ve-stick-go]').forEach(function (sg) { sg.addEventListener('click', function (e) { e.preventDefault(); box.scrollIntoView({ behavior: 'smooth', block: 'center' }); }); });
-    var lum = function (c) { var m = c.match(/[\d.]+/g); if (!m || (m[3] !== undefined && +m[3] < .5)) return -1; return (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) / 255; };
-    var contraste = function () {
+  });
+  document.querySelectorAll('[data-ve-stick-go]').forEach(function (sg) { sg.addEventListener('click', function (e) { e.preventDefault(); box.scrollIntoView({ behavior: 'smooth', block: 'center' }); }); });
+  var lum = function (c) { var m = c.match(/[\d.]+/g); if (!m || (m[3] !== undefined && +m[3] < .5)) return -1; return (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) / 255; };
+  var contraste = function () {
       if (!document.documentElement.classList.contains('ve-on')) return;
       document.querySelectorAll('#main *').forEach(function (el) {
         if (el.closest('.ve-x') || !Array.prototype.some.call(el.childNodes, function (t) { return t.nodeType === 3 && t.textContent.trim(); })) return;
@@ -563,8 +565,8 @@
         var a = el, bg = -1; while (a && bg < 0) { bg = lum(getComputedStyle(a).backgroundColor); a = a.parentElement; }
         if (bg >= 0 && bg < .2) el.style.setProperty('color', '#d6dfd9', 'important');
       });
-    };
-    var monta = function () {
+  };
+  var monta = function () {
       var fim = document.querySelector('[data-ve-fim]'), mn = document.getElementById('main');
       if (fim && mn) mn.appendChild(fim);
       if (mn) mn.querySelectorAll('a[href^="#"], a[href*="/products/"], a[href="/cart"]').forEach(function (a) {
@@ -572,11 +574,11 @@
         a.setAttribute('data-ve-cta', ''); a.addEventListener('click', function (e) { e.preventDefault(); box.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
       });
       contraste(); setTimeout(contraste, 1500); setTimeout(contraste, 4000);
-    };
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', monta); else monta();
-    var main = document.querySelector('.ve-main-img');
-    document.querySelectorAll('[data-ve-th-img]').forEach(function (b) { b.addEventListener('click', function () { main.src = b.dataset.veThImg; main.removeAttribute('srcset'); document.querySelectorAll('[data-ve-th-img]').forEach(function (x) { x.classList.remove('on'); }); b.classList.add('on'); }); });
-    desenha();
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', monta); else monta();
+  var main = document.querySelector('.ve-main-img');
+  document.querySelectorAll('[data-ve-th-img]').forEach(function (b) { b.addEventListener('click', function () { main.src = b.dataset.veThImg; main.removeAttribute('srcset'); document.querySelectorAll('[data-ve-th-img]').forEach(function (x) { x.classList.remove('on'); }); b.classList.add('on'); }); });
+  desenha();
   })();
 </script>
 {%- endif -%}
