@@ -44,7 +44,7 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 | ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Editar os 5 vídeos de venda | `mcp-1793231493731-4-710be` | depende: BLACK FRIDAY · 11/11 — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
 | ⬜ | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar a entrega dos brindes | `mcp-1793231782749-3-e8512` |  |
 | ⬜ | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar oferta e frete na Shopify | `mcp-1793231782748-2-7813f` |  |
-| 🟡 | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Criar o tema completo do site para a promoção | `mcp-1793231782748-1-f1933` | 30/10: faixa preta com contagem (todas as páginas) + hero escuro na home, estilo do exemplo da Botanika, no tema de teste. Liga sozinha em 11/11 00h–23h59; teste com ?vf_diad=on. Aguardando aprovação. |
+| 🟡 | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Criar o tema completo do site para a promoção | `mcp-1793231782748-1-f1933` | 30/10: refeito como "Eclipse 11.11" (conceito original aprovado): faixa AO VIVO, lua com eclipse que avança com o dia, Monte seus 5 (vai pro carrinho), cards com preço de/por da loja, trilho de bônus; esconde a barra "1ª compra 5%" no dia. No tema de teste, liga sozinho em 11/11. Preview: ?preview_theme_id=168339931355&vf_diad=on. Falta: aprovação final, decidir trava 0h–7h, renomear e publicar no dia. |
 | ⬜ | 06/11/2026 18h00 | NOTA FISCAL — Pedro Lage | `mcp-1791566542911-4-2b477` | Programada |
 | ⬜ | 09/11/2026 18h00 | BLACK FRIDAY · 11/11 — Criar o cupom privado do Recovery | `mcp-1793231782749-11-7894e` |  |
 | ⬜ | 09/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER — Configurar a entrega dos brindes | `mcp-1793232207208-13-3e343` |  |

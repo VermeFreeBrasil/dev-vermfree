@@ -130,12 +130,12 @@
     {% render 'vf-whatsapp-float' %}
     <a class="skip-to-content" href="#main">Pular para o conteúdo</a>
 
-    {%- comment -%} Dia D 11/11: faixa preta com contagem (liga sozinha em 11/11) {%- endcomment -%}
+    {%- comment -%} Dia D 11/11 · Eclipse: faixa ao vivo (liga sozinha em 11/11) {%- endcomment -%}
     {%- render 'vf-1111-promo', parte: 'barra' -%}
     {% section 'vf-announcement-bar' %}
     {% section 'header' %}
 
-    {%- if template.name == 'index' -%}{%- render 'vf-1111-promo', parte: 'hero' -%}{%- endif -%}
+    {%- if template.name == 'index' -%}{%- render 'vf-1111-promo', parte: 'home' -%}{%- endif -%}
 
     <main id="main" role="main" tabindex="-1">
       {{ content_for_layout }}
