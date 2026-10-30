@@ -131,32 +131,62 @@
   .ve-sec .ve-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:28px;flex-wrap:wrap}
   .ve-sec .ve-head p{color:var(--mut);font-size:15px;line-height:1.5;max-width:460px}
   /* monte seus 5 (seletor único) */
+  /* Monte seus 5: mesmo formato do montador da loja, nas cores do Eclipse */
   .ve-monte{background:var(--ink2)}
-  .ve-monte-top{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;background:#ffffff06;border:1px solid #ffffff12;border-radius:26px;padding:26px 28px;margin-bottom:22px}
-  .ve-monte-top .msg{font-size:15px;color:var(--mut);margin-top:12px}
-  .ve-monte-top .msg b{color:var(--cream)}
-  .ve-tot{text-align:right}
-  .ve-tot small{display:block;color:var(--mut);font-size:12px;letter-spacing:1px;text-transform:uppercase}
-  .ve-tot s{color:#7f8e86;font-size:15px;margin-right:6px}
-  .ve-tot strong{font-size:34px;color:#ff4a52;font-weight:900;letter-spacing:-.5px}
-  .ve-tot .ve-btn{margin-top:12px;padding:16px 28px;font-size:16px}
-  .ve-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-  .ve-tile{background:var(--card);border:1px solid #ffffff12;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;position:relative;transition:border-color .2s,transform .2s}
-  .ve-tile.sel{border-color:#c0de9688}
-  .ve-tile img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;display:block}
-  .ve-tile .qty{position:absolute;top:12px;right:12px;min-width:34px;height:34px;border-radius:20px;background:var(--lime);color:var(--forest);font-weight:900;display:none;align-items:center;justify-content:center;padding:0 10px;font-size:15px}
-  .ve-tile.sel .qty{display:flex}
-  .ve-tile .b{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
-  .ve-tile h3{font-size:16px;font-weight:800;color:#fff}
-  .ve-tile .s{font-size:12.5px;color:var(--mut);margin-top:2px}
-  .ve-tile .de{margin-top:12px;font-size:13px;color:#7f8e86;text-decoration:line-through}
-  .ve-tile .por{font-size:26px;font-weight:900;color:#ff4a52;letter-spacing:-.5px}
-  .ve-tile .por small{font-size:12px;color:#cfd8d2;font-weight:600}
-  .ve-tile .ctl{margin-top:auto;padding-top:12px;display:flex;gap:8px}
-  .ve-tile .ctl button{flex:1;border:0;border-radius:40px;padding:12px;font:800 14px Inter,Arial,sans-serif;cursor:pointer;background:#fff;color:#070a08}
-  .ve-tile .ctl button.menos{flex:0 0 46px;background:#ffffff14;color:var(--cream);display:none}
-  .ve-tile.sel .ctl button.menos{display:block}
-  .ve-tile .ver{font-size:12px;color:var(--mut);margin-top:10px;text-decoration:underline}
+  .ve-mt-grid{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);border:1px solid #ffffff14;border-radius:26px;overflow:hidden;background:var(--card);box-shadow:0 20px 50px #0008}
+  .ve-mt-list{list-style:none;margin:0;padding:0;border-right:1px solid #ffffff10}
+  .ve-mt-row{position:relative;display:grid;grid-template-columns:170px minmax(0,1fr) auto;grid-template-areas:"im info q" "im more q";column-gap:26px;align-items:start;padding:24px 28px 24px 24px;border-bottom:1px solid #ffffff0d;cursor:pointer;transition:background .2s}
+  .ve-mt-row:last-child{border-bottom:0}
+  .ve-mt-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:transparent;transition:background .2s}
+  .ve-mt-row.on{background:#1a0d10}
+  .ve-mt-row.on::before{background:var(--red)}
+  .ve-mt-im{grid-area:im;align-self:center;position:relative;display:grid;place-items:center;width:170px;height:170px;border-radius:22px;background:radial-gradient(circle at 50% 60%,#26302b,#121815);border:1px solid #ffffff12}
+  .ve-mt-im img{width:94%;height:94%;object-fit:contain}
+  .ve-mt-tag{position:absolute;z-index:1;top:-8px;left:-6px;padding:4px 9px;border-radius:99px;background:var(--red);color:#fff;font:800 10px/1.15 Inter,Arial,sans-serif;letter-spacing:.04em;text-transform:uppercase}
+  .ve-mt-info{grid-area:info;min-width:0;align-self:end}
+  .ve-mt-age{margin:0!important;font:700 11.5px/1.3 Inter,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--lime)}
+  .ve-mt-n{margin:2px 0 6px!important;font:800 22px/1.2 Inter,Arial,sans-serif;color:#fff}
+  .ve-mt-n a{color:inherit;text-decoration:none}
+  .ve-mt-n a span{margin-left:6px;color:var(--red)}
+  .ve-mt-t{margin:0 0 8px!important;font-size:14.5px;line-height:1.4;color:var(--mut)}
+  .ve-mt-pr p{margin:0!important}
+  .ve-mt-was{font-size:13px;color:#7f8e86;line-height:1.2}
+  .ve-mt-was i{margin-left:3px;padding:1px 7px;border-radius:99px;background:var(--red);color:#fff;font-style:normal;font-size:11px;font-weight:800}
+  .ve-mt-3x{font:800 26px/1.15 Inter,Arial,sans-serif;color:#fff;letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .ve-mt-3x small{font-size:15px;color:#ff6b72}
+  .ve-mt-pix{font-size:13.5px;color:var(--mut);line-height:1.35}
+  .ve-mt-pix span{font-weight:700;color:#ff6b72}
+  .ve-mt-pix b{color:#fff;white-space:nowrap}
+  .ve-mt-more{grid-area:more;justify-self:start;align-self:start;margin-top:12px;display:inline-flex;align-items:center;gap:6px;padding:9px 17px;border:1.5px solid #ffffff22;border-radius:999px;font:800 13.5px/1.2 Inter,Arial,sans-serif;color:var(--cream);text-decoration:none;white-space:nowrap}
+  .ve-mt-more:hover{border-color:var(--red)}
+  .ve-mt-q{grid-area:q;align-self:center;display:flex;align-items:center;height:52px;border:1.5px solid #ffffff22;border-radius:999px;background:#070a08}
+  .ve-mt-row.on .ve-mt-q{border-color:var(--red);box-shadow:0 4px 16px #e0262f40}
+  .ve-mt-q button{width:44px;height:100%;padding:0;border:0;background:none;font:800 22px/1 Inter,Arial,sans-serif;color:#ff6b72;cursor:pointer}
+  .ve-mt-q output{min-width:22px;text-align:center;font:800 17px/1 Inter,Arial,sans-serif;color:#fff;font-variant-numeric:tabular-nums}
+  .ve-mt-sum{padding:34px 32px;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(ellipse 90% 60% at 50% 0,#3a0d12 0,#120709 70%);color:#fff}
+  .ve-mt-lad{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .ve-mt-lad li{display:flex;flex-direction:column;align-items:center;padding:11px 6px 10px;border-radius:12px;background:#ffffff0d;border:1px solid #ffffff1a;text-align:center;color:#ffffff99;transition:background .25s,color .25s}
+  .ve-mt-lad li span{font-size:17px;line-height:1;filter:grayscale(1);opacity:.6}
+  .ve-mt-lad li b{margin-top:3px;font-size:13px;line-height:1.15}
+  .ve-mt-lad li small{font-size:11px;opacity:.8}
+  .ve-mt-lad li.on{background:var(--red);border-color:var(--red);color:#fff}
+  .ve-mt-lad li.on span{filter:none;opacity:1}
+  .ve-mt-next{margin:10px 0 0!important;min-height:1.35em;text-align:center;font-size:14px;line-height:1.35;color:#ffffffdd}
+  .ve-mt-next b{color:#ff8a90}
+  .ve-mt-tot{margin:14px 0 0;padding:14px 0 0;border-top:1px solid #ffffff1a}
+  .ve-mt-tot p{margin:0!important}
+  .ve-mt-tl{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px;color:#ffffffd9}
+  .ve-mt-tl s{color:#ffffff80}
+  .ve-mt-big{margin-top:2px!important;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .ve-mt-big small{font-size:16px;font-weight:800;color:#ff8a90}
+  .ve-mt-big b{font-size:42px;font-weight:900;letter-spacing:-.02em}
+  .ve-mt-big span{font-size:13px;font-weight:700;color:#ff8a90}
+  .ve-mt-pixt{font-size:14px;color:#ffffffd9}
+  .ve-mt-pixt b{color:#fff}
+  .ve-mt-pixt em{font-style:normal;font-weight:700;color:var(--lime)}
+  .ve-mt-btn{width:100%;margin-top:16px;justify-content:center;min-height:60px;font-size:17px}
+  .ve-mt-btn:disabled{opacity:.45;cursor:default}
+  .ve-mt-note{margin:10px 0 0!important;font-size:12px;color:#ffffffa6;text-align:center}
   /* clientes */
   .ve-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}
   .ve-rail::-webkit-scrollbar{display:none}
@@ -187,12 +217,18 @@
     .ve-cta{justify-content:center}.ve-cta .ve-btn{width:100%}
     .ve-sec{padding:40px 18px}
     .ve-sec .ve-head{text-align:center;justify-content:center}
-    .ve-monte-top{grid-template-columns:1fr;padding:20px 14px;text-align:center}
-    .ve-tot{text-align:center}.ve-tot .ve-btn{width:100%}
     .ve-slots{gap:5px}.ve-slot{width:52px;height:96px;border-radius:12px;font-size:8.5px;padding-bottom:7px}.ve-slot svg{width:28px}.ve-slot .n{display:none}.ve-plus{font-size:22px}
     .ve-gift{width:auto;margin-top:10px}
-    .ve-tiles{grid-template-columns:1fr 1fr;gap:10px}
-    .ve-tile .por{font-size:21px}.ve-tile h3{font-size:14px}
+    .ve-mt-grid{grid-template-columns:1fr;border-radius:22px}
+    .ve-mt-list{border-right:0}
+    .ve-mt-row{grid-template-columns:112px minmax(0,1fr);grid-template-areas:"im info" "im q" "im more";column-gap:14px;row-gap:10px;padding:18px 14px 18px 12px}
+    .ve-mt-im{width:112px;height:112px;border-radius:18px}
+    .ve-mt-tag{font-size:9px;padding:3px 7px}
+    .ve-mt-t{display:none}.ve-mt-n{font-size:17px}.ve-mt-3x{font-size:21px}.ve-mt-3x small{font-size:13px}.ve-mt-pix{font-size:12.5px}
+    .ve-mt-q{justify-self:start;height:44px}.ve-mt-q button{width:40px;font-size:20px}
+    .ve-mt-more{margin-top:0;padding:7px 13px;font-size:12.5px}
+    .ve-mt-sum{padding:20px 16px}
+    .ve-mt-big b{font-size:32px}
     .ve-rail figure{flex-basis:150px}
     .ve-faq{grid-template-columns:1fr}
     .ve-trilho{font-size:12px;gap:8px 18px}
@@ -217,44 +253,59 @@
   <section class="ve-sec ve-monte" id="ve-monte"><div class="ve-wrap">
     <div class="ve-head">
       <h2 class="cap">Monte seus 5. <em>O quinto é por nossa conta.</em></h2>
-      <p>Escolha os protocolos da sua casa. Com 4, ganha um Kit Kids de 2 a 4 anos. Com 5, o de menor valor sai grátis, somando com os 20%.</p>
+      <p>Escolha quantos de cada. Todos com 20% OFF; com 4, ganha um Kit Kids de 2 a 4 anos; com 5, o de menor valor sai grátis.</p>
     </div>
-    <div class="ve-monte-top">
-      <div>
-        <div class="ve-slots">
-          {%- for i in (1..4) -%}<div class="ve-slot" data-ve-slot><span class="n">{{ i }}</span>{{ frasco }}<span class="l" data-ve-lbl>escolha</span></div>{%- endfor -%}
-          <span class="ve-plus">+</span>
-          <div class="ve-slot free" data-ve-slot><span class="tag">GRÁTIS</span>{{ frasco }}<span class="l" data-ve-lbl>o 5º</span></div>
-          <div class="ve-gift" data-ve-gift>+ Kit Kids 2 a 4 anos<small>de presente na compra de 4</small></div>
+    {%- assign ages = 'A partir de 10 anos|Crianças pequenas|Idade escolar|Para a casa toda' | split: '|' -%}
+    {%- assign descs = 'Tintura de 5 ervas, Óleo de Orégano, Ornitina e Silimarina.|Duas tinturas com a dose da idade, diluídas em água ou suco.|Duas tinturas com a dose para a criança em idade escolar.|2 Adultos + Kids 2 a 4 + Kids 5 a 9, todo mundo no mesmo ciclo.' | split: '|' -%}
+    {%- assign pngs = 'vf-pv2-adulto.png,vf-pv2-kids-2a4.png,vf-pv2-kids-5a9.png,vf-pv2-kit-familia-v3.png' | split: ',' -%}
+    <div class="ve-mt-grid" data-ve-mt>
+      <ul class="ve-mt-list">
+        {%- for h in handles -%}
+          {%- assign p = all_products[h] -%}
+          {%- if p.id -%}
+            {%- assign v = p.selected_or_first_available_variant -%}
+            {%- assign pk = pngs[forloop.index0] -%}{%- assign png = images[pk] -%}
+            {%- assign por = v.price | times: 0.8 -%}
+            <li class="ve-mt-row{% if forloop.first %} on{% endif %}" data-ve-row data-id="{{ v.id }}" data-preco="{{ v.price }}">
+              <a class="ve-mt-im" href="{{ p.url }}" tabindex="-1" aria-hidden="true">
+                {%- if forloop.first -%}<span class="ve-mt-tag">Mais escolhido</span>{%- endif -%}
+                {%- if png -%}{{ png | image_url: width: 400 | image_tag: loading: 'lazy', alt: '' }}{%- else -%}{{ p.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
+              </a>
+              <div class="ve-mt-info">
+                <p class="ve-mt-age">{{ ages[forloop.index0] }}</p>
+                <h3 class="ve-mt-n"><a href="{{ p.url }}">{{ nomes[forloop.index0] }}<span aria-hidden="true">›</span></a></h3>
+                <p class="ve-mt-t">{{ descs[forloop.index0] }}</p>
+                <div class="ve-mt-pr">
+                  <p class="ve-mt-was"><s>{{ v.price | money }}</s> <i>-20%</i></p>
+                  <p class="ve-mt-3x"><small>3x</small> {{ por | divided_by: 3 | money }}</p>
+                  <p class="ve-mt-pix"><span>sem juros</span> · ou <b>{{ por | money }}</b> à vista</p>
+                </div>
+              </div>
+              <a class="ve-mt-more" href="{{ p.url }}">Conhecer o protocolo →</a>
+              <div class="ve-mt-q" role="group" aria-label="Quantidade de {{ nomes[forloop.index0] }}">
+                <button type="button" data-ve-step="-1" aria-label="Menos">−</button>
+                <output data-ve-qty>{% if forloop.first %}1{% else %}0{% endif %}</output>
+                <button type="button" data-ve-step="1" aria-label="Mais">+</button>
+              </div>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+      <div class="ve-mt-sum">
+        <ol class="ve-mt-lad" aria-label="Benefícios do 11/11">
+          <li data-ve-lad="1"><span>🚚</span><b>Frete grátis</b><small>sem mínimo</small></li>
+          <li data-ve-lad="4"><span>🎁</span><b>Kit Kids</b><small>com 4</small></li>
+          <li data-ve-lad="5"><span>🌑</span><b>5º grátis</b><small>com 5</small></li>
+        </ol>
+        <p class="ve-mt-next" data-ve-next></p>
+        <div class="ve-mt-tot">
+          <p class="ve-mt-tl"><span data-ve-count>—</span><s data-ve-was></s></p>
+          <p class="ve-mt-big"><small>3x</small> <b data-ve-3x>—</b> <span>sem juros</span></p>
+          <p class="ve-mt-pixt" data-ve-pix></p>
         </div>
-        <p class="msg" data-ve-msg>Toque em “Escolher” nos protocolos abaixo.</p>
+        <button type="button" class="ve-btn ve-mt-btn" data-ve-go>Garantir meu protocolo →</button>
+        <p class="ve-mt-note">🔒 Compra segura · Garantia de 7 dias · Só no 11/11</p>
       </div>
-      <div class="ve-tot">
-        <small>Você paga no 11/11</small>
-        <div><s data-ve-de></s><strong data-ve-por>R$ 0,00</strong></div>
-        <button class="ve-btn" type="button" data-ve-go disabled>Colocar no carrinho</button>
-      </div>
-    </div>
-    <div class="ve-tiles">
-      {%- for h in handles -%}
-        {%- assign p = all_products[h] -%}
-        {%- if p.id -%}
-          {%- assign v = p.selected_or_first_available_variant -%}
-          {%- assign foto = images[fotos[forloop.index0]] -%}
-          <div class="ve-tile" data-ve-tile data-id="{{ v.id }}" data-nome="{{ nomes[forloop.index0] }}" data-preco="{{ v.price }}">
-            <span class="qty" data-ve-q>0</span>
-            {%- if foto -%}{{ foto | image_url: width: 700 | image_tag: loading: 'lazy', alt: p.title }}{%- else -%}{{ p.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', alt: p.title }}{%- endif -%}
-            <div class="b">
-              <h3>{{ nomes[forloop.index0] }}</h3>
-              <p class="s">{{ subs[forloop.index0] }}</p>
-              <p class="de">{{ v.price | money }}</p>
-              <p class="por">{{ v.price | times: 0.8 | money }} <small>no 11/11</small></p>
-              <div class="ctl"><button type="button" class="menos" data-ve-menos aria-label="Tirar um">–</button><button type="button" data-ve-mais>Escolher</button></div>
-              <a class="ver" href="{{ p.url }}">Ver o protocolo</a>
-            </div>
-          </div>
-        {%- endif -%}
-      {%- endfor -%}
     </div>
   </div></section>
 
@@ -301,34 +352,48 @@
 </div>
 <script>
   (function () {
-    var tiles = document.querySelectorAll('[data-ve-tile]'), slots = document.querySelectorAll('[data-ve-slot]');
-    var go = document.querySelector('[data-ve-go]'); if (!go || !tiles.length) return;
-    var msg = document.querySelector('[data-ve-msg]'), gift = document.querySelector('[data-ve-gift]');
-    var deEl = document.querySelector('[data-ve-de]'), porEl = document.querySelector('[data-ve-por]');
-    var esc = [];
-    var brl = function (c) { return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
-    var desenha = function () {
-      slots.forEach(function (s, i) { var it = esc[i]; s.classList.toggle('on', !!it); s.querySelector('[data-ve-lbl]').textContent = it ? it.nome : (i === 4 ? 'o 5º' : 'escolha'); });
-      tiles.forEach(function (t) { var n = esc.filter(function (x) { return x.id === t.dataset.id; }).length; t.classList.toggle('sel', n > 0); t.querySelector('[data-ve-q]').textContent = n; });
-      gift.classList.toggle('on', esc.length >= 4);
-      var cheio = esc.reduce(function (a, x) { return a + x.preco; }, 0), menor = esc.length >= 5 ? Math.min.apply(null, esc.map(function (x) { return x.preco; })) : 0;
-      var paga = Math.round((cheio - menor) * 0.8);
-      deEl.textContent = cheio ? brl(cheio) : ''; porEl.textContent = brl(paga);
-      go.disabled = !esc.length;
-      msg.innerHTML = !esc.length ? 'Toque em “Escolher” nos protocolos abaixo.' : esc.length < 4 ? 'Mais <b>' + (4 - esc.length) + '</b> para ganhar o Kit Kids.' : esc.length === 4 ? '<b>Kit Kids garantido.</b> Mais 1 e o 5º sai grátis.' : '<b>Pronto:</b> Kit Kids de presente e o 5º grátis.';
-    };
-    tiles.forEach(function (t) {
-      t.querySelector('[data-ve-mais]').addEventListener('click', function () { if (esc.length < 5) { esc.push({ id: t.dataset.id, nome: t.dataset.nome.replace('Protocolo ', ''), preco: +t.dataset.preco }); desenha(); } else { msg.innerHTML = '<b>Seus 5 estão prontos.</b> Para trocar, tire um protocolo.'; } });
-      t.querySelector('[data-ve-menos]').addEventListener('click', function () { for (var i = esc.length - 1; i >= 0; i--) { if (esc[i].id === t.dataset.id) { esc.splice(i, 1); break; } } desenha(); });
-    });
-    slots.forEach(function (s, i) { s.addEventListener('click', function () { if (esc[i]) { esc.splice(i, 1); desenha(); } }); });
-    go.addEventListener('click', function () {
-      var q = {}; esc.forEach(function (it) { q[it.id] = (q[it.id] || 0) + 1; });
-      go.disabled = true; go.textContent = 'Colocando...';
-      fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: Object.keys(q).map(function (id) { return { id: +id, quantity: q[id] }; }) }) })
-        .then(function () { location.href = '/cart'; }).catch(function () { go.disabled = false; go.textContent = 'Colocar no carrinho'; });
-    });
-    desenha();
+    var mt = document.querySelector('[data-ve-mt]');
+    if (mt) {
+      var rows = [].slice.call(mt.querySelectorAll('[data-ve-row]')), go = mt.querySelector('[data-ve-go]');
+      var $m = function (q) { return mt.querySelector(q); };
+      var brl = function (c) { return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
+      var qty = function (r) { return +r.querySelector('[data-ve-qty]').textContent || 0; };
+      var setQ = function (r, n) { n = Math.max(0, Math.min(10, n)); r.querySelector('[data-ve-qty]').textContent = n; r.classList.toggle('on', n > 0); };
+      var conta = function () {
+        var precos = [], cheio = 0;
+        rows.forEach(function (r) { for (var i = 0; i < qty(r); i++) { precos.push(+r.dataset.preco); cheio += +r.dataset.preco; } });
+        precos.sort(function (a, b) { return a - b; });
+        var gratis = 0; for (var i = 0; i < Math.floor(precos.length / 5); i++) gratis += precos[i];
+        return { n: precos.length, cheio: cheio, paga: Math.round((cheio - gratis) * 0.8) };
+      };
+      var desenha = function () {
+        var c = conta(), n = c.n;
+        $m('[data-ve-count]').textContent = n === 0 ? 'Nenhum protocolo escolhido' : n + (n === 1 ? ' protocolo' : ' protocolos');
+        $m('[data-ve-was]').textContent = n ? brl(c.cheio) : '';
+        $m('[data-ve-3x]').textContent = brl(Math.floor(c.paga / 3));
+        $m('[data-ve-pix]').innerHTML = n === 0 ? 'Escolha acima quantos de cada' : 'ou <b>' + brl(c.paga) + '</b> à vista · <em>você economiza ' + brl(c.cheio - c.paga) + '</em>';
+        mt.querySelector('[data-ve-lad="1"]').classList.toggle('on', n >= 1);
+        mt.querySelector('[data-ve-lad="4"]').classList.toggle('on', n >= 4);
+        mt.querySelector('[data-ve-lad="5"]').classList.toggle('on', n >= 5);
+        $m('[data-ve-next]').innerHTML = n === 0 ? 'Todo pedido no 11/11 tem <b>frete grátis</b>.' : n < 4 ? 'Mais <b>' + (4 - n) + (4 - n === 1 ? ' protocolo' : ' protocolos') + '</b> e ganhe o <b>Kit Kids</b> de presente' : n === 4 ? '<b>Kit Kids garantido.</b> Mais 1 e o <b>5º sai grátis</b>' : '🎉 <b>Frete, Kit Kids e o 5º grátis</b> liberados';
+        go.disabled = n === 0;
+        go.textContent = n <= 1 ? 'Garantir meu protocolo →' : 'Garantir meus ' + n + ' protocolos →';
+      };
+      mt.addEventListener('click', function (e) {
+        var st = e.target.closest('[data-ve-step]');
+        if (st) { var r = st.closest('[data-ve-row]'); setQ(r, qty(r) + +st.dataset.veStep); desenha(); return; }
+        var row = e.target.closest('[data-ve-row]');
+        if (row && !e.target.closest('a, button') && qty(row) === 0) { setQ(row, 1); desenha(); }
+      });
+      go.addEventListener('click', function () {
+        var items = rows.filter(function (r) { return qty(r) > 0; }).map(function (r) { return { id: +r.dataset.id, quantity: qty(r) }; });
+        if (!items.length) return;
+        go.disabled = true; go.textContent = 'Colocando...';
+        fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: items }) })
+          .then(function (res) { if (!res.ok) throw 0; location.href = '/cart'; }).catch(function () { desenha(); });
+      });
+      desenha();
+    }
     var vs = document.querySelectorAll('[data-ve-video]');
     if ('IntersectionObserver' in window) { var io = new IntersectionObserver(function (es) { es.forEach(function (e) { var v = e.target.querySelector('video'); if (e.isIntersecting) v.play().catch(function () {}); else v.pause(); }); }, { threshold: .6 }); vs.forEach(function (f) { io.observe(f); }); }
     vs.forEach(function (f) { f.addEventListener('click', function () { var v = f.querySelector('video'), on = v.muted; vs.forEach(function (o) { o.querySelector('video').muted = true; o.querySelector('.snd').textContent = '🔇'; }); v.muted = !on; f.querySelector('.snd').textContent = on ? '🔊' : '🔇'; if (on) v.play().catch(function () {}); }); });
