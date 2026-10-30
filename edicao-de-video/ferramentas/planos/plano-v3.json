@@ -1,0 +1,14 @@
+{"id":"v3","entrada":"bruto/vermefree-3.mp4","saida":"vf-ugc-captacao-1111-03.mp4","duracao":30.1,
+ "gancho":{"ini":0,"fim":2.6,"texto":"Acha que <b>verme</b> é coisa de criança?"},
+ "selo":{"ini":16.0,"fim":22.6},
+ "cta":{"ini":26.6},
+ "destaques":["criança","adulto","fora","salada","bicho","viaja","verminose","comum","desparasitar","simples","rotina","grupo","protocolo","especial"],
+ "vermelho":["11","imperdíveis"],
+ "frases":[
+  {"ini":0.0,"fim":3.42,"texto":"Se você acha que verme é coisa de criança, eu também achava."},
+  {"ini":3.42,"fim":10.12,"texto":"Adulto não pensa nisso. A gente come fora, come salada, tem bicho em casa, viaja, e nunca liga uma coisa à outra."},
+  {"ini":10.12,"fim":13.14,"texto":"Verminose em adulto é muito mais comum do que parece."},
+  {"ini":13.14,"fim":15.96,"texto":"Desparasitar é simples e cabe na sua rotina."},
+  {"ini":15.96,"fim":22.66,"texto":"No dia 11 do 11, quem estiver no grupo vai ter uma condição muito especial da VermeFree, com descontos imperdíveis."},
+  {"ini":22.66,"fim":26.6,"texto":"É o melhor dia para começar e garantir seu protocolo de desparasitação."}
+ ]}
