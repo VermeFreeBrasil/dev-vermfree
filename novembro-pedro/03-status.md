@@ -33,7 +33,7 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 | ⬜ | 02/11/2026 18h00 | PESQUISA DE INDICAÇÃO — Outubro / VERMEFREE | `mcp-1791310863649-b305122a` |  |
 | ⬜ | 03/11/2026 18h00 | BLACK FRIDAY — Editar os 20 primeiros vídeos universais | `mcp-1793230900242-5-6b53a` |  |
 | ✅ | 04/11/2026 18h00 | BLACK FRIDAY — Criar os 30 estáticos universais de venda | `mcp-1793230900242-7-a241c` | **29/10: CONCLUÍDA (aprovada pelo Pedro).** 60 PNGs em criativos/universais/png (zip enviado ao Pedro). Copy no Drive: https://docs.google.com/document/d/1kb6ioKK2LYx-v9eHSOCJLWyBJMg-aIzXjVgdFmSGklk/edit. **Marcar no Alliance.** |
-| ⬜ | 05/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar o cashback na Shopify | `mcp-1793231782749-4-43158` |  |
+| 🟡 | 05/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar o cashback na Shopify | `mcp-1793231782749-4-43158` | 30/10: plano em shopify/cashback/plano-cashback-1111.md (15% do total pago; Flow por tag cashback-1111). API sem permissão de crédito: aguardando Pedro escolher Flow ou manual. |
 | ⬜ | 05/11/2026 18h00 | BLACK FRIDAY — Editar os 30 vídeos universais restantes | `mcp-1793230900242-6-3696d` |  |
 | ⬜ | 05/11/2026 18h00 | BLACK FRIDAY — Editar os 50 vídeos universais de venda | `mcp-1793230900242-4-b0846` | depende: BLACK FRIDAY — Gravar os 50 vídeos universais de venda (Maria Fernanda, Gabriel Ferreira, Vitor Gutierrez, a fazer) |
 | ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 · CRIATIVOS | `mcp-1793231493731-1-3660f` |  |
@@ -41,7 +41,7 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 | ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Editar os 5 vídeos de venda | `mcp-1793231493731-4-710be` | depende: BLACK FRIDAY · 11/11 — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
 | ⬜ | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar a entrega dos brindes | `mcp-1793231782749-3-e8512` |  |
 | ⬜ | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar oferta e frete na Shopify | `mcp-1793231782748-2-7813f` |  |
-| ⬜ | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Criar o tema completo do site para a promoção | `mcp-1793231782748-1-f1933` |  |
+| 🟡 | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Criar o tema completo do site para a promoção | `mcp-1793231782748-1-f1933` | 30/10: faixa preta com contagem (todas as páginas) + hero escuro na home, estilo do exemplo da Botanika, no tema de teste. Liga sozinha em 11/11 00h–23h59; teste com ?vf_diad=on. Aguardando aprovação. |
 | ⬜ | 06/11/2026 18h00 | NOTA FISCAL — Pedro Lage | `mcp-1791566542911-4-2b477` | Programada |
 | ⬜ | 09/11/2026 18h00 | BLACK FRIDAY · 11/11 — Criar o cupom privado do Recovery | `mcp-1793231782749-11-7894e` |  |
 | ⬜ | 09/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER — Configurar a entrega dos brindes | `mcp-1793232207208-13-3e343` |  |

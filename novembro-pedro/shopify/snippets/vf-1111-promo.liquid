@@ -1,0 +1,99 @@
+{%- comment -%}
+  vf-1111-promo — camada do Dia D 11/11 (ficha v2 aprovada pelo Vitor). Referência visual: tema da Botanika (só o estilo).
+  Fica escondida e liga sozinha de QUA 11/11 00h a 23h59 (Brasília). Antes das 07h só o Grupo VIP passa pela trava.
+  Teste: ?vf_diad=on liga nesta aba · ?vf_diad=off desliga.
+  parte: 'barra' (faixa preta do topo, todas as páginas) ou 'hero' (topo da home).
+{%- endcomment -%}
+{%- assign fim_iso = '2026-11-11T23:59:59-03:00' -%}
+{%- if parte == 'barra' -%}
+<style>
+  .vfd{--red:#d7262f;--lime:#c0de96;--ink:#0d1a14;font-family:Inter,Arial,sans-serif}
+  .vfd[hidden]{display:none!important}
+  .vfd-bar{background:var(--ink);color:#fff;font-size:14px;line-height:1.3;padding:9px 16px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;text-align:center}
+  .vfd-bar .tag{background:var(--red);color:#fff;font-weight:800;font-size:12px;letter-spacing:.5px;padding:3px 8px;border-radius:6px}
+  .vfd-bar b{font-weight:800}
+  .vfd-bar .t{color:#ff5a5f;font-weight:800;font-variant-numeric:tabular-nums}
+  .vfd-bar a{background:var(--red);color:#fff;font-weight:800;font-size:13px;padding:6px 14px;border-radius:40px;text-decoration:none}
+  @media(max-width:700px){.vfd-bar{font-size:12.5px;gap:6px 10px;padding:8px 12px}.vfd-bar .o{flex-basis:100%}}
+</style>
+<div class="vfd vfd-bar" data-vfd hidden>
+  <span class="tag">11/11</span>
+  <span class="o"><b>20% OFF no site todo</b> · compre 4 leve 5 · frete grátis sem mínimo</span>
+  <span>termina em <span class="t" data-vfd-t>--</span></span>
+  <a href="/collections/all">Comprar</a>
+</div>
+<script>
+  (function () {
+    var INI = Date.parse('2026-11-11T00:00:00-03:00'), FIM = Date.parse('{{ fim_iso }}');
+    var q = new URLSearchParams(location.search), on = false;
+    try {
+      if (q.get('vf_diad') === 'on') sessionStorage.setItem('vf_diad', '1');
+      if (q.get('vf_diad') === 'off') sessionStorage.removeItem('vf_diad');
+      on = sessionStorage.getItem('vf_diad') === '1';
+    } catch (e) {}
+    var agora = Date.now();
+    window.vfDiaD = on || (agora >= INI && agora <= FIM);
+    if (!window.vfDiaD) return;
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    // simulação antes do dia: conta até o fim do dia de hoje (Brasília)
+    var alvo = FIM;
+    if (on && (agora < INI || agora > FIM)) { var d = new Date(agora - 3 * 3600e3); d.setUTCHours(23, 59, 59, 0); alvo = d.getTime() + 3 * 3600e3; }
+    var tick = function () {
+      var s = Math.max(0, Math.floor((alvo - Date.now()) / 1000));
+      var txt = pad(Math.floor(s / 3600)) + 'h ' + pad(Math.floor(s % 3600 / 60)) + 'm ' + pad(s % 60) + 's';
+      document.querySelectorAll('[data-vfd-t]').forEach(function (el) { el.textContent = txt; });
+    };
+    var mostra = function () { document.querySelectorAll('[data-vfd]').forEach(function (el) { el.hidden = false; }); tick(); };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mostra); else mostra();
+    setInterval(tick, 1000);
+  })();
+</script>
+{%- elsif parte == 'hero' -%}
+<style>
+  .vfd-hero{background:radial-gradient(ellipse 70% 90% at 80% 40%,#163626 0,#0d1a14 60%);color:#fff;padding:56px 0 60px}
+  .vfd-hero .w{width:min(1180px,calc(100% - 40px));margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .vfd-hero .badge{display:inline-block;background:#d7262f;color:#fff;font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:8px 14px;border-radius:40px;margin-bottom:18px}
+  .vfd-hero h1{font-family:Inter,Arial,sans-serif;font-size:clamp(34px,4.2vw,54px);line-height:1.06;font-weight:800;letter-spacing:-.035em;margin:0 0 22px;color:#fff}
+  .vfd-hero h1 em{font-style:normal;color:#ff4d55}
+  .vfd-hero ul{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:10px}
+  .vfd-hero li{font-size:16px;line-height:1.4;color:#e7efe9}
+  .vfd-hero li b{color:#fff}
+  .vfd-hero .cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .vfd-hero .btn{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#e2333b,#b5121b);color:#fff;font-weight:800;font-size:17px;padding:18px 34px;border-radius:60px;text-decoration:none;box-shadow:0 14px 30px #d7262f55}
+  .vfd-hero .cd{font-size:14px;color:#c9d6cd}
+  .vfd-hero .cd b{color:#ff5a5f;font-variant-numeric:tabular-nums}
+  .vfd-hero small{display:block;margin-top:16px;font-size:12px;color:#93a69a}
+  .vfd-hero figure{margin:0;border-radius:22px;overflow:hidden;background:radial-gradient(ellipse 80% 70% at 50% 60%,#f3f8ee 0,#dcebd2 65%,#c7dfba 100%);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
+  .vfd-hero figure img{width:88%;height:auto;filter:drop-shadow(0 20px 24px #0d1a1450)}
+  @media(max-width:860px){
+    .vfd-hero{padding:24px 0 36px}
+    .vfd-hero .w{display:flex;flex-direction:column-reverse;gap:22px;text-align:center}
+    .vfd-hero ul{justify-items:center}
+    .vfd-hero .cta{justify-content:center}
+    .vfd-hero .btn{width:100%}
+  }
+</style>
+<section class="vfd vfd-hero" data-vfd hidden>
+  <div class="w">
+    <div>
+      <span class="badge">11/11 · só hoje</span>
+      <h1><em>20% OFF</em> no maior desconto da história da VermeFree.</h1>
+      <ul>
+        <li>🎁 <b>Compre 4 e leve 5</b> em todo o site, somando com os 20%</li>
+        <li>🧒 <b>Kit Kids de 2 a 4 anos de brinde</b> na compra de 4</li>
+        <li>🚚 <b>Frete grátis em todos os pedidos</b>, sem mínimo</li>
+        <li>💸 <b>15% de cashback</b> para a próxima compra nos 100 primeiros pedidos</li>
+      </ul>
+      <div class="cta">
+        <a class="btn" href="/collections/all">Comprar agora</a>
+        <span class="cd">Termina em <b data-vfd-t>--</b></span>
+      </div>
+      <small>Só no dia 11/11, até 23h59. Desconto aplicado automaticamente no carrinho.</small>
+    </div>
+    <figure>
+      {%- assign foto = images['vf-hero-pedestal.png'] -%}
+      {%- if foto -%}{{ foto | image_url: width: 1200 | image_tag: loading: 'eager', alt: 'Protocolos VermeFree Adulto e Kids' }}{%- endif -%}
+    </figure>
+  </div>
+</section>
+{%- endif -%}

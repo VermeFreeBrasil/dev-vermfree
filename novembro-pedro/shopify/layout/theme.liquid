@@ -1,0 +1,148 @@
+{%- comment -%}
+  theme.liquid — Layout base do tema VermeFree.
+  Carrega head global, fontes, CSS/JS principais, header e footer.
+  Compliance: zero menção a marcas externas. Tom premium DTC.
+{%- endcomment -%}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" class="no-js">
+  <head>
+    <script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+      <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180, height: 180 }}">
+    {%- endif -%}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- comment -%} Preconnect performance {%- endcomment -%}
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    {%- comment -%} Fontes: Caprasimo via Google Fonts + Inter {%- endcomment -%}
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Inter:wght@400;500;600;700&display=swap">
+
+    {%- comment -%} Font picker fallback do Shopify (envolve em <style>) {%- endcomment -%}
+    <style>
+      {%- if settings.heading_font_picker_setting -%}
+        {{ settings.heading_font_picker_setting | font_face: font_display: 'swap' }}
+      {%- endif -%}
+      {%- if settings.body_font_picker_setting -%}
+        {{ settings.body_font_picker_setting | font_face: font_display: 'swap' }}
+      {%- endif -%}
+    </style>
+
+    {%- comment -%} Variáveis CSS dinâmicas via settings {%- endcomment -%}
+    <style>
+      :root {
+        --vf-green: {{ settings.brand_primary | default: '#5EBC43' }};
+        --vf-green-dark: {{ settings.brand_accent | default: '#1B5E20' }};
+        --vf-green-light: {{ settings.brand_light | default: '#C0DE96' }};
+        --vf-bg: {{ settings.bg_default | default: '#FAFAFA' }};
+        --vf-text: {{ settings.text_default | default: '#1A1A1A' }};
+        --vf-surface: {{ settings.surface | default: '#FFFFFF' }};
+        --container: {{ settings.container_max_width | default: 1280 }}px;
+        --section-padding: {{ settings.section_padding | default: 80 }}px 16px;
+        --button-radius: {{ settings.button_radius | default: 10 }}px;
+        --button-padding-y: {{ settings.button_padding | default: 12 }}px;
+        --card-radius: {{ settings.card_radius | default: 16 }}px;
+      }
+    </style>
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    {%- comment -%} SEO + Open Graph {%- endcomment -%}
+    <title>{{ page_title }}{% if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- else -%}
+      <meta name="description" content="VermeFree — protocolo fitoterápico premium para limpeza intestinal da família.">
+    {%- endif -%}
+
+    <meta property="og:site_name" content="{{ shop.name }}">
+    <meta property="og:title" content="{{ page_title | escape }}">
+    <meta property="og:type" content="{% if template contains 'product' %}product{% elsif template contains 'article' %}article{% else %}website{% endif %}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    {%- if page_description -%}
+      <meta property="og:description" content="{{ page_description | escape }}">
+    {%- endif -%}
+    {%- if page_image -%}
+      <meta property="og:image" content="https:{{ page_image | image_url }}">
+      <meta property="og:image:secure_url" content="https:{{ page_image | image_url }}">
+    {%- endif -%}
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page_title | escape }}">
+    {%- if page_description -%}
+      <meta name="twitter:description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+
+    {%- comment -%} Utmify Pixel — tracking UTM cross-domain {%- endcomment -%}
+    <script>
+      window.pixelId = "6a14a41337e05da355d2c089";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+
+    {%- comment -%} Utmify UTM Capture — preserva UTMs originais do clique até o checkout {%- endcomment -%}
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-xcod-sck
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+
+    {%- render 'vf-ds' -%}
+    {%- render 'vf-structured-data' -%}
+    {{ content_for_header }}
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18193701893">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18193701893');
+</script>
+  </head>
+
+  <body class="template-{{ template | replace: '.', '-' | handle }}">
+    {% render 'vf-whatsapp-float' %}
+    <a class="skip-to-content" href="#main">Pular para o conteúdo</a>
+
+    {%- comment -%} Dia D 11/11: faixa preta com contagem (liga sozinha em 11/11) {%- endcomment -%}
+    {%- render 'vf-1111-promo', parte: 'barra' -%}
+    {% section 'vf-announcement-bar' %}
+    {% section 'header' %}
+
+    {%- if template.name == 'index' -%}{%- render 'vf-1111-promo', parte: 'hero' -%}{%- endif -%}
+
+    <main id="main" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+  </body>
+</html>
