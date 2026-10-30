@@ -136,6 +136,7 @@
     {% section 'header' %}
 
     {%- if template.name == 'index' -%}{%- render 'vf-1111-promo', parte: 'home' -%}{%- endif -%}
+    {%- if template.name == 'product' -%}{%- render 'vf-1111-promo', parte: 'pdp' -%}{%- endif -%}
 
     <main id="main" role="main" tabindex="-1">
       {{ content_for_layout }}
