@@ -25,3 +25,29 @@ Por que em lote e não automático (Flow): o Flow não sabe contar "os 100 prime
 ## Pendências
 - Base do 15%: subtotal após descontos (proposta) ou total pago?
 - E-mail da conta de cliente interna para o teste.
+
+## Atualização 30/10 (decisões do Pedro + teste)
+- **Base: 15% do TOTAL PAGO** do pedido (ex.: R$ 100 → R$ 15; R$ 1.000 → R$ 150).
+- Teste de R$ 1,00 autorizado na conta "Lage Pedro" (pedrogustavolage@gmail.com, gid://shopify/Customer/9799711555803).
+- **Bloqueio:** a conexão do Claude com a Shopify não tem a permissão `write_store_credit_account_transactions` (nem a de leitura de crédito). Não consigo lançar crédito pela API daqui.
+
+## Caminho escolhido: Shopify Flow faz o crédito, Claude escolhe os 100 pedidos
+1. Em 12/11 de manhã, o Claude lista os pedidos de 11/11 (00h a 23h59, Brasília), pagos, não cancelados, em ordem de criação, e marca os 100 primeiros com a tag `cashback-1111` (com o ok do Pedro). Planilha salva aqui.
+2. Um fluxo do Shopify Flow (criado pelo Pedro no admin, o Flow é grátis no plano Grow):
+   - **Gatilho:** Order tags added.
+   - **Condição:** a tag adicionada é `cashback-1111`.
+   - **Ação:** Send Admin API request → `storeCreditAccountCredit`, com:
+     ```
+     {
+       "id": "{{ order.customer.id }}",
+       "creditInput": {
+         "creditAmount": { "amount": "{{ order.currentTotalPriceSet.shopMoney.amount | times: 0.15 | round: 2 }}", "currencyCode": "BRL" },
+         "expiresAt": "2026-12-01T02:59:59Z",
+         "notify": true
+       }
+     }
+     ```
+     (02:59:59Z = 30/11 23h59 em Brasília.)
+3. Teste antes de 05/11: mesmo fluxo com a tag `cashback-teste` e valor fixo de R$ 1,00, aplicada num pedido antigo da conta interna; conferir que o saldo aparece na conta e no checkout com login; depois remover.
+
+Alternativa sem Flow: lançar os 100 créditos à mão no admin (Clientes → cliente → Crédito na loja → Emitir crédito), com a planilha que o Claude gera. Leva ~1h.
