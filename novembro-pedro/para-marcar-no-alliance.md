@@ -16,7 +16,7 @@ Ao marcar, mova a linha para "Já marcadas".
 
 | Tarefa | Link | Falta |
 |---|---|---|
-| BLACK FRIDAY · 11/11 — Criar a landing page de captação para o grupo | https://alliance-os-sooty.vercel.app/?task=mcp-1793231113158-4-83595#tasks | Link do grupo já nos botões (29/10). Falta: Pedro testar no celular; publicar o tema; enviar ao Otávio. Alliance trava até a tarefa da Sarah ser concluída. Link da LP: https://vermefree.com.br/pages/grupo-vip |
+| BLACK FRIDAY · 11/11 — Criar a landing page de captação para o grupo | https://alliance-os-sooty.vercel.app/?task=mcp-1793231113158-4-83595#tasks | Link do grupo já nos botões (29/10). Falta: Pedro testar no celular; publicar o tema; enviar ao Otávio. Alliance trava até a tarefa da Sarah ser concluída. Link da LP: https://vip.vermefree.com.br |
 
 ## Já marcadas
 
