@@ -31,11 +31,14 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 | ⬜ | 30/10/2026 18h00 | GROWTH · SITE E SEO — Criar a LP comparativa VermeFree x remédios | `mcp-1792086910707-11-e980c` |  |
 | ⬜ | 30/10/2026 18h00 | GROWTH · SITE, SEO E CRO | `mcp-1792086890297-1-520da` |  |
 | ⬜ | 02/11/2026 18h00 | PESQUISA DE INDICAÇÃO — Outubro / VERMEFREE | `mcp-1791310863649-b305122a` |  |
-| ⬜ | 03/11/2026 18h00 | BLACK FRIDAY — Editar os 20 primeiros vídeos universais | `mcp-1793230900242-5-6b53a` |  |
+| ⏸️ | 03/11/2026 18h00 | BLACK FRIDAY — Editar os 20 primeiros vídeos universais | `mcp-1793230900242-5-6b53a` | 30/10: saiu da lista do Pedro (vídeos agora por campanha). |
+| 🟡 | 04/11/2026 18h00 | BLACK FRIDAY · 11/11 — Editar os 5 vídeos de conscientização | `mcp-1793292842825-9-1c1d8` | NOVA (30/10). 3 de 5 editados em 30/10 (vf-ugc-captacao-1111-01/02/03). Faltam 2 brutos. |
+| ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Editar os 10 vídeos de venda | `mcp-1793231493731-4-710be` | Era 5; agora 10 (30/10). Com a oferta na tela. Depende do bruto. |
+| ⬜ | 09/11/2026 12h00 | BLACK FRIDAY · VERME NOVEMBER — Editar os 15 vídeos de venda | `mcp-1793292921329-3-3ca74` | NOVA (30/10). Sem %, data ou nome de campanha. Depende do bruto. |
 | ✅ | 04/11/2026 18h00 | BLACK FRIDAY — Criar os 30 estáticos universais de venda | `mcp-1793230900242-7-a241c` | **29/10: CONCLUÍDA (aprovada pelo Pedro).** 60 PNGs em criativos/universais/png (zip enviado ao Pedro). Copy no Drive: https://docs.google.com/document/d/1kb6ioKK2LYx-v9eHSOCJLWyBJMg-aIzXjVgdFmSGklk/edit. **Marcar no Alliance.** |
 | 🟡 | 05/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar o cashback na Shopify | `mcp-1793231782749-4-43158` | 30/10: plano em shopify/cashback/plano-cashback-1111.md (15% do total pago; Flow por tag cashback-1111). API sem permissão de crédito: aguardando Pedro escolher Flow ou manual. |
-| ⬜ | 05/11/2026 18h00 | BLACK FRIDAY — Editar os 30 vídeos universais restantes | `mcp-1793230900242-6-3696d` |  |
-| ⬜ | 05/11/2026 18h00 | BLACK FRIDAY — Editar os 50 vídeos universais de venda | `mcp-1793230900242-4-b0846` | depende: BLACK FRIDAY — Gravar os 50 vídeos universais de venda (Maria Fernanda, Gabriel Ferreira, Vitor Gutierrez, a fazer) |
+| ⏸️ | 05/11/2026 18h00 | BLACK FRIDAY — Editar os 30 vídeos universais restantes | `mcp-1793230900242-6-3696d` | 30/10: saiu da lista do Pedro (vídeos agora por campanha). |
+| ⏸️ | 05/11/2026 18h00 | BLACK FRIDAY — Editar os 50 vídeos universais de venda | `mcp-1793230900242-4-b0846` | 30/10: saiu da lista do Pedro (vídeos agora por campanha). |
 | ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 · CRIATIVOS | `mcp-1793231493731-1-3660f` |  |
 | ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 5 criativos estáticos de venda | `mcp-1793231493731-5-330db` |  |
 | ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Editar os 5 vídeos de venda | `mcp-1793231493731-4-710be` | depende: BLACK FRIDAY · 11/11 — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
