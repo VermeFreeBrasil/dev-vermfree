@@ -32,7 +32,7 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 | ⬜ | 30/10/2026 18h00 | GROWTH · SITE, SEO E CRO | `mcp-1792086890297-1-520da` |  |
 | ⬜ | 02/11/2026 18h00 | PESQUISA DE INDICAÇÃO — Outubro / VERMEFREE | `mcp-1791310863649-b305122a` |  |
 | ⏸️ | 03/11/2026 18h00 | BLACK FRIDAY — Editar os 20 primeiros vídeos universais | `mcp-1793230900242-5-6b53a` | 30/10: saiu da lista do Pedro (vídeos agora por campanha). |
-| 🟡 | 04/11/2026 18h00 | BLACK FRIDAY · 11/11 — Editar os 5 vídeos de conscientização | `mcp-1793292842825-9-1c1d8` | NOVA (30/10). 3 de 5 editados em 30/10 (vf-ugc-captacao-1111-01/02/03). Faltam 2 brutos. |
+| 🟡 | 04/11/2026 18h00 | BLACK FRIDAY · 11/11 — Editar os 5 vídeos de conscientização | `mcp-1793292842825-9-1c1d8` | NOVA (30/10). 4 de 5 editados em 30/10 (vf-ugc-captacao-1111-01/02/03 + Criativo 12). Falta 1 bruto. Criativo 12 tem médica: confirmar com o Vitor. |
 | ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Editar os 10 vídeos de venda | `mcp-1793231493731-4-710be` | Era 5; agora 10 (30/10). Com a oferta na tela. Depende do bruto. |
 | ⬜ | 09/11/2026 12h00 | BLACK FRIDAY · VERME NOVEMBER — Editar os 15 vídeos de venda | `mcp-1793292921329-3-3ca74` | NOVA (30/10). Sem %, data ou nome de campanha. Depende do bruto. |
 | ✅ | 04/11/2026 18h00 | BLACK FRIDAY — Criar os 30 estáticos universais de venda | `mcp-1793230900242-7-a241c` | **29/10: CONCLUÍDA (aprovada pelo Pedro).** 60 PNGs em criativos/universais/png (zip enviado ao Pedro). Copy no Drive: https://docs.google.com/document/d/1kb6ioKK2LYx-v9eHSOCJLWyBJMg-aIzXjVgdFmSGklk/edit. **Marcar no Alliance.** |
