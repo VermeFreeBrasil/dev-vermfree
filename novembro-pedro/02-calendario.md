@@ -27,11 +27,11 @@ Horários são o prazo do Alliance OS. "Fazer" é a sugestão de quando trabalha
 - 10h10 Apresentar planejamento · 14h Revisão com a Vanessa
 
 ### SÁB 31/10
-- Conferir a **virada do site VF para a LP às 00h de 01/11** (agendada e testada) — M1
+- ~~Virada do site VF para a LP~~ (mudou em 30/10: captação roda em https://vip.vermefree.com.br; o site segue normal). Conferir se a LP vip está no ar e com o pop-up gravando leads — M1
 - 🔴 RV antecipação do Esquenta
 
 ### DOM 01/11
-- 🔴 **00h · site VF vira a LP de captação** (até 11/11 07h)
+- 🔴 **Captação VF começa** (tráfego para https://vip.vermefree.com.br; o site não vira LP)
 - 🔴 RV "é amanhã" do Esquenta · Nota fiscal aparece no sistema
 
 ---

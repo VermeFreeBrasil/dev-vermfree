@@ -10,6 +10,12 @@
 | P11 | Vitor | Margem: 20% + compre 4 leve 5 + kit kids no 11/11; 18% + compre 4 leve 5 na Friday (o próprio sistema apontou o risco) | Risco financeiro | Antes de 06/11 |
 | P12 | Pedro | Ações de Recompra (5 tarefas sem prazo nem descrição): viram indicador da reunião de KPI ou têm entrega? | Limpar a lista | Reunião de KPI de 05/11 |
 
+| P13 | Pedro | Chaves do ActiveCampaign (AC_API_URL e AC_API_KEY) na Vercel, para o pop-up do vip.vermefree.com.br gravar os leads (hoje só vão para o log) | A captação começa em 01/11 | **31/10** |
+| P14 | Pedro | Cashback 11/11: Flow por tag `cashback-1111` ou lançamento manual? | Tarefa vence 05/11 | 02/11 |
+| P15 | Pedro / Vitor | Prescritores no tema do 11/11 e médica no Criativo 12: a regra "sem médico como aval" vale para o site? | Pedro pediu os prescritores (vendem pela autoridade médica) | Antes de 06/11 |
+| P16 | Pedro | Compre 4 leve 5: a cada 5 sai 1 grátis (10 itens = 2 grátis) ou só 1 por pedido? | Define o desconto na Shopify e o seletor do tema | 06/11 |
+| P17 | Pedro | Trava do site no 11/11 entre 0h e 7h (só grupo VIP com link) | Define o tema e o desconto | 06/11 |
+
 ## Fora do escopo deste chat (regra do Pedro, 29/10: só promoções VF)
 
 | P4 | Vitor | Novas datas para as 10 subtarefas de Growth atrasadas (proposta em `01-plano-de-execucao.md` §4.9) | Elas estão poluindo o "atrasado" do Pedro | Daily de 30/10 ou Growth de 02/11 |
@@ -40,3 +46,7 @@
 | 29/10 | Link do grupo VIP VF: https://sndflw.com/i/vermefree11-11 | Sarah via Pedro |
 | 29/10 | `03-status.md` é o placar oficial; o que o Alliance não deixar concluir, o Pedro marca lá depois (`para-marcar-no-alliance.md`) | Pedro |
 | 29/10 | Estáticos aprovados: 10 de captação e 30 universais (metade estilo LP Grupo VIP, metade estilo LP social) | Pedro |
+| 30/10 | Captação do 11/11 em LP no subdomínio vip.vermefree.com.br (Vercel); o site não vira LP em 01/11; o tema do 11/11 é publicado no dia | Pedro |
+| 30/10 | Cashback 11/11 = 15% do total pago | Pedro |
+| 30/10 | Tema 11/11 = conceito "Eclipse 11.11"; seletor da home no formato do montador original; prescritores no tema | Pedro |
+| 30/10 | Vídeos por campanha (saem os 50 universais): conscientização 5, 11/11 venda 10, Verme November 15, Friday 10, Free Monday 5 | Vitor |
