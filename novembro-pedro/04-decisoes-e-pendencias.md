@@ -16,6 +16,9 @@
 | P16 | Pedro | Compre 4 leve 5: a cada 5 sai 1 grátis (10 itens = 2 grátis) ou só 1 por pedido? | Define o desconto na Shopify e o seletor do tema | 06/11 |
 | P17 | Pedro | Trava do site no 11/11 entre 0h e 7h (só grupo VIP com link) | Define o tema e o desconto | 06/11 |
 
+| P18 | Pedro / Vitor | Os 4 vídeos já editados (3 UGC de captação + Criativo 12) contam nos 15 de captação ou nos 5 de conscientização? | Define quantos ainda faltam | 03/11 |
+| P19 | Pedro | Os 30 estáticos universais têm o selo "VermeFree November"; a regra nova dos estáticos do mês é sem nome de campanha (rodam também no 11/11 e na Verme Week). Trocar o selo por "Black VermeFree · o maior desconto da história"? | O 1º lote (16) vence 04/11 | 03/11 |
+
 ## Fora do escopo deste chat (regra do Pedro, 29/10: só promoções VF)
 
 | P4 | Vitor | Novas datas para as 10 subtarefas de Growth atrasadas (proposta em `01-plano-de-execucao.md` §4.9) | Elas estão poluindo o "atrasado" do Pedro | Daily de 30/10 ou Growth de 02/11 |
@@ -50,3 +53,4 @@
 | 30/10 | Cashback 11/11 = 15% do total pago | Pedro |
 | 30/10 | Tema 11/11 = conceito "Eclipse 11.11"; seletor da home no formato do montador original; prescritores no tema | Pedro |
 | 30/10 | Vídeos por campanha (saem os 50 universais): conscientização 5, 11/11 venda 10, Verme November 15, Friday 10, Free Monday 5 | Vitor |
+| 31/10 | Produção VF do mês: captação 15 vídeos + 15 estáticos; mês 40 + 40 em 4 lotes; 11/11, Verme Friday e Free Monday 10 + 10 cada (total 85 + 85). Estratégia de captação da VF não muda | Vitor |
