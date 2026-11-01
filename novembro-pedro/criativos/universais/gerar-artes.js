@@ -1,4 +1,4 @@
-// 30 estáticos universais VermeFree November · estilos "lp" (claro/vermelho, Inter) e "soc" (floresta/lima, Caprasimo)
+// 30 estáticos universais do mês (Black VermeFree) · estilos "lp" (claro/vermelho, Inter) e "soc" (floresta/lima, Caprasimo)
 const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
@@ -60,9 +60,9 @@ const visual = p => {
 };
 
 const html = (p, W, H) => `<!doctype html><html><head><meta charset="utf-8"><style>${css(W, H)}</style></head>
-<body class="${p.st}">${p.st === 'lp' ? '<div class="top">VermeFree November · o maior desconto da história</div>' : ''}<div class="c">
+<body class="${p.st}">${p.st === 'lp' ? '<div class="top">Black VermeFree · o maior desconto da história</div>' : ''}<div class="c">
 <img class="logo" src="${img('logo-shopify-medium.png')}">
-${p.st === 'soc' ? '<p class="badge">VermeFree November · o maior desconto da história</p>' : ''}
+${p.st === 'soc' ? '<p class="badge">Black VermeFree · o maior desconto da história</p>' : ''}
 <h1 class="${p.q ? 'q' : ''}">${p.h}</h1><p class="s">${p.s}</p>
 ${p.pick ? `<div class="v" style="flex-direction:column"><div class="pick"><div>Adulto<small>a partir de 10 anos</small></div><div>Kids 2 a 4<small>dose para a idade</small></div><div>Kids 5 a 9<small>dose para a idade</small></div><div>Kit Família<small>2 adultos + 2 crianças</small></div></div><img class="p" style="flex:1;min-height:0" src="${img(P.kit)}"></div>` : `<div class="v">${visual(p)}</div>`}
 <div class="btn">${p.b}</div><p class="foot">Protocolo natural · 30 dias</p>
@@ -80,7 +80,7 @@ ${p.pick ? `<div class="v" style="flex-direction:column"><div class="pick"><div>
       await pg.goto('file://' + f);
       await pg.evaluate(() => document.fonts.ready);
       await pg.waitForTimeout(200);
-      await pg.screenshot({ path: path.join(OUT, `vf-november-universal-${String(p.n).padStart(2, '0')}-${tag}.png`) });
+      await pg.screenshot({ path: path.join(OUT, `vf-black-universal-${String(p.n).padStart(2, '0')}-${tag}.png`) });
     }
   }
   await b.close();
