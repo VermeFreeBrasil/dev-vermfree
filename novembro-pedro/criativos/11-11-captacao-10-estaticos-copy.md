@@ -30,3 +30,15 @@ Tarefa: `mcp-1793231113158-6-09be2` · destino: Otávio (tráfego de captação 
 ## A confirmar
 - Peça 6 diz "no ano passado quem esperou ficou sem": só uso se for verdade (houve ruptura em 2025?). Se não, troco por "Quem espera as 7h disputa o que sobrar."
 - Conferir com o Guia de Copy · Black Friday VermeFree 2026 (PDF anexado pelo Vitor na tarefa; não tenho acesso pelo Drive).
+
+## Peças 11 a 15 (01/11: a tarefa passou de 10 para 15 estáticos)
+
+| # | Ângulo | Título na arte | Apoio na arte | Botão | Visual |
+|---|---|---|---|---|---|
+| 11 | Data marcada | 11/11, meia-noite. Anota aí. | É quando o maior desconto da história da VermeFree abre, primeiro no Grupo VIP. | Entrar no Grupo VIP | Folha de calendário de novembro com o 11 em vermelho + "00h · abre no Grupo VIP" + pedestal |
+| 12 | Passo a passo | 3 passos para comprar antes de todo mundo no 11/11. | Leva 10 segundos e é gratuito. | Fazer o passo 1 | 1 Entre no Grupo VIP · 2 Receba o link à 00h · 3 Compre primeiro |
+| 13 | Linha completa | Adulto, Kids e Kit Família. Todos no maior desconto da história. | Abre primeiro no Grupo VIP, à 00h do dia 11/11. | Quero entrar no grupo | Os 4 protocolos lado a lado + "para adultos e crianças a partir de 2 anos" |
+| 14 | Mensagem da 00h | À 00h, essa mensagem chega só para quem está no grupo. | Quem não está descobre a oferta só às 7h. | Quero receber essa mensagem | Simulação de notificação do WhatsApp "Grupo VIP VermeFree · 00:00" |
+| 15 | Objeção (custo) | Entrar no grupo não custa nada. Ficar de fora pode custar caro. | O maior desconto da história da VermeFree abre à 00h do 11/11, primeiro no Grupo VIP. | Entrar de graça | Fundo verde-escuro, 3 selos: Gratuito · Só avisos · Sai quando quiser |
+
+Mesmas regras: sem %, sem valores, sem cupom, sem médico. Arquivos: 11-11-captacao/png/vf-1111-captacao-11..15-4x5.png e -9x16.png.

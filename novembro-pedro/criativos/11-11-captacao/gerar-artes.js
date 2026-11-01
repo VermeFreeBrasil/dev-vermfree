@@ -37,6 +37,21 @@ const pecas = [
         <div class="prod xs"><img src="${img('vf-hero-pedestal.png')}"></div>` },
   { n: 10, h: '<span class="giant">11.11</span>só 24 horas.', s: 'O maior desconto da história da VermeFree abre à 00h, primeiro no Grupo VIP.', b: 'Entrar agora',
     v: `<div class="prod"><img src="${img('vf-hero-pedestal.png')}"></div>` },
+  // 01/11: a contagem subiu de 10 para 15. Peças 11–15, ângulos novos.
+  { n: 11, h: '11/11, meia-noite. <em>Anota aí.</em>', s: 'É quando o maior desconto da história da VermeFree abre, primeiro no Grupo VIP.', b: 'Entrar no Grupo VIP',
+    v: `<div class="cal"><div class="cal-h">Novembro</div><div class="cal-g">${Array.from({ length: 14 }, (_, i) => `<span class="${i + 1 === 11 ? 'on' : ''}">${i + 1}</span>`).join('')}</div><p class="cal-n">00h · abre no Grupo VIP</p></div>
+        <div class="prod xs"><img src="${img('vf-hero-pedestal.png')}"></div>` },
+  { n: 12, h: '3 passos para comprar <em>antes de todo mundo</em> no 11/11.', s: 'Leva 10 segundos e é gratuito.', b: 'Fazer o passo 1',
+    v: `<div class="steps"><div><b>1</b><p>Entre no Grupo VIP<small>gratuito, pelo botão abaixo</small></p></div><div><b>2</b><p>Receba o link à 00h<small>no dia 11/11, antes de todo mundo</small></p></div><div class="r"><b>3</b><p>Compre primeiro<small>no maior desconto da história da VermeFree</small></p></div></div>` },
+  { n: 13, h: 'Adulto, Kids e Kit Família. <em>Todos no maior desconto da história.</em>', s: 'Abre primeiro no Grupo VIP, à 00h do dia 11/11.', b: 'Quero entrar no grupo',
+    v: `<div class="linha"><img src="${img('vf-pv2-adulto.png')}"><img src="${img('vf-pv2-kids-2a4.png')}"><img src="${img('vf-pv2-kids-5a9.png')}"><img class="fam" src="${img('vf-pv2-kit-familia-v3.png')}"></div>
+        <p class="linha-l">Protocolos para adultos e crianças a partir de 2 anos</p>` },
+  { n: 14, h: 'À 00h, essa mensagem chega <em>só para quem está no grupo.</em>', s: 'Quem não está descobre a oferta só às 7h.', b: 'Quero receber essa mensagem',
+    v: `<div class="phone"><div class="notif"><div class="ic">${wa}</div><div class="tx"><p><b>Grupo VIP VermeFree</b><span>00:00</span></p><p>🔥 Chegou a hora! O maior desconto da história da VermeFree está liberado. Link só para o grupo 👇</p></div></div>
+        <div class="notif dim"><div class="ic">${wa}</div><div class="tx"><p><b>Grupo VIP VermeFree</b><span>00:01</span></p><p>Corre: os 100 primeiros pedidos ganham cashback.</p></div></div></div>` },
+  { n: 15, dark: true, h: 'Entrar no grupo não custa nada. <em>Ficar de fora pode custar caro.</em>', s: 'O maior desconto da história da VermeFree abre à 00h do 11/11, primeiro no Grupo VIP.', b: 'Entrar de graça',
+    v: `<div class="ok3"><div><b>✓</b>Gratuito</div><div><b>✓</b>Só avisos</div><div><b>✓</b>Sai quando quiser</div></div>
+        <div class="prod xs"><img src="${img('vf-hero-pedestal.png')}"></div>` },
 ];
 
 const css = (W, H) => `
@@ -106,6 +121,33 @@ body.dark h1 em{color:#ff5a5f}
 .ticket .tr{flex:1;background:#f5f2ea;color:var(--ink);display:flex;flex-direction:column;justify-content:center;gap:4px;padding:24px}
 .ticket .tr b{font-size:100px;line-height:1;font-weight:800;color:var(--red);letter-spacing:-.04em}
 .ticket .tr span{font-size:28px;font-weight:700}
+.cal{width:78%;margin-top:30px;background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 20px 40px #173e2d33}
+.cal-h{background:var(--ink);color:#fff;font-size:34px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:16px 0}
+.cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;padding:22px}
+.cal-g span{font-size:36px;font-weight:700;padding:10px 0;border-radius:14px;color:#8a948e}
+.cal-g span.on{background:var(--red);color:#fff;font-size:44px;font-weight:800;box-shadow:0 10px 22px #d7262f66;transform:scale(1.12)}
+.cal-n{font-size:30px;font-weight:800;color:var(--red);padding:0 0 22px}
+.steps{display:flex;flex-direction:column;gap:22px;width:100%;margin-top:34px;text-align:left}
+.steps div{display:flex;align-items:center;gap:28px;background:#fff;border-radius:26px;padding:26px 30px;box-shadow:0 12px 26px #173e2d22}
+.steps b{flex:0 0 96px;height:96px;border-radius:50%;background:var(--ink);color:#fff;font-size:56px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.steps .r b{background:var(--red)}
+.steps p{font-size:40px;font-weight:800;line-height:1.1}
+.steps small{display:block;font-size:27px;font-weight:500;opacity:.75;margin-top:6px}
+.linha{flex:1;min-height:0;width:100%;display:flex;align-items:flex-end;justify-content:center;margin-top:20px}
+.linha img{width:36%;max-height:118%;object-fit:contain;margin:0 -7%;filter:drop-shadow(0 20px 24px #173e2d40)}
+.linha img.fam{width:46%;margin-left:-4%}
+.linha-l{font-size:28px;font-weight:700;opacity:.8;margin-bottom:6px}
+.phone{width:86%;margin-top:34px;background:linear-gradient(160deg,#0f2a1f,#173e2d);border-radius:44px;padding:44px 30px;display:flex;flex-direction:column;gap:20px;box-shadow:0 26px 50px #0005}
+.notif{display:flex;gap:20px;align-items:flex-start;background:#fffffff2;border-radius:26px;padding:22px 24px;text-align:left}
+.notif.dim{opacity:.6;transform:scale(.96)}
+.notif .ic{flex:0 0 72px;height:72px;border-radius:18px;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center}
+.notif .ic svg{width:44px;height:44px}
+.notif .tx p{font-size:28px;line-height:1.3;color:#173e2d}
+.notif .tx p:first-child{display:flex;justify-content:space-between;margin-bottom:4px}
+.notif .tx span{font-size:24px;opacity:.6}
+.ok3{display:flex;gap:18px;width:100%;margin-top:34px}
+.ok3 div{flex:1;background:#ffffff14;border:2px solid #ffffff30;border-radius:24px;padding:26px 8px;font-size:32px;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:10px}
+.ok3 b{width:70px;height:70px;border-radius:50%;background:#2f9e44;color:#fff;font-size:40px;display:flex;align-items:center;justify-content:center}
 `;
 
 const html = (p, W, H) => `<!doctype html><html><head><meta charset="utf-8"><style>${css(W, H)}</style></head>
