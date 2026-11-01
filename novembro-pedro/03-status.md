@@ -17,8 +17,8 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 
 | Bloco | Vídeos | Estáticos | Já feito | Falta | Prazo (Alliance) |
 |---|---|---|---|---|---|
-| Captação 11/11 | 15 (+5 conscientização à parte) | 15 | 10 estáticos (29/10); 4 vídeos (3 UGC + Criativo 12, 30/10) | 5 estáticos; vídeos conforme a contagem (ver P18) | estáticos: urgente (era 29/10) · vídeos: 04/11 18h (bruto 03/11) |
-| Mês (Verme November + Verme Week) | 40 em 4 lotes: 16 · 8 · 8 · 8 | 40 em 4 lotes: 16 · 8 · 8 · 8 | 30 estáticos (29/10), mas com o selo "VermeFree November", que é nome de campanha: trocar o selo | 10 estáticos + 40 vídeos | lotes: 04/11 (est.) e 06/11 (víd.), 13/11, 19/11, 25/11 |
+| Captação 11/11 | 15 (+5 conscientização à parte) | 15 | **15 estáticos (10 em 29/10 + 5 em 01/11, aprovados)**; 4 vídeos (3 UGC + Criativo 12, 30/10) | vídeos conforme a contagem (ver P18) | estáticos: urgente (era 29/10) · vídeos: 04/11 18h (bruto 03/11) |
+| Mês (Verme November + Verme Week) | 40 em 4 lotes: 16 · 8 · 8 · 8 | 40 em 4 lotes: 16 · 8 · 8 · 8 | 30 estáticos com o selo "Black VermeFree" (regerados e aprovados em 01/11): lote 1 (16) e lote 2 (8) prontos, lote 3 com 6 de 8 | 10 estáticos + 40 vídeos | lotes: 04/11 (est.) e 06/11 (víd.), 13/11, 19/11, 25/11 |
 | Dia D 11/11 | 10 | 10 (era 5) | — | 10 + 10 | 06/11 12h |
 | Verme Friday | 10 | 10 | — | 10 + 10 | 19/11 12h |
 | Free Monday | 10 (era 5) | 10 | — | 10 + 10 | 25/11 12h |
