@@ -10,7 +10,7 @@
 | P11 | Vitor | Margem: 20% + compre 4 leve 5 + kit kids no 11/11; 18% + compre 4 leve 5 na Friday (o próprio sistema apontou o risco) | Risco financeiro | Antes de 06/11 |
 | P12 | Pedro | Ações de Recompra (5 tarefas sem prazo nem descrição): viram indicador da reunião de KPI ou têm entrega? | Limpar a lista | Reunião de KPI de 05/11 |
 
-| P13 | Pedro | Chaves do ActiveCampaign (AC_API_URL e AC_API_KEY) na Vercel, para o pop-up do vip.vermefree.com.br gravar os leads (hoje só vão para o log) | A captação começa em 01/11 | **31/10** |
+| P13 | Pedro | (ATRASADO, captação já começou) Chaves do ActiveCampaign (AC_API_URL e AC_API_KEY) na Vercel, para o pop-up do vip.vermefree.com.br gravar os leads (hoje só vão para o log) | A captação começa em 01/11 | **31/10** |
 | P14 | Pedro | Cashback 11/11: Flow por tag `cashback-1111` ou lançamento manual? | Tarefa vence 05/11 | 02/11 |
 | P15 | Pedro / Vitor | Prescritores no tema do 11/11 e médica no Criativo 12: a regra "sem médico como aval" vale para o site? | Pedro pediu os prescritores (vendem pela autoridade médica) | Antes de 06/11 |
 | P16 | Pedro | Compre 4 leve 5: a cada 5 sai 1 grátis (10 itens = 2 grátis) ou só 1 por pedido? | Define o desconto na Shopify e o seletor do tema | 06/11 |
@@ -18,6 +18,9 @@
 
 | P18 | Pedro / Vitor | Os 4 vídeos já editados (3 UGC de captação + Criativo 12) contam nos 15 de captação ou nos 5 de conscientização? | Define quantos ainda faltam | 03/11 |
 | P19 | Pedro | Os 30 estáticos universais têm o selo "VermeFree November"; a regra nova dos estáticos do mês é sem nome de campanha (rodam também no 11/11 e na Verme Week). Trocar o selo por "Black VermeFree · o maior desconto da história"? | O 1º lote (16) vence 04/11 | 03/11 |
+
+| P20 | Vitor (via Pedro) | **Site VF trancado a partir de 01/11 00h?** A ficha v2 diz que sim (só captação para o grupo VIP); em 30/10 registramos "site segue normal" com a LP no subdomínio, mas a ficha não mudou. Se trancar: redirecionar vermefree.com.br para vip.vermefree.com.br até 11/11 | Já é 01/11 | **URGENTE 01/11** |
+| P21 | Vitor | Barra "1ª compra? 5% OFF" no site ao vivo: a ficha proíbe cupom de 1ª compra em novembro | Contradiz a oferta | 01/11 |
 
 ## Fora do escopo deste chat (regra do Pedro, 29/10: só promoções VF)
 

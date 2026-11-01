@@ -31,7 +31,7 @@ Horários são o prazo do Alliance OS. "Fazer" é a sugestão de quando trabalha
 - 🔴 RV antecipação do Esquenta
 
 ### DOM 01/11
-- 🔴 **Captação VF começa** (tráfego para https://vip.vermefree.com.br; o site não vira LP)
+- 🔴 **Captação VF começa** (tráfego para https://vip.vermefree.com.br). A ficha diz site trancado desde 00h: aguardando o Vitor confirmar (P20)
 - 🔴 RV "é amanhã" do Esquenta · Nota fiscal aparece no sistema
 
 ---
