@@ -2,7 +2,7 @@
 
 Abrem e baixam de qualquer lugar. Mesmo nome de arquivo dos PNGs finais.
 
-## 11/11 · 10 estáticos de captação
+## 11/11 · 15 estáticos de captação (11 a 15 em 01/11)
 
 | Peça | Feed 4:5 | Story 9:16 |
 |---|---|---|
@@ -16,6 +16,11 @@ Abrem e baixam de qualquer lugar. Mesmo nome de arquivo dos PNGs finais.
 | 08 | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-08-4x5.png | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-08-9x16.png |
 | 09 | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-09-4x5.png | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-09-9x16.png |
 | 10 | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-10-4x5.png | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-10-9x16.png |
+| 11 | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-11-4x5.png | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-11-9x16.png |
+| 12 | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-12-4x5.png | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-12-9x16.png |
+| 13 | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-13-4x5.png | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-13-9x16.png |
+| 14 | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-14-4x5.png | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-14-9x16.png |
+| 15 | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-15-4x5.png | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-15-9x16.png |
 
 ## VermeFree November · 30 estáticos universais
 
