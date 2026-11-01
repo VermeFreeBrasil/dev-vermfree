@@ -20,3 +20,8 @@
 - Causa: o Lead só disparava no envio do pop-up, e quase ninguém envia.
 - Agora: clique em "Quero entrar no Grupo VIP" → `trackSingle` Lead só no pixel VermeFree 2239781696850189 (uma vez por visita) e abre o pop-up; envio do pop-up → `trackSingle` CompleteRegistration (mesmo pixel). O pixel 867430254699991 (100 Verme) só recebe PageView.
 - Deploy: dpl_9BK7qeZxL92z7cR8XQwvtXpx7Bsf (01/11). Testado localmente: Lead sai 1 vez no clique.
+
+## Leads no ActiveCampaign via n8n (01/11)
+- Lista no AC: "Grupo VIP 11/11 · VermeFree 2026" (id 15) + tag grupo-vip-1111 (id 60).
+- Sem AC_API_URL/AC_API_KEY na Vercel, `api/lead.js` manda cada cadastro para o fluxo do n8n "VF · Lead LP VIP 11/11 → ActiveCampaign" (https://n8n.vermefree.com.br/workflow/eafD9osIZ1zWlqcc, webhook /webhook/vf-vip-1111-lead, credencial "ActiveCampaign - VermeFree"), que cria/atualiza o contato, põe na lista 15 e na tag 60. Se o n8n falhar, o log da Vercel mostra LEAD_ERRO_N8N (retenção de só 1 hora no plano Hobby).
+- Deploy: dpl_7FYrmHCtzteG63BWT2N4GZrG4fRU. Leads recuperados à mão em 01/11: 3 (vindos do disparo dos grupos antigos das 10h). Cadastros de 30/10 até 01/11 ~11h40 se perderam (log expirado).

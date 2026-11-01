@@ -1,6 +1,7 @@
 // Recebe o formulário do pop-up (nome, e-mail, WhatsApp) e cria/atualiza o contato no ActiveCampaign
 // com a tag do Grupo VIP 11/11. Variáveis no projeto da Vercel:
 //   AC_API_URL (ex.: https://suaconta.api-us1.com), AC_API_KEY (secreta), AC_TAG_ID (60), AC_LIST_ID (opcional)
+// Sem AC_API_URL/AC_API_KEY, o lead vai para o fluxo do n8n "VF · Lead LP VIP 11/11 → ActiveCampaign" (N8N_LEAD_URL opcional).
 module.exports = async (req, res) => {
   if (req.method !== 'POST') { res.status(405).json({ ok: false }); return; }
   let b = req.body || {};
@@ -14,7 +15,21 @@ module.exports = async (req, res) => {
   }
   const URL = (process.env.AC_API_URL || '').replace(/\/$/, '');
   const KEY = process.env.AC_API_KEY;
-  if (!URL || !KEY) { console.error('LEAD_SEM_AC ' + JSON.stringify({ nome, email, fone, utm: b.utm || {}, em: new Date().toISOString() })); res.status(200).json({ ok: false, erro: 'config' }); return; }
+  const registro = JSON.stringify({ nome, email, fone, utm: b.utm || {}, em: new Date().toISOString() });
+  if (!URL || !KEY) {
+    // Sem chave do AC na Vercel: manda para o fluxo do n8n, que grava no ActiveCampaign (lista 15 + tag 60).
+    console.log('LEAD ' + registro);
+    try {
+      const r = await fetch(process.env.N8N_LEAD_URL || 'https://n8n.vermefree.com.br/webhook/vf-vip-1111-lead', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: registro });
+      if (!r.ok) throw new Error('n8n ' + r.status);
+      res.status(200).json({ ok: true, via: 'n8n' });
+    } catch (e) {
+      console.error('LEAD_ERRO_N8N ' + registro + ' ' + e.message);
+      res.status(200).json({ ok: false, erro: 'n8n' });
+    }
+    return;
+  }
   const h = { 'Api-Token': KEY, 'Content-Type': 'application/json' };
   const [primeiro, ...resto] = nome.split(/\s+/);
   try {
