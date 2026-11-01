@@ -278,7 +278,7 @@
         rail.scrollTo({ left: fim ? 0 : rail.scrollLeft + 182, behavior: 'smooth' });
       }, 2600);
     }
-    // Rastreio (vip.vermefree.com.br): Meta (2 pixels) PageView + Lead no envio; GA4 generate_lead; Google Ads conversão quando houver rótulo.
+    // Rastreio (vip.vermefree.com.br): Meta (2 pixels) PageView; Lead no clique do botão e CompleteRegistration no envio (só pixel VermeFree); GA4 generate_lead; Google Ads conversão quando houver rótulo.
     var META = ["2239781696850189","867430254699991"];
     var GA4 = "G-W0NZM1LHSN";
     var ADS = "AW-18193701893";
@@ -298,8 +298,11 @@
       if (d.length > 7) o = '(' + d.slice(0, 2) + ') ' + d.slice(2, d.length - 4) + '-' + d.slice(-4);
       tel.value = o;
     });
+    // Lead no clique do botão (pedido do Otávio, 01/11): só no pixel VermeFree, uma vez por visita, para a campanha otimizar para Lead.
+    var LEAD_PIXEL = '2239781696850189', leadFoi = false;
     var abre = function (e) {
       e.preventDefault();
+      if (!leadFoi) { leadFoi = true; try { if (window.fbq) window.fbq('trackSingle', LEAD_PIXEL, 'Lead', { content_name: 'Grupo VIP 11/11' }); } catch (x) {} }
       vm.hidden = false; err.hidden = true;
       setTimeout(function () { if (!form.contains(document.activeElement)) form.elements.nome.focus(); }, 50);
       try { if (window.gtag) window.gtag('event', 'vip_abriu_formulario'); } catch (x) {}
@@ -317,7 +320,7 @@
       err.hidden = true; go.disabled = true; go.textContent = 'Entrando...';
       var q = new URLSearchParams(location.search), utm = {};
       ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'].forEach(function (k) { if (q.get(k)) utm[k] = q.get(k); });
-      try { if (META.length && window.fbq) window.fbq('track', 'Lead', { content_name: 'Grupo VIP 11/11' }); } catch (x) {}
+      try { if (window.fbq) window.fbq('trackSingle', LEAD_PIXEL, 'CompleteRegistration', { content_name: 'Grupo VIP 11/11' }); } catch (x) {}
       try { if (window.gtag && GA4) window.gtag('event', 'generate_lead', { send_to: GA4, lead_source: 'grupo_vip_1111', transport_type: 'beacon' }); } catch (x) {}
       try { if (window.gtag && ADS && ADS_LABEL) window.gtag('event', 'conversion', { send_to: ADS + '/' + ADS_LABEL, transport_type: 'beacon' }); } catch (x) {}
       var envio = fetch('/api/lead', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' },

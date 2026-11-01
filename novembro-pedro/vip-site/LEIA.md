@@ -14,3 +14,9 @@
 - Variáveis na Vercel: AC_TAG_ID=60 (configurada); **AC_API_URL e AC_API_KEY: o Pedro adiciona** (Settings → Environment Variables, Production) e depois é preciso um novo deploy para valerem. AC_LIST_ID opcional.
 - Enquanto a chave não existir, cada cadastro fica registrado no log da Vercel com o prefixo LEAD_SEM_AC (Logs do projeto), para importar depois.
 - Deploy atual: dpl_C4t9i2aNLoCFMSe9j4oDh46XWmq7.
+
+## Lead no clique (01/11, pedido do Otávio)
+- Diagnóstico do Otávio: desde 30/10, milhares de PageView e só 1 Lead; a campanha [Leads] otimiza para Lead e ficou sem sinal (pausada).
+- Causa: o Lead só disparava no envio do pop-up, e quase ninguém envia.
+- Agora: clique em "Quero entrar no Grupo VIP" → `trackSingle` Lead só no pixel VermeFree 2239781696850189 (uma vez por visita) e abre o pop-up; envio do pop-up → `trackSingle` CompleteRegistration (mesmo pixel). O pixel 867430254699991 (100 Verme) só recebe PageView.
+- Deploy: dpl_9BK7qeZxL92z7cR8XQwvtXpx7Bsf (01/11). Testado localmente: Lead sai 1 vez no clique.
