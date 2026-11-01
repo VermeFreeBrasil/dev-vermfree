@@ -4,6 +4,8 @@ Abrem e baixam de qualquer lugar. Mesmo nome de arquivo dos PNGs finais.
 
 ## 11/11 · 15 estáticos de captação (11 a 15 em 01/11)
 
+Pasta do Drive (indicada pelo Pedro em 29/10): https://drive.google.com/drive/folders/1n0zRRrDGh4lmgOmqbTB4p0aCBOJt8LMB · copy das peças 11 a 15: https://docs.google.com/document/d/1tu27eWxD1ZC96jhUN6NNbX4bzyrxS_ITi8ankm0SoTs/edit
+
 | Peça | Feed 4:5 | Story 9:16 |
 |---|---|---|
 | 01 | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-01-4x5.png | https://cdn.shopify.com/s/files/1/0827/3267/9387/files/vf-1111-captacao-01-9x16.png |
