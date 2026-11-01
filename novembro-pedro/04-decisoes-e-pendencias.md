@@ -22,6 +22,8 @@
 | P20 | Vitor (via Pedro) | **Site VF trancado a partir de 01/11 00h?** A ficha v2 diz que sim (só captação para o grupo VIP); em 30/10 registramos "site segue normal" com a LP no subdomínio, mas a ficha não mudou. Se trancar: redirecionar vermefree.com.br para vip.vermefree.com.br até 11/11 | Já é 01/11 | **URGENTE 01/11** |
 | P21 | Vitor | Barra "1ª compra? 5% OFF" no site ao vivo: a ficha proíbe cupom de 1ª compra em novembro | Contradiz a oferta | 01/11 |
 
+| P22 | Pedro | Upload direto no Drive: falta (1) permissão para publicar o receptor Apps Script com a conta da VermeFree (código em ferramentas/drive/receptor-apps-script.gs, token já no código enviado ao Pedro) e (2) liberar script.google.com e script.googleusercontent.com na rede da sessão. Com a URL /exec, subo os 10 estáticos 11–15 na pasta 1n0zRRrDGh4lmgOmqbTB4p0aCBOJt8LMB | Hoje o Pedro sobe à mão | 02/11 |
+
 ## Fora do escopo deste chat (regra do Pedro, 29/10: só promoções VF)
 
 | P4 | Vitor | Novas datas para as 10 subtarefas de Growth atrasadas (proposta em `01-plano-de-execucao.md` §4.9) | Elas estão poluindo o "atrasado" do Pedro | Daily de 30/10 ou Growth de 02/11 |
