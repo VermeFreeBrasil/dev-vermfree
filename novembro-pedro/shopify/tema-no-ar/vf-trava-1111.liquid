@@ -1,0 +1,26 @@
+{%- comment -%}
+  vf-trava-1111 · Captação do 11/11 (pedido do Gabriel/Pedro em 02/11): o site fica fechado e todo acesso vai para
+  https://vip.vermefree.com.br (mantendo UTMs). Desliga sozinho: 11/11 00h para quem chega com ?acesso=vip (link do grupo)
+  e 11/11 07h para todos. Para a equipe ver o site: ?vf_trava=off (vale na sessão). Editor do tema não é bloqueado.
+{%- endcomment -%}
+{%- unless request.design_mode -%}
+<script>
+(function () {
+  try {
+    var q = new URLSearchParams(location.search), agora = Date.now();
+    var abreVip = new Date('2026-11-11T00:00:00-03:00').getTime(), abreTodos = new Date('2026-11-11T07:00:00-03:00').getTime();
+    if (agora >= abreTodos) return;
+    var ss = function (k, v) { try { if (v) sessionStorage.setItem(k, v); return sessionStorage.getItem(k); } catch (e) { return null; } };
+    if (q.get('vf_trava') === 'off') ss('vf_trava_off', '1');
+    if (ss('vf_trava_off') === '1') return;
+    if (q.get('acesso') === 'vip') { ss('vf_vip', '1'); document.cookie = 'vf_vip=1;path=/;max-age=86400'; }
+    var vip = ss('vf_vip') === '1' || document.cookie.indexOf('vf_vip=1') > -1;
+    if (agora >= abreVip && vip) return;
+    document.documentElement.style.visibility = 'hidden';
+    var manter = [];
+    q.forEach(function (v, k) { if (/^(utm_|fbclid|gclid|ttclid|sck|src)/.test(k)) manter.push(encodeURIComponent(k) + '=' + encodeURIComponent(v)); });
+    location.replace('https://vip.vermefree.com.br/' + (manter.length ? '?' + manter.join('&') : ''));
+  } catch (e) {}
+})();
+</script>
+{%- endunless -%}
