@@ -19,10 +19,14 @@
 | P18 | Pedro / Vitor | Os 4 vídeos já editados (3 UGC de captação + Criativo 12) contam nos 15 de captação ou nos 5 de conscientização? | Define quantos ainda faltam | 03/11 |
 | P19 | ~~Pedro~~ RESOLVIDO 01/11 (selo "Black VermeFree") | Os 30 estáticos universais têm o selo "VermeFree November"; a regra nova dos estáticos do mês é sem nome de campanha (rodam também no 11/11 e na Verme Week). Trocar o selo por "Black VermeFree · o maior desconto da história"? | O 1º lote (16) vence 04/11 | 03/11 |
 
-| P20 | Vitor (via Pedro) | **Site VF trancado a partir de 01/11 00h?** A ficha v2 diz que sim (só captação para o grupo VIP); em 30/10 registramos "site segue normal" com a LP no subdomínio, mas a ficha não mudou. Se trancar: redirecionar vermefree.com.br para vip.vermefree.com.br até 11/11 | Já é 01/11 | **URGENTE 01/11** |
+| P20 | RESOLVIDO 02/11 (Gabriel: fechar o site; trava no ar desde ~11h de 02/11) | **Site VF trancado a partir de 01/11 00h?** A ficha v2 diz que sim (só captação para o grupo VIP); em 30/10 registramos "site segue normal" com a LP no subdomínio, mas a ficha não mudou. Se trancar: redirecionar vermefree.com.br para vip.vermefree.com.br até 11/11 | Já é 01/11 | **URGENTE 01/11** |
 | P21 | Vitor | Barra "1ª compra? 5% OFF" no site ao vivo: a ficha proíbe cupom de 1ª compra em novembro | Contradiz a oferta | 01/11 |
 
 | P22 | Pedro | Upload direto no Drive: falta (1) permissão para publicar o receptor Apps Script com a conta da VermeFree (código em ferramentas/drive/receptor-apps-script.gs, token já no código enviado ao Pedro) e (2) liberar script.google.com e script.googleusercontent.com na rede da sessão. Com a URL /exec, subo os 10 estáticos 11–15 na pasta 1n0zRRrDGh4lmgOmqbTB4p0aCBOJt8LMB | Hoje o Pedro sobe à mão | 02/11 |
+
+| P23 | Pedro → Sarah | Link do disparo das 00h de 11/11 no grupo VIP precisa ter ?acesso=vip (ex.: https://vermefree.com.br/?acesso=vip ou /products/...?acesso=vip). Sem isso, o grupo cai na LP até 07h | Bônus do grupo (comprar antes) | Até 10/11 |
+| P24 | Claude | Se o tema Eclipse for publicado à 00h de 11/11, levar junto a trava (mesmo bloco) para valer 00h–07h | Senão o site abre para todos à 00h | Ao aprovar o Eclipse |
+| P25 | Otávio | Confirmar o Lead em Testar eventos depois da correção de 02/11 e reativar a campanha [Leads] | Campanha pausada | 02/11 |
 
 ## Fora do escopo deste chat (regra do Pedro, 29/10: só promoções VF)
 
@@ -59,6 +63,7 @@
 | 30/10 | Tema 11/11 = conceito "Eclipse 11.11"; seletor da home no formato do montador original; prescritores no tema | Pedro |
 | 30/10 | Vídeos por campanha (saem os 50 universais): conscientização 5, 11/11 venda 10, Verme November 15, Friday 10, Free Monday 5 | Vitor |
 | 31/10 | Produção VF do mês: captação 15 vídeos + 15 estáticos; mês 40 + 40 em 4 lotes; 11/11, Verme Friday e Free Monday 10 + 10 cada (total 85 + 85). Estratégia de captação da VF não muda | Vitor |
+| 02/11 | Site VF fechado: todo acesso vai para vip.vermefree.com.br até 11/11 (00h com ?acesso=vip, 07h para todos) | Gabriel / Pedro |
 | 01/11 | Lead do Meta no clique do botão da LP VIP (pixel VermeFree) | Otávio / Pedro |
 | 01/11 | Lista "Grupo VIP 11/11 · VermeFree 2026" no ActiveCampaign, alimentada pelo n8n | Pedro |
 | 01/11 | Selo dos universais: "Black VermeFree · o maior desconto da história" | Pedro |

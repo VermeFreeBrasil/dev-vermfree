@@ -46,6 +46,7 @@ Horários são o prazo do Alliance OS. "Fazer" é a sugestão de quando trabalha
 - 15h Tráfego · 15h30 Growth
 
 ### TER 03/11
+- ✅ 02/11 ~11h: site VF fechado (trava no tema publicado) → LP vip até 11/11 07h
 - ⬅️ bruto dos 15 vídeos de captação VF · subir o 1º lote de universais Black (Shopify/Drive) · testar o receptor do Drive
 - **18h** · VF editar os **20 primeiros vídeos universais** ➡️ Otávio
 - **18h** · RV 15 estáticos universais restantes (fecha os 30)
