@@ -2,6 +2,35 @@
 // com a tag do Grupo VIP 11/11. Variáveis no projeto da Vercel:
 //   AC_API_URL (ex.: https://suaconta.api-us1.com), AC_API_KEY (secreta), AC_TAG_ID (60), AC_LIST_ID (opcional)
 // Sem AC_API_URL/AC_API_KEY, o lead vai para o fluxo do n8n "VF · Lead LP VIP 11/11 → ActiveCampaign" (N8N_LEAD_URL opcional).
+const crypto = require('crypto');
+// API de Conversões do Meta (pixel VermeFree). Só liga com META_CAPI_TOKEN na Vercel; event_id igual ao do navegador.
+const PIXEL_ID = '2239781696850189';
+const sha = v => crypto.createHash('sha256').update(String(v).trim().toLowerCase()).digest('hex');
+const hs = v => (v ? [sha(v)] : undefined);
+async function enviarMeta(req, b, nome, email, fone) {
+  const token = process.env.META_CAPI_TOKEN;
+  if (!token || !b.eid_cr) return;
+  const [fn, ...resto] = nome.split(/\s+/);
+  const user_data = {
+    em: hs(email), ph: hs(fone), fn: hs(fn), ln: hs(resto.join(' ')), country: hs('br'), external_id: hs(email),
+    fbp: b.fbp || undefined, fbc: b.fbc || undefined,
+    client_ip_address: String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || undefined,
+    client_user_agent: req.headers['user-agent'] || undefined,
+  };
+  const base = { event_time: Math.floor(Date.now() / 1000), action_source: 'website', event_source_url: b.pagina, user_data,
+    custom_data: { content_name: 'Grupo VIP 11/11' } };
+  const payload = { data: [
+    { ...base, event_name: 'Lead', event_id: b.eid_lead },
+    { ...base, event_name: 'CompleteRegistration', event_id: b.eid_cr },
+  ] };
+  if (b.test_event_code) payload.test_event_code = String(b.test_event_code).slice(0, 40);
+  try {
+    const r = await fetch('https://graph.facebook.com/v21.0/' + PIXEL_ID + '/events?access_token=' + encodeURIComponent(token), {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    if (!r.ok) console.error('META_CAPI ' + r.status + ' ' + (await r.text()).slice(0, 300));
+  } catch (e) { console.error('META_CAPI_ERRO ' + e.message); }
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') { res.status(405).json({ ok: false }); return; }
   let b = req.body || {};
@@ -16,6 +45,7 @@ module.exports = async (req, res) => {
   const URL = (process.env.AC_API_URL || '').replace(/\/$/, '');
   const KEY = process.env.AC_API_KEY;
   const registro = JSON.stringify({ nome, email, fone, utm: b.utm || {}, em: new Date().toISOString() });
+  const meta = enviarMeta(req, b, nome, email, fone);
   if (!URL || !KEY) {
     // Sem chave do AC na Vercel: manda para o fluxo do n8n, que grava no ActiveCampaign (lista 15 + tag 60).
     console.log('LEAD ' + registro);
@@ -23,9 +53,11 @@ module.exports = async (req, res) => {
       const r = await fetch(process.env.N8N_LEAD_URL || 'https://n8n.vermefree.com.br/webhook/vf-vip-1111-lead', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: registro });
       if (!r.ok) throw new Error('n8n ' + r.status);
+      await meta;
       res.status(200).json({ ok: true, via: 'n8n' });
     } catch (e) {
       console.error('LEAD_ERRO_N8N ' + registro + ' ' + e.message);
+      await meta;
       res.status(200).json({ ok: false, erro: 'n8n' });
     }
     return;
@@ -43,7 +75,7 @@ module.exports = async (req, res) => {
       body: JSON.stringify({ contactTag: { contact: id, tag: process.env.AC_TAG_ID } }) }));
     if (process.env.AC_LIST_ID) extras.push(fetch(URL + '/api/3/contactLists', { method: 'POST', headers: h,
       body: JSON.stringify({ contactList: { list: process.env.AC_LIST_ID, contact: id, status: 1 } }) }));
-    await Promise.all(extras);
+    await Promise.all(extras.concat(meta));
     res.status(200).json({ ok: true });
   } catch (e) {
     console.error('LEAD_ERRO_AC ' + JSON.stringify({ nome, email, fone, utm: b.utm || {}, erro: e.message }));

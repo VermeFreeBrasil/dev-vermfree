@@ -40,3 +40,9 @@
 - O Meta ainda mostrava 0 Lead depois da chamada direta (PageView e ViewContent chegando; ~10 cadastros no AC no período). O único Lead do período (31/10) saiu por fbq('track','Lead').
 - Agora o Lead e o CompleteRegistration saem por fbq('track', ev, {...}, {eventID}) + a chamada direta com o mesmo eid (o Meta deduplica). Efeito colateral aceito: o evento pode cair também no pixel 100 Verme (só público).
 - Deploy dpl_A7mWt6bUw8yhPGZQE1v99pvSU1MJ. Conferir no Meta (stats do dataset 2239781696850189) na hora seguinte.
+
+## Rastreio completo: navegador + servidor (02/11 ~14h30)
+- Baseado no plano trazido pelo Pedro (de outra conversa). Página: cookie _fbc a partir do fbclid; EID_LEAD/EID_CR gerados no carregamento; px(ev, eid) por fbq('track') + chamada direta, com fbp/fbc; LEAD_NO = 'clique' (padrão atual, pedido do Otávio) ou 'envio' (uma linha). O formulário manda fbp, fbc, eid_lead, eid_cr e test_event_code ao /api/lead.
+- /api/lead: enviarMeta() manda Lead + CompleteRegistration à API de Conversões (graph v21.0, pixel 2239781696850189) com em/ph/fn/ln/país/external_id criptografados, IP, navegador, fbp, fbc e o mesmo event_id. Só liga com META_CAPI_TOKEN na Vercel (variável secreta). Erros no log como META_CAPI.
+- Correção da premissa do plano: o volume real é ~15–20 cadastros/dia (lista do AC com ~40 desde 31/10), não 300.
+- Deploy dpl_BfYmx9crRkErzVVE9DRf8W4ufPGb. Testado localmente: eventos no clique/envio com fbc; payload da API de Conversões montado certo com token simulado.

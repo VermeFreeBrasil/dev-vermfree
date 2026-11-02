@@ -320,30 +320,36 @@
       if (d.length > 7) o = '(' + d.slice(0, 2) + ') ' + d.slice(2, d.length - 4) + '-' + d.slice(-4);
       tel.value = o;
     });
-    // Lead no clique do botão (pedido do Otávio, 01/11): só no pixel VermeFree, uma vez por visita, para a campanha otimizar para Lead.
-    var LEAD_PIXEL = '2239781696850189', leadFoi = false;
-    // 02/11: trackSingle e a chamada direta não chegaram ao Meta; vai por fbq('track') + chamada direta, mesmo eventID.
-    var px = function (ev) {
-      var eid = ev + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
-      // Caminho que comprovadamente chega ao Meta nesta página (o mesmo do ViewContent da Utmify), com eventID para deduplicar.
+    // Rastreio Meta (02/11): Lead e CompleteRegistration pelo navegador e pelo servidor (/api/lead, API de Conversões),
+    // com o mesmo eventID para o Meta deduplicar. LEAD_NO: 'clique' (pedido do Otávio, 01/11) ou 'envio'.
+    var LEAD_PIXEL = '2239781696850189', LEAD_NO = 'clique', leadFoi = false;
+    var getCookie = function (n) { var m = document.cookie.match('(^|;)\\s*' + n + '=([^;]*)'); return m ? decodeURIComponent(m[2]) : ''; };
+    var FBC = (function () {
+      var fbc = getCookie('_fbc'); if (fbc) return fbc;
+      var id = new URLSearchParams(location.search).get('fbclid'); if (!id) return '';
+      fbc = 'fb.1.' + Date.now() + '.' + id;
+      try { document.cookie = '_fbc=' + fbc + '; path=/; max-age=7776000; domain=.vermefree.com.br; SameSite=Lax'; } catch (x) {}
+      return fbc;
+    })();
+    var sufixo = Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+    var EID_LEAD = 'Lead-' + sufixo, EID_CR = 'CR-' + sufixo;
+    var px = function (ev, eid) {
       try { if (window.fbq) window.fbq('track', ev, { content_name: 'Grupo VIP 11/11' }, { eventID: eid }); } catch (x) {}
       try {
         var q = new URLSearchParams(location.search);
-        var ck = function (k) { var m = document.cookie.match('(?:^|; )' + k + '=([^;]*)'); return m ? m[1] : ''; };
         var u = 'https://www.facebook.com/tr?id=' + LEAD_PIXEL + '&ev=' + ev + '&noscript=1&ts=' + Date.now() +
-          '&eid=' + eid +
+          '&eid=' + encodeURIComponent(eid) +
           '&dl=' + encodeURIComponent(location.href) + '&rl=' + encodeURIComponent(document.referrer) +
           '&cd[content_name]=' + encodeURIComponent('Grupo VIP 11/11');
-        if (ck('_fbp')) u += '&fbp=' + ck('_fbp');
-        if (ck('_fbc')) u += '&fbc=' + ck('_fbc');
-        else if (q.get('fbclid')) u += '&fbc=' + encodeURIComponent('fb.1.' + Date.now() + '.' + q.get('fbclid'));
+        if (getCookie('_fbp')) u += '&fbp=' + encodeURIComponent(getCookie('_fbp'));
+        if (FBC) u += '&fbc=' + encodeURIComponent(FBC);
         if (q.get('test_event_code')) u += '&test_event_code=' + encodeURIComponent(q.get('test_event_code'));
         new Image().src = u;
       } catch (x) {}
     };
     var abre = function (e) {
       e.preventDefault();
-      if (!leadFoi) { leadFoi = true; px('Lead'); }
+      if (LEAD_NO === 'clique' && !leadFoi) { leadFoi = true; px('Lead', EID_LEAD); }
       vm.hidden = false; err.hidden = true;
       setTimeout(function () { if (!form.contains(document.activeElement)) form.elements.nome.focus(); }, 50);
       try { if (window.gtag) window.gtag('event', 'vip_abriu_formulario'); } catch (x) {}
@@ -361,11 +367,13 @@
       err.hidden = true; go.disabled = true; go.textContent = 'Entrando...';
       var q = new URLSearchParams(location.search), utm = {};
       ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'].forEach(function (k) { if (q.get(k)) utm[k] = q.get(k); });
-      px('CompleteRegistration');
+      if (LEAD_NO === 'envio') px('Lead', EID_LEAD);
+      px('CompleteRegistration', EID_CR);
       try { if (window.gtag && GA4) window.gtag('event', 'generate_lead', { send_to: GA4, lead_source: 'grupo_vip_1111', transport_type: 'beacon' }); } catch (x) {}
       try { if (window.gtag && ADS && ADS_LABEL) window.gtag('event', 'conversion', { send_to: ADS + '/' + ADS_LABEL, transport_type: 'beacon' }); } catch (x) {}
       var envio = fetch('/api/lead', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome: nome, email: email, whatsapp: fone, utm: utm, pagina: location.href }) }).catch(function () {});
+        body: JSON.stringify({ nome: nome, email: email, whatsapp: fone, utm: utm, pagina: location.href,
+          fbp: getCookie('_fbp'), fbc: FBC, eid_lead: EID_LEAD, eid_cr: EID_CR, test_event_code: q.get('test_event_code') || undefined }) }).catch(function () {});
       var tempo = new Promise(function (r) { setTimeout(r, 2500); });
       Promise.race([envio, tempo]).then(function () { location.href = GRUPO; });
     });
