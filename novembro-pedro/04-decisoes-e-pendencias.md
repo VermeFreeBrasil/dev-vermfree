@@ -10,7 +10,7 @@
 | P11 | Vitor | Margem: 20% + compre 4 leve 5 + kit kids no 11/11; 18% + compre 4 leve 5 na Friday (o próprio sistema apontou o risco) | Risco financeiro | Antes de 06/11 |
 | P12 | Pedro | Ações de Recompra (5 tarefas sem prazo nem descrição): viram indicador da reunião de KPI ou têm entrega? | Limpar a lista | Reunião de KPI de 05/11 |
 
-| P13 | RESOLVIDO 01/11 por outro caminho (n8n → lista 15 do AC); falta 1 cadastro de teste do Pedro | Chaves do ActiveCampaign (AC_API_URL e AC_API_KEY) na Vercel, para o pop-up do vip.vermefree.com.br gravar os leads (hoje só vão para o log) | A captação começa em 01/11 | **31/10** |
+| P13 | RESOLVIDO 01/11 (n8n → lista 15 do AC); confirmado em 02/11 com 28 leads na lista | Chaves do ActiveCampaign (AC_API_URL e AC_API_KEY) na Vercel, para o pop-up do vip.vermefree.com.br gravar os leads (hoje só vão para o log) | A captação começa em 01/11 | **31/10** |
 | P14 | Pedro | Cashback 11/11: Flow por tag `cashback-1111` ou lançamento manual? | Tarefa vence 05/11 | 02/11 |
 | P15 | Pedro / Vitor | Prescritores no tema do 11/11 e médica no Criativo 12: a regra "sem médico como aval" vale para o site? | Pedro pediu os prescritores (vendem pela autoridade médica) | Antes de 06/11 |
 | P16 | Pedro | Compre 4 leve 5: a cada 5 sai 1 grátis (10 itens = 2 grátis) ou só 1 por pedido? | Define o desconto na Shopify e o seletor do tema | 06/11 |
