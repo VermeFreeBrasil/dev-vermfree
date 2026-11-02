@@ -9,7 +9,7 @@ const sha = v => crypto.createHash('sha256').update(String(v).trim().toLowerCase
 const hs = v => (v ? [sha(v)] : undefined);
 async function enviarMeta(req, b, nome, email, fone) {
   const token = process.env.META_CAPI_TOKEN;
-  if (!token || !b.eid_cr) return;
+  if (!token || !b.eid_cr) { console.log('META_SKIP ' + JSON.stringify({ token: !!token, eid_cr: b.eid_cr || null })); return; }
   const [fn, ...resto] = nome.split(/\s+/);
   const user_data = {
     em: hs(email), ph: hs(fone), fn: hs(fn), ln: hs(resto.join(' ')), country: hs('br'), external_id: hs(email),
@@ -27,7 +27,8 @@ async function enviarMeta(req, b, nome, email, fone) {
   try {
     const r = await fetch('https://graph.facebook.com/v21.0/' + PIXEL_ID + '/events?access_token=' + encodeURIComponent(token), {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-    if (!r.ok) console.error('META_CAPI ' + r.status + ' ' + (await r.text()).slice(0, 300));
+    const txt = (await r.text()).slice(0, 300);
+    if (r.ok) console.log('META_RESP ' + r.status + ' ' + txt); else console.error('META_CAPI ' + r.status + ' ' + txt);
   } catch (e) { console.error('META_CAPI_ERRO ' + e.message); }
 }
 
