@@ -28,7 +28,7 @@
 | P24 | Claude | Se o tema Eclipse for publicado à 00h de 11/11, levar junto a trava (mesmo bloco) para valer 00h–07h | Senão o site abre para todos à 00h | Ao aprovar o Eclipse |
 | P25 | Otávio | Confirmar o Lead em Testar eventos depois da correção de 02/11 e reativar a campanha [Leads] | Campanha pausada | 02/11 |
 
-| P26 | Otávio / Pedro | Gerar o token da API de Conversões (Gerenciador de Eventos → Pixel - VermeFree → Configurações → API de Conversões → Gerar token) e salvar na Vercel como META_CAPI_TOKEN (Sensitive) | Sem ele o Lead só vai pelo navegador, que não está chegando | 02/11 |
+| P26 | RESOLVIDO 02/11 14h10 (token na Vercel) | Gerar o token da API de Conversões (Gerenciador de Eventos → Pixel - VermeFree → Configurações → API de Conversões → Gerar token) e salvar na Vercel como META_CAPI_TOKEN (Sensitive) | Sem ele o Lead só vai pelo navegador, que não está chegando | 02/11 |
 | P27 | RESOLVIDO 02/11 (Otávio: no envio) | Lead no clique (hoje) ou no envio do formulário? Volume real ~15–20 cadastros/dia | Define o sinal da campanha | 02/11 |
 
 ## Fora do escopo deste chat (regra do Pedro, 29/10: só promoções VF)
