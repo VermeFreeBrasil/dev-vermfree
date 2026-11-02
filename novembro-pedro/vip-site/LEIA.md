@@ -35,3 +35,8 @@
 - Faixa "🔒 Site fechado · reabre 11/11 · Grupo VIP entra às 00h"; aviso para quem vem do site ("Você tentou entrar no site da VermeFree..."), detectado pelo referrer vermefree.com.br.
 - Título: "O site está fechado. A maior oferta da história da VermeFree só aparece primeiro para quem está no grupo." Bloco "O que a gente pode contar" com 3 pistas; botões "Quero saber primeiro"; pop-up "Para onde mandamos o link da meia-noite?"; fechamento "Às 7h, o site abre para todo mundo. Às 00h, para você."
 - Deploy dpl_7576KNHJvH4m8ZYLy7mUTkKKod19. Prints em vip-site/prints/lp-copy-02-11-*.
+
+## Lead, 3ª tentativa (02/11 ~14h)
+- O Meta ainda mostrava 0 Lead depois da chamada direta (PageView e ViewContent chegando; ~10 cadastros no AC no período). O único Lead do período (31/10) saiu por fbq('track','Lead').
+- Agora o Lead e o CompleteRegistration saem por fbq('track', ev, {...}, {eventID}) + a chamada direta com o mesmo eid (o Meta deduplica). Efeito colateral aceito: o evento pode cair também no pixel 100 Verme (só público).
+- Deploy dpl_A7mWt6bUw8yhPGZQE1v99pvSU1MJ. Conferir no Meta (stats do dataset 2239781696850189) na hora seguinte.

@@ -322,13 +322,16 @@
     });
     // Lead no clique do botão (pedido do Otávio, 01/11): só no pixel VermeFree, uma vez por visita, para a campanha otimizar para Lead.
     var LEAD_PIXEL = '2239781696850189', leadFoi = false;
-    // Envio direto ao pixel VermeFree (02/11): o trackSingle não chegava ao Meta (o fbq da página é compartilhado com a Utmify).
+    // 02/11: trackSingle e a chamada direta não chegaram ao Meta; vai por fbq('track') + chamada direta, mesmo eventID.
     var px = function (ev) {
+      var eid = ev + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+      // Caminho que comprovadamente chega ao Meta nesta página (o mesmo do ViewContent da Utmify), com eventID para deduplicar.
+      try { if (window.fbq) window.fbq('track', ev, { content_name: 'Grupo VIP 11/11' }, { eventID: eid }); } catch (x) {}
       try {
         var q = new URLSearchParams(location.search);
         var ck = function (k) { var m = document.cookie.match('(?:^|; )' + k + '=([^;]*)'); return m ? m[1] : ''; };
         var u = 'https://www.facebook.com/tr?id=' + LEAD_PIXEL + '&ev=' + ev + '&noscript=1&ts=' + Date.now() +
-          '&eid=' + ev + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8) +
+          '&eid=' + eid +
           '&dl=' + encodeURIComponent(location.href) + '&rl=' + encodeURIComponent(document.referrer) +
           '&cd[content_name]=' + encodeURIComponent('Grupo VIP 11/11');
         if (ck('_fbp')) u += '&fbp=' + ck('_fbp');
