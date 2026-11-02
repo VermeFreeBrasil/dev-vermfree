@@ -30,3 +30,8 @@
 - Diagnóstico pelo Meta (dataset 2239781696850189): 0 Lead desde o deploy de 01/11, com ~11 cadastros no mesmo período. PageView e ViewContent chegam (o ViewContent vem da Utmify). O único Lead do período (31/10) foi com fbq('track'); o fbq('trackSingle') não chegava, provavelmente porque o fbq da página é compartilhado com o pixel da Utmify.
 - Agora o Lead (clique) e o CompleteRegistration (envio) vão por chamada direta ao Meta (https://www.facebook.com/tr?id=2239781696850189&ev=...), só para o pixel VermeFree, com _fbp/_fbc, eid único e test_event_code quando vier na URL.
 - Deploy dpl_9LXFtX9AqyfWTyVjXPoHEokhgZ27. Testado localmente: 1 Lead no clique, 1 CompleteRegistration no envio.
+
+## Copy nova com o site fechado (02/11, aprovada pelo Pedro, título B)
+- Faixa "🔒 Site fechado · reabre 11/11 · Grupo VIP entra às 00h"; aviso para quem vem do site ("Você tentou entrar no site da VermeFree..."), detectado pelo referrer vermefree.com.br.
+- Título: "O site está fechado. A maior oferta da história da VermeFree só aparece primeiro para quem está no grupo." Bloco "O que a gente pode contar" com 3 pistas; botões "Quero saber primeiro"; pop-up "Para onde mandamos o link da meia-noite?"; fechamento "Às 7h, o site abre para todo mundo. Às 00h, para você."
+- Deploy dpl_7576KNHJvH4m8ZYLy7mUTkKKod19. Prints em vip-site/prints/lp-copy-02-11-*.
