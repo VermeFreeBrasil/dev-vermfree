@@ -321,8 +321,8 @@
       tel.value = o;
     });
     // Rastreio Meta (02/11): Lead e CompleteRegistration pelo navegador e pelo servidor (/api/lead, API de Conversões),
-    // com o mesmo eventID para o Meta deduplicar. LEAD_NO: 'clique' (pedido do Otávio, 01/11) ou 'envio'.
-    var LEAD_PIXEL = '2239781696850189', LEAD_NO = 'clique', leadFoi = false;
+    // com o mesmo eventID para o Meta deduplicar. LEAD_NO: 'envio' (decisão do Otávio, 02/11) ou 'clique'.
+    var LEAD_PIXEL = '2239781696850189', LEAD_NO = 'envio', leadFoi = false;
     var getCookie = function (n) { var m = document.cookie.match('(^|;)\\s*' + n + '=([^;]*)'); return m ? decodeURIComponent(m[2]) : ''; };
     var FBC = (function () {
       var fbc = getCookie('_fbc'); if (fbc) return fbc;
