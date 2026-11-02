@@ -25,3 +25,8 @@
 - Lista no AC: "Grupo VIP 11/11 · VermeFree 2026" (id 15) + tag grupo-vip-1111 (id 60).
 - Sem AC_API_URL/AC_API_KEY na Vercel, `api/lead.js` manda cada cadastro para o fluxo do n8n "VF · Lead LP VIP 11/11 → ActiveCampaign" (https://n8n.vermefree.com.br/workflow/eafD9osIZ1zWlqcc, webhook /webhook/vf-vip-1111-lead, credencial "ActiveCampaign - VermeFree"), que cria/atualiza o contato, põe na lista 15 e na tag 60. Se o n8n falhar, o log da Vercel mostra LEAD_ERRO_N8N (retenção de só 1 hora no plano Hobby).
 - Deploy: dpl_7FYrmHCtzteG63BWT2N4GZrG4fRU. Leads recuperados à mão em 01/11: 3 (vindos do disparo dos grupos antigos das 10h). Cadastros de 30/10 até 01/11 ~11h40 se perderam (log expirado).
+
+## Correção do Lead (02/11)
+- Diagnóstico pelo Meta (dataset 2239781696850189): 0 Lead desde o deploy de 01/11, com ~11 cadastros no mesmo período. PageView e ViewContent chegam (o ViewContent vem da Utmify). O único Lead do período (31/10) foi com fbq('track'); o fbq('trackSingle') não chegava, provavelmente porque o fbq da página é compartilhado com o pixel da Utmify.
+- Agora o Lead (clique) e o CompleteRegistration (envio) vão por chamada direta ao Meta (https://www.facebook.com/tr?id=2239781696850189&ev=...), só para o pixel VermeFree, com _fbp/_fbc, eid único e test_event_code quando vier na URL.
+- Deploy dpl_9LXFtX9AqyfWTyVjXPoHEokhgZ27. Testado localmente: 1 Lead no clique, 1 CompleteRegistration no envio.
