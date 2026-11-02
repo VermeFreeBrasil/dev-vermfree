@@ -23,7 +23,7 @@
 </head>
 <body>
 <div class="vv">
-  <p class="vv-top"><span></span>🔒 Site fechado · reabre 11/11 · Grupo VIP entra às 00h</p>
+  <p class="vv-top"><span></span>🔒 Site fechado · Grupo VIP entra 11/11 às 00h</p>
   <p class="vv-fechado" data-vv-fechado hidden><b>Você tentou entrar no site da VermeFree.</b> Ele está fechado para preparar o 11/11. Quando abrir, quem está no Grupo VIP entra <strong>7 horas antes</strong> de todo mundo.</p>
 
   <header class="vv-head"><img src="https://vermefree.com.br/cdn/shop/files/logo-shopify-medium.png?v=1779133306&amp;width=300" alt="VermeFree" width="300" height="96" class="vv-logo">
@@ -32,7 +32,7 @@
   <section class="vv-wrap vv-hero">
     <div class="vv-copy">
       <p class="vv-badge">🔥 11.11 · só 24 horas</p>
-      <h1>O site está fechado. <em>A maior oferta da história da VermeFree só aparece primeiro para quem está no grupo.</em></h1>
+      <h1>O site está fechado. <em>A maior oferta da história da VermeFree abre primeiro no grupo.</em></h1>
       <p class="vv-sub">Nem a nossa equipe pode falar o que é. À 00h do dia 11/11, o link chega só para o Grupo VIP. Para o resto do Brasil, a porta abre às 7h, <strong>quando o grupo já comprou.</strong></p>
 
       <div class="vv-timer" data-vv-timer aria-label="Contagem regressiva para o 11/11">
@@ -143,7 +143,7 @@
 
   .vv-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:18px 0 36px}
   .vv-badge{display:inline-block;border:1px solid #f6c9cb;background:#fdeceb;color:var(--red);font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:6px 12px;border-radius:40px;margin-bottom:16px}
-  .vv h1{font-size:clamp(34px,4.3vw,52px);line-height:1.08;font-weight:800;letter-spacing:-.035em}
+  .vv h1{font-size:clamp(34px,4.3vw,52px);line-height:1.08;font-weight:800;letter-spacing:-.035em;text-wrap:balance}
   .vv h1 em{font-style:normal;color:var(--red)}
   .vv-sub{font-size:16px;line-height:1.6;color:var(--muted);margin:18px 0 22px;max-width:470px}
   .vv-sub strong{color:var(--ink)}
@@ -196,7 +196,15 @@
   .vv-snd{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:#000a;display:grid;place-items:center;font-size:12px}
   .vv-final{font-size:clamp(20px,2.2vw,24px);font-weight:600;margin-top:28px;padding:0 20px}
   .vv-final em{font-style:normal;color:var(--red)}
-  .vv-fechado{background:#173e2d;color:#fff;font-size:14px;line-height:1.5;text-align:center;padding:12px 18px}
+  .vv-fechado{background:#173e2d;color:#fff;font-size:14px;line-height:1.5;text-align:center}
+  .vv .vv-top{padding:10px 14px}
+  .vv .vv-badge{margin-bottom:14px}
+  .vv .vv-sub{margin:16px 0 20px}
+  .vv .vv-timer__l{margin:6px 0 18px}
+  .vv .vv-checks{margin-top:12px}
+  .vv .vv-final{margin-top:28px}
+  .vv .vv-foot{margin-top:18px}
+  .vv .vv-fechado{padding:12px 18px}
   .vv-fechado strong{color:#ff8a80}
   .vv-pistas{list-style:none;counter-reset:p;margin:4px 0 0;padding:0;text-align:left;display:grid;gap:10px;max-width:420px}
   .vv-pistas li{counter-increment:p;position:relative;padding-left:34px;font-size:14.5px;line-height:1.45}
@@ -206,6 +214,10 @@
   .vv-foot{font-size:12px;color:var(--muted);margin-top:18px}
 
   @media(max-width:860px){
+    .vv .vv-top{font-size:11px;letter-spacing:.6px;gap:6px;padding:10px 10px;white-space:nowrap}
+    .vv .vv-fechado{font-size:13.5px;padding:12px 16px}
+    .vv .vv-badge{margin-bottom:10px}
+    .vv .vv-sub{margin:12px auto 16px}
     .vv-head{padding:14px 0 0}
     .vv-logo{width:104px}
     .vv-hero{display:flex;flex-direction:column;gap:22px;padding:14px 0 24px}
