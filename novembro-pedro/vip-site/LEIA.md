@@ -46,3 +46,8 @@
 - /api/lead: enviarMeta() manda Lead + CompleteRegistration à API de Conversões (graph v21.0, pixel 2239781696850189) com em/ph/fn/ln/país/external_id criptografados, IP, navegador, fbp, fbc e o mesmo event_id. Só liga com META_CAPI_TOKEN na Vercel (variável secreta). Erros no log como META_CAPI.
 - Correção da premissa do plano: o volume real é ~15–20 cadastros/dia (lista do AC com ~40 desde 31/10), não 300.
 - Deploy dpl_BfYmx9crRkErzVVE9DRf8W4ufPGb. Testado localmente: eventos no clique/envio com fbc; payload da API de Conversões montado certo com token simulado.
+
+## Página de obrigado depois do envio (02/11 ~16h45)
+- Pedido do Pedro/Otávio: depois do envio do formulário, a pessoa vai para https://vermefree.com.br/pages/obrigado?vf_trava=off (a trava do site libera com vf_trava=off). Essa página marca o lead e redireciona sozinha para o grupo (sndflw.com/i/vermefree11-11), conferido com navegador.
+- Mudou só a variável GRUPO no index.html. Lead e CompleteRegistration (navegador + API de Conversões) e o envio ao AC/n8n continuam no envio, antes do redirecionamento (espera até 2,5 s).
+- Deploy dpl_FdY1SjEoMgWHhiJk4vs89VAbTsSn (READY, no ar em vip.vermefree.com.br; conferido no HTML publicado).

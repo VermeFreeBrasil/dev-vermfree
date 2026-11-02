@@ -310,7 +310,8 @@
       META.forEach(function (id) { id = id.trim(); if (id) window.fbq('init', id); });
     }
     // Pop-up: o botão abre o formulário; ao enviar, dispara o Lead, manda ao ActiveCampaign (/api/lead) e leva ao grupo.
-    var GRUPO = 'https://sndflw.com/i/vermefree11-11';
+    // 02/11 (Otávio): depois do envio, vai para a página de obrigado da loja, que marca o lead e leva ao grupo.
+    var GRUPO = 'https://vermefree.com.br/pages/obrigado?vf_trava=off';
     var vm = document.querySelector('[data-vm]'), form = document.querySelector('[data-vm-form]');
     var err = document.querySelector('[data-vm-err]'), go = form.querySelector('.vm-go');
     var tel = form.elements.whatsapp;
