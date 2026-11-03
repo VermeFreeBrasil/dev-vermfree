@@ -13,7 +13,7 @@
 | P13 | RESOLVIDO 01/11 (n8n → lista 15 do AC); confirmado em 02/11 com 28 leads na lista | Chaves do ActiveCampaign (AC_API_URL e AC_API_KEY) na Vercel, para o pop-up do vip.vermefree.com.br gravar os leads (hoje só vão para o log) | A captação começa em 01/11 | **31/10** |
 | P14 | Pedro | Cashback 11/11: Flow por tag `cashback-1111` ou lançamento manual? | Tarefa vence 05/11 | 02/11 |
 | P15 | Pedro / Vitor | Prescritores no tema do 11/11 e médica no Criativo 12: a regra "sem médico como aval" vale para o site? | Pedro pediu os prescritores (vendem pela autoridade médica) | Antes de 06/11 |
-| P16 | Pedro | Compre 4 leve 5: a cada 5 sai 1 grátis (10 itens = 2 grátis) ou só 1 por pedido? | Define o desconto na Shopify e o seletor do tema | 06/11 |
+| P16 | RESOLVIDO 03/11 (a cada 5 itens) | Compre 4 leve 5: a cada 5 sai 1 grátis (10 itens = 2 grátis) ou só 1 por pedido? | Define o desconto na Shopify e o seletor do tema | 06/11 |
 | P17 | Pedro | Trava do site no 11/11 entre 0h e 7h (só grupo VIP com link) | Define o tema e o desconto | 06/11 |
 
 | P18 | Pedro / Vitor | Os 4 vídeos já editados (3 UGC de captação + Criativo 12) contam nos 15 de captação ou nos 5 de conscientização? | Define quantos ainda faltam | 03/11 |
