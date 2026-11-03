@@ -1,6 +1,6 @@
 # Lote 1 · Estáticos universais Black VermeFree (peças 01–16)
 
-Subido nos Arquivos da Shopify em 03/11. 32 PNGs (4:5 e 9:16). Zip: criativos/vf-black-universais-lote1-16.zip
+Subido nos Arquivos da Shopify e no Drive (Criativos/Universais Black: https://drive.google.com/drive/folders/1GiA-VHBNA-Dnm9aknrmVZwWEp7IQ0iIU) em 03/11. 32 PNGs (4:5 e 9:16). Zip: criativos/vf-black-universais-lote1-16.zip
 
 | Peça | 4:5 (feed) | 9:16 (stories/reels) |
 |---|---|---|
