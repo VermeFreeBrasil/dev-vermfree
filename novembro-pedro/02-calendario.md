@@ -183,6 +183,7 @@ Horários são o prazo do Alliance OS. "Fazer" é a sugestão de quando trabalha
 - 10h10 Apresentar o planejamento de dezembro
 
 ### TER 01/12
+- **00h** · VF: desfazer as regras de cupom de novembro: 29 cupons de influenciadora de volta a 5% e reativar os 12 pausados (lista em shopify/oferta-1111/cupons-novembro.md). Decidir com o Vitor se os automáticos de 2, 3+, 5+ e 8+ kits voltam
 - 00h regras normais de cupom voltam (conferir) · site de volta até 12h
 - **12h** · RV Derma Monday Site e Shopify (mãe)
 

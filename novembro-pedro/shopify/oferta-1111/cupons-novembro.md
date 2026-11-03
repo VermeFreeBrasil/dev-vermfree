@@ -36,3 +36,15 @@ JULIANA (43 usos), BRUNA (1), VICTORIA (228), FLANADONATO (13), LUDI (32), MAGNO
 | Frete grátis acima de R$ 399 | Ativo | Nenhum | Manter |
 
 Depois do 11/11, a escada da Verme November (12/11) e das outras campanhas entra pelas próprias tarefas (09/11, 17/11, 24/11, 27/11).
+
+---
+## APLICADO em 03/11 ~14h55 (ok do Pedro: "tudo como sugerido")
+- **D:** "15% OFF · 5+ Kits" (…1713689297115) e "20% OFF · 8+ Kits" (…1713689329883) terminam em 10/11 23h59:59 (endsAt 2026-11-11T02:59:59Z).
+- **A:** os 29 cupons de influenciadora/médico passaram de 5% para **2%**. Os produtos e as combinações continuam iguais.
+- **B + C:** pausados (expirados às 2026-11-03T17:54Z): 5OFF, FRETEGRATIS, ANOVASAUDE10, Presente15, LIVE8, ALUNO12, ALUNO10, QUIZ10, QUIZ12, QUIZ15, OBRIGADO10, VOLTA.
+- **Mantidos ativos:** AVALIEI10 e OLEO20 (pós-compra; a sugestão era manter) e Order Bump Óleo de Alho + Frete grátis ≥ R$ 399.
+
+## Para desfazer em 01/12 00h (está no calendário)
+1. A: voltar os 29 cupons para 5% (`discountCodeBasicUpdate` com percentage 0.05).
+2. B + C: reativar os 12 cupons (`discountCodeActivate`).
+3. Os automáticos de 2, 3+, 5+ e 8+ kits: decidir com o Vitor se voltam em 01/12 (eles acabaram em 10/11).
