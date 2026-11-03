@@ -1,83 +1,63 @@
-# Cashback 11/11: passo a passo no Shopify Flow
+# Cashback 11/11: Shopify Flow (VALIDADO em 03/11)
 
-Feito em 03/11 para o Pedro montar no admin. A tarefa vence em 05/11 às 18h. O plano completo está em `plano-cashback-1111.md`.
+Tarefa vence em 05/11 às 18h. O plano completo está em `plano-cashback-1111.md`.
 
-**Como funciona:** em 12/11, o Claude marca os 100 primeiros pedidos pagos do 11/11 com a tag `cashback-1111`. O Flow vê a tag e lança 15% do total pago como crédito na loja da cliente, com validade até 30/11 às 23h59.
+## Como funciona
 
-Você monta **dois fluxos**: o de **teste** (R$ 1,00) e o **real**. O teste vem primeiro.
+A Shopify não tem um gatilho nativo "Order tags added" (só existe em apps de terceiros). Por isso o fluxo usa o gatilho **Customer tags added**, e **o valor do crédito vai dentro da tag**, em centavos:
 
----
+- `cashback-1111-4560` → o Flow credita **R$ 45,60** na conta da cliente, com validade até 30/11 às 23h59.
+- Em 12/11, o Claude calcula 15% do total pago de cada um dos 100 primeiros pedidos e coloca a tag no cliente. Só faz isso com o ok do Pedro.
 
-## Parte 1 · Fluxo de TESTE (R$ 1,00)
+## Testes feitos em 03/11 (conta Lage Pedro)
 
-1. Admin da Shopify → **Apps** → **Shopify Flow**. Se o Flow não estiver instalado, instale: é grátis.
-2. **Criar fluxo** → **Selecionar um gatilho** → busque **"Order tags added"** (Tags do pedido adicionadas).
-3. Clique no **+** depois do gatilho → **Condição**:
-   - Clique em **Adicionar critério** → escolha **tags** (as tags que acabaram de ser adicionadas).
-   - Regra: **pelo menos um** item → **igual a** → `cashback-teste`.
-   - Clique em **Adicionar critério** de novo, ligado com **E** → **Order / Customer / id** → **não está vazio**. Isso pula pedidos sem cliente.
-4. No caminho **Então** (verdadeiro) → **+** → **Ação** → busque **"Send Admin API request"** (Enviar solicitação da API do Admin).
-   - **Mutation:** `storeCreditAccountCredit`
-   - **Mutation inputs:** apague o que vier no campo e cole isto:
+| Teste | Tag | Resultado |
+|---|---|---|
+| 1 · valor fixo | `cashback-teste` | ✅ R$ 1,00 creditado, validade 06/11 23h59 |
+| 2 · valor pela tag | `cashback-teste-150` | ✅ R$ 1,50 creditado (saldo total R$ 2,50) |
 
-```
-{
-  "id": "{{ order.customer.id }}",
-  "creditInput": {
-    "creditAmount": { "amount": "1.00", "currencyCode": "BRL" },
-    "expiresAt": "2026-11-07T02:59:59Z",
-    "notify": false
-  }
-}
-```
+As tags de teste já foram removidas. O saldo de teste expira sozinho em 06/11.
 
-5. No topo, dê o nome **"Cashback 11/11 · TESTE"** → **Ativar**.
-6. Se o Flow pedir permissão para a ação da API (ler/gravar crédito na loja), **aceite**.
-7. Me avise: "fluxo de teste ativo". Eu coloco a tag `cashback-teste` num pedido antigo da sua conta (Lage Pedro). **Isso precisa do seu ok na hora.**
-8. Para conferir: Admin → **Clientes** → Lage Pedro → bloco **Crédito na loja**. Tem que aparecer **R$ 1,00**, com validade até 06/11.
-9. Se der certo:
-   - Desative o fluxo de teste.
-   - Zere o saldo: no mesmo bloco, **Ajustar** → remova R$ 1,00. Ou espere vencer.
-   - Se der erro, abra o fluxo → aba **Execuções** → me mande um print da mensagem de erro.
+Atenção: se a condição ficar como "é igual a", nada é creditado, porque `cashback-teste-150` não é igual a `cashback-teste-`. O operador certo é **Começa com**.
 
 ---
 
-## Parte 2 · Fluxo REAL (15% do total pago)
+## Fluxo REAL: o que o Pedro monta
 
-Repita os passos 1 a 6 com estas diferenças:
-
-- **Condição:** a tag é `cashback-1111`.
-- **Mutation inputs:**
+1. No Flow, abra **Cashback 11/11 · TESTE** → **Mais ações** → **Duplicar**. Se não tiver essa opção, crie um fluxo novo igual: gatilho **Customer tags added** → **Condition** → ação **Send Admin API request** / `storeCreditAccountCredit`.
+2. **Nome:** `Cashback 11/11 · 15% (100 primeiros)`
+3. **Condição:** `tags_item` → **Começa com** → `cashback-1111-`
+4. **Entradas da mutação:** apague tudo e cole:
 
 ```
 {
-  "id": "{{ order.customer.id }}",
+  "id": "{{ customer.id }}",
   "creditInput": {
-    "creditAmount": { "amount": "{{ order.currentTotalPriceSet.shopMoney.amount | times: 0.15 | round: 2 }}", "currencyCode": "BRL" },
+    "creditAmount": { "amount": "{%- for t in tags -%}{%- if t contains 'cashback-1111-' -%}{{ t | remove: 'cashback-1111-' | divided_by: 100.0 }}{%- endif -%}{%- endfor -%}", "currencyCode": "BRL" },
     "expiresAt": "2026-12-01T02:59:59Z",
     "notify": true
   }
 }
 ```
 
-- **Nome:** "Cashback 11/11 · 15% (100 primeiros)".
-- **Ativar** e deixar ligado até 12/11.
+5. Clique em **Ativar** e deixe ligado até 12/11. Ninguém recebe nada antes, porque só o Claude coloca as tags `cashback-1111-...`.
+6. **Desative** o fluxo de TESTE. Pode apagar.
 
 Notas:
-- `02:59:59Z` corresponde a **30/11 às 23h59 em Brasília**. Às 00h de 01/12 o saldo expira.
-- `notify: true` faz a Shopify mandar um e-mail para a cliente avisando do crédito. A mensagem da Sarah no WhatsApp complementa.
-- Ninguém recebe crédito antes de 12/11, porque o fluxo só age quando a tag `cashback-1111` aparece, e só eu coloco essa tag, com o seu ok.
+- `2026-12-01T02:59:59Z` corresponde a 30/11 às 23h59 em Brasília.
+- `notify: true` faz a Shopify mandar um e-mail para a cliente avisando do crédito.
 
 ---
 
-## Parte 3 · Dia 12/11 (o que eu faço)
+## Dia 12/11 (Claude)
 
-1. Listo os pedidos de 11/11, das 00h às 23h59 de Brasília, que estejam pagos e não cancelados, em ordem de criação, e pego os 100 primeiros. A lista vai para `cashback-1111-lista.csv` (fora do repositório, porque tem dados de clientes).
-2. Mostro a você o total de crédito e os 3 primeiros e os 3 últimos pedidos da lista. **Só aplico as tags com o seu ok.**
-3. Aplico a tag `cashback-1111` nos 100 pedidos, e o Flow lança os créditos.
-4. Confiro uma amostra no admin e aviso a Sarah para disparar a mensagem.
+1. Listar os pedidos de 11/11, das 00h às 23h59 de Brasília, que estejam pagos e não cancelados, em ordem de criação, e pegar os 100 primeiros.
+2. Calcular 15% do total pago de cada um, em centavos com arredondamento normal. Se um cliente tiver 2 pedidos entre os 100, somar numa tag só. A lista fica fora do repositório, porque tem dados de clientes.
+3. Mostrar ao Pedro o total de crédito, a quantidade de clientes e uma amostra. **Só aplicar com o ok dele.**
+4. Aplicar a tag `cashback-1111-<centavos>` em cada cliente. Conferir as execuções no Flow e alguns saldos no admin.
+5. Avisar a Sarah para disparar a mensagem.
 
-**Plano B:** se o Flow falhar, você lança à mão em Clientes → Crédito na loja → Emitir crédito, usando a lista que eu entrego. Leva cerca de 1 hora.
+**Plano B:** se o Flow falhar, o Pedro lança à mão em Clientes → Crédito na loja, usando a lista. Leva cerca de 1 hora.
 
 ---
 
