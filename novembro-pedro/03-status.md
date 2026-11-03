@@ -19,7 +19,7 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 |---|---|---|---|---|---|
 | Captação 11/11 | 15 (+5 conscientização à parte) | 15 | **15 estáticos (10 em 29/10 + 5 em 01/11, aprovados)**; 4 vídeos (3 UGC + Criativo 12, 30/10) | vídeos conforme a contagem (ver P18) | estáticos: urgente (era 29/10) · vídeos: 04/11 18h (bruto 03/11) |
 | Mês (Verme November + Verme Week) | 40 em 4 lotes: 16 · 8 · 8 · 8 | 40 em 4 lotes: 16 · 8 · 8 · 8 | 30 estáticos com o selo "Black VermeFree" (regerados e aprovados em 01/11): lote 1 (16) e lote 2 (8) prontos; **lote 1 (01–16) subido na Shopify e no Drive em 03/11** (https://drive.google.com/drive/folders/1GiA-VHBNA-Dnm9aknrmVZwWEp7IQ0iIU) (links em criativos/universais/links-lote1.md), lote 3 com 6 de 8 | 10 estáticos + 40 vídeos | lotes: 04/11 (est.) e 06/11 (víd.), 13/11, 19/11, 25/11 |
-| Dia D 11/11 | 10 | 10 (era 5) | **4 estáticos Black de preço (03/11, aprovados, no Drive Universais Black)** | 10 + 10 | 06/11 12h |
+| Dia D 11/11 | 10 | 10 (era 5) | **10 estáticos de venda ✅ (03/11, aprovados, no Drive Universais Black)** | 10 + 10 | 06/11 12h |
 | Verme Friday | 10 | 10 | — | 10 + 10 | 19/11 12h |
 | Free Monday | 10 (era 5) | 10 | — | 10 + 10 | 25/11 12h |
 | **Total** | **85** | **85** | 4 vídeos + 40 estáticos (30 a ajustar) | ~81 vídeos + 45 estáticos | |
@@ -54,7 +54,7 @@ Saiu: "Verme November — editar os 15 vídeos de venda" (09/11) e "50 vídeos u
 | ⏸️ | 05/11/2026 18h00 | BLACK FRIDAY — Editar os 30 vídeos universais restantes | `mcp-1793230900242-6-3696d` | 30/10: saiu da lista do Pedro (vídeos agora por campanha). |
 | ⏸️ | 05/11/2026 18h00 | BLACK FRIDAY — Editar os 50 vídeos universais de venda | `mcp-1793230900242-4-b0846` | 30/10: saiu da lista do Pedro (vídeos agora por campanha). |
 | ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 · CRIATIVOS | `mcp-1793231493731-1-3660f` |  |
-| ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 5 criativos estáticos de venda | `mcp-1793231493731-5-330db` |  |
+| ✅ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 5 criativos estáticos de venda | `mcp-1793231493731-5-330db` | **03/11: CONCLUÍDA (aprovada pelo Pedro), 10 peças** (4 de preço + 6 de argumento), 4:5 e 9:16, visual Black. Drive: https://drive.google.com/drive/folders/1GiA-VHBNA-Dnm9aknrmVZwWEp7IQ0iIU. **Marcar no Alliance.** |
 | ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Editar os 5 vídeos de venda | `mcp-1793231493731-4-710be` | depende: BLACK FRIDAY · 11/11 — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
 | ⬜ | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar a entrega dos brindes | `mcp-1793231782749-3-e8512` |  |
 | ⬜ | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar oferta e frete na Shopify | `mcp-1793231782748-2-7813f` |  |
