@@ -496,7 +496,7 @@ html.ve-on body[class*="template-product"] #main h2::before{content:"";display:i
       <p class="desc">{{ desc }}</p>
       <div class="ve-pr">
         <div class="ve-moon mini"><div class="ve-sombra" data-ve-sombra></div></div>
-        <div><s>{{ v.price | money }}</s><strong>{{ v.price | times: 0.8 | money }}</strong><small>no 11/11 · <b data-ve-f>0%</b> do dia já passou</small></div>
+        <div><s>{{ v.price | money }}</s><strong>{{ v.price | times: 0.8 | money }}</strong><em style="display:block;font-style:normal;font-size:15px;color:#fff;margin:2px 0">ou <b style="color:#ff6b72">3x de {{ v.price | times: 0.8 | divided_by: 3 | round | money }}</b> sem juros</em><small>no 11/11 · <b data-ve-f>0%</b> do dia já passou</small></div>
       </div>
       <div class="ve-q" data-ve-q-box data-id="{{ v.id }}" data-preco="{{ v.price }}">
         <h3>Quantos você leva?</h3>
