@@ -26,6 +26,12 @@ Pasta de memória do mês. Quem for retomar o acompanhamento (eu, Claude, ou o p
 2. Durante o dia: executar uma tarefa por vez, passo a passo.
 3. Fim do dia: atualizar `03-status.md` e escrever `diario/<data>.md`.
 
+## Ferramentas prontas (para qualquer chat novo)
+- **Subir arquivos no Google Drive:** skill `subir-no-drive` (`.claude/skills/subir-no-drive/`). Precisa da variável `DRIVE_UPLOAD_TOKEN` no ambiente. Sobe PNG/MP4/ZIP direto na pasta e devolve o link.
+- **Subir imagens na Shopify (Arquivos/CDN):** stagedUploadsCreate (PUT) → curl PUT do arquivo → fileCreate → files(query:"filename:...") para pegar o link do CDN.
+- **LP vip (Vercel):** `novembro-pedro/vip-site/LEIA.md`.
+- **Editar vídeos do Drive:** skill `editar-videos-drive`.
+
 ## Quem é quem (o que importa para as tarefas do Pedro)
 
 | Pessoa | Papel no mês | Relação com o Pedro |
