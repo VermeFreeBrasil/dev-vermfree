@@ -22,6 +22,7 @@ Cada arquivo devolve `{"ok":true,"id":...,"url":...}`. Mande ao Pedro o link da 
 
 - Sem o token: o script avisa. Pedir ao Pedro para criar `DRIVE_UPLOAD_TOKEN` nas variáveis do ambiente e abrir um chat novo.
 - Bloqueio de rede (403): pedir para liberar os dois domínios acima.
+- **Acesso à pasta:** o receptor roda como operacional.vermfree@gmail.com, que NÃO é membro do Drive compartilhado. Só grava em pastas compartilhadas com essa conta (ou abertas por link, como Criativos/Imagens). Pasta nova: o Pedro compartilha com operacional.vermfree@gmail.com como Editor (ou adiciona a conta ao Drive compartilhado). Sem isso o erro é "No item with the given ID could be found".
 - O receptor **não cria pastas**. Sem a pasta certa, pedir ao Pedro para criar e mandar o link.
 - Limite prático: ~35 MB por arquivo (base64 + limite do Apps Script). Vídeo maior: comprimir antes.
 - Antes de subir, ter o ok do Pedro (regra: nada publicado sem o ok dele).
@@ -33,6 +34,7 @@ Cada arquivo devolve `{"ok":true,"id":...,"url":...}`. Mande ao Pedro o link da 
 | Criativos / Imagens (estáticos de captação 11/11) | 1n0zRRrDGh4lmgOmqbTB4p0aCBOJt8LMB |
 | Criativos / Videos | 17HxVB5GrP6E6Mr23LHgYTTHwZbcJYBZ5 |
 | Criativos / CAPTAÇÃO 11/11 (criada em 02/11) | 1a1iRdWCb7fhsYp5oKbIeNH4i2iMnLifW |
+| Criativos / Universais Black (criada em 03/11) | 1GiA-VHBNA-Dnm9aknrmVZwWEp7IQ0iIU |
 
 Outras pastas: conector do Drive, `search_files` com `parentId = '<ID>'`. Só pastas da VermeFree.
 
