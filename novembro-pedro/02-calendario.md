@@ -100,6 +100,7 @@ Horários são o prazo do Alliance OS. "Fazer" é a sugestão de quando trabalha
 ### QUI 12/11
 - 🔴 00h Verme November, Derma November e Recovery privado entram
 - 08h fechamento do Dia D · site VF de volta ao normal até 12h
+- **Até 18h** · VF **cashback 11/11**: Claude lista os 100 primeiros pedidos pagos, Pedro dá o ok, Claude aplica as tags `cashback-1111-<centavos>` (Flow lança o crédito) ➡️ Sarah dispara a mensagem
 - **12h** · RV 11/11 Site e Shopify (tarefa-mãe)
 - 10h35 KPI (resultado do 11/11)
 
