@@ -1,7 +1,7 @@
 # Sorteio 11.11 · 300 primeiros pedidos (preparado em 04/11)
 
 ## Regulamento
-- A página está criada como **rascunho** na Shopify: /pages/regulamento-sorteio-11-11 (gid://shopify/Page/167495794907). **Não publicada.**
+- A página está PUBLICADA em 04/11 (antes rascunho) na Shopify: /pages/regulamento-sorteio-11-11 (gid://shopify/Page/167495794907). **Não publicada.**
 - Prêmio usado no texto: Kit Família (o Pedro confirma). Resultado divulgado no grupo VIP e no Instagram (o Pedro confirma).
 - Publicar **antes de 11/11 00h** e colocar o link no tema Eclipse (faixa "Sorteio de um kit entre os 300 primeiros") e no rodapé, se o Pedro quiser.
 - ⚠️ Atenção legal: no Brasil, sorteio ligado a compra costuma exigir autorização da SPA/Ministério da Fazenda (Lei 5.768/71). O sorteio de agosto foi feito sem autorização. Decisão do Vitor ou do jurídico.
