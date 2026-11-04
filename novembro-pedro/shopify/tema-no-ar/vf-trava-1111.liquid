@@ -10,6 +10,7 @@
     var q = new URLSearchParams(location.search), agora = Date.now();
     var abreVip = new Date('2026-11-11T00:00:00-03:00').getTime(), abreTodos = new Date('2026-11-11T07:00:00-03:00').getTime();
     if (agora >= abreTodos) return;
+    if (/bot|crawl|spider|slurp|Google-InspectionTool|Lighthouse|facebookexternalhit/i.test(navigator.userAgent || '')) return; // 04/11: robôs de busca e testes do Google leem o site normal
     var ss = function (k, v) { try { if (v) sessionStorage.setItem(k, v); return sessionStorage.getItem(k); } catch (e) { return null; } };
     if (q.get('vf_trava') === 'off') ss('vf_trava_off', '1');
     if (ss('vf_trava_off') === '1') return;
