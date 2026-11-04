@@ -4,6 +4,18 @@ Tema: "🌑 Verme November (12–19/11) · EM EDIÇÃO" (gid://shopify/OnlineSto
 Preview: https://vermefree.com.br/?preview_theme_id=168590672091&vf_vn=on&vf_trava=off
 (`vf_vn=on` mostra a faixa e o banner da campanha antes de 12/11; `vf_trava=off` passa pela trava da captação.)
 
+## v4 (04/11): home igual à PDP + responsividade
+- Seletor da home: a escada do resumo virou a mesma barra de benefícios da PDP (10% → frete pelo valor → 12% → 15%), com a frase do que falta. Também ganhou a linha do tempo da entrega.
+- O CSS da barra e da entrega, e o cálculo das datas, ficam agora no snippet principal e valem para a home e a PDP.
+- Responsividade conferida em 320, 360, 390, 414, 768, 1024, 1280, 1440 e 1920 px:
+  - nenhum bloco da campanha passa da largura da tela;
+  - nenhum rótulo da barra se sobrepõe;
+  - sem erros de JS.
+- Corrigido:
+  - em 320 px, botão "Conhecer o protocolo" cortado e cartões de kit quebrando a linha;
+  - no desktop, espaço vazio acima do resumo.
+- Em 320 px, a página registra 355 px de largura, mas não rola para o lado. Isso vem de elementos do tema que já estão no ar hoje (vídeos, miniaturas e o botão do WhatsApp), não da campanha.
+
 ## v3 (04/11, pedido do Pedro): escolha de kit mais clara na PDP
 - A PDP saiu de vf-verme-november e foi para snippets/vf-verme-november-pdp.liquid, porque o arquivo passaria de 50 mil caracteres. O layout renderiza os dois.
 - Escolha de kit em cartões (1 / 3 mais escolhido / 5 melhor preço), cada um com o preço cheio, o total com desconto e o preço por unidade. Embaixo, um ajuste de quantidade de 1 a 10.

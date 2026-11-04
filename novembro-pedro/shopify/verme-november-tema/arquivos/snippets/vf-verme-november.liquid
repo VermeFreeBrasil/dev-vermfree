@@ -66,7 +66,14 @@ html.vn-on .vf-cur .is-on{background:#c0de96!important}
       document.querySelectorAll('[data-vn-dia]').forEach(function (el) { el.textContent = dia; });
       document.querySelectorAll('[data-vn-dias] i').forEach(function (el, i) { el.className = i + 1 < dia ? 'p' : i + 1 === dia ? 'h' : ''; });
   };
-  var mostra = function () { document.querySelectorAll('[data-vn]').forEach(function (el) { el.hidden = false; }); tick(); };
+  var eta = function () {
+      var M = 'jan fev mar abr mai jun jul ago set out nov dez'.split(' '), fd = function (d) { return d.getDate() + ' ' + M[d.getMonth()]; };
+      var add = function (d, k) { var x = new Date(d.getTime()); while (k > 0) { x.setDate(x.getDate() + 1); if (x.getDay() % 6) k--; } return x; };
+      var hoje = new Date(Date.now()); hoje.setHours(12, 0, 0, 0); var env = add(hoje, 2);
+      var t = ['Hoje, ' + fd(hoje), 'Até ' + fd(env), fd(add(env, 3)) + ' – ' + fd(add(env, 8))];
+      document.querySelectorAll('[data-eta]').forEach(function (el) { el.textContent = t[+el.dataset.eta]; });
+  };
+  var mostra = function () { document.querySelectorAll('[data-vn]').forEach(function (el) { el.hidden = false; }); tick(); eta(); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mostra); else mostra();
   setInterval(tick, 1000);
   })();
@@ -97,6 +104,28 @@ html.vn-on .vf-cur .is-on{background:#c0de96!important}
 .vn-dias i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:800;color:var(--mut);border:1.5px solid #ffffff22}
 .vn-dias i.p{background:#c0de9626;border-color:transparent;color:#c0de96aa;text-decoration:line-through}
 .vn-dias i.h{background:var(--lime);border-color:var(--lime);color:#0c2219;box-shadow:0 0 0 5px #c0de9633}
+.vn-pg{margin-top:20px;padding:18px 18px 14px;border-radius:18px;background:#ffffff07;border:1px solid #c0de961f}
+.vn-pg>p{margin:0 0 14px!important;font-size:14px;color:#dfe8e2;text-align:center}
+.vn-pg>p b{color:var(--lime)}
+.vn-tr{position:relative;margin:0 22px}
+.vn-tr .bg,.vn-tr .fl{position:absolute;left:0;top:15px;height:6px;border-radius:6px;background:#ffffff1a;width:100%}
+.vn-tr .fl{background:linear-gradient(90deg,#5ebc43,#c0de96);width:0;transition:width .4s}
+.vn-ms{position:relative;display:flex;justify-content:space-between;list-style:none;margin:0;padding:0}
+.vn-ms li{width:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.vn-ms li i{width:36px;height:36px;flex:0 0 36px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:15px;background:#123024;border:2px solid #ffffff2a;filter:grayscale(1);transition:all .3s}
+.vn-ms li b{margin-top:6px;font-size:12px;white-space:nowrap;color:var(--mut)}
+.vn-ms li small{font-size:11px;white-space:nowrap;color:#6f8a7c}
+.vn-ms li.on i{background:var(--lime);border-color:var(--lime);filter:none;box-shadow:0 0 18px #c0de9688}
+.vn-ms li.on b{color:#fff}
+.vn-eta{position:relative;display:flex;justify-content:space-between;margin-top:20px;padding:16px 0 4px;border-top:1px solid #ffffff14}
+.vn-eta:before{content:'';position:absolute;left:16.6%;right:16.6%;top:36px;height:2px;background:linear-gradient(90deg,#c0de96,#c0de9640)}
+.vn-eta div{position:relative;width:33.3%;display:flex;flex-direction:column;align-items:center;text-align:center}
+.vn-eta span{width:40px;height:40px;border-radius:50%;background:#123024;border:2px solid var(--lime);display:grid;place-items:center;box-shadow:0 0 0 5px #07140e}
+.vn-eta svg{width:19px;height:19px;fill:none;stroke:#c0de96;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.vn-eta b{margin-top:8px;font-size:13.5px;color:#fff}
+.vn-eta small{font-size:12px;color:var(--mut)}
+@media(max-width:860px){.vn-tr,.vn-mt-sum .vn-tr{margin:0 18px}.vn-ms li b{font-size:11px}.vn-ms li small{font-size:10px}.vn-eta b{font-size:12.5px}.vn-eta small{font-size:11px}}
+@media(max-width:400px){.vn-x .vn-ms li small{display:none}.vn-x .vn-ms li b{font-size:10.5px}.vn-x .vn-eta b{font-size:11.5px}.vn-x .vn-o{grid-template-columns:18px 1fr auto;gap:8px;padding:13px 12px}.vn-x .vn-o .r{width:18px;height:18px}.vn-x .vn-o .a b{white-space:nowrap;font-size:15px}.vn-x .vn-o .a em{display:table;margin:4px 0 2px}.vn-x .vn-o .c b{font-size:16px}.vn-x .vn-mt-row{grid-template-columns:88px minmax(0,1fr);column-gap:12px}.vn-x .vn-mt-im{width:88px;height:88px}.vn-x .vn-mt-more{padding:6px 11px;font-size:12px}.vn-x .vn-mt-3x{font-size:19px}}
 .vn-trilho{display:flex;gap:12px 36px;justify-content:center;padding:18px 16px;background:var(--lime);color:#0c2219;font-weight:800;font-size:14px;letter-spacing:.5px;text-transform:uppercase;flex-wrap:wrap;text-align:center}
 .vn-trilho span:before{content:'✦ ';color:#3c9a2a}
 .vn-fim{text-align:center;padding:72px 24px 80px;background:radial-gradient(ellipse 50% 60% at 50% 40%,#173e2d 0,#07140e 70%)}
@@ -153,15 +182,7 @@ html.vn-on .vf-cur .is-on{background:#c0de96!important}
 .vn-mt-row.on .vn-mt-q{border-color:var(--lime);box-shadow:0 4px 16px #c0de9630}
 .vn-mt-q button{width:44px;height:100%;padding:0;border:0;background:none;font:800 22px/1 Inter,Arial,sans-serif;color:var(--lime);cursor:pointer}
 .vn-mt-q output{min-width:22px;text-align:center;font:800 17px/1 Inter,Arial,sans-serif;color:#fff;font-variant-numeric:tabular-nums}
-.vn-mt-sum{padding:30px 30px;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(ellipse 90% 60% at 50% 0,#1d4a35 0,#0a1b13 72%);color:#fff}
-.vn-mt-sum .vn-esc{height:150px}
-.vn-mt-sum .vn-esc li{padding:10px 4px;border-radius:14px 14px 6px 6px}
-.vn-mt-sum .vn-esc li b{font-size:28px}
-.vn-mt-sum .vn-esc li small{font-size:11px}
-.vn-mt-fr{margin:12px 0 0!important;padding:9px 12px;border-radius:12px;background:#ffffff0d;border:1px solid #ffffff1a;font-size:13px;color:#ffffffcc;text-align:center}
-.vn-mt-fr.on{background:#c0de9626;border-color:#c0de9666;color:#fff}
-.vn-mt-next{margin:10px 0 0!important;min-height:1.35em;text-align:center;font-size:14px;line-height:1.35;color:#ffffffdd}
-.vn-mt-next b{color:var(--lime)}
+.vn-mt-sum{padding:30px 30px;display:flex;flex-direction:column;justify-content:flex-start;background:radial-gradient(ellipse 90% 60% at 50% 0,#1d4a35 0,#0a1b13 72%);color:#fff}
 .vn-mt-tot{margin:14px 0 0;padding:14px 0 0;border-top:1px solid #ffffff1a}
 .vn-mt-tl{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px;color:#ffffffd9}
 .vn-mt-tl s{color:#ffffff80}
@@ -174,6 +195,9 @@ html.vn-on .vf-cur .is-on{background:#c0de96!important}
 .vn-mt-pixt em{font-style:normal;font-weight:700;color:var(--lime)}
 .vn-mt-btn{width:100%;margin-top:16px;min-height:60px;font-size:17px}
 .vn-mt-btn:disabled{opacity:.45;cursor:default}
+.vn-mt-sum .vn-pg{margin:0;padding:16px 12px 12px}
+.vn-mt-sum .vn-tr{margin:0 20px}
+.vn-mt-sum .vn-eta{margin-top:16px}
 .vn-mt-note{margin:10px 0 0!important;font-size:12px;color:#ffffffa6;text-align:center}
 .vn-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}
 .vn-rail::-webkit-scrollbar{display:none}
@@ -276,19 +300,23 @@ html.vn-on .vf-cur .is-on{background:#c0de96!important}
         {%- endfor -%}
       </ul>
       <div class="vn-mt-sum">
-        <ol class="vn-esc" aria-label="Seu degrau">
-          <li data-vn-lad="1"><b>10%</b><small>1 ou 2</small></li>
-          <li data-vn-lad="3"><b>12%</b><small>3 ou 4</small></li>
-          <li data-vn-lad="5"><b>15%</b><small>5 ou mais</small></li>
-        </ol>
-        <p class="vn-mt-fr" data-vn-fr>🚚 Frete grátis a partir de R$ 299</p>
-        <p class="vn-mt-next" data-vn-next></p>
+        <div class="vn-pg">
+          <p data-vn-next></p>
+          <div class="vn-tr"><span class="bg"></span><span class="fl" data-vn-fill></span>
+            <ol class="vn-ms"><li data-vn-ms="0"><i>🌿</i><b>10% OFF</b><small>1 protocolo</small></li><li data-vn-ms="1"><i>🚚</i><b>Frete grátis</b><small>acima de R$ 299</small></li><li data-vn-ms="2"><i>💚</i><b>12% OFF</b><small>3 protocolos</small></li><li data-vn-ms="3"><i>🏆</i><b>15% OFF</b><small>5 protocolos</small></li></ol>
+          </div>
+        </div>
         <div class="vn-mt-tot">
           <p class="vn-mt-tl"><span data-vn-count>—</span><s data-vn-was></s></p>
           <p class="vn-mt-big"><small>3x</small> <b data-vn-3x>—</b> <span>sem juros</span></p>
           <p class="vn-mt-pixt" data-vn-pix></p>
         </div>
         <button type="button" class="vn-btn vn-mt-btn" data-vn-go>Garantir meu protocolo →</button>
+        <div class="vn-eta" data-vn-eta>
+          <div><span><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.4a1.5 1.5 0 0 0 1.5 1.1h8.8a1.5 1.5 0 0 0 1.5-1.1L21 7H6"/></svg></span><b data-eta="0"></b><small>Pedido feito</small></div>
+          <div><span><svg viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 9h4l4 4v3h-8"/><circle cx="6.5" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></svg></span><b data-eta="1"></b><small>Despachado</small></div>
+          <div><span><svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span><b data-eta="2"></b><small>Chega na sua casa</small></div>
+        </div>
         <p class="vn-mt-note">🔒 Compra segura · Desconto automático no carrinho · Até 19/11</p>
       </div>
   </div>
@@ -355,13 +383,12 @@ html.vn-on .vf-cur .is-on{background:#c0de96!important}
         $m('[data-vn-was]').textContent = n ? brl(cheio) : '';
         $m('[data-vn-3x]').textContent = brl(Math.floor(paga / 3));
         $m('[data-vn-pix]').innerHTML = n === 0 ? 'Escolha acima quantos de cada' : 'ou <b>' + brl(paga) + '</b> à vista · <em>você economiza ' + brl(cheio - paga) + '</em>';
-        mt.querySelector('[data-vn-lad="1"]').classList.toggle('on', d === 10);
-        mt.querySelector('[data-vn-lad="3"]').classList.toggle('on', d === 12);
-        mt.querySelector('[data-vn-lad="5"]').classList.toggle('on', d === 15);
-        var fr = $m('[data-vn-fr]'), ok = paga >= 29900;
-        fr.classList.toggle('on', ok);
-        fr.innerHTML = ok ? '🚚 <b>Frete grátis</b> garantido' : n ? '🚚 Faltam <b>' + brl(29900 - paga) + '</b> para o frete grátis' : '🚚 Frete grátis a partir de R$ 299';
-        $m('[data-vn-next]').innerHTML = n === 0 ? 'Todo pedido do Verme November tem <b>10% OFF</b>.' : n < 3 ? 'Mais <b>' + (3 - n) + (3 - n === 1 ? ' protocolo' : ' protocolos') + '</b> e o desconto sobe para <b>12%</b>' : n < 5 ? 'Mais <b>' + (5 - n) + '</b> e você chega ao topo: <b>15% em tudo</b>' : '🎉 Você chegou ao topo: <b>15% OFF</b> em tudo';
+        var pr = [Math.min(1, n), Math.min(1, paga / 29900), Math.min(1, n / 3), Math.min(1, n / 5)], lab = ['10% OFF', 'frete grátis', '12% OFF', '15% OFF'];
+        mt.querySelectorAll('[data-vn-ms]').forEach(function (li, i) { li.classList.toggle('on', pr[i] >= 1); });
+        var nx = pr.findIndex(function (x) { return x < 1; });
+        $m('[data-vn-fill]').style.width = (nx < 0 ? 100 : nx === 0 ? 0 : (nx - 1 + pr[nx]) / 3 * 100) + '%';
+        var q = nx === 2 ? 3 - n : 5 - n, pl = function (k) { return k + (k === 1 ? ' protocolo' : ' protocolos'); };
+        $m('[data-vn-next]').innerHTML = nx === 0 ? 'Escolha um protocolo e libere <b>10% OFF</b>' : nx === 1 ? 'Faltam <b>' + brl(29900 - paga) + '</b> para o <b>frete grátis</b>' : nx > 1 ? 'Mais <b>' + pl(q) + '</b> e você libera <b>' + lab[nx] + '</b>' : '🎉 <b>Tudo liberado:</b> 15% OFF e frete grátis';
         go.disabled = n === 0;
         go.textContent = n <= 1 ? 'Garantir meu protocolo →' : 'Garantir meus ' + n + ' protocolos →';
       };
