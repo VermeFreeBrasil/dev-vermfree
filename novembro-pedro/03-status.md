@@ -63,7 +63,14 @@ Saiu: "Verme November — editar os 15 vídeos de venda" (09/11) e "50 vídeos u
 | ✅ | 09/11/2026 18h00 | BLACK FRIDAY · 11/11 — Criar o cupom privado do Recovery | `mcp-1793231782749-11-7894e` || **04/11: CONCLUÍDA.** RECOVERY1111 (20%) + FRETE1111 (frete), 12–19/11, 1 uso por cliente; mensagem da Poly em shopify/recovery-1111/cupons.md. **Marcar no Alliance.** |
 | ⬜ | 09/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER — Configurar a entrega dos brindes | `mcp-1793232207208-13-3e343` |  |
 | ✅ | 09/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER — Configurar oferta e frete na Shopify | `mcp-1793232207208-12-5a0c4` || **04/11: CONCLUÍDA** (escada 10/12/15% + frete ≥ R$ 299 agendados 12–19/11; shopify/oferta-verme-november/). Brinde do kit adulto fica na tarefa de brindes. **Marcar no Alliance.** |
-| ⬜ | 09/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER — Criar o tema completo do site para a promoção | `mcp-1793232207208-11-d6375` |  |
+| ✅ | 09/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER — Criar o tema completo do site para a promoção | `mcp-1793232207208-11-d6375` | **04/11: CONCLUÍDA (aprovada pelo Pedro).** Tema '🌑 Verme November (12–19/11) · EM EDIÇÃO' (168590672091), não publicado:
+  - home e PDPs com a identidade da campanha;
+  - escolha de kit em cartões;
+  - barra de benefícios 10% → frete → 12% → 15%;
+  - prazo de entrega;
+  - responsivo de 320 a 1920 px.
+
+Detalhes em shopify/verme-november-tema/LEIA.md. Falta: publicar à 00h de 12/11 (com o ok do Pedro); brinde > R$ 1.000 se o Vitor confirmar. **Marcar no Alliance.** |
 | ⬜ | 13/11/2026 18h00 | BLACK FRIDAY · 11/11 · SITE E SHOPIFY | `mcp-1793231782748-0-7f4aa` |  |
 | ⬜ | 13/11/2026 18h00 | BLACK FRIDAY · 11/11 — Fazer o sorteio e avisar o ganhador | `mcp-1793231782749-7-d7253` |  |
 | ✅ | 13/11/2026 18h00 | BLACK FRIDAY · 11/11 — Organizar o sorteio dos 300 primeiros pedidos | `mcp-1793231782749-6-99d65` || **04/11: CONCLUÍDA.** Regulamento publicado (https://vermefree.com.br/pages/regulamento-sorteio-11-11), link no tema Eclipse, método e textos em shopify/sorteio-1111/. **Marcar no Alliance.** |
