@@ -4,7 +4,23 @@ Tema: "🌑 Verme November (12–19/11) · EM EDIÇÃO" (gid://shopify/OnlineSto
 Preview: https://vermefree.com.br/?preview_theme_id=168590672091&vf_vn=on&vf_trava=off
 (`vf_vn=on` mostra a faixa e o banner da campanha antes de 12/11; `vf_trava=off` passa pela trava da captação.)
 
-## O que mudou (15 arquivos; cópias em arquivos/; as mudanças são aplicadas por patch.py)
+## v2 (04/11 à tarde): campanha completa, no nível do Eclipse
+- snippets/vf-verme-november.liquid reescrito (46 mil caracteres; o limite é 50 mil). Partes 'barra', 'home' e 'pdp'; layout renderiza a pdp nas páginas de produto.
+- Barra ao vivo: "dia X de 8" e contagem regressiva com segundos.
+- Home inteira trocada no período:
+  - hero com a escada 10/12/15 e os 8 dias (12 a 19);
+  - seletor "Monte o pedido da casa" com degrau ativo, frete e economia ao vivo;
+  - trilho, depoimentos, médicos, FAQ e fechamento.
+- PDPs:
+  - bloco de compra próprio (escada de 1 a 5, preço por unidade e total ao vivo, frete);
+  - resto da página em verde-escuro;
+  - barra fixa no celular.
+- Conferido (simulando 13/11):
+  - Adulto: 1 = R$ 312,30; 3 = R$ 916,08; 5 = R$ 1.474,75.
+  - Home com 3 itens mistos: 12% (R$ 885,28); com 5: 15% (R$ 1.445,00).
+- Prints: prints/vn-v2-*.jpg
+
+## O que mudou na v1 (15 arquivos; cópias em arquivos/; as mudanças são aplicadas por patch.py)
 - **Faixa e banner da campanha** (snippets/vf-verme-november.liquid, novo):
   - faixa escura no topo de todas as páginas: "VERME NOVEMBER · até 15% OFF + frete grátis acima de R$ 299 · termina em Xd";
   - banner na home com a lua, a escada 10% / 12% / 15%, o frete, o botão "Montar meu pedido" e a contagem até 19/11 23h59;

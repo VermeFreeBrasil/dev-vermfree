@@ -157,6 +157,7 @@
     {% section 'vf-announcement-bar' %}
     {% section 'header' %}
     {%- if template.name == 'index' -%}{%- render 'vf-verme-november', parte: 'home' -%}{%- endif -%}
+    {%- if template.name == 'product' -%}{%- render 'vf-verme-november', parte: 'pdp' -%}{%- endif -%}
 
     <main id="main" role="main" tabindex="-1">
       {{ content_for_layout }}
