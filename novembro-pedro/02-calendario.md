@@ -53,20 +53,21 @@ Horários são o prazo do Alliance OS. "Fazer" é a sugestão de quando trabalha
 - 13h **CRO/Site** · 14h Ferramentas (levar a ferramenta de cashback) · 15h30 Conteúdo
 
 ### QUA 04/11
-- **18h** · VF **30 estáticos universais** ➡️ Otávio
+- **18h** · VF **lote 1 dos estáticos universais (16)** ➡️ Otávio · ✅ pronto e no Drive desde 03/11, falta o Pedro mandar o link
+- **18h** · VF **15 vídeos de captação + 5º de conscientização** ➡️ Otávio · depende do bruto da Mafe (não chegou em 03/11)
 - **18h** · RV editar os 30 vídeos universais restantes (fecha os 50) · RV tarefa-mãe Criativos do mês
 - ⬅️ 18h: bruto dos 5 vídeos de venda do 11/11 VF (Mafe) e os da Revita
 - 15h Conferir o mês
 
 ### QUI 05/11
-- **18h** · VF editar os **30 vídeos universais restantes** (fecha os 50) ➡️ Otávio
-- **18h** · VF **cashback na Shopify** (15%, 100 primeiros, até 30/11) ➡️ Sarah (mensagens, 06/11)
+- ~~VF 30 vídeos universais~~ (saiu em 30/10: vídeos por campanha)
+- **18h** · VF **cashback na Shopify** ✅ feito em 03/11 (Flow testado) ➡️ Sarah: texto da mensagem em shopify/cashback/passo-a-passo-flow.md
 - 10h35 KPI VermeFree
 
 ### SEX 06/11 · M3
-- **12h** · VF 11/11: **5 estáticos + 5 vídeos de venda** ➡️ Otávio (programa às 18h)
+- **12h** · VF 11/11: **10 estáticos** ✅ (03/11) + **10 vídeos de venda** (depende do bruto) ➡️ Otávio (programa às 18h)
 - **12h** · RV 11/11: 5 estáticos + 5 vídeos de venda ➡️ Otávio
-- **18h** · VF 11/11: **oferta e frete** (+ regras do mês: influenciadoras em 2%, sem 1ª compra/Nova Saúde/roleta, link VIP 00h) · **tema** · **brindes** (kit kids + guia/manual ➡️ Sarah, Poly) · **organizar sorteio**
+- **18h** · VF 11/11: **oferta e frete** ✅ 03/11 · **tema** ✅ aprovado 03/11 · brindes ⏳ Vitor · (regras do mês: influenciadoras em 2%, sem 1ª compra/Nova Saúde/roleta, link VIP 00h) · **tema** · **brindes** (kit kids + guia/manual ➡️ Sarah, Poly) · **organizar sorteio**
 - **18h** · RV 11/11: oferta/frete/cashback · tema · fechar site com banner VIP (09/11 10h)
 - **18h** · RV novos estáticos e vídeos da semana
 - **18h** · **4 notas fiscais** (VF, RV, BT, Shoty) → Vanessa
