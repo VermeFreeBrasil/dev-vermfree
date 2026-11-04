@@ -66,7 +66,7 @@ Saiu: "Verme November — editar os 15 vídeos de venda" (09/11) e "50 vídeos u
 | ⬜ | 09/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER — Criar o tema completo do site para a promoção | `mcp-1793232207208-11-d6375` |  |
 | ⬜ | 13/11/2026 18h00 | BLACK FRIDAY · 11/11 · SITE E SHOPIFY | `mcp-1793231782748-0-7f4aa` |  |
 | ⬜ | 13/11/2026 18h00 | BLACK FRIDAY · 11/11 — Fazer o sorteio e avisar o ganhador | `mcp-1793231782749-7-d7253` |  |
-| ⬜ | 13/11/2026 18h00 | BLACK FRIDAY · 11/11 — Organizar o sorteio dos 300 primeiros pedidos | `mcp-1793231782749-6-99d65` |  |
+| ✅ | 13/11/2026 18h00 | BLACK FRIDAY · 11/11 — Organizar o sorteio dos 300 primeiros pedidos | `mcp-1793231782749-6-99d65` || **04/11: CONCLUÍDA.** Regulamento publicado (https://vermefree.com.br/pages/regulamento-sorteio-11-11), link no tema Eclipse, método e textos em shopify/sorteio-1111/. **Marcar no Alliance.** |
 | ⬜ | 13/11/2026 18h00 | BLACK FRIDAY · CRIATIVOS DO MÊS | `mcp-1793230900242-1-47788` |  |
 | ⬜ | 13/11/2026 18h00 | BLACK FRIDAY — Editar os vídeos e criar os estáticos novos da semana | `mcp-1793230995807-3-a61b0` |  |
 | ⬜ | 13/11/2026 18h00 | BLACK FRIDAY — Renovar os criativos do mês toda semana | `mcp-1793230995806-0-6d26b` | Programada |
