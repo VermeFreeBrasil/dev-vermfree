@@ -4,6 +4,13 @@ Tema: "🌑 Verme November (12–19/11) · EM EDIÇÃO" (gid://shopify/OnlineSto
 Preview: https://vermefree.com.br/?preview_theme_id=168590672091&vf_vn=on&vf_trava=off
 (`vf_vn=on` mostra a faixa e o banner da campanha antes de 12/11; `vf_trava=off` passa pela trava da captação.)
 
+## v3 (04/11, pedido do Pedro): escolha de kit mais clara na PDP
+- A PDP saiu de vf-verme-november e foi para snippets/vf-verme-november-pdp.liquid, porque o arquivo passaria de 50 mil caracteres. O layout renderiza os dois.
+- Escolha de kit em cartões (1 / 3 mais escolhido / 5 melhor preço), cada um com o preço cheio, o total com desconto e o preço por unidade. Embaixo, um ajuste de quantidade de 1 a 10.
+- Barra de progresso de benefícios: 10% OFF → frete grátis (calculado pelo preço do produto) → 12% → 15%, com a mensagem "Mais X unidades e você libera ...".
+- Linha do tempo da entrega: pedido hoje → despachado (2 dias úteis) → chega (de 3 a 8 dias úteis depois do envio). É a mesma regra do bloco de compra atual do site.
+- Prints: prints/vn-v3-*.jpg
+
 ## v2 (04/11 à tarde): campanha completa, no nível do Eclipse
 - snippets/vf-verme-november.liquid reescrito (46 mil caracteres; o limite é 50 mil). Partes 'barra', 'home' e 'pdp'; layout renderiza a pdp nas páginas de produto.
 - Barra ao vivo: "dia X de 8" e contagem regressiva com segundos.
