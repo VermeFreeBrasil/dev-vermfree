@@ -272,6 +272,7 @@
       $('.vv-timer__l').textContent = 'até o site abrir para todos';
       $('.vv-final').innerHTML = 'Às 7h, o site abre para todo mundo. <em>No grupo, já está aberto.</em>';
       document.querySelectorAll('[data-vv-cta]').forEach(function (b) { b.lastChild.textContent = 'Entrar no grupo e comprar agora'; });
+      var vf = $('[data-vv-fechado]'); if (vf) vf.innerHTML = '<b>Você tentou entrar no site da VermeFree.</b> A oferta do 11/11 já começou para o Grupo VIP. O site abre para todo mundo às <strong>7h</strong>. Entre no grupo e compre agora.';
       var mt = $('#vm-t'); if (mt) mt.textContent = 'Para onde mandamos o link de acesso?';
       var vt = $('[data-vv-timer]'); if (vt) vt.setAttribute('aria-label', 'Contagem regressiva para o site abrir às 7h');
     }
