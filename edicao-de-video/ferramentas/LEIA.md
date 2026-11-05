@@ -7,3 +7,16 @@ Montadas em 30/10/2026, quando o ambiente bloqueou pip e npm (sem faster-whisper
 - `planos/`: os planos dos 3 UGC de captação do 11/11 (texto corrigido, tempos, destaques).
 
 O caminho do logo no script aponta para a pasta de rascunho da sessão (`../art/logo-shopify-medium.png`); ajuste se rodar em outro lugar.
+
+## editar-ugc-v2.js (05/11)
+- Igual ao v1, mais:
+  - logo fixo no canto;
+  - cenas ilustradas definidas em `plano.cenas`:
+    - `cards`: até 3 fotos que entram no ritmo da fala;
+    - `chips`: etiquetas que levam um risco por cima;
+    - `pip`: janela grande com foto e legenda;
+    - `prod`: foto de produto num fundo verde da marca, com etiqueta;
+  - cartão final com o Kit Família.
+- As imagens ficam em `<pasta do plano>/img/`.
+- As fotos ilustrativas são geradas no Higgsfield. O cloudfront do Higgsfield é bloqueado na rede daqui, então elas passam pelos Arquivos da Shopify (fileCreate com a URL de origem; baixar de cdn.shopify.com).
+- Exemplo: `planos/plano-v4-v2.json`.
