@@ -20,6 +20,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18193701893"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18193701893');gtag('config','G-W0NZM1LHSN');</script>
 <style>html,body{margin:0;padding:0}</style>
+<script>/* 05/11: a partir de 11/11 07h a LP manda para o site (mantendo UTMs). Prévia: ?vf_lp=on */(function(){try{var q=location.search;if(/[?&]vf_lp=on/.test(q))return;if(Date.now()>=Date.parse('2026-11-11T07:00:00-03:00'))location.replace('https://vermefree.com.br/'+q);}catch(e){}})();</script>
 </head>
 <body>
 <div class="vv">
@@ -258,7 +259,22 @@
 
 <script>
   (function () {
-    var alvo = new Date('2026-11-11T00:00:00-03:00').getTime();
+    // 05/11: entre 11/11 00h e 07h a oferta já está no grupo e o site ainda está fechado para quem não é VIP.
+    var abreVip = new Date('2026-11-11T00:00:00-03:00').getTime(), abreTodos = new Date('2026-11-11T07:00:00-03:00').getTime();
+    var noAr = Date.now() >= abreVip;
+    var alvo = noAr ? abreTodos : abreVip;
+    if (noAr) {
+      var $ = function (q) { return document.querySelector(q); };
+      $('.vv-top').innerHTML = '<span></span>🔥 11.11 já começou no grupo · site abre às 7h';
+      $('.vv-badge').textContent = '🔥 11.11 · ao vivo no grupo';
+      $('.vv h1').innerHTML = 'A oferta já começou. <em>Quem está no Grupo VIP já está comprando.</em>';
+      $('.vv-sub').innerHTML = 'O maior desconto da história da VermeFree abriu à meia-noite, só para o grupo. O site abre para todo mundo às 7h. <strong>Entre agora e receba o link de acesso na hora.</strong>';
+      $('.vv-timer__l').textContent = 'até o site abrir para todos';
+      $('.vv-final').innerHTML = 'Às 7h, o site abre para todo mundo. <em>No grupo, já está aberto.</em>';
+      document.querySelectorAll('[data-vv-cta]').forEach(function (b) { b.lastChild.textContent = 'Entrar no grupo e comprar agora'; });
+      var mt = $('#vm-t'); if (mt) mt.textContent = 'Para onde mandamos o link de acesso?';
+      var vt = $('[data-vv-timer]'); if (vt) vt.setAttribute('aria-label', 'Contagem regressiva para o site abrir às 7h');
+    }
     var t = document.querySelector('[data-vv-timer]');
     var pad = function (n) { return (n < 10 ? '0' : '') + n; };
     var tick = function () {
