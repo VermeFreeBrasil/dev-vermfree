@@ -8,7 +8,7 @@ Horários em Brasília.
 |---|---|---|---|
 | até 06/11 | Vitor confirma o brinde Kit Kids na compra de 4. Se **não** sair, o Claude tira a promessa do tema Eclipse (faixa, PDP e FAQ) | Vitor → Claude | ⏳ |
 | até 09/11 | Sarah/Otávio conferem o **link do grupo VIP** que vai às 00h: `https://vermefree.com.br/?acesso=vip`. Só esse link abre o site antes das 07h. Pode levar UTMs: `?acesso=vip&utm_source=...` | Sarah, Otávio | ⏳ |
-| até 09/11 | **LP do VIP (vip.vermefree.com.br) entre 00h e 07h do dia 11:** quem não está no grupo cai nela até as 07h, mas o relógio dela zera às 00h. Ajustar o texto para esse intervalo ("a oferta já começou no grupo, o site abre para todos às 7h") e depois das 07h mandar direto para o site | Claude (com ok) | ⏳ decidir |
+| ✅ 05/11 (publicado) | **LP do VIP (vip.vermefree.com.br) entre 00h e 07h do dia 11:** quem não está no grupo cai nela até as 07h, mas o relógio dela zera às 00h. Ajustar o texto para esse intervalo ("a oferta já começou no grupo, o site abre para todos às 7h") e depois das 07h mandar direto para o site | Claude (com ok) | ⏳ decidir |
 | 10/11 manhã | Revisão D-1, rodando de novo a conferência de 05/11: descontos agendados, temas iguais aos aprovados, cupons em 2%, sem erro no preview | Claude | ⏳ |
 | 10/11 | Renomear o Eclipse para "🌑 11/11 Eclipse · PUBLICAR 00h" (só o nome) | Claude | ⏳ |
 | 10/11 23h59 | Descontos de kits atuais (5%/10%/15%/20%) **terminam sozinhos** | automático | ✅ agendado |
@@ -21,6 +21,7 @@ Horários em Brasília.
 | 00h05 | Teste completo: abrir pelo link do grupo, montar 5 itens, ver no checkout 20% + o item mais barato grátis + frete 0. **Não finalizar** | prints | ⏳ |
 | 00h05 | Teste sem o link: deve cair na LP do VIP | | ⏳ |
 | 07h00 | A trava **abre sozinha** para todos. Conferir o site sem parâmetro | | ✅ automático |
+| 07h00 | **Otávio:** trocar o destino dos anúncios que ainda apontam para a LP vip para o site. A LP já redireciona sozinha a partir das 07h, levando os UTMs e o fbclid, mas o link direto evita esse passo a mais | Otávio | ⏳ |
 | ao longo do dia | Acompanhar pedidos (Shopify): quando passar de 100 pedidos fecha o cashback, de 300 fecha o sorteio | contagem | ⏳ |
 | 23h59 | Descontos do 11/11 **terminam sozinhos**. O tema Eclipse esconde a promoção sozinho depois das 23h59 | | ✅ agendado |
 
