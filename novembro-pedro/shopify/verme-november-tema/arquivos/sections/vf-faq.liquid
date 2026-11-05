@@ -1,0 +1,205 @@
+{%- comment -%}
+  vf-faq — "A farmacêutica responde" (Home).
+  Vídeo de uma profissional respondendo dúvidas + lista de perguntas (details/summary nativo),
+  WhatsApp e botão de compra. Celular: título, vídeo, perguntas. Desktop: título e vídeo à esquerda,
+  perguntas à direita. O vídeo só carrega quando a pessoa toca no play.
+  As perguntas também saem como dados estruturados (FAQPage) para o Google.
+{%- endcomment -%}
+
+{%- assign v = section.settings.video -%}
+<section class="vf-faq" aria-labelledby="vf-faq-heading-{{ section.id }}">
+  <div class="vf-faq__container{% if v != blank %} vf-faq__container--video{% endif %}">
+
+    <div class="vf-faq__intro">
+      {%- if section.settings.eyebrow != blank -%}<span class="vf-faq__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 id="vf-faq-heading-{{ section.id }}" class="vf-faq__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}<p class="vf-faq__sub">{{ section.settings.subheading }}</p>{%- endif -%}
+
+      {%- if v != blank -%}
+        <div class="vf-faq__video" data-vf-faq-video>
+          <video playsinline preload="none" poster="{{ v.preview_image | image_url: width: 720 }}" aria-label="{{ section.settings.video_name | escape }}">
+            {%- for s in v.sources -%}
+              {%- if s.format == 'mp4' or s.mime_type == 'video/mp4' -%}<source src="{{ s.url }}" type="video/mp4">{%- endif -%}
+            {%- endfor -%}
+          </video>
+          <button type="button" class="vf-faq__play" data-vf-faq-play aria-label="Assistir: {{ section.settings.video_name | escape }}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+          </button>
+          {%- if section.settings.video_name != blank -%}
+            <p class="vf-faq__vcap"><b>{{ section.settings.video_name }}</b>{%- if section.settings.video_role != blank -%}<span>{{ section.settings.video_role }}</span>{%- endif -%}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="vf-faq__side">
+      <div class="vf-faq__list">
+        {%- for block in section.blocks -%}
+          <details class="vf-faq__item" {{ block.shopify_attributes }}{% if forloop.first and section.settings.open_first %} open{% endif %}>
+            <summary class="vf-faq__question">
+              <span class="vf-faq__qtext">{{ block.settings.question }}</span>
+              <span class="vf-faq__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="vf-faq__answer">{{ block.settings.answer }}</div>
+          </details>
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.support_label != blank and section.settings.support_link != blank -%}
+        <a class="vf-faq__support" href="{{ section.settings.support_link }}" target="_blank" rel="noopener">
+          <span class="vf-faq__support-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.1 1.2z"/></svg>
+          </span>
+          <span class="vf-faq__support-text">
+            <strong>{{ section.settings.support_label }}</strong>
+            {%- if section.settings.support_cta != blank -%}<span>{{ section.settings.support_cta }}</span>{%- endif -%}
+          </span>
+          <span class="vf-faq__support-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <a class="vf-faq__btn" href="{{ section.settings.button_link | default: '/#vf-protocolos' }}">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+{%- comment -%}
+  FAQPage (JSON-LD) com as mesmas perguntas e respostas visíveis acima (texto puro).
+  Sai sempre que houver perguntas, a não ser que "Não enviar as perguntas ao Google"
+  esteja marcado. (A antiga opção show_schema ficou sem efeito: ela estava desligada
+  porque o FAQPage era montado em JavaScript no vf-structured-data, o que saiu.)
+{%- endcomment -%}
+{%- unless section.settings.hide_schema -%}
+  {%- assign vf_faq_n = 0 -%}
+  {%- capture vf_faq_items -%}
+    {%- for block in section.blocks -%}
+      {%- assign vf_q = block.settings.question | strip_html | strip -%}
+      {%- assign vf_a = block.settings.answer | strip_html | strip -%}
+      {%- if vf_q != blank and vf_a != blank -%}
+        {%- if vf_faq_n > 0 -%},{%- endif -%}
+        {"@type":"Question","name":{{ vf_q | json }},"acceptedAnswer":{"@type":"Answer","text":{{ vf_a | json }}}}
+        {%- assign vf_faq_n = vf_faq_n | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- if vf_faq_n > 0 -%}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","@id":{{ canonical_url | append: '#faq' | json }},"mainEntity":[{{ vf_faq_items }}]}
+</script>
+  {%- endif -%}
+{%- endunless -%}
+
+{%- if v != blank -%}
+<script>
+  (function () {
+    document.querySelectorAll('[data-vf-faq-video]:not([data-ok])').forEach(function (box) {
+      box.setAttribute('data-ok', '');
+      var vid = box.querySelector('video'), btn = box.querySelector('[data-vf-faq-play]');
+      btn.addEventListener('click', function () {
+        box.classList.add('is-playing');
+        vid.controls = true;
+        var p = vid.play(); if (p && p.catch) p.catch(function () {});
+      });
+      vid.addEventListener('ended', function () { box.classList.remove('is-playing'); vid.controls = false; vid.load(); });
+    });
+  })();
+</script>
+{%- endif -%}
+
+{% stylesheet %}
+  .vf-faq { background: #FFFFFF; padding: 48px 0; font-family: 'Inter', system-ui, sans-serif; }
+  .vf-faq__container { max-width: 1160px; margin: 0 auto; padding: 0 16px; display: grid; grid-template-columns: 1fr; gap: 20px; }
+  .vf-faq__intro { text-align: center; }
+  .vf-faq__eyebrow { display: block; margin: 0 0 10px; font-size: 12px; line-height: 1.3; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: #3E8E2E; }
+  .vf-faq__heading { margin: 0; font-family: 'Caprasimo', Georgia, serif; font-size: 30px; line-height: 1.12; font-weight: 400; letter-spacing: -.01em; color: #153C2C; }
+  .vf-faq__sub { max-width: 520px; margin: 10px auto 0; font-size: 16px; line-height: 1.5; color: #4F6357; }
+
+  .vf-faq__video { position: relative; max-width: 420px; margin: 18px auto 0; aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; background: #0F2A1F; box-shadow: 0 12px 30px rgba(21, 60, 44, .14); }
+  .vf-faq__video video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+  .vf-faq__play { position: absolute; left: 50%; top: 45%; transform: translate(-50%, -50%); width: 64px; height: 64px; padding: 0; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .94); color: #153C2C; box-shadow: 0 6px 20px rgba(0, 0, 0, .25); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform .2s ease; }
+  .vf-faq__play:hover { transform: translate(-50%, -50%) scale(1.06); }
+  .vf-faq__play svg { width: 28px; height: 28px; margin-left: 3px; }
+  .vf-faq__vcap { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 40px 16px 14px; text-align: left; background: linear-gradient(transparent, rgba(0, 0, 0, .72)); color: #fff; font-size: 12.5px; pointer-events: none; }
+  .vf-faq__vcap b { display: block; font-size: 15px; font-weight: 800; }
+  .vf-faq__video.is-playing .vf-faq__play, .vf-faq__video.is-playing .vf-faq__vcap { display: none; }
+
+  .vf-faq__list { display: flex; flex-direction: column; gap: 8px; }
+  .vf-faq__item { border: 1px solid #E3EBDD; border-radius: 14px; background: #FFFFFF; overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease; }
+  .vf-faq__item[open] { border-color: #C0DE96; box-shadow: 0 6px 20px rgba(27, 94, 32, .08); }
+  .vf-faq__question { list-style: none; cursor: pointer; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; font-weight: 700; font-size: 15.5px; line-height: 1.35; color: #153C2C; }
+  .vf-faq__question::-webkit-details-marker { display: none; }
+  .vf-faq__question::marker { content: ''; }
+  .vf-faq__icon { position: relative; flex: 0 0 22px; height: 22px; border-radius: 50%; background: #F3F8EC; }
+  .vf-faq__icon::before, .vf-faq__icon::after { content: ''; position: absolute; left: 50%; top: 50%; width: 10px; height: 2px; margin: -1px 0 0 -5px; border-radius: 2px; background: #3E8E2E; transition: transform .25s ease; }
+  .vf-faq__icon::after { transform: rotate(90deg); }
+  .vf-faq__item[open] .vf-faq__icon::after { transform: rotate(0deg); }
+  .vf-faq__answer { padding: 0 18px 16px; font-size: 14.5px; line-height: 1.55; color: #4F6357; }
+  .vf-faq__answer p { margin: 0 0 8px; } .vf-faq__answer p:last-child { margin: 0; }
+  .vf-faq__answer strong { color: #153C2C; }
+
+  .vf-faq__support { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding: 12px 16px; border: 1px solid #E3EBDD; border-radius: 14px; background: #F3F8EC; color: #4F6357; text-decoration: none; }
+  .vf-faq__support-icon { flex: 0 0 38px; height: 38px; border-radius: 11px; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; }
+  .vf-faq__support-icon svg { width: 22px; height: 22px; }
+  .vf-faq__support-text { flex: 1; display: flex; flex-direction: column; gap: 1px; font-size: 13px; line-height: 1.35; }
+  .vf-faq__support-text strong { font-size: 14.5px; color: #153C2C; }
+  .vf-faq__support-arrow { font-size: 18px; color: #3E8E2E; }
+  .vf-faq__btn { display: block; margin-top: 12px; padding: 15px 20px; border-radius: 99px; background: #5EBC43; color: #fff; text-align: center; font-weight: 800; font-size: 16px; text-decoration: none; box-shadow: 0 8px 20px rgba(94, 188, 67, .3); }
+  .vf-faq__btn:hover { background: #4FA837; }
+
+  @media (min-width: 990px) {
+    .vf-faq { padding: 88px 0; }
+    .vf-faq__container { grid-template-columns: 1fr 1.25fr; gap: 56px; align-items: start; }
+    .vf-faq__intro { text-align: left; position: sticky; top: 100px; }
+    .vf-faq__heading { font-size: 44px; }
+    .vf-faq__sub { margin-left: 0; font-size: 17px; }
+    .vf-faq__video { margin: 24px 0 0; max-width: 380px; }
+    .vf-faq__question { font-size: 17px; padding: 18px 22px; }
+    .vf-faq__answer { padding: 0 22px 18px; font-size: 15px; }
+    .vf-faq__btn { display: inline-block; padding: 15px 36px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "VF FAQ",
+  "tag": "section",
+  "class": "vf-faq-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Chamada pequena", "default": "Dúvidas comuns" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "A farmacêutica responde." },
+    { "type": "text", "id": "subheading", "label": "Subtítulo" },
+    { "type": "header", "content": "Vídeo" },
+    { "type": "video", "id": "video", "label": "Vídeo", "info": "Vazio esconde o vídeo." },
+    { "type": "text", "id": "video_name", "label": "Nome de quem fala" },
+    { "type": "text", "id": "video_role", "label": "Profissão e registro" },
+    { "type": "header", "content": "Perguntas" },
+    { "type": "checkbox", "id": "open_first", "label": "Deixar a primeira pergunta aberta", "default": false },
+    { "type": "checkbox", "id": "show_schema", "label": "(Antiga, sem efeito) Mostrar as perguntas no Google", "default": true, "info": "Substituída pela opção abaixo." },
+    { "type": "checkbox", "id": "hide_schema", "label": "Não enviar as perguntas ao Google (FAQPage)", "default": false, "info": "Desmarcado: as perguntas desta seção saem como FAQPage. Use só uma seção de perguntas por página." },
+    { "type": "header", "content": "WhatsApp" },
+    { "type": "text", "id": "support_label", "label": "Texto principal", "default": "Ainda ficou dúvida?" },
+    { "type": "text", "id": "support_cta", "label": "Texto de apoio", "default": "Pessoa de verdade no WhatsApp, resposta em até 4h úteis." },
+    { "type": "url", "id": "support_link", "label": "Link do WhatsApp" },
+    { "type": "header", "content": "Botão de compra" },
+    { "type": "text", "id": "button_label", "label": "Texto do botão", "default": "Escolher meu protocolo", "info": "Vazio esconde o botão." },
+    { "type": "text", "id": "button_link", "label": "Destino do botão", "default": "/#vf-protocolos" }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Pergunta",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Pergunta" },
+        { "type": "richtext", "id": "answer", "label": "Resposta" }
+      ]
+    }
+  ],
+  "max_blocks": 15,
+  "presets": [{ "name": "VF FAQ" }]
+}
+{% endschema %}

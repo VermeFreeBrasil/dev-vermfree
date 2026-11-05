@@ -4,6 +4,25 @@ Tema: "🌑 Verme November (12–19/11) · EM EDIÇÃO" (gid://shopify/OnlineSto
 Preview: https://vermefree.com.br/?preview_theme_id=168590672091&vf_vn=on&vf_trava=off
 (`vf_vn=on` mostra a faixa e o banner da campanha antes de 12/11; `vf_trava=off` passa pela trava da captação.)
 
+## v5 (05/11): ajustes de Growth/SEO trazidos do Eclipse
+- Em 04/11, outra conversa aplicou ajustes de SEO no tema do Eclipse, e não no tema no ar de onde a Verme November foi copiada:
+  - rodapé;
+  - FAQs com FAQPage (vf-faq, vf-faq-pais, vfl-faq);
+  - avaliações Judge.me;
+  - dados estruturados;
+  - alt e h1 da PDP (p1);
+  - texto do p2;
+  - Kids 5 a 9 com o bloco "Procurando remédio de verme infantil" e FAQ nova.
+- Esses 9 arquivos foram copiados para a Verme November. p2 e Kids 5 a 9 foram mesclados mantendo os ajustes da campanha (opções 1/3/5, frete R$ 299).
+- O template do Kids 5 a 9 só entrou sem o bloco desativado vid_elimina: acima de ~27 KB, o envio por URL falha sem aviso.
+- Ficou no tema um template de teste vazio, templates/product.vntest.json, que não está ligado a nenhum produto. A API não deixa apagar; dá para remover pelo admin.
+- vf-ds não foi copiado: a versão do Eclipse carrega a trava do 11/11.
+- Conferido no preview (13/11):
+  - Kids 5 a 9 com o bloco SEO, Product + FAQPage, nenhum "399", R$ 350,10;
+  - Adulto R$ 312,30;
+  - home com Organization/WebSite/FAQPage;
+  - sem erro de JS.
+
 ## v4 (04/11): home igual à PDP + responsividade
 - Seletor da home: a escada do resumo virou a mesma barra de benefícios da PDP (10% → frete pelo valor → 12% → 15%), com a frase do que falta. Também ganhou a linha do tempo da entrega.
 - O CSS da barra e da entrega, e o cálculo das datas, ficam agora no snippet principal e valem para a home e a PDP.

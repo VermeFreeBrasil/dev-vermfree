@@ -1,0 +1,281 @@
+{%- comment -%}
+  vf-pdp-main — PDP principal estilo DTC premium
+  Layout: galeria (sticky) à esquerda + buy box (sticky) à direita
+  Mobile: galeria em cima, buy box embaixo
+  Inclui: stars, preço com parcelado em destaque, lista de componentes, CTAs, selos
+{%- endcomment -%}
+
+{%- comment -%}
+  Nota e quantidade de avaliações. Padrão: dados reais do Judge.me
+  (metafield judgeme.review_widget_data). Modo manual: campos da seção.
+  Usado nas estrelas do topo e na barra sticky; ambos levam a #avaliacoes.
+{%- endcomment -%}
+{%- liquid
+  assign vf_rating_value = 0
+  assign vf_rating_count = 0
+  if section.settings.rating_source == 'manual'
+    assign vf_rating_value = section.settings.rating_score | replace: ',', '.' | times: 1.0
+    assign vf_rating_count = section.settings.rating_count | times: 1
+  else
+    assign vf_jdgm_data = product.metafields.judgeme.review_widget_data.value
+    if vf_jdgm_data.number_of_reviews
+      assign vf_rating_count = vf_jdgm_data.number_of_reviews | times: 1
+      assign vf_rating_value = vf_jdgm_data.average_rating | times: 1.0
+    endif
+  endif
+  assign vf_rating_x10 = vf_rating_value | times: 10 | round
+  assign vf_rating_int = vf_rating_x10 | divided_by: 10 | floor
+  assign vf_rating_dec = vf_rating_x10 | modulo: 10
+  assign vf_rating_display = vf_rating_int | append: ',' | append: vf_rating_dec
+  if vf_rating_count == 1
+    assign vf_rating_word = 'avaliação'
+  else
+    assign vf_rating_word = 'avaliações'
+  endif
+-%}
+
+<section class="vf-pdp" aria-label="Detalhes do produto">
+  <div class="vf-pdp__container">
+
+    {%- comment -%}
+      GALERIA
+      Prioridade 1: product.images (cadastradas no admin Shopify)
+      Prioridade 2: fallback estático com fotos reais V2 (asset_url)
+                    usado em preview antes do produto estar cadastrado
+    {%- endcomment -%}
+    {%- liquid
+      assign pdp_main = section.settings.main_image
+      if section.settings.main_image_product != blank and section.settings.main_image_product != product.handle
+        assign pdp_main = blank
+      endif
+    -%}
+    <div class="vf-pdp__gallery">
+      {%- if product.images.size > 0 -%}
+        {%- assign main_img = pdp_main | default: product.featured_image -%}
+        <div class="vf-pdp__main-image">
+          <img
+            src="{{ main_img | image_url: width: 1000 }}"
+            alt="{{ main_img.alt | default: product.title | escape }}"
+            width="1000"
+            height="1000"
+            loading="eager"
+            class="vf-pdp__img"
+            id="vf-pdp-main-img"
+          >
+        </div>
+
+        {%- if product.images.size > 1 or pdp_main != blank -%}
+          <div class="vf-pdp__thumbs">
+            {%- if pdp_main != blank -%}
+              <button type="button" class="vf-pdp__thumb is-active" data-src="{{ pdp_main | image_url: width: 1000 }}" aria-label="Ver imagem principal">
+                <img src="{{ pdp_main | image_url: width: 200 }}" alt="" width="200" height="200" loading="lazy">
+              </button>
+            {%- endif -%}
+            {%- for image in product.images limit: 12 -%}
+              <button
+                type="button"
+                class="vf-pdp__thumb {% if forloop.first and pdp_main == blank %}is-active{% endif %}"
+                data-src="{{ image | image_url: width: 1000 }}"
+                aria-label="Ver imagem {{ forloop.index }}"
+              >
+                <img
+                  src="{{ image | image_url: width: 200 }}"
+                  alt="{{ image.alt | escape }}"
+                  width="200"
+                  height="200"
+                  loading="lazy"
+                >
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+      {%- else -%}
+        {%- comment -%} Fallback: fotos reais V2 do produto Adulto {%- endcomment -%}
+        {%- assign fallback_main = 'pdp-adulto-01-oregano-frontal.jpg' | asset_url -%}
+        <div class="vf-pdp__main-image">
+          <img
+            src="{{ fallback_main }}"
+            alt="Protocolo Adulto VermeFree — Óleo Essencial de Orégano"
+            width="1000"
+            height="1000"
+            loading="eager"
+            class="vf-pdp__img"
+            id="vf-pdp-main-img"
+          >
+        </div>
+        <div class="vf-pdp__thumbs">
+          {%- assign fallback_thumbs = 'pdp-adulto-01-oregano-frontal.jpg,pdp-adulto-02-oregano-flatlay.jpg,pdp-adulto-03-oregano-deitado-capsulas.jpg,pdp-adulto-05-tintura-gota.jpg,pdp-adulto-06-ornitina.jpg,pdp-adulto-07-silimarina.jpg,kit-familia-01-todos-frascos.jpg' | split: ',' -%}
+          {%- for filename in fallback_thumbs -%}
+            <button
+              type="button"
+              class="vf-pdp__thumb {% if forloop.first %}is-active{% endif %}"
+              data-src="{{ filename | asset_url }}"
+              aria-label="Ver imagem {{ forloop.index }}"
+            >
+              <img
+                src="{{ filename | asset_url }}"
+                alt=""
+                width="200"
+                height="200"
+                loading="lazy"
+              >
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} BUY BOX {%- endcomment -%}
+    <div class="vf-pdp__buy" id="vf-comprar">
+      <div class="vf-pdp__buy-inner">
+
+        {%- if product.vendor != blank and section.settings.show_vendor -%}
+          <p class="vf-pdp__vendor">{{ product.vendor }}</p>
+        {%- endif -%}
+
+        <h1 class="vf-pdp__title">{{ product.metafields.custom.seo_h1.value | default: product.title | default: section.settings.fallback_title }}</h1>
+
+        {%- if section.settings.show_age_badge -%}
+          <span class="vf-pdp__age-badge" aria-label="Indicação de idade">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            {{ section.settings.age_badge_text }}
+          </span>
+        {%- endif -%}
+
+        <a class="vf-pdp__protocol-link" href="#como-tomar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="9" y1="14" x2="15" y2="14"/>
+            <line x1="9" y1="18" x2="15" y2="18"/>
+          </svg>
+          Ver o protocolo completo
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+
+        {%- if section.settings.show_rating and vf_rating_count > 0 -%}
+          <a class="vf-pdp__rating" href="#avaliacoes" data-vf-reviews-link aria-label="Nota {{ vf_rating_display }} de 5. Ver as {{ vf_rating_count }} {{ vf_rating_word }}">
+            {%- render 'vf-stars', rating: vf_rating_value, size: 16 -%}
+            <span class="vf-pdp__rating-text" aria-hidden="true">
+              <strong>{{ vf_rating_display }}</strong>
+              <span class="vf-pdp__rating-count">({{ vf_rating_count }} {{ vf_rating_word }})</span>
+            </span>
+          </a>
+        {%- endif -%}
+
+        {%- if product.description != blank -%}
+          <p class="vf-pdp__short">{{ product.description | strip_html | truncatewords: 30 }}</p>
+        {%- elsif section.settings.short_desc != blank -%}
+          <p class="vf-pdp__short">{{ section.settings.short_desc }}</p>
+        {%- endif -%}
+
+        {%- comment -%}
+          PREÇO — 10x destaque
+          Parcela 10x fixa por produto (via section setting "installment_10x_value" em centavos).
+          Cai em fallback calculado se setting estiver vazio.
+        {%- endcomment -%}
+        {%- assign installment_10x_cents = section.settings.installment_10x_value | default: 0 -%}
+        {%- comment -%} 19/10: parcela sempre calculada do preço real (igual ao checkout), para seguir mudanças de preço. Kit Família mantém o valor fixo. {%- endcomment -%}
+        {%- comment -%} 25/10: parcela em 3x sem juros para todos (igual à home). {%- endcomment -%}{%- assign installment_10x_cents = 0 -%}
+        {%- assign unit_price_cents = 34700 -%}
+        {%- if product != blank and product.selected_or_first_available_variant != blank -%}
+          {%- assign unit_price_cents = product.selected_or_first_available_variant.price -%}
+        {%- endif -%}
+        {%- assign installment_ratio = 0.333333 -%}
+        {%- if installment_10x_cents > 0 and unit_price_cents > 0 -%}
+          {%- assign installment_ratio = installment_10x_cents | times: 1.0 | divided_by: unit_price_cents -%}
+        {%- endif -%}
+        <div class="vf-pdp__price-box"
+             data-unit-price="{{ unit_price_cents }}"
+             data-installment-10x="{{ installment_10x_cents }}">
+          {%- if product != blank and product.selected_or_first_available_variant != blank -%}
+            {%- assign current_variant = product.selected_or_first_available_variant -%}
+            {%- assign price = current_variant.price -%}
+            {%- assign compare = current_variant.compare_at_price -%}
+            {%- if compare > price -%}
+              <span class="vf-pdp__compare" id="vf-pdp-compare">de {{ compare | money }}</span>
+            {%- endif -%}
+            {%- if installment_10x_cents > 0 -%}
+              <p class="vf-pdp__installment" id="vf-pdp-installment">
+                3x de {{ installment_10x_cents | money }} sem juros
+              </p>
+            {%- else -%}
+              <p class="vf-pdp__installment" id="vf-pdp-installment">
+                3x de {{ price | divided_by: 3 | money }} sem juros
+              </p>
+            {%- endif -%}
+            <p class="vf-pdp__price-cash" id="vf-pdp-cash">
+              ou {{ price | money }} à vista
+            </p>
+          {%- else -%}
+            <p class="vf-pdp__installment" id="vf-pdp-installment">3x sem juros</p>
+            <p class="vf-pdp__price-cash" id="vf-pdp-cash">ou R$ 347 à vista</p>
+          {%- endif -%}
+
+          <div class="vf-pdp__volume-badge" id="vf-pdp-volume-badge" hidden>
+            <span class="vf-pdp__volume-badge-icon">🎁</span>
+            <span class="vf-pdp__volume-badge-text" id="vf-pdp-volume-badge-text"></span>
+          </div>
+        </div>
+
+        {%- comment -%} COMPONENTES DO PROTOCOLO {%- endcomment -%}
+        {%- assign has_component = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'component' -%}
+            {%- assign has_component = true -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if has_component -%}
+          <div class="vf-pdp__components">
+            <p class="vf-pdp__components-label">O que vem no protocolo:</p>
+            <ul class="vf-pdp__components-list">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'component' -%}
+                  <li class="vf-pdp__component" {{ block.shopify_attributes }}>
+                    <span class="vf-pdp__component-check" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg>
+                    </span>
+                    <span class="vf-pdp__component-text">
+                      <strong>{{ block.settings.name }}</strong>
+                      {%- if block.settings.spec != blank -%}
+                        <span class="vf-pdp__component-spec">{{ block.settings.spec }}</span>
+                      {%- endif -%}
+                    </span>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} VARIANTS / QUANTITY / CTA {%- endcomment -%}
+        <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="vf-pdp__form">
+          {%- if product.has_only_default_variant == false -%}
+            <div class="vf-pdp__variants">
+              {%- for option in product.options_with_values -%}
+                <label class="vf-pdp__variant-label">{{ option.name }}</label>
+                <div class="vf-pdp__variant-options">
+                  {%- for value in option.values -%}
+                    <label class="vf-pdp__pill">
+                      <input type="radio" name="options[{{ option.name }}]" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %}>
+                      <span>{{ value }}</span>
+                    </label>
+                  {%- endfor -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" id="vf-pdp-qty" name="quantity" value="1">
+
+          {%- comment -%}
+            SELETOR DE KITS (estilo Botanika)
+            Cards clicaveis que definem a quantidade. Tiers configuraveis
+            via section settings, com os mesmos descontos que ja existiam
+            no stepper (3=10%, 5=15%, 8=20%).
+          {%- endcomment -%}
