@@ -38,6 +38,8 @@
 | P6 | Pedro | Pesquisa de indicação: o que já está pronto (lista RFM, formulário, copy)? | Vence 02/11 | 30/10 |
 | P7 | Pedro | Os links quebrados já foram trocados (3/5 na checklist). Faltam os 301 e o teste. Confirmar | 15 minutos para fechar | 30/10 |
 | P9 | Ítalo | Plano de Instagram com as palavras-chave do ManyChat (atrasado desde 16/10). Detalhe: o Instagram está fora do ar | Trava a copy do ManyChat | 30/10 |
+| P20 | Pedro / Vitor | Estáticos do mês: a tarefa do Vitor pede "sem data, porcentagem ou nome de campanha" (selo "maior desconto da história"). O lote 2 saiu com "Verme November · até 15% OFF" (Pedro aprovou em 04/11), porque "maior desconto da história" depois do 11/11 pode ser lido como propaganda enganosa. Avisar o Vitor; decidir também o lote 1 | O Otávio sobe os lotes para rodar a partir de 12/11 | 06/11 |
+| P21 | Pedro | O MCP do Alliance desta sessão está na conta do Vitor: as marcações de status e os comentários saem no nome dele. Reconectar com a conta do Pedro? | Histórico das tarefas | quando puder |
 
 ## Inconsistências encontradas nas tarefas (avisar quem criou)
 
