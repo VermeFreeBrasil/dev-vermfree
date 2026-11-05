@@ -51,3 +51,9 @@
 - Pedido do Pedro/Otávio: depois do envio do formulário, a pessoa vai para https://vermefree.com.br/pages/obrigado?vf_trava=off (a trava do site libera com vf_trava=off). Essa página marca o lead e redireciona sozinha para o grupo (sndflw.com/i/vermefree11-11), conferido com navegador.
 - Mudou só a variável GRUPO no index.html. Lead e CompleteRegistration (navegador + API de Conversões) e o envio ao AC/n8n continuam no envio, antes do redirecionamento (espera até 2,5 s).
 - Deploy dpl_FdY1SjEoMgWHhiJk4vs89VAbTsSn (READY, no ar em vip.vermefree.com.br; conferido no HTML publicado).
+
+## Ajuste para 11/11 00h–07h e depois das 07h (05/11, ok do Pedro)
+- Das 00h às 07h do dia 11 a página troca sozinha o texto: "o 11.11 já começou no grupo · site abre às 7h", título "A oferta já começou...", contagem até as 07h, botão "Entrar no grupo e comprar agora" e o aviso de quem veio do site.
+- A partir de 11/11 07h, a LP manda o visitante para https://vermefree.com.br/ mantendo os UTMs. Prévia sem o redirecionamento: ?vf_lp=on.
+- Antes do dia 11 nada muda para o visitante. Rastreio, formulário e /api/lead continuam iguais (o /api/lead foi conferido: responde 405 a GET, como esperado).
+- Deploy dpl_4tcft1smaSDtz9gu2y7wh5U5qCkq (READY, alias vip.vermefree.com.br).
