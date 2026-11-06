@@ -31,6 +31,8 @@
 | P26 | RESOLVIDO 02/11 14h10 (token na Vercel) | Gerar o token da API de Conversões (Gerenciador de Eventos → Pixel - VermeFree → Configurações → API de Conversões → Gerar token) e salvar na Vercel como META_CAPI_TOKEN (Sensitive) | Sem ele o Lead só vai pelo navegador, que não está chegando | 02/11 |
 | P27 | RESOLVIDO 02/11 (Otávio: no envio) | Lead no clique (hoje) ou no envio do formulário? Volume real ~15–20 cadastros/dia | Define o sinal da campanha | 02/11 |
 
+| P28 | Pedro | Aprovar a copy nova do Eclipse (desconto + urgência + última lua nova de 2026) e o seletor de kits em cards. Confirmar se "3x sem juros" é condição oficial do 11/11 | Tema publica 11/11 00h | 09/11 |
+
 ## Fora do escopo deste chat (regra do Pedro, 29/10: só promoções VF)
 
 | P4 | Vitor | Novas datas para as 10 subtarefas de Growth atrasadas (proposta em `01-plano-de-execucao.md` §4.9) | Elas estão poluindo o "atrasado" do Pedro | Daily de 30/10 ou Growth de 02/11 |
@@ -73,3 +75,6 @@
 | 01/11 | Lista "Grupo VIP 11/11 · VermeFree 2026" no ActiveCampaign, alimentada pelo n8n | Pedro |
 | 01/11 | Selo dos universais: "Black VermeFree · o maior desconto da história" | Pedro |
 | 01/11 | Não adiantar entregas além do necessário (risco de retrabalho) | Pedro |
+| 05/11 | Cupons DRAVANESSALUDWIG e ANNANICACIO de 5% para 2% (DRAVANESSALUDWIG virou desconto de produto para somar com o 11/11); NEWSDUPLA, AVALIEI5, CASA5 e FRETEFREE mantidos | Pedro |
+| 05/11 | Verme November recebe os ajustes de Growth/SEO do Eclipse antes de ir ao ar (feito) | Pedro |
+| 05/11 | LP do VIP: 00h–07h de 11/11 avisa que já começou no grupo; a partir das 07h manda para o site com UTMs (publicada) | Pedro |
