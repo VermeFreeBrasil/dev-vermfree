@@ -1,10 +1,20 @@
 {%- comment -%} vf-1111-kits · seletor de kits da PDP no 11/11 (cards + barra de benefícios + prazo). Renderizado dentro de vf-1111-promo (parte: 'pdp'), usa as variáveis de cor dele. kk = brinde Kit Kids na compra de 4 (pendente de confirmação do Vitor: trocar para false tira a promessa daqui). {%- endcomment -%}
 {%- assign kk = true -%}
 {%- assign p80 = v.price | times: 0.8 -%}
+{%- assign hs = 'protocolo-desparasitacao-adulto-vermefree,antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos,antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos,kit-familia-vermefree-2-adultos-2-criancas' | split: ',' -%}
+{%- assign ps = 'vf-pv2-adulto.png,vf-pv2-kids-2a4.png,vf-pv2-kids-5a9.png,vf-pv2-kit-familia-v3.png' | split: ',' -%}
+{%- assign img = product.featured_image -%}
+{%- for h in hs -%}{%- if h == product.handle -%}{%- assign pk = ps[forloop.index0] -%}{%- if images[pk] -%}{%- assign img = images[pk] -%}{%- endif -%}{%- endif -%}{%- endfor -%}
 <style>
 .ve-k h3{margin:24px 0 12px!important;font:800 13px Inter,Arial,sans-serif!important;letter-spacing:2px;text-transform:uppercase;color:var(--lime)}
 .ve-op{display:grid;gap:10px}
-.ve-o{position:relative;display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:14px;width:100%;padding:16px 18px;border-radius:16px;border:1.5px solid #ffffff1f;background:#ffffff07;color:var(--cream);font-family:inherit;text-align:left;cursor:pointer;transition:border-color .2s,background .2s}
+.ve-o{position:relative;display:grid;grid-template-columns:22px 64px 1fr auto;align-items:center;gap:14px;width:100%;padding:16px 18px;border-radius:16px;border:1.5px solid #ffffff1f;background:#ffffff07;color:var(--cream);font-family:inherit;text-align:left;cursor:pointer;transition:border-color .2s,background .2s}
+.ve-o .im{position:relative;width:64px;height:64px;border-radius:14px;background:#fff;display:grid;place-items:center;overflow:visible}
+.ve-o .im img{width:100%;height:100%;object-fit:contain;padding:4px;border-radius:14px}
+.ve-o .im i{position:absolute;right:-6px;bottom:-6px;min-width:24px;height:24px;padding:0 5px;border-radius:12px;background:var(--red);color:#fff;font:900 12px/24px Inter,Arial,sans-serif;font-style:normal;text-align:center;box-shadow:0 0 0 2px #070a08}
+.ve-k .ve-btn{animation:vePulse 2.4s ease-in-out infinite}
+@keyframes vePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03);box-shadow:0 0 0 6px #e0262f22,0 12px 34px #e0262f66}}
+@media(prefers-reduced-motion:reduce){.ve-k .ve-btn{animation:none}}
 .ve-o .r{width:22px;height:22px;border-radius:50%;border:2px solid #ffffff44;display:grid;place-items:center}
 .ve-o.on{border-color:var(--red);background:#e0262f14;box-shadow:0 0 0 4px #e0262f1f}
 .ve-o.on .r{border-color:var(--red);background:var(--red)}
@@ -47,7 +57,7 @@
 .ve-lua b{color:var(--lime)}
 @media(max-width:860px){
   .ve-k h3{text-align:center}
-  .ve-o{padding:14px;gap:10px}.ve-o .a b{font-size:15.5px}.ve-o .c b{font-size:17px}
+  .ve-o{padding:14px 12px;gap:10px;grid-template-columns:20px 52px 1fr auto}.ve-o .im{width:52px;height:52px}.ve-o .a b{font-size:15.5px}.ve-o .c b{font-size:17px}
   .ve-pg{padding:16px 12px 12px}.ve-tr{margin:0 22px}
   .ve-ms li small{display:none}.ve-ms li b{font-size:10.5px}
   .ve-eta b{font-size:11.5px}.ve-eta small{font-size:11px}
@@ -64,6 +74,7 @@
       <button type="button" class="ve-o{% if forloop.first %} on{% endif %}" data-ve-k="{{ k }}">
         {%- if kn == 5 -%}<span class="tag">Melhor preço do ano</span>{%- endif -%}
         <span class="r"></span>
+        <span class="im">{{ img | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}{%- if kn > 1 -%}<i>×{{ kn }}</i>{%- endif -%}</span>
         <span class="a">
           {%- if kn == 5 -%}<b>5 unidades, pague 4<em>−36%</em></b><small>20% OFF + o 5º grátis</small>{%- if kk -%}<small class="g">+ Kit Kids 2 a 4 anos de presente</small>{%- endif -%}
           {%- else -%}<b>{{ k }} {% if kn == 1 %}unidade{% else %}unidades{% endif %}<em>−20%</em></b><small>{% if kn == 1 %}Para começar{% else %}Para o casal{% endif %}</small>{%- endif -%}

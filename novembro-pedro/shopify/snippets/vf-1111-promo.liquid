@@ -72,6 +72,7 @@ html.ve-on .vf-cur .is-on{background:#e0262f!important}
   setInterval(tick, 1000);
   })();
 </script>
+{%- if template.name == 'cart' -%}{%- render 'vf-1111-cart' -%}<script>(function(){var m=function(){var c=document.querySelector('.ve-cart'),t=document.querySelector('.vf-cart__summary-title');if(c&&t)t.after(c);};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',m);else m();})();</script>{%- endif -%}
 {%- elsif parte == 'home' or parte == 'pdp' -%}
 {%- assign handles = 'protocolo-desparasitacao-adulto-vermefree,antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos,antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos,kit-familia-vermefree-2-adultos-2-criancas' | split: ',' -%}
 {%- assign nomes = 'Protocolo Adulto|Kids 2 a 4 anos|Kids 5 a 9 anos|Kit Família' | split: '|' -%}
@@ -94,7 +95,7 @@ html.ve-on .vf-cur .is-on{background:#e0262f!important}
 .ve-bar{height:6px;border-radius:6px;background:#ffffff14;margin:8px 0 6px;overflow:hidden}
 .ve-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e0262f,#ff6b72)}
 .ve-trilho{display:flex;gap:12px 36px;justify-content:center;padding:18px 16px;background:var(--red);color:#fff;font-weight:800;font-size:14px;letter-spacing:.5px;text-transform:uppercase;flex-wrap:wrap;text-align:center}
-.ve-trilho span:before{content:'✦ ';color:#070a08}
+.ve-trilho{flex-direction:column;align-items:center;gap:8px}.ve-trilho span:before{content:'🎁 '}
 </style>
 {%- endif -%}
 {%- if parte == 'home' -%}
@@ -110,7 +111,7 @@ html.ve-on .vf-cur .is-on{background:#e0262f!important}
 .ve-left{font-size:14px;color:var(--mut)}.ve-left b{color:#fff;font-variant-numeric:tabular-nums}
 .ve-moonwrap{display:flex;flex-direction:column;align-items:center}
 .ve-hero .ve-moon{width:min(440px,80vw)}
-.ve-n{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);font-family:Caprasimo,Georgia,serif;font-size:clamp(70px,8.4vw,118px);color:#070a08;letter-spacing:-3px;white-space:nowrap;mix-blend-mode:multiply;opacity:.92;z-index:1}
+.ve-n{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);font-family:Caprasimo,Georgia,serif;font-size:clamp(70px,8.4vw,118px);color:#fff;letter-spacing:-3px;white-space:nowrap;text-shadow:0 4px 24px #000c,0 0 2px #000;z-index:1}
 .ve-prog{margin-top:22px;width:min(440px,80vw);text-align:center;font-size:13px;color:var(--mut)}
 .ve-x h2{font-size:clamp(30px,3vw,44px);line-height:1.05;color:var(--cream)}
 .ve-x h2 em{font-style:normal;color:var(--lime)}
@@ -125,7 +126,7 @@ html.ve-on .vf-cur .is-on{background:#e0262f!important}
 .ve-mt-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:transparent;transition:background .2s}
 .ve-mt-row.on{background:#1a0d10}
 .ve-mt-row.on::before{background:var(--red)}
-.ve-mt-im{grid-area:im;align-self:center;position:relative;display:grid;place-items:center;width:170px;height:170px;border-radius:22px;background:radial-gradient(circle at 50% 60%,#26302b,#121815);border:1px solid #ffffff12}
+.ve-mt-im{grid-area:im;align-self:center;position:relative;display:grid;place-items:center;width:170px;height:170px;border-radius:22px;background:#fff;border:1px solid #ffffff12}
 .ve-mt-im img{width:94%;height:94%;object-fit:contain}
 .ve-mt-tag{position:absolute;z-index:1;top:-8px;left:-6px;padding:4px 9px;border-radius:99px;background:var(--red);color:#fff;font:800 10px/1.15 Inter,Arial,sans-serif;letter-spacing:.04em;text-transform:uppercase}
 .ve-mt-info{grid-area:info;min-width:0;align-self:end}
@@ -211,7 +212,7 @@ html.ve-on .vf-cur .is-on{background:#e0262f!important}
   .ve-mt-big b{font-size:32px}
   .ve-rail figure{flex-basis:150px}
   .ve-faq{grid-template-columns:1fr}
-  .ve-trilho{font-size:12px;gap:8px 18px}
+  .ve-trilho{font-size:12px;gap:7px}
 }
 </style>
 <div class="ve ve-x" data-ve hidden>
@@ -403,8 +404,7 @@ html.ve-on .vf-cur .is-on{background:#e0262f!important}
 .ve-info h1,.ve-info p.cap{font-size:clamp(32px,3.2vw,46px);line-height:1.05;letter-spacing:-.3px;color:var(--cream)}
 .ve-info .desc{margin-top:10px!important;color:var(--mut);font-size:15px;line-height:1.5}
 .ve-pr{display:flex;align-items:center;gap:22px;margin:22px 0 6px;padding:18px 20px;border-radius:20px;background:#ffffff07;border:1px solid #ffffff12}
-.ve-pr .mini{width:76px;flex:0 0 76px}
-.ve-pr .mini + div{flex:1}
+.ve-pr>div{flex:1}
 .ve-pr s{color:#7f8e86;font-size:15px}
 .ve-pr strong{display:block;font-size:40px;color:#ff4a52;font-weight:900;letter-spacing:-1px;line-height:1.05}
 .ve-pr small{color:var(--mut);font-size:12.5px}
@@ -418,7 +418,6 @@ html.ve-on .vf-cur .is-on{background:#e0262f!important}
 .ve-ul li b{display:block;color:#fff;font-size:13.5px}
 .ve-mix{display:inline-block;margin-top:16px;color:var(--lime);font-size:14px;font-weight:700}
 .ve-stick{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#070a08f2;border-top:1px solid #ffffff1a;display:none;align-items:center;gap:12px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));font-family:Inter,Arial,sans-serif;color:#f6f5ec;backdrop-filter:blur(8px)}
-.ve-stick .m{width:36px;flex:0 0 36px}
 .ve-stick .tx{flex:1;line-height:1.2}
 .ve-stick .tx b{font-size:18px;color:#ff4a52;font-weight:900}
 .ve-stick .tx small{display:block;font-size:11.5px;color:#9fb0a6}
@@ -466,10 +465,9 @@ html.ve-on body[class*="template-product"] #main h2::before{content:"";display:i
       <p class="cap">{{ titulo }}</p>
       <p class="desc">{{ desc }}</p><p class="desc" style="color:#fff;font-weight:700">🌑 Última lua nova de 2026: peça hoje e comece 2027 sem parasitas.</p>
       <div class="ve-pr">
-        <div class="ve-moon mini"><div class="ve-sombra" data-ve-sombra></div></div>
         <div><s>{{ v.price | money }}</s><strong>{{ v.price | times: 0.8 | money }}</strong><em style="display:block;font-style:normal;font-size:15px;color:#fff;margin:2px 0">ou <b style="color:#ff6b72">3x de {{ v.price | times: 0.8 | divided_by: 3 | round | money }}</b> sem juros</em><small>só hoje · amanhã volta para <b>{{ v.price | money }}</b></small></div>
       </div>
-      {%- render 'vf-1111-kits', v: v -%}
+      {%- render 'vf-1111-kits', v: v, product: product -%}
       <ul class="ve-ul">
         <li><b>Frete grátis</b>sem valor mínimo</li>
         <li><b>15% de cashback</b>nos 100 primeiros pedidos</li>
@@ -489,7 +487,6 @@ html.ve-on body[class*="template-product"] #main h2::before{content:"";display:i
   </section>
 </div>
 <div class="ve ve-stick" data-ve hidden>
-  <div class="ve-moon m"><div class="ve-sombra" data-ve-sombra></div></div>
   <div class="tx"><b data-ve-sp>{{ v.price | times: 0.8 | money }}</b> <s style="color:#7f8e86;font-size:12px">{{ v.price | money }}</s><small>20% OFF acaba em <b data-ve-t>--</b></small></div>
   <a href="#" data-ve-stick-go>Comprar</a>
 </div>
