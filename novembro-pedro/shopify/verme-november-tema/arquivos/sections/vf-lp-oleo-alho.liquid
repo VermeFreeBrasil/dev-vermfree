@@ -1,0 +1,382 @@
+{%- comment -%}
+  vf-lp-oleo-alho.liquid
+  LP autocontida do Óleo de Alho Desodorizado 500mg — não é seção genérica do
+  tema, é a página inteira do produto (uma seção só), no padrão "LP de produto
+  premium" (conceito Botanika/"Jouse" — layout final ajusta quando as refs
+  chegarem). As seções vf-* legadas foram usadas só como FONTE de conteúdo
+  real (posologia, escada de desconto, copy já aprovada dos bumps) — nada
+  delas foi embutido/incluído aqui.
+
+  Preço, variante e desconto por volume: SEMPRE dinâmicos via objetos do
+  Shopify (product.price, product.selected_or_first_available_variant).
+  Os percentuais 15%/6=20% abaixo espelham os descontos automáticos REAIS
+  e ativos na Shopify hoje (conferidos via Admin API em 10/09 — não são
+  os 10%/15% desatualizados do CLAUDE.md). Se a escada mudar no admin,
+  ajustar só OLEO_PCT_3 / OLEO_PCT_6.
+
+  Sem vf-prescritores. Sem claim de cura/eliminação — este produto não é
+  desparasitação, é manutenção mensal pós-protocolo (ver CLAUDE.md §5).
+  Sem avaliação/nota inventada: não existe app de review nem metafield de
+  nota pra este produto hoje, então a seção de prova não mostra estrelas.
+
+  FIX 10/09: removidos os atributos HTML width/height=900 da imagem do
+  hero — eles entravam em conflito com o aspect-ratio do CSS quando a
+  imagem falha/demora a carregar, e a caixa colapsava enorme, empurrando
+  o CTA pra fora da dobra no mobile. aspect-ratio agora vive só no
+  container (.hero-media), testado a 320px.
+{%- endcomment -%}
+
+{%- assign OLEO_PCT_3 = 15 -%}
+{%- assign OLEO_PCT_6 = 20 -%}
+{%- assign variant = product.selected_or_first_available_variant -%}
+{%- assign unit_price = product.price -%}
+{%- assign full_3 = unit_price | times: 3 -%}
+{%- assign save_3 = full_3 | times: OLEO_PCT_3 | divided_by: 100 -%}
+{%- assign final_3 = full_3 | minus: save_3 -%}
+{%- assign full_6 = unit_price | times: 6 -%}
+{%- assign save_6 = full_6 | times: OLEO_PCT_6 | divided_by: 100 -%}
+{%- assign final_6 = full_6 | minus: save_6 -%}
+
+{%- assign protocolo = all_products['protocolo-desparasitacao-adulto-vermefree'] -%}
+
+<section class="vf-lp-oleo" id="vf-lp-oleo-{{ section.id }}">
+
+  {%- comment -%} ===================== HERO ===================== {%- endcomment -%}
+  <div class="vf-lp-oleo__hero">
+    <div class="vf-lp-oleo__hero-media">
+      {%- if product.featured_image -%}
+        <img
+          src="{{ product.featured_image | image_url: width: 900 }}"
+          srcset="{{ product.featured_image | image_url: width: 600 }} 600w, {{ product.featured_image | image_url: width: 900 }} 900w"
+          sizes="(max-width: 749px) 100vw, 480px"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
+          class="vf-lp-oleo__hero-img"
+        >
+      {%- endif -%}
+      <div class="vf-lp-oleo__selos">
+        <span class="vf-lp-oleo__selo">Vegetal 100%</span>
+        <span class="vf-lp-oleo__selo">Metais Free</span>
+      </div>
+    </div>
+
+    <div class="vf-lp-oleo__hero-copy">
+      <p class="vf-lp-oleo__eyebrow">🌿 Manutenção mensal pós-protocolo</p>
+      <h1 class="vf-lp-oleo__title">{{ product.title | default: 'Óleo de Alho Desodorizado 500mg' }}</h1>
+      <p class="vf-lp-oleo__promise">O passo simples pra manter a rotina de bem-estar do intestino nos meses entre um ciclo completo e outro. 1 cápsula por dia, sem hálito de alho.</p>
+
+      {%- form 'product', product, class: 'vf-lp-oleo__form', id: 'vf-lp-oleo-form' -%}
+        <input type="hidden" name="id" id="vf-lp-oleo-variant-id" value="{{ variant.id }}">
+
+        <div class="vf-lp-oleo__qty" role="radiogroup" aria-label="Quantidade de frascos">
+          <button type="button" class="vf-lp-oleo__qty-opt is-active" data-qty="1" data-price="{{ unit_price | money }}">
+            <span class="vf-lp-oleo__qty-n">1 frasco</span>
+            <span class="vf-lp-oleo__qty-p">{{ unit_price | money }}</span>
+          </button>
+          <button type="button" class="vf-lp-oleo__qty-opt" data-qty="3" data-price="{{ final_3 | money }}">
+            <span class="vf-lp-oleo__qty-badge">{{ OLEO_PCT_3 }}% OFF</span>
+            <span class="vf-lp-oleo__qty-n">3 frascos</span>
+            <span class="vf-lp-oleo__qty-p">{{ final_3 | money }}</span>
+          </button>
+          <button type="button" class="vf-lp-oleo__qty-opt" data-qty="6" data-price="{{ final_6 | money }}">
+            <span class="vf-lp-oleo__qty-badge">{{ OLEO_PCT_6 }}% OFF</span>
+            <span class="vf-lp-oleo__qty-n">6 frascos</span>
+            <span class="vf-lp-oleo__qty-p">{{ final_6 | money }}</span>
+          </button>
+        </div>
+        <input type="hidden" name="quantity" id="vf-lp-oleo-qty-input" value="1">
+
+        <div class="vf-lp-oleo__price-row">
+          <span class="vf-lp-oleo__price-now" id="vf-lp-oleo-price-display">{{ unit_price | money }}</span>
+          <span class="vf-lp-oleo__price-note">desconto de volume aplicado no checkout</span>
+        </div>
+
+        <button type="submit" class="vf-lp-oleo__cta" name="add" {% unless variant.available %}disabled{% endunless %}>
+          {%- if variant.available -%}Adicionar ao carrinho →{%- else -%}Indisponível no momento{%- endif -%}
+        </button>
+      {%- endform -%}
+
+      <p class="vf-lp-oleo__micro">Cada frasco = 30 dias de manutenção. Frete grátis acima de R$299.</p>
+    </div>
+  </div>
+
+  {%- comment -%} ===================== PARA QUEM É ===================== {%- endcomment -%}
+  <div class="vf-lp-oleo__section vf-lp-oleo__section--alt" data-reveal>
+    <div class="vf-lp-oleo__wrap">
+      <p class="vf-lp-oleo__eyebrow">Pra quem é</p>
+      <h2 class="vf-lp-oleo__h2">Pra quem já fez o protocolo e quer manter o resultado</h2>
+      <p class="vf-lp-oleo__p">A desparasitação natural é feita em ciclos — 2 a 4 vezes por ano, sincronizada com a lua nova. Nos meses entre um ciclo completo e outro, o Óleo de Alho é o passo simples de manutenção: não substitui o protocolo, complementa a rotina no intervalo.</p>
+    </div>
+  </div>
+
+  {%- comment -%} ===================== O QUE TEM DENTRO ===================== {%- endcomment -%}
+  <div class="vf-lp-oleo__section" data-reveal>
+    <div class="vf-lp-oleo__wrap">
+      <p class="vf-lp-oleo__eyebrow">O que tem dentro</p>
+      <h2 class="vf-lp-oleo__h2">Um frasco. Um ativo. Sem complicação.</h2>
+      <div class="vf-lp-oleo__ingredient-card">
+        {%- if product.featured_image -%}
+          <img src="{{ product.featured_image | image_url: width: 240 }}" alt="{{ product.title | escape }}" loading="lazy" width="120" height="120">
+        {%- endif -%}
+        <div>
+          <h3>Óleo de Alho Desodorizado 500mg</h3>
+          <p>30 cápsulas por frasco — 1 por dia, todos os dias do mês. Desodorizado: sem hálito de alho no dia a dia.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ===================== COMO TOMAR ===================== {%- endcomment -%}
+  <div class="vf-lp-oleo__section vf-lp-oleo__section--alt" data-reveal>
+    <div class="vf-lp-oleo__wrap">
+      <p class="vf-lp-oleo__eyebrow">Como tomar</p>
+      <h2 class="vf-lp-oleo__h2">1 cápsula por dia. Todo santo dia do mês.</h2>
+      <p class="vf-lp-oleo__p">Diferente do protocolo completo (que tem uma ordem de frascos e começa com a Silimarina 15 dias antes da lua nova), o Óleo de Alho é rotina simples: 1 cápsula por dia, sem horário fixo, durante os meses em que você não está fazendo um ciclo completo.</p>
+    </div>
+  </div>
+
+  {%- comment -%} ===================== POR QUE FUNCIONA ===================== {%- endcomment -%}
+  <div class="vf-lp-oleo__section" data-reveal>
+    <div class="vf-lp-oleo__wrap">
+      <p class="vf-lp-oleo__eyebrow">Por que faz sentido</p>
+      <h2 class="vf-lp-oleo__h2">O protocolo é o cuidado grande. O óleo segura a rotina no meio do caminho.</h2>
+      <p class="vf-lp-oleo__p">Pensa assim: o protocolo de 4 frascos é feito de tempos em tempos (2 a 4x por ano). O Óleo de Alho é o que você mantém nos meses entre um ciclo e outro — pra não deixar a rotina de bem-estar do intestino de lado só porque não é "mês de protocolo".</p>
+    </div>
+  </div>
+
+  {%- comment -%} ===================== QUEBRA DE OBJEÇÃO ===================== {%- endcomment -%}
+  <div class="vf-lp-oleo__section vf-lp-oleo__section--alt" data-reveal>
+    <div class="vf-lp-oleo__wrap">
+      <p class="vf-lp-oleo__eyebrow">Antes de decidir</p>
+      <div class="vf-lp-oleo__objections">
+        <div>
+          <h3>Preciso comprar isso separado do protocolo?</h3>
+          <p>Sim — é um produto de manutenção, vendido à parte. Muita gente adiciona ele junto quando já está com o protocolo no carrinho, pra não esquecer depois.</p>
+        </div>
+        <div>
+          <h3>Posso tomar sem nunca ter feito o protocolo?</h3>
+          <p>Ele foi pensado como continuidade de quem já fez um ciclo completo. Se você nunca fez, o ponto de partida é o <a href="{{ protocolo.url }}">Protocolo Adulto</a>.</p>
+        </div>
+        <div>
+          <h3>Tem hálito de alho?</h3>
+          <p>Não — é desodorizado, pensado pra rotina do dia a dia sem esse efeito colateral do alho comum.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ===================== PROVA ===================== {%- endcomment -%}
+  <div class="vf-lp-oleo__section" data-reveal>
+    <div class="vf-lp-oleo__wrap vf-lp-oleo__wrap--narrow">
+      <p class="vf-lp-oleo__eyebrow">Selos</p>
+      <div class="vf-lp-oleo__selos vf-lp-oleo__selos--big">
+        <span class="vf-lp-oleo__selo">Vegetal 100%</span>
+        <span class="vf-lp-oleo__selo">Metais Free</span>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ===================== CROSS-SELL: Óleo → Protocolo Adulto ===================== {%- endcomment -%}
+  {%- if protocolo -%}
+  <div class="vf-lp-oleo__section vf-lp-oleo__section--alt" data-reveal>
+    <div class="vf-lp-oleo__wrap">
+      <p class="vf-lp-oleo__eyebrow">Ainda não fez o ciclo completo?</p>
+      <div class="vf-lp-oleo__cross">
+        {%- if protocolo.featured_image -%}
+          <img src="{{ protocolo.featured_image | image_url: width: 300 }}" alt="{{ protocolo.title | escape }}" loading="lazy" width="150" height="150">
+        {%- endif -%}
+        <div>
+          <h3>{{ protocolo.title }}</h3>
+          <p>O óleo é manutenção — o ciclo completo (4 frascos, 30 dias, sincronizado com a lua nova) é o ponto de partida.</p>
+          <a href="{{ protocolo.url }}" class="vf-lp-oleo__cross-cta">Ver o Protocolo Adulto — {{ protocolo.price | money }} →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {%- endif -%}
+
+  {%- comment -%} ===================== FAQ ===================== {%- endcomment -%}
+  <div class="vf-lp-oleo__section" data-reveal>
+    <div class="vf-lp-oleo__wrap vf-lp-oleo__wrap--narrow">
+      <p class="vf-lp-oleo__eyebrow">Perguntas frequentes</p>
+      <details class="vf-lp-oleo__faq-item">
+        <summary>Quanto tempo dura um frasco?</summary>
+        <p>30 dias, tomando 1 cápsula por dia.</p>
+      </details>
+      <details class="vf-lp-oleo__faq-item">
+        <summary>Posso tomar todos os meses do ano?</summary>
+        <p>Sim, é feito pra isso — é a manutenção mensal entre os ciclos completos do protocolo.</p>
+      </details>
+      <details class="vf-lp-oleo__faq-item">
+        <summary>Em quantos dias chega?</summary>
+        <p>Despachamos em até 3 dias úteis. Depois disso, Correios leva de 5 a 9 dias dependendo da região. Frete grátis acima de R$299.</p>
+      </details>
+      <details class="vf-lp-oleo__faq-item">
+        <summary>Grávida ou amamentando pode tomar?</summary>
+        <p>Não recomendamos sem orientação médica nesse período. Fale com quem te acompanha antes de começar.</p>
+      </details>
+    </div>
+  </div>
+
+  {%- comment -%} ===================== CTA FINAL ===================== {%- endcomment -%}
+  <div class="vf-lp-oleo__final">
+    <div class="vf-lp-oleo__wrap vf-lp-oleo__wrap--narrow">
+      <h2 class="vf-lp-oleo__h2 vf-lp-oleo__h2--light">Mantenha a rotina no seu ritmo.</h2>
+      <p class="vf-lp-oleo__final-price">{{ unit_price | money }} <span>· cada frasco = 30 dias</span></p>
+      <button type="submit" form="vf-lp-oleo-form" class="vf-lp-oleo__cta vf-lp-oleo__cta--final" {% unless variant.available %}disabled{% endunless %}>
+        {%- if variant.available -%}Adicionar ao carrinho →{%- else -%}Indisponível no momento{%- endif -%}
+      </button>
+    </div>
+  </div>
+
+</section>
+
+{% stylesheet %}
+  .vf-lp-oleo {
+    --oleo-green: #5EBC43;
+    --oleo-green-dark: #1B5E20;
+    --oleo-lime: #C0DE96;
+    --oleo-bg: #FAF8F2;
+    --oleo-text: #20301F;
+    --oleo-muted: #6B7A6E;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--oleo-bg);
+    color: var(--oleo-text);
+    overflow-x: clip;
+  }
+  .vf-lp-oleo * { box-sizing: border-box; }
+  .vf-lp-oleo img { max-width: 100%; display: block; }
+  .vf-lp-oleo h1, .vf-lp-oleo h2, .vf-lp-oleo h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; margin: 0; }
+  .vf-lp-oleo a { color: inherit; }
+
+  .vf-lp-oleo__wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  .vf-lp-oleo__wrap--narrow { max-width: 560px; }
+  .vf-lp-oleo__eyebrow { font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--oleo-green-dark); margin: 0 0 10px; text-align: center; }
+  .vf-lp-oleo__h2 { font-size: clamp(22px, 3.4vw, 32px); line-height: 1.25; text-align: center; margin-bottom: 14px; }
+  .vf-lp-oleo__h2--light { color: #fff; }
+  .vf-lp-oleo__p { font-size: 15.5px; line-height: 1.65; text-align: center; color: var(--oleo-text); max-width: 560px; margin: 0 auto; }
+
+  /* ---------- HERO ---------- */
+  .vf-lp-oleo__hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px 20px 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  @media (min-width: 750px) {
+    .vf-lp-oleo__hero { grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; padding: 48px 32px 64px; }
+  }
+  .vf-lp-oleo__hero-media { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 20px; background: #F0EDE4; }
+  .vf-lp-oleo__hero-img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .vf-lp-oleo__selos { display: flex; gap: 8px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
+  .vf-lp-oleo__selos--big { margin-top: 0; }
+  .vf-lp-oleo__selo { font-size: 12px; font-weight: 700; background: rgba(94,140,67,0.10); color: var(--oleo-green-dark); border: 1px solid rgba(94,140,67,0.2); border-radius: 100px; padding: 6px 14px; }
+
+  .vf-lp-oleo__hero-copy { display: flex; flex-direction: column; }
+  .vf-lp-oleo__eyebrow.vf-lp-oleo__eyebrow { text-align: left; }
+  .vf-lp-oleo__hero-copy .vf-lp-oleo__eyebrow { text-align: left; }
+  .vf-lp-oleo__title { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; margin-bottom: 10px; }
+  .vf-lp-oleo__promise { font-size: 15.5px; line-height: 1.55; color: var(--oleo-muted); margin: 0 0 18px; }
+
+  .vf-lp-oleo__qty { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+  .vf-lp-oleo__qty-opt {
+    position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px;
+    border: 1.5px solid #E3E7DD; background: #fff; border-radius: 12px; padding: 10px 6px 8px;
+    cursor: pointer; font-family: inherit;
+  }
+  .vf-lp-oleo__qty-opt.is-active { border-color: var(--oleo-green-dark); background: #F0FDF4; }
+  .vf-lp-oleo__qty-badge { position: absolute; top: -9px; font-size: 9.5px; font-weight: 800; background: var(--oleo-green-dark); color: #fff; padding: 2px 7px; border-radius: 100px; }
+  .vf-lp-oleo__qty-n { font-size: 13px; font-weight: 700; color: var(--oleo-text); }
+  .vf-lp-oleo__qty-p { font-size: 12.5px; color: var(--oleo-muted); }
+
+  .vf-lp-oleo__price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+  .vf-lp-oleo__price-now { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600; color: var(--oleo-green-dark); }
+  .vf-lp-oleo__price-note { font-size: 11.5px; color: var(--oleo-muted); }
+
+  .vf-lp-oleo__cta {
+    display: block; width: 100%; border: 0; border-radius: 100px; padding: 15px 20px;
+    background: linear-gradient(120deg, var(--oleo-green-dark), var(--oleo-green));
+    color: #fff; font-weight: 700; font-size: 15.5px; cursor: pointer; font-family: inherit;
+    box-shadow: 0 10px 24px -10px rgba(27,94,32,0.5);
+  }
+  .vf-lp-oleo__cta:disabled { opacity: 0.5; cursor: not-allowed; }
+  .vf-lp-oleo__micro { font-size: 12px; color: var(--oleo-muted); text-align: center; margin: 10px 0 0; }
+
+  /* ---------- SECTIONS ---------- */
+  .vf-lp-oleo__section { padding: clamp(36px, 6vw, 64px) 0; }
+  .vf-lp-oleo__section--alt { background: #F0FDF4; }
+  [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  [data-reveal].is-visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { [data-reveal] { opacity: 1 !important; transform: none !important; } }
+
+  .vf-lp-oleo__ingredient-card { display: flex; gap: 16px; align-items: center; background: #fff; border: 1px solid #EFEFEF; border-radius: 16px; padding: 18px; max-width: 480px; margin: 0 auto; }
+  .vf-lp-oleo__ingredient-card h3 { font-size: 17px; margin-bottom: 4px; }
+  .vf-lp-oleo__ingredient-card p { font-size: 13.5px; line-height: 1.5; color: var(--oleo-muted); margin: 0; }
+  .vf-lp-oleo__ingredient-card img { border-radius: 10px; flex-shrink: 0; }
+
+  .vf-lp-oleo__objections { display: flex; flex-direction: column; gap: 20px; max-width: 560px; margin: 0 auto; }
+  .vf-lp-oleo__objections h3 { font-size: 16px; margin-bottom: 6px; }
+  .vf-lp-oleo__objections p { font-size: 14px; line-height: 1.55; color: var(--oleo-text); margin: 0; }
+  .vf-lp-oleo__objections a { color: var(--oleo-green-dark); font-weight: 700; text-decoration: underline; }
+
+  .vf-lp-oleo__cross { display: flex; gap: 18px; align-items: center; max-width: 560px; margin: 0 auto; }
+  .vf-lp-oleo__cross img { border-radius: 14px; flex-shrink: 0; }
+  .vf-lp-oleo__cross h3 { font-size: 18px; margin-bottom: 6px; }
+  .vf-lp-oleo__cross p { font-size: 13.5px; line-height: 1.5; color: var(--oleo-muted); margin: 0 0 10px; }
+  .vf-lp-oleo__cross-cta { font-size: 13.5px; font-weight: 700; color: var(--oleo-green-dark); text-decoration: none; border-bottom: 2px solid var(--oleo-lime); }
+
+  .vf-lp-oleo__faq-item { border-bottom: 1px solid #E5E5E5; padding: 14px 0; }
+  .vf-lp-oleo__faq-item summary { cursor: pointer; font-weight: 700; font-size: 15px; list-style: none; }
+  .vf-lp-oleo__faq-item summary::-webkit-details-marker { display: none; }
+  .vf-lp-oleo__faq-item summary::after { content: '+'; float: right; font-weight: 400; }
+  .vf-lp-oleo__faq-item[open] summary::after { content: '–'; }
+  .vf-lp-oleo__faq-item p { font-size: 14px; line-height: 1.55; color: var(--oleo-muted); margin: 10px 0 0; }
+
+  .vf-lp-oleo__final { background: linear-gradient(150deg, var(--oleo-green-dark), #123817); padding: clamp(40px, 6vw, 64px) 0; }
+  .vf-lp-oleo__final-price { text-align: center; color: #fff; font-family: 'Fraunces', serif; font-size: 22px; margin: 0 0 20px; }
+  .vf-lp-oleo__final-price span { font-family: 'Inter', sans-serif; font-size: 13px; opacity: 0.8; font-weight: 400; }
+  .vf-lp-oleo__cta--final { background: #fff; color: var(--oleo-green-dark); box-shadow: none; }
+
+  @media (max-width: 480px) {
+    .vf-lp-oleo__hero { padding-top: 12px; }
+    .vf-lp-oleo__title { font-size: 22px; }
+  }
+{% endstylesheet %}
+
+<script>
+(function(){
+  var root = document.getElementById('vf-lp-oleo-{{ section.id }}');
+  if (!root) return;
+
+  var opts = root.querySelectorAll('.vf-lp-oleo__qty-opt');
+  var qtyInput = root.querySelector('#vf-lp-oleo-qty-input');
+  var priceDisplay = root.querySelector('#vf-lp-oleo-price-display');
+
+  opts.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      opts.forEach(function(b){ b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      if (qtyInput) qtyInput.value = btn.getAttribute('data-qty');
+      if (priceDisplay) priceDisplay.textContent = btn.getAttribute('data-price');
+    });
+  });
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    root.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
+  } else {
+    root.querySelectorAll('[data-reveal]').forEach(function(el){ el.classList.add('is-visible'); });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "VF LP · Óleo de Alho",
+  "settings": [],
+  "presets": [{ "name": "VF LP · Óleo de Alho" }]
+}
+{% endschema %}

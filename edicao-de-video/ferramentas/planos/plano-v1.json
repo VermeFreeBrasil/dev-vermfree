@@ -1,0 +1,14 @@
+{"id":"v1","entrada":"bruto/vermefree-1.mp4","saida":"vf-ugc-captacao-1111-01.mp4","duracao":32.7,
+ "gancho":{"ini":0,"fim":2.6,"texto":"Come <b>salada na rua</b>, sushi ou carne mal passada?"},
+ "selo":{"ini":20.3,"fim":26.6},
+ "cta":{"ini":30.6},
+ "destaques":["salada","sushi","carne","caloria","glúten","açúcar","lavada","guardado","desparasitar","regularidade","grupo","protocolo","especial","imperdíveis","agora"],
+ "vermelho":["11","imperdíveis"],
+ "frases":[
+  {"ini":0.0,"fim":4.82,"texto":"Se você come salada na rua, sushi ou carne mal passada, presta atenção nisso aqui."},
+  {"ini":4.82,"fim":10.06,"texto":"A gente se preocupa com caloria, com glúten, com açúcar, mas nunca pensa em como aquela"},
+  {"ini":10.06,"fim":14.94,"texto":"folha foi lavada ou como aquele peixe foi guardado. E come fora quase todo dia."},
+  {"ini":14.94,"fim":20.18,"texto":"Não precisa parar de comer o que você gosta. Precisa se desparasitar com regularidade."},
+  {"ini":20.18,"fim":26.66,"texto":"E no dia 11 do 11 a VermeFree vai dar uma condição muito especial, com descontos imperdíveis, para quem estiver no grupo."},
+  {"ini":26.66,"fim":30.6,"texto":"É o melhor momento para dar o reinício e garantir o seu protocolo de desparasitação."}
+ ]}
