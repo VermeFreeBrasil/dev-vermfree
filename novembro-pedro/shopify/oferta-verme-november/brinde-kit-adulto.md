@@ -13,20 +13,20 @@ A Shopify não serve para conferir: o Protocolo Adulto está com **−738** e ve
 
 Estimativa de volume, para o Vitor ter uma ideia: um pedido acima de R$ 1.000 na Verme November é, por exemplo, 4 Adultos (R$ 1.221,44 com 12%) ou 1 Kit Família. No 11/11 o volume é maior, mas a Verme November tem desconto menor.
 
-## Como o pedido fica marcado: pela API (decisão do Pedro em 09/11)
-O Flow não foi usado (a API não cria Flow e a tela confundiu). De 12 a 20/11, de manhã, o Claude levanta os pedidos novos acima de R$ 1.000, mostra a lista ao Pedro e marca **depois do ok dele no chat**.
+## Como o pedido fica marcado: Shopify Flow (montado pelo Pedro em 09/11, com o Claude conferindo pelos prints)
+Fluxo **"Verme November · brinde kit adulto (> R$ 1.000)"**:
+- Gatilho: **Order created**.
+- Condição (AND): `order.createdAt` **maior ou igual a** 12 de nov. de 2026 00:00 · `order.createdAt` **menor que** 20 de nov. de 2026 00:00 · `order.currentSubtotalPriceSet.shopMoney.amount` **maior que** 1000.
+- Verdadeiro → **Add order tags**: `brinde-vn-kit-adulto` → **Update order note**: `🎁 BRINDE VERME NOVEMBER: enviar 1 kit adulto junto com este pedido. {{order.note}}` (a ação substitui a nota; o `{{order.note}}` mantém o que o cliente escreveu).
+- Falso → nada.
 
-Passos:
-1. Consulta: `orders(query:"created_at:>=2026-11-12T03:00:00Z created_at:<2026-11-20T03:00:00Z")`, ler `name`, `tags`, `note`, `currentSubtotalPriceSet.shopMoney.amount`.
-2. Para cada pedido com subtotal **> 1000** e sem a tag: `tagsAdd(id, ["brinde-vn-kit-adulto"])` e `orderUpdate(input:{id, note: "<nota atual>\n🎁 BRINDE VERME NOVEMBER: enviar 1 kit adulto junto com este pedido."})` (sem apagar a nota que já existe).
-3. Registrar no diário só os números dos pedidos (sem dados pessoais) e avisar o Pedro na mensagem do dia.
-4. Em 20/11, última passada (pega os pedidos de 19/11).
+Como achar cada coisa na tela (para repetir em outra campanha): operador na caixa "Igual a" (opções: Maior ou igual a, Menor que, Maior que…); data pelo ícone de **calendário** (o `</>` é para escolher variável, não para digitar); "Adicionar critérios" → **AND**; na variável, buscar `subtotal` e escolher `order/currentSubtotalPriceSet/shopMoney/amount`; a tag só vale depois de **Enter** (vira etiqueta); a ação da nota se chama **Update order note**. Ações entram pela abinha cinza embaixo de "✓ Verdadeiro" → **Ação** → busca.
 
-Consulta testada em 09/11: a API devolve subtotal com desconto, tags e nota.
+Conferência: em 12/11 de manhã o Claude confere pela API se todo pedido acima de R$ 1.000 desde 00h tem a tag e a nota (só leitura; se faltar algum, avisa o Pedro).
 
 ## Rotina durante a campanha (12 a 19/11)
 - **Poly (expedição/atendimento):** filtrar na Shopify → Pedidos → tag `brinde-vn-kit-adulto` e separar 1 kit adulto em cada um.
-- **Claude, de manhã:** mostra ao Pedro os pedidos novos acima de R$ 1.000 e, com o ok, marca pela API (tag + nota) antes da expedição separar.
+- **Claude, de manhã:** confere pela API (só leitura) se os pedidos acima de R$ 1.000 saíram marcados pelo Flow e avisa o Pedro se faltar algum.
 - **24/11 (tarefa da Poly "Acompanhar com a expedição o envio dos brindes"):** a mesma lista serve para conferir com a expedição.
 
 ## No site
