@@ -9,7 +9,7 @@ Fonte: ficha da oferta v2 (aprovada pelo Vitor em 28/10): "Compras acima de R$ 1
 - Só pedidos feitos entre **12/11 00h00 e 19/11 23h59** (Brasília).
 
 ## Estoque
-A Shopify não serve para conferir: o Protocolo Adulto está com **−738** e vende mesmo sem saldo. **Quem confirma o estoque é o Vitor ou a expedição.** A tarefa pede para avisar o Vitor se não houver kit suficiente.
+A Shopify não serve para conferir: o Protocolo Adulto está com **−738** e vende mesmo sem saldo. Decisão do Pedro (09/11): estoque não é com a gente; nossa parte é executar a tarefa (marcação e aviso no site).
 
 Estimativa de volume, para o Vitor ter uma ideia: um pedido acima de R$ 1.000 na Verme November é, por exemplo, 4 Adultos (R$ 1.221,44 com 12%) ou 1 Kit Família. No 11/11 o volume é maior, mas a Verme November tem desconto menor.
 
@@ -25,7 +25,7 @@ Como achar cada coisa na tela (para repetir em outra campanha): operador na caix
 Conferência: em 12/11 de manhã o Claude confere pela API se todo pedido acima de R$ 1.000 desde 00h tem a tag e a nota (só leitura; se faltar algum, avisa o Pedro).
 
 ## Rotina durante a campanha (12 a 19/11)
-- **Poly (expedição/atendimento):** filtrar na Shopify → Pedidos → tag `brinde-vn-kit-adulto` e separar 1 kit adulto em cada um.
+- **Expedição** (quem separa os pedidos; não é a Poly, que é suporte/atendimento e já sabe da promo): vê a tag `brinde-vn-kit-adulto` e o aviso na nota do pedido.
 - **Claude, de manhã:** confere pela API (só leitura) se os pedidos acima de R$ 1.000 saíram marcados pelo Flow e avisa o Pedro se faltar algum.
 - **24/11 (tarefa da Poly "Acompanhar com a expedição o envio dos brindes"):** a mesma lista serve para conferir com a expedição.
 

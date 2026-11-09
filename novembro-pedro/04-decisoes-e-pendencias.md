@@ -84,3 +84,4 @@
 | 09/11 | Parcelamento do 11/11 = 3x sem juros em todo o tema | Pedro |
 | 09/11 | Melhorias do Eclipse aprovadas e aplicadas: bumps escondidos no dia 11, rótulos por produto, seletor no kit de 5, avisos 20h/23h, botão do 5º grátis | Pedro |
 | 09/11 | Tema do 11/11 (Eclipse) aprovado pelo Pedro | Pedro |
+| 09/11 | Estoque de brinde não é responsabilidade deste chat; a Poly é suporte e não separa pedidos | Pedro |
