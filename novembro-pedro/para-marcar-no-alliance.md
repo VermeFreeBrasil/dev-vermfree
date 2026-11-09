@@ -7,6 +7,7 @@ Ao marcar, mova a linha para "Já marcadas".
 
 | Concluída em | Tarefa | Link | O que colar na tarefa |
 |---|---|---|---|
+| 09/11 | BLACK FRIDAY · VERME NOVEMBER — Configurar a entrega dos brindes | https://alliance-os-sooty.vercel.app/?task=mcp-1793232207208-13-3e343#tasks | Shopify Flow "Verme November · brinde kit adulto (> R$ 1.000)" ativo: pedidos de 12/11 00h a 19/11 23h59 com subtotal acima de R$ 1.000 recebem a tag brinde-vn-kit-adulto e o aviso na nota. A Poly filtra pela tag. Aviso do brinde no tema Verme November (PDP, monte o pedido, faixa e FAQ). Estoque: confirmar com o Vitor. |
 | 04/11 | BLACK FRIDAY · 11/11 — Organizar o sorteio dos 300 primeiros pedidos | https://alliance-os-sooty.vercel.app/?task=mcp-1793231782749-6-99d65#tasks | Regulamento publicado: https://vermefree.com.br/pages/regulamento-sorteio-11-11 (prêmio Kit Família; sorteio 13/11). Link no tema do 11/11. Método de sorteio que dá para conferir e textos do ganhador em novembro-pedro/shopify/sorteio-1111/ |
 
 | 30/10 | 3 vídeos UGC de captação do 11/11 editados (01 salada/sushi, 02 acorda cansado, 03 verme é coisa de criança) | (sem tarefa própria no Alliance; anexar onde o Vitor indicar) | Pasta do Drive 194Y_5fj8Xwkn3MqDKm8cgteDM6IbcRdr |

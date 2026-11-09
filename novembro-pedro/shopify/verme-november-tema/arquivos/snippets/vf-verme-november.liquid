@@ -303,7 +303,7 @@ html.vn-on .vf-cur .is-on{background:#c0de96!important}
         <div class="vn-pg">
           <p data-vn-next></p>
           <div class="vn-tr"><span class="bg"></span><span class="fl" data-vn-fill></span>
-            <ol class="vn-ms"><li data-vn-ms="0"><i>🌿</i><b>10% OFF</b><small>1 protocolo</small></li><li data-vn-ms="1"><i>🚚</i><b>Frete grátis</b><small>acima de R$ 299</small></li><li data-vn-ms="2"><i>💚</i><b>12% OFF</b><small>3 protocolos</small></li><li data-vn-ms="3"><i>🏆</i><b>15% OFF</b><small>5 protocolos</small></li></ol>
+            <ol class="vn-ms"><li data-vn-ms="0"><i>🌿</i><b>10% OFF</b><small>1 protocolo</small></li><li data-vn-ms="1"><i>🚚</i><b>Frete grátis</b><small>acima de R$ 299</small></li><li data-vn-ms="2"><i>💚</i><b>12% OFF</b><small>3 protocolos</small></li><li data-vn-ms="3"><i>🏆</i><b>15% OFF</b><small>5 protocolos</small></li><li data-vn-ms="4"><i>🎁</i><b>Kit adulto</b><small>acima de R$ 1.000</small></li></ol>
           </div>
         </div>
         <div class="vn-mt-tot">
@@ -322,7 +322,7 @@ html.vn-on .vf-cur .is-on{background:#c0de96!important}
   </div>
   </div></section>
 
-  <div class="vn-trilho"><span>Até 15% OFF em tudo</span><span>Frete grátis acima de R$ 299</span><span>3x sem juros</span><span>Desconto automático, sem cupom</span></div>
+  <div class="vn-trilho"><span>Até 15% OFF em tudo</span><span>Frete grátis acima de R$ 299</span><span>🎁 Kit adulto de presente acima de R$ 1.000</span><span>3x sem juros</span><span>Desconto automático, sem cupom</span></div>
 
   <section class="vn-sec"><div class="vn-wrap">
   <div class="vn-head"><h2 class="cap">Quem fez, <em>conta.</em></h2><p>Famílias que já passaram pelo protocolo. Toque no vídeo para ouvir.</p></div>
@@ -351,6 +351,7 @@ html.vn-on .vf-cur .is-on{background:#c0de96!important}
       <details open><summary>Como funciona a escada de desconto?</summary><p>Qualquer pedido tem 10% OFF. Com 3 ou mais itens no carrinho, o desconto vira 12% em tudo. Com 5 ou mais, 15% em tudo. Vale sempre a maior faixa.</p></details>
       <details><summary>Posso misturar protocolos?</summary><p>Pode. Conta o total de itens do carrinho: Adulto, Kids e Kit Família entram na mesma conta.</p></details>
       <details><summary>Preciso de cupom?</summary><p>Não. O desconto entra sozinho no carrinho, de acordo com a quantidade.</p></details>
+      <details><summary>Tem brinde?</summary><p>Sim. Nos pedidos acima de R$ 1.000 (valor dos produtos já com desconto, de 12 a 19/11), você ganha 1 kit adulto de presente, enviado junto com o pedido.</p></details>
       <details><summary>O frete é grátis?</summary><p>Sim, para pedidos a partir de R$ 299.</p></details>
       <details><summary>Dá para parcelar?</summary><p>Sim, em até 3x sem juros no cartão.</p></details>
       <details><summary>Até quando vale?</summary><p>Até 19/11 às 23h59, horário de Brasília. Depois disso, os preços voltam ao normal.</p></details>
@@ -383,12 +384,12 @@ html.vn-on .vf-cur .is-on{background:#c0de96!important}
         $m('[data-vn-was]').textContent = n ? brl(cheio) : '';
         $m('[data-vn-3x]').textContent = brl(Math.floor(paga / 3));
         $m('[data-vn-pix]').innerHTML = n === 0 ? 'Escolha acima quantos de cada' : 'ou <b>' + brl(paga) + '</b> à vista · <em>você economiza ' + brl(cheio - paga) + '</em>';
-        var pr = [Math.min(1, n), Math.min(1, paga / 29900), Math.min(1, n / 3), Math.min(1, n / 5)], lab = ['10% OFF', 'frete grátis', '12% OFF', '15% OFF'];
+        var kit = paga > 100000, pr = [Math.min(1, n), Math.min(1, paga / 29900), Math.min(1, n / 3), Math.min(1, n / 5), kit ? 1 : Math.min(.99, paga / 100000)], lab = ['10% OFF', 'frete grátis', '12% OFF', '15% OFF', 'o kit adulto de presente'];
         mt.querySelectorAll('[data-vn-ms]').forEach(function (li, i) { li.classList.toggle('on', pr[i] >= 1); });
         var nx = pr.findIndex(function (x) { return x < 1; });
-        $m('[data-vn-fill]').style.width = (nx < 0 ? 100 : nx === 0 ? 0 : (nx - 1 + pr[nx]) / 3 * 100) + '%';
+        $m('[data-vn-fill]').style.width = (nx < 0 ? 100 : nx === 0 ? 0 : (nx - 1 + pr[nx]) / 4 * 100) + '%';
         var q = nx === 2 ? 3 - n : 5 - n, pl = function (k) { return k + (k === 1 ? ' protocolo' : ' protocolos'); };
-        $m('[data-vn-next]').innerHTML = nx === 0 ? 'Escolha um protocolo e libere <b>10% OFF</b>' : nx === 1 ? 'Faltam <b>' + brl(29900 - paga) + '</b> para o <b>frete grátis</b>' : nx > 1 ? 'Mais <b>' + pl(q) + '</b> e você libera <b>' + lab[nx] + '</b>' : '🎉 <b>Tudo liberado:</b> 15% OFF e frete grátis';
+        $m('[data-vn-next]').innerHTML = nx === 0 ? 'Escolha um protocolo e libere <b>10% OFF</b>' : nx === 1 ? 'Faltam <b>' + brl(29900 - paga) + '</b> para o <b>frete grátis</b>' : nx === 4 ? 'Faltam <b>' + brl(100001 - paga) + '</b> para ganhar <b>o kit adulto de presente</b>' : nx > 1 ? 'Mais <b>' + pl(q) + '</b> e você libera <b>' + lab[nx] + '</b>' + (kit ? ' · 🎁 <b>kit adulto garantido</b>' : '') : '🎉 <b>Tudo liberado:</b> 15% OFF, frete grátis e kit adulto de presente';
         go.disabled = n === 0;
         go.textContent = n <= 1 ? 'Garantir meu protocolo →' : 'Garantir meus ' + n + ' protocolos →';
       };

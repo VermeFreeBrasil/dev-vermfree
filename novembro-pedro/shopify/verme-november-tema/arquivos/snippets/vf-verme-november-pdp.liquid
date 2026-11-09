@@ -122,6 +122,7 @@ html.vn-on body[class*="template-product"] #main h2::before{content:"";display:i
       <ul class="vn-ul">
         <li><b>Desconto automático</b>sem cupom, direto no carrinho</li>
         <li><b>3x sem juros</b>no cartão</li>
+        <li style="grid-column:1/-1"><b>🎁 Kit adulto de presente</b>nos pedidos acima de R$ 1.000</li>
       </ul>
       <a class="vn-mix" href="/#vn-monte">Quer misturar protocolos? Monte o pedido da casa →</a>
   </div>
@@ -148,7 +149,9 @@ html.vn-on body[class*="template-product"] #main h2::before{content:"";display:i
   var pct = function (k) { return k >= 5 ? 15 : k >= 3 ? 12 : 10; };
   var tot = function (k) { return Math.round(preco * k * (100 - pct(k)) / 100); };
   var kf = 1; while (kf < 10 && tot(kf) < FR) kf++;
+  var kb = 1; while (kb < 10 && tot(kb) <= 100000) kb++;
   var ms = [{ q: 1, i: '🌿', b: '10% OFF', s: '1 unidade' }, { q: kf, i: '🚚', b: 'Frete grátis', s: 'acima de R$ 299' }, { q: 3, i: '💚', b: '12% OFF', s: '3 unidades' }, { q: 5, i: '🏆', b: '15% OFF', s: '5 unidades' }];
+  if (tot(kb) > 100000) ms.push({ q: kb, i: '🎁', b: 'Kit adulto', s: 'acima de R$ 1.000' });
   ms.sort(function (a, b) { return a.q - b.q; });
   $('[data-vn-ms]').innerHTML = ms.map(function (m) { return '<li><i>' + m.i + '</i><b>' + m.b + '</b><small>' + m.s + '</small></li>'; }).join('');
   var lis = box.querySelectorAll('[data-vn-ms] li');
@@ -165,7 +168,7 @@ html.vn-on body[class*="template-product"] #main h2::before{content:"";display:i
       if (nx) f += (n - ms[r].q) / (nx.q - ms[r].q) / (ms.length - 1);
       $('[data-vn-fill]').style.width = (Math.min(1, f) * 100) + '%';
       var falta = ms.filter(function (m) { return n < m.q; })[0];
-      $('[data-vn-qmsg]').innerHTML = falta ? 'Mais <b>' + (falta.q - n) + (falta.q - n === 1 ? ' unidade' : ' unidades') + '</b> e você libera <b>' + falta.b.toLowerCase().replace('off', 'OFF') + '</b>' : '🎉 <b>Tudo liberado:</b> 15% OFF e frete grátis';
+      $('[data-vn-qmsg]').innerHTML = falta ? 'Mais <b>' + (falta.q - n) + (falta.q - n === 1 ? ' unidade' : ' unidades') + '</b> e você libera <b>' + (falta.i === '🎁' ? 'o kit adulto de presente' : falta.b.toLowerCase().replace('off', 'OFF')) + '</b>' + (n >= kb && tot(kb) > 100000 ? ' · 🎁 <b>kit adulto garantido</b>' : '') : '🎉 <b>Tudo liberado:</b> 15% OFF, frete grátis e kit adulto de presente';
   };
   box.querySelectorAll('[data-vn-k]').forEach(function (o) { o.addEventListener('click', function () { n = +o.dataset.vnK; desenha(); }); });
   box.querySelectorAll('[data-vn-st]').forEach(function (b) { b.addEventListener('click', function () { n = Math.max(1, Math.min(10, n + +b.dataset.vnSt)); desenha(); }); });
