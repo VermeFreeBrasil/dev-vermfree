@@ -1,6 +1,6 @@
 # Status — placar do mês
 
-Atualizado em: **08/11/2026** (fechamento de 07/11, sem conversa), a partir da exportação do Alliance OS.
+Atualizado em: **09/11/2026** (fechamento de 08/11, sem conversa), a partir da exportação do Alliance OS.
 
 **REGRA FIXA (29/10): este chat faz SÓ tarefas da VermeFree. Revita e Botanika são só referência de dependência; nunca executar nada delas aqui. Se o Pedro citar Revita ou Botanika, parar e avisar.**
 
