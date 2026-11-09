@@ -162,22 +162,15 @@
               "show_address": false
             }
           },
-          "conteudo": {
-            "type": "column",
-            "settings": {
-              "title": "Conteúdo",
-              "menu": "rodape-blog",
-              "show_social": false,
-              "show_address": false
-            }
-          },
           "newsletter": {
             "type": "newsletter",
             "settings": {
               "title": "Receba nossas novidades",
               "text": "<p>Conteúdo sobre saúde intestinal e ofertas exclusivas para quem está na lista.</p>",
               "button_label": "Quero receber",
-              "success_text": "Pronto! Você está na lista."
+              "success_text": "Pronto! Você está na lista.",
+              "privacy_text": "Ao se cadastrar, você aceita receber e-mails da VermeFree. Pode sair quando quiser.",
+              "webhook_url": "https://n8n.vermefree.com.br/webhook/vermefree-newsletter-rodape-ac"
             }
           },
           "institucional": {
@@ -195,7 +188,6 @@
           "protocolos",
           "institucional",
           "ajuda",
-          "conteudo",
           "newsletter"
         ],
         "settings": {
@@ -206,11 +198,14 @@
           "tiktok_url": "",
           "facebook_url": "",
           "youtube_url": "",
-          "whatsapp_url": "https://api.whatsapp.com/send/?phone=553131573845&text=Ol%C3%A1,%20preciso%20de%20ajuda!&type=phone_number&app_absent=0",
+          "whatsapp_url": "https://wa.me/553131573845?text=Ol%C3%A1%2C%20preciso%20de%20ajuda!",
           "show_google_badge": true,
           "reclameaqui_url": "",
-          "cnpj": "Sintonia Pharma Farmácia com Manipulação Ltda · CNPJ 37.560.104/0001-60",
-          "address": "Rua 2870, nº 453, Sala 06 · Centro\nBalneário Camboriú/SC · CEP 88330-358"
+          "cnpj": "Sintonia Pharma Farmácia com Manipulação Ltda · CNPJ 37.560.104/0001-60 · Rua 2870, 453, Sala 06, Centro, Balneário Camboriú/SC, CEP 88330-358",
+          "address": "Rua 2870, 453, Sala 06 · Centro\nBalneário Camboriú/SC · CEP 88330-358",
+          "whatsapp_label": "(31) 3157-3845",
+          "email": "atendimento@vermefree.com.br",
+          "show_secure_badge": true
         }
       },
       "vf-announcement-bar": {

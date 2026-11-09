@@ -71,7 +71,9 @@ html.ve-23 .ve-live{background:#9e0f17}html.ve-20 .ve-live .o b:first-child,html
       if (H.dataset.veU != u) { H.dataset.veU = u; H.classList.toggle('ve-20', u === 1); H.classList.toggle('ve-23', u === 2);
         document.querySelectorAll('[data-ve-urg]').forEach(function (el) { if (!el.dataset.o) el.dataset.o = el.innerHTML; el.innerHTML = u === 2 ? '<b>🚨 Última hora</b> · o maior desconto do ano acaba à meia-noite' : u === 1 ? '<b>⏰ Últimas horas</b> · 20% OFF + 5º grátis acaba à meia-noite' : el.dataset.o; }); }
   };
-  var mostra = function () { document.querySelectorAll('[data-ve]').forEach(function (el) { el.hidden = false; }); tick(); };
+  var brl = function (c) { return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
+  var menu = function () { document.querySelectorAll('.vf-hd__pr').forEach(function (el) { var m = /R\$\s*([\d.]+,\d{2})/.exec((el.querySelector('small') || el).textContent); if (!m) return; var c = Math.round(+m[1].replace(/\./g, '').replace(',', '.') * 100), t = Math.round(c * 0.8); el.innerHTML = '<b>' + brl(t) + '</b> hoje · 20% OFF <small>de ' + brl(c) + ' · 3x de ' + brl(Math.round(t / 3)) + ' sem juros</small>'; }); };
+  var mostra = function () { document.querySelectorAll('[data-ve]').forEach(function (el) { el.hidden = false; }); tick(); menu(); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mostra); else mostra();
   setInterval(tick, 1000);
   })();
@@ -471,7 +473,7 @@ html.ve-on body[class*="template-product"] #main h2::before{content:"";display:i
       <div class="ve-pr">
         <div><s>{{ v.price | money }}</s><strong>{{ v.price | times: 0.8 | money }}</strong><em style="display:block;font-style:normal;font-size:15px;color:#fff;margin:2px 0">ou <b style="color:#ff6b72">3x de {{ v.price | times: 0.8 | divided_by: 3 | round | money }}</b> sem juros</em><small>só hoje · amanhã volta para <b>{{ v.price | money }}</b></small></div>
       </div>
-      {%- render 'vf-1111-kits', v: v, product: product -%}
+      {%- if product.available -%}{%- render 'vf-1111-kits', v: v, product: product -%}{%- else -%}<div style="margin-top:22px;padding:18px 20px;border-radius:16px;border:1px solid #ffffff1f;background:#ffffff07;color:#e9ece9;font-size:15px;line-height:1.5"><b style="display:block;color:#fff;font-size:17px;margin-bottom:6px">Esgotado no momento</b>Este item volta em breve. Aproveite o 11.11 nos protocolos: 20% OFF, o 5º grátis e frete grátis.<a class="ve-btn" href="/#ve-monte" style="display:flex;margin-top:14px;justify-content:center">Ver os protocolos com 20% OFF →</a></div>{%- endif -%}
       <ul class="ve-ul">
         <li><b>Frete grátis</b>sem valor mínimo</li>
         <li><b>15% de cashback</b>nos 100 primeiros pedidos</li>
@@ -490,14 +492,14 @@ html.ve-on body[class*="template-product"] #main h2::before{content:"";display:i
   <a href="#" class="ve-btn" data-ve-stick-go>Quero o meu agora</a>
   </section>
 </div>
-<div class="ve ve-stick" data-ve hidden>
+{%- if product.available -%}<div class="ve ve-stick" data-ve hidden>
   <div class="tx"><b data-ve-sp>{{ v.price | times: 0.8 | money }}</b> <s style="color:#7f8e86;font-size:12px">{{ v.price | money }}</s><small>20% OFF acaba em <b data-ve-t>--</b></small></div>
   <a href="#" data-ve-stick-go>Comprar</a>
-</div>
+</div>{%- endif -%}
 <script>
   (function () {
-  var box = document.querySelector('[data-ve-q-box]'); if (!box) return;
-  document.querySelectorAll('[data-ve-stick-go]').forEach(function (sg) { sg.addEventListener('click', function (e) { e.preventDefault(); box.scrollIntoView({ behavior: 'smooth', block: 'center' }); }); });
+  var box = document.querySelector('[data-ve-q-box]'), vai = function (e) { if (!box) return; e.preventDefault(); box.scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+  document.querySelectorAll('[data-ve-stick-go]').forEach(function (sg) { sg.addEventListener('click', vai); });
   var lum = function (c) { var m = c.match(/[\d.]+/g); if (!m || (m[3] !== undefined && +m[3] < .5)) return -1; return (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) / 255; };
   var contraste = function () {
       if (!document.documentElement.classList.contains('ve-on')) return;
@@ -513,7 +515,7 @@ html.ve-on body[class*="template-product"] #main h2::before{content:"";display:i
       if (fim && mn) mn.appendChild(fim);
       if (mn) mn.querySelectorAll('a[href^="#"], a[href*="/products/"], a[href="/cart"]').forEach(function (a) {
         if (a.closest('.ve-x') || !/btn|cta|button/i.test(a.className)) return;
-        a.setAttribute('data-ve-cta', ''); a.addEventListener('click', function (e) { e.preventDefault(); box.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+        if (!box) return; a.setAttribute('data-ve-cta', ''); a.addEventListener('click', vai);
       });
       contraste(); setTimeout(contraste, 1500); setTimeout(contraste, 4000);
   };

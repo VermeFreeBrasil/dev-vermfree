@@ -73,7 +73,8 @@ html.vn-on .vf-cur .is-on{background:#c0de96!important}
       var t = ['Hoje, ' + fd(hoje), 'Até ' + fd(env), fd(add(env, 3)) + ' – ' + fd(add(env, 8))];
       document.querySelectorAll('[data-eta]').forEach(function (el) { el.textContent = t[+el.dataset.eta]; });
   };
-  var mostra = function () { document.querySelectorAll('[data-vn]').forEach(function (el) { el.hidden = false; }); tick(); eta(); };
+  var menu = function () { var brl = function (c) { return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }; document.querySelectorAll('.vf-hd__pr').forEach(function (el) { var m = /R\$\s*([\d.]+,\d{2})/.exec((el.querySelector('small') || el).textContent); if (!m) return; var c = Math.round(+m[1].replace(/\./g, '').replace(',', '.') * 100), t = Math.round(c * 0.9); el.innerHTML = '<b>' + brl(t) + '</b> · 10% OFF <small>de ' + brl(c) + ' · até 15% OFF levando 5 · 3x sem juros</small>'; }); };
+  var mostra = function () { document.querySelectorAll('[data-vn]').forEach(function (el) { el.hidden = false; }); tick(); eta(); menu(); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mostra); else mostra();
   setInterval(tick, 1000);
   })();
