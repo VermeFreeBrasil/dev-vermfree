@@ -31,7 +31,7 @@
 | P26 | RESOLVIDO 02/11 14h10 (token na Vercel) | Gerar o token da API de Conversões (Gerenciador de Eventos → Pixel - VermeFree → Configurações → API de Conversões → Gerar token) e salvar na Vercel como META_CAPI_TOKEN (Sensitive) | Sem ele o Lead só vai pelo navegador, que não está chegando | 02/11 |
 | P27 | RESOLVIDO 02/11 (Otávio: no envio) | Lead no clique (hoje) ou no envio do formulário? Volume real ~15–20 cadastros/dia | Define o sinal da campanha | 02/11 |
 
-| P29 | Pedro | Parcelamento oficial do 11/11: a PDP diz 3x sem juros e o carrinho diz 10x no cartão. Qual vale? | Mensagem desencontrada no dia | 09/11 |
+| P29 | RESOLVIDO 09/11 (3x sem juros, aplicado no Eclipse) | Parcelamento oficial do 11/11: a PDP diz 3x sem juros e o carrinho diz 10x no cartão. Qual vale? | Mensagem desencontrada no dia | 09/11 |
 | P30 | Pedro | Melhorias sugeridas em 06/11 para o Eclipse (rótulos dos cards por produto, esconder order bump do Óleo no 11/11, abrir no kit de 5, avisos das 20h/23h, botão 'adicionar o 5º', linha de confiança): quais fazer? | Ticket e risco do bump tirar o 20% | 09/11 |
 | P28 | Pedro | Aprovar a copy nova do Eclipse (desconto + urgência + última lua nova de 2026) e o seletor de kits em cards. Confirmar se "3x sem juros" é condição oficial do 11/11 | Tema publica 11/11 00h | 09/11 |
 
@@ -81,3 +81,4 @@
 | 05/11 | Verme November recebe os ajustes de Growth/SEO do Eclipse antes de ir ao ar (feito) | Pedro |
 | 05/11 | LP do VIP: 00h–07h de 11/11 avisa que já começou no grupo; a partir das 07h manda para o site com UTMs (publicada) | Pedro |
 | 06/11 | 9 ajustes do Pedro aplicados no Eclipse (tema de teste): lua 11.11 branca, produtos em fundo branco, faixa com 🎁 em linhas, sem lua no preço e na barra fixa, fotos nos cards, botão pulsando, carrinho do dia | Pedro |
+| 09/11 | Parcelamento do 11/11 = 3x sem juros em todo o tema | Pedro |

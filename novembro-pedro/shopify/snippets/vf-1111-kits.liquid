@@ -118,7 +118,7 @@
       box.querySelectorAll('[data-ve-k]').forEach(function (o) { o.classList.toggle('on', +o.dataset.veK === n); });
       $('[data-ve-qty]').textContent = n;
       $('[data-ve-pay]').textContent = brl(t);
-      $('[data-ve-pay3]').textContent = '3x de ' + brl(Math.floor(t / 3)) + ' sem juros · economia de ' + brl(preco * n - t);
+      $('[data-ve-pay3]').textContent = '3x de ' + brl(Math.round(t / 3)) + ' sem juros · economia de ' + brl(preco * n - t);
       var sp = document.querySelector('[data-ve-sp]'); if (sp) sp.textContent = brl(t);
       $('[data-ve-buy]').textContent = 'Colocar ' + n + ' no carrinho';
       var r = 0; ms.forEach(function (m, i) { var ok = n >= m.q; lis[i].classList.toggle('on', ok); if (ok) r = i; });

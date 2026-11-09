@@ -72,7 +72,7 @@ html.ve-on .vf-cur .is-on{background:#e0262f!important}
   setInterval(tick, 1000);
   })();
 </script>
-{%- if template.name == 'cart' -%}{%- render 'vf-1111-cart' -%}<script>(function(){var m=function(){var c=document.querySelector('.ve-cart'),t=document.querySelector('.vf-cart__summary-title');if(c&&t)t.after(c);};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',m);else m();})();</script>{%- endif -%}
+{%- if template.name == 'cart' -%}{%- render 'vf-1111-cart' -%}<script>(function(){var m=function(){var c=document.querySelector('.ve-cart'),t=document.querySelector('.vf-cart__summary-title');if(c&&t)t.after(c);var pc=document.querySelector('[data-ve-parc]'),tt=document.querySelector('.vf-cart__summary-row--total');if(pc&&tt)tt.after(pc);};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',m);else m();})();</script>{%- endif -%}
 {%- elsif parte == 'home' or parte == 'pdp' -%}
 {%- assign handles = 'protocolo-desparasitacao-adulto-vermefree,antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos,antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos,kit-familia-vermefree-2-adultos-2-criancas' | split: ',' -%}
 {%- assign nomes = 'Protocolo Adulto|Kids 2 a 4 anos|Kids 5 a 9 anos|Kit Família' | split: '|' -%}

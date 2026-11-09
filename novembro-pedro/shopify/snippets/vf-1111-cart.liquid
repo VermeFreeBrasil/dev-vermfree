@@ -18,7 +18,8 @@ html.ve-on .ve-cart{display:block;margin:0 0 4px;border-radius:18px;overflow:hid
 .ve-cart li em{font-style:normal;color:#ff6b72;font-weight:800}
 .ve-cart .eco{margin:6px 16px 14px;padding:12px 14px;border-radius:12px;background:#ffffff0d;display:flex;flex-wrap:wrap;gap:2px 12px;justify-content:space-between;align-items:baseline;font-size:13.5px;color:#cfd8d2}
 .ve-cart .eco b{white-space:nowrap;font-size:22px;font-weight:900;color:#ff4a52}
-html.ve-on .vf-frete,html.ve-on .vf-kits-aviso{display:none!important}
+html.ve-on .vf-frete,html.ve-on .vf-kits-aviso,html.ve-on .vf-cart__parc:not(.ve-parc){display:none!important}
+.ve-parc{display:none}html.ve-on .ve-parc{display:block}
 html.ve-on .vf-cart{background:#070a08;color:#e9ece9}
 html.ve-on .vf-cart__header h1,html.ve-on .vf-cart-item__title,html.ve-on .vf-cart__summary-title,html.ve-on .vf-cart-item__price,html.ve-on .vf-cart-item__price-mobile,html.ve-on .vf-cart__summary-row--total strong{color:#fff}
 html.ve-on .vf-cart-item,html.ve-on .vf-cart__summary{background:#0e1311;border-color:#ffffff1a;color:#e9ece9}
@@ -47,5 +48,6 @@ html.ve-on .vf-cart__summary button[name="checkout"]{background:linear-gradient(
     {%- elsif gr == 0 -%}{%- assign f = 5 | minus: q -%}<li class="no"><i>🏆</i><span>Com mais <em>{{ f }} {% if f == 1 %}unidade{% else %}unidades{% endif %}</em>, a 5ª sai <b>grátis</b></span></li>{%- endif -%}
     <li><i>✓</i><span><b>15% de cashback</b> nos 100 primeiros pedidos</span></li>
   </ul>
+  {%- if cart.total_price > 0 -%}<p class="vf-cart__parc ve-parc" data-ve-parc>ou <b>3x de {{ cart.total_price | divided_by: 3.0 | round | money }}</b> sem juros</p>{%- endif -%}
   {%- if eco > 0 -%}<div class="eco"><span>Você está economizando</span><b>{{ eco | money }}</b></div>{%- endif -%}
 </div>
