@@ -1,4 +1,8 @@
-# Verme Friday · 10 estáticos de venda (feitos em 09/11, aguardando aprovação do Pedro)
+# Verme Friday · 10 estáticos de venda
+
+**v2 (09/11, a atual, em png2/, gerador gerar2.cjs):** a v1 foi reprovada pelo Pedro ("ficaram ruins, igual os outros"). Na v2: fundo de estúdio verde com pedra de verdade (gerado no Higgsfield, como a referência), produto apoiado na pedra, e elementos em preto, branco e vermelho pedidos por ele: faixa preta "Verme Friday 27 e 28/11", desconto em tarja vermelha, selo "Só 48h" e rodapé preto com "Acaba 28/11 às 23h59". Títulos da v2: 01 "18% OFF em todo o site" · 02 "Leve 5, pague 4." · 03–06 preço de cada produto com −18% · 07 "R$ 1.138,16 · 5 protocolos Adulto" · 08 "Frete grátis em qualquer pedido" · 09 "Ganhe um kit à sua escolha" · 10 "2 dias. Depois, acabou."
+
+## v1 (reprovada)
 
 Tarefa do Alliance: "VERME FRIDAY — Criar os 10 criativos estáticos de venda" (prazo 19/11 12h; entrega ao Otávio).
 Oferta pela ficha v3 (Vitor): 18% OFF no site todo · compre 4 leve 5 (soma com os 18%) · frete grátis sem mínimo · sorteio de um kit entre os 300 primeiros pedidos · guia + manual digitais para quem comprar em 27 ou 28/11. Nenhum cupom citado.
