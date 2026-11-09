@@ -4,6 +4,9 @@
 {%- assign hs = 'protocolo-desparasitacao-adulto-vermefree,antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos,antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos,kit-familia-vermefree-2-adultos-2-criancas' | split: ',' -%}
 {%- assign ps = 'vf-pv2-adulto.png,vf-pv2-kids-2a4.png,vf-pv2-kids-5a9.png,vf-pv2-kit-familia-v3.png' | split: ',' -%}
 {%- assign img = product.featured_image -%}
+{%- assign l1 = 'Para começar' -%}{%- assign l2 = 'Para o casal' -%}
+{%- if product.handle contains 'kids' -%}{%- assign l1 = 'Para uma criança' -%}{%- assign l2 = 'Para os irmãos' -%}{%- endif -%}
+{%- if product.handle contains 'kit-familia' -%}{%- assign l1 = 'Para a casa toda' -%}{%- assign l2 = 'Para duas famílias' -%}{%- endif -%}
 {%- for h in hs -%}{%- if h == product.handle -%}{%- assign pk = ps[forloop.index0] -%}{%- if images[pk] -%}{%- assign img = images[pk] -%}{%- endif -%}{%- endif -%}{%- endfor -%}
 <style>
 .ve-k h3{margin:24px 0 12px!important;font:800 13px Inter,Arial,sans-serif!important;letter-spacing:2px;text-transform:uppercase;color:var(--lime)}
@@ -71,19 +74,19 @@
       {%- assign kn = k | plus: 0 -%}{%- assign cheio = v.price | times: kn -%}
       {%- if kn == 5 -%}{%- assign tot = p80 | times: 4 -%}{%- else -%}{%- assign tot = p80 | times: kn -%}{%- endif -%}
       {%- assign un = tot | divided_by: kn -%}
-      <button type="button" class="ve-o{% if forloop.first %} on{% endif %}" data-ve-k="{{ k }}">
+      <button type="button" class="ve-o{% if kn == 5 %} on{% endif %}" data-ve-k="{{ k }}">
         {%- if kn == 5 -%}<span class="tag">Melhor preço do ano</span>{%- endif -%}
         <span class="r"></span>
         <span class="im">{{ img | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}{%- if kn > 1 -%}<i>×{{ kn }}</i>{%- endif -%}</span>
         <span class="a">
           {%- if kn == 5 -%}<b>5 unidades, pague 4<em>−36%</em></b><small>20% OFF + o 5º grátis</small>{%- if kk -%}<small class="g">+ Kit Kids 2 a 4 anos de presente</small>{%- endif -%}
-          {%- else -%}<b>{{ k }} {% if kn == 1 %}unidade{% else %}unidades{% endif %}<em>−20%</em></b><small>{% if kn == 1 %}Para começar{% else %}Para o casal{% endif %}</small>{%- endif -%}
+          {%- else -%}<b>{{ k }} {% if kn == 1 %}unidade{% else %}unidades{% endif %}<em>−20%</em></b><small>{% if kn == 1 %}{{ l1 }}{% else %}{{ l2 }}{% endif %}</small>{%- endif -%}
         </span>
         <span class="c"><s>{{ cheio | money }}</s><b>{{ tot | money }}</b><small>{{ un | money }} cada</small></span>
       </button>
     {%- endfor -%}
   </div>
-  <div class="ve-oth"><span>Outra quantidade? Ajuste aqui:</span><div><button type="button" data-ve-st="-1" aria-label="Menos">−</button><output data-ve-qty>1</output><button type="button" data-ve-st="1" aria-label="Mais">+</button></div></div>
+  <div class="ve-oth"><span>Outra quantidade? Ajuste aqui:</span><div><button type="button" data-ve-st="-1" aria-label="Menos">−</button><output data-ve-qty>5</output><button type="button" data-ve-st="1" aria-label="Mais">+</button></div></div>
   <div class="ve-pg">
     <p data-ve-qmsg></p>
     <div class="ve-tr"><span class="bg"></span><span class="fl" data-ve-fill></span><ol class="ve-ms" data-ve-ms></ol></div>
@@ -102,7 +105,7 @@
 <script>
   (function () {
   var box = document.querySelector('[data-ve-q-box]'); if (!box) return;
-  var preco = +box.dataset.preco, id = +box.dataset.id, kk = box.dataset.kk === 'true', n = 1;
+  var preco = +box.dataset.preco, id = +box.dataset.id, kk = box.dataset.kk === 'true', n = 5;
   var $ = function (q) { return box.querySelector(q); };
   var brl = function (c) { return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
   var gratis = function (k) { return Math.floor(k / 5); };

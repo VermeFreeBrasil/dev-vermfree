@@ -29,6 +29,7 @@ html.ve-on .vf-cur .is-on{background:#e0262f!important}
 .ve-live .dot{display:inline-flex;align-items:center;gap:7px;color:#ff4a52;font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:1.5px}
 .ve-live .dot:before{content:'';width:8px;height:8px;border-radius:50%;background:#ff3b44;box-shadow:0 0 0 4px #ff3b4433;animation:vePulse 1.4s infinite}
 @keyframes vePulse{50%{box-shadow:0 0 0 8px #ff3b4400}}
+html.ve-23 .ve-live{background:#9e0f17}html.ve-20 .ve-live .o b:first-child,html.ve-23 .ve-live .o b:first-child{color:#ffd166}
 .ve-live b{color:#fff}
 .ve-live .t{font-variant-numeric:tabular-nums;color:#ff6b72;font-weight:800}
 .ve-live a{background:#e0262f;color:#fff;font-weight:800;padding:6px 14px;border-radius:30px;text-decoration:none;font-size:12.5px}
@@ -36,7 +37,7 @@ html.ve-on .vf-cur .is-on{background:#e0262f!important}
 </style>
 <div class="ve ve-live" data-ve hidden>
   <span class="dot">Ao vivo</span>
-  <span class="o"><b>11.11</b> · <b>20% OFF</b> + 5º grátis + frete grátis · só hoje</span>
+  <span class="o" data-ve-urg><b>11.11</b> · <b>20% OFF</b> + 5º grátis + frete grátis · só hoje</span>
   <span>acaba em <span class="t" data-ve-t>--</span></span>
   <a href="/#ve-monte">Comprar</a>
 </div>
@@ -66,6 +67,9 @@ html.ve-on .vf-cur .is-on{background:#e0262f!important}
       document.querySelectorAll('[data-ve-f]').forEach(function (el) { el.textContent = Math.round(f * 100) + '%'; });
       document.querySelectorAll('[data-ve-bar]').forEach(function (el) { el.style.width = (f * 100) + '%'; });
       document.querySelectorAll('[data-ve-sombra]').forEach(function (el) { el.style.left = (-108 + 104 * f) + '%'; });
+      var h = Math.floor((now - ini) / 3600e3), u = h >= 23 ? 2 : h >= 20 ? 1 : 0, H = document.documentElement;
+      if (H.dataset.veU != u) { H.dataset.veU = u; H.classList.toggle('ve-20', u === 1); H.classList.toggle('ve-23', u === 2);
+        document.querySelectorAll('[data-ve-urg]').forEach(function (el) { if (!el.dataset.o) el.dataset.o = el.innerHTML; el.innerHTML = u === 2 ? '<b>🚨 Última hora</b> · o maior desconto do ano acaba à meia-noite' : u === 1 ? '<b>⏰ Últimas horas</b> · 20% OFF + 5º grátis acaba à meia-noite' : el.dataset.o; }); }
   };
   var mostra = function () { document.querySelectorAll('[data-ve]').forEach(function (el) { el.hidden = false; }); tick(); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mostra); else mostra();
@@ -219,7 +223,7 @@ html.ve-on .vf-cur .is-on{background:#e0262f!important}
   <section class="ve-hero"><div class="ve-stars"></div>
   <div class="ve-wrap">
       <div>
-        <p class="ve-kick"><span>11.11</span> só hoje · última lua nova de 2026</p>
+        <p class="ve-kick"><span>11.11</span> <i data-ve-urg style="font-style:normal">só hoje · última lua nova de 2026</i></p>
         <h1 class="cap">Comece 2027 sem parasitas. <em>Só hoje, 20% OFF + o 5º grátis.</em></h1>
         <p class="ve-sub">O maior desconto da história da VermeFree: <b>20% OFF em tudo</b>, <b>compre 4 e leve 5</b>, frete grátis sem mínimo e 3x sem juros. Pedindo hoje, você faz o protocolo na <b>última lua nova do ano (09/12)</b>. À meia-noite, acaba.</p>
         <div class="ve-cta"><a class="ve-btn" href="#ve-monte">Garantir meu desconto →</a><span class="ve-left">acaba em <b data-ve-th>--</b></span></div>
