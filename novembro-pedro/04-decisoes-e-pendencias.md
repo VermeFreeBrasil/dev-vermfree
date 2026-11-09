@@ -85,3 +85,5 @@
 | 09/11 | Melhorias do Eclipse aprovadas e aplicadas: bumps escondidos no dia 11, rótulos por produto, seletor no kit de 5, avisos 20h/23h, botão do 5º grátis | Pedro |
 | 09/11 | Tema do 11/11 (Eclipse) aprovado pelo Pedro | Pedro |
 | 09/11 | Estoque de brinde não é responsabilidade deste chat; a Poly é suporte e não separa pedidos | Pedro |
+| 09/11 | Kit Kids na compra de 4 do 11/11 mantido (está na ficha aprovada) | Pedro |
+| 09/11 | Sem bruto da Mafe, não produzir os vídeos de venda com material antigo | Pedro |
