@@ -17,7 +17,7 @@ Horários em Brasília.
 | Hora | O quê | Como conferir | Status |
 |---|---|---|---|
 | 00h00 | Descontos do 11/11 começam: 20% OFF + compre 4 leve 5 + frete grátis sem mínimo | carrinho de teste | ✅ agendado |
-| 00h00 | **Publicar o tema Eclipse** (manual, com ok do Pedro; o Claude publica pela API ou o Pedro em Temas → Publicar) | o site com `?acesso=vip` mostra a lua e a faixa AO VIVO | ⏳ manual |
+| 00h00 | **Tema Eclipse entra pelo Supreme Theme Scheduler** (agendado pelo Pedro em 09/11) | o site com `?acesso=vip` mostra a lua e a faixa AO VIVO | ⏳ manual |
 | 00h05 | Teste completo: abrir pelo link do grupo, montar 5 itens, ver no checkout 20% + o item mais barato grátis + frete 0. **Não finalizar** | prints | ⏳ |
 | 00h05 | Teste sem o link: deve cair na LP do VIP | | ⏳ |
 | 07h00 | A trava **abre sozinha** para todos. Conferir o site sem parâmetro | | ✅ automático |
@@ -29,7 +29,7 @@ Horários em Brasília.
 | Hora | O quê | Status |
 |---|---|---|
 | 00h00 | Descontos da Verme November começam: 10% (1) · 12% (3+) · 15% (5+) + frete grátis ≥ R$ 299. Recovery (RECOVERY1111 + FRETE1111) começa, só pelo suporte | ✅ agendado |
-| 00h00 | **Publicar o tema Verme November** (manual, com ok). Se atrasar alguns minutos, o site fica com o Eclipse sem promoção, sem quebrar nada | ⏳ manual |
+| 00h00 | **Tema Verme November entra pelo Supreme Theme Scheduler** (agendado pelo Pedro em 09/11). Se atrasar alguns minutos, o site fica com o Eclipse sem promoção, sem quebrar nada | ⏳ manual |
 | 00h05 | Teste: 1, 3 e 5 itens no carrinho → 10/12/15% e frete a partir de R$ 299 | ⏳ |
 | manhã | **Cashback:** listar os 100 primeiros pedidos pagos do 11/11, calcular 15% do total pago e aplicar as tags `cashback-1111-<centavos>`. O Flow credita e manda o e-mail. Avisar a Sarah (texto em shopify/cashback/passo-a-passo-flow.md) | ⏳ com ok |
 | manhã | Brindes, se confirmados: lista dos pedidos com 4 ou mais itens para o Kit Kids, para a expedição/Poly | ⏳ |
