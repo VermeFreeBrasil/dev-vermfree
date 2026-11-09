@@ -1,6 +1,6 @@
 # Tema Verme Week (20–26/11) · montado em 09/11
 
-Tema: "🟢 Verme Week (20–26/11) · EM EDIÇÃO" (gid://shopify/OnlineStoreTheme/168791179483), cópia do tema Verme November (168590672091). **Não publicado.**
+Tema: "🟢 Verme Week (20–26/11) · PUBLICAR 20/11 00h" (gid://shopify/OnlineStoreTheme/168791179483, aprovado pelo Pedro em 09/11), cópia do tema Verme November (168590672091). **Não publicado.**
 Preview: https://vermefree.com.br/?preview_theme_id=168791179483&vf_vn=on&vf_trava=off
 
 ## O que mudou em relação ao Verme November (patch-vw.py, 9 arquivos)
