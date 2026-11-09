@@ -99,6 +99,7 @@ Horários são o prazo do Alliance OS. "Fazer" é a sugestão de quando trabalha
 - **12h** · RV Esquenta Site e Shopify (tarefa-mãe)
 
 ### QUI 12/11
+- **Manhã** · VF brinde Verme November: Claude mostra ao Pedro os pedidos novos acima de R$ 1.000 e marca pela API (tag + nota) com o ok dele (shopify/oferta-verme-november/brinde-kit-adulto.md)
 - 🔴 00h Verme November, Derma November e Recovery privado entram
 - 08h fechamento do Dia D · site VF de volta ao normal até 12h
 - **Até 18h** · VF **cashback 11/11**: Claude lista os 100 primeiros pedidos pagos, Pedro dá o ok, Claude aplica as tags `cashback-1111-<centavos>` (Flow lança o crédito) ➡️ Sarah dispara a mensagem
@@ -106,36 +107,43 @@ Horários são o prazo do Alliance OS. "Fazer" é a sugestão de quando trabalha
 - 10h35 KPI (resultado do 11/11)
 
 ### SEX 13/11 · M5
+- **Manhã** · VF brinde Verme November: Claude mostra ao Pedro os pedidos novos acima de R$ 1.000 e marca pela API (tag + nota) com o ok dele (shopify/oferta-verme-november/brinde-kit-adulto.md)
 - **18h** · VF **sorteio do 11/11** (gravado, ganhador avisado ➡️ Sarah e Poly)
 - **18h** · VF 1ª renovação: vídeos + estáticos novos da semana (⬅️ roteiros do Ítalo na quarta, gravação da Mafe na quinta)
 - **18h** · VF tarefas-mãe: Site e Shopify 11/11, Criativos do mês · 40 artigos
 - Fazer: blocos de Growth (página Kids, rodapé…)
 
 ### SÁB 14 · DOM 15/11 (feriado)
+- **Manhã** · VF brinde Verme November: Claude mostra ao Pedro os pedidos novos acima de R$ 1.000 e marca pela API (tag + nota) com o ok dele (shopify/oferta-verme-november/brinde-kit-adulto.md)
 
 ---
 
 ## Semana 3 — 16/11 a 22/11 · semanas temáticas + preparação da Friday (M6)
 
 ### SEG 16/11
+- **Manhã** · VF brinde Verme November: Claude mostra ao Pedro os pedidos novos acima de R$ 1.000 e marca pela API (tag + nota) com o ok dele (shopify/oferta-verme-november/brinde-kit-adulto.md)
 - Fazer: Growth (Judge.me, dados estruturados, rodapé) · texto do manifesto → Vitor
 
 ### TER 17/11
+- **Manhã** · VF brinde Verme November: Claude mostra ao Pedro os pedidos novos acima de R$ 1.000 e marca pela API (tag + nota) com o ok dele (shopify/oferta-verme-november/brinde-kit-adulto.md)
 - **18h** · VF Verme Week: oferta/frete (escada 12/15/17%) · tema · brindes
 - **18h** · RV Revita Week: oferta/frete/cashback · tema
 - ⬅️ 18h: bruto dos 5 vídeos da Verme Friday (Mafe)
 - 13h CRO/Site
 
 ### QUA 18/11
+- **Manhã** · VF brinde Verme November: Claude mostra ao Pedro os pedidos novos acima de R$ 1.000 e marca pela API (tag + nota) com o ok dele (shopify/oferta-verme-november/brinde-kit-adulto.md)
 - Fazer: editar vídeos e criar estáticos da Verme Friday e da Revita Friday
 
 ### QUI 19/11
+- **Manhã** · VF brinde Verme November: Claude mostra ao Pedro os pedidos novos acima de R$ 1.000 e marca pela API (tag + nota) com o ok dele (shopify/oferta-verme-november/brinde-kit-adulto.md)
 - **12h** · VF Verme Friday: 5 estáticos + 5 vídeos ➡️ Otávio (18h)
 - **12h** · RV Revita Friday: 5 estáticos + 5 vídeos ➡️ Otávio · RV Derma November Site e Shopify (mãe)
 - **18h** · RV Revita Friday: fechar o site com banner VIP (25/11 10h)
 - 🔴 23h59 fim da Verme November
 
 ### SEX 20/11 (feriado)
+- **Manhã** · VF brinde Verme November: Claude mostra ao Pedro os pedidos novos acima de R$ 1.000 e marca pela API (tag + nota) com o ok dele (shopify/oferta-verme-november/brinde-kit-adulto.md)
 - 🔴 00h Verme Week e Revita Week entram
 - 18h · VF renovação semanal de criativos
 
