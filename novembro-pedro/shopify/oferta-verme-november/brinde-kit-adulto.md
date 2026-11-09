@@ -13,25 +13,20 @@ A Shopify não serve para conferir: o Protocolo Adulto está com **−738** e ve
 
 Estimativa de volume, para o Vitor ter uma ideia: um pedido acima de R$ 1.000 na Verme November é, por exemplo, 4 Adultos (R$ 1.221,44 com 12%) ou 1 Kit Família. No 11/11 o volume é maior, mas a Verme November tem desconto menor.
 
-## Como o pedido fica marcado: Shopify Flow (o Pedro monta; a API não cria Flow)
-1. Shopify → **Flow** → **Criar fluxo**. Nome: `Verme November · brinde kit adulto (> R$ 1.000)`.
-2. **Gatilho:** `Order created` (Pedido criado).
-3. **Condição** (todas precisam ser verdadeiras):
-   - `order.createdAt` **é posterior a** `2026-11-12T03:00:00Z`
-   - `order.createdAt` **é anterior a** `2026-11-20T02:59:59Z`
-   - `order.currentSubtotalPriceSet.shopMoney.amount` **maior que** `1000`
-4. **Ação 1:** `Add order tags` → tag `brinde-vn-kit-adulto`.
-5. **Ação 2 (para a expedição ver na hora de separar):** `Update order note` (ou "Atualizar nota do pedido") → texto:
-   `🎁 BRINDE VERME NOVEMBER: enviar 1 kit adulto junto com este pedido. {{ order.note }}`
-   Se essa ação não aparecer, fica só a tag.
-6. **Ativar** o fluxo. Pode ativar hoje: as datas da condição seguram até 12/11.
+## Como o pedido fica marcado: pela API (decisão do Pedro em 09/11)
+O Flow não foi usado (a API não cria Flow e a tela confundiu). De 12 a 20/11, de manhã, o Claude levanta os pedidos novos acima de R$ 1.000, mostra a lista ao Pedro e marca **depois do ok dele no chat**.
 
-### Teste antes de 12/11
-Com o fluxo ativo, o Claude confere em 12/11 de manhã, pela API, se todo pedido acima de R$ 1.000 desde a 00h tem a tag. Se faltar algum, ele marca na mão (com o ok do Pedro).
+Passos:
+1. Consulta: `orders(query:"created_at:>=2026-11-12T03:00:00Z created_at:<2026-11-20T03:00:00Z")`, ler `name`, `tags`, `note`, `currentSubtotalPriceSet.shopMoney.amount`.
+2. Para cada pedido com subtotal **> 1000** e sem a tag: `tagsAdd(id, ["brinde-vn-kit-adulto"])` e `orderUpdate(input:{id, note: "<nota atual>\n🎁 BRINDE VERME NOVEMBER: enviar 1 kit adulto junto com este pedido."})` (sem apagar a nota que já existe).
+3. Registrar no diário só os números dos pedidos (sem dados pessoais) e avisar o Pedro na mensagem do dia.
+4. Em 20/11, última passada (pega os pedidos de 19/11).
+
+Consulta testada em 09/11: a API devolve subtotal com desconto, tags e nota.
 
 ## Rotina durante a campanha (12 a 19/11)
 - **Poly (expedição/atendimento):** filtrar na Shopify → Pedidos → tag `brinde-vn-kit-adulto` e separar 1 kit adulto em cada um.
-- **Claude, toda manhã no lembrete diário:** lista os pedidos do dia anterior acima de R$ 1.000 e confere se todos têm a tag.
+- **Claude, de manhã:** mostra ao Pedro os pedidos novos acima de R$ 1.000 e, com o ok, marca pela API (tag + nota) antes da expedição separar.
 - **24/11 (tarefa da Poly "Acompanhar com a expedição o envio dos brindes"):** a mesma lista serve para conferir com a expedição.
 
 ## No site
