@@ -1,0 +1,116 @@
+{%- comment -%}
+  ============================================================
+  vf-kits-desconto-aviso.liquid — AVISO DESCONTO VOLUME KITS
+  ============================================================
+  Mostra na página /cart o status do desconto por volume dos
+  KITS/PROTOCOLOS VermeFree conforme a quantidade total:
+    1–2 kits → incentiva chegar a 3 (10%)
+    3–4 kits → confirma 10%, incentiva chegar a 5 (15%)
+    5–7 kits → confirma 15%, incentiva chegar a 8 (20%)
+    8+  kits → confirma 20% (máximo)
+
+  Espelha as regras de desconto automático dos kits:
+    3+ = 10% · 5+ = 15% · 8+ = 20%
+
+  CONTAGEM: soma a quantidade dos protocolos que entram no desconto
+  por volume — ou seja, TUDO menos o Óleo de Alho (desconto próprio)
+  e menos o Kit Família (já é um combo, não conta pro volume).
+  Handles excluídos listados em EXCLUIR abaixo.
+
+  COMO USAR: salvar como snippets/vf-kits-desconto-aviso.liquid
+  e renderizar dentro do resumo do main-cart.liquid.
+{%- endcomment -%}
+
+{%- comment -%} handles que NÃO contam pro desconto por volume dos protocolos {%- endcomment -%}
+{%- assign EXCLUIR = 'oleo-de-alho-desodorizado-500mg,kit-familia-vermefree-2-adultos-2-criancas' -%}
+{%- assign excluir_list = EXCLUIR | split: ',' -%}
+
+{%- assign kits_qty = 0 -%}
+{%- assign kits_subtotal = 0 -%}
+{%- for item in cart.items -%}
+  {%- assign conta = true -%}
+  {%- for ex in excluir_list -%}
+    {%- if item.product.handle == ex -%}{%- assign conta = false -%}{%- endif -%}
+  {%- endfor -%}
+  {%- if conta -%}
+    {%- assign kits_qty = kits_qty | plus: item.quantity -%}
+    {%- assign kits_subtotal = kits_subtotal | plus: item.final_line_price -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if kits_qty > 0 -%}
+
+  {%- comment -%}
+    Economia real: como o kit entra no carrinho JÁ descontado,
+    o final_line_price é o valor com desconto. Economia = descontado × pct/(100-pct).
+    Ex 10%: subtotal × 10/90 = valor cheio − descontado.
+  {%- endcomment -%}
+
+  {%- if kits_qty >= 5 -%}
+    {%- assign eco = kits_subtotal | times: 17 | divided_by: 83 -%}
+    <div class="vf-kits-aviso vf-kits-aviso--ok">
+      <span class="vf-kits-aviso__ic" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg>
+      </span>
+      <div class="vf-kits-aviso__txt">
+        <strong>Verme Week: 17% OFF ativado</strong>
+        <span>Você economiza {{ eco | money }}. O maior desconto da campanha. 🎉</span>
+      </div>
+    </div>
+
+  {%- elsif kits_qty >= 3 -%}
+    {%- assign falta = 5 | minus: kits_qty -%}
+    {%- assign eco = kits_subtotal | times: 15 | divided_by: 85 -%}
+    <div class="vf-kits-aviso vf-kits-aviso--ok">
+      <span class="vf-kits-aviso__ic" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg>
+      </span>
+      <div class="vf-kits-aviso__txt">
+        <strong>Verme Week: 15% OFF ativado</strong>
+        <span>Você economiza {{ eco | money }}. Adicione mais {{ falta }} protocolo{% if falta > 1 %}s{% endif %} e leve <b>17% OFF</b>.</span>
+      </div>
+    </div>
+
+  {%- else -%}
+    {%- assign falta = 3 | minus: kits_qty -%}
+    {%- assign eco = kits_subtotal | times: 12 | divided_by: 88 -%}
+    <div class="vf-kits-aviso vf-kits-aviso--ok">
+      <span class="vf-kits-aviso__ic" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg>
+      </span>
+      <div class="vf-kits-aviso__txt">
+        <strong>Verme Week: 12% OFF ativado</strong>
+        <span>Você economiza {{ eco | money }}. Com {{ falta }} protocolo{% if falta > 1 %}s{% endif %} a mais, vira <b>15% OFF</b> · com 5, <b>17%</b>.</span>
+      </div>
+    </div>
+  {%- endif -%}
+
+{%- endif -%}
+
+{% stylesheet %}
+  .vf-kits-aviso {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 11px 13px; border-radius: 10px; margin: 2px 0;
+    font-size: 12.5px; line-height: 1.35;
+  }
+  .vf-kits-aviso__ic {
+    flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center; color: #fff; margin-top: 1px;
+  }
+  .vf-kits-aviso__ic svg { width: 13px; height: 13px; }
+  .vf-kits-aviso__txt { display: flex; flex-direction: column; gap: 2px; }
+  .vf-kits-aviso__txt strong { font-weight: 800; }
+  .vf-kits-aviso__txt b { font-weight: 900; }
+  .vf-kits-aviso--ok {
+    background: var(--vf-green-light, #E7F6EC);
+    color: var(--vf-green-dark, #15803D);
+  }
+  .vf-kits-aviso--ok .vf-kits-aviso__ic { background: var(--vf-green, #16A34A); }
+  .vf-kits-aviso--ok .vf-kits-aviso__txt span { color: #256b3a; }
+  .vf-kits-aviso--nudge {
+    background: #FEF3E7; color: #9A3412;
+    border: 1px dashed #F59E0B;
+  }
+  .vf-kits-aviso--nudge .vf-kits-aviso__ic { background: #EA580C; }
+  .vf-kits-aviso--nudge .vf-kits-aviso__txt span { color: #B45309; }
+{% endstylesheet %}
