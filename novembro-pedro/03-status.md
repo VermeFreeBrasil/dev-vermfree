@@ -1,6 +1,6 @@
 # Status — placar do mês
 
-Atualizado em: **09/11/2026** (fechamento de 08/11, sem conversa), a partir da exportação do Alliance OS.
+Atualizado em: **10/11/2026** (fechamento de 09/11), a partir da exportação do Alliance OS.
 
 **REGRA FIXA (29/10): este chat faz SÓ tarefas da VermeFree. Revita e Botanika são só referência de dependência; nunca executar nada delas aqui. Se o Pedro citar Revita ou Botanika, parar e avisar.**
 
@@ -23,6 +23,8 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 | Verme Friday | 10 | 10 | — | 10 + 10 | 19/11 12h |
 | Free Monday | 10 (era 5) | 10 | — | 10 + 10 | 25/11 12h |
 | **Total** | **85** | **85** | 4 vídeos + 40 estáticos (30 a ajustar) | ~81 vídeos + 45 estáticos | |
+
+**09/11:** lote 3 dos universais (8 estáticos, peças 25–32, 4:5 + 9:16) ✅ aprovado, no Drive Criativos/Universais Black e marcado no Alliance. Verme Friday: 10 estáticos de venda ✅ (4:5).
 
 Saiu: "Verme November — editar os 15 vídeos de venda" (09/11) e "50 vídeos universais" viraram os 40 vídeos do mês em lotes.
 
@@ -78,15 +80,15 @@ Detalhes em shopify/verme-november-tema/LEIA.md. Falta: publicar à 00h de 12/11
 | ⬜ | 13/11/2026 18h00 | BLACK FRIDAY — Editar os vídeos e criar os estáticos novos da semana | `mcp-1793230995807-3-a61b0` |  |
 | ⬜ | 13/11/2026 18h00 | BLACK FRIDAY — Renovar os criativos do mês toda semana | `mcp-1793230995806-0-6d26b` | Programada |
 | ⬜ | 13/11/2026 18h00 | GROWTH · CAPTAÇÃO DE LEADS — Escrever os 40 primeiros artigos | `mcp-1791481106562-6-53b54` | depende: GROWTH · CAPTAÇÃO DE LEADS — Definir os materiais e ferramentas para os leads (Pedro Lage, feito) |
-| ⬜ | 17/11/2026 18h00 | BLACK FRIDAY · VERME WEEK — Configurar a entrega dos brindes | `mcp-1793234479525-11-a53a5` |  |
-| ⬜ | 17/11/2026 18h00 | BLACK FRIDAY · VERME WEEK — Configurar oferta e frete na Shopify | `mcp-1793234479525-10-286f1` |  |
-| ⬜ | 17/11/2026 18h00 | BLACK FRIDAY · VERME WEEK — Criar o tema completo do site para a promoção | `mcp-1793234479525-9-0cdf3` |  |
+| ✅ | 17/11/2026 18h00 | BLACK FRIDAY · VERME WEEK — Configurar a entrega dos brindes | `mcp-1793234479525-11-a53a5` | **09/11: CONCLUÍDA.** Flow "Verme Week · brinde kit adulto (> R$ 1.000)" ativo (20/11 00h–26/11 23h59, tag brinde-vw-kit-adulto + nota). shopify/oferta-verme-week/brinde-kit-adulto.md. Marcada no Alliance. |
+| ✅ | 17/11/2026 18h00 | BLACK FRIDAY · VERME WEEK — Configurar oferta e frete na Shopify | `mcp-1793234479525-10-286f1` | **09/11: CONCLUÍDA.** 12% (1) · 15% (3+) · 17% (5+) + frete ≥ R$ 299, agendados 20/11 00h–26/11 23h59. shopify/oferta-verme-week/descontos.md. Teste do carrinho em 20/11 00h05. Marcada no Alliance. |
+| ✅ | 17/11/2026 18h00 | BLACK FRIDAY · VERME WEEK — Criar o tema completo do site para a promoção | `mcp-1793234479525-9-0cdf3` | **09/11: CONCLUÍDA.** Tema "🟢 Verme Week · PUBLICAR 20/11 00h" (168791179483) aprovado; Pedro agendou no Supreme para 20/11 00h. shopify/verme-week-tema/LEIA.md. Marcada no Alliance. |
 | ⬜ | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY · CRIATIVOS | `mcp-1793234479525-16-31c24` |  |
-| ⬜ | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY — Criar os 5 criativos estáticos de venda | `mcp-1793234618789-1-f596c` |  |
+| ✅ | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY — Criar os 5 criativos estáticos de venda | `mcp-1793234618789-1-f596c` | **09/11: CONCLUÍDA (10 estáticos, v5 aprovada).** Drive 07. Verme Friday › 01. Comunicação & Criativos. criativos/verme-friday/png5/. 9:16 não feito. Marcada no Alliance. |
 | ⬜ | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY — Editar os 5 vídeos de venda | `mcp-1793234618789-0-9434c` | depende: BLACK FRIDAY · VERME FRIDAY — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
 | ⬜ | 23/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Fechar o site com o banner do grupo VIP | `mcp-1793234832211-7-3de4d` |  |
 | ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Configurar a entrega dos brindes | `mcp-1793234832211-4-a36f5` |  |
-| ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Configurar oferta e frete na Shopify | `mcp-1793234832211-3-112ea` |  |
+| ✅ | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Configurar oferta e frete na Shopify | `mcp-1793234832211-3-112ea` | **09/11: CONCLUÍDA.** 18% site todo + compre 4 leve 5 (BXGY) + frete grátis sem mínimo, agendados 27/11 00h–28/11 23h59. shopify/oferta-verme-friday/descontos.md. Link VIP/trava vai com o tema. Marcada no Alliance. |
 | ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Criar o tema completo do site para a promoção | `mcp-1793234832211-2-d6132` |  |
 | ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER · SITE E SHOPIFY | `mcp-1793232207208-10-23fce` |  |
 | ⬜ | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY · CRIATIVOS | `mcp-1793232343397-0-2bb2e` |  |

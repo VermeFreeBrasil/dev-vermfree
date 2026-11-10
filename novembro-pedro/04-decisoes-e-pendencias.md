@@ -53,6 +53,10 @@
 - **Grupo VIP (setembro):** a tarefa "Editar os criativos para o tráfego" está **em revisão e sem prazo** desde setembro. Fechar ou arquivar.
 
 ## Decisões tomadas
+- **09/11 (Pedro):** temas trocados pelo **Supreme Theme Scheduler** (Pedro agenda): 11/11 Eclipse 00h, 12/11 Verme November 00h, 20/11 Verme Week 00h. O Claude só testa às 00h05.
+- **09/11:** Verme Week = cópia do tema Verme November com 12/15/17%; descontos e Flow do brinde no mesmo modelo da Verme November. Verme Friday = mesmo modelo do 11/11 (18% + compre 4 leve 5 + frete grátis).
+- **09/11 (Pedro, criativos):** estáticos com fundo preto + vermelho/branco para as campanhas; **nada de UGC/pessoas, no máximo mão**; produto só com foto real ou mão gerada a partir da foto real, pose simples e frontal (IA redesenha rótulo = "frasco bugado"); não replicar layout anterior, cada lote com cara nova.
+
 
 | Data | Decisão | Quem |
 |---|---|---|

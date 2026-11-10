@@ -198,3 +198,9 @@ Horários são o prazo do Alliance OS. "Fazer" é a sugestão de quando trabalha
 
 ### QUA 02/12
 - **18h** · VF **sorteio da Verme Friday** · mães Free Monday e Verme Friday Site e Shopify
+
+
+## Testes e conferências marcados em 09/11
+- **20/11 00h05:** conferir se o tema Verme Week entrou (Supreme) e testar carrinho 1/3/5 (12/15/17%, frete ≥ R$ 299).
+- **20 a 27/11, de manhã:** conferir (só leitura) a tag `brinde-vw-kit-adulto` nos pedidos acima de R$ 1.000.
+- **27/11 00h05:** testar carrinho da Verme Friday com 1, 4, 5 e 10 itens (18% + 5º grátis + frete 0) e o link VIP.
