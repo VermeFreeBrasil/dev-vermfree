@@ -1,0 +1,218 @@
+{
+ "id": "r5",
+ "entrada": "raw/IMG_7378.mov",
+ "saida": "vf-1111-roteiro5-kit-kids-gratis.mp4",
+ "pip": {
+  "x": 734,
+  "y": 1250,
+  "w": 300,
+  "h": 533
+ },
+ "vermelho": [
+  "hoje",
+  "23h59",
+  "agora",
+  "graça",
+  "filho"
+ ],
+ "segs": [
+  {
+   "de": 5.02,
+   "ate": 7.38,
+   "fx": [
+    {
+     "tipo": "gancho",
+     "texto": "Se você tem <b>filho</b>, não pula esse vídeo"
+    }
+   ]
+  },
+  {
+   "de": 8.8,
+   "ate": 12.99,
+   "legenda": "Eu vou te mostrar como ganhar um kit de desparasitação de graça na Black Friday da VermeFree.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "Kit Kids de graça",
+     "y": 235,
+     "ini": 1.8
+    }
+   ]
+  },
+  {
+   "de": 14.82,
+   "ate": 17.98,
+   "cards": [
+    {
+     "tipo": "relogio",
+     "ini": 0.3,
+     "extra": {
+      "sup": "só vale hoje até",
+      "sub": "11/11 · depois acaba"
+     }
+    }
+   ]
+  },
+  {
+   "de": 19.47,
+   "ate": 20.48,
+   "legenda": "É muito simples."
+  },
+  {
+   "de": 21.73,
+   "ate": 26.06,
+   "legenda": "Você toca no botão que tá aparecendo aqui embaixo e cai direto no site.",
+   "fx": [
+    {
+     "tipo": "botao",
+     "texto": "Montar meu kit ↓",
+     "ini": 0.6
+    }
+   ]
+  },
+  {
+   "de": 27.7,
+   "ate": 29.48,
+   "legenda": "E aí você monta o seu protocolo.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "Monte o seu protocolo",
+     "y": 235,
+     "ini": 0.3
+    }
+   ]
+  },
+  {
+   "de": 45.2,
+   "ate": 49.5,
+   "legenda": "Eu coloquei a Silimarina, a Tintura, o Óleo de Orégano e a Ornitina.",
+   "fx": [
+    {
+     "tipo": "frascos",
+     "ini": 0.2,
+     "itens": [
+      {
+       "img": "b-silimarina.png",
+       "label": "Silimarina",
+       "t": 0.2
+      },
+      {
+       "img": "b-tintura.png",
+       "label": "Tintura",
+       "t": 1.3
+      },
+      {
+       "img": "b-oleo.png",
+       "label": "Óleo de orégano",
+       "t": 2.1
+      },
+      {
+       "img": "b-ornitina.png",
+       "label": "Ornitina",
+       "t": 3.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "de": 50.88,
+   "ate": 54.59,
+   "legenda": "E agora, fechou quatro itens, apareceu o Kit Kids.",
+   "cards": [
+    {
+     "tipo": "kitkids",
+     "ini": 1.6
+    }
+   ]
+  },
+  {
+   "de": 56.11,
+   "ate": 57.75,
+   "legenda": "Tá vendo? Ele sai de graça.",
+   "fx": [
+    {
+     "tipo": "selo",
+     "texto": "Kit Kids<br>grátis",
+     "ini": 0.5
+    }
+   ]
+  },
+  {
+   "de": 59.28,
+   "ate": 62.69,
+   "legenda": "E além disso, tá tudo com 20% de desconto.",
+   "cards": [
+    {
+     "tipo": "off",
+     "ini": 1.0
+    }
+   ]
+  },
+  {
+   "de": 65.35,
+   "ate": 69.05,
+   "legenda": "E tem mais, o frete é grátis em qualquer pedido, sem valor mínimo.",
+   "cards": [
+    {
+     "tipo": "frete",
+     "ini": 0.8
+    }
+   ]
+  },
+  {
+   "de": 77.1,
+   "ate": 81.42,
+   "legenda": "E se o seu pedido estiver entre os 100 primeiros, você ainda ganha 15% de volta.",
+   "cards": [
+    {
+     "tipo": "cashback",
+     "ini": 2.0
+    }
+   ]
+  },
+  {
+   "de": 82.77,
+   "ate": 88.51,
+   "legenda": "E quem compra hoje recebe junto o guia de alimentos antiparasitários e o manual da desparasitação.",
+   "cards": [
+    {
+     "tipo": "brindes",
+     "ini": 1.4
+    }
+   ]
+  },
+  {
+   "de": 89.34,
+   "ate": 93.92,
+   "legenda": "É o passo a passo completo de como fazer com você e com o seu filho."
+  },
+  {
+   "de": 95.41,
+   "ate": 96.42,
+   "legenda": "Agora é com você!"
+  },
+  {
+   "de": 98.29,
+   "ate": 102.83,
+   "legenda": "Toca no botão que tá aparecendo aqui embaixo e já garante o seu kit de graça agora mesmo.",
+   "fx": [
+    {
+     "tipo": "botao",
+     "texto": "Garantir no site ↓",
+     "ini": 0.6
+    }
+   ]
+  },
+  {
+   "de": 104.4,
+   "ate": 108.17,
+   "cards": [
+    {
+     "tipo": "final"
+    }
+   ]
+  }
+ ]
+}

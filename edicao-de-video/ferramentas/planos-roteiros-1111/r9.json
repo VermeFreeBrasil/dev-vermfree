@@ -1,0 +1,135 @@
+{
+ "id": "r9",
+ "entrada": "raw/IMG_7385.mov",
+ "saida": "vf-1111-roteiro9-melhor-dia.mp4",
+ "vermelho": [
+  "hoje",
+  "hoje,",
+  "agora",
+  "calendário"
+ ],
+ "segs": [
+  {
+   "de": 12.11,
+   "ate": 17.59,
+   "legenda": "Qual o melhor dia pra comprar? Hoje, e não só por causa do desconto, é por causa do calendário também.",
+   "fx": [
+    {
+     "tipo": "gancho",
+     "texto": "Qual o <b>melhor dia</b> pra comprar?",
+     "ini": 0,
+     "fim": 1.7
+    },
+    {
+     "tipo": "tarja",
+     "texto": "Hoje",
+     "y": 235,
+     "ini": 1.8
+    }
+   ]
+  },
+  {
+   "de": 19.13,
+   "ate": 20.51,
+   "legenda": "Mas vem cá, deixa eu te explicar."
+  },
+  {
+   "de": 21.55,
+   "ate": 26.2,
+   "legenda": "Porque a maioria das pessoas só se lembra de desparasitar quando o ano já virou."
+  },
+  {
+   "de": 31.12,
+   "ate": 36.37,
+   "legenda": "Hoje é a Black Friday na VermeFree e todos os protocolos estão com 20% de desconto.",
+   "cards": [
+    {
+     "tipo": "off",
+     "ini": 2.6
+    }
+   ]
+  },
+  {
+   "de": 37.69,
+   "ate": 40.76,
+   "cards": [
+    {
+     "tipo": "frete"
+    }
+   ]
+  },
+  {
+   "de": 41.96,
+   "ate": 44.44,
+   "cards": [
+    {
+     "tipo": "cinco"
+    }
+   ]
+  },
+  {
+   "de": 45.67,
+   "ate": 48.91,
+   "cards": [
+    {
+     "tipo": "cashback"
+    }
+   ]
+  },
+  {
+   "de": 54.38,
+   "ate": 61.67,
+   "legenda": "Só que tem mais uma coisa: comprando hoje o seu kit, ele chega com folga pra você começar a sua desparasitação na última lua nova do ano.",
+   "cards": [
+    {
+     "tipo": "luanova",
+     "ini": 2.4
+    }
+   ]
+  },
+  {
+   "de": 62.92,
+   "ate": 66.03,
+   "legenda": "Que, pra quem não sabe, é a data que a gente usa pra iniciar o protocolo."
+  },
+  {
+   "de": 67.45,
+   "ate": 73.29,
+   "legenda": "Ou seja, você vai fechar 2026 com a sua desparasitação feita e não vai carregar isso pra 2027.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "Comece 2027 sem parasitas",
+     "y": 235,
+     "ini": 2.6
+    }
+   ]
+  },
+  {
+   "de": 74.79,
+   "ate": 79.96,
+   "legenda": "Então toca no botão que tá aparecendo aqui embaixo, garante o seu agora,",
+   "fx": [
+    {
+     "tipo": "botao",
+     "texto": "Garantir no site ↓",
+     "ini": 0.8,
+     "fim": 3.9
+    }
+   ],
+   "cards": [
+    {
+     "tipo": "final",
+     "ini": 3.9
+    }
+   ],
+   "legFim": 3.9
+  }
+ ],
+ "pip": {
+  "x": 734,
+  "y": 1250,
+  "w": 300,
+  "h": 533
+ }
+}
