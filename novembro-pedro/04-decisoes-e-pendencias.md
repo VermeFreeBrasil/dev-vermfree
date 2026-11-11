@@ -91,3 +91,5 @@
 | 09/11 | Estoque de brinde não é responsabilidade deste chat; a Poly é suporte e não separa pedidos | Pedro |
 | 09/11 | Kit Kids na compra de 4 do 11/11 mantido (está na ficha aprovada) | Pedro |
 | 09/11 | Sem bruto da Mafe, não produzir os vídeos de venda com material antigo | Pedro |
+| 10/11 | Desconto automático do app Upsell.com pausado (somava com tudo); reativar só com o ok do Pedro | Pedro |
+| 10/11 | Live do 11/11 (StreamYard, conta contratada no e-mail de outra marca): Claude só orienta pelos prints; a da VermeFree depende do Instagram voltar até 07h de 11/11 (Vitor decide) | Pedro |
