@@ -93,3 +93,5 @@
 | 09/11 | Sem bruto da Mafe, não produzir os vídeos de venda com material antigo | Pedro |
 | 10/11 | Desconto automático do app Upsell.com pausado (somava com tudo); reativar só com o ok do Pedro | Pedro |
 | 10/11 | Live do 11/11 (StreamYard, conta contratada no e-mail de outra marca): Claude só orienta pelos prints; a da VermeFree depende do Instagram voltar até 07h de 11/11 (Vitor decide) | Pedro |
+| 11/11 | Pendente: Kit Família conta como 4 itens para o brinde do Kit Kids? (#4527, #4553) | Pedro / Vitor |
+| 11/11 | Pendente: cupom de influenciadora não soma com o compre 4 leve 5 (1 desconto de produto por item) e perde atribuição; definir antes da Verme Friday (27/11) | Pedro / Vitor |
