@@ -1,7 +1,7 @@
 # A fazer (guardado em 12/11, pedido do Pedro)
 
 ## 12/11 (hoje)
-- [ ] ⚠️ ATRASADO (venceu 12/11 18h) **Cashback 11/11** · lista pronta (100 clientes, R$ 8.221,49, pedidos #4510–#4612 sem os reembolsados #4578/#4581/#4589). Falta o **ok do Pedro** para aplicar as tags `cashback-1111-<centavos>`. Depois: conferir Flow e saldos, avisar a Sarah.
+- [x] **Cashback 11/11** aplicado em 14/11 (100 clientes, R$ 8.221,49). Falta: Pedro conferir o Flow e avisar a Sarah · lista pronta (100 clientes, R$ 8.221,49, pedidos #4510–#4612 sem os reembolsados #4578/#4581/#4589). Falta o **ok do Pedro** para aplicar as tags `cashback-1111-<centavos>`. Depois: conferir Flow e saldos, avisar a Sarah.
 - [x] Brinde Verme November: conferido de manhã (nenhum pedido > R$ 1.000 até 08h40). Repetir amanhã cedo.
 - [ ] Marcar no Alliance: "11/11 — Editar os 10 vídeos de venda" (9 entregues).
 
