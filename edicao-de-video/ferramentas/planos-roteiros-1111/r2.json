@@ -1,0 +1,239 @@
+{
+ "id": "r2",
+ "entrada": "raw/IMG_7374.mov",
+ "saida": "vf-1111-roteiro2-intestino-em-ordem.mp4",
+ "pip": {
+  "x": 734,
+  "y": 1250,
+  "w": 300,
+  "h": 533
+ },
+ "vermelho": [
+  "hoje",
+  "23h59",
+  "agora",
+  "parasitas",
+  "ordem"
+ ],
+ "segs": [
+  {
+   "de": 6.93,
+   "ate": 13.24,
+   "legenda": "O protocolo de desparasitação da VermeFree que colocou o meu intestino em ordem está com o maior desconto da história da marca.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "Maior desconto da história",
+     "y": 235,
+     "ini": 3.2
+    }
+   ]
+  },
+  {
+   "de": 14.83,
+   "ate": 17.78,
+   "cards": [
+    {
+     "tipo": "relogio",
+     "ini": 0.2,
+     "extra": {
+      "sup": "11/11 · só hoje até",
+      "sub": "depois o preço volta"
+     }
+    }
+   ]
+  },
+  {
+   "de": 29.35,
+   "ate": 33.17,
+   "legenda": "Antes eu acordava normal e às 5 da tarde a calça já não fechava.",
+   "fx": [
+    {
+     "tipo": "chips",
+     "ini": 2.2,
+     "itens": [
+      {
+       "label": "17h: a calça não fecha",
+       "t": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "de": 41.74,
+   "ate": 46.49,
+   "legenda": "Eu vivia segurando os gases o dia inteiro e uma cólica que começava do nada.",
+   "fx": [
+    {
+     "tipo": "chips",
+     "ini": 0.6,
+     "itens": [
+      {
+       "label": "gases o dia inteiro",
+       "t": 0
+      },
+      {
+       "label": "cólica do nada",
+       "t": 2.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "de": 47.8,
+   "ate": 52.6,
+   "legenda": "Eu culpava a comida, culpava o trabalho, culpava a idade, culpava qualquer coisa.",
+   "fx": [
+    {
+     "tipo": "chips",
+     "ini": 0.4,
+     "itens": [
+      {
+       "label": "a comida?",
+       "t": 0
+      },
+      {
+       "label": "o trabalho?",
+       "t": 1.0
+      },
+      {
+       "label": "a idade?",
+       "t": 2.0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "de": 55.45,
+   "ate": 58.32,
+   "legenda": "Cortei glúten, cortei lactose, cortei tudo que tinha direito.",
+   "fx": [
+    {
+     "tipo": "chips",
+     "ini": 0.3,
+     "risca": 2.2,
+     "itens": [
+      {
+       "label": "glúten",
+       "t": 0
+      },
+      {
+       "label": "lactose",
+       "t": 0.8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "de": 62.94,
+   "ate": 66.14,
+   "legenda": "Foi aí que eu descobri que o problema eram parasitas.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "O problema eram parasitas",
+     "y": 235,
+     "ini": 1.6
+    }
+   ]
+  },
+  {
+   "de": 66.46,
+   "ate": 72.58,
+   "legenda": "E a solução foi fazer a desparasitação do jeito certo, em fases, e não em uma dose única.",
+   "cards": [
+    {
+     "tipo": "fases",
+     "ini": 2.6
+    }
+   ]
+  },
+  {
+   "de": 73.86,
+   "ate": 76.24,
+   "legenda": "Pra mim, a diferença foi enorme."
+  },
+  {
+   "de": 77.81,
+   "ate": 80.75,
+   "legenda": "E hoje é o melhor dia do ano pra você fazer a sua.",
+   "fx": [
+    {
+     "tipo": "selo",
+     "texto": "11/11<br>só hoje",
+     "ini": 0.6
+    }
+   ]
+  },
+  {
+   "de": 82.06,
+   "ate": 84.99,
+   "cards": [
+    {
+     "tipo": "off"
+    }
+   ]
+  },
+  {
+   "de": 86.36,
+   "ate": 88.39,
+   "cards": [
+    {
+     "tipo": "frete"
+    }
+   ]
+  },
+  {
+   "de": 89.69,
+   "ate": 92.19,
+   "cards": [
+    {
+     "tipo": "cinco"
+    }
+   ]
+  },
+  {
+   "de": 97.67,
+   "ate": 100.51,
+   "cards": [
+    {
+     "tipo": "cashback"
+    }
+   ]
+  },
+  {
+   "de": 102.41,
+   "ate": 105.09,
+   "cards": [
+    {
+     "tipo": "eclipse"
+    }
+   ]
+  },
+  {
+   "de": 106.1,
+   "ate": 110.78,
+   "legenda": "Então toca no botão que tá aparecendo aqui embaixo e faz a sua desparasitação agora.",
+   "fx": [
+    {
+     "tipo": "botao",
+     "texto": "Garantir no site ↓",
+     "ini": 1.0
+    }
+   ]
+  },
+  {
+   "de": 112.57,
+   "ate": 115.05,
+   "cards": [
+    {
+     "tipo": "final"
+    }
+   ]
+  }
+ ]
+}

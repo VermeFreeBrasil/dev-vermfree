@@ -1,0 +1,57 @@
+{%- comment -%} vf-1111-cart · carrinho no 11/11 (tema Eclipse). Só aparece com html.ve-on (dia 11 ou prévia ?vf_diad=on). Esconde a régua de frete R$ 399 e o aviso de kits 10/15% (não valem no dia) e mostra os descontos do dia. kk = brinde Kit Kids (mesma chave do vf-1111-kits). {%- endcomment -%}
+{%- assign kk = true -%}
+{%- assign q = cart.item_count -%}
+{%- assign gr = q | divided_by: 5 -%}
+{%- assign sobra = q | modulo: 5 -%}
+{%- assign cheio = 0 -%}{%- for it in cart.items -%}{%- assign l = it.original_price | times: it.quantity -%}{%- assign cheio = cheio | plus: l -%}{%- endfor -%}
+{%- assign eco = cheio | minus: cart.total_price -%}
+{%- assign barato = 0 -%}{%- assign bid = 0 -%}{%- for it in cart.items -%}{%- if barato == 0 or it.original_price < barato -%}{%- assign barato = it.original_price -%}{%- assign bid = it.variant_id -%}{%- endif -%}{%- endfor -%}
+<style>
+.ve-cart{display:none}
+html.ve-on .ve-cart{display:block;margin:0 0 4px;border-radius:18px;overflow:hidden;border:1px solid #e0262f55;background:radial-gradient(ellipse 90% 70% at 50% 0,#3a0d12 0,#120709 75%);color:#fff;font-family:Inter,Arial,sans-serif}
+.ve-cart .hd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px;background:#e0262f;font-weight:900;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.ve-cart .hd b{font-variant-numeric:tabular-nums}
+.ve-cart ul{list-style:none;margin:0;padding:14px 16px 6px;display:grid;gap:9px}
+.ve-cart li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.35;color:#e9ece9}
+.ve-cart li i{flex:0 0 22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:900;background:#c0de96;color:#0c2219}
+.ve-cart li.no i{background:#ffffff1f;color:#fff}
+.ve-cart li b{color:#fff}
+.ve-cart li em{font-style:normal;color:#ff6b72;font-weight:800}
+.ve-cart .add5{display:block;width:calc(100% - 32px);margin:0 16px 12px;padding:13px;border:0;border-radius:12px;background:#c0de96;color:#0c2219;font:900 15px Inter,Arial,sans-serif;cursor:pointer;animation:vePulse 2.4s ease-in-out infinite}
+.ve-cart .eco{margin:6px 16px 14px;padding:12px 14px;border-radius:12px;background:#ffffff0d;display:flex;flex-wrap:wrap;gap:2px 12px;justify-content:space-between;align-items:baseline;font-size:13.5px;color:#cfd8d2}
+.ve-cart .eco b{white-space:nowrap;font-size:22px;font-weight:900;color:#ff4a52}
+html.ve-on .vf-bump,html.ve-on .vf-bump2,html.ve-on .vf-frete,html.ve-on .vf-kits-aviso,html.ve-on .vf-cart__parc:not(.ve-parc){display:none!important}
+.ve-parc{display:none}html.ve-on .ve-parc{display:block}
+html.ve-on .vf-cart{background:#070a08;color:#e9ece9}
+html.ve-on .vf-cart__header h1,html.ve-on .vf-cart-item__title,html.ve-on .vf-cart__summary-title,html.ve-on .vf-cart-item__price,html.ve-on .vf-cart-item__price-mobile,html.ve-on .vf-cart__summary-row--total strong{color:#fff}
+html.ve-on .vf-cart-item,html.ve-on .vf-cart__summary{background:#0e1311;border-color:#ffffff1a;color:#e9ece9}
+html.ve-on .vf-cart-item__image{background:#fff}
+html.ve-on .vf-cart-item__qty-control{border-color:#ffffff2e}
+html.ve-on .vf-cart-item__qty-btn,html.ve-on .vf-cart-item__qty-input,html.ve-on .vf-cart-item__remove,html.ve-on .vf-cart__continue,html.ve-on .vf-cart__count,html.ve-on .vf-cart__summary-micro,html.ve-on .vf-cart__parc{color:#cfd8d2}
+html.ve-on .vf-cart__parc b{color:#ff6b72}
+html.ve-on .vf-cart__summary-row--off{color:#ff6b72}
+html.ve-on .vf-cart__summary-row--total{border-color:#ffffff1a}
+html.ve-on .vf-cart__summary-row--total strong{font-size:28px;color:#ff4a52}
+html.ve-on .vf-cart__summary button[name="checkout"]{background:linear-gradient(180deg,#ff3a43,#9e0f17)!important;color:#fff!important;border:0!important;box-shadow:0 10px 30px #e0262f55;animation:vePulse 2.4s ease-in-out infinite}
+@keyframes vePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03);box-shadow:0 0 0 6px #e0262f22,0 12px 34px #e0262f66}}
+@media(prefers-reduced-motion:reduce){html.ve-on .vf-cart__summary button[name="checkout"]{animation:none}}
+</style>
+<div class="ve-cart">
+  <div class="hd"><span>🌑 11.11 · descontos aplicados</span><span>acaba em <b data-ve-t>--</b></span></div>
+  <ul>
+    <li><i>✓</i><span><b>20% OFF em tudo</b>, já no preço</span></li>
+    <li><i>✓</i><span><b>Frete grátis</b> sem valor mínimo</span></li>
+    {%- if kk -%}
+      {%- if q >= 4 -%}<li><i>✓</i><span><b>Kit Kids 2 a 4 anos</b> de presente</span></li>
+      {%- else -%}{%- assign f = 4 | minus: q -%}<li class="no"><i>🎁</i><span>Mais <em>{{ f }} {% if f == 1 %}unidade{% else %}unidades{% endif %}</em> e você ganha o <b>Kit Kids 2 a 4 anos</b></span></li>{%- endif -%}
+    {%- endif -%}
+    {%- if gr > 0 and sobra != 4 -%}<li><i>✓</i><span><b>{{ gr }} {% if gr == 1 %}unidade grátis{% else %}unidades grátis{% endif %}</b> (compre 4, leve 5)</span></li>{%- endif -%}
+    {%- if sobra == 4 -%}<li class="no"><i>🏆</i><span>Coloque <em>mais 1 unidade</em>: ela sai <b>grátis</b>, pelo mesmo preço de agora</span></li>{%- assign add5 = true -%}
+    {%- elsif gr == 0 -%}{%- assign f = 5 | minus: q -%}<li class="no"><i>🏆</i><span>Com mais <em>{{ f }} {% if f == 1 %}unidade{% else %}unidades{% endif %}</em>, a 5ª sai <b>grátis</b></span></li>{%- endif -%}
+    <li><i>✓</i><span><b>15% de cashback</b> nos 100 primeiros pedidos</span></li>
+  </ul>
+  {%- if add5 and bid != 0 -%}<button type="button" class="add5" data-ve-add5="{{ bid }}">🎁 Adicionar o 5º grátis</button>{%- endif -%}
+  {%- if cart.total_price > 0 -%}<p class="vf-cart__parc ve-parc" data-ve-parc>ou <b>3x de {{ cart.total_price | divided_by: 3.0 | round | money }}</b> sem juros</p>{%- endif -%}
+  {%- if eco > 0 -%}<div class="eco"><span>Você está economizando</span><b>{{ eco | money }}</b></div>{%- endif -%}
+</div>
+<script>(function(){var b=document.querySelector('[data-ve-add5]');if(!b)return;b.addEventListener('click',function(){b.disabled=true;b.textContent='Adicionando...';fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:[{id:+b.dataset.veAdd5,quantity:1}]})}).then(function(){location.reload();}).catch(function(){location.reload();});});})();</script>

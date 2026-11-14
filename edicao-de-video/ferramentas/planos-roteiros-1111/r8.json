@@ -1,0 +1,121 @@
+{
+ "id": "r8",
+ "entrada": "raw/IMG_7383.mov",
+ "saida": "vf-1111-roteiro8-ei-nao-pula.mp4",
+ "vermelho": [
+  "hoje",
+  "agora",
+  "hoje.",
+  "20%"
+ ],
+ "segs": [
+  {
+   "de": 1.61,
+   "ate": 2.53,
+   "fx": [
+    {
+     "tipo": "gancho",
+     "texto": "Ei! <b>Não pula</b> esse vídeo",
+     "ini": 0
+    }
+   ]
+  },
+  {
+   "de": 6.62,
+   "ate": 9.65,
+   "legenda": "E aí, e aí, e aí, presta atenção aqui e não pula esse vídeo."
+  },
+  {
+   "de": 11.04,
+   "ate": 15.11,
+   "legenda": "Se você já pensou em desparasitar e foi deixando pra depois, o depois é hoje.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "O depois é hoje",
+     "y": 235,
+     "ini": 2.9
+    }
+   ]
+  },
+  {
+   "de": 16.41,
+   "ate": 19.59,
+   "legenda": "A Black Friday da VermeFree tá no ar com uma oferta cheia.",
+   "fx": [
+    {
+     "tipo": "selo",
+     "texto": "11/11<br>no ar",
+     "ini": 1.0
+    }
+   ]
+  },
+  {
+   "de": 21.41,
+   "ate": 24.47,
+   "cards": [
+    {
+     "tipo": "off",
+     "ini": 0.4
+    }
+   ]
+  },
+  {
+   "de": 26.05,
+   "ate": 29.04,
+   "cards": [
+    {
+     "tipo": "frete"
+    }
+   ]
+  },
+  {
+   "de": 30.38,
+   "ate": 33.13,
+   "cards": [
+    {
+     "tipo": "cinco"
+    }
+   ]
+  },
+  {
+   "de": 34.38,
+   "ate": 46.45,
+   "legenda": "E 15% de volta pros 100 primeiros pedidos. Tudo isso só até as 23h59 de hoje. Então toca no botão que tá aparecendo aqui embaixo e garante o seu agora,",
+   "cards": [
+    {
+     "tipo": "cashback",
+     "ini": 0,
+     "fim": 3.7
+    },
+    {
+     "tipo": "eclipse",
+     "ini": 3.7,
+     "fim": 6.7
+    }
+   ],
+   "fx": [
+    {
+     "tipo": "botao",
+     "texto": "Garantir no site ↓",
+     "ini": 7.2
+    }
+   ]
+  },
+  {
+   "de": 46.61,
+   "ate": 48.71,
+   "cards": [
+    {
+     "tipo": "final"
+    }
+   ]
+  }
+ ],
+ "pip": {
+  "x": 734,
+  "y": 1250,
+  "w": 300,
+  "h": 533
+ }
+}

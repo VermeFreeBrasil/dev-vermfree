@@ -1,0 +1,171 @@
+# Status — placar do mês
+
+Atualizado em: **10/11/2026** (fechamento de 09/11), a partir da exportação do Alliance OS.
+
+**REGRA FIXA (29/10): este chat faz SÓ tarefas da VermeFree. Revita e Botanika são só referência de dependência; nunca executar nada delas aqui. Se o Pedro citar Revita ou Botanika, parar e avisar.**
+
+**REGRA Nº 2 (Pedro, 29/10): o escopo é SÓ as tarefas das promoções de novembro da VermeFree e do cronograma passado (captação 11/11, Dia D 11/11, Recovery, Verme November, Verme Week, Verme Friday, Free Monday: criativos, vídeos, estáticos, LP, tema, oferta/frete/brinde/cashback/sorteio na Shopify). Fora do escopo: tarefas de GROWTH (SEO, CRO, LP comparativa, ManyChat, artigos, rodapé, quiz, manifesto etc.) e pesquisa de indicação. Não sugerir nem executar.**
+
+**Regra (29/10): este arquivo é o placar oficial. Quando o Alliance trava a conclusão, marcamos aqui e o Pedro replica lá quando liberar.**
+
+Legenda: ⬜ falta · 🟡 fazendo · ✅ feito · ⛔ travado (depende de alguém) · ⏸️ remarcar
+
+Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da entrega, o que falta).
+
+
+## Mudança de 31/10 (Vitor): produção de criativos VF em novembro = 85 vídeos + 85 estáticos
+
+| Bloco | Vídeos | Estáticos | Já feito | Falta | Prazo (Alliance) |
+|---|---|---|---|---|---|
+| Captação 11/11 | 15 (+5 conscientização à parte) | 15 | **15 estáticos (10 em 29/10 + 5 em 01/11, aprovados)**; 4 vídeos (3 UGC + Criativo 12, 30/10) | vídeos conforme a contagem (ver P18) | estáticos: urgente (era 29/10) · vídeos: 04/11 18h (bruto 03/11) |
+| Mês (Verme November + Verme Week) | 40 em 4 lotes: 16 · 8 · 8 · 8 | 40 em 4 lotes: 16 · 8 · 8 · 8 | 30 estáticos com o selo "Black VermeFree" (regerados e aprovados em 01/11): lote 1 (16) e lote 2 (8) prontos; **lote 1 (01–16) subido na Shopify e no Drive em 03/11** (https://drive.google.com/drive/folders/1GiA-VHBNA-Dnm9aknrmVZwWEp7IQ0iIU) (links em criativos/universais/links-lote1.md), lote 3 com 6 de 8 | 10 estáticos + 40 vídeos | lotes: 04/11 (est.) e 06/11 (víd.), 13/11, 19/11, 25/11 |
+| Dia D 11/11 | 10 | 10 (era 5) | **10 estáticos de venda ✅ (03/11, aprovados, no Drive Universais Black)** | 10 + 10 | 06/11 12h |
+| Verme Friday | 10 | 10 | — | 10 + 10 | 19/11 12h |
+| Free Monday | 10 (era 5) | 10 | — | 10 + 10 | 25/11 12h |
+| **Total** | **85** | **85** | 4 vídeos + 40 estáticos (30 a ajustar) | ~81 vídeos + 45 estáticos | |
+
+**09/11:** lote 3 dos universais (8 estáticos, peças 25–32, 4:5 + 9:16) ✅ aprovado, no Drive Criativos/Universais Black e marcado no Alliance. Verme Friday: 10 estáticos de venda ✅ (4:5).
+
+Saiu: "Verme November — editar os 15 vídeos de venda" (09/11) e "50 vídeos universais" viraram os 40 vídeos do mês em lotes.
+
+## VermeFree
+
+| St | Prazo | Tarefa | ID | Obs |
+|---|---|---|---|---|
+| ⬜ | 16/10/2026 18h00 | GROWTH · SITE E SEO — Corrigir os links quebrados nas 3 páginas de produto | `mcp-1792086892292-2-05cc1` | ATRASADA 12 dia(s) |
+| ⬜ | 16/10/2026 18h00 | GROWTH · SITE E SEO — Verificar a indexação dos 10 artigos no Google | `mcp-1792086894828-3-1d3b0` | ATRASADA 12 dia(s) |
+| ⬜ | 20/10/2026 18h00 | GROWTH · SITE E SEO — Adicionar o snippet de avaliações do Judge.me nas páginas de produto | `mcp-1792086896828-4-4acd4` | ATRASADA 8 dia(s) |
+| ⬜ | 20/10/2026 18h00 | GROWTH · SITE E SEO — Implementar os dados estruturados Product, AggregateRating e FAQPage | `mcp-1792086898750-5-3afb5` | ATRASADA 8 dia(s) |
+| 🟡 | 21/10/2026 18h00 | GROWTH · CAPTAÇÃO DE LEADS — Escrever a copy do fluxo do ManyChat | `mcp-1791481103323-4-bafb6` | ATRASADA 7 dia(s); depende: GROWTH · CAPTAÇÃO DE LEADS — Definir os materiais e ferramentas para os leads (Pedro Lage, feito) + GROWTH · CAPTAÇÃO DE LEADS — Montar o pl |
+| ⬜ | 21/10/2026 18h00 | GROWTH · SITE E SEO — Otimizar a página Kids para "remédio de verme infantil" | `mcp-1792086900643-6-c1ebc` | ATRASADA 7 dia(s) |
+| ⬜ | 22/10/2026 18h00 | GROWTH · SITE E SEO — Reformular o rodapé do site | `mcp-1792086902967-7-26d60` | ATRASADA 6 dia(s) |
+| ⬜ | 23/10/2026 18h00 | GROWTH · SITE E SEO — Criar a página "VermeFree funciona?" com as avaliações do Judge.me | `mcp-1792086904834-8-6e1f2` | ATRASADA 5 dia(s) |
+| ⬜ | 23/10/2026 18h00 | GROWTH · SITE E SEO — Incorporar o quiz em uma página do site | `mcp-1792086906954-9-802d3` | ATRASADA 5 dia(s) |
+| ⬜ | 27/10/2026 18h00 | GROWTH · SITE E SEO — Criar a página de manifesto da VermeFree | `mcp-1792086908845-10-76679` | ATRASADA 1 dia(s) |
+| 🟡 | 29/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar a landing page de captação para o grupo | `mcp-1793231113158-4-83595` | **30/10: rota nova — LP no ar em https://vip.vermefree.com.br (Vercel)**, mesmo conteúdo e rastreio da LP aprovada, link do grupo nos botões. O tema de teste NÃO será publicado em 01/11 (trava sai). Falta: Pedro testar o botão no celular e mandar o link ao Otávio e à Sarah. **02/11:** site fechado redireciona para a LP; copy nova (site fechado); Lead no envio pelo navegador + API de Conversões (confirmado, META_RESP 200); depois do envio vai para vermefree.com.br/pages/obrigado?vf_trava=off → grupo (dpl_FdY1SjEoMgWHhiJk4vs89VAbTsSn). Leads no AC lista 15 via n8n. Falta: Otávio confirmar no Gerenciador e reativar a campanha (P25). **05/11: LP ajustada para 11/11 00h–07h e manda para o site a partir das 07h com UTMs (publicada, dpl_4tcft1smaSDtz9gu2y7wh5U5qCkq).** |
+| ✅ | 29/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 10 criativos estáticos de captação | `mcp-1793231113158-6-09be2` | **29/10: CONCLUÍDA (aprovada pelo Pedro).** 20 PNGs (4:5 e 9:16) em criativos/11-11-captacao/png, enviados ao Pedro para subir na pasta e repassar ao Otávio. Copy: criativos/11-11-captacao-10-estaticos-copy.md. **Marcada no Alliance em 09/11.** |
+| ⬜ | 30/10/2026 18h00 | GROWTH · SITE E SEO — Criar a LP comparativa VermeFree x remédios | `mcp-1792086910707-11-e980c` |  |
+| ⬜ | 30/10/2026 18h00 | GROWTH · SITE, SEO E CRO | `mcp-1792086890297-1-520da` |  |
+| ⬜ | 02/11/2026 18h00 | PESQUISA DE INDICAÇÃO — Outubro / VERMEFREE | `mcp-1791310863649-b305122a` |  |
+| ⏸️ | 03/11/2026 18h00 | BLACK FRIDAY — Editar os 20 primeiros vídeos universais | `mcp-1793230900242-5-6b53a` | 30/10: saiu da lista do Pedro (vídeos agora por campanha). |
+| 🟡 | 04/11/2026 18h00 | BLACK FRIDAY · 11/11 — Editar os 5 vídeos de conscientização | `mcp-1793292842825-9-1c1d8` | NOVA (30/10). 4 de 5 editados em 30/10 (vf-ugc-captacao-1111-01/02/03 + Criativo 12). Falta 1 bruto. Criativo 12 tem médica: confirmar com o Vitor. **05/11: ATRASADA** (venceu 04/11 18h). 05/11: chegou 1 bruto, vídeo 04 editado (v2 ilustrada) e no Drive: https://drive.google.com/file/d/1R8RB33MmDNLzyT6AXYHfca9AOE3Mjan2/view. **05/11: 5º vídeo (04 v2) editado e no Drive: https://drive.google.com/file/d/1R8RB33MmDNLzyT6AXYHfca9AOE3Mjan2/view. Entregue; o Alliance não fecha porque depende do "Gravar" da Mafe (aberto).** |
+| ✅ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Editar os 10 vídeos de venda | `mcp-1793231493731-4-710be` | Era 5; agora 10 (30/10). Com a oferta na tela. Depende do bruto. **06/11: bruto da Mafe ainda não chegou (vence hoje 12h).** **07/11: venceu 06/11 12h sem o bruto da Mafe. 09/11: Pedro decidiu não produzir sem o bruto.** **10/11: brutos chegaram (roteiros da apresentadora). 9 vídeos editados (roteiros 1, 2, 4, 5, 6, 7, 8/IMG_7383, 9, 10; não vieram brutos do 3 e do 8 numerado), roteiro 1 aprovado pelo Pedro, demais no mesmo padrão, todos no Drive: https://drive.google.com/drive/folders/194Y_5fj8Xwkn3MqDKm8cgteDM6IbcRdr** |
+| ⬜ | 09/11/2026 12h00 | BLACK FRIDAY · VERME NOVEMBER — Editar os 15 vídeos de venda | `mcp-1793292921329-3-3ca74` | NOVA (30/10). Sem %, data ou nome de campanha. Depende do bruto. |
+| ✅ | 04/11/2026 18h00 | BLACK FRIDAY — Criar os 30 estáticos universais de venda | `mcp-1793230900242-7-a241c` | **29/10: CONCLUÍDA (aprovada pelo Pedro).** 60 PNGs em criativos/universais/png (zip enviado ao Pedro). Copy no Drive: https://docs.google.com/document/d/1kb6ioKK2LYx-v9eHSOCJLWyBJMg-aIzXjVgdFmSGklk/edit. **Marcada no Alliance em 09/11.** |
+| ✅ | 05/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar o cashback na Shopify | `mcp-1793231782749-4-43158` | 30/10: plano em shopify/cashback/plano-cashback-1111.md (15% do total pago; Flow por tag cashback-1111). API sem permissão de crédito. 03/11: Flow VALIDADO em 2 testes (R$ 1,00 e R$ 1,50 pela tag). Passo a passo em shopify/cashback/passo-a-passo-flow.md. **03/11: CONCLUÍDA.** Fluxo real ativo e testado (R$ 0,01 + e-mail ok). Em 12/11 o Claude aplica as tags cashback-1111-<centavos> nos 100 primeiros, com o ok do Pedro, e avisa a Sarah (texto no passo a passo). **Marcada no Alliance em 09/11.** |
+| ⏸️ | 05/11/2026 18h00 | BLACK FRIDAY — Editar os 30 vídeos universais restantes | `mcp-1793230900242-6-3696d` | 30/10: saiu da lista do Pedro (vídeos agora por campanha). |
+| ⏸️ | 05/11/2026 18h00 | BLACK FRIDAY — Editar os 50 vídeos universais de venda | `mcp-1793230900242-4-b0846` | 30/10: saiu da lista do Pedro (vídeos agora por campanha). |
+| ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 · CRIATIVOS | `mcp-1793231493731-1-3660f` |  |
+| ✅ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 5 criativos estáticos de venda | `mcp-1793231493731-5-330db` | **03/11: CONCLUÍDA (aprovada pelo Pedro), 10 peças** (4 de preço + 6 de argumento), 4:5 e 9:16, visual Black. Drive: https://drive.google.com/drive/folders/1GiA-VHBNA-Dnm9aknrmVZwWEp7IQ0iIU. **Marcada no Alliance em 09/11.** |
+| ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Editar os 5 vídeos de venda | `mcp-1793231493731-4-710be` | depende: BLACK FRIDAY · 11/11 — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
+| ⬜ | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar a entrega dos brindes | `mcp-1793231782749-3-e8512` 05/11: Kit Kids na compra de 4 ainda sem confirmação do Vitor; prazo dele hoje (06/11). Se não sair, tirar a promessa do Eclipse (1 linha no vf-1111-kits + faixa/FAQ). 07/11: sem confirmação do Vitor registrada até o fechamento; promessa do Kit Kids segue no tema de teste (chave kk em vf-1111-kits e vf-1111-cart). |
+| ✅ | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar oferta e frete na Shopify | `mcp-1793231782748-2-7813f` | **03/11: CONCLUÍDA** (3 descontos agendados + cupons de novembro; shopify/oferta-1111/). **Marcada no Alliance em 09/11.** |
+| ✅ | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Criar o tema completo do site para a promoção | `mcp-1793231782748-1-f1933` | 30/10: refeito como "Eclipse 11.11" (conceito original aprovado): faixa AO VIVO, lua com eclipse que avança com o dia, Monte seus 5 (vai pro carrinho), cards com preço de/por da loja, trilho de bônus; esconde a barra "1ª compra 5%" no dia. No tema de teste, liga sozinho em 11/11. Preview: ?preview_theme_id=168339931355&vf_diad=on. 30/10 tarde: v3 aplicada: home com 1 seletor só (Monte seus 5) + clientes + perguntas + fechamento; PDPs (Adulto, Kids 2-4, Kids 5-9, Kit Família) redesenhadas no Eclipse (galeria, lua de preço, "Quantos você leva?" 1–5 com 5º grátis, barra fixa no celular), resto da PDP em modo escuro com a lua fechando seção a seção e bloco "A lua fecha em" no fim. Carrinho testado (5 un.). Prints em shopify/eclipse-1111/prints/eclipse-1111-v3-*.jpg. 30/10 noite: seletor da home refeito no formato do montador original nas cores do Eclipse (conta do 11/11 testada: 5 itens R$ 1.144,00) e prescritores de volta na home e nas PDPs. Snippet no limite de 50 mil caracteres. **03/11: APROVADO pelo Pedro** (prints eclipse-0311-*). Descontos do 11/11 configurados e conferidos com o tema. Trava nova (vip.vermefree.com.br) aplicada no tema de teste e testada em 6 casos. Falta: renomear e publicar à 00h de 11/11; tirar a promessa do Kit Kids se o brinde não sair (P10). |
+| ⬜ | 06/11/2026 18h00 | NOTA FISCAL — Pedro Lage | `mcp-1791566542911-4-2b477` | Programada |
+| ✅ | 09/11/2026 18h00 | BLACK FRIDAY · 11/11 — Criar o cupom privado do Recovery | `mcp-1793231782749-11-7894e` || **04/11: CONCLUÍDA.** RECOVERY1111 (20%) + FRETE1111 (frete), 12–19/11, 1 uso por cliente; mensagem da Poly em shopify/recovery-1111/cupons.md. **Marcada no Alliance em 09/11.** |
+| ✅ | 09/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER — Configurar a entrega dos brindes | `mcp-1793232207208-13-3e343` | **09/11: CONCLUÍDA.** Flow ativo (tag `brinde-vn-kit-adulto` + nota nos pedidos > R$ 1.000 de 12 a 19/11) e aviso no tema Verme November. Falta o Vitor confirmar o estoque. Passo a passo em shopify/oferta-verme-november/brinde-kit-adulto.md. **Marcada no Alliance em 09/11.** |
+| ✅ | 09/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER — Configurar oferta e frete na Shopify | `mcp-1793232207208-12-5a0c4` || **04/11: CONCLUÍDA** (escada 10/12/15% + frete ≥ R$ 299 agendados 12–19/11; shopify/oferta-verme-november/). Brinde do kit adulto fica na tarefa de brindes. **Marcada no Alliance em 09/11.** |
+| ✅ | 09/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER — Criar o tema completo do site para a promoção | `mcp-1793232207208-11-d6375` | **04/11: CONCLUÍDA (aprovada pelo Pedro).** Tema '🌑 Verme November (12–19/11) · EM EDIÇÃO' (168590672091), não publicado:
+  - home e PDPs com a identidade da campanha;
+  - escolha de kit em cartões;
+  - barra de benefícios 10% → frete → 12% → 15%;
+  - prazo de entrega;
+  - responsivo de 320 a 1920 px.
+
+Detalhes em shopify/verme-november-tema/LEIA.md. Falta: publicar à 00h de 12/11 (com o ok do Pedro); brinde > R$ 1.000 se o Vitor confirmar. **Marcada no Alliance em 09/11.** |
+| ⬜ | 13/11/2026 18h00 | BLACK FRIDAY · 11/11 · SITE E SHOPIFY | `mcp-1793231782748-0-7f4aa` |  |
+| ⬜ | 13/11/2026 18h00 | BLACK FRIDAY · 11/11 — Fazer o sorteio e avisar o ganhador | `mcp-1793231782749-7-d7253` |  |
+| ✅ | 13/11/2026 18h00 | BLACK FRIDAY · 11/11 — Organizar o sorteio dos 300 primeiros pedidos | `mcp-1793231782749-6-99d65` || **04/11: CONCLUÍDA.** Regulamento publicado (https://vermefree.com.br/pages/regulamento-sorteio-11-11), link no tema Eclipse, método e textos em shopify/sorteio-1111/. **Marcada no Alliance em 09/11.** |
+| ⬜ | 13/11/2026 18h00 | BLACK FRIDAY · CRIATIVOS DO MÊS | `mcp-1793230900242-1-47788` |  |
+| ⬜ | 13/11/2026 18h00 | BLACK FRIDAY — Editar os vídeos e criar os estáticos novos da semana | `mcp-1793230995807-3-a61b0` |  |
+| ⬜ | 13/11/2026 18h00 | BLACK FRIDAY — Renovar os criativos do mês toda semana | `mcp-1793230995806-0-6d26b` | Programada |
+| ⬜ | 13/11/2026 18h00 | GROWTH · CAPTAÇÃO DE LEADS — Escrever os 40 primeiros artigos | `mcp-1791481106562-6-53b54` | depende: GROWTH · CAPTAÇÃO DE LEADS — Definir os materiais e ferramentas para os leads (Pedro Lage, feito) |
+| ✅ | 17/11/2026 18h00 | BLACK FRIDAY · VERME WEEK — Configurar a entrega dos brindes | `mcp-1793234479525-11-a53a5` | **09/11: CONCLUÍDA.** Flow "Verme Week · brinde kit adulto (> R$ 1.000)" ativo (20/11 00h–26/11 23h59, tag brinde-vw-kit-adulto + nota). shopify/oferta-verme-week/brinde-kit-adulto.md. Marcada no Alliance. |
+| ✅ | 17/11/2026 18h00 | BLACK FRIDAY · VERME WEEK — Configurar oferta e frete na Shopify | `mcp-1793234479525-10-286f1` | **09/11: CONCLUÍDA.** 12% (1) · 15% (3+) · 17% (5+) + frete ≥ R$ 299, agendados 20/11 00h–26/11 23h59. shopify/oferta-verme-week/descontos.md. Teste do carrinho em 20/11 00h05. Marcada no Alliance. |
+| ✅ | 17/11/2026 18h00 | BLACK FRIDAY · VERME WEEK — Criar o tema completo do site para a promoção | `mcp-1793234479525-9-0cdf3` | **09/11: CONCLUÍDA.** Tema "🟢 Verme Week · PUBLICAR 20/11 00h" (168791179483) aprovado; Pedro agendou no Supreme para 20/11 00h. shopify/verme-week-tema/LEIA.md. Marcada no Alliance. |
+| ⬜ | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY · CRIATIVOS | `mcp-1793234479525-16-31c24` |  |
+| ✅ | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY — Criar os 5 criativos estáticos de venda | `mcp-1793234618789-1-f596c` | **09/11: CONCLUÍDA (10 estáticos, v5 aprovada).** Drive 07. Verme Friday › 01. Comunicação & Criativos. criativos/verme-friday/png5/. 9:16 não feito. Marcada no Alliance. |
+| ⬜ | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY — Editar os 5 vídeos de venda | `mcp-1793234618789-0-9434c` | depende: BLACK FRIDAY · VERME FRIDAY — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
+| ⬜ | 23/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Fechar o site com o banner do grupo VIP | `mcp-1793234832211-7-3de4d` |  |
+| ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Configurar a entrega dos brindes | `mcp-1793234832211-4-a36f5` |  |
+| ✅ | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Configurar oferta e frete na Shopify | `mcp-1793234832211-3-112ea` | **09/11: CONCLUÍDA.** 18% site todo + compre 4 leve 5 (BXGY) + frete grátis sem mínimo, agendados 27/11 00h–28/11 23h59. shopify/oferta-verme-friday/descontos.md. Link VIP/trava vai com o tema. Marcada no Alliance. |
+| ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Criar o tema completo do site para a promoção | `mcp-1793234832211-2-d6132` |  |
+| ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER · SITE E SHOPIFY | `mcp-1793232207208-10-23fce` |  |
+| ⬜ | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY · CRIATIVOS | `mcp-1793232343397-0-2bb2e` |  |
+| ⬜ | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY — Criar os 5 criativos estáticos de venda | `mcp-1793232343398-4-42c88` |  |
+| ⬜ | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY — Editar os 5 vídeos de venda | `mcp-1793232343398-3-b0cc2` | depende: BLACK FRIDAY · FREE MONDAY — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
+| ⬜ | 26/11/2026 18h00 | BLACK FRIDAY · FREE MONDAY — Fechar o site com o banner do grupo VIP | `mcp-1793232474314-14-22f1c` |  |
+| ⬜ | 27/11/2026 18h00 | BLACK FRIDAY · FREE MONDAY — Configurar a entrega dos brindes | `mcp-1793232474314-12-2ea89` |  |
+| ⬜ | 27/11/2026 18h00 | BLACK FRIDAY · FREE MONDAY — Configurar oferta e frete na Shopify | `mcp-1793232474314-11-456cd` |  |
+| ⬜ | 27/11/2026 18h00 | BLACK FRIDAY · FREE MONDAY — Criar o tema completo do site para a promoção | `mcp-1793232474314-10-5624c` |  |
+| ⬜ | 30/11/2026 18h00 | BLACK FRIDAY · VERME WEEK · SITE E SHOPIFY | `mcp-1793234479524-8-f8d80` |  |
+| ⬜ | 02/12/2026 18h00 | BLACK FRIDAY · FREE MONDAY · SITE E SHOPIFY | `mcp-1793232474314-9-25522` |  |
+| ⬜ | 02/12/2026 18h00 | BLACK FRIDAY · VERME FRIDAY · SITE E SHOPIFY | `mcp-1793234832210-1-54a21` |  |
+| ⬜ | 02/12/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Fazer o sorteio e avisar o ganhador | `mcp-1793234832211-6-dac04` |  |
+| ⬜ | 02/12/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Organizar o sorteio dos 300 primeiros pedidos | `mcp-1793234832211-5-0f901` |  |
+| ⬜ | sem prazo | AÇÕES DE RECOMPRA — Acompanhar conversão de cada toque do funil / VERMEFREE | `86ak0nq8j` |  |
+| ⬜ | sem prazo | AÇÕES DE RECOMPRA — Acompanhar faturamento por SKU / VERMEFREE | `86ak0nq8k` |  |
+| ⬜ | sem prazo | AÇÕES DE RECOMPRA — Identificar etapa com maior perda de clientes / VERMEFREE | `86ak0nq8x` |  |
+| ⬜ | sem prazo | AÇÕES DE RECOMPRA — Monitorar recompra com cupons / VERMEFREE | `86ak0nq86` |  |
+| ⬜ | sem prazo | AÇÕES DE RECOMPRA — Monitorar recompra sem cupom / VERMEFREE | `86ak0nq87` |  |
+| ⏸️ | sem prazo | GRUPO VIP — Editar os criativos para o tráfego | `mcp-1790712122017-gvip-italo-908d5f` |  |
+
+## Revita
+
+| St | Prazo | Tarefa | ID | Obs |
+|---|---|---|---|---|
+| ⬜ | 26/10/2026 18h00 | LANÇAMENTO REVITA DERMA — Criar o manual de como usar o kit | `task-1793216211344-bhs8s` | ATRASADA 2 dia(s) |
+| ⬜ | 30/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar a landing page de captação para o grupo | `mcp-1793231913181-1-05ebd` | depende: BLACK FRIDAY · 11/11 — Criar o grupo VIP do 11/11 e mandar os links para todo mundo (Sarah Brito, a fazer) |
+| ⬜ | 30/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 10 criativos estáticos de captação | `mcp-1793231913182-3-6bd0e` |  |
+| ⬜ | 30/10/2026 12h00 | BLACK FRIDAY · ESQUENTA 11/11 — Configurar o cashback na Shopify | `mcp-1793231079065-20-7ec35` |  |
+| ⬜ | 30/10/2026 12h00 | BLACK FRIDAY — Criar os 15 primeiros estáticos universais | `mcp-1793230872256-13-8d678` |  |
+| ⬜ | 30/10/2026 14h00 | BLACK FRIDAY — Editar os 20 primeiros vídeos universais | `mcp-1793230872256-10-62c3f` | depende: BLACK FRIDAY — Gravar os 20 primeiros vídeos universais (Maria Fernanda, Gabriel Ferreira, Vitor Gutierrez, a fazer) |
+| ⬜ | 30/10/2026 18h00 | BLACK FRIDAY · ESQUENTA 11/11 — Configurar oferta, frete e cashback na Shopify | `mcp-1793231079065-19-8db4e` |  |
+| ⬜ | 30/10/2026 18h00 | BLACK FRIDAY · ESQUENTA 11/11 — Criar o tema completo do site para a promoção | `mcp-1793231079065-18-959e1` |  |
+| ⬜ | 03/11/2026 18h00 | BLACK FRIDAY — Criar os 15 estáticos universais restantes | `mcp-1793230872256-14-770c4` |  |
+| ⬜ | 03/11/2026 18h00 | BLACK FRIDAY — Criar os 30 estáticos universais de venda | `mcp-1793230872256-12-dfd28` |  |
+| ⬜ | 04/11/2026 18h00 | BLACK FRIDAY · CRIATIVOS DO MÊS | `mcp-1793230872255-1-b47d5` |  |
+| ⬜ | 04/11/2026 18h00 | BLACK FRIDAY — Editar os 30 vídeos universais restantes | `mcp-1793230872256-11-452c1` | depende: BLACK FRIDAY — Gravar os 30 vídeos universais restantes (Maria Fernanda, Gabriel Ferreira, Vitor Gutierrez, a fazer) |
+| ⬜ | 04/11/2026 18h00 | BLACK FRIDAY — Editar os 50 vídeos universais de venda | `mcp-1793230872256-9-722b5` |  |
+| ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 · CRIATIVOS | `mcp-1793231773246-2-a9fa6` |  |
+| ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 5 criativos estáticos de venda | `mcp-1793231773247-11-7cd4c` |  |
+| ⬜ | 06/11/2026 12h00 | BLACK FRIDAY · 11/11 — Editar os 5 vídeos de venda | `mcp-1793231773246-10-8340c` | depende: BLACK FRIDAY · 11/11 — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
+| ⬜ | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Configurar oferta, frete e cashback na Shopify | `mcp-1793231773247-25-9e8dd` |  |
+| ⬜ | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Criar o tema completo do site para a promoção | `mcp-1793231773247-24-5498a` |  |
+| ⬜ | 06/11/2026 18h00 | BLACK FRIDAY · 11/11 — Fechar o site com o banner do grupo VIP | `mcp-1793231773247-26-07125` |  |
+| ⬜ | 06/11/2026 18h00 | BLACK FRIDAY — Criar os novos estáticos da semana | `mcp-1793230872256-19-6e99f` | Programada |
+| ⬜ | 06/11/2026 18h00 | BLACK FRIDAY — Editar os novos criativos da semana | `mcp-1793230872256-18-fb588` | Programada; depende: BLACK FRIDAY — Gravar os novos criativos da semana (Maria Fernanda, a fazer) |
+| ⬜ | 06/11/2026 18h00 | NOTA FISCAL — Pedro Lage | `mcp-1791566833915-1-e9f82` | Programada |
+| ⬜ | 09/11/2026 18h00 | BLACK FRIDAY · 11/11 — Criar o cupom privado do Recovery | `mcp-1793286732544-1-1d80d` |  |
+| ⬜ | 09/11/2026 18h00 | BLACK FRIDAY · DERMA NOVEMBER — Configurar oferta, frete e cashback na Shopify | `mcp-1793232124888-17-11869` |  |
+| ⬜ | 09/11/2026 18h00 | BLACK FRIDAY · DERMA NOVEMBER — Criar o tema completo do site para a promoção | `mcp-1793232124888-16-2e9c4` |  |
+| ⬜ | 11/11/2026 12h00 | BLACK FRIDAY · ESQUENTA 11/11 · SITE E SHOPIFY | `mcp-1793231079064-4-50a39` |  |
+| ⬜ | 12/11/2026 12h00 | BLACK FRIDAY · 11/11 · SITE E SHOPIFY | `mcp-1793231773246-6-9a53a` |  |
+| ⬜ | 17/11/2026 18h00 | BLACK FRIDAY · REVITA WEEK — Configurar oferta, frete e cashback na Shopify | `mcp-1793232404915-17-0395e` |  |
+| ⬜ | 17/11/2026 18h00 | BLACK FRIDAY · REVITA WEEK — Criar o tema completo do site para a promoção | `mcp-1793232404915-16-d859b` |  |
+| ⬜ | 19/11/2026 12h00 | BLACK FRIDAY · DERMA NOVEMBER · SITE E SHOPIFY | `mcp-1793232124887-4-bf296` |  |
+| ⬜ | 19/11/2026 12h00 | BLACK FRIDAY · REVITA FRIDAY · CRIATIVOS | `mcp-1793232716611-1-e7761` |  |
+| ⬜ | 19/11/2026 12h00 | BLACK FRIDAY · REVITA FRIDAY — Criar os 5 criativos estáticos de venda | `mcp-1793232716612-10-32116` |  |
+| ⬜ | 19/11/2026 12h00 | BLACK FRIDAY · REVITA FRIDAY — Editar os 5 vídeos de venda | `mcp-1793232716612-9-cdbf1` | depende: BLACK FRIDAY · REVITA FRIDAY — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
+| ⬜ | 19/11/2026 18h00 | BLACK FRIDAY · REVITA FRIDAY — Fechar o site com o banner do grupo VIP | `mcp-1793232716612-24-15376` |  |
+| ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · REVITA FRIDAY — Configurar oferta, frete e cashback na Shopify | `mcp-1793232716612-23-b68e7` |  |
+| ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · REVITA FRIDAY — Criar o tema completo do site para a promoção | `mcp-1793232716612-22-f10ee` |  |
+| ⬜ | 25/11/2026 18h00 | BLACK FRIDAY · DERMA MONDAY · CRIATIVOS | `mcp-1793232992476-1-ce9c0` |  |
+| ⬜ | 25/11/2026 18h00 | BLACK FRIDAY · DERMA MONDAY — Criar os 5 criativos estáticos de venda | `mcp-1793232992477-10-1e3d6` |  |
+| ⬜ | 25/11/2026 18h00 | BLACK FRIDAY · DERMA MONDAY — Editar os 5 vídeos de venda | `mcp-1793232992477-9-0d388` | depende: BLACK FRIDAY · DERMA MONDAY — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
+| ⬜ | 26/11/2026 18h00 | BLACK FRIDAY · DERMA MONDAY — Fechar o site com o banner do grupo VIP | `mcp-1793232992478-23-2791f` |  |
+| ⬜ | 27/11/2026 12h00 | BLACK FRIDAY · REVITA WEEK · SITE E SHOPIFY | `mcp-1793232404914-4-6fea3` |  |
+| ⬜ | 27/11/2026 18h00 | BLACK FRIDAY · CRIATIVOS DA SEMANA | `mcp-1793230872255-2-c3ef1` |  |
+| ⬜ | 27/11/2026 18h00 | BLACK FRIDAY · DERMA MONDAY — Configurar oferta, frete e cashback na Shopify | `mcp-1793232992478-22-ecbda` |  |
+| ⬜ | 27/11/2026 18h00 | BLACK FRIDAY · DERMA MONDAY — Criar o tema completo do site para a promoção | `mcp-1793232992478-21-91163` |  |
+| ⬜ | 27/11/2026 18h00 | BLACK FRIDAY · DERMA MONDAY — Reverter as regras do mês na Shopify | `mcp-1793232992478-24-c5d2e` |  |
+| ⬜ | 30/11/2026 12h00 | BLACK FRIDAY · REVITA FRIDAY · SITE E SHOPIFY | `mcp-1793232716611-5-63b70` |  |
+| ⬜ | 01/12/2026 12h00 | BLACK FRIDAY · DERMA MONDAY · SITE E SHOPIFY | `mcp-1793232992477-5-3f461` |  |
+
+## Botanika
+
+| St | Prazo | Tarefa | ID | Obs |
+|---|---|---|---|---|
+| ⬜ | 30/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar a landing page de captação para o grupo | `mcp-1793219208869-17-9fa23` | depende: BLACK FRIDAY · 11/11 — Criar o grupo VIP do 11/11 e mandar os links para todo mundo (Sarah Brito, a fazer) |
+| ⬜ | 30/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 10 criativos estáticos de captação | `mcp-1793219208869-19-784a4` |  |
+| ⬜ | 30/10/2026 12h00 | BLACK FRIDAY — Criar os 15 primeiros estáticos universais | `mcp-1793220047120-8-702b7` |  |

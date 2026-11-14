@@ -1,0 +1,113 @@
+{
+ "id": "r6",
+ "entrada": "raw/IMG_7380.mov",
+ "saida": "vf-1111-roteiro6-presta-atencao.mp4",
+ "vermelho": [
+  "hoje",
+  "agora",
+  "amanhã",
+  "meia-noite,"
+ ],
+ "segs": [
+  {
+   "de": 4.08,
+   "ate": 8.23,
+   "legenda": "Se você já ouviu falar do kit de desparasitação da VermeFree, presta atenção aqui.",
+   "fx": [
+    {
+     "tipo": "gancho",
+     "texto": "Já ouviu falar do kit da <b>VermeFree</b>?",
+     "ini": 0,
+     "fim": 2.6
+    },
+    {
+     "tipo": "tarja",
+     "texto": "Presta atenção aqui",
+     "y": 235,
+     "ini": 2.7
+    }
+   ]
+  },
+  {
+   "de": 17.19,
+   "ate": 21.66,
+   "legenda": "Hoje, só hoje, você pode levar o seu com o maior desconto que a marca já fez.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "Maior desconto da história",
+     "y": 235,
+     "ini": 2.0
+    }
+   ]
+  },
+  {
+   "de": 23.23,
+   "ate": 26.74,
+   "legenda": "E óbvio que eu não ia deixar você descobrir isso amanhã, quando tudo já tivesse acabado."
+  },
+  {
+   "de": 28.22,
+   "ate": 31.21,
+   "cards": [
+    {
+     "tipo": "off"
+    }
+   ]
+  },
+  {
+   "de": 32.5,
+   "ate": 36.08,
+   "cards": [
+    {
+     "tipo": "frete"
+    }
+   ]
+  },
+  {
+   "de": 37.34,
+   "ate": 40.22,
+   "cards": [
+    {
+     "tipo": "cinco"
+    }
+   ]
+  },
+  {
+   "de": 41.31,
+   "ate": 44.13,
+   "legenda": "Pois é, tudo isso, mas depois que vira meia-noite, some.",
+   "cards": [
+    {
+     "tipo": "eclipse",
+     "ini": 0.9
+    }
+   ]
+  },
+  {
+   "de": 44.81,
+   "ate": 51.71,
+   "legenda": "Então toca no botão que tá aparecendo aqui embaixo e garante o seu agora, antes que o 11/11 da VermeFree acabe.",
+   "fx": [
+    {
+     "tipo": "botao",
+     "texto": "Garantir no site ↓",
+     "ini": 0.8,
+     "fim": 4.4
+    }
+   ],
+   "cards": [
+    {
+     "tipo": "final",
+     "ini": 4.4
+    }
+   ]
+  }
+ ],
+ "pip": {
+  "x": 734,
+  "y": 1250,
+  "w": 300,
+  "h": 533
+ }
+}

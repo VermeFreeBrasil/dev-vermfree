@@ -1,0 +1,206 @@
+{%- comment -%} vf-verme-november-pdp · bloco de compra e visual da PDP no Verme November. Depende do CSS base de vf-verme-november (parte: 'pdp'), renderizado antes no layout. {%- endcomment -%}
+{%- if product -%}
+{%- assign v = product.selected_or_first_available_variant -%}
+{%- assign titulo = product.title | split: '|' | last | split: '·' | first | strip -%}
+{%- assign desc = product.description | strip_html | truncate: 150 -%}
+{%- if desc contains '%' -%}{%- assign desc = 'Protocolo de 30 dias para a casa toda: 2 adultos e 2 crianças, com a dose certa para cada um.' -%}{%- endif -%}
+{%- assign p10 = v.price | times: 0.9 -%}
+<style>
+.vn-pdp{background:radial-gradient(ellipse 55% 80% at 20% 30%,#1d4a35 0,#07140e 62%)}
+.vn-pdp .vn-wrap{padding:36px 48px 48px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:start}
+.vn-pdp .vn-wrap>*{min-width:0}
+.vn-gal{position:sticky;top:20px}
+.vn-gal .main{border-radius:24px;overflow:hidden;background:#0e2219;border:1px solid #c0de961c;aspect-ratio:1;position:relative}
+.vn-gal .main img{width:100%;height:100%;object-fit:cover;display:block}
+.vn-gal .off{position:absolute;top:16px;left:16px;background:var(--lime);color:#0c2219;font-weight:900;font-size:15px;padding:8px 14px;border-radius:30px;box-shadow:0 8px 24px #0006}
+.vn-gal .th{display:flex;gap:10px;margin-top:12px;overflow-x:auto;scrollbar-width:none}
+.vn-gal .th button{flex:0 0 74px;height:74px;border-radius:14px;overflow:hidden;border:2px solid transparent;padding:0;background:#0e2219;cursor:pointer}
+.vn-gal .th button.on{border-color:var(--lime)}
+.vn-gal .th img{width:100%;height:100%;object-fit:cover;display:block}
+.vn-info h1{font-size:clamp(32px,3.2vw,46px);line-height:1.05;color:var(--cream)}
+.vn-info .desc{margin-top:10px!important;color:var(--mut);font-size:15px;line-height:1.5}
+.vn-q h3{margin:22px 0 12px!important;font:800 13px Inter,Arial,sans-serif!important;letter-spacing:2px;text-transform:uppercase;color:var(--lime)}
+.vn-op{display:grid;gap:10px}
+.vn-o{position:relative;display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:14px;width:100%;padding:16px 18px;border-radius:16px;border:1.5px solid #ffffff1f;background:#ffffff07;color:var(--cream);font-family:inherit;text-align:left;cursor:pointer;transition:border-color .2s,background .2s}
+.vn-o .r{width:22px;height:22px;border-radius:50%;border:2px solid #ffffff44;display:grid;place-items:center}
+.vn-o.on{border-color:var(--lime);background:#c0de9614;box-shadow:0 0 0 4px #c0de9618}
+.vn-o.on .r{border-color:var(--lime);background:var(--lime)}
+.vn-o.on .r:after{content:'';width:8px;height:8px;border-radius:50%;background:#0c2219}
+.vn-o .a b{display:block;font-size:17px;font-weight:800}
+.vn-o .a small{font-size:12.5px;color:var(--mut)}
+.vn-o .a em{font-style:normal;margin-left:6px;padding:2px 8px;border-radius:20px;background:var(--lime);color:#0c2219;font-size:11.5px;font-weight:800}
+.vn-o .c{text-align:right;line-height:1.2}
+.vn-o .c s{display:block;font-size:12.5px;color:#86a092}
+.vn-o .c b{display:block;font-size:20px;font-weight:900;font-variant-numeric:tabular-nums}
+.vn-o .c small{font-size:12px;color:var(--lime)}
+.vn-o .tag{position:absolute;top:-10px;right:16px;padding:3px 10px;border-radius:20px;background:#5ebc43;color:#fff;font:800 10.5px/1.3 Inter,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.vn-oth{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;font-size:13.5px;color:var(--mut)}
+.vn-oth div{display:flex;align-items:center;border:1.5px solid #ffffff22;border-radius:99px;height:40px}
+.vn-oth button{width:38px;height:100%;border:0;background:none;color:var(--lime);font:800 20px/1 Inter,sans-serif;cursor:pointer}
+.vn-oth output{min-width:20px;text-align:center;font-weight:800;color:#fff}
+.vn-pay{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px;flex-wrap:wrap}
+.vn-pay .t small{display:block;color:var(--mut);font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.vn-pay .t b{font-size:28px;color:#fff;font-weight:900;font-variant-numeric:tabular-nums}
+.vn-pay .t span{display:block;font-size:13px;color:var(--lime)}
+.vn-pay .vn-btn{flex:1;min-width:240px}
+.vn-ul{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vn-ul li{background:#ffffff07;border:1px solid #ffffff10;border-radius:14px;padding:12px 14px;font-size:13px;color:#cfdcd3;line-height:1.35}
+.vn-ul li b{display:block;color:#fff;font-size:13.5px}
+.vn-mix{display:inline-block;margin-top:16px;color:var(--lime);font-size:14px;font-weight:700}
+.vn-stick{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#07140ef2;border-top:1px solid #c0de9626;display:none;align-items:center;gap:12px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));font-family:Inter,Arial,sans-serif;color:#f6f5ec;backdrop-filter:blur(8px)}
+.vn-stick .tx{flex:1;line-height:1.2}
+.vn-stick .tx b{font-size:18px;color:#fff;font-weight:900}
+.vn-stick .tx small{display:block;font-size:11.5px;color:#9fb6a8}
+.vn-stick .tx small b{font-size:11.5px;color:#c0de96}
+.vn-stick a{background:linear-gradient(180deg,#78d35b,#3c9a2a);color:#fff;font-weight:800;padding:12px 20px;border-radius:40px;text-decoration:none;font-size:15px}
+html.vn-on body[class*="template-product"] #main .vn-x h2::before{display:none}
+html.vn-on [data-vn-cta]{background:linear-gradient(180deg,#78d35b,#3c9a2a)!important;color:#fff!important;border-color:transparent!important}
+html.vn-on body[class*="template-product"] #main{background:#07140e}
+html.vn-on body[class*="template-product"] #main .vf-dep,html.vn-on body[class*="template-product"] #main .vf-pdp-como-tomar,html.vn-on body[class*="template-product"] #main .vfx,html.vn-on body[class*="template-product"] #main .vf-ing,html.vn-on body[class*="template-product"] #main .vf-jdgm,html.vn-on body[class*="template-product"] #main .vf-faq,html.vn-on body[class*="template-product"] #main .vf-fam{background:#07140e!important;color:#b9cbbf}
+html.vn-on body[class*="template-product"] #main>.shopify-section:nth-of-type(even)>*{background:#0a1b13!important}
+html.vn-on body[class*="template-product"] #main .vf-dep__card,html.vn-on body[class*="template-product"] #main .vf-pdp-como-tomar__phase,html.vn-on body[class*="template-product"] #main .vf-pdp-como-tomar__visual,html.vn-on body[class*="template-product"] #main .vf-cal__card,html.vn-on body[class*="template-product"] #main .vf-ing__card,html.vn-on body[class*="template-product"] #main .vf-jdgm__summary,html.vn-on body[class*="template-product"] #main .vf-jdgm__rev,html.vn-on body[class*="template-product"] #main .vf-faq__item,html.vn-on body[class*="template-product"] #main .vf-faq__support,html.vn-on body[class*="template-product"] #main .vf-fam__card{background:#0e2219!important;border-color:#c0de961c!important;box-shadow:none!important}
+html.vn-on body[class*="template-product"] #main h2,html.vn-on body[class*="template-product"] #main h3,html.vn-on body[class*="template-product"] #main h4,html.vn-on body[class*="template-product"] #main summary,html.vn-on body[class*="template-product"] #main strong,html.vn-on body[class*="template-product"] #main .vf-faq__item button{color:#f6f5ec!important}
+html.vn-on body[class*="template-product"] #main p,html.vn-on body[class*="template-product"] #main li,html.vn-on body[class*="template-product"] #main dd{color:#b9cbbf}
+html.vn-on body[class*="template-product"] #main .vf-pdp-como-tomar__warning,html.vn-on body[class*="template-product"] #main .vf-pdp-como-tomar__warning p{color:#7a4a00!important}
+html.vn-on body[class*="template-product"] #main .vf-cal__phone p,html.vn-on body[class*="template-product"] #main .vf-cal__phone strong,html.vn-on body[class*="template-product"] #main .vf-cal__phone h3{color:#153c2c!important}
+html.vn-on body[class*="template-product"] #main h2::before{content:"";display:inline-block;width:.5em;height:.5em;margin-right:.35em;vertical-align:.06em;border-radius:3px;background:#c0de96;box-shadow:0 0 14px #c0de9680;transform:rotate(45deg)}
+@media(max-width:860px){
+  .vn-pdp .vn-wrap{grid-template-columns:minmax(0,1fr);padding:16px 16px 34px;gap:22px}
+  .vn-gal{position:static}
+  .vn-q h3{text-align:center}
+  .vn-o{padding:14px;gap:10px}.vn-o .a b{font-size:15.5px}.vn-o .c b{font-size:17px}
+  .vn-pay .vn-btn{width:100%}
+  html.vn-on .vn-stick{display:flex}
+  html.vn-on body{padding-bottom:70px}
+}
+</style>
+<div class="vn vn-x" data-vn hidden>
+  <section class="vn-pdp"><div class="vn-wrap">
+  <div class="vn-gal">
+      <div class="main"><span class="off">Verme November · até −15%</span>{{ product.featured_image | image_url: width: 1100 | image_tag: loading: 'eager', alt: product.title, class: 'vn-main-img' }}</div>
+      <div class="th">
+        {%- for m in product.images limit: 6 -%}<button type="button" class="{% if forloop.first %}on{% endif %}" data-vn-th-img="{{ m | image_url: width: 1100 }}">{{ m | image_url: width: 160 | image_tag: loading: 'eager', alt: '' }}</button>{%- endfor -%}
+      </div>
+  </div>
+  <div class="vn-info">
+      <p class="vn-kick"><span>Verme November</span> termina em <b data-vn-t>--</b></p>
+      <h1 class="cap">{{ titulo }}</h1>
+      <p class="desc">{{ desc }}</p>
+      <div class="vn-q" data-vn-q-box data-id="{{ v.id }}" data-preco="{{ v.price }}">
+        <h3>1. Escolha seu kit</h3>
+        <div class="vn-op">
+          {%- assign ks = '1,3,5' | split: ',' -%}{%- assign fs = '0.9,0.88,0.85' | split: ',' -%}{%- assign ds = '10,12,15' | split: ',' -%}
+          {%- assign ls = 'Para começar|Para dividir com a família|Para a casa toda' | split: '|' -%}{%- assign tags = '|Mais escolhido|Melhor preço' | split: '|' -%}
+          {%- for k in ks -%}
+            {%- assign kn = k | plus: 0 -%}{%- assign f = fs[forloop.index0] | plus: 0 -%}
+            {%- assign cheio = v.price | times: kn -%}{%- assign tot = cheio | times: f -%}{%- assign un = v.price | times: f -%}
+            <button type="button" class="vn-o{% if forloop.first %} on{% endif %}" data-vn-k="{{ k }}">
+              {%- if tags[forloop.index0] != blank -%}<span class="tag">{{ tags[forloop.index0] }}</span>{%- endif -%}
+              <span class="r"></span>
+              <span class="a"><b>{{ k }} {% if kn == 1 %}unidade{% else %}unidades{% endif %}<em>−{{ ds[forloop.index0] }}%</em></b><small>{{ ls[forloop.index0] }}</small></span>
+              <span class="c"><s>{{ cheio | money }}</s><b>{{ tot | money }}</b><small>{{ un | money }} cada</small></span>
+            </button>
+          {%- endfor -%}
+        </div>
+        <div class="vn-oth"><span>Outra quantidade? Ajuste aqui:</span><div><button type="button" data-vn-st="-1" aria-label="Menos">−</button><output data-vn-qty>1</output><button type="button" data-vn-st="1" aria-label="Mais">+</button></div></div>
+        <div class="vn-pg">
+          <p data-vn-qmsg></p>
+          <div class="vn-tr"><span class="bg"></span><span class="fl" data-vn-fill></span>
+            <ol class="vn-ms" data-vn-ms></ol>
+          </div>
+        </div>
+        <div class="vn-pay">
+          <div class="t"><small>Você paga</small><b data-vn-pay>{{ p10 | money }}</b><span data-vn-pay3></span></div>
+          <button class="vn-btn" type="button" data-vn-buy>Colocar 1 no carrinho</button>
+        </div>
+        <div class="vn-eta" data-vn-eta>
+          <div><span><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.4a1.5 1.5 0 0 0 1.5 1.1h8.8a1.5 1.5 0 0 0 1.5-1.1L21 7H6"/></svg></span><b data-eta="0"></b><small>Pedido feito</small></div>
+          <div><span><svg viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 9h4l4 4v3h-8"/><circle cx="6.5" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></svg></span><b data-eta="1"></b><small>Despachado</small></div>
+          <div><span><svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span><b data-eta="2"></b><small>Chega na sua casa</small></div>
+        </div>
+      </div>
+      <ul class="vn-ul">
+        <li><b>Desconto automático</b>sem cupom, direto no carrinho</li>
+        <li><b>3x sem juros</b>no cartão</li>
+        <li style="grid-column:1/-1"><b>🎁 Kit adulto de presente</b>nos pedidos acima de R$ 1.000</li>
+      </ul>
+      <a class="vn-mix" href="/#vn-monte">Quer misturar protocolos? Monte o pedido da casa →</a>
+  </div>
+  </div></section>
+</div>
+<div class="vn vn-x" data-vn data-vn-fim hidden>
+  <section class="vn-fim">
+  <div class="vn-dias" data-vn-dias aria-hidden="true">{%- for d in (12..19) -%}<i>{{ d }}</i>{%- endfor -%}</div>
+  <h2 class="cap">O Verme November termina em <em class="l" data-vn-th>--</em>.</h2>
+  <p>Depois disso o {{ titulo }} volta para {{ v.price | money }}. Até 19/11, sai a partir de <b style="color:#c0de96">{{ v.price | times: 0.85 | money }}</b> a unidade levando 5.</p>
+  <a href="#" class="vn-btn" data-vn-stick-go>Quero o meu agora</a>
+  </section>
+</div>
+<div class="vn vn-stick" data-vn hidden>
+  <div class="tx"><b data-vn-sp>{{ p10 | money }}</b> <s style="color:#86a092;font-size:12px">{{ v.price | money }}</s><small>até −15% · termina em <b data-vn-t>--</b></small></div>
+  <a href="#" data-vn-stick-go>Comprar</a>
+</div>
+<script>
+  (function () {
+  var box = document.querySelector('[data-vn-q-box]'); if (!box) return;
+  var preco = +box.dataset.preco, id = +box.dataset.id, n = 1, FR = 29900;
+  var $ = function (q) { return box.querySelector(q); };
+  var brl = function (c) { return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
+  var pct = function (k) { return k >= 5 ? 15 : k >= 3 ? 12 : 10; };
+  var tot = function (k) { return Math.round(preco * k * (100 - pct(k)) / 100); };
+  var kf = 1; while (kf < 10 && tot(kf) < FR) kf++;
+  var kb = 1; while (kb < 10 && tot(kb) <= 100000) kb++;
+  var ms = [{ q: 1, i: '🌿', b: '10% OFF', s: '1 unidade' }, { q: kf, i: '🚚', b: 'Frete grátis', s: 'acima de R$ 299' }, { q: 3, i: '💚', b: '12% OFF', s: '3 unidades' }, { q: 5, i: '🏆', b: '15% OFF', s: '5 unidades' }];
+  if (tot(kb) > 100000) ms.push({ q: kb, i: '🎁', b: 'Kit adulto', s: 'acima de R$ 1.000' });
+  ms.sort(function (a, b) { return a.q - b.q; });
+  $('[data-vn-ms]').innerHTML = ms.map(function (m) { return '<li><i>' + m.i + '</i><b>' + m.b + '</b><small>' + m.s + '</small></li>'; }).join('');
+  var lis = box.querySelectorAll('[data-vn-ms] li');
+  var desenha = function () {
+      var d = pct(n), t = tot(n);
+      box.querySelectorAll('[data-vn-k]').forEach(function (o) { o.classList.toggle('on', +o.dataset.vnK === n); });
+      $('[data-vn-qty]').textContent = n;
+      $('[data-vn-pay]').textContent = brl(t);
+      $('[data-vn-pay3]').textContent = '3x de ' + brl(Math.floor(t / 3)) + ' sem juros · ' + d + '% OFF · economia de ' + brl(preco * n - t);
+      document.querySelector('[data-vn-sp]').textContent = brl(t);
+      $('[data-vn-buy]').textContent = 'Colocar ' + n + ' no carrinho';
+      var r = 0; ms.forEach(function (m, i) { var ok = n >= m.q; lis[i].classList.toggle('on', ok); if (ok) r = i; });
+      var nx = ms[r + 1], f = r / (ms.length - 1);
+      if (nx) f += (n - ms[r].q) / (nx.q - ms[r].q) / (ms.length - 1);
+      $('[data-vn-fill]').style.width = (Math.min(1, f) * 100) + '%';
+      var falta = ms.filter(function (m) { return n < m.q; })[0];
+      $('[data-vn-qmsg]').innerHTML = falta ? 'Mais <b>' + (falta.q - n) + (falta.q - n === 1 ? ' unidade' : ' unidades') + '</b> e você libera <b>' + (falta.i === '🎁' ? 'o kit adulto de presente' : falta.b.toLowerCase().replace('off', 'OFF')) + '</b>' + (n >= kb && tot(kb) > 100000 ? ' · 🎁 <b>kit adulto garantido</b>' : '') : '🎉 <b>Tudo liberado:</b> 15% OFF, frete grátis e kit adulto de presente';
+  };
+  box.querySelectorAll('[data-vn-k]').forEach(function (o) { o.addEventListener('click', function () { n = +o.dataset.vnK; desenha(); }); });
+  box.querySelectorAll('[data-vn-st]').forEach(function (b) { b.addEventListener('click', function () { n = Math.max(1, Math.min(10, n + +b.dataset.vnSt)); desenha(); }); });
+  $('[data-vn-buy]').addEventListener('click', function () {
+      var b = this; b.disabled = true; b.textContent = 'Colocando...';
+      fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: [{ id: id, quantity: n }] }) })
+        .then(function () { location.href = '/cart'; }).catch(function () { b.disabled = false; desenha(); });
+  });
+  document.querySelectorAll('[data-vn-stick-go]').forEach(function (sg) { sg.addEventListener('click', function (e) { e.preventDefault(); box.scrollIntoView({ behavior: 'smooth', block: 'center' }); }); });
+  var lum = function (c) { var m = c.match(/[\d.]+/g); if (!m || (m[3] !== undefined && +m[3] < .5)) return -1; return (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) / 255; };
+  var contraste = function () {
+      if (!document.documentElement.classList.contains('vn-on')) return;
+      document.querySelectorAll('#main *').forEach(function (el) {
+        if (el.closest('.vn-x') || !Array.prototype.some.call(el.childNodes, function (t) { return t.nodeType === 3 && t.textContent.trim(); })) return;
+        if (lum(getComputedStyle(el).color) > .45) return;
+        var a = el, bg = -1; while (a && bg < 0) { bg = lum(getComputedStyle(a).backgroundColor); a = a.parentElement; }
+        if (bg >= 0 && bg < .2) el.style.setProperty('color', '#d6e2da', 'important');
+      });
+  };
+  var monta = function () {
+      var fim = document.querySelector('[data-vn-fim]'), mn = document.getElementById('main');
+      if (fim && mn) mn.appendChild(fim);
+      if (mn) mn.querySelectorAll('a[href^="#"], a[href*="/products/"], a[href="/cart"]').forEach(function (a) {
+        if (a.closest('.vn-x') || !/btn|cta|button/i.test(a.className)) return;
+        a.setAttribute('data-vn-cta', ''); a.addEventListener('click', function (e) { e.preventDefault(); box.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+      });
+      contraste(); setTimeout(contraste, 1500); setTimeout(contraste, 4000);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', monta); else monta();
+  var main = document.querySelector('.vn-main-img');
+  document.querySelectorAll('[data-vn-th-img]').forEach(function (b) { b.addEventListener('click', function () { main.src = b.dataset.vnThImg; main.removeAttribute('srcset'); document.querySelectorAll('[data-vn-th-img]').forEach(function (x) { x.classList.remove('on'); }); b.classList.add('on'); }); });
+  desenha();
+  })();
+</script>
+{%- endif -%}

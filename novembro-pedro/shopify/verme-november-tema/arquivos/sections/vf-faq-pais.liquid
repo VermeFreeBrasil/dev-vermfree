@@ -1,0 +1,166 @@
+{%- comment -%}
+  vf-faq-pais — Perguntas frequentes em acordeão, para páginas comuns
+  (ex.: Protocolos Kids). Versão leve da vf-pdp-faq, que só funciona em
+  páginas de produto. Gera também o JSON-LD FAQPage da página.
+{%- endcomment -%}
+
+<section class="vf-faq-pais" aria-labelledby="vf-faq-pais-{{ section.id }}">
+  <div class="vf-faq-pais__container">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="vf-faq-pais__eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 id="vf-faq-pais-{{ section.id }}" class="vf-faq-pais__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="vf-faq-pais__sub">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    <div class="vf-faq-pais__list">
+      {%- for block in section.blocks -%}
+        <details class="vf-faq-pais__item" {{ block.shopify_attributes }}>
+          <summary class="vf-faq-pais__q">
+            <span>{{ block.settings.question }}</span>
+            <span class="vf-faq-pais__caret" aria-hidden="true"></span>
+          </summary>
+          <div class="vf-faq-pais__a">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- comment -%} FAQPage com as perguntas visíveis acima; resposta em texto puro. {%- endcomment -%}
+{%- assign vf_faq_n = 0 -%}
+{%- capture vf_faq_items -%}
+  {%- for block in section.blocks -%}
+    {%- assign vf_q = block.settings.question | strip_html | strip -%}
+    {%- assign vf_a = block.settings.answer | strip_html | strip -%}
+    {%- if vf_q != blank and vf_a != blank -%}
+      {%- if vf_faq_n > 0 -%},{%- endif -%}
+      {"@type":"Question","name":{{ vf_q | json }},"acceptedAnswer":{"@type":"Answer","text":{{ vf_a | json }}}}
+      {%- assign vf_faq_n = vf_faq_n | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if vf_faq_n > 0 -%}
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","@id":{{ canonical_url | append: '#faq' | json }},"mainEntity":[{{ vf_faq_items }}]}
+  </script>
+{%- endif -%}
+
+<style>
+  .vf-faq-pais {
+    padding: var(--section-padding, 64px 16px);
+    background: var(--vf-bg, #FAFAFA);
+  }
+  .vf-faq-pais__container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .vf-faq-pais__eyebrow {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--vf-green-dark, #1B5E20);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .vf-faq-pais__heading {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.2;
+    margin: 0 0 12px;
+    text-align: center;
+    color: var(--vf-text, #1A1A1A);
+  }
+  .vf-faq-pais__sub {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 auto 32px;
+    max-width: 640px;
+    text-align: center;
+    color: var(--vf-text, #1A1A1A);
+    opacity: .8;
+  }
+  .vf-faq-pais__list {
+    display: grid;
+    gap: 12px;
+  }
+  .vf-faq-pais__item {
+    background: var(--vf-surface, #FFFFFF);
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: var(--card-radius, 16px);
+    overflow: hidden;
+  }
+  .vf-faq-pais__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    cursor: pointer;
+    list-style: none;
+    color: var(--vf-text, #1A1A1A);
+  }
+  .vf-faq-pais__q::-webkit-details-marker {
+    display: none;
+  }
+  .vf-faq-pais__caret {
+    flex: 0 0 auto;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--vf-green-dark, #1B5E20);
+    border-bottom: 2px solid var(--vf-green-dark, #1B5E20);
+    transform: rotate(45deg);
+    transition: transform .2s ease;
+  }
+  .vf-faq-pais__item[open] .vf-faq-pais__caret {
+    transform: rotate(-135deg);
+  }
+  .vf-faq-pais__a {
+    padding: 0 20px 18px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--vf-text, #1A1A1A);
+  }
+  .vf-faq-pais__a p {
+    margin: 0 0 10px;
+  }
+  .vf-faq-pais__a p:last-child {
+    margin-bottom: 0;
+  }
+  .vf-faq-pais__a a {
+    color: var(--vf-green-dark, #1B5E20);
+    text-decoration: underline;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "VF FAQ (páginas)",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Perguntas dos pais" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Dúvidas frequentes" },
+    { "type": "textarea", "id": "subheading", "label": "Subtítulo" }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Pergunta",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Pergunta", "default": "Pergunta" },
+        { "type": "richtext", "id": "answer", "label": "Resposta", "default": "<p>Resposta</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "VF FAQ (páginas)" }
+  ]
+}
+{% endschema %}

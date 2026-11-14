@@ -1,0 +1,419 @@
+{%- comment -%}
+  vf-verme-november · Campanha Verme November (12/11 00h → 19/11 23h59, Brasília). Liga sozinho no período; prévia com ?vf_vn=on (desliga com ?vf_vn=off).
+  parte: 'barra' (todas as páginas), 'home' ou 'pdp'. Mesma estrutura do Eclipse 11.11, com a identidade da campanha.
+  Regra (descontos automáticos da Shopify, vale a maior faixa): 12% em qualquer pedido · 15% com 3+ itens · 17% com 5+ itens · frete grátis a partir de R$ 299.
+{%- endcomment -%}
+{%- if parte == 'barra' -%}
+<style>
+.vn{font-family:Inter,Arial,sans-serif}
+.vn[hidden]{display:none!important}
+html.vn-on #shopify-section-vf-announcement-bar{display:none!important}
+html.vn-on body.template-index #main{display:none!important}
+html.vn-on body[class*="template-product"] [id$="__main"],
+html.vn-on body[class*="template-product"] [id*="__vf_cross_familia"],
+html.vn-on body[class*="template-product"] [id*="__cta-final"],
+html.vn-on body[class*="template-product"] [id*="__cta_final"]{display:none!important}
+html.vn-on .vf-cur{background:#07140e!important}
+html.vn-on .vf-cur__eyebrow{color:#c0de96!important}
+html.vn-on .vf-cur__title{color:#f6f5ec!important}
+html.vn-on .vf-cur__sub,html.vn-on .vf-cur__note{color:#9fb6a8!important}
+html.vn-on .vf-cur__card{background:#0e2219!important;border:1px solid #c0de9622!important;box-shadow:0 20px 50px #0008!important}
+html.vn-on .vf-cur__ph{background:#123024!important}
+html.vn-on .vf-cur__badge{background:#c0de96!important;color:#0c2219!important}
+html.vn-on .vf-cur__q{color:#f6f5ec!important}
+html.vn-on .vf-cur__name{color:#fff!important}
+html.vn-on .vf-cur__role{color:#c0de96!important}
+html.vn-on .vf-cur span:not(.vf-cur__badge){color:#9fb6a8!important}
+html.vn-on .vf-cur__arrow{background:#07140e!important;color:#f6f5ec!important;border:1px solid #ffffff22!important}
+html.vn-on .vf-cur .is-on{background:#c0de96!important}
+.vn-live{display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 16px;background:#06110c;color:#e9f3e4;border-bottom:1px solid #c0de9626;font-size:13px;letter-spacing:.3px;flex-wrap:wrap;text-align:center}
+.vn-live .tg{display:inline-flex;align-items:center;gap:8px;color:#c0de96;font-weight:900;text-transform:uppercase;font-size:12px;letter-spacing:1.6px}
+.vn-live .tg:before{content:'';width:9px;height:9px;border-radius:50%;background:#c0de96;box-shadow:0 0 0 4px #c0de9633;animation:vnPulse 1.6s infinite}
+@keyframes vnPulse{50%{box-shadow:0 0 0 8px #c0de9600}}
+.vn-live b{color:#fff}
+.vn-live .t{font-variant-numeric:tabular-nums;color:#c0de96;font-weight:800}
+.vn-live a{background:#5ebc43;color:#fff;font-weight:800;padding:6px 14px;border-radius:30px;text-decoration:none;font-size:12.5px}
+@media(max-width:700px){.vn-live{font-size:11.5px;gap:4px 10px;padding:8px 12px}.vn-live .o{flex-basis:100%}}
+</style>
+<div class="vn vn-live" data-vn hidden>
+  <span class="tg">Verme Week</span>
+  <span class="o">dia <b data-vn-dia>1</b> de 7 · <b>até 17% OFF</b> + frete grátis acima de R$ 299</span>
+  <span>termina em <span class="t" data-vn-t>--</span></span>
+  <a href="/#vn-monte">Comprar</a>
+</div>
+<script>
+  (function () {
+  var INI = Date.parse('2026-11-20T00:00:00-03:00'), FIM = Date.parse('2026-11-26T23:59:59-03:00');
+  var q = new URLSearchParams(location.search), sim = false;
+  try {
+      if (q.get('vf_vn') === 'on') sessionStorage.setItem('vf_vn', '1');
+      if (q.get('vf_vn') === 'off') sessionStorage.removeItem('vf_vn');
+      sim = sessionStorage.getItem('vf_vn') === '1';
+  } catch (e) {}
+  var agora = Date.now();
+  window.vfVN = sim || (agora >= INI && agora <= FIM);
+  if (!window.vfVN) return;
+  document.documentElement.classList.add('vn-on');
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  var tick = function () {
+      var now = Date.now(), s = Math.max(0, Math.floor((FIM - now) / 1000));
+      var d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
+      var dia = Math.min(7, Math.max(1, Math.floor((now - INI) / 864e5) + 1));
+      var longo = (d ? d + 'd ' : '') + pad(h) + 'h ' + pad(m) + 'm ' + pad(s % 60) + 's';
+      var curto = d ? d + (d === 1 ? ' dia' : ' dias') + ' e ' + h + 'h' : pad(h) + 'h ' + pad(m) + 'm';
+      document.querySelectorAll('[data-vn-t]').forEach(function (el) { el.textContent = longo; });
+      document.querySelectorAll('[data-vn-th]').forEach(function (el) { el.textContent = curto; });
+      document.querySelectorAll('[data-vn-dia]').forEach(function (el) { el.textContent = dia; });
+      document.querySelectorAll('[data-vn-dias] i').forEach(function (el, i) { el.className = i + 1 < dia ? 'p' : i + 1 === dia ? 'h' : ''; });
+  };
+  var eta = function () {
+      var M = 'jan fev mar abr mai jun jul ago set out nov dez'.split(' '), fd = function (d) { return d.getDate() + ' ' + M[d.getMonth()]; };
+      var add = function (d, k) { var x = new Date(d.getTime()); while (k > 0) { x.setDate(x.getDate() + 1); if (x.getDay() % 6) k--; } return x; };
+      var hoje = new Date(Date.now()); hoje.setHours(12, 0, 0, 0); var env = add(hoje, 2);
+      var t = ['Hoje, ' + fd(hoje), 'Até ' + fd(env), fd(add(env, 3)) + ' – ' + fd(add(env, 8))];
+      document.querySelectorAll('[data-eta]').forEach(function (el) { el.textContent = t[+el.dataset.eta]; });
+  };
+  var menu = function () { var brl = function (c) { return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }; document.querySelectorAll('.vf-hd__pr').forEach(function (el) { var m = /R\$\s*([\d.]+,\d{2})/.exec((el.querySelector('small') || el).textContent); if (!m) return; var c = Math.round(+m[1].replace(/\./g, '').replace(',', '.') * 100), t = Math.round(c * 0.88); el.innerHTML = '<b>' + brl(t) + '</b> · 12% OFF <small>de ' + brl(c) + ' · até 17% OFF levando 5 · 3x sem juros</small>'; }); };
+  var mostra = function () { document.querySelectorAll('[data-vn]').forEach(function (el) { el.hidden = false; }); tick(); eta(); menu(); };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mostra); else mostra();
+  setInterval(tick, 1000);
+  })();
+</script>
+{%- elsif parte == 'home' or parte == 'pdp' -%}
+{%- assign handles = 'protocolo-desparasitacao-adulto-vermefree,antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos,antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos,kit-familia-vermefree-2-adultos-2-criancas' | split: ',' -%}
+{%- assign nomes = 'Protocolo Adulto|Kids 2 a 4 anos|Kids 5 a 9 anos|Kit Família' | split: '|' -%}
+<style>
+.vn-x{--ink:#07140e;--ink2:#0a1b13;--card:#0e2219;--forest:#123024;--lime:#c0de96;--green:#5ebc43;--cream:#f6f5ec;--mut:#9fb6a8;background:var(--ink);color:var(--cream);font-family:Inter,Arial,sans-serif}
+.vn-x *{box-sizing:border-box}
+.vn-x h1,.vn-x h2,.vn-x h3,.vn-x p{margin:0}
+.vn-x .vn-wrap{width:min(1280px,100%);margin:0 auto}
+.vn-x .cap{font-family:Caprasimo,Georgia,serif;font-weight:400}
+.vn-x .vn-kick{display:inline-flex;gap:10px;align-items:center;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--lime);margin-bottom:16px;flex-wrap:wrap}
+.vn-x .vn-kick span{background:var(--lime);color:#0c2219;padding:5px 10px;border-radius:6px;letter-spacing:1px}
+.vn-x .vn-kick b{color:#fff;font-variant-numeric:tabular-nums;letter-spacing:.5px}
+.vn-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(180deg,#78d35b,#3c9a2a);color:#fff;font-weight:800;font-size:18px;padding:20px 34px;border-radius:60px;box-shadow:0 0 0 6px #5ebc4322,0 18px 40px #5ebc4350;text-decoration:none;border:0;cursor:pointer;font-family:Inter,Arial,sans-serif}
+.vn-btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none}
+.vn-x em.l{font-style:normal;color:var(--lime)}
+.vn-esc{display:flex;align-items:flex-end;gap:10px}
+.vn-esc li{list-style:none;flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:14px 8px;border-radius:18px 18px 8px 8px;background:linear-gradient(180deg,#c0de9618,#c0de9608);border:1.5px solid #c0de9633;color:var(--mut);text-align:center;transition:background .3s,color .3s,transform .3s,box-shadow .3s}
+.vn-esc li b{font-family:Caprasimo,Georgia,serif;font-weight:400;font-size:44px;line-height:1;color:var(--cream)}
+.vn-esc li small{margin-top:6px;font-size:12.5px;font-weight:700;letter-spacing:.3px}
+.vn-esc li:nth-child(1){height:44%}.vn-esc li:nth-child(2){height:66%}.vn-esc li:nth-child(3){height:92%}
+.vn-esc li.on{background:linear-gradient(180deg,#c0de96,#93c26a);border-color:#c0de96;color:#173e2d;box-shadow:0 0 50px #c0de9655}
+.vn-esc li.on b{color:#0c2219}
+.vn-dias{display:flex;gap:6px;justify-content:center;align-items:center}
+.vn-dias i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:800;color:var(--mut);border:1.5px solid #ffffff22}
+.vn-dias i.p{background:#c0de9626;border-color:transparent;color:#c0de96aa;text-decoration:line-through}
+.vn-dias i.h{background:var(--lime);border-color:var(--lime);color:#0c2219;box-shadow:0 0 0 5px #c0de9633}
+.vn-pg{margin-top:20px;padding:18px 18px 14px;border-radius:18px;background:#ffffff07;border:1px solid #c0de961f}
+.vn-pg>p{margin:0 0 14px!important;font-size:14px;color:#dfe8e2;text-align:center}
+.vn-pg>p b{color:var(--lime)}
+.vn-tr{position:relative;margin:0 22px}
+.vn-tr .bg,.vn-tr .fl{position:absolute;left:0;top:15px;height:6px;border-radius:6px;background:#ffffff1a;width:100%}
+.vn-tr .fl{background:linear-gradient(90deg,#5ebc43,#c0de96);width:0;transition:width .4s}
+.vn-ms{position:relative;display:flex;justify-content:space-between;list-style:none;margin:0;padding:0}
+.vn-ms li{width:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.vn-ms li i{width:36px;height:36px;flex:0 0 36px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:15px;background:#123024;border:2px solid #ffffff2a;filter:grayscale(1);transition:all .3s}
+.vn-ms li b{margin-top:6px;font-size:12px;white-space:nowrap;color:var(--mut)}
+.vn-ms li small{font-size:11px;white-space:nowrap;color:#6f8a7c}
+.vn-ms li.on i{background:var(--lime);border-color:var(--lime);filter:none;box-shadow:0 0 18px #c0de9688}
+.vn-ms li.on b{color:#fff}
+.vn-eta{position:relative;display:flex;justify-content:space-between;margin-top:20px;padding:16px 0 4px;border-top:1px solid #ffffff14}
+.vn-eta:before{content:'';position:absolute;left:16.6%;right:16.6%;top:36px;height:2px;background:linear-gradient(90deg,#c0de96,#c0de9640)}
+.vn-eta div{position:relative;width:33.3%;display:flex;flex-direction:column;align-items:center;text-align:center}
+.vn-eta span{width:40px;height:40px;border-radius:50%;background:#123024;border:2px solid var(--lime);display:grid;place-items:center;box-shadow:0 0 0 5px #07140e}
+.vn-eta svg{width:19px;height:19px;fill:none;stroke:#c0de96;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.vn-eta b{margin-top:8px;font-size:13.5px;color:#fff}
+.vn-eta small{font-size:12px;color:var(--mut)}
+@media(max-width:860px){.vn-tr,.vn-mt-sum .vn-tr{margin:0 18px}.vn-ms li b{font-size:11px}.vn-ms li small{font-size:10px}.vn-eta b{font-size:12.5px}.vn-eta small{font-size:11px}}
+@media(max-width:400px){.vn-x .vn-ms li small{display:none}.vn-x .vn-ms li b{font-size:10.5px}.vn-x .vn-eta b{font-size:11.5px}.vn-x .vn-o{grid-template-columns:18px 1fr auto;gap:8px;padding:13px 12px}.vn-x .vn-o .r{width:18px;height:18px}.vn-x .vn-o .a b{white-space:nowrap;font-size:15px}.vn-x .vn-o .a em{display:table;margin:4px 0 2px}.vn-x .vn-o .c b{font-size:16px}.vn-x .vn-mt-row{grid-template-columns:88px minmax(0,1fr);column-gap:12px}.vn-x .vn-mt-im{width:88px;height:88px}.vn-x .vn-mt-more{padding:6px 11px;font-size:12px}.vn-x .vn-mt-3x{font-size:19px}}
+.vn-trilho{display:flex;gap:12px 36px;justify-content:center;padding:18px 16px;background:var(--lime);color:#0c2219;font-weight:800;font-size:14px;letter-spacing:.5px;text-transform:uppercase;flex-wrap:wrap;text-align:center}
+.vn-trilho span:before{content:'✦ ';color:#3c9a2a}
+.vn-fim{text-align:center;padding:72px 24px 80px;background:radial-gradient(ellipse 50% 60% at 50% 40%,#173e2d 0,#07140e 70%)}
+.vn-fim .vn-dias{margin-bottom:26px}
+.vn-fim h2{max-width:760px;margin:0 auto!important;font-size:clamp(30px,3vw,44px);line-height:1.08;color:var(--cream)!important}
+.vn-fim p{color:var(--mut);margin:14px auto 26px!important;font-size:16px;max-width:520px}
+.vn-fim .vn-btn{min-width:260px}
+</style>
+{%- endif -%}
+{%- if parte == 'home' -%}
+<style>
+.vn-hero{position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 75% at 74% 45%,#1d4a35 0,#0c2219 48%,#07140e 78%)}
+.vn-hero:before{content:'NOV';position:absolute;right:-2%;bottom:-12%;font-family:Caprasimo,Georgia,serif;font-size:min(34vw,420px);line-height:1;color:#c0de960a;pointer-events:none}
+.vn-hero .vn-wrap{position:relative;padding:56px 48px 60px;display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.vn-hero h1{font-size:clamp(40px,4.4vw,64px);line-height:1.03;letter-spacing:-.5px;color:var(--cream)}
+.vn-sub{margin:20px 0 26px!important;font-size:18px;line-height:1.5;color:#cfdcd3;max-width:540px}
+.vn-sub b{color:#fff}
+.vn-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.vn-left{font-size:14px;color:var(--mut)}.vn-left b{color:#fff;font-variant-numeric:tabular-nums}
+.vn-hero .vn-esc{height:300px;max-width:470px;margin:0 auto 22px}
+.vn-hero .vn-esc li.on{animation:vnUp 2.4s ease-in-out infinite}
+@keyframes vnUp{50%{transform:translateY(-6px)}}
+.vn-hero .vn-dias + p{margin-top:10px!important;text-align:center;font-size:13px;color:var(--mut)}
+.vn-sec{padding:64px 48px;border-top:1px solid #ffffff10}
+.vn-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:28px;flex-wrap:wrap}
+.vn-head h2{font-size:clamp(30px,3vw,44px);line-height:1.05;color:var(--cream)}
+.vn-head h2 em{font-style:normal;color:var(--lime)}
+.vn-head p{color:var(--mut);font-size:15px;line-height:1.5;max-width:470px}
+.vn-monte{background:var(--ink2)}
+.vn-mt-grid{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);border:1px solid #c0de961c;border-radius:26px;overflow:hidden;background:var(--card);box-shadow:0 20px 50px #0008}
+.vn-mt-list{list-style:none;margin:0;padding:0;border-right:1px solid #ffffff10}
+.vn-mt-row{position:relative;display:grid;grid-template-columns:170px minmax(0,1fr) auto;grid-template-areas:"im info q" "im more q";column-gap:26px;align-items:start;padding:24px 28px 24px 24px;border-bottom:1px solid #ffffff0d;cursor:pointer;transition:background .2s}
+.vn-mt-row:last-child{border-bottom:0}
+.vn-mt-row:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:transparent;transition:background .2s}
+.vn-mt-row.on{background:#123024}
+.vn-mt-row.on:before{background:var(--lime)}
+.vn-mt-im{grid-area:im;align-self:center;position:relative;display:grid;place-items:center;width:170px;height:170px;border-radius:22px;background:radial-gradient(circle at 50% 60%,#1d4a35,#0c2219);border:1px solid #c0de961f}
+.vn-mt-im img{width:94%;height:94%;object-fit:contain}
+.vn-mt-tag{position:absolute;z-index:1;top:-8px;left:-6px;padding:4px 9px;border-radius:99px;background:var(--lime);color:#0c2219;font:800 10px/1.15 Inter,Arial,sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.vn-mt-info{grid-area:info;min-width:0;align-self:end}
+.vn-mt-age{margin:0!important;font:700 11.5px/1.3 Inter,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--lime)}
+.vn-mt-n{margin:2px 0 6px!important;font:800 22px/1.2 Inter,Arial,sans-serif;color:#fff}
+.vn-mt-n a{color:inherit;text-decoration:none}
+.vn-mt-t{margin:0 0 8px!important;font-size:14.5px;line-height:1.4;color:var(--mut)}
+.vn-mt-was{font-size:13px;color:#86a092;line-height:1.2}
+.vn-mt-was i{margin-left:3px;padding:1px 7px;border-radius:99px;background:var(--lime);color:#0c2219;font-style:normal;font-size:11px;font-weight:800}
+.vn-mt-3x{margin:2px 0!important;font:800 26px/1.15 Inter,Arial,sans-serif;color:#fff;letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.vn-mt-3x small{font-size:15px;color:var(--lime)}
+.vn-mt-pix{font-size:13.5px;color:var(--mut);line-height:1.35}
+.vn-mt-pix b{color:#fff;white-space:nowrap}
+.vn-mt-more{grid-area:more;justify-self:start;margin-top:12px;display:inline-flex;padding:9px 17px;border:1.5px solid #ffffff22;border-radius:999px;font:800 13.5px/1.2 Inter,Arial,sans-serif;color:var(--cream);text-decoration:none;white-space:nowrap}
+.vn-mt-more:hover{border-color:var(--lime)}
+.vn-mt-q{grid-area:q;align-self:center;display:flex;align-items:center;height:52px;border:1.5px solid #ffffff22;border-radius:999px;background:#07140e}
+.vn-mt-row.on .vn-mt-q{border-color:var(--lime);box-shadow:0 4px 16px #c0de9630}
+.vn-mt-q button{width:44px;height:100%;padding:0;border:0;background:none;font:800 22px/1 Inter,Arial,sans-serif;color:var(--lime);cursor:pointer}
+.vn-mt-q output{min-width:22px;text-align:center;font:800 17px/1 Inter,Arial,sans-serif;color:#fff;font-variant-numeric:tabular-nums}
+.vn-mt-sum{padding:30px 30px;display:flex;flex-direction:column;justify-content:flex-start;background:radial-gradient(ellipse 90% 60% at 50% 0,#1d4a35 0,#0a1b13 72%);color:#fff}
+.vn-mt-tot{margin:14px 0 0;padding:14px 0 0;border-top:1px solid #ffffff1a}
+.vn-mt-tl{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px;color:#ffffffd9}
+.vn-mt-tl s{color:#ffffff80}
+.vn-mt-big{margin-top:2px!important;white-space:nowrap;font-variant-numeric:tabular-nums}
+.vn-mt-big small{font-size:16px;font-weight:800;color:var(--lime)}
+.vn-mt-big b{font-size:42px;font-weight:900;letter-spacing:-.02em}
+.vn-mt-big span{font-size:13px;font-weight:700;color:var(--lime)}
+.vn-mt-pixt{font-size:14px;color:#ffffffd9}
+.vn-mt-pixt b{color:#fff}
+.vn-mt-pixt em{font-style:normal;font-weight:700;color:var(--lime)}
+.vn-mt-btn{width:100%;margin-top:16px;min-height:60px;font-size:17px}
+.vn-mt-btn:disabled{opacity:.45;cursor:default}
+.vn-mt-sum .vn-pg{margin:0;padding:16px 12px 12px}
+.vn-mt-sum .vn-tr{margin:0 20px}
+.vn-mt-sum .vn-eta{margin-top:16px}
+.vn-mt-note{margin:10px 0 0!important;font-size:12px;color:#ffffffa6;text-align:center}
+.vn-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}
+.vn-rail::-webkit-scrollbar{display:none}
+.vn-rail figure{flex:0 0 200px;margin:0;border-radius:18px;overflow:hidden;scroll-snap-align:start;aspect-ratio:9/16;background:#123024;position:relative}
+.vn-rail img,.vn-rail video{width:100%;height:100%;object-fit:cover;display:block}
+.vn-rail .is-v{box-shadow:0 0 0 3px var(--lime);cursor:pointer}
+.vn-rail figcaption{position:absolute;left:10px;bottom:10px;background:#000b;color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px}
+.vn-rail .snd{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;background:#000b;display:grid;place-items:center;font-size:13px}
+.vn-faq{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.vn-faq details{background:var(--card);border:1px solid #c0de9618;border-radius:16px;padding:18px 20px}
+.vn-faq summary{cursor:pointer;font-weight:800;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.vn-faq summary::-webkit-details-marker{display:none}
+.vn-faq summary:after{content:'+';color:var(--lime);font-size:20px;line-height:1}
+.vn-faq details[open] summary:after{content:'–'}
+.vn-faq p{margin-top:10px!important;color:#cfdcd3;font-size:14.5px;line-height:1.55}
+.vn-fine{padding:14px 16px 26px;text-align:center;color:#6f8a7c;font-size:12px;background:var(--ink)}
+@media(max-width:860px){
+  .vn-hero .vn-wrap{grid-template-columns:1fr;padding:28px 18px 40px;gap:22px;text-align:center}
+  .vn-hero .vn-vis{order:-1}
+  .vn-hero .vn-esc{height:200px;max-width:340px}
+  .vn-esc li b{font-size:32px}
+  .vn-sub{margin:14px auto 20px!important;font-size:16px}
+  .vn-cta{justify-content:center}.vn-cta .vn-btn{width:100%}
+  .vn-sec{padding:40px 18px}
+  .vn-head{text-align:center;justify-content:center}
+  .vn-mt-grid{grid-template-columns:1fr;border-radius:22px}
+  .vn-mt-list{border-right:0}
+  .vn-mt-row{grid-template-columns:112px minmax(0,1fr);grid-template-areas:"im info" "im q" "im more";column-gap:14px;row-gap:10px;padding:18px 14px 18px 12px}
+  .vn-mt-im{width:112px;height:112px;border-radius:18px}
+  .vn-mt-tag{font-size:9px;padding:3px 7px}
+  .vn-mt-t{display:none}.vn-mt-n{font-size:17px}.vn-mt-3x{font-size:21px}.vn-mt-pix{font-size:12.5px}
+  .vn-mt-q{justify-self:start;height:44px}.vn-mt-q button{width:40px;font-size:20px}
+  .vn-mt-more{margin-top:0;padding:7px 13px;font-size:12.5px}
+  .vn-mt-sum{padding:20px 16px}
+  .vn-mt-big b{font-size:32px}
+  .vn-rail figure{flex-basis:150px}
+  .vn-faq{grid-template-columns:1fr}
+  .vn-trilho{font-size:12px;gap:8px 18px}
+  .vn-dias i{width:26px;height:26px;font-size:10px}
+}
+</style>
+<div class="vn vn-x" data-vn hidden>
+  <section class="vn-hero">
+  <div class="vn-wrap">
+      <div>
+        <p class="vn-kick"><span>Verme Week</span> 20 a 26/11 · dia <b data-vn-dia>1</b> de 7</p>
+        <h1 class="cap">Em novembro, a família <em class="l">desparasita junta.</em></h1>
+        <p class="vn-sub">Quanto mais protocolos, maior o desconto: <b>12%</b> em qualquer um, <b>15%</b> levando 3 e <b>17%</b> levando 5. Frete grátis acima de R$ 299 e 3x sem juros. São só 7 dias.</p>
+        <div class="vn-cta"><a class="vn-btn" href="#vn-monte">Montar meu pedido →</a><span class="vn-left">termina em <b data-vn-th>--</b></span></div>
+      </div>
+      <div class="vn-vis">
+        <ol class="vn-esc" aria-label="Escada de desconto">
+          <li><b>12%</b><small>1 protocolo</small></li>
+          <li><b>15%</b><small>3 ou mais</small></li>
+          <li class="on"><b>17%</b><small>5 ou mais</small></li>
+        </ol>
+        <div class="vn-dias" data-vn-dias aria-hidden="true">{%- for d in (20..26) -%}<i>{{ d }}</i>{%- endfor -%}</div>
+        <p>os 7 dias da Verme Week</p>
+      </div>
+  </div>
+  </section>
+
+  <section class="vn-sec vn-monte" id="vn-monte"><div class="vn-wrap">
+  <div class="vn-head">
+      <h2 class="cap">Monte o pedido da casa. <em>Cada degrau, mais desconto.</em></h2>
+      <p>Escolha quantos de cada. Pode misturar: conta o total do carrinho. Com 3, o desconto vira 15%; com 5, 17% em tudo.</p>
+  </div>
+  {%- assign ages = 'A partir de 10 anos|Crianças pequenas|Idade escolar|Para a casa toda' | split: '|' -%}
+  {%- assign descs = 'Tintura de 5 ervas, Óleo de Orégano, Ornitina e Silimarina.|Duas tinturas com a dose da idade, diluídas em água ou suco.|Duas tinturas com a dose para a criança em idade escolar.|2 Adultos + Kids 2 a 4 + Kids 5 a 9, todo mundo no mesmo ciclo.' | split: '|' -%}
+  {%- assign pngs = 'vf-pv2-adulto.png,vf-pv2-kids-2a4.png,vf-pv2-kids-5a9.png,vf-pv2-kit-familia-v3.png' | split: ',' -%}
+  <div class="vn-mt-grid" data-vn-mt>
+      <ul class="vn-mt-list">
+        {%- for h in handles -%}
+          {%- assign p = all_products[h] -%}
+          {%- if p.id -%}
+            {%- assign v = p.selected_or_first_available_variant -%}
+            {%- assign pk = pngs[forloop.index0] -%}{%- assign png = images[pk] -%}
+            {%- assign por = v.price | times: 0.88 -%}
+            <li class="vn-mt-row{% if forloop.first %} on{% endif %}" data-vn-row data-id="{{ v.id }}" data-preco="{{ v.price }}">
+              <a class="vn-mt-im" href="{{ p.url }}" tabindex="-1" aria-hidden="true">
+                {%- if forloop.first -%}<span class="vn-mt-tag">Mais escolhido</span>{%- endif -%}
+                {%- if png -%}{{ png | image_url: width: 400 | image_tag: loading: 'lazy', alt: '' }}{%- else -%}{{ p.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
+              </a>
+              <div class="vn-mt-info">
+                <p class="vn-mt-age">{{ ages[forloop.index0] }}</p>
+                <h3 class="vn-mt-n"><a href="{{ p.url }}">{{ nomes[forloop.index0] }} ›</a></h3>
+                <p class="vn-mt-t">{{ descs[forloop.index0] }}</p>
+                <p class="vn-mt-was"><s>{{ v.price | money }}</s> <i>-12%</i></p>
+                <p class="vn-mt-3x"><small>3x</small> {{ por | divided_by: 3 | money }}</p>
+                <p class="vn-mt-pix">sem juros · ou <b>{{ por | money }}</b> à vista · até <b>17% OFF</b> levando 5</p>
+              </div>
+              <a class="vn-mt-more" href="{{ p.url }}">Conhecer o protocolo →</a>
+              <div class="vn-mt-q" role="group" aria-label="Quantidade de {{ nomes[forloop.index0] }}">
+                <button type="button" data-vn-step="-1" aria-label="Menos">−</button>
+                <output data-vn-qty>{% if forloop.first %}1{% else %}0{% endif %}</output>
+                <button type="button" data-vn-step="1" aria-label="Mais">+</button>
+              </div>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+      <div class="vn-mt-sum">
+        <div class="vn-pg">
+          <p data-vn-next></p>
+          <div class="vn-tr"><span class="bg"></span><span class="fl" data-vn-fill></span>
+            <ol class="vn-ms"><li data-vn-ms="0"><i>🌿</i><b>12% OFF</b><small>1 protocolo</small></li><li data-vn-ms="1"><i>🚚</i><b>Frete grátis</b><small>acima de R$ 299</small></li><li data-vn-ms="2"><i>💚</i><b>15% OFF</b><small>3 protocolos</small></li><li data-vn-ms="3"><i>🏆</i><b>17% OFF</b><small>5 protocolos</small></li><li data-vn-ms="4"><i>🎁</i><b>Kit adulto</b><small>acima de R$ 1.000</small></li></ol>
+          </div>
+        </div>
+        <div class="vn-mt-tot">
+          <p class="vn-mt-tl"><span data-vn-count>—</span><s data-vn-was></s></p>
+          <p class="vn-mt-big"><small>3x</small> <b data-vn-3x>—</b> <span>sem juros</span></p>
+          <p class="vn-mt-pixt" data-vn-pix></p>
+        </div>
+        <button type="button" class="vn-btn vn-mt-btn" data-vn-go>Garantir meu protocolo →</button>
+        <div class="vn-eta" data-vn-eta>
+          <div><span><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.4a1.5 1.5 0 0 0 1.5 1.1h8.8a1.5 1.5 0 0 0 1.5-1.1L21 7H6"/></svg></span><b data-eta="0"></b><small>Pedido feito</small></div>
+          <div><span><svg viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 9h4l4 4v3h-8"/><circle cx="6.5" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></svg></span><b data-eta="1"></b><small>Despachado</small></div>
+          <div><span><svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span><b data-eta="2"></b><small>Chega na sua casa</small></div>
+        </div>
+        <p class="vn-mt-note">🔒 Compra segura · Desconto automático no carrinho · Até 26/11</p>
+      </div>
+  </div>
+  </div></section>
+
+  <div class="vn-trilho"><span>Até 17% OFF em tudo</span><span>Frete grátis acima de R$ 299</span><span>🎁 Kit adulto de presente acima de R$ 1.000</span><span>3x sem juros</span><span>Desconto automático, sem cupom</span></div>
+
+  <section class="vn-sec"><div class="vn-wrap">
+  <div class="vn-head"><h2 class="cap">Quem fez, <em>conta.</em></h2><p>Famílias que já passaram pelo protocolo. Toque no vídeo para ouvir.</p></div>
+  <div class="vn-rail">
+      {%- assign vids = 'daniela-3-perguntas,jessika-abre-kit-adulto,juliana-kids-embalagem,ester-kids-2-4' | split: ',' -%}
+      {%- assign depos = '04,05,06,07' | split: ',' -%}
+      {%- for i in (0..3) -%}
+        {%- assign dep = shop.metaobjects.vf_depoimento[vids[i]] -%}
+        {%- assign vv = dep.video.value -%}
+        {%- if vv -%}
+          {%- assign src = '' -%}
+          {%- for s in vv.sources -%}{%- if src == '' and s.mime_type == 'video/mp4' -%}{%- assign src = s.url -%}{%- endif -%}{%- endfor -%}
+          <figure class="is-v" data-vn-video><video src="{{ src }}" poster="{{ vv.preview_image | image_url: width: 400 }}" muted loop playsinline preload="none"></video><span class="snd">🔇</span><figcaption>{{ dep.nome.value }}</figcaption></figure>
+        {%- endif -%}
+        {%- assign stk = 'vf-depoimento-' | append: depos[i] | append: '.jpg' -%}{%- assign st = images[stk] -%}
+        {%- if st -%}<figure>{{ st | image_url: width: 500 | image_tag: loading: 'lazy', alt: 'Cliente VermeFree com o protocolo' }}</figure>{%- endif -%}
+      {%- endfor -%}
+  </div>
+  </div></section>
+</div>
+<div data-vn-cur-slot></div>
+<div class="vn vn-x" data-vn hidden>
+  <section class="vn-sec" style="background:var(--ink2)"><div class="vn-wrap">
+  <div class="vn-head"><h2 class="cap">Perguntas <em>da Verme Week.</em></h2><p>Tudo o que vale de 20 a 26/11, sem letra miúda.</p></div>
+  <div class="vn-faq">
+      <details open><summary>Como funciona a escada de desconto?</summary><p>Qualquer pedido tem 12% OFF. Com 3 ou mais itens no carrinho, o desconto vira 15% em tudo. Com 5 ou mais, 17% em tudo. Vale sempre a maior faixa.</p></details>
+      <details><summary>Posso misturar protocolos?</summary><p>Pode. Conta o total de itens do carrinho: Adulto, Kids e Kit Família entram na mesma conta.</p></details>
+      <details><summary>Preciso de cupom?</summary><p>Não. O desconto entra sozinho no carrinho, de acordo com a quantidade.</p></details>
+      <details><summary>Tem brinde?</summary><p>Sim. Nos pedidos acima de R$ 1.000 (valor dos produtos já com desconto, de 20 a 26/11), você ganha 1 kit adulto de presente, enviado junto com o pedido.</p></details>
+      <details><summary>O frete é grátis?</summary><p>Sim, para pedidos a partir de R$ 299.</p></details>
+      <details><summary>Dá para parcelar?</summary><p>Sim, em até 3x sem juros no cartão.</p></details>
+      <details><summary>Até quando vale?</summary><p>Até 26/11 às 23h59, horário de Brasília. Depois disso, os preços voltam ao normal.</p></details>
+  </div>
+  </div></section>
+
+  <section class="vn-fim">
+  <div class="vn-dias" data-vn-dias aria-hidden="true">{%- for d in (20..26) -%}<i>{{ d }}</i>{%- endfor -%}</div>
+  <h2 class="cap">A Verme Week termina em <em class="l" data-vn-th>--</em>.</h2>
+  <p>Depois disso, os preços voltam ao normal.</p>
+  <a class="vn-btn" href="#vn-monte">Montar meu pedido →</a>
+  </section>
+  <p class="vn-fine">De 20/11 00h a 26/11 23h59 (horário de Brasília). Descontos aplicados automaticamente no carrinho; as faixas não somam entre si, vale a maior. Frete grátis para pedidos a partir de R$ 299.</p>
+</div>
+<script>
+  (function () {
+  var brl = function (c) { return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
+  var pct = function (n) { return n >= 5 ? 17 : n >= 3 ? 15 : n >= 1 ? 12 : 0; };
+  var mt = document.querySelector('[data-vn-mt]');
+  if (mt) {
+      var rows = [].slice.call(mt.querySelectorAll('[data-vn-row]')), go = mt.querySelector('[data-vn-go]');
+      var $m = function (q) { return mt.querySelector(q); };
+      var qty = function (r) { return +r.querySelector('[data-vn-qty]').textContent || 0; };
+      var setQ = function (r, n) { n = Math.max(0, Math.min(10, n)); r.querySelector('[data-vn-qty]').textContent = n; r.classList.toggle('on', n > 0); };
+      var desenha = function () {
+        var n = 0, cheio = 0;
+        rows.forEach(function (r) { n += qty(r); cheio += qty(r) * +r.dataset.preco; });
+        var d = pct(n), paga = Math.round(cheio * (100 - d) / 100);
+        $m('[data-vn-count]').textContent = n === 0 ? 'Nenhum protocolo escolhido' : n + (n === 1 ? ' protocolo' : ' protocolos') + ' · ' + d + '% OFF';
+        $m('[data-vn-was]').textContent = n ? brl(cheio) : '';
+        $m('[data-vn-3x]').textContent = brl(Math.floor(paga / 3));
+        $m('[data-vn-pix]').innerHTML = n === 0 ? 'Escolha acima quantos de cada' : 'ou <b>' + brl(paga) + '</b> à vista · <em>você economiza ' + brl(cheio - paga) + '</em>';
+        var kit = paga > 100000, pr = [Math.min(1, n), Math.min(1, paga / 29900), Math.min(1, n / 3), Math.min(1, n / 5), kit ? 1 : Math.min(.99, paga / 100000)], lab = ['12% OFF', 'frete grátis', '15% OFF', '17% OFF', 'o kit adulto de presente'];
+        mt.querySelectorAll('[data-vn-ms]').forEach(function (li, i) { li.classList.toggle('on', pr[i] >= 1); });
+        var nx = pr.findIndex(function (x) { return x < 1; });
+        $m('[data-vn-fill]').style.width = (nx < 0 ? 100 : nx === 0 ? 0 : (nx - 1 + pr[nx]) / 4 * 100) + '%';
+        var q = nx === 2 ? 3 - n : 5 - n, pl = function (k) { return k + (k === 1 ? ' protocolo' : ' protocolos'); };
+        $m('[data-vn-next]').innerHTML = nx === 0 ? 'Escolha um protocolo e libere <b>12% OFF</b>' : nx === 1 ? 'Faltam <b>' + brl(29900 - paga) + '</b> para o <b>frete grátis</b>' : nx === 4 ? 'Faltam <b>' + brl(100001 - paga) + '</b> para ganhar <b>o kit adulto de presente</b>' : nx > 1 ? 'Mais <b>' + pl(q) + '</b> e você libera <b>' + lab[nx] + '</b>' + (kit ? ' · 🎁 <b>kit adulto garantido</b>' : '') : '🎉 <b>Tudo liberado:</b> 17% OFF, frete grátis e kit adulto de presente';
+        go.disabled = n === 0;
+        go.textContent = n <= 1 ? 'Garantir meu protocolo →' : 'Garantir meus ' + n + ' protocolos →';
+      };
+      mt.addEventListener('click', function (e) {
+        var st = e.target.closest('[data-vn-step]');
+        if (st) { var r = st.closest('[data-vn-row]'); setQ(r, qty(r) + +st.dataset.vnStep); desenha(); return; }
+        var row = e.target.closest('[data-vn-row]');
+        if (row && !e.target.closest('a, button') && qty(row) === 0) { setQ(row, 1); desenha(); }
+      });
+      go.addEventListener('click', function () {
+        var items = rows.filter(function (r) { return qty(r) > 0; }).map(function (r) { return { id: +r.dataset.id, quantity: qty(r) }; });
+        if (!items.length) return;
+        go.disabled = true; go.textContent = 'Colocando...';
+        fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: items }) })
+          .then(function (res) { if (!res.ok) throw 0; location.href = '/cart'; }).catch(function () { desenha(); });
+      });
+      desenha();
+  }
+  var poeCur = function () { if (!document.documentElement.classList.contains('vn-on')) return; var cur = document.querySelector('[id$="__vf_curadoria"]'), slot = document.querySelector('[data-vn-cur-slot]'); if (cur && slot) slot.appendChild(cur); };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', poeCur); else poeCur();
+  var vs = document.querySelectorAll('[data-vn-video]');
+  if ('IntersectionObserver' in window) { var io = new IntersectionObserver(function (es) { es.forEach(function (e) { var v = e.target.querySelector('video'); if (e.isIntersecting) v.play().catch(function () {}); else v.pause(); }); }, { threshold: .6 }); vs.forEach(function (f) { io.observe(f); }); }
+  vs.forEach(function (f) { f.addEventListener('click', function () { var v = f.querySelector('video'), on = v.muted; vs.forEach(function (o) { o.querySelector('video').muted = true; o.querySelector('.snd').textContent = '🔇'; }); v.muted = !on; f.querySelector('.snd').textContent = on ? '🔊' : '🔇'; if (on) v.play().catch(function () {}); }); });
+  })();
+</script>
+{%- endif -%}

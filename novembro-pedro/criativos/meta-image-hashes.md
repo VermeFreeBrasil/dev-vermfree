@@ -1,0 +1,86 @@
+# Meta image hashes — [CA01] VermeFree (act_1317272150350067)
+
+Uploaded 2026-10-29 via URL from cdn.shopify.com. Image library only (no ads/creatives created).
+
+| name | image hash | status |
+|---|---|---|
+| vf-1111-captacao-01-4x5 | b1a626a819a2615e6ecd4153f459b03e | ok |
+| vf-1111-captacao-01-9x16 | 03f92e8e882de7ee1ad80fc85f9e7919 | ok |
+| vf-1111-captacao-02-4x5 | 0e73d6eaee182486b906b1347438188a | ok |
+| vf-1111-captacao-02-9x16 | 50f06434433a4862de9435389ef8d469 | ok |
+| vf-1111-captacao-03-4x5 | bea81c08259c240181996ccc6d46e265 | ok |
+| vf-1111-captacao-03-9x16 | d36bcc0cf688bbb20193899931183350 | ok |
+| vf-1111-captacao-04-4x5 | f2c657fe76dd94f0dde1126c1cee66c0 | ok |
+| vf-1111-captacao-04-9x16 | d0fe07ab2cec3f4f173dd74daaf1b6c2 | ok |
+| vf-1111-captacao-05-4x5 | 69447fa23697686fa06ec408974b4a29 | ok |
+| vf-1111-captacao-05-9x16 | 6341eef100a00206b7d8c742c9bb834e | ok |
+| vf-1111-captacao-06-4x5 | c9c20422f5d3a51b4e5e4c2b754891fe | ok |
+| vf-1111-captacao-06-9x16 | 3792b6d8b3cf939fc3ddf9791595a956 | ok |
+| vf-1111-captacao-07-4x5 | f3b355961d44e3056e674b4717a73b08 | ok (retry 1) |
+| vf-1111-captacao-07-9x16 | 01dede3c752196ba460ba0e7725f5b89 | ok |
+| vf-1111-captacao-08-4x5 | 52fb40b7cca1fa5cb29d050f2e51e827 | ok |
+| vf-1111-captacao-08-9x16 | e374acaa036dbaea1b9ca5d443e60146 | ok |
+| vf-1111-captacao-09-4x5 | bd79d27b1a671014b6bd21dfb3192546 | ok |
+| vf-1111-captacao-09-9x16 | 20fb628110b5dcbdb736359f02c34bed | ok |
+| vf-1111-captacao-10-4x5 | 29afd28f0ad42025f804d96e13292ea4 | ok |
+| vf-1111-captacao-10-9x16 | 168d7ddbb27310add04c630a1ae78543 | ok |
+| vf-november-universal-01-4x5 | 92160a2e48588ecedf779805aec7771e | ok |
+| vf-november-universal-01-9x16 | 8acbed5df3ed061501e1d15be530e680 | ok |
+| vf-november-universal-02-4x5 | 90fd026b21911129c5ce4543baf64d9a | ok |
+| vf-november-universal-02-9x16 | 32fc62089202138e09a4beb1e815ff0a | ok |
+| vf-november-universal-03-4x5 | 05149d5fc82e707272e8bb966b318f22 | ok |
+| vf-november-universal-03-9x16 | 8aaa2520556ec0e9b11293e498135bc4 | ok |
+| vf-november-universal-04-4x5 | 8cf62588314c5139244a71034ed496c4 | ok |
+| vf-november-universal-04-9x16 | e5c58b448ccdc564e633601190b96212 | ok |
+| vf-november-universal-05-4x5 | 40538aa2b29f0d14c76ba1c62481b62c | ok |
+| vf-november-universal-05-9x16 | 23da33d2ddd2ed65ee65e1771da36707 | ok |
+| vf-november-universal-06-4x5 | 4f4d3780b3699aab72a2e2a71d2820ed | ok |
+| vf-november-universal-06-9x16 | a183d885273bb730ccc368069b741545 | ok |
+| vf-november-universal-07-4x5 | 22c0b5a5ae67baa306f5a0261f5ef663 | ok |
+| vf-november-universal-07-9x16 | 0232c07bbebc2b789fa8216eff541a2f | ok |
+| vf-november-universal-08-4x5 | ebe22c7f73fcc5323fd408fef4a47022 | ok |
+| vf-november-universal-08-9x16 | c28523a05e01639d5d729311b677885a | ok |
+| vf-november-universal-09-4x5 | 99df0b948c109d6514b72a1542b83aaf | ok |
+| vf-november-universal-09-9x16 | 851e3e003fc07acb5597b58b9d193334 | ok |
+| vf-november-universal-10-4x5 | 23f35ad49b0f751b3df8a492038a4dc6 | ok |
+| vf-november-universal-10-9x16 | 91cd216029ee410d2659653b5a102254 | ok |
+| vf-november-universal-11-4x5 | 3376e9efdfc297f21ca1488d4beb5c42 | ok |
+| vf-november-universal-11-9x16 | 388ca65a126c26ba75b112db79c695d6 | ok |
+| vf-november-universal-12-4x5 | 70808c25da2cc37b43fc6416545d9789 | ok |
+| vf-november-universal-12-9x16 | b806a399c1b4692cffab7642ddd8a8f7 | ok |
+| vf-november-universal-13-4x5 | a4668426782c04b0a540d36ca2d0cd8a | ok |
+| vf-november-universal-13-9x16 | ba52627c84ed05dbc31214a1b5ea217a | ok |
+| vf-november-universal-14-4x5 | c7bccb45c31c52d42c3273728b028b4d | ok |
+| vf-november-universal-14-9x16 | fdd5ae721c2dfd8e62a0eae36382bd8b | ok |
+| vf-november-universal-15-4x5 | cc154f8ed028918f098736806d28fdad | ok |
+| vf-november-universal-15-9x16 | 026dfb18d24effcdae99002147ef8cff | ok |
+| vf-november-universal-16-4x5 | 3dd0f04ecd927972415ff4690037c300 | ok |
+| vf-november-universal-16-9x16 | e6983c082c591502fcb97c49807bc9b9 | ok |
+| vf-november-universal-17-4x5 | a1b5f8c436702083de73f2cc4660a026 | ok |
+| vf-november-universal-17-9x16 | 456e39fc3010df9fa901c4c9096db3af | ok |
+| vf-november-universal-18-4x5 | 7d4282b8634848e62994c8ff2efe0cb0 | ok |
+| vf-november-universal-18-9x16 | 1ae031798fd8d9668da0e64d7c575d13 | ok |
+| vf-november-universal-19-4x5 | 5889912523e665af56d8bc31e1dbd455 | ok |
+| vf-november-universal-19-9x16 | 15afc5f14619e12febb7a73494a4e6e4 | ok |
+| vf-november-universal-20-4x5 | c8a36d74cbc5911ad99d61c9e0916cfe | ok |
+| vf-november-universal-20-9x16 | aaa08f28b049c05058711d17435ee6e1 | ok |
+| vf-november-universal-21-4x5 | 3d0561148dc4a98385afefe84e8a9522 | ok |
+| vf-november-universal-21-9x16 | d54b4767b3ae3e4eebd23569235d8625 | ok |
+| vf-november-universal-22-4x5 | 6a5a3f2bee26fb10739d8312b62f072b | ok |
+| vf-november-universal-22-9x16 | 889bc9d8d4efca2df3b0af51b53e4f28 | ok |
+| vf-november-universal-23-4x5 | e12be5b10ec38023ce4756d3dd866a8f | ok |
+| vf-november-universal-23-9x16 | 5172d527b4a950ca403bd35b606cbd77 | ok |
+| vf-november-universal-24-4x5 | 67a573cf4e384a7fb1704db537fa1c90 | ok |
+| vf-november-universal-24-9x16 | a7dd63a27cc791283e4e042e2d3b1c53 | ok |
+| vf-november-universal-25-4x5 | ff7fe009c24fbeb4958fbc98cfa292c7 | ok |
+| vf-november-universal-25-9x16 | c599538095b45361d8357725fcaa74a9 | ok |
+| vf-november-universal-26-4x5 | 868f2ebfea4c222415fb2a3787eb8062 | ok |
+| vf-november-universal-26-9x16 | af796f8bc9ba0eb9f28fc43994682e66 | ok |
+| vf-november-universal-27-4x5 | 0a259bac735185c3a1721cedd45ddd90 | ok |
+| vf-november-universal-27-9x16 | ff9bbf9e09fb3cc573e6f5ae792cd314 | ok |
+| vf-november-universal-28-4x5 | 1bc07dc29444bb9c51c3ccc7c96af7b1 | ok |
+| vf-november-universal-28-9x16 | 2c673c846a1384f87a32494b71c7aaf4 | ok |
+| vf-november-universal-29-4x5 | 633359ab6fdf9765afa21eee3e102b3f | ok |
+| vf-november-universal-29-9x16 | c236a9eeb0da7dd5c72dcd601dc32f34 | ok |
+| vf-november-universal-30-4x5 | 28c5bdcc9eac2124d0eebd8155f290c4 | ok |
+| vf-november-universal-30-9x16 | f82b89e4883a1d3d1e78d66df16aa5f6 | ok |
