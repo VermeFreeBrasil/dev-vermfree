@@ -92,7 +92,7 @@ Detalhes em shopify/verme-november-tema/LEIA.md. Falta: publicar à 00h de 12/11
 | 🟡 | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Criar o tema completo do site para a promoção | `mcp-1793234832211-2-d6132` | **16/11: APROVADO pelo Pedro** (tema 169018949851, não publicado); depois agendar no Supreme 27/11 00h. shopify/verme-friday-tema/LEIA.md |
 | ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER · SITE E SHOPIFY | `mcp-1793232207208-10-23fce` |  |
 | ⬜ | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY · CRIATIVOS | `mcp-1793232343397-0-2bb2e` |  |
-| ⬜ | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY — Criar os 5 criativos estáticos de venda | `mcp-1793232343398-4-42c88` |  |
+| ✅ | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY — Criar os 5 criativos estáticos de venda | `mcp-1793232343398-4-42c88` | **16/11: CONCLUÍDA (10 peças, 4:5 + 9:16, aprovadas).** Drive [08] Free Monday › [2] Comunicação & Criativos: https://drive.google.com/drive/folders/1Ca5tqPUY_ckZ7k9o3ERLzRxTpc8lbbFI · criativos/free-monday/. Falta marcar no Alliance. |
 | ⬜ | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY — Editar os 5 vídeos de venda | `mcp-1793232343398-3-b0cc2` | depende: BLACK FRIDAY · FREE MONDAY — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
 | ⬜ | 26/11/2026 18h00 | BLACK FRIDAY · FREE MONDAY — Fechar o site com o banner do grupo VIP | `mcp-1793232474314-14-22f1c` |  |
 | ⬜ | 27/11/2026 18h00 | BLACK FRIDAY · FREE MONDAY — Configurar a entrega dos brindes | `mcp-1793232474314-12-2ea89` |  |
