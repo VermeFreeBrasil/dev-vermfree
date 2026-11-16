@@ -51,12 +51,12 @@ html.ve-23 .ve-live{background:#9e0f17}html.ve-20 .ve-live .o b:first-child,html
       sim = sessionStorage.getItem('vf_black') === '1';
   } catch (e) {}
   var agora = Date.now();
-  window.vfDiaD = sim || (agora >= INI && agora <= FIM);
+  window.vfDiaD = sim || agora <= FIM; // 16/11 (Pedro): sem trava de início (o tema só vai ao ar no dia); some sozinho depois do fim
   if (!window.vfDiaD) return;
   document.documentElement.classList.add('ve-on');
   // na simulação, as 48h começam hoje 00h em Brasília
   var ini = INI, fim = FIM;
-  if (sim && (agora < INI || agora > FIM)) { var d = new Date(agora - 3 * 3600e3); d.setUTCHours(0, 0, 0, 0); ini = d.getTime() + 3 * 3600e3; fim = ini + 172799e3; }
+  if (agora < INI || (sim && agora > FIM)) { var d = new Date(agora - 3 * 3600e3); d.setUTCHours(0, 0, 0, 0); ini = d.getTime() + 3 * 3600e3; fim = ini + 172799e3; }
   var pad = function (n) { return (n < 10 ? '0' : '') + n; };
   var tick = function () {
       var now = Date.now(), s = Math.max(0, Math.floor((fim - now) / 1000));

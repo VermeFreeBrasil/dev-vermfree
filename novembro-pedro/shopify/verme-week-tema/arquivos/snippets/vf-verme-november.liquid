@@ -51,7 +51,7 @@ html.vn-on .vf-cur .is-on{background:#c0de96!important}
       sim = sessionStorage.getItem('vf_vn') === '1';
   } catch (e) {}
   var agora = Date.now();
-  window.vfVN = sim || (agora >= INI && agora <= FIM);
+  window.vfVN = sim || agora <= FIM; // 16/11 (Pedro): sem trava de início; o tema só vai ao ar no dia, e assim a prévia mostra a campanha sem parâmetro. Some sozinho depois do fim.
   if (!window.vfVN) return;
   document.documentElement.classList.add('vn-on');
   var pad = function (n) { return (n < 10 ? '0' : '') + n; };

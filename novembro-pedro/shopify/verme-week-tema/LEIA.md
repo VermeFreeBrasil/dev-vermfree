@@ -1,5 +1,7 @@
 # Tema Verme Week (20–26/11) · montado em 09/11
 
+**16/11 (pedido do Pedro):** tema renomeado "04 · Verme Week 20–26/11 · publica 20/11 00h" e sem trava de início: a campanha aparece sempre (prévia sem parâmetro: https://vermefree.com.br/?preview_theme_id=168791179483) e some sozinha depois de 26/11 23h59. vf-verme-november.liquid md5 518d0bf1.
+
 Tema: "🟢 Verme Week (20–26/11) · PUBLICAR 20/11 00h" (gid://shopify/OnlineStoreTheme/168791179483, aprovado pelo Pedro em 09/11), cópia do tema Verme November (168590672091). **Não publicado.**
 Preview: https://vermefree.com.br/?preview_theme_id=168791179483&vf_vn=on&vf_trava=off
 

@@ -1,7 +1,7 @@
 # Tema Verme Friday (27 e 28/11) · montado em 14–16/11
 
-Tema: "⚫ Verme Friday · PUBLICAR 27/11 00h" (gid://shopify/OnlineStoreTheme/169018949851), cópia do Eclipse 11.11. **Não publicado, não agendado.**
-Prévia da campanha: https://vermefree.com.br/?preview_theme_id=169018949851&vf_trava=off&vf_black=on
+Tema: "05 · Verme Friday 27–28/11 · publica 27/11 00h" (gid://shopify/OnlineStoreTheme/169018949851), cópia do Eclipse 11.11. **Não publicado, não agendado.**
+Prévia da campanha (sem parâmetro desde 16/11, sem trava de início): https://vermefree.com.br/?preview_theme_id=169018949851
 Prévia do site fechado: https://vermefree.com.br/?preview_theme_id=169018949851&vf_fechado=on (23h59) · &vf_hora=03:00 (fase VIP) · desligar: &vf_fechado=off
 
 ## O que mudou em relação ao Eclipse (patch-vf.py + vf-trava-1111 novo)

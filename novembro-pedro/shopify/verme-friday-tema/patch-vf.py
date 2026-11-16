@@ -25,6 +25,8 @@ promo = [
   "Date.parse('2026-11-27T00:00:00-03:00'), FIM = Date.parse('2026-11-28T23:59:59-03:00')", 1),
  ("'vf_diad'", "'vf_black'"),
  ('// na simulação, o "dia" é o dia de hoje em Brasília', '// na simulação, as 48h começam hoje 00h em Brasília'),
+ ('window.vfDiaD = sim || (agora >= INI && agora <= FIM);', 'window.vfDiaD = sim || agora <= FIM; // 16/11 (Pedro): sem trava de início (o tema só vai ao ar no dia); some sozinho depois do fim', 1),
+ ('if (sim && (agora < INI || agora > FIM))', 'if (agora < INI || (sim && agora > FIM))', 1),
  ('fim = ini + 86399e3;', 'fim = ini + 172799e3;', 1),
  ('u = h >= 23 ? 2 : h >= 20 ? 1 : 0', 'u = h >= 47 ? 2 : h >= 44 ? 1 : 0', 1),
  ("'<b>🚨 Última hora</b> · o maior desconto do ano acaba à meia-noite' : u === 1 ? '<b>⏰ Últimas horas</b> · 20% OFF + 5º grátis acaba à meia-noite'",
