@@ -14,7 +14,7 @@
 - [ ] Cupom de influenciadora não soma com o compre 4 leve 5 (perde atribuição). Definir antes da Verme Friday (27/11).
 
 ## Próximas entregas
-- [ ] Tema da Verme Friday + fechar o site com o banner do grupo VIP · 23–24/11
+- [~] Tema da Verme Friday + fechar o site com o banner do grupo VIP · 23–24/11 · montado no tema 169018949851 (16/11), **aguardando ok do Pedro e o link do grupo VIP Black**; depois agendar no Supreme 27/11 00h
 - [ ] Brindes da Verme Friday (guia/manual com a Sarah) · 24/11
 - [ ] 10 vídeos de venda da Verme Friday · 19/11 · 8 vídeos do 3º lote · 19/11
 - [ ] 4º lote de estáticos universais (8) e de vídeos (8) · 25/11
@@ -22,3 +22,4 @@
 
 ## Conferência diária do brinde Verme November
 - 14/11 08h40: 27 pedidos desde 12/11; os 2 acima de R$ 1.000 (#4859, #4868) com tag e nota ✅
+- 16/11 09h17: desde 14/11, 2 pedidos acima de R$ 1.000 (#4882, #4894), ambos com a tag ✅

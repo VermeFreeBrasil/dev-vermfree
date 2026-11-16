@@ -86,10 +86,10 @@ Detalhes em shopify/verme-november-tema/LEIA.md. Falta: publicar à 00h de 12/11
 | ⬜ | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY · CRIATIVOS | `mcp-1793234479525-16-31c24` |  |
 | ✅ | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY — Criar os 5 criativos estáticos de venda | `mcp-1793234618789-1-f596c` | **09/11: CONCLUÍDA (10 estáticos, v5 aprovada).** Drive 07. Verme Friday › 01. Comunicação & Criativos. criativos/verme-friday/png5/. 9:16 não feito. Marcada no Alliance. |
 | ⬜ | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY — Editar os 5 vídeos de venda | `mcp-1793234618789-0-9434c` | depende: BLACK FRIDAY · VERME FRIDAY — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
-| ⬜ | 23/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Fechar o site com o banner do grupo VIP | `mcp-1793234832211-7-3de4d` |  |
+| 🟡 | 23/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Fechar o site com o banner do grupo VIP | `mcp-1793234832211-7-3de4d` | **16/11: montado** no tema 169018949851 (tela própria 26/11 23h59 → 27/11 07h, `?acesso=vip` 00h). Falta o link do grupo VIP Black e o ok do Pedro. shopify/verme-friday-tema/LEIA.md |
 | ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Configurar a entrega dos brindes | `mcp-1793234832211-4-a36f5` |  |
 | ✅ | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Configurar oferta e frete na Shopify | `mcp-1793234832211-3-112ea` | **09/11: CONCLUÍDA.** 18% site todo + compre 4 leve 5 (BXGY) + frete grátis sem mínimo, agendados 27/11 00h–28/11 23h59. shopify/oferta-verme-friday/descontos.md. Link VIP/trava vai com o tema. Marcada no Alliance. |
-| ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Criar o tema completo do site para a promoção | `mcp-1793234832211-2-d6132` |  |
+| 🟡 | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Criar o tema completo do site para a promoção | `mcp-1793234832211-2-d6132` | **16/11: montado** (tema 169018949851, não publicado), aguardando aprovação do Pedro; depois agendar no Supreme 27/11 00h. shopify/verme-friday-tema/LEIA.md |
 | ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER · SITE E SHOPIFY | `mcp-1793232207208-10-23fce` |  |
 | ⬜ | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY · CRIATIVOS | `mcp-1793232343397-0-2bb2e` |  |
 | ⬜ | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY — Criar os 5 criativos estáticos de venda | `mcp-1793232343398-4-42c88` |  |
