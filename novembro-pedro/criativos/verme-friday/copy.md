@@ -1,5 +1,8 @@
 # Verme Friday · 10 estáticos de venda
 
+**v7 "sale" (16/11, 2ª referência do Pedro):** mais 10 peças, 4:5 + 9:16. Bloco preto em cima: "VERME FRIDAY" branco, palavra-chave em vermelho e número em branco, linha fina de apoio; embaixo foto de estúdio (parede vermelha, mesa branca, produto real, planta) com duas fitas brancas "Verme Friday · 18% OFF · 5º grátis" cruzando a divisa. Cenas em cenas7/ (Higgsfield com as fotos reais). Mensagens iguais às da v6 (18% OFF, leve 5 pague 4, Kids 2 a 4, Kids 5 a 9, Kit Família, frete grátis, Adulto, só 48h, 5 Adultos, sorteio). Gerador: gerar7-sale.cjs · png7/ · provas prova7-sale-*.png.
+**v6 neon aprovada 16/11** e subida no Drive (07 › [2] Comunicação & Criativos), 20 PNGs.
+
 **v6 "neon" (16/11, pedido do Pedro com referência de design):** 10 peças novas, 4:5 + 9:16. Título "VERME FRIDAY" grande em branco brilhante (FRIDAY com brilho vermelho), pílula vermelha "18% OFF · 5º grátis · frete grátis", oferta da peça em branco (esquerda grande, direita menor), produto real em superfície escura com musgo/ervas e luz de cima (cenas do Higgsfield com as fotos reais, cenas6/). Uma cena diferente por peça: 01 18% OFF · 02 compre 4 leve 5 · 03 Kids 2 a 4 R$ 221,40 · 04 Kids 5 a 9 R$ 318,98 · 05 Kit Família R$ 943,00 · 06 frete grátis · 07 Adulto R$ 284,54 · 08 só 48 horas · 09 5 Adultos R$ 1.138,16 · 10 sorteio. Gerador: gerar6-neon.cjs · png6/ · provas prova6-neon-*.png.
 
 **9:16 da v5 (16/11, pedido do Pedro):** mesma arte 4:5 aprovada (1080 de largura) colocada de 13% a 80% da tela; faixa, texto e rodapé fora dos 14% de cima e dos 20% de baixo. Gerador: gerar5-9x16.cjs · arquivos: png5/*-9x16.png · prova: prova5-9x16.png.
