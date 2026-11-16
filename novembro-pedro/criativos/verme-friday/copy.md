@@ -1,5 +1,7 @@
 # Verme Friday · 10 estáticos de venda
 
+**9:16 da v5 (16/11, pedido do Pedro):** mesma arte 4:5 aprovada (1080 de largura) colocada de 13% a 80% da tela; faixa, texto e rodapé fora dos 14% de cima e dos 20% de baixo. Gerador: gerar5-9x16.cjs · arquivos: png5/*-9x16.png · prova: prova5-9x16.png.
+
 **v4 (09/11, a atual, em png4/, gerador gerar4.cjs):** v3 reprovada ("potes flutuantes", "produtos sempre do mesmo jeito"). Na v4 cada peça usa uma cena fotográfica gerada no Higgsfield com as fotos reais dos produtos como referência: produtos apoiados na pedra e no chão, em alturas e arranjos diferentes (pirâmide de pedras, pote deitado com cápsulas, frasco em cima e outro no chão), com sombra de contato. Cenas: sA/sB (todos), s1/s6 (Adulto), s2/s7 (Kids 2 a 4), s8 (Kids 5 a 9), s4/s9 (pirâmide), s5 (todos, vertical). Fundo preto, faixa vermelha Verme Friday 27 e 28/11, desconto em tarja vermelha, selo de tempo "Só 48h · acaba 28/11 às 23h59", rodapé branco com as condições.
 
 **v3 (09/11, a atual, em png3/, gerador gerar3.cjs):** v2 reprovada ("ainda ruins"); Pedro pediu fundo preto. Fundo de estúdio preto com pedra escura e luz de cima (Higgsfield), faixa vermelha "Verme Friday 27 e 28/11", desconto em tarja vermelha, selo vermelho "Só 48h", rodapé branco "Acaba 28/11 às 23h59". Mesmos 10 títulos da v2.
