@@ -13,9 +13,15 @@
 - [ ] Kit Família conta como 4 itens para o brinde do Kit Kids? (#4527, #4553)
 - [ ] Cupom de influenciadora não soma com o compre 4 leve 5 (perde atribuição). Definir antes da Verme Friday (27/11).
 
+## Feito em 16/11
+- [x] Tema da Verme Friday aprovado (falta só o link do grupo VIP Black)
+- [x] 9:16 dos 10 estáticos da Verme Friday + 20 ads novos (neon e sale), todos no Drive
+- [x] Drive organizado por campanha (251 cópias; originais intactos)
+- [x] Mensagens escritas para a Sarah (link VIP + guia/manual) e para o Vitor (cupom × compre 4 leve 5; Kit Família)
+
 ## Próximas entregas
 - [~] Tema da Verme Friday + fechar o site com o banner do grupo VIP · 23–24/11 · montado no tema 169018949851 (16/11), **aprovado pelo Pedro em 16/11; falta o link do grupo VIP Black**; depois agendar no Supreme 27/11 00h
-- [ ] Brindes da Verme Friday (guia/manual com a Sarah) · 24/11
+- [ ] Brindes da Verme Friday (guia/manual com a Sarah) · 24/11 · esperando o link dos arquivos e como foi no 11/11 (mensagem enviada pelo Pedro em 16/11)
 - [ ] 10 vídeos de venda da Verme Friday · 19/11 · 8 vídeos do 3º lote · 19/11
 - [ ] 4º lote de estáticos universais (8) e de vídeos (8) · 25/11
 - [ ] Free Monday: 10 estáticos, 10 vídeos, tema, oferta/frete, brindes, fechar site · 25–27/11
