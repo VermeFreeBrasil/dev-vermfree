@@ -48,6 +48,8 @@ body{font-family:Inter,Arial,sans-serif;color:#fff;background:#060606;
 .parc{margin-top:${T ? 10 : 6}px;display:inline-block;border:3px solid #ff2a33;border-radius:16px;padding:${T ? '12px 30px' : '9px 26px'};
   font-size:${T ? 44 : 36}px;font-weight:800;letter-spacing:-.01em}
 .parc b{color:#ff4d55}
+.p3{margin-top:${T ? 22 : 14}px;font-size:${T ? 84 : 70}px;font-weight:900;letter-spacing:-.03em}
+.p3 b{color:#ff2a33}
 .btn{margin-top:${T ? 30 : 20}px;width:100%;max-width:860px;height:${T ? 112 : 96}px;border-radius:80px;display:flex;align-items:center;justify-content:center;
   background:linear-gradient(180deg,#ff2f38,#c2121b);font-size:${T ? 42 : 36}px;font-weight:900;letter-spacing:.5px;box-shadow:0 18px 44px #e01e2766;flex-shrink:0}
 .foot{margin-top:${T ? 18 : 12}px;font-size:${T ? 24 : 21}px;color:#a8a8a8;letter-spacing:1px;flex-shrink:0}
@@ -63,8 +65,8 @@ const html = (p, W, H) => `<!doctype html><html><head><meta charset="utf-8"><sty
 <div class="off">20<small>%<br>OFF</small></div>
 <div class="v"><img src="${img(p.foto)}"></div>
 <p class="nome">${p.nome}</p><p class="sub">${p.sub}</p>
-<div class="preco"><span class="de">${brl(p.de)}</span><span class="por">${brl(p.por)}</span></div>
-<p class="parc">ou <b>3x de ${brl(p.parc)}</b> sem juros</p>
+<p class="p3">3x de <b>${brl(p.parc)}</b></p>
+<p class="parc">sem juros · <b>20% OFF</b></p>
 <div class="btn">Comprar no 11/11</div>
 <p class="foot"><b>Só 24 horas</b> · Frete grátis · Compre 4, leve 5</p>
 </div></body></html>`;
