@@ -10,7 +10,7 @@ const ART = path.join(__dirname, 'cenas');
 const OUT = path.join(__dirname, 'png');
 fs.mkdirSync(OUT, { recursive: true });
 const brl = c => 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-const p3 = c => brl(Math.round(c / 3));
+const p3 = c => brl(Math.floor(c / 3)); // igual ao site (arredonda para baixo)
 const d = (c, p) => Math.round(c * (100 - p) / 100);
 const P = { adulto: 34700, k24: 27000, k59: 38900, fam: 115000 };
 

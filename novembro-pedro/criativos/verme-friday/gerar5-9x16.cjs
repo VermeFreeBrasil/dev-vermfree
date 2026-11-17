@@ -14,7 +14,7 @@ const SC = JSON.parse(fs.readFileSync(path.join(ART, 'kscenes.json'), 'utf8'));
 const img = f => 'file://' + path.join(ART, f);
 const brl = c => 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 const off = c => c - Math.floor(c * 18 / 100);
-const p3 = c => brl(Math.round(c / 3));
+const p3 = c => brl(Math.floor(c / 3)); // igual ao site (arredonda para baixo)
 const P = { adulto: 34700, k24: 27000, k59: 38900, fam: 115000 };
 const cinco = 4 * off(P.adulto);
 

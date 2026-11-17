@@ -11,7 +11,7 @@ fs.mkdirSync(OUT, { recursive: true });
 const pecas = [
   { n: 1, slug: 'enche-a-cesta', c: 1, a: 'Começou.', b: 'Enche a cesta.', s: '12% em 1 · 15% levando 3 · <em>17% levando 5</em>' },
   { n: 2, slug: 'quanto-mais', c: 2, a: 'Quanto mais leva,', b: 'maior o desconto.', s: 'Até <em>17% OFF</em> no site todo, de 20 a 26/11' },
-  { n: 3, slug: 'adulto', c: 3, a: 'Protocolo Adulto', b: '3x de R$ 101,79', s: 'sem juros · <em>12% OFF</em> · até 17% levando 5' },
+  { n: 3, slug: 'adulto', c: 3, a: 'Protocolo Adulto', b: '3x de R$ 101,78', s: 'sem juros · <em>12% OFF</em> · até 17% levando 5' },
   { n: 4, slug: 'kids', c: 4, a: 'VermeFree Kids', b: 'com 12% OFF.', s: 'a partir de <em>3x de R$ 79,20</em> sem juros · até 17% levando 5' },
   { n: 5, slug: 'kit-familia', c: 5, a: 'Kit Família', b: 'ganha brinde.', s: '<em>12% OFF</em> + 1 protocolo adulto de presente' },
   { n: 6, slug: 'frete-gratis', c: 6, a: 'Frete grátis', b: 'acima de R$ 299.', s: '1 Protocolo Adulto já garante o <em>frete grátis</em>' },
