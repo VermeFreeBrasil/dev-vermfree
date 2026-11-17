@@ -29,7 +29,7 @@ const pecas = [
   { n: 7, slug: 'adulto', e: 'Adulto<br>3x ' + p3(off(P.adulto)), d: 'sem juros<br>18% OFF' },
   { n: 8, slug: 'so-48h', e: 'Só<br>48 horas', d: 'acaba 28/11<br>às 23h59' },
   { n: 9, slug: '5-adultos', e: '5 Adultos<br>pague 4', d: '+ 18% OFF<br>em cada um' },
-  { n: 10, slug: 'sorteio', e: 'Sorteio<br>de um kit', d: 'entre os 300<br>primeiros pedidos' },
+  { n: 10, slug: 'sorteio', e: 'Sorteio de<br>um protocolo', d: 'entre os 300<br>primeiros pedidos' },
 ];
 
 const css = (W, H, v, n) => {

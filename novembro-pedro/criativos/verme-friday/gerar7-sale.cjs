@@ -28,13 +28,13 @@ const pecas = [
   { n: 7, slug: 'adulto', r: 'Adulto', w: '3x ' + p3(off(P.adulto)), s: 'sem juros · 18% OFF + 5º grátis levando 5' },
   { n: 8, slug: 'so-48h', r: 'Só 48h', w: '27 e 28/11', s: 'acaba 28/11 às 23h59' },
   { n: 9, slug: '5-adultos', r: '5 Adultos', w: 'Pague 4', s: '+ 18% OFF em cada um' },
-  { n: 10, slug: 'sorteio', r: 'Sorteio', w: 'de um kit', s: 'entre os 300 primeiros pedidos' },
+  { n: 10, slug: 'sorteio', r: 'Ganhe um', w: 'Protocolo', s: 'sorteio entre os 300 primeiros pedidos' },
 ];
 
 const css = (W, H, v, p) => {
   const L = v ? { t: 300, blk: 1000, fit: 1050, fita: 900 } : { t: 30, blk: 590, fit: 625, fita: 548 };
   const sc = Math.max(H - W, L.fit - TOPO[p.n] * W);
-  const big = p.w.length > 9 ? (v ? 150 : 128) : (v ? 190 : 160);
+  const big = p.w.length > 8 ? (v ? 150 : 128) : (v ? 190 : 160);
   const red = p.r.length > 8 ? (v ? 150 : 128) : (v ? 190 : 160);
   return `
 *{box-sizing:border-box;margin:0;padding:0}

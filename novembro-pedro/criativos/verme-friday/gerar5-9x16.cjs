@@ -28,7 +28,7 @@ const pecas = [
   { n: 7, slug: 'so-48h', k: 'k7', fit: 1, pill: 'Só 27 e 28/11', big: '48 horas.', h: 'Depois, o preço volta.', s: 'Guia de alimentos + manual de presente.' },
   { n: 8, slug: 'frete-gratis', k: 'k8', fit: 1, pill: 'Sem valor mínimo', big: 'Frete grátis', h: 'em qualquer pedido, até em 1 protocolo' },
   { n: 9, slug: 'casa-toda', k: 'k9', pill: 'Até 34% OFF levando 5', big: '5 por 4', h: '5 protocolos Adulto pelo preço de 4 · + 18% OFF' },
-  { n: 10, slug: 'sorteio', k: 'k10', fit: 1, pill: 'Sorteio · 300 primeiros pedidos', big: 'Ganhe um kit', h: 'à sua escolha' },
+  { n: 10, slug: 'sorteio', k: 'k10', fit: 1, pill: 'Sorteio · 300 primeiros pedidos', big: 'Ganhe um protocolo', h: 'à sua escolha' },
 ];
 
 const TOP = 250, FH = 1286; // a arte 4:5 aprovada (1080 de largura) de 13% a 80%: rodapé termina em 80%, texto fora dos 14% de cima e dos 20% de baixo
