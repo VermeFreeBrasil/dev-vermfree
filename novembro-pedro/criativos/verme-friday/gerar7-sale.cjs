@@ -23,7 +23,7 @@ const pecas = [
   { n: 2, slug: 'leve5-pague4', r: 'Leve 5', w: 'pague 4', s: 'e ainda 18% OFF em tudo' },
   { n: 3, slug: 'kids-2a4', r: 'Kids 2 a 4', w: '3x ' + p3(off(P.k24)), s: 'sem juros · 18% OFF + 5º grátis levando 5' },
   { n: 4, slug: 'kids-5a9', r: 'Kids 5 a 9', w: '3x ' + p3(off(P.k59)), s: 'sem juros · 18% OFF + 5º grátis levando 5' },
-  { n: 5, slug: 'kit-familia', r: 'Kit Família', w: '3x ' + p3(off(P.fam)), s: 'sem juros · 18% OFF + 5º grátis levando 5' },
+  { n: 5, slug: 'kit-familia', r: 'Kit Família', w: '18% OFF', s: 'a casa toda · frete grátis' },
   { n: 6, slug: 'frete-gratis', r: 'Frete', w: 'grátis', s: 'sem valor mínimo · até em 1 protocolo' },
   { n: 7, slug: 'adulto', r: 'Adulto', w: '3x ' + p3(off(P.adulto)), s: 'sem juros · 18% OFF + 5º grátis levando 5' },
   { n: 8, slug: 'so-48h', r: 'Só 48h', w: '27 e 28/11', s: 'acaba 28/11 às 23h59' },

@@ -65,8 +65,8 @@ const html = (p, W, H) => `<!doctype html><html><head><meta charset="utf-8"><sty
 <div class="off">20<small>%<br>OFF</small></div>
 <div class="v"><img src="${img(p.foto)}"></div>
 <p class="nome">${p.nome}</p><p class="sub">${p.sub}</p>
-<p class="p3">3x de <b>${brl(p.parc)}</b></p>
-<p class="parc">sem juros · <b>20% OFF</b></p>
+${p.slug === 'kit-familia' ? `<p class="p3">Com <b>20% OFF</b></p>` : `<p class="p3">3x de <b>${brl(p.parc)}</b></p>
+<p class="parc">sem juros · <b>20% OFF</b></p>`}
 <div class="btn">Comprar no 11/11</div>
 <p class="foot"><b>Só 24 horas</b> · Frete grátis · Compre 4, leve 5</p>
 </div></body></html>`;

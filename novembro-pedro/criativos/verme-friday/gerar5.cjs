@@ -23,7 +23,7 @@ const pecas = [
   { n: 3, slug: 'adulto', k: 'k3', pill: '18% OFF + 5º grátis', h: 'VermeFree Adulto', de: P.adulto },
   { n: 4, slug: 'kids-2a4', k: 'k4', alt: 'k5', pill: '18% OFF + 5º grátis', h: 'VermeFree Kids 2 a 4', de: P.k24 },
   { n: 5, slug: 'kids-5a9', k: 'k5', pill: '18% OFF + 5º grátis', h: 'VermeFree Kids 5 a 9', de: P.k59 },
-  { n: 6, slug: 'kit-familia', k: 'k6', pill: '18% OFF + 5º grátis', h: 'Kit Família · a casa toda', de: P.fam },
+  { n: 6, slug: 'kit-familia', k: 'k6', pill: '18% OFF + 5º grátis', big: '18% OFF', h: 'Kit Família · a casa toda' },
   { n: 7, slug: 'so-48h', k: 'k7', fit: 1, pill: 'Só 27 e 28/11', big: '48 horas.', h: 'Depois, o preço volta.', s: 'Guia de alimentos + manual de presente.' },
   { n: 8, slug: 'frete-gratis', k: 'k8', fit: 1, pill: 'Sem valor mínimo', big: 'Frete grátis', h: 'em qualquer pedido, até em 1 protocolo' },
   { n: 9, slug: 'casa-toda', k: 'k9', pill: 'Até 34% OFF levando 5', big: '5 por 4', h: '5 protocolos Adulto pelo preço de 4 · + 18% OFF' },
