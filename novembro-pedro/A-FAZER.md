@@ -6,7 +6,7 @@
 - [ ] Marcar no Alliance: "11/11 — Editar os 10 vídeos de venda" (9 entregues).
 
 ## 13/11
-- [ ] ⚠️ ATRASADO (venceu 13/11 18h) Sorteio do 11/11 entre os 300 primeiros pedidos (gravado; avisar Sarah e Poly).
+- [ ] ⏸️ STAND BY (Pedro, 17/11: "quando alguém me cobrar eu volto aqui") Sorteio do 11/11 entre os 300 primeiros pedidos. Plano pronto: puxar os 300 primeiros pedidos do 11/11 sem reembolsados (só leitura), sortear 1 com número registrado, passar ganhador + print ao Pedro.
 - [ ] ⚠️ ATRASADO (venceu 13/11 18h) 8 vídeos do 2º lote · depende do bruto da Mafe (cobrar).
 
 ## Decisões pendentes (Pedro / Vitor)
