@@ -80,7 +80,7 @@
         <span class="im">{{ img | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}{%- if kn > 1 -%}<i>×{{ kn }}</i>{%- endif -%}</span>
         <span class="a">
           {%- if kn == 5 -%}<b>5 unidades<em>−15%</em></b><small>{% if tot > 100000 %}+ 1 kit adulto de brinde{% else %}o maior desconto do dia{% endif %}</small>{%- if kk -%}<small class="g">+ Kit Kids 2 a 4 anos de presente</small>{%- endif -%}
-          {%- else -%}<b>{{ k }} {% if kn == 1 %}unidade{% else %}unidades{% endif %}<em>{% if kn == 3 %}−12%{% else %}−10%{% endif %}</em></b><small>{% if kn == 1 %}{{ l1 }}{% else %}{{ l2 }}{% endif %}</small>{%- endif -%}
+          {%- else -%}<b>{{ k }} {% if kn == 1 %}unidade{% else %}unidades{% endif %}<em>{% if kn == 3 %}−12%{% else %}−10%{% endif %}</em></b><small>{% if kn == 1 %}{{ l1 }}{% else %}{{ l2 }}{% endif %}</small>{% if tot > 100000 %}<small class="g">+ 1 kit adulto de brinde</small>{% endif %}{%- endif -%}
         </span>
         <span class="c"><s>{{ cheio | money }}</s><b>{{ tot | money }}</b><small>{{ un | money }} cada</small></span>
       </button>

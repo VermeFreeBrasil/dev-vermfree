@@ -72,7 +72,7 @@ html.ve-23 .ve-live{background:#9e0f17}html.ve-20 .ve-live .o b:first-child,html
         document.querySelectorAll('[data-ve-urg]').forEach(function (el) { if (!el.dataset.o) el.dataset.o = el.innerHTML; el.innerHTML = u === 2 ? '<b>🚨 Última hora</b> · a última oferta do mês acaba à meia-noite' : u === 1 ? '<b>⏰ Última chance</b> · até 15% OFF acaba à meia-noite' : el.dataset.o; }); }
   };
   var brl = function (c) { return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
-  var menu = function () { document.querySelectorAll('.vf-hd__pr').forEach(function (el) { var m = /R\$\s*([\d.]+,\d{2})/.exec((el.querySelector('small') || el).textContent); if (!m) return; var c = Math.round(+m[1].replace(/\./g, '').replace(',', '.') * 100), t = Math.round(c * 0.9); el.innerHTML = '<b>' + brl(t) + '</b> hoje · 10% OFF <small>até 15% levando 5 · de ' + brl(c) + ' · 3x de ' + brl(Math.round(t / 3)) + ' sem juros</small>'; }); };
+  var menu = function () { document.querySelectorAll('.vf-hd__pr').forEach(function (el) { var m = /R\$\s*([\d.]+,\d{2})/.exec((el.querySelector('small') || el).textContent); if (!m) return; var c = Math.round(+m[1].replace(/\./g, '').replace(',', '.') * 100), t = Math.round(c * 0.9); el.innerHTML = '<b>' + brl(t) + '</b> hoje · 10% OFF · <small>até 15% levando 5 · de ' + brl(c) + ' · 3x de ' + brl(Math.round(t / 3)) + ' sem juros</small>'; }); };
   var mostra = function () { document.querySelectorAll('[data-ve]').forEach(function (el) { el.hidden = false; }); tick(); menu(); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mostra); else mostra();
   setInterval(tick, 1000);
@@ -333,7 +333,7 @@ html.ve-23 .ve-live{background:#9e0f17}html.ve-20 .ve-live .o b:first-child,html
   <section class="ve-fim">
   <div class="ve-moon"><div class="ve-sombra" data-ve-sombra></div></div>
   <h2 class="cap">Faltam <em class="r" data-ve-th>--</em> para o desconto acabar.</h2>
-  <p>Depois da meia-noite, os preços voltam e a última lua nova de 2026 passa sem você. Comece 2027 sem parasitas.</p>
+  <p>Depois da meia-noite, os preços voltam e a última lua nova do ano passa sem você. É a última chance de desparasitar em 2026.</p>
   <a class="ve-btn" href="#ve-monte">Garantir meu desconto →</a>
   </section>
   <p class="ve-fine">Só no dia 30/11, até 23h59 (horário de Brasília). Descontos aplicados automaticamente no carrinho: 10% em 1 unidade, 12% em 3 e 15% em 5. Frete grátis acima de R$ 299. Kit adulto de brinde nas compras acima de R$ 1.000.</p>
@@ -485,7 +485,7 @@ html.ve-on body[class*="template-product"] #main h2::before{content:"";display:i
   <section class="ve-fim">
   <div class="ve-moon"><div class="ve-sombra" data-ve-sombra></div></div>
   <h2 class="cap">Faltam <em class="r" data-ve-th>--</em> para o desconto acabar.</h2>
-  <p>Última lua nova de 2026: comece 2027 sem parasitas. À meia-noite o {{ titulo }} volta para {{ v.price | money }}. Hoje sai por <b style="color:#ff6b72">{{ v.price | times: 0.9 | money }}</b>, e levando 5 o desconto sobe para 15%.</p>
+  <p>Última chance de desparasitar no ano. À meia-noite o {{ titulo }} volta para {{ v.price | money }}. Hoje sai por <b style="color:#ff6b72">{{ v.price | times: 0.9 | money }}</b>, e levando 5 o desconto sobe para 15%.</p>
   <a href="#" class="ve-btn" data-ve-stick-go>Quero o meu agora</a>
   </section>
 </div>

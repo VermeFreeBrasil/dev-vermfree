@@ -29,7 +29,7 @@ promo = [
  ("'<b>🚨 Última hora</b> · o maior desconto do ano acaba à meia-noite' : u === 1 ? '<b>⏰ Últimas horas</b> · 20% OFF + 5º grátis acaba à meia-noite'",
   "'<b>🚨 Última hora</b> · a última oferta do mês acaba à meia-noite' : u === 1 ? '<b>⏰ Última chance</b> · até 15% OFF acaba à meia-noite'", 1),
  ("t = Math.round(c * 0.8); el.innerHTML = '<b>' + brl(t) + '</b> hoje · 20% OFF <small>",
-  "t = Math.round(c * 0.9); el.innerHTML = '<b>' + brl(t) + '</b> hoje · 10% OFF <small>até 15% levando 5 · ", 1),
+  "t = Math.round(c * 0.9); el.innerHTML = '<b>' + brl(t) + '</b> hoje · 10% OFF · <small>até 15% levando 5 · ", 1),
  # visual preto/vermelho/branco (igual à Verme Friday): lua branca, verde do Eclipse vira vermelho
  ('background:radial-gradient(circle at 38% 35%,#fbf8ea 0,#e9efd9 35%,#c0de96 75%,#93b874 100%);box-shadow:0 0 80px #c0de9640,0 0 200px #c0de9622,inset -20px -30px 60px #6f8f5555}',
   'background:radial-gradient(circle at 38% 35%,#ffffff 0,#ececec 35%,#bdbdbd 75%,#8a8a8a 100%);box-shadow:0 0 80px #e0262f40,0 0 200px #e0262f22,inset -20px -30px 60px #00000055}', 1),
@@ -57,6 +57,7 @@ promo = [
  ('Garantia de 7 dias · Só no 11/11', 'Garantia de 7 dias · Só hoje, 30/11', 1),
  ('<div class="ve-trilho"><span>20% OFF em tudo</span><span>Compre 4, leve 5</span><span>Frete grátis sem mínimo</span><span>15% de cashback nos 100 primeiros</span><span><a href="/pages/regulamento-sorteio-11-11" style="color:inherit">Sorteio de um kit entre os 300 primeiros</a></span></div>',
   '<div class="ve-trilho"><span>Até 15% OFF por quantidade</span><span>Frete grátis acima de R$ 299</span><span>Kit adulto de brinde acima de R$ 1.000</span><span>Só hoje, 30/11</span></div>', 1),
+ ('<p>Depois da meia-noite, os preços voltam e a última lua nova de 2026 passa sem você. Comece 2027 sem parasitas.</p>', '<p>Depois da meia-noite, os preços voltam e a última lua nova do ano passa sem você. É a última chance de desparasitar em 2026.</p>', 1),
  # FAQ
  ('Perguntas <em>do 11/11.</em></h2>', 'Perguntas <em>do Free Monday.</em></h2>', 1),
  ('<details open><summary>Como funciona o compre 4, leve 5?</summary><p>Coloque 5 protocolos no carrinho: o de menor valor sai grátis. Vale para qualquer combinação e soma com os 20% OFF.</p></details>',
@@ -90,6 +91,7 @@ promo = [
  ('<li><a href="/pages/regulamento-sorteio-11-11" style="color:inherit"><b>Sorteio de um kit</b>entre os 300 primeiros</a></li>', '<li><b>Kit adulto de brinde</b>nas compras acima de R$ 1.000</li>', 1),
  ('        <li><b>Guia e manual</b>digitais no seu e-mail</li>\n', '', 1),
  ('<a class="ve-mix" href="/#ve-monte">Quer misturar protocolos? Monte seus 5 →</a>', '<a class="ve-mix" href="/#ve-monte">Quer misturar protocolos? Monte o pedido da casa →</a>', 1),
+ ('<p>Última lua nova de 2026: comece 2027 sem parasitas. À meia-noite o', '<p>Última chance de desparasitar no ano. À meia-noite o', 1),
  (', e o 5º é por nossa conta.</p>', ', e levando 5 o desconto sobe para 15%.</p>', 1),
  ('<small>20% OFF acaba em <b data-ve-t>--</b></small>', '<small>10% OFF acaba em <b data-ve-t>--</b></small>', 1),
 ]
@@ -105,6 +107,7 @@ kits = [
  ('{%- assign p80 = v.price | times: 0.8 -%}', '{%- assign p80 = v.price | times: 0.9 | round -%}', 1),
  ('<b>5 unidades, pague 4<em>−36%</em></b><small>20% OFF + o 5º grátis</small>', '<b>5 unidades<em>−15%</em></b><small>{% if tot > 100000 %}+ 1 kit adulto de brinde{% else %}o maior desconto do dia{% endif %}</small>', 1),
  ('<em>−20%</em></b><small>{% if kn == 1 %}', '<em>{% if kn == 3 %}−12%{% else %}−10%{% endif %}</em></b><small>{% if kn == 1 %}', 1),
+ ('<small>{% if kn == 1 %}{{ l1 }}{% else %}{{ l2 }}{% endif %}</small>', '<small>{% if kn == 1 %}{{ l1 }}{% else %}{{ l2 }}{% endif %}</small>{% if tot > 100000 %}<small class="g">+ 1 kit adulto de brinde</small>{% endif %}', 1),
  ('  <p class="ve-lua">🌑 Chega a tempo de começar na <b>última lua nova de 2026 (09/12)</b></p>\n', '  <p class="ve-lua">🌑 Pedindo hoje, chega a tempo da <b>última lua nova do ano</b></p>\n', 1),
  ("var gratis = function (k) { return Math.floor(k / 5); };", "var pc = function (k) { return k >= 5 ? 15 : k >= 3 ? 12 : 10; }, gratis = function () { return 0; };", 1),
  ("Math.round(preco * 0.8 * (k - gratis(k)))", "Math.round(preco * k * (100 - pc(k)) / 100)", 1),
