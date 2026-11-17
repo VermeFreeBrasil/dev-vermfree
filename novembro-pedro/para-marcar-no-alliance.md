@@ -7,6 +7,7 @@ Ao marcar, mova a linha para "Já marcadas".
 
 | Concluída em | Tarefa | Link | O que colar na tarefa |
 |---|---|---|---|
+| 17/11 | BLACK FRIDAY · FREE MONDAY — Configurar a entrega dos brindes | https://alliance-os-sooty.vercel.app/?task=mcp-1793232474314-12-2ea89#tasks | Flow "Free Monday · brinde kit adulto (> R$ 1.000)" ativo, 30/11 |
 | 16/11 | BLACK FRIDAY · FREE MONDAY — Configurar oferta e frete na Shopify | https://alliance-os-sooty.vercel.app/?task=mcp-1793232474314-11-456cd#tasks | 4 descontos agendados 30/11 (10/12/15% + frete ≥ R$ 299) |
 | 16/11 | BLACK FRIDAY · FREE MONDAY — Criar os 5 criativos estáticos de venda (entregues 10, 4:5 + 9:16) | https://alliance-os-sooty.vercel.app/?task=mcp-1793232343398-4-42c88#tasks | Drive: https://drive.google.com/drive/folders/1Ca5tqPUY_ckZ7k9o3ERLzRxTpc8lbbFI |
 | 04/11 | BLACK FRIDAY · 11/11 — Organizar o sorteio dos 300 primeiros pedidos | https://alliance-os-sooty.vercel.app/?task=mcp-1793231782749-6-99d65#tasks | Regulamento publicado: https://vermefree.com.br/pages/regulamento-sorteio-11-11 (prêmio Kit Família; sorteio 13/11). Link no tema do 11/11. Método de sorteio que dá para conferir e textos do ganhador em novembro-pedro/shopify/sorteio-1111/ |
