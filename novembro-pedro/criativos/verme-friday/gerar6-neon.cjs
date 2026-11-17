@@ -22,13 +22,13 @@ const BASE = { 1: .86, 2: .80, 3: .95, 4: .90, 5: .93, 6: .82, 7: .95, 8: .95, 9
 const pecas = [
   { n: 1, slug: '18-off', e: '18% OFF<br>no site todo', d: 'Só 27<br>e 28/11' },
   { n: 2, slug: 'compre4-leve5', e: 'Compre 4,<br>leve 5', d: 'O 5º sai<br>grátis' },
-  { n: 3, slug: 'kids-2a4', e: 'Kids 2 a 4<br>' + brl(off(P.k24)), d: 'de ' + brl(P.k24) + '<br>3x ' + p3(off(P.k24)) },
-  { n: 4, slug: 'kids-5a9', e: 'Kids 5 a 9<br>' + brl(off(P.k59)), d: 'de ' + brl(P.k59) + '<br>3x ' + p3(off(P.k59)) },
-  { n: 5, slug: 'kit-familia', e: 'Kit Família<br>' + brl(off(P.fam)), d: 'a casa toda<br>3x ' + p3(off(P.fam)) },
+  { n: 3, slug: 'kids-2a4', e: 'Kids 2 a 4<br>3x ' + p3(off(P.k24)), d: 'sem juros<br>18% OFF' },
+  { n: 4, slug: 'kids-5a9', e: 'Kids 5 a 9<br>3x ' + p3(off(P.k59)), d: 'sem juros<br>18% OFF' },
+  { n: 5, slug: 'kit-familia', e: 'Kit Família<br>3x ' + p3(off(P.fam)), d: 'a casa toda<br>sem juros' },
   { n: 6, slug: 'frete-gratis', e: 'Frete grátis<br>sem mínimo', d: 'até em<br>1 protocolo' },
-  { n: 7, slug: 'adulto', e: 'Adulto<br>' + brl(off(P.adulto)), d: 'de ' + brl(P.adulto) + '<br>3x ' + p3(off(P.adulto)) },
+  { n: 7, slug: 'adulto', e: 'Adulto<br>3x ' + p3(off(P.adulto)), d: 'sem juros<br>18% OFF' },
   { n: 8, slug: 'so-48h', e: 'Só<br>48 horas', d: 'acaba 28/11<br>às 23h59' },
-  { n: 9, slug: '5-adultos', e: '5 Adultos<br>' + brl(cinco), d: 'economia de<br>' + brl(5 * P.adulto - cinco) },
+  { n: 9, slug: '5-adultos', e: '5 Adultos<br>pague 4', d: '+ 18% OFF<br>em cada um' },
   { n: 10, slug: 'sorteio', e: 'Sorteio<br>de um kit', d: 'entre os 300<br>primeiros pedidos' },
 ];
 

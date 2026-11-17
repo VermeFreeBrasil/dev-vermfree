@@ -21,13 +21,13 @@ const TOPO = { 1: .41, 2: .33, 3: .2, 4: .14, 5: .37, 6: .32, 7: .14, 8: .3, 9: 
 const pecas = [
   { n: 1, slug: '18-off', r: 'Oferta', w: '18% OFF', s: 'no site todo · só 27 e 28/11' },
   { n: 2, slug: 'leve5-pague4', r: 'Leve 5', w: 'pague 4', s: 'e ainda 18% OFF em tudo' },
-  { n: 3, slug: 'kids-2a4', r: 'Kids 2 a 4', w: brl(off(P.k24)), s: 'de ' + brl(P.k24) + ' · 3x de ' + p3(off(P.k24)) },
-  { n: 4, slug: 'kids-5a9', r: 'Kids 5 a 9', w: brl(off(P.k59)), s: 'de ' + brl(P.k59) + ' · 3x de ' + p3(off(P.k59)) },
-  { n: 5, slug: 'kit-familia', r: 'Kit Família', w: brl(off(P.fam)), s: 'de ' + brl(P.fam) + ' · 3x de ' + p3(off(P.fam)) },
+  { n: 3, slug: 'kids-2a4', r: 'Kids 2 a 4', w: '3x ' + p3(off(P.k24)), s: 'sem juros · 18% OFF + 5º grátis levando 5' },
+  { n: 4, slug: 'kids-5a9', r: 'Kids 5 a 9', w: '3x ' + p3(off(P.k59)), s: 'sem juros · 18% OFF + 5º grátis levando 5' },
+  { n: 5, slug: 'kit-familia', r: 'Kit Família', w: '3x ' + p3(off(P.fam)), s: 'sem juros · 18% OFF + 5º grátis levando 5' },
   { n: 6, slug: 'frete-gratis', r: 'Frete', w: 'grátis', s: 'sem valor mínimo · até em 1 protocolo' },
-  { n: 7, slug: 'adulto', r: 'Adulto', w: brl(off(P.adulto)), s: 'de ' + brl(P.adulto) + ' · 3x de ' + p3(off(P.adulto)) },
+  { n: 7, slug: 'adulto', r: 'Adulto', w: '3x ' + p3(off(P.adulto)), s: 'sem juros · 18% OFF + 5º grátis levando 5' },
   { n: 8, slug: 'so-48h', r: 'Só 48h', w: '27 e 28/11', s: 'acaba 28/11 às 23h59' },
-  { n: 9, slug: '5-adultos', r: '5 Adultos', w: brl(cinco), s: 'economia de ' + brl(5 * P.adulto - cinco) },
+  { n: 9, slug: '5-adultos', r: '5 Adultos', w: 'Pague 4', s: '+ 18% OFF em cada um' },
   { n: 10, slug: 'sorteio', r: 'Sorteio', w: 'de um kit', s: 'entre os 300 primeiros pedidos' },
 ];
 

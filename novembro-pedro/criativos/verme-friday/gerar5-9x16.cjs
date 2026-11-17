@@ -27,7 +27,7 @@ const pecas = [
   { n: 6, slug: 'kit-familia', k: 'k6', pill: '18% OFF + 5º grátis', h: 'Kit Família · a casa toda', de: P.fam },
   { n: 7, slug: 'so-48h', k: 'k7', fit: 1, pill: 'Só 27 e 28/11', big: '48 horas.', h: 'Depois, o preço volta.', s: 'Guia de alimentos + manual de presente.' },
   { n: 8, slug: 'frete-gratis', k: 'k8', fit: 1, pill: 'Sem valor mínimo', big: 'Frete grátis', h: 'em qualquer pedido, até em 1 protocolo' },
-  { n: 9, slug: 'casa-toda', k: 'k9', pill: 'Até 34% OFF levando 5', big: brl(cinco), h: '5 protocolos Adulto · economia de ' + brl(5 * P.adulto - cinco) },
+  { n: 9, slug: 'casa-toda', k: 'k9', pill: 'Até 34% OFF levando 5', big: '5 por 4', h: '5 protocolos Adulto pelo preço de 4 · + 18% OFF' },
   { n: 10, slug: 'sorteio', k: 'k10', fit: 1, pill: 'Sorteio · 300 primeiros pedidos', big: 'Ganhe um kit', h: 'à sua escolha' },
 ];
 
@@ -88,7 +88,7 @@ const html = (p, W, H, key) => `<!doctype html><html><head><meta charset="utf-8"
 ${p.tags ? `<div class="tags">${p.tags.map(t => `<div>${t}</div>`).join('')}</div>` : `<div class="c">
   <span class="pill">${p.pill}</span>
   ${p.de
-    ? `<h1 class="only">${p.h}</h1><div class="pr"><s>${brl(p.de)}</s><b>${brl(off(p.de))}</b><em>−18%</em></div><p class="p3">ou <b>3x de ${p3(off(p.de))}</b> sem juros</p>`
+    ? `<h1 class="only">${p.h}</h1><div class="pr"><b>3x de ${p3(off(p.de))}</b><em>−18%</em></div><p class="p3">sem juros · <b>+ 5º grátis</b> levando 5</p>`
     : `<div class="big"><b>${p.big}</b></div><h1>${p.h}</h1>${p.s ? `<p class="s">${p.s}</p>` : ''}`}
   ${p.n === 7 ? '' : tm}
 </div>`}

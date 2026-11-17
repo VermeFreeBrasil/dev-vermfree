@@ -1,5 +1,7 @@
 # Verme Friday · 10 estáticos de venda
 
+**17/11 · sem preço total (nova recomendação):** nas versões que estão no Drive (v5 + 9:16, neon e sale) as peças de produto mostram só a parcela "3x de R$ … sem juros"; a peça dos 5 Adultos virou "5 por 4" / "Pague 4" + 18% OFF em cada um. Mudaram: v5 03, 04, 05, 06, 09 · neon 03, 04, 05, 07, 09 · sale 03, 04, 05, 07, 09. Prova: prova-sem-preco-*.jpg.
+
 **v7 "sale" (16/11, 2ª referência do Pedro):** mais 10 peças, 4:5 + 9:16. Bloco preto em cima: "VERME FRIDAY" branco, palavra-chave em vermelho e número em branco, linha fina de apoio; embaixo foto de estúdio (parede vermelha, mesa branca, produto real, planta) com duas fitas brancas "Verme Friday · 18% OFF · 5º grátis" cruzando a divisa. Cenas em cenas7/ (Higgsfield com as fotos reais). Mensagens iguais às da v6 (18% OFF, leve 5 pague 4, Kids 2 a 4, Kids 5 a 9, Kit Família, frete grátis, Adulto, só 48h, 5 Adultos, sorteio). Gerador: gerar7-sale.cjs · png7/ · provas prova7-sale-*.png.
 **v6 neon aprovada 16/11** e subida no Drive (07 › [2] Comunicação & Criativos), 20 PNGs.
 
