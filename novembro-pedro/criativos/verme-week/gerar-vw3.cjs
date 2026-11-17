@@ -11,13 +11,13 @@ fs.mkdirSync(OUT, { recursive: true });
 const pecas = [
   { n: 1, slug: 'enche-a-cesta', c: 1, a: 'Começou.', b: 'Enche a cesta.', s: '12% em 1 · 15% levando 3 · <em>17% levando 5</em>' },
   { n: 2, slug: 'quanto-mais', c: 2, a: 'Quanto mais leva,', b: 'maior o desconto.', s: 'Até <em>17% OFF</em> no site todo, de 20 a 26/11' },
-  { n: 3, slug: 'adulto', c: 3, a: 'Protocolo Adulto', b: 'R$ 305,36', s: 'de R$ 347,00 · <em>12% OFF</em> · levando 5, R$ 288,01 cada' },
-  { n: 4, slug: 'kids', c: 4, a: 'VermeFree Kids', b: 'com 12% OFF.', s: '2 a 4 anos <em>R$ 237,60</em> · 5 a 9 anos <em>R$ 342,32</em>' },
-  { n: 5, slug: 'kit-familia', c: 5, a: 'Kit Família', b: 'R$ 1.012 + brinde', s: '12% OFF e <em>1 kit adulto de brinde</em>' },
-  { n: 6, slug: 'frete-gratis', c: 6, a: 'Frete grátis', b: 'acima de R$ 299.', s: '1 Protocolo Adulto (<em>R$ 305,36</em>) já passa' },
+  { n: 3, slug: 'adulto', c: 3, a: 'Protocolo Adulto', b: '3x de R$ 101,79', s: 'sem juros · <em>12% OFF</em> · até 17% levando 5' },
+  { n: 4, slug: 'kids', c: 4, a: 'VermeFree Kids', b: 'com 12% OFF.', s: 'a partir de <em>3x de R$ 79,20</em> sem juros · até 17% levando 5' },
+  { n: 5, slug: 'kit-familia', c: 5, a: 'Kit Família + brinde', b: '3x de R$ 337,33', s: 'sem juros · <em>12% OFF</em> + 1 kit adulto de brinde' },
+  { n: 6, slug: 'frete-gratis', c: 6, a: 'Frete grátis', b: 'acima de R$ 299.', s: '1 Protocolo Adulto já garante o <em>frete grátis</em>' },
   { n: 7, slug: 'brinde', c: 7, a: 'Acima de R$ 1.000,', b: 'um kit adulto é seu.', s: '<em>1 kit adulto de brinde</em> nas compras da Verme Week' },
   { n: 8, slug: '7-dias', c: 8, a: '7 dias.', b: 'Só até 26/11.', s: 'Até <em>17% OFF</em> · acaba 26/11 às 23h59' },
-  { n: 9, slug: 'leve-5', c: 9, a: 'Levando 5,', b: '17% OFF.', s: '5 Adultos por <em>R$ 1.440,05</em> + kit adulto de brinde' },
+  { n: 9, slug: 'leve-5', c: 9, a: 'Levando 5,', b: '17% OFF.', s: '<em>17% OFF</em> em cada um + 1 kit adulto de brinde' },
   { n: 10, slug: 'pode-misturar', c: 10, a: 'Pode misturar', b: 'Adulto + Kids.', s: '3 itens <em>15%</em> · 5 itens <em>17%</em> na mesma compra' },
 ];
 // v: 9:16. Cena 752x1344 (topo ~20% vazio, preto). Bordas da cena se fundem no preto (máscara).
