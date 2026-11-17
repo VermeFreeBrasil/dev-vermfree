@@ -10,20 +10,21 @@ const ART = path.join(__dirname, 'cenas');
 const OUT = path.join(__dirname, 'png');
 fs.mkdirSync(OUT, { recursive: true });
 const brl = c => 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const p3 = c => brl(Math.round(c / 3));
 const d = (c, p) => Math.round(c * (100 - p) / 100);
 const P = { adulto: 34700, k24: 27000, k59: 38900, fam: 115000 };
 
 const pecas = [
   { n: 1, slug: 'ultima-chance', h: 'Última chance de<br><em>desparasitar no ano.</em>', s: 'Pedindo no Free Monday, chega a tempo da última lua nova do ano.' },
   { n: 2, slug: 'ate-15-off', h: 'Até <em>15% OFF</em> por quantidade.', s: '1 unidade 10% · 3 unidades 12% · 5 unidades 15%' },
-  { n: 3, slug: 'adulto', h: 'Adulto por <em>' + brl(d(P.adulto, 10)) + '</em>', s: 'de ' + brl(P.adulto) + ' · levando 5, ' + brl(d(P.adulto, 15)) + ' cada' },
-  { n: 4, slug: 'kids-2a4', h: 'Kids 2 a 4 por <em>' + brl(d(P.k24, 10)) + '</em>', s: 'de ' + brl(P.k24) + ' · até 15% OFF levando 5' },
-  { n: 5, slug: 'kids-5a9', h: 'Kids 5 a 9 por <em>' + brl(d(P.k59, 10)) + '</em>', s: 'de ' + brl(P.k59) + ' · até 15% OFF levando 5' },
-  { n: 6, slug: 'kit-familia', h: 'Kit Família por <em>' + brl(d(P.fam, 10)) + '</em>', s: 'a casa toda + 1 kit adulto de brinde' },
+  { n: 3, slug: 'adulto', h: 'Adulto em <em>3x de ' + p3(d(P.adulto, 10)) + '</em>', s: 'sem juros · 10% OFF · até 15% OFF levando 5' },
+  { n: 4, slug: 'kids-2a4', h: 'Kids 2 a 4 em <em>3x de ' + p3(d(P.k24, 10)) + '</em>', s: 'sem juros · 10% OFF · até 15% OFF levando 5' },
+  { n: 5, slug: 'kids-5a9', h: 'Kids 5 a 9 em <em>3x de ' + p3(d(P.k59, 10)) + '</em>', s: 'sem juros · 10% OFF · até 15% OFF levando 5' },
+  { n: 6, slug: 'kit-familia', h: 'Kit Família em <em style="white-space:nowrap">3x de ' + p3(d(P.fam, 10)) + '</em>', s: 'sem juros · a casa toda + 1 kit adulto de brinde' },
   { n: 7, slug: 'kit-de-brinde', h: 'Ganhe <em>1 kit adulto</em> de brinde.', s: 'nas compras acima de R$ 1.000' },
-  { n: 8, slug: 'frete-gratis', h: '<em>Frete grátis</em> acima de R$ 299.', s: '1 Adulto já passa: ' + brl(d(P.adulto, 10)) },
+  { n: 8, slug: 'frete-gratis', h: '<em>Frete grátis</em> acima de R$ 299.', s: '1 Protocolo Adulto já garante o frete grátis' },
   { n: 9, slug: 'so-hoje', h: 'Só hoje.<br><em>Última oportunidade do mês.</em>', s: '30/11 até 23h59' },
-  { n: 10, slug: '5-adultos', h: '5 Adultos <em>+ 1 de brinde.</em>', s: brl(5 * d(P.adulto, 15)) + ' com 15% OFF · o 6º kit vem de presente' },
+  { n: 10, slug: '5-adultos', h: '5 Adultos <em>+ 1 de brinde.</em>', s: '15% OFF em cada um · o 6º kit vem de presente' },
 ];
 
 const css = (W, H, v) => {
