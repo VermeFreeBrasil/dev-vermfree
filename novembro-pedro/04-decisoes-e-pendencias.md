@@ -6,7 +6,8 @@
 |---|---|---|---|---|
 | P40 | Pedro / Vitor | Free Monday promete "chega a tempo da última lua nova do ano" (ficha), mas o calendário da PDP mostra "Peça até 11/12 · lua nova 07/01". Pedro (17/11): "pode deixar tudo igual" (a confirmar se vale para isto) | Mensagem desencontrada no dia 30/11 | antes de 29/11 |
 | P41 | Sarah | Link do grupo VIP Black para os temas 3 (VF) e 4 (FM) + guia/manual dos brindes da VF | Site fechado sem link; brinde da VF | 24/11 |
-| P42 | Mafe / Ítalo | Bruto dos 10 vídeos de venda da Verme Friday + roteiros | Entrega 19/11 12h | 18/11 |
+| P42 | Mafe / Ítalo | Bruto dos 10 vídeos de venda da Verme Friday + roteiros (18/11: chegaram 7; faltam roteiros 2, 9 e 10) | Entrega 19/11 12h | 18/11 |
+| P43 | Pedro (republicar) / Claude (código) | Upload de vídeo grande no Drive: o receptor do Apps Script só aceita ~35 MB por arquivo. 18/11 os 7 originais da VF (53–120 MB) falharam e o Pedro subiu na mão. Fazer o receptor aceitar envio em partes (chunks) e o Pedro reimplantar o script. Até lá: conferir o tamanho ANTES de prometer subir e avisar na hora | Próximos lotes de vídeo (FM, 4º lote) | quando o Pedro puder |
 | P1 | Vitor | **Volume da semana 30/10–06/11 (VF)**: 50 vídeos universais + 5 vídeos e 5 estáticos do 11/11 + tema, oferta, frete, brindes e cashback do 11/11. Proposta: edição de vídeo em lote (skill do repositório) | Sem isso, o M2 (05/11) e o M3 (06/11) atrasam e o Otávio programa sem criativo | **30/10, na daily** |
 | P2 | Vitor | Ferramenta de cashback do 11/11 VF: crédito de loja nativo + Flow (sem custo) ou app pago? | A tarefa pede o ok dele se houver custo; vence 05/11 | 30/10 |
 | P10 | Vitor | Estoque de kit kids (11/11) e kit adulto (Verme November, Week, Free Monday) | As tarefas pedem para conferir antes | 06/11 |
