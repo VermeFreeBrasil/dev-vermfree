@@ -1,6 +1,6 @@
 # Status — placar do mês
 
-Atualizado em: **10/11/2026** (fechamento de 09/11), a partir da exportação do Alliance OS.
+Atualizado em: **18/11/2026** (fechamento de 17/11; tabela abaixo é a exportação de 10/11), a partir da exportação do Alliance OS.
 
 **REGRA FIXA (29/10): este chat faz SÓ tarefas da VermeFree. Revita e Botanika são só referência de dependência; nunca executar nada delas aqui. Se o Pedro citar Revita ou Botanika, parar e avisar.**
 
@@ -23,6 +23,8 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 | Verme Friday | 10 | 10 | — | 10 + 10 | 19/11 12h |
 | Free Monday | 10 (era 5) | 10 | — | 10 + 10 | 25/11 12h |
 | **Total** | **85** | **85** | 4 vídeos + 40 estáticos (30 a ajustar) | ~81 vídeos + 45 estáticos | |
+
+**17/11:** Verme Week: 10 estáticos (v3, produto herói) ✅ aprovados e no Drive (pasta "Verme Week" 1uohPCTaJqGK0Ud4tajwcOG0B_BA1nlh_). Regra nova "sem preço total, só parcela": VW, VF, FM e Black refeitos e trocados no Drive; ajustes do Otávio (Kit Família sem preço, brinde no título) e "kit" → "protocolo" nas peças e nos temas 2/3/4 (conferidos contra as fichas). Tema Free Monday ✅ aprovado. Vídeos da Verme Friday ⛔ sem bruto da Mafe (vence 19/11 12h).
 
 **16/11:** lote 4 dos universais (peças 33–40, estilo neon) ✅ aprovado e no Drive ([04] e [06]): **40 universais do mês completos**. Verme November: +10 estáticos de venda (11–20) ✅. Verme Friday: +20 (neon e sale) + 9:16 ✅. Free Monday: 10 estáticos ✅.
 

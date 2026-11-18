@@ -7,6 +7,8 @@ Ao marcar, mova a linha para "Já marcadas".
 
 | Concluída em | Tarefa | Link | O que colar na tarefa |
 |---|---|---|---|
+| 17/11 | BLACK FRIDAY · FREE MONDAY — Criar o tema completo do site (aprovado 17/11) | (buscar no Alliance: Free Monday › tema) | Tema "4 · Free Monday · agendar 29/11 00h" (169093464283); prévia https://vermefree.com.br/?preview_theme_id=169093464283 · falta só o link do grupo VIP |
+| 17/11 | BLACK FRIDAY · VERME WEEK — estáticos de venda (10, 4:5 + 9:16) | (sem tarefa própria? confirmar com o Vitor) | Drive: https://drive.google.com/drive/folders/1uohPCTaJqGK0Ud4tajwcOG0B_BA1nlh_ |
 | 17/11 | BLACK FRIDAY · FREE MONDAY — Configurar a entrega dos brindes | https://alliance-os-sooty.vercel.app/?task=mcp-1793232474314-12-2ea89#tasks | Flow "Free Monday · brinde kit adulto (> R$ 1.000)" ativo, 30/11 |
 | 16/11 | BLACK FRIDAY · FREE MONDAY — Configurar oferta e frete na Shopify | https://alliance-os-sooty.vercel.app/?task=mcp-1793232474314-11-456cd#tasks | 4 descontos agendados 30/11 (10/12/15% + frete ≥ R$ 299) |
 | 16/11 | BLACK FRIDAY · FREE MONDAY — Criar os 5 criativos estáticos de venda (entregues 10, 4:5 + 9:16) | https://alliance-os-sooty.vercel.app/?task=mcp-1793232343398-4-42c88#tasks | Drive: https://drive.google.com/drive/folders/1Ca5tqPUY_ckZ7k9o3ERLzRxTpc8lbbFI |

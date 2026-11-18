@@ -4,6 +4,9 @@
 
 | # | Para quem | Pergunta / risco | Por que importa | Prazo para resolver |
 |---|---|---|---|---|
+| P40 | Pedro / Vitor | Free Monday promete "chega a tempo da última lua nova do ano" (ficha), mas o calendário da PDP mostra "Peça até 11/12 · lua nova 07/01". Pedro (17/11): "pode deixar tudo igual" (a confirmar se vale para isto) | Mensagem desencontrada no dia 30/11 | antes de 29/11 |
+| P41 | Sarah | Link do grupo VIP Black para os temas 3 (VF) e 4 (FM) + guia/manual dos brindes da VF | Site fechado sem link; brinde da VF | 24/11 |
+| P42 | Mafe / Ítalo | Bruto dos 10 vídeos de venda da Verme Friday + roteiros | Entrega 19/11 12h | 18/11 |
 | P1 | Vitor | **Volume da semana 30/10–06/11 (VF)**: 50 vídeos universais + 5 vídeos e 5 estáticos do 11/11 + tema, oferta, frete, brindes e cashback do 11/11. Proposta: edição de vídeo em lote (skill do repositório) | Sem isso, o M2 (05/11) e o M3 (06/11) atrasam e o Otávio programa sem criativo | **30/10, na daily** |
 | P2 | Vitor | Ferramenta de cashback do 11/11 VF: crédito de loja nativo + Flow (sem custo) ou app pago? | A tarefa pede o ok dele se houver custo; vence 05/11 | 30/10 |
 | P10 | Vitor | Estoque de kit kids (11/11) e kit adulto (Verme November, Week, Free Monday) | As tarefas pedem para conferir antes | 06/11 |
@@ -53,6 +56,7 @@
 - **Grupo VIP (setembro):** a tarefa "Editar os criativos para o tráfego" está **em revisão e sem prazo** desde setembro. Fechar ou arquivar.
 
 ## Decisões tomadas
+- **17/11 (Pedro):** anúncios sem preço total; se tiver valor, só a parcela 3x sem juros, igual ao site (arredonda para baixo). Kit Família sem preço ("ganha brinde"). Brinde no título sem o valor mínimo. "Kit" → "protocolo" nas peças e nos temas (nome de produto fica). Sorteio do 11/11 em stand by até alguém cobrar.
 - **09/11 (Pedro):** temas trocados pelo **Supreme Theme Scheduler** (Pedro agenda): 11/11 Eclipse 00h, 12/11 Verme November 00h, 20/11 Verme Week 00h. O Claude só testa às 00h05.
 - **09/11:** Verme Week = cópia do tema Verme November com 12/15/17%; descontos e Flow do brinde no mesmo modelo da Verme November. Verme Friday = mesmo modelo do 11/11 (18% + compre 4 leve 5 + frete grátis).
 - **09/11 (Pedro, criativos):** estáticos com fundo preto + vermelho/branco para as campanhas; **nada de UGC/pessoas, no máximo mão**; produto só com foto real ou mão gerada a partir da foto real, pose simples e frontal (IA redesenha rótulo = "frasco bugado"); não replicar layout anterior, cada lote com cara nova.
