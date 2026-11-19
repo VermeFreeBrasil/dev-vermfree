@@ -24,6 +24,8 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 | Free Monday | 10 (era 5) | 10 | — | 10 + 10 | 25/11 12h |
 | **Total** | **85** | **85** | 4 vídeos + 40 estáticos (30 a ajustar) | ~81 vídeos + 45 estáticos | |
 
+**18/11:** VF vídeos 7/10 aprovados e no Drive (faltam 3 brutos). Temas renomeados com início e fim e agendados no Supreme pelo Pedro; teste completo de temas e descontos feito (achados em 04 · P44–P47).
+
 **17/11:** Verme Week: 10 estáticos (v3, produto herói) ✅ aprovados e no Drive (pasta "Verme Week" 1uohPCTaJqGK0Ud4tajwcOG0B_BA1nlh_). Regra nova "sem preço total, só parcela": VW, VF, FM e Black refeitos e trocados no Drive; ajustes do Otávio (Kit Família sem preço, brinde no título) e "kit" → "protocolo" nas peças e nos temas 2/3/4 (conferidos contra as fichas). Tema Free Monday ✅ aprovado. Vídeos da Verme Friday ⛔ sem bruto da Mafe (vence 19/11 12h).
 
 **16/11:** lote 4 dos universais (peças 33–40, estilo neon) ✅ aprovado e no Drive ([04] e [06]): **40 universais do mês completos**. Verme November: +10 estáticos de venda (11–20) ✅. Verme Friday: +20 (neon e sale) + 9:16 ✅. Free Monday: 10 estáticos ✅.
@@ -89,7 +91,7 @@ Detalhes em shopify/verme-november-tema/LEIA.md. Falta: publicar à 00h de 12/11
 | ✅ | 17/11/2026 18h00 | BLACK FRIDAY · VERME WEEK — Criar o tema completo do site para a promoção | `mcp-1793234479525-9-0cdf3` | **09/11: CONCLUÍDA.** Tema "🟢 Verme Week · PUBLICAR 20/11 00h" (168791179483) aprovado; Pedro agendou no Supreme para 20/11 00h. shopify/verme-week-tema/LEIA.md. Marcada no Alliance. |
 | ⬜ | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY · CRIATIVOS | `mcp-1793234479525-16-31c24` |  |
 | ✅ | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY — Criar os 5 criativos estáticos de venda | `mcp-1793234618789-1-f596c` | **09/11: CONCLUÍDA (10 estáticos, v5 aprovada).** Drive 07. Verme Friday › 01. Comunicação & Criativos. criativos/verme-friday/png5/. 9:16 feito e no Drive em 16/11. **16/11: +20 peças novas** (v6 neon e v7 sale, 4:5 + 9:16), aprovadas e no mesmo Drive: 40 estáticos de venda no total. Marcada no Alliance. |
-| ⬜ | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY — Editar os 5 vídeos de venda | `mcp-1793234618789-0-9434c` | depende: BLACK FRIDAY · VERME FRIDAY — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
+| 🟡 | 19/11/2026 12h00 | BLACK FRIDAY · VERME FRIDAY — Editar os 10 vídeos de venda | `mcp-1793234618789-0-9434c` | **18/11: 7 de 10 editados e APROVADOS** (roteiros 1, 3, 4, 5, 6, 7, 8) na pasta Editados: https://drive.google.com/drive/folders/14PfXWgVWKuT8YBQAIb1MNAJH_soL-I4X (no Drive estão comprimidos; Pedro sobe os originais). Faltam 2, 9 e 10: sem bruto (Mafe). Comentário no Alliance; tarefa aberta. |
 | 🟡 | 23/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Fechar o site com o banner do grupo VIP | `mcp-1793234832211-7-3de4d` | **16/11: montado** no tema 169018949851 (tela própria 26/11 23h59 → 27/11 07h, `?acesso=vip` 00h). Aprovado pelo Pedro 16/11. Falta só o link do grupo VIP Black (Pedro vai pegar). shopify/verme-friday-tema/LEIA.md |
 | ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Configurar a entrega dos brindes | `mcp-1793234832211-4-a36f5` |  |
 | ✅ | 24/11/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Configurar oferta e frete na Shopify | `mcp-1793234832211-3-112ea` | **09/11: CONCLUÍDA.** 18% site todo + compre 4 leve 5 (BXGY) + frete grátis sem mínimo, agendados 27/11 00h–28/11 23h59. shopify/oferta-verme-friday/descontos.md. Link VIP/trava vai com o tema. Marcada no Alliance. |
