@@ -24,6 +24,8 @@ Atualizar todo dia. A coluna **Obs** registra o que aconteceu (data, link da ent
 | Free Monday | 10 (era 5) | 10 | — | 10 + 10 | 25/11 12h |
 | **Total** | **85** | **85** | 4 vídeos + 40 estáticos (30 a ajustar) | ~81 vídeos + 45 estáticos | |
 
+**19/11:** 18 vídeos de venda editados e no Drive Editados Verme Week (https://drive.google.com/drive/folders/1kvo5OZnhD1An2IkjXxqkb2WEw8v26EFm): Verme Week roteiros 1, 2, 4–10 e Free Monday 1, 2, 4–10 (roteiro 3 sem bruto). Virada para a Verme Week conferida às 00h06 de 20/11.
+
 **18/11:** VF vídeos 7/10 aprovados e no Drive (faltam 3 brutos). Temas renomeados com início e fim e agendados no Supreme pelo Pedro; teste completo de temas e descontos feito (achados em 04 · P44–P47).
 
 **17/11:** Verme Week: 10 estáticos (v3, produto herói) ✅ aprovados e no Drive (pasta "Verme Week" 1uohPCTaJqGK0Ud4tajwcOG0B_BA1nlh_). Regra nova "sem preço total, só parcela": VW, VF, FM e Black refeitos e trocados no Drive; ajustes do Otávio (Kit Família sem preço, brinde no título) e "kit" → "protocolo" nas peças e nos temas 2/3/4 (conferidos contra as fichas). Tema Free Monday ✅ aprovado. Vídeos da Verme Friday ⛔ sem bruto da Mafe (vence 19/11 12h).
@@ -99,7 +101,7 @@ Detalhes em shopify/verme-november-tema/LEIA.md. Falta: publicar à 00h de 12/11
 | ⬜ | 24/11/2026 18h00 | BLACK FRIDAY · VERME NOVEMBER · SITE E SHOPIFY | `mcp-1793232207208-10-23fce` |  |
 | ⬜ | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY · CRIATIVOS | `mcp-1793232343397-0-2bb2e` |  |
 | ✅ | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY — Criar os 5 criativos estáticos de venda | `mcp-1793232343398-4-42c88` | **16/11: CONCLUÍDA (10 peças, 4:5 + 9:16, aprovadas).** Drive [08] Free Monday › [2] Comunicação & Criativos: https://drive.google.com/drive/folders/1Ca5tqPUY_ckZ7k9o3ERLzRxTpc8lbbFI · criativos/free-monday/. Falta marcar no Alliance. |
-| ⬜ | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY — Editar os 5 vídeos de venda | `mcp-1793232343398-3-b0cc2` | depende: BLACK FRIDAY · FREE MONDAY — Gravar os 5 vídeos de venda (Maria Fernanda, a fazer) |
+| 🟡 | 25/11/2026 12h00 | BLACK FRIDAY · FREE MONDAY — Editar os 10 vídeos de venda | `mcp-1793232343398-3-b0cc2` | **19/11: 9 de 10 editados, aprovados e no Drive** (https://drive.google.com/drive/folders/1kvo5OZnhD1An2IkjXxqkb2WEw8v26EFm). Falta o roteiro 3 (sem bruto). Comentário no Alliance. |
 | 🟡 | 26/11/2026 18h00 | BLACK FRIDAY · FREE MONDAY — Fechar o site com o banner do grupo VIP | `mcp-1793232474314-14-22f1c` | **16/11: montado** no tema 06 (169093464283): tela própria 29/11 00h → 30/11 07h, `?acesso=vip` 00h. Aprovado pelo Pedro 17/11. Falta o link do grupo VIP (Sarah). |
 | ✅ | 27/11/2026 18h00 | BLACK FRIDAY · FREE MONDAY — Configurar a entrega dos brindes | `mcp-1793232474314-12-2ea89` | **17/11: CONCLUÍDA.** Flow "Free Monday · brinde kit adulto (> R$ 1.000)" ativo (30/11 00h → 01/12 00h, subtotal > 1000, tag brinde-fm-kit-adulto + nota). Conferido pelos prints. Conferir os pedidos em 01/12 de manhã. |
 | ✅ | 27/11/2026 18h00 | BLACK FRIDAY · FREE MONDAY — Configurar oferta e frete na Shopify | `mcp-1793232474314-11-456cd` | **16/11: CONCLUÍDA (ok do Pedro).** 10% (1) · 12% (3+) · 15% (5+) + frete ≥ R$ 299, agendados 30/11 00h–23h59. shopify/oferta-free-monday/descontos.md |
