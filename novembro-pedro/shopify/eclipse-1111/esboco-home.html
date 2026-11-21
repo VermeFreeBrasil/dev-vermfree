@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+@font-face{font-family:Caprasimo;src:url('Caprasimo-Regular.ttf')}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#070a08;--forest:#102e21;--lime:#c0de96;--red:#e0262f;--red2:#9e0f17;--cream:#f6f5ec}
+body{font-family:Inter,Arial,sans-serif;background:var(--ink);color:var(--cream)}
+/* faixa ao vivo */
+.live{display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 16px;background:#000;border-bottom:1px solid #ffffff14;font-size:13px;letter-spacing:.4px;flex-wrap:wrap}
+.live .dot{display:inline-flex;align-items:center;gap:7px;color:#ff4a52;font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:1.5px}
+.live .dot:before{content:'';width:8px;height:8px;border-radius:50%;background:#ff3b44;box-shadow:0 0 0 4px #ff3b4433}
+.live b{color:#fff}.live .t{font-variant-numeric:tabular-nums;color:#ff6b72;font-weight:800}
+.live a{background:var(--red);color:#fff;font-weight:800;padding:6px 14px;border-radius:30px;text-decoration:none;font-size:12.5px}
+/* header falso */
+.hd{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid #ffffff12}
+.hd img{height:34px;filter:brightness(0) invert(1)}
+.hd nav{display:flex;gap:28px;font-size:14px;color:#cfd8d2}
+/* hero eclipse */
+.hero{position:relative;overflow:hidden;padding:56px 48px 64px;display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center;
+  background:radial-gradient(ellipse 60% 70% at 72% 45%,#1a1012 0,#070a08 60%)}
+.stars{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 12% 22%,#fff8,transparent),radial-gradient(1px 1px at 33% 78%,#fff6,transparent),radial-gradient(1.5px 1.5px at 58% 14%,#fff9,transparent),radial-gradient(1px 1px at 82% 66%,#fff5,transparent),radial-gradient(1px 1px at 91% 18%,#fff7,transparent),radial-gradient(1px 1px at 45% 52%,#fff4,transparent),radial-gradient(1.2px 1.2px at 6% 70%,#fff6,transparent);pointer-events:none}
+.kick{display:inline-flex;gap:10px;align-items:center;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--lime);margin-bottom:18px}
+.kick span{background:var(--red);color:#fff;padding:5px 10px;border-radius:6px;letter-spacing:1px}
+h1{font-family:Caprasimo,serif;font-weight:400;font-size:64px;line-height:1.02;letter-spacing:-.5px}
+h1 em{font-style:normal;color:#ff3b44}
+.sub{margin:20px 0 26px;font-size:18px;line-height:1.5;color:#cfd8d2;max-width:520px}
+.sub b{color:#fff}
+.cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#ff3a43,var(--red2));color:#fff;font-weight:800;font-size:18px;padding:20px 34px;border-radius:60px;box-shadow:0 0 0 6px #e0262f22,0 18px 40px #e0262f55;text-decoration:none}
+.left-t{font-size:14px;color:#9fb0a6}.left-t b{color:#fff;font-variant-numeric:tabular-nums}
+/* lua */
+.moonwrap{position:relative;display:flex;flex-direction:column;align-items:center}
+.moon{position:relative;width:440px;height:440px;border-radius:50%;
+  background:radial-gradient(circle at 38% 35%,#fbf8ea 0,#e9efd9 35%,#c0de96 75%,#93b874 100%);
+  box-shadow:0 0 80px #c0de9640,0 0 200px #c0de9622, inset -20px -30px 60px #6f8f5555;overflow:hidden}
+.moon:after{content:'';position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 18% 70%,#a7c08a55 0 7%,transparent 8%),radial-gradient(circle at 60% 28%,#a7c08a44 0 5%,transparent 6%),radial-gradient(circle at 72% 64%,#a7c08a44 0 9%,transparent 10%)}
+.shadow{position:absolute;top:-4%;width:108%;height:108%;border-radius:50%;left:-62%;
+  background:radial-gradient(circle at 60% 50%,#2a0507 0,#5a0a10 55%,#8d121b 72%,#e0262f 76%,transparent 77%);mix-blend-mode:multiply;filter:blur(1px)}
+.n1111{position:absolute;font-family:Caprasimo,serif;font-size:118px;color:#070a08;letter-spacing:-3px;top:50%;left:50%;transform:translate(-50%,-52%);white-space:nowrap;mix-blend-mode:multiply;opacity:.92}
+.prog{margin-top:22px;width:440px;text-align:center;font-size:13px;color:#9fb0a6;letter-spacing:.3px}
+.bar{height:6px;border-radius:6px;background:#ffffff14;margin:8px 0 6px;overflow:hidden}
+.bar i{display:block;height:100%;width:36%;background:linear-gradient(90deg,#e0262f,#ff6b72)}
+/* monte seus 5 */
+.monte{background:#0b0f0d;border-top:1px solid #ffffff10;border-bottom:1px solid #ffffff10;padding:44px 48px;display:grid;grid-template-columns:.9fr 1.4fr;gap:40px;align-items:center}
+.monte h2{font-family:Caprasimo,serif;font-weight:400;font-size:40px;line-height:1.05}
+.monte h2 em{font-style:normal;color:var(--lime)}
+.monte p{margin-top:12px;color:#9fb0a6;font-size:15px;line-height:1.5}
+.slots{display:flex;gap:14px;align-items:flex-end;justify-content:center}
+.slot{width:104px;height:170px;border-radius:18px;border:1.5px dashed #ffffff25;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;position:relative}
+.slot.on{border:1.5px solid #c0de9655;background:#c0de960d}
+.slot svg{width:62px}
+.slot .n{position:absolute;top:8px;left:10px;font-size:11px;color:#9fb0a6;font-weight:700}
+.slot.free{border:2px solid var(--red);background:radial-gradient(circle at 50% 60%,#e0262f33,transparent 70%);box-shadow:0 0 40px #e0262f55}
+.slot.free .tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:12px;font-weight:900;letter-spacing:1px;padding:5px 10px;border-radius:20px;white-space:nowrap}
+.plus{font-family:Caprasimo,serif;font-size:34px;color:var(--lime);align-self:center}
+.kidsgift{align-self:center;background:var(--lime);color:var(--forest);border-radius:16px;padding:14px 16px;font-weight:800;font-size:14px;line-height:1.3;width:150px;transform:rotate(-3deg)}
+.kidsgift small{display:block;font-weight:600;font-size:12px;opacity:.8}
+/* produtos */
+.prods{padding:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:#0e1311;border:1px solid #ffffff12;border-radius:20px;overflow:hidden}
+.card img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.card .b{padding:16px 18px 18px}
+.card h3{font-size:15px;font-weight:700;color:#fff;line-height:1.3;min-height:40px}
+.card .de{margin-top:10px;font-size:13px;color:#7f8e86;text-decoration:line-through}
+.card .por{font-size:28px;font-weight:900;color:#ff4a52;letter-spacing:-.5px}
+.card .por small{font-size:13px;color:#cfd8d2;font-weight:600}
+.card .add{margin-top:12px;display:block;text-align:center;background:#fff;color:var(--ink);font-weight:800;font-size:14px;padding:12px;border-radius:40px}
+/* trilho */
+.trilho{display:flex;gap:40px;justify-content:center;padding:18px;background:var(--red);color:#fff;font-weight:800;font-size:14px;letter-spacing:.5px;text-transform:uppercase;flex-wrap:wrap}
+.trilho span:before{content:'✦ ';color:#070a08}
+@media(max-width:700px){
+  .hd{padding:14px 18px}.hd nav{display:none}
+  .live{font-size:11.5px;gap:6px 10px}
+  .hero{grid-template-columns:1fr;padding:28px 18px 40px;gap:26px;text-align:center}
+  .moonwrap{order:-1}.moon{width:300px;height:300px}.n1111{font-size:80px}.prog{width:300px}
+  h1{font-size:42px}.sub{font-size:16px;margin:14px auto 20px}.cta{justify-content:center}.btn{width:100%;justify-content:center}
+  .monte{grid-template-columns:1fr;padding:32px 18px;text-align:center}
+  .slots{gap:6px;flex-wrap:wrap}.slot{width:56px;height:100px;border-radius:12px}.slot svg{width:34px}.plus{font-size:24px}
+  .kidsgift{width:auto;margin-top:16px}
+  .prods{grid-template-columns:1fr 1fr;padding:28px 18px;gap:12px}.card .por{font-size:22px}
+  .trilho{gap:10px 20px;font-size:12px}
+}
+</style></head><body>
+<div class="live"><span class="dot">Ao vivo</span><span><b>11.11</b> · o maior desconto da história da VermeFree</span><span>a lua fecha em <span class="t">15h 42m 08s</span></span><a href="#">Comprar</a></div>
+<div class="hd"><img src="logo-shopify-medium.png"><nav><span>Protocolos</span><span>Kids</span><span>Kit Família</span><span>Calendário da lua</span></nav><span style="font-size:14px;color:#cfd8d2">Conta · Carrinho</span></div>
+<section class="hero"><div class="stars"></div>
+  <div>
+    <p class="kick"><span>11.11</span> só hoje · até 23h59</p>
+    <h1>Quando a lua fechar, <em>o desconto acaba.</em></h1>
+    <p class="sub"><b>20% OFF em tudo</b> + <b>compre 4, leve 5</b> + frete grátis sem mínimo. O maior desconto da história da VermeFree dura uma volta de 24 horas.</p>
+    <div class="cta"><a class="btn" href="#">Garantir meu protocolo →</a><span class="left-t">faltam <b>15h 42m</b></span></div>
+  </div>
+  <div class="moonwrap">
+    <div class="moon"><div class="shadow"></div><div class="n1111">11.11</div></div>
+    <div class="prog">o eclipse avança com o dia<div class="bar"><i></i></div>36% do 11/11 já passou</div>
+  </div>
+</section>
+<section class="monte">
+  <div><h2>Monte seus 5. <em>O quinto é por nossa conta.</em></h2><p>Escolha 4 protocolos e o 5º, o de menor valor, sai grátis. Somando com os 20%. Na compra de 4, ainda vai um Kit Kids de 2 a 4 anos de presente.</p></div>
+  <div class="slots">
+    <div class="slot on"><span class="n">1</span><svg viewBox="0 0 40 80"><rect x="13" y="2" width="14" height="10" rx="2" fill="#1a1a1a"/><path d="M10 16h20l4 10v48a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V26z" fill="#6b3a12"/><rect x="6" y="38" width="28" height="26" fill="#c0de96"/></svg></div>
+    <div class="slot on"><span class="n">2</span><svg viewBox="0 0 40 80"><rect x="13" y="2" width="14" height="10" rx="2" fill="#1a1a1a"/><path d="M10 16h20l4 10v48a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V26z" fill="#6b3a12"/><rect x="6" y="38" width="28" height="26" fill="#f6f5ec"/></svg></div>
+    <div class="slot on"><span class="n">3</span><svg viewBox="0 0 40 80"><rect x="9" y="10" width="22" height="10" rx="2" fill="#1a1a1a"/><rect x="6" y="20" width="28" height="58" rx="5" fill="#1d3a22"/><rect x="6" y="36" width="28" height="26" fill="#c0de96"/></svg></div>
+    <div class="slot on"><span class="n">4</span><svg viewBox="0 0 40 80"><rect x="9" y="10" width="22" height="10" rx="2" fill="#1a1a1a"/><rect x="6" y="20" width="28" height="58" rx="5" fill="#1d3a22"/><rect x="6" y="36" width="28" height="26" fill="#c0de96"/></svg></div>
+    <span class="plus">+</span>
+    <div class="slot free"><span class="tag">GRÁTIS</span><svg viewBox="0 0 40 80"><rect x="13" y="2" width="14" height="10" rx="2" fill="#1a1a1a"/><path d="M10 16h20l4 10v48a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V26z" fill="#6b3a12"/><rect x="6" y="38" width="28" height="26" fill="#ff6b72"/></svg></div>
+    <div class="kidsgift">+ Kit Kids 2 a 4 anos<small>de presente na compra de 4</small></div>
+  </div>
+</section>
+<section class="prods">
+  <div class="card"><img src="p-vf-adulto-v4-02-o-que-vem.jpg"><div class="b"><h3>Protocolo Adulto · 30 dias</h3><p class="de">R$ 347,00</p><p class="por">R$ 277,60 <small>no 11/11</small></p><span class="add">Adicionar</span></div></div>
+  <div class="card"><img src="p-vf-kids-v4-01-sono.jpg"><div class="b"><h3>Kids 2 a 4 anos</h3><p class="de">R$ 270,00</p><p class="por">R$ 216,00 <small>no 11/11</small></p><span class="add">Adicionar</span></div></div>
+  <div class="card"><img src="p-vf-kids-v4-01-sono.jpg"><div class="b"><h3>Kids 5 a 9 anos</h3><p class="de">R$ 389,00</p><p class="por">R$ 311,20 <small>no 11/11</small></p><span class="add">Adicionar</span></div></div>
+  <div class="card"><img src="p-produto-card-4-kit-familia-crop.png"><div class="b"><h3>Kit Família · 2 adultos + 2 crianças</h3><p class="de">R$ 1.150,00</p><p class="por">R$ 920,00 <small>no 11/11</small></p><span class="add">Adicionar</span></div></div>
+</section>
+<div class="trilho"><span>Frete grátis sem mínimo</span><span>15% de cashback nos 100 primeiros</span><span>Sorteio de um kit entre os 300 primeiros</span><span>Guia e manual digitais</span></div>
+</body></html>

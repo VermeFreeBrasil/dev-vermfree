@@ -1,0 +1,201 @@
+{
+ "id": "r4",
+ "entrada": "raw/IMG_7376.mov",
+ "saida": "vf-1111-roteiro4-protocolos-20.mp4",
+ "pip": {
+  "x": 734,
+  "y": 1250,
+  "w": 300,
+  "h": 533
+ },
+ "vermelho": [
+  "hoje",
+  "23h59",
+  "agora",
+  "20%",
+  "inteira"
+ ],
+ "segs": [
+  {
+   "de": 5.56,
+   "ate": 11.62,
+   "legenda": "Só hoje, até as 23h59, todos os protocolos da VermeFree estão com 20% de desconto.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "Só hoje até 23h59",
+     "y": 235,
+     "ini": 0.1,
+     "fim": 2.4
+    }
+   ],
+   "cards": [
+    {
+     "tipo": "off",
+     "ini": 2.5
+    }
+   ]
+  },
+  {
+   "de": 13.24,
+   "ate": 17.29,
+   "legenda": "Eu esperei muito esse dia chegar pra montar o protocolo da casa inteira de uma vez."
+  },
+  {
+   "de": 18.77,
+   "ate": 21.87,
+   "legenda": "Muito melhor do que ir comprando um item por vez o ano todo.",
+   "fx": [
+    {
+     "tipo": "chips",
+     "ini": 0.4,
+     "risca": 1.8,
+     "itens": [
+      {
+       "label": "1 item por vez",
+       "t": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "de": 23.15,
+   "ate": 25.54,
+   "legenda": "E você pode montar o mesmo kit que eu montei.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "Monte o mesmo kit",
+     "y": 235,
+     "ini": 0.6
+    }
+   ]
+  },
+  {
+   "de": 27.02,
+   "ate": 30.53,
+   "legenda": "Tem a Silimarina, que prepara o corpo antes de tudo começar.",
+   "fx": [
+    {
+     "tipo": "frascos",
+     "ini": 0.3,
+     "itens": [
+      {
+       "img": "b-silimarina.png",
+       "label": "Silimarina",
+       "t": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "de": 36.28,
+   "ate": 39.15,
+   "legenda": "A tintura de cinco ervas, que é o centro do protocolo.",
+   "fx": [
+    {
+     "tipo": "frascos",
+     "ini": 0,
+     "itens": [
+      {
+       "img": "b-silimarina.png",
+       "label": "Silimarina",
+       "t": -1
+      },
+      {
+       "img": "b-tintura.png",
+       "label": "Tintura 5 ervas",
+       "t": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "de": 41.08,
+   "ate": 42.29,
+   "legenda": "E o óleo de orégano.",
+   "fx": [
+    {
+     "tipo": "frascos",
+     "ini": 0,
+     "itens": [
+      {
+       "img": "b-silimarina.png",
+       "label": "Silimarina",
+       "t": -1
+      },
+      {
+       "img": "b-tintura.png",
+       "label": "Tintura 5 ervas",
+       "t": -1
+      },
+      {
+       "img": "b-oleo.png",
+       "label": "Óleo de orégano",
+       "t": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "de": 43.91,
+   "ate": 47.32,
+   "cards": [
+    {
+     "tipo": "frete"
+    }
+   ]
+  },
+  {
+   "de": 62.95,
+   "ate": 67.76,
+   "cards": [
+    {
+     "tipo": "cinco",
+     "ini": 0,
+     "fim": 2.6
+    },
+    {
+     "tipo": "kitkids",
+     "ini": 2.6
+    }
+   ]
+  },
+  {
+   "de": 69.31,
+   "ate": 74.48,
+   "legenda": "E quem comprar ainda hoje leva o Guia de Alimentos Antiparasitários e o Manual da Desparasitação.",
+   "cards": [
+    {
+     "tipo": "brindes",
+     "ini": 1.2
+    }
+   ]
+  },
+  {
+   "de": 76.03,
+   "ate": 79.57,
+   "legenda": "Então toca no botão que tá aparecendo aqui embaixo e monta o mesmo kit que eu montei.",
+   "fx": [
+    {
+     "tipo": "botao",
+     "texto": "Montar meu kit ↓",
+     "ini": 0.9
+    }
+   ]
+  },
+  {
+   "de": 81.46,
+   "ate": 84.77,
+   "cards": [
+    {
+     "tipo": "final"
+    }
+   ]
+  }
+ ]
+}

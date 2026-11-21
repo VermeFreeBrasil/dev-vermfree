@@ -1,0 +1,136 @@
+{
+ "id": "r1",
+ "entrada": "raw/IMG_7372.mov",
+ "saida": "vf-1111-roteiro1-ja-comecou-v2.mp4",
+ "pip": {
+  "x": 734,
+  "y": 1250,
+  "w": 300,
+  "h": 533
+ },
+ "vermelho": [
+  "hoje",
+  "23h59",
+  "agora",
+  "black"
+ ],
+ "segs": [
+  {
+   "de": 0.62,
+   "ate": 2.3,
+   "card": "pergunta"
+  },
+  {
+   "de": 6.25,
+   "ate": 11.43,
+   "legenda": "Já começou. O 11/11 da VermeFree já tá no ar, mas vai só até 23h59.",
+   "card": "relogio",
+   "cardIni": 3.0,
+   "extra": {
+    "sup": "11/11 · vale só até",
+    "sub": "só hoje · depois o preço volta"
+   },
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "Já começou",
+     "y": 235,
+     "ini": 0.1,
+     "fim": 3.0
+    }
+   ]
+  },
+  {
+   "de": 12.91,
+   "ate": 14.95,
+   "legenda": "Se liga no que você pode levar hoje.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "O que entra hoje ↓",
+     "y": 235,
+     "ini": 0.2
+    }
+   ]
+  },
+  {
+   "de": 16.17,
+   "ate": 19.54,
+   "card": "off"
+  },
+  {
+   "de": 21.17,
+   "ate": 24.08,
+   "card": "frete"
+  },
+  {
+   "de": 36.72,
+   "ate": 39.18,
+   "card": "cinco"
+  },
+  {
+   "de": 45.37,
+   "ate": 50.07,
+   "card": "sorteio"
+  },
+  {
+   "de": 50.91,
+   "ate": 54.26,
+   "legenda": "Então não deixe essa passar.",
+   "fx": [
+    {
+     "tipo": "selo",
+     "texto": "11/11<br>só hoje",
+     "ini": 0.3
+    }
+   ]
+  },
+  {
+   "de": 54.96,
+   "ate": 60.04,
+   "legenda": "Se você já queria fazer a sua desparasitação, hoje é o melhor dia pra você montar o seu protocolo.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "Monte seu protocolo",
+     "y": 235,
+     "ini": 2.8
+    }
+   ]
+  },
+  {
+   "de": 61.98,
+   "ate": 66.57,
+   "card": "linha",
+   "extra": {
+    "t": [
+     0.15,
+     1.35,
+     2.75
+    ]
+   }
+  },
+  {
+   "de": 67.89,
+   "ate": 71.95,
+   "card": "eclipse"
+  },
+  {
+   "de": 73.85,
+   "ate": 78.05,
+   "legenda": "Então toca no botão que tá aparecendo aqui embaixo e monta o seu kit no site agora mesmo.",
+   "fx": [
+    {
+     "tipo": "botao",
+     "texto": "Garantir no site ↓",
+     "ini": 1.0
+    }
+   ]
+  },
+  {
+   "de": 79.5,
+   "ate": 82.23,
+   "card": "final"
+  }
+ ]
+}

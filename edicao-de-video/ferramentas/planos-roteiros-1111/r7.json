@@ -1,0 +1,149 @@
+{
+ "id": "r7",
+ "entrada": "raw/IMG_7381.mov",
+ "saida": "vf-1111-roteiro7-20-mais-15.mp4",
+ "vermelho": [
+  "hoje",
+  "agora",
+  "15%",
+  "20%"
+ ],
+ "segs": [
+  {
+   "de": 3.7,
+   "ate": 7.79,
+   "legenda": "20% mais 15% no protocolo de desparasitação da VermeFree.",
+   "fx": [
+    {
+     "tipo": "gancho",
+     "texto": "<b>20% + 15%</b> no protocolo da VermeFree",
+     "ini": 0
+    }
+   ]
+  },
+  {
+   "de": 9.21,
+   "ate": 11.32,
+   "legenda": "Deixa eu te explicar como você garante os dois."
+  },
+  {
+   "de": 13.03,
+   "ate": 15.97,
+   "legenda": "Eu já fiz o meu pedido hoje de manhã justamente por causa disso.",
+   "fx": [
+    {
+     "tipo": "selo",
+     "texto": "Já fiz<br>o meu ✓",
+     "ini": 1.4
+    }
+   ]
+  },
+  {
+   "de": 17.16,
+   "ate": 20.72,
+   "legenda": "A Black Friday da VermeFree tá rolando com várias ofertas especiais."
+  },
+  {
+   "de": 25.93,
+   "ate": 29.04,
+   "cards": [
+    {
+     "tipo": "off",
+     "ini": 0.3
+    }
+   ]
+  },
+  {
+   "de": 30.52,
+   "ate": 32.74,
+   "cards": [
+    {
+     "tipo": "frete"
+    }
+   ]
+  },
+  {
+   "de": 34.12,
+   "ate": 35.58,
+   "legenda": "Não, não tem valor mínimo.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "Sem valor mínimo",
+     "y": 235,
+     "ini": 0.3
+    }
+   ]
+  },
+  {
+   "de": 37.12,
+   "ate": 39.9,
+   "cards": [
+    {
+     "tipo": "cinco"
+    }
+   ]
+  },
+  {
+   "de": 41.29,
+   "ate": 44.87,
+   "legenda": "Isso vale o dia inteiro, mas às 23h59 acaba.",
+   "cards": [
+    {
+     "tipo": "eclipse",
+     "ini": 1.4
+    }
+   ]
+  },
+  {
+   "de": 46.11,
+   "ate": 51.62,
+   "legenda": "Agora, pra garantir os outros 15%, você precisa estar entre os 100 primeiros que comprarem na Black Friday.",
+   "cards": [
+    {
+     "tipo": "cashback",
+     "ini": 2.4
+    }
+   ]
+  },
+  {
+   "de": 53.41,
+   "ate": 58.71,
+   "legenda": "Esses ganham 15% de desconto numa próxima compra, pra usar até o final do mês.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "Pra usar até 30/11",
+     "y": 235,
+     "ini": 2.8
+    }
+   ]
+  },
+  {
+   "de": 60.08,
+   "ate": 65.31,
+   "legenda": "Então toca no botão que tá aparecendo aqui embaixo, finaliza o seu agora,",
+   "fx": [
+    {
+     "tipo": "botao",
+     "texto": "Garantir no site ↓",
+     "ini": 0.8,
+     "fim": 2.9
+    }
+   ],
+   "cards": [
+    {
+     "tipo": "final",
+     "ini": 2.9
+    }
+   ],
+   "legFim": 2.9
+  }
+ ],
+ "pip": {
+  "x": 734,
+  "y": 1250,
+  "w": 300,
+  "h": 533
+ }
+}

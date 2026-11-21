@@ -1,0 +1,516 @@
+{%- comment -%}
+  vf-announcement-bar — Barra que acompanha a compra (Conceitos 1 + 2).
+
+  Esquerda: UMA mensagem, sem rodízio, que muda conforme o carrinho (/cart.js):
+    vazio          → próxima lua nova + até quando pedir (CYCLES + orderBy)
+    < frete grátis → "Faltam R$ X pro frete grátis" + barra de progresso
+    ≥ frete, < 3   → "Frete grátis ✓ · +N kit(s) = 5% / 10% OFF" (descontos automáticos: 2 kits 5%, 3+ kits 10%)
+    ≥ 3 kits       → "Frete grátis + 10% OFF liberados"
+  Direita: pílula "1ª compra? 5% OFF ›" que abre a janela de 1ª compra
+  (e-mail + WhatsApp → webhook n8n → mostra o cupom). Cupom vale 1x por
+  cliente (checado pelo e-mail no pagamento), por isso nada de "ativado".
+{%- endcomment -%}
+
+{%- assign ann_show = section.settings.show -%}
+{%- if section.settings.show == nil -%}{%- assign ann_show = true -%}{%- endif -%}
+{%- assign ann_threshold = section.settings.free_shipping_min | default: 299 -%}
+{%- assign ann_coupon = section.settings.coupon_code | strip -%}
+{%- assign ann_pct = section.settings.coupon_pct | default: '5% OFF' | strip -%}
+{%- assign ann_hook = section.settings.webhook_url | default: 'https://n8n.vermefree.com.br/webhook/vermefree-popup-1a-compra-ac' | strip -%}
+
+{%- if ann_show -%}
+<div class="vf-ab" data-vf-ab
+     data-threshold="{{ ann_threshold | times: 100 }}"
+     data-moon="{% if section.settings.show_moon %}1{% else %}0{% endif %}"
+     role="region" aria-label="Benefícios da loja">
+
+  <a class="vf-ab__msg" href="/#vf-protocolos" data-msg>
+    <span class="vf-ab__in is-on" data-in>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 18V6a1 1 0 0 0-1-1H3v12h2m9 1H9m5 0h1m4 0h2v-5l-3-4h-4"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+      <span class="vf-ab__t" data-t><b>Frete grátis</b> acima de R$&nbsp;{{ ann_threshold }}</span>
+    </span>
+  </a>
+
+  {%- if ann_coupon != blank -%}
+  <button type="button" class="vf-ab__pill" data-pill aria-haspopup="dialog" aria-controls="vf1c-dialog">
+    <span data-pill-t>1ª compra? <b>{{ ann_pct }}</b></span><span class="vf-ab__chev" aria-hidden="true">›</span>
+  </button>
+  {%- endif -%}
+
+  <span class="vf-ab__bar" data-bar aria-hidden="true"><span></span></span>
+</div>
+
+{%- if ann_coupon != blank -%}
+<div class="vf1c" data-vf1c id="vf1c-dialog" hidden
+     data-hook="{{ ann_hook | escape }}"
+     data-code="{{ ann_coupon | escape }}"
+     data-pct="{{ ann_pct | escape }}"
+     data-auto="{% if section.settings.auto_open %}1{% else %}0{% endif %}"
+     data-delay="{{ section.settings.auto_open_delay | default: 20 }}">
+  <div class="vf1c__bg" data-close></div>
+  <div class="vf1c__card" role="dialog" aria-modal="true" aria-labelledby="vf1c-title">
+    <button type="button" class="vf1c__x" data-close aria-label="Fechar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+
+    <div class="vf1c__step" data-step="1">
+      <h2 class="vf1c__h" id="vf1c-title">Sua 1ª compra com <span>{{ ann_pct }}</span></h2>
+      <p class="vf1c__p">Deixe seu e-mail e libere o cupom. Também te avisamos das próximas luas novas.</p>
+      <form class="vf1c__f" data-form novalidate>
+        <label class="vf1c__l" for="vf1c-email">E-mail</label>
+        <input class="vf1c__i" id="vf1c-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="seu@email.com" required aria-describedby="vf1c-err">
+        <p class="vf1c__err" id="vf1c-err" data-err role="alert"></p>
+        <label class="vf1c__l" for="vf1c-wa">WhatsApp <small>(opcional)</small></label>
+        <input class="vf1c__i" id="vf1c-wa" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(31) 99999-9999" maxlength="15">
+        <button type="submit" class="vf1c__btn" data-submit>Liberar meu cupom</button>
+      </form>
+      <p class="vf1c__fine">Válido 1x por cliente · soma com o desconto de kits</p>
+      <p class="vf1c__lgpd">Ao enviar, você aceita receber comunicações da VermeFree. Você pode sair quando quiser.</p>
+    </div>
+
+    <div class="vf1c__step" data-step="2" hidden>
+      <h2 class="vf1c__h" tabindex="-1" data-h2>Pronto! 🎉</h2>
+      <p class="vf1c__p">Seu cupom de <b>{{ ann_pct }}</b> na 1ª compra:</p>
+      <div class="vf1c__code">
+        <span class="vf1c__c">{{ ann_coupon }}</span>
+        <button type="button" class="vf1c__copy" data-copy>Copiar</button>
+      </div>
+      <button type="button" class="vf1c__btn" data-use>Usar agora</button>
+      <button type="button" class="vf1c__link" data-close>Continuar navegando</button>
+      <p class="vf1c__fine">Válido 1x por cliente · soma com o desconto de kits</p>
+    </div>
+  </div>
+</div>
+{%- endif -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .vf-ab {
+    --e: cubic-bezier(.16, 1, .3, 1);
+    position: relative; z-index: 50;
+    display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 max(24px, calc(50% - 630px));
+    background: #153c2c; color: #fbfaf5;
+    font-family: Inter, system-ui, sans-serif; font-size: 13.5px; line-height: 1.2; letter-spacing: -.005em;
+  }
+  .vf-ab b { color: #c0de96; font-weight: 600; }
+  .vf-ab__msg { position: relative; flex: 1; min-width: 0; height: 100%; display: grid; align-items: center; justify-items: center; overflow: hidden; color: inherit; text-decoration: none; }
+  .vf-ab__msg > * { grid-area: 1 / 1; }
+  .vf-ab__msg:hover .vf-ab__t { opacity: .85; }
+  .vf-ab__in { display: inline-flex; align-items: center; gap: 9px; max-width: 100%; white-space: nowrap; opacity: 0; transform: translateY(4px); transition: opacity .35s var(--e), transform .35s var(--e); }
+  .vf-ab__in.is-on { opacity: 1; transform: none; }
+  .vf-ab__t { overflow: hidden; transition: opacity .2s; }
+  .vf-ab svg { width: 17px; height: 17px; flex-shrink: 0; fill: none; stroke: #c0de96; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  .vf-ab__pill {
+    flex-shrink: 0; display: inline-flex; align-items: center; gap: 5px;
+    height: 30px; padding: 0 12px 0 14px; border: 0; border-radius: 999px; cursor: pointer;
+    background: #c0de96; color: #153c2c; font: 600 13px/1 Inter, system-ui, sans-serif; letter-spacing: -.01em; white-space: nowrap;
+    box-shadow: 0 1px 0 rgba(255,255,255,.35) inset, 0 2px 6px rgba(0,0,0,.18);
+    transition: background .25s var(--e), transform .25s var(--e);
+  }
+  .vf-ab__pill b { color: #153c2c; font-weight: 800; }
+  .vf-ab__pill:hover { background: #d0e8ae; }
+  .vf-ab__pill:active { transform: scale(.97); }
+  .vf-ab__pill:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  .vf-ab__chev { font-size: 17px; line-height: 1; margin-top: -2px; font-weight: 700; }
+  .vf-ab__pill.is-ok { background: transparent; color: #c0de96; box-shadow: inset 0 0 0 1.5px rgba(192, 222, 150, .7); }
+  .vf-ab__pill.is-ok b { color: #c0de96; }
+
+  .vf-ab__bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(192, 222, 150, .2); opacity: 0; transition: opacity .4s var(--e); pointer-events: none; }
+  .vf-ab__bar.is-on { opacity: 1; }
+  .vf-ab__bar span { display: block; height: 100%; width: 0; background: #c0de96; border-radius: 0 3px 3px 0; transition: width .8s var(--e); }
+
+  @media (max-width: 749px) {
+    .vf-ab { height: 42px; gap: 6px; padding: 0 8px 0 12px; font-size: 12.5px; letter-spacing: -.01em; }
+    .vf-ab__msg { justify-items: start; }
+    .vf-ab__in { gap: 7px; }
+    .vf-ab svg { width: 16px; height: 16px; }
+    .vf-ab__pill { height: 28px; padding: 0 9px 0 10px; font-size: 12px; gap: 3px; }
+    .vf-ab__chev { font-size: 15px; }
+  }
+
+  /* ===== Janela de 1ª compra ===== */
+  .vf1c { position: fixed; inset: 0; z-index: 2147482500; display: flex; align-items: center; justify-content: center; font-family: Inter, system-ui, sans-serif; color: #153c2c; }
+  .vf1c[hidden] { display: none; }
+  .vf1c__bg { position: absolute; inset: 0; background: rgba(10, 28, 20, .55); opacity: 0; transition: opacity .3s ease; }
+  .vf1c__card {
+    position: relative; width: min(440px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: auto;
+    background: #fff; border-radius: 20px; padding: 30px 28px 22px; box-shadow: 0 24px 60px rgba(0, 30, 10, .3);
+    opacity: 0; transform: translateY(14px) scale(.98); transition: opacity .3s cubic-bezier(.16,1,.3,1), transform .35s cubic-bezier(.16,1,.3,1);
+  }
+  .vf1c.is-open .vf1c__bg { opacity: 1; }
+  .vf1c.is-open .vf1c__card { opacity: 1; transform: none; }
+  .vf1c__x { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border: 0; border-radius: 50%; background: transparent; cursor: pointer; display: grid; place-items: center; color: #5f6f66; }
+  .vf1c__x:hover { background: #f1f5ee; }
+  .vf1c__x svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+  .vf1c__step[hidden] { display: none; }
+  .vf1c__h { margin: 0 36px 8px 0; font-family: Caprasimo, Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.12; color: #153c2c; letter-spacing: -.01em; outline: 0; }
+  .vf1c__h span { color: #5ebc43; white-space: nowrap; }
+  .vf1c__p { margin: 0 0 18px; font-size: 15px; line-height: 1.45; color: #3c4d44; }
+  .vf1c__p b { color: #153c2c; }
+  .vf1c__f { display: flex; flex-direction: column; margin: 0; }
+  .vf1c__l { font-size: 13px; font-weight: 600; margin: 0 0 6px; color: #153c2c; }
+  .vf1c__l small { font-weight: 400; color: #8a978e; font-size: 12px; }
+  .vf1c__i {
+    height: 48px; width: 100%; box-sizing: border-box; padding: 0 14px; margin: 0 0 12px;
+    border: 1.5px solid #dde8d3; border-radius: 12px; background: #fff; color: #153c2c;
+    font: 400 16px Inter, system-ui, sans-serif; outline: 0; transition: border-color .2s, box-shadow .2s;
+  }
+  .vf1c__i::placeholder { color: #a5b1a9; }
+  .vf1c__i:focus { border-color: #5ebc43; box-shadow: 0 0 0 3px rgba(94, 188, 67, .18); }
+  .vf1c__i[aria-invalid="true"] { border-color: #d9534f; }
+  .vf1c__err { margin: -6px 0 10px; min-height: 0; font-size: 12.5px; color: #c0392b; }
+  .vf1c__err:empty { display: none; }
+  .vf1c__btn {
+    display: flex; align-items: center; justify-content: center; width: 100%; height: 52px; margin-top: 6px;
+    border: 0; border-radius: 999px; background: #5ebc43; color: #fff; cursor: pointer;
+    font: 700 16px Inter, system-ui, sans-serif; letter-spacing: -.005em; transition: background .2s, transform .15s;
+  }
+  .vf1c__btn:hover { background: #52a93a; }
+  .vf1c__btn:active { transform: scale(.985); }
+  .vf1c__btn[disabled] { opacity: .7; cursor: default; }
+  .vf1c__btn:focus-visible, .vf1c__copy:focus-visible, .vf1c__link:focus-visible, .vf1c__x:focus-visible { outline: 2px solid #153c2c; outline-offset: 2px; }
+  .vf1c__fine { margin: 12px 0 0; text-align: center; font-size: 11px; color: #8a978e; }
+  .vf1c__lgpd { margin: 4px 0 0; text-align: center; font-size: 11px; line-height: 1.4; color: #8a978e; }
+  .vf1c__code { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 60px; padding: 0 10px 0 18px; margin: 0 0 10px; border: 2px dashed #5ebc43; border-radius: 14px; background: #f6fbf1; }
+  .vf1c__c { font-weight: 800; font-size: 24px; letter-spacing: .14em; color: #153c2c; }
+  .vf1c__copy { height: 36px; padding: 0 14px; border: 0; border-radius: 999px; background: #153c2c; color: #c0de96; font: 700 13px Inter, system-ui, sans-serif; cursor: pointer; white-space: nowrap; }
+  .vf1c__copy.is-ok { background: transparent; color: #3f8f2c; }
+  .vf1c__link { display: block; margin: 12px auto 0; padding: 6px 8px; border: 0; background: none; color: #3c4d44; font: 500 14px Inter, system-ui, sans-serif; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+  @media (max-width: 749px) {
+    .vf1c { align-items: flex-end; }
+    .vf1c__card { width: 100%; max-height: calc(100vh - 24px); border-radius: 20px 20px 0 0; padding: 26px 20px calc(18px + env(safe-area-inset-bottom)); transform: translateY(100%); }
+    .vf1c__card::before { content: ''; position: absolute; top: 8px; left: 50%; width: 40px; height: 4px; margin-left: -20px; border-radius: 4px; background: #dde8d3; }
+    .vf1c__h { font-size: 25px; }
+    .vf1c__p { font-size: 14.5px; margin-bottom: 16px; }
+  }
+  html.vf1c-lock, html.vf1c-lock body { overflow: hidden !important; }
+
+  .vf-ab-toast { position: fixed; left: 50%; top: 52px; z-index: 2147482600; transform: translate(-50%, -8px); opacity: 0; width: max-content; max-width: calc(100vw - 24px); text-align: center; padding: 11px 16px; border-radius: 12px; background: #153c2c; color: #fff; font: 600 13.5px/1.35 Inter, system-ui, sans-serif; box-shadow: 0 12px 30px rgba(0, 30, 10, .3); transition: opacity .3s ease, transform .3s ease; pointer-events: none; }
+  .vf-ab-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+  .vf-ab-toast b { color: #c0de96; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vf-ab__in, .vf-ab__bar span, .vf1c__card, .vf1c__bg { transition: none !important; }
+  }
+{% endstylesheet %}
+
+<script>
+(function () {
+  var bar = document.querySelector('[data-vf-ab]');
+  if (!bar || bar.__vfInit) return; bar.__vfInit = true;
+
+  function brl(c) { return (c / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace(/\s/g, ' '); }
+  var ICON = {
+    moon: '<path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.6 6.6 0 0 0 10.7 10.7Z"/>',
+    truck: '<path d="M14 18V6a1 1 0 0 0-1-1H3v12h2m9 1H9m5 0h1m4 0h2v-5l-3-4h-4"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>',
+    check: '<circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.7 2.7L16.2 9.4"/>',
+    gift: '<rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8S10.5 3.5 8 4.5 9 8 12 8Zm0 0s1.5-4.5 4-3.5S15 8 12 8Z"/>'
+  };
+
+  /* Calendário oficial da lua nova (bula/PDP): [início da preparação, lua nova], horário de Brasília */
+  var CYCLES = [
+    ['2026-09-25','2026-10-10'], ['2026-10-24','2026-11-08'], ['2026-11-24','2026-12-09'],
+    ['2026-12-23','2027-01-07'], ['2027-01-22','2027-02-06'], ['2027-02-21','2027-03-08'],
+    ['2027-03-22','2027-04-06'], ['2027-04-21','2027-05-06'], ['2027-05-20','2027-06-04'],
+    ['2027-06-19','2027-07-04'], ['2027-07-18','2027-08-02'], ['2027-08-16','2027-08-31']
+  ];
+  var DAY = 86400000;
+  function brDay(ms) { return Math.floor((ms - 3 * 3600000) / DAY); }
+  function dayOf(iso) { return brDay(Date.parse(iso + 'T12:00:00-03:00')); }
+  function ddmm(iso) { return iso.slice(8, 10) + '/' + iso.slice(5, 7); }
+  /* prazo pra pedir = início da preparação − 12 dias corridos (entrega 5–9 dias úteis) */
+  var LEAD = 12;
+  function orderBy(now) {
+    var t = brDay(now);
+    for (var i = 0; i < CYCLES.length; i++) {
+      var d = dayOf(CYCLES[i][0]) - LEAD;
+      if (d >= t) return { by: ddmm(new Date((d * DAY) + 12 * 3600000 + 3 * 3600000).toISOString().slice(0, 10)), lua: ddmm(CYCLES[i][1]) };
+    }
+    return null;
+  }
+
+  /* Fora da Home não existe o calendário do hero: publica as mesmas datas (lua|preparação) para o
+     "Como funciona" (vf-stats) e preenche o prazo do CTA final ([data-vf-moon-line][data-tpl]). */
+  function shareMoon() {
+    if (document.querySelector('[data-vf-moon-line][data-dates]')) return;
+    var src = document.createElement('span');
+    src.hidden = true; src.setAttribute('data-vf-moon-line', ''); src.setAttribute('data-lead', LEAD);
+    src.setAttribute('data-dates', CYCLES.map(function (c) { return c[1] + '|' + c[0]; }).join(','));
+    document.body.appendChild(src);
+    if (!moon) return;
+    document.querySelectorAll('[data-vf-moon-line][data-tpl]').forEach(function (el) {
+      el.textContent = el.getAttribute('data-tpl').replace('{prazo}', moon.by).replace('{lua}', moon.lua);
+      el.classList.add('is-on');
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', shareMoon); else setTimeout(shareMoon, 0);
+
+  /* Kits = protocolos (Óleo de alho não conta) */
+  var KITS = ['protocolo-desparasitacao-adulto-vermefree', 'antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos', 'antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos', 'kit-familia-vermefree-2-adultos-2-criancas'];
+
+  var thr = parseInt(bar.dataset.threshold, 10) || 29900;
+  var showMoon = bar.dataset.moon !== '0';
+  var msg = bar.querySelector('[data-msg]'), barEl = bar.querySelector('[data-bar]');
+  var mq = window.matchMedia('(max-width: 749px)');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var moon = orderBy(Date.now());
+  var state = null, curKey = '', curEl = msg.querySelector('[data-in]');
+
+  /* Cada estado tem variantes do texto: usa a mais longa que couber sem cortar */
+  function variants(cart) {
+    var has = cart && cart.item_count > 0;
+    var total = has ? (cart.items_subtotal_price != null ? cart.items_subtotal_price : cart.total_price) : 0;
+    var kits = 0;
+    if (has) cart.items.forEach(function (it) { if (KITS.indexOf(it.handle) > -1) kits += it.quantity; });
+    if (!has) {
+      if (showMoon && moon) return { icon: 'moon', href: '/#vf-protocolos', pct: null, t: mq.matches ? [
+        'Lua nova <b>' + moon.lua + '</b> · peça até <b>' + moon.by + '</b>',
+        'Lua nova <b>' + moon.lua + '</b> · até <b>' + moon.by + '</b>',
+        'Peça até <b>' + moon.by + '</b>'
+      ] : [
+        'Próxima lua nova <b>' + moon.lua + '</b> · peça até <b>' + moon.by + '</b> pra começar no ciclo',
+        'Lua nova <b>' + moon.lua + '</b> · peça até <b>' + moon.by + '</b>'
+      ] };
+      return { icon: 'truck', href: '/#vf-protocolos', pct: null, t: ['<b>Frete grátis</b> acima de ' + brl(thr), '<b>Frete grátis</b> R$ ' + thr / 100 + '+'] };
+    }
+    if (total < thr) {
+      var m = brl(thr - total);
+      return { icon: 'truck', href: '/cart', pct: total / thr * 100, t: [
+        'Faltam <b>' + m + '</b> pro <b>frete grátis</b>',
+        'Faltam <b>' + m + '</b> p/ <b>frete grátis</b>',
+        '<b>' + m + '</b> p/ frete grátis',
+        '<b>' + m + '</b> p/ frete',
+        'Faltam <b>' + m + '</b>'
+      ] };
+    }
+    if (kits < 3) {
+      return { icon: 'gift', href: '/cart', pct: kits / 5 * 100, t: [
+        '<b>Frete grátis + 10% OFF ✓</b> · com 3 kits, <b>12%</b> · com 5, <b>15%</b>',
+        '<b>10% OFF ✓</b> · com 3 kits, <b>12% OFF</b>',
+        '<b>10% OFF ✓</b> · 3 kits = <b>12%</b>',
+        '3 kits = <b>12% OFF</b>'
+      ] };
+    }
+    if (kits < 5) {
+      return { icon: 'gift', href: '/cart', pct: kits / 5 * 100, t: [
+        '<b>Frete grátis + 12% OFF ✓</b> · com 5 kits, <b>15% OFF</b>',
+        '<b>12% OFF ✓</b> · com 5 kits, <b>15%</b>',
+        '<b>12% OFF ✓</b> · 5 kits = <b>15%</b>',
+        '5 kits = <b>15% OFF</b>'
+      ] };
+    }
+    var lib = '<b>Frete grátis + 15% OFF</b>';
+    return { icon: 'gift', href: '/cart', pct: 100, t: [lib + ' liberados', lib, '<b>Frete + 15% OFF ✓</b>', '<b>15% OFF ✓</b>'] };
+  }
+
+  function build(v, text) {
+    var s = document.createElement('span'); s.className = 'vf-ab__in'; s.setAttribute('data-in', '');
+    s.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICON[v.icon] + '</svg><span class="vf-ab__t" data-t>' + text + '</span>';
+    return s;
+  }
+  /* coloca a variante mais longa que cabe (mede no lugar, invisível) */
+  function pick(v) {
+    var probe = build(v, '');
+    probe.style.cssText = 'position:absolute;visibility:hidden;left:0;top:0;max-width:none;width:max-content;';
+    msg.appendChild(probe);
+    var avail = msg.clientWidth - (parseFloat(msg.style.paddingLeft) || 0) - 2, t = probe.querySelector('[data-t]'), chosen = v.t[v.t.length - 1];
+    t.style.overflow = 'visible';
+    for (var i = 0; i < v.t.length; i++) { t.innerHTML = v.t[i]; if (probe.getBoundingClientRect().width <= avail) { chosen = v.t[i]; break; } }
+    msg.removeChild(probe);
+    return chosen;
+  }
+  function render(cart) {
+    if (cart !== undefined) state = cart;
+    /* desktop: compensa a largura da pílula pra mensagem ficar no centro da barra */
+    var pl = bar.querySelector('[data-pill]');
+    msg.style.paddingLeft = (!mq.matches && pl) ? (pl.offsetWidth + 10) + 'px' : '';
+    var v = variants(state), text = pick(v), key = v.icon + '|' + text;
+    msg.setAttribute('href', v.href);
+    if (barEl) { barEl.classList.toggle('is-on', v.pct != null); barEl.firstElementChild.style.width = (v.pct != null ? Math.max(4, Math.min(100, v.pct)) : 0) + '%'; }
+    if (key === curKey) return; curKey = key;
+    var old = curEl, nu = build(v, text); curEl = nu;
+    msg.setAttribute('aria-label', nu.textContent.replace(/\s+/g, ' ').trim());
+    Array.prototype.forEach.call(msg.querySelectorAll('[data-in]'), function (el) { if (el !== old) el.remove(); });
+    if (!old || reduce) { if (old) old.remove(); nu.classList.add('is-on'); msg.appendChild(nu); return; }
+    old.classList.remove('is-on');
+    msg.appendChild(nu);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { nu.classList.add('is-on'); }); });
+    setTimeout(function () { if (old.parentNode) old.remove(); }, 380);
+  }
+  render(null);
+
+  function loadCart() {
+    return fetch('/cart.js', { credentials: 'same-origin', headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.json(); }).then(function (c) { render(c); }).catch(function () {});
+  }
+  loadCart();
+  if (window.fetch && !window.__vfTkFetch) {
+    window.__vfTkFetch = true;
+    var of = window.fetch;
+    window.fetch = function (input) {
+      var p = of.apply(this, arguments);
+      try {
+        var u = typeof input === 'string' ? input : (input && input.url) || '';
+        if (/\/cart\/(add|change|update|clear)/.test(u)) p.then(function () { setTimeout(function () { document.dispatchEvent(new CustomEvent('vf:cart-changed')); }, 50); });
+      } catch (e) {}
+      return p;
+    };
+  }
+  document.addEventListener('vf:cart-changed', loadCart);
+  window.addEventListener('pageshow', function (e) { if (e.persisted) loadCart(); });
+  var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { curKey = ''; render(); }, 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { curKey = ''; render(); });
+
+  /* ===================== 1ª compra ===================== */
+  var pill = bar.querySelector('[data-pill]'), dlg = document.querySelector('[data-vf1c]');
+  if (!pill || !dlg) return;
+  document.body.appendChild(dlg);
+  var CODE = dlg.dataset.code, PCT = dlg.dataset.pct, HOOK = dlg.dataset.hook, LS = 'vf1c';
+  var card = dlg.querySelector('.vf1c__card'), s1 = dlg.querySelector('[data-step="1"]'), s2 = dlg.querySelector('[data-step="2"]');
+  var form = dlg.querySelector('[data-form]'), em = form.elements.email, wa = form.elements.whatsapp, err = dlg.querySelector('[data-err]');
+  var sub = dlg.querySelector('[data-submit]'), copyB = dlg.querySelector('[data-copy]'), useB = dlg.querySelector('[data-use]');
+  var lastFocus = null, closeT;
+
+  function getDone() { try { return localStorage.getItem(LS) === '1'; } catch (e) { return false; } }
+  function setDone() { try { localStorage.setItem(LS, '1'); } catch (e) {} }
+  function pillState() {
+    if (getDone()) { pill.classList.add('is-ok'); pill.querySelector('[data-pill-t]').innerHTML = '✓ <b>' + PCT + '</b> liberado'; pill.setAttribute('aria-label', 'Cupom de ' + PCT + ' liberado: ver o código'); }
+    else pill.setAttribute('aria-label', '1ª compra? Ganhe ' + PCT + ': liberar cupom');
+    curKey = ''; render();
+  }
+  pillState();
+
+  /* UTMs: URL atual → guardadas na sessão (1ª vista) → localStorage */
+  var UK = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  function utms() {
+    var q = new URLSearchParams(location.search), out = {}, stored = {};
+    try { stored = JSON.parse(sessionStorage.getItem('vf_utm') || localStorage.getItem('vf_utm') || '{}') || {}; } catch (e) {}
+    UK.forEach(function (k) {
+      var v = q.get(k);
+      if (!v) { try { v = stored[k] || sessionStorage.getItem(k) || localStorage.getItem(k); } catch (e) {} }
+      out[k] = v || '';
+    });
+    return out;
+  }
+  (function storeFirst() {
+    try {
+      if (sessionStorage.getItem('vf_utm')) return;
+      var q = new URLSearchParams(location.search), o = {}, any = false;
+      UK.forEach(function (k) { var v = q.get(k); if (v) { o[k] = v; any = true; } });
+      if (any) sessionStorage.setItem('vf_utm', JSON.stringify(o));
+    } catch (e) {}
+  })();
+
+  function focusables() { return Array.prototype.filter.call(card.querySelectorAll('button, input, a[href], [tabindex]:not([tabindex="-1"])'), function (el) { return !el.disabled && el.offsetParent !== null; }); }
+  function onKey(e) {
+    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    if (e.key !== 'Tab') return;
+    var f = focusables(); if (!f.length) return;
+    var a = f[0], z = f[f.length - 1];
+    if (e.shiftKey && (document.activeElement === a || !card.contains(document.activeElement))) { e.preventDefault(); z.focus(); }
+    else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+  }
+  function show(step) {
+    s1.hidden = step !== 1; s2.hidden = step !== 2;
+    if (step === 2) { card.removeAttribute('aria-labelledby'); card.setAttribute('aria-label', 'Seu cupom ' + CODE); doCopy(); }
+    else { card.removeAttribute('aria-label'); card.setAttribute('aria-labelledby', 'vf1c-title'); }
+  }
+  function open(step) {
+    clearTimeout(closeT);
+    lastFocus = document.activeElement;
+    show(step || (getDone() ? 2 : 1));
+    dlg.hidden = false; document.documentElement.classList.add('vf1c-lock');
+    requestAnimationFrame(function () { requestAnimationFrame(function () { dlg.classList.add('is-open'); }); });
+    document.addEventListener('keydown', onKey);
+    setTimeout(function () { (s2.hidden ? em : dlg.querySelector('[data-h2]')).focus({ preventScroll: true }); }, 60);
+  }
+  function close() {
+    if (dlg.hidden) return;
+    dlg.classList.remove('is-open'); document.removeEventListener('keydown', onKey);
+    document.documentElement.classList.remove('vf1c-lock');
+    closeT = setTimeout(function () { dlg.hidden = true; }, reduce ? 0 : 320);
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+  }
+  pill.addEventListener('click', function () { open(); });
+  Array.prototype.forEach.call(dlg.querySelectorAll('[data-close]'), function (b) { b.addEventListener('click', close); });
+
+  /* máscara (XX) XXXXX-XXXX */
+  wa.addEventListener('input', function () {
+    var d = wa.value.replace(/\D/g, '').slice(0, 11), o = d;
+    if (d.length > 0) o = '(' + d.slice(0, 2);
+    if (d.length >= 3) o += ') ' + d.slice(2, d.length > 10 ? 7 : 6);
+    if (d.length >= 7) o += '-' + d.slice(d.length > 10 ? 7 : 6);
+    wa.value = o;
+  });
+  var RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  em.addEventListener('input', function () { if (em.getAttribute('aria-invalid')) { em.removeAttribute('aria-invalid'); err.textContent = ''; } });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = (em.value || '').trim();
+    if (!RE.test(email)) { em.setAttribute('aria-invalid', 'true'); err.textContent = email ? 'Confere o e-mail? Parece que falta algo (ex.: nome@gmail.com).' : 'Digite seu e-mail para liberar o cupom.'; em.focus(); return; }
+    sub.disabled = true; sub.textContent = 'Liberando…';
+    var u = utms(), body = { email: email, whatsapp: wa.value.replace(/\D/g, '').length >= 10 ? wa.value : '', pagina: location.pathname, origem: 'barra-topo' };
+    UK.forEach(function (k) { body[k] = u[k]; });
+    var done = false;
+    function next() { if (done) return; done = true; setDone(); pillState(); sub.disabled = false; sub.textContent = 'Liberar meu cupom'; show(2); dlg.querySelector('[data-h2]').focus({ preventScroll: true }); }
+    setTimeout(next, 2500);
+    try {
+      fetch(HOOK, { method: 'POST', keepalive: true, mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+        .then(next, next);
+    } catch (x) { next(); }
+  });
+
+  function doCopy() {
+    copyB.classList.remove('is-ok'); copyB.textContent = 'Copiar';
+    var ok = function () { copyB.classList.add('is-ok'); copyB.textContent = 'Copiado ✓'; };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(CODE).then(ok, function () {});
+    } catch (e) {}
+  }
+  copyB.addEventListener('click', function () {
+    var ok = function () { copyB.classList.add('is-ok'); copyB.textContent = 'Copiado ✓'; };
+    try { navigator.clipboard.writeText(CODE).then(ok, function () { fallback(); }); } catch (e) { fallback(); }
+    function fallback() { var t = document.createElement('textarea'); t.value = CODE; t.style.cssText = 'position:fixed;opacity:0'; card.appendChild(t); t.select(); try { document.execCommand('copy'); ok(); } catch (x) {} t.remove(); }
+  });
+
+  var toastT;
+  function toast(html) {
+    var t = document.querySelector('.vf-ab-toast');
+    if (!t) { t = document.createElement('div'); t.className = 'vf-ab-toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
+    t.innerHTML = html; t.classList.add('is-on'); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('is-on'); }, 4200);
+  }
+  useB.addEventListener('click', function () {
+    useB.disabled = true; useB.textContent = 'Aplicando…';
+    var fin = function () { useB.disabled = false; useB.textContent = 'Usar agora'; close(); toast('Cupom <b>' + CODE + '</b> aplicado. O desconto aparece no pagamento (1x por cliente).'); };
+    fetch('/discount/' + encodeURIComponent(CODE) + '?redirect=%2Fcart.js', { credentials: 'same-origin' }).then(fin, fin);
+  });
+
+  /* Abrir sozinho: desligado por padrão (só pra testes futuros) */
+  if (dlg.dataset.auto === '1' && !getDone()) {
+    setTimeout(function () { try { if (sessionStorage.getItem('vf1c_auto')) return; sessionStorage.setItem('vf1c_auto', '1'); } catch (e) {} if (dlg.hidden) open(1); }, (parseInt(dlg.dataset.delay, 10) || 20) * 1000);
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "VF Tarja Anúncio",
+  "tag": "section",
+  "class": "vf-announcement-section",
+  "settings": [
+    { "type": "checkbox", "id": "show", "label": "Mostrar tarja", "default": true },
+    { "type": "number", "id": "free_shipping_min", "label": "Frete grátis a partir de (R$)", "info": "Tem que bater com o desconto de frete da Shopify.", "default": 299 },
+    { "type": "checkbox", "id": "show_moon", "label": "Carrinho vazio: mostrar a próxima lua nova e até quando pedir", "info": "Calendário oficial da bula; prazo = início da preparação − 12 dias (mesma regra do hero). Desligado mostra o frete grátis.", "default": true },
+    { "type": "header", "content": "1ª compra (cupom)" },
+    { "type": "text", "id": "coupon_code", "label": "Cupom", "info": "Vale 1x por cliente. Vazio esconde o botão da 1ª compra.", "default": "5OFF" },
+    { "type": "text", "id": "coupon_pct", "label": "Desconto em destaque", "default": "5% OFF" },
+    { "type": "text", "id": "webhook_url", "label": "Webhook do cadastro (n8n)", "default": "https://n8n.vermefree.com.br/webhook/vermefree-popup-1a-compra-ac" },
+    { "type": "checkbox", "id": "auto_open", "label": "Abrir a janela sozinha", "info": "Desligado: só abre ao tocar no botão da barra.", "default": false },
+    { "type": "range", "id": "auto_open_delay", "label": "Abrir depois de (s)", "min": 5, "max": 60, "step": 5, "unit": "s", "default": 20 }
+  ],
+  "presets": [{ "name": "VF Tarja Anúncio" }]
+}
+{% endschema %}

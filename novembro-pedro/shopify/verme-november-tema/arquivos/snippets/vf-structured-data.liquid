@@ -1,0 +1,156 @@
+{%- comment -%}
+  vf-structured-data — dados estruturados (JSON-LD) para o Google.
+  Renderizado no <head> pelo layout/theme.liquid.
+
+  Home (index): Organization (marca, logo, Instagram, atendimento, endereço, CNPJ)
+  e WebSite (busca do site). Sem Product e sem nota na Home.
+
+  Produto: UM Product por página (@id = URL canônica + #product), com nome,
+  descrição, imagens, marca, SKU, oferta (preço em BRL, estoque, URL) e, quando
+  o produto tem avaliações, aggregateRating + review. A nota e as avaliações
+  saem do metafield judgeme.review_widget_data, o mesmo que alimenta o topo e os
+  cards da seção vf-judgeme-reviews (o que a pessoa vê na página).
+  O JSON-LD que o bloco de app do Judge.me gera (jdgm-server-jld) é retirado na
+  seção vf-judgeme-reviews, para não sair um segundo Product.
+
+  FAQPage: gerado em Liquid pelas próprias seções de perguntas (vf-faq,
+  vf-faq-pais, vfl-faq), a partir dos blocos visíveis. @id = URL canônica + #faq.
+{%- endcomment -%}
+{%- if template.name == 'index' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": {{ shop.url | append: '/#organization' | json }},
+      "name": {{ shop.name | json }},
+      "legalName": "Sintonia Pharma Farmácia com Manipulação Ltda",
+      "url": {{ shop.url | json }},
+      {%- if images['logo-shopify-medium.png'] %}
+      "logo": {{ images['logo-shopify-medium.png'] | image_url: width: 600 | prepend: 'https:' | json }},
+      {%- endif %}
+      "sameAs": ["https://www.instagram.com/vermefree/"],
+      "taxID": "37.560.104/0001-60",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua 2870, nº 453, Sala 06, Centro",
+        "addressLocality": "Balneário Camboriú",
+        "addressRegion": "SC",
+        "postalCode": "88330-358",
+        "addressCountry": "BR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "+55-31-3157-3845",
+        "areaServed": "BR",
+        "availableLanguage": "Portuguese"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": {{ shop.url | append: '/#website' | json }},
+      "name": {{ shop.name | json }},
+      "url": {{ shop.url | json }},
+      "publisher": { "@id": {{ shop.url | append: '/#organization' | json }} },
+      "inLanguage": "pt-BR",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ shop.url }}{{ routes.search_url }}?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
+{%- endif -%}
+{%- if template.name == 'product' and product -%}
+  {%- liquid
+    assign vf_sd_variant = product.selected_or_first_available_variant
+    assign vf_sd_url = canonical_url
+    assign vf_sd_rev = product.metafields.judgeme.review_widget_data.value
+    assign vf_sd_count = 0
+    assign vf_sd_avg = 0
+    if vf_sd_rev.number_of_reviews
+      assign vf_sd_count = vf_sd_rev.number_of_reviews | times: 1
+      assign vf_sd_avg = vf_sd_rev.average_rating | times: 1.0 | round: 2
+    endif
+  -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "@id": {{ vf_sd_url | append: '#product' | json }},
+      "name": {{ product.title | json }},
+      "url": {{ vf_sd_url | json }},
+      {%- if product.description != blank %}
+      "description": {{ product.description | replace: '</p>', ' </p>' | replace: '<br', ' <br' | replace: '</li>', ' </li>' | replace: '</h', ' </h' | strip_html | strip_newlines | replace: '  ', ' ' | strip | truncate: 5000 | json }},
+      {%- endif %}
+      {%- if product.images.size > 0 %}
+      "image": [
+        {%- for vf_sd_img in product.images limit: 5 -%}
+          {{ vf_sd_img | image_url: width: 1200 | prepend: 'https:' | json }}{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ],
+      {%- endif %}
+      {%- if vf_sd_variant.sku != blank %}
+      "sku": {{ vf_sd_variant.sku | json }},
+      {%- endif %}
+      "brand": {
+        "@type": "Brand",
+        "name": {{ product.vendor | default: shop.name | json }}
+      },
+      {%- if vf_sd_count > 0 and vf_sd_avg > 0 %}
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": {{ vf_sd_avg | json }},
+        "reviewCount": {{ vf_sd_count }},
+        "bestRating": 5,
+        "worstRating": 1
+      },
+      {%- if vf_sd_rev.reviews.size > 0 %}
+      "review": [
+        {%- for vf_sd_r in vf_sd_rev.reviews limit: 10 -%}
+          {
+            "@type": "Review",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": {{ vf_sd_r.rating | times: 1 }},
+              "bestRating": 5,
+              "worstRating": 1
+            },
+            "author": { "@type": "Person", "name": {{ vf_sd_r.reviewer_name | default: 'Anônimo' | strip | json }} },
+            {%- if vf_sd_r.title != blank %}
+            "name": {{ vf_sd_r.title | strip_html | strip | json }},
+            {%- endif %}
+            {%- if vf_sd_r.created_at != blank %}
+            "datePublished": {{ vf_sd_r.created_at | date: '%Y-%m-%d' | json }},
+            {%- endif %}
+            "reviewBody": {{ vf_sd_r.body_html | strip_html | strip | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ],
+      {%- endif %}
+      {%- endif %}
+      "offers": [
+        {%- for vf_sd_v in product.variants -%}
+          {
+            "@type": "Offer",
+            "url": {{ shop.url | append: vf_sd_v.url | json }},
+            {%- if vf_sd_v.sku != blank %}
+            "sku": {{ vf_sd_v.sku | json }},
+            {%- endif %}
+            "priceCurrency": {{ shop.currency | json }},
+            "price": {{ vf_sd_v.price | divided_by: 100.0 | json }},
+            "availability": "https://schema.org/{% if vf_sd_v.available %}InStock{% else %}OutOfStock{% endif %}",
+            "itemCondition": "https://schema.org/NewCondition",
+            "seller": { "@id": {{ shop.url | append: '/#organization' | json }}, "@type": "Organization", "name": {{ shop.name | json }} }
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}

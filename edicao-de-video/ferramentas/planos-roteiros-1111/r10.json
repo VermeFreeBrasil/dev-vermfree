@@ -1,0 +1,123 @@
+{
+ "id": "r10",
+ "entrada": "raw/IMG_7386.mov",
+ "saida": "vf-1111-roteiro10-ultimo-aviso.mp4",
+ "vermelho": [
+  "hoje.",
+  "agora.",
+  "agora,",
+  "amanhã,",
+  "23h59"
+ ],
+ "segs": [
+  {
+   "de": 3.69,
+   "ate": 6.12,
+   "legenda": "Esse é o último aviso que eu vou dar hoje.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "Último aviso",
+     "y": 235,
+     "ini": 0.2
+    }
+   ]
+  },
+  {
+   "de": 7.75,
+   "ate": 12.73,
+   "legenda": "Eu sei que você viu de manhã, sei que você achou legal, falou que ia resolver depois, mas o depois tem que ser agora."
+  },
+  {
+   "de": 21.05,
+   "ate": 26.41,
+   "legenda": "A Black Friday da VermeFree encerra às 23h59 e depois disso tudo volta pro preço normal.",
+   "cards": [
+    {
+     "tipo": "relogio",
+     "ini": 0.6,
+     "extra": {
+      "sup": "encerra hoje às",
+      "sub": "depois volta pro preço normal"
+     }
+    }
+   ]
+  },
+  {
+   "de": 28.21,
+   "ate": 30.68,
+   "cards": [
+    {
+     "tipo": "off"
+    }
+   ]
+  },
+  {
+   "de": 30.84,
+   "ate": 32.49,
+   "cards": [
+    {
+     "tipo": "frete"
+    }
+   ]
+  },
+  {
+   "de": 34.06,
+   "ate": 36.99,
+   "cards": [
+    {
+     "tipo": "cinco"
+    }
+   ]
+  },
+  {
+   "de": 38.21,
+   "ate": 41.92,
+   "cards": [
+    {
+     "tipo": "carrinho",
+     "ini": 0.2
+    }
+   ]
+  },
+  {
+   "de": 43.01,
+   "ate": 46.25,
+   "legenda": "É literalmente o mesmo pedido, só que custando mais.",
+   "fx": [
+    {
+     "tipo": "tarja",
+     "texto": "Mesmo pedido, mais caro",
+     "y": 235,
+     "ini": 0.6
+    }
+   ]
+  },
+  {
+   "de": 61.27,
+   "ate": 66.78,
+   "legenda": "Então toca no botão que tá aparecendo aqui embaixo e finaliza o seu agora,",
+   "fx": [
+    {
+     "tipo": "botao",
+     "texto": "Garantir no site ↓",
+     "ini": 0.8,
+     "fim": 4.0
+    }
+   ],
+   "cards": [
+    {
+     "tipo": "final",
+     "ini": 4.0
+    }
+   ],
+   "legFim": 4.0
+  }
+ ],
+ "pip": {
+  "x": 734,
+  "y": 1250,
+  "w": 300,
+  "h": 533
+ }
+}

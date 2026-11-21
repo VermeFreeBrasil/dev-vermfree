@@ -1,0 +1,442 @@
+{%- comment -%}
+  vf-quiz-carrinho.liquid — Quiz do carrinho (22/10/2026)
+  Abre quando a cliente clica em "Adicionar ao carrinho" nas páginas do
+  Adulto, Kids 2-4 e Kids 5-9. Adiciona o produto, lê o carrinho real
+  (/cart.js), pergunta quem mais mora na casa e oferece 1 kit por pessoa.
+  Downsell do Óleo de Alho desligado (CFG.downsellOleo). Abre 1 vez por visita.
+
+  Regras:
+  - App VermeFree em toda compra (1 kit já libera).
+  - 2+ kits: frete grátis (frete pelo desconto automático >= R$399)
+  - 3+ kits: + Manual da Desparasitação
+  - Volume automático: 10% (3+), 15% (5+), 20% (8+) em todos os kits.
+  - 2 Adultos = 5% nos dois (automático, não soma com o volume).
+  - De 1 para 2 kits (combinação que não seja 2 Adultos): cupom CASA5 (5% em
+    1 kit, o de menor valor). Só o quiz aplica o cupom.
+  - Óleo de Alho: 15% com protocolo (desconto automático que já existe).
+  Renderizado em sections/vf-pdp-benefits.liquid (páginas de produto).
+{%- endcomment -%}
+
+{%- assign Q_ADULTO = 'protocolo-desparasitacao-adulto-vermefree' -%}
+{%- assign Q_K24 = 'antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos' -%}
+{%- assign Q_K59 = 'antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos' -%}
+{%- assign Q_OLEO = 'oleo-de-alho-desodorizado-500mg' -%}
+{%- assign q_handles = Q_ADULTO | append: ',' | append: Q_K24 | append: ',' | append: Q_K59 | split: ',' -%}
+
+{%- if q_handles contains product.handle -%}
+{%- assign pa = all_products[Q_ADULTO] -%}
+{%- assign p24 = all_products[Q_K24] -%}
+{%- assign p59 = all_products[Q_K59] -%}
+{%- assign po = all_products[Q_OLEO] -%}
+
+<div class="vfq" id="vfq" hidden>
+  <div class="vfq__veu" data-vfq-fechar></div>
+  <div class="vfq__sheet" role="dialog" aria-modal="true" aria-labelledby="vfq-t">
+    <div class="vfq__top">
+      <button type="button" class="vfq__x" data-vfq-fechar aria-label="Fechar">✕</button>
+      <div class="vfq__puxa"></div>
+      <div class="vfq__barra"><i id="vfq-bar"></i></div>
+      <div class="vfq__barra-t"><span id="vfq-bar-t"></span><span>🎁 presentes em jogo</span></div>
+    </div>
+    <div class="vfq__corpo" id="vfq-corpo" aria-live="polite"></div>
+    <div class="vfq__pe" id="vfq-pe"></div>
+  </div>
+</div>
+
+<style>
+  .vfq{position:fixed;inset:0;z-index:2147483000;font-family:'Inter',system-ui,-apple-system,sans-serif;color:#16241D}
+  .vfq[hidden]{display:none}
+  .vfq *{box-sizing:border-box}
+  .vfq__veu{position:absolute;inset:0;background:rgba(9,24,17,.55);animation:vfq-in .25s ease}
+  .vfq__sheet{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:480px;max-height:92vh;max-height:92dvh;background:#fff;border-radius:22px 22px 0 0;display:flex;flex-direction:column;animation:vfq-up .35s cubic-bezier(.2,.8,.2,1)}
+  @media (min-width:700px){.vfq__sheet{bottom:auto;top:50%;transform:translate(-50%,-50%);border-radius:22px;max-height:88vh}}
+  .vfq__top{padding:12px 18px 0;flex-shrink:0;position:relative}
+  .vfq__x{position:absolute;top:8px;right:10px;width:34px;height:34px;border-radius:50%;border:0;background:#F0F9F3;color:#4A6154;font:600 16px 'Inter',system-ui,sans-serif;line-height:1;cursor:pointer;z-index:1}
+  .vfq__x:hover{background:#DDE8E1;color:#16241D}
+  .vfq__x:focus-visible{outline:3px solid #A7E29B;outline-offset:2px}
+  .vfq__barra-t span:last-child{margin-right:38px}
+  .vfq-toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:2147483000;background:#0C3325;color:#fff;font:600 14px 'Inter',system-ui,sans-serif;padding:12px 16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);display:flex;gap:12px;align-items:center;white-space:nowrap;animation:vfq-pop .3s ease}
+  .vfq-toast a{color:#7EE07A;font-weight:800;text-decoration:underline}
+  .vfq__puxa{width:40px;height:4px;border-radius:9px;background:#DDE8E1;margin:0 auto 12px}
+  .vfq__barra{height:6px;background:#F0F9F3;border-radius:9px;overflow:hidden}
+  .vfq__barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,#5EBC43,#1B5E20);border-radius:9px;transition:width .4s}
+  .vfq__barra-t{display:flex;justify-content:space-between;font-size:11.5px;color:#7D9287;margin-top:6px;font-weight:600}
+  .vfq__corpo{padding:14px 18px 8px;overflow-y:auto;flex:1}
+  .vfq__pe{padding:10px 18px calc(16px + env(safe-area-inset-bottom,0px));flex-shrink:0;border-top:1px solid #DDE8E1;display:grid;gap:8px}
+  .vfq__ok{display:flex;align-items:center;gap:10px;background:#F0F9F3;border-radius:12px;padding:9px 10px;font-size:13.5px;font-weight:600;color:#1B5E20}
+  .vfq__ok img{width:42px;height:42px;border-radius:8px;object-fit:cover}
+  .vfq__q{font-family:'Caprasimo',Georgia,serif;font-weight:400;font-size:23px;line-height:1.18;margin:14px 0 6px;color:#16241D}
+  .vfq__s{font-size:14px;color:#4A6154;margin:0 0 14px;line-height:1.5}
+  .vfq__ops{display:grid;gap:8px}
+  .vfq__op{display:flex;align-items:center;gap:10px;text-align:left;width:100%;padding:13px 14px;border-radius:13px;border:1.5px solid #DDE8E1;background:#fff;font:600 14.5px 'Inter',system-ui,sans-serif;color:#16241D;cursor:pointer}
+  .vfq__op .em{font-size:22px;line-height:1;flex-shrink:0}
+  .vfq__op[aria-pressed="true"]{border-color:#5EBC43;background:#F0F9F3}
+  .vfq__op[aria-pressed="true"]::after{content:"✓";margin-left:auto;color:#5EBC43;font-weight:800}
+  .vfq__op .ja{margin-left:auto;font-size:11px;font-weight:700;color:#1B5E20;background:#DCFCE7;border-radius:99px;padding:2px 7px;white-space:nowrap}
+  .vfq__op[aria-pressed="true"] .ja{margin-left:6px}
+  .vfq__btn{width:100%;padding:15px;border:0;border-radius:13px;background:#5EBC43;color:#fff;font:800 15.5px 'Inter',system-ui,sans-serif;cursor:pointer}
+  .vfq__btn:disabled{background:#B8CBBF;cursor:default}
+  .vfq__btn--sec{background:#fff;color:#4A6154;border:1.5px solid #DDE8E1;font-weight:600}
+  .vfq__link{background:none;border:0;color:#7D9287;font:500 13px 'Inter',system-ui,sans-serif;text-decoration:underline;cursor:pointer;padding:4px}
+  .vfq__op:focus-visible,.vfq__btn:focus-visible,.vfq__link:focus-visible,.vfq__step button:focus-visible{outline:3px solid #A7E29B;outline-offset:2px}
+  .vfq__elogio{display:inline-block;background:#FEF3C7;color:#B45309;font-weight:700;font-size:13px;border-radius:99px;padding:5px 11px;animation:vfq-pop .35s ease}
+  .vfq__pres{background:#0C3325;color:#E7F5EC;border-radius:14px;padding:12px 14px;margin-top:14px}
+  .vfq__pres-t{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7EE07A;margin-bottom:8px}
+  .vfq__pres ol{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+  .vfq__pres li{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.35;opacity:.55}
+  .vfq__pres li.on{opacity:1}
+  .vfq__pres .ck{flex:0 0 20px;height:20px;border-radius:50%;border:1.5px solid #4C7A60;display:grid;place-items:center;font-size:11px}
+  .vfq__pres li.on .ck{background:#7EE07A;border-color:#7EE07A;color:#0C3325;font-weight:800}
+  .vfq__pres b{color:#fff}
+  .vfq__proc{text-align:center;padding:30px 4px}
+  .vfq__proc .big{font-size:44px;display:inline-block;animation:vfq-gira 1.2s ease-in-out infinite}
+  .vfq__proc .vfq__barra{margin:18px auto 10px;max-width:260px;height:8px}
+  .vfq__proc p{color:#4A6154;font-size:14px;margin:0}
+  .vfq__recs{display:grid;gap:8px}
+  .vfq__rc{display:grid;grid-template-columns:56px 1fr auto;gap:10px;align-items:center;border:1.5px solid #DDE8E1;border-radius:13px;padding:9px 10px}
+  .vfq__rc.on{border-color:#5EBC43;background:#F0F9F3}
+  .vfq__rc img{width:56px;height:56px;border-radius:9px;object-fit:cover;background:#F0F9F3}
+  .vfq__rc-t{display:flex;flex-direction:column;gap:1px;min-width:0;font-size:13.5px;line-height:1.3}
+  .vfq__rc-q{font-size:11.5px;font-weight:700;color:#1B5E20}
+  .vfq__rc-t small{font-size:11px;color:#7D9287}
+  .vfq__rc-p{font-weight:800;color:#1B5E20}
+  .vfq__rc-p s{font-weight:500;color:#7D9287;margin-right:3px}
+  .vfq__step{display:flex;align-items:center;gap:6px}
+  .vfq__step button{width:32px;height:32px;border-radius:50%;border:1.5px solid #5EBC43;background:#fff;color:#1B5E20;font:800 17px 'Inter',system-ui,sans-serif;cursor:pointer;line-height:1}
+  .vfq__step button:disabled{border-color:#DDE8E1;color:#7D9287;cursor:default}
+  .vfq__step span{min-width:16px;text-align:center;font-weight:800}
+  .vfq__lib{margin-top:10px;font-size:13px;background:#FEF3C7;color:#B45309;border-radius:10px;padding:9px 11px;font-weight:600;line-height:1.45}
+  .vfq__lib b{color:#16241D}
+  .vfq__lbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7D9287;margin:4px 0 6px}
+  .vfq__oleo{display:flex;gap:12px;align-items:center;border:2px solid #5EBC43;border-radius:16px;padding:14px;margin-top:12px}
+  .vfq__oleo img{width:84px;height:84px;border-radius:12px;object-fit:cover;flex-shrink:0}
+  .vfq__oleo h3{font:700 15px/1.3 'Inter',system-ui,sans-serif;margin:0 0 4px}
+  .vfq__por{font:800 22px 'Inter',system-ui,sans-serif;color:#1B5E20}
+  .vfq__de{font-size:13px;color:#7D9287;text-decoration:line-through;margin-right:6px}
+  .vfq__festa{text-align:center;padding-top:6px}
+  .vfq__festa .emo{font-size:46px;display:block;animation:vfq-pop .5s ease}
+  .vfq__resumo{margin-top:12px;border:1px solid #DDE8E1;border-radius:13px;overflow:hidden}
+  .vfq__resumo div{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;font-size:13.5px;border-bottom:1px solid #DDE8E1}
+  .vfq__resumo div:last-child{border-bottom:0;font-weight:800;background:#F0F9F3}
+  .vfq__resumo span:last-child{white-space:nowrap}
+  .vfq__parc{display:flex;align-items:center;gap:12px;margin-top:12px;background:#0C3325;color:#fff;border-radius:14px;padding:14px 16px}
+  .vfq__parc-ic{font-size:28px;line-height:1}
+  .vfq__parc-g{display:block;font:800 24px 'Inter',system-ui,sans-serif;color:#7EE07A;line-height:1.1}
+  .vfq__parc-s{display:block;font-size:13px;color:#CFE6D8;margin-top:2px}
+  .vfq__parc-mini{display:inline-block;margin-top:3px;color:#1B5E20;font-weight:800}
+  .vfq__dica{font-size:12px;color:#7D9287;margin:8px 0 0}
+  @keyframes vfq-in{from{opacity:0}to{opacity:1}}
+  @keyframes vfq-up{from{transform:translate(-50%,100%)}}
+  @keyframes vfq-pop{from{transform:scale(.7);opacity:0}to{transform:none;opacity:1}}
+  @keyframes vfq-gira{50%{transform:scale(1.15) rotate(-8deg)}}
+  @media (prefers-reduced-motion:reduce){.vfq *{animation:none!important;transition:none!important}}
+</style>
+
+<script>
+(function(){
+  var CFG = {
+    cupom2: 'CASA5',
+    downsellOleo: false, // 22/10: Óleo de Alho fora do quiz por enquanto. true = volta a oferecer quando ela recusa o kit
+    freteMin: 299,
+    prod: {
+      adulto: {handle: {{ Q_ADULTO | json }}, id: {{ pa.selected_or_first_available_variant.id | json }}, p: {{ pa.price | divided_by: 100.0 | json }}, de: {{ pa.compare_at_price | default: 0 | divided_by: 100.0 | json }}, img: {{ pa.featured_image | image_url: width: 160 | json }}, curto: 'Protocolo Adulto', ok: {{ pa.available | json }}},
+      k24: {handle: {{ Q_K24 | json }}, id: {{ p24.selected_or_first_available_variant.id | json }}, p: {{ p24.price | divided_by: 100.0 | json }}, de: {{ p24.compare_at_price | default: 0 | divided_by: 100.0 | json }}, img: {{ p24.featured_image | image_url: width: 160 | json }}, curto: 'Kids 2 a 4 anos', ok: {{ p24.available | json }}},
+      k59: {handle: {{ Q_K59 | json }}, id: {{ p59.selected_or_first_available_variant.id | json }}, p: {{ p59.price | divided_by: 100.0 | json }}, de: {{ p59.compare_at_price | default: 0 | divided_by: 100.0 | json }}, img: {{ p59.featured_image | image_url: width: 160 | json }}, curto: 'Kids 5 a 9 anos', ok: {{ p59.available | json }}}
+    },
+    oleo: {id: {{ po.selected_or_first_available_variant.id | json }}, p: {{ po.price | divided_by: 100.0 | json }}, img: {{ po.featured_image | image_url: width: 200 | json }}, ok: {{ po.available | json }}}
+  };
+  var CHAVE = 'vfq-feito';
+  var root = document.getElementById('vfq');
+  if (!root) return;
+
+  function el(id){return document.getElementById(id)}
+  function has(a,v){return (a||[]).indexOf(v)>-1}
+  function brl(v){return 'R$ '+v.toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'.')}
+  function feito(){try{return sessionStorage.getItem(CHAVE)==='1'}catch(e){return false}}
+  function marca(){try{sessionStorage.setItem(CHAVE,'1')}catch(e){}}
+  function desmarca(){try{sessionStorage.removeItem(CHAVE)}catch(e){}}
+  function tipoDe(handle){for(var k in CFG.prod){if(CFG.prod[k].handle===handle)return k}return null}
+
+  var S;
+  function kits(){return S.kits.length}
+  function nAdultos(){return S.kits.filter(function(k){return k==='adulto'}).length}
+  function kidsNoCarrinho(){return S.kits.some(function(k){return k==='k24'||k==='k59'})}
+  function noCarrinho(){
+    var nome={adulto:'Adulto',k24:'Kids 2 a 4',k59:'Kids 5 a 9'}, c={}, o=[];
+    S.kits.forEach(function(k){if(!c[k]){c[k]=0;o.push(k)}c[k]++});
+    return o.map(function(k){return (c[k]>1?c[k]+'× ':'')+nome[k]}).join(' + ');
+  }
+  function barra(p,t){el('vfq-bar').style.width=p+'%';el('vfq-bar-t').textContent=t}
+  function pe(h){el('vfq-pe').innerHTML=h}
+  function pular(){return '<button type="button" class="vfq__link" data-vfq-pular>Pular e ir pro carrinho</button>'}
+  function presentes(n){
+    var t=[['<b>1 kit</b> · 📱 App VermeFree',n>=1],['<b>2 kits</b> · 🚚 Frete grátis',n>=2],['<b>3 kits</b> · 📘 Manual',n>=3]];
+    return '<div class="vfq__pres"><div class="vfq__pres-t">🎁 Seus presentes</div><ol>'+t.map(function(x){return '<li class="'+(x[1]?'on':'')+'"><span class="ck">'+(x[1]?'✓':'')+'</span><span>'+x[0]+'</span></li>'}).join('')+'</ol></div>';
+  }
+  // fecha o quiz e fica na página (o kit já está no carrinho); aplica o cupom do quiz se ela aceitou o kit
+  function fechar(){
+    marca();
+    root.hidden=true; document.documentElement.style.overflow='';
+    if(S&&S.cupom)fetch('/discount/'+S.cupom,{credentials:'same-origin'}).catch(function(){});
+    var t=document.createElement('div'); t.className='vfq-toast'; t.setAttribute('role','status');
+    t.innerHTML='✅ Adicionado ao carrinho <a href="/cart">Ver carrinho</a>';
+    document.body.appendChild(t); setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},6000);
+  }
+  function irCarrinho(){
+    marca();
+    if (S && S.cupom) { window.location.href='/discount/'+S.cupom+'?redirect=/cart'; }
+    else { window.location.href='/cart'; }
+  }
+  // fim do quiz: vai direto pro checkout (com o cupom do quiz, se ela aceitou o kit)
+  function irCheckout(){
+    marca();
+    if (S && S.cupom) { window.location.href='/discount/'+S.cupom+'?redirect=/checkout'; }
+    else { window.location.href='/checkout'; }
+  }
+
+  // ---------- perguntas ----------
+  var Q={
+    moraA:{t:'Quem mais mora com você? 🏠',s:'Marque todos.',multi:true,ops:[['filho','🧒','Filho(s)'],['parc','💑','Meu parceiro(a)'],['adultos','👵','Pais ou outros adultos'],['so','🏡','Moro sozinha']]},
+    casa:{t:'Quem mais mora com essa criança? 🏠',s:'Marque todos.',multi:true,ops:[['eu','🙋‍♀️','Eu'],['parc','💑','Meu parceiro(a)'],['filho','🧒','Outro(s) filho(s)'],['avos','👵','Avós ou outros adultos']]},
+    idades:{t:'Quantos anos eles têm? 🎂',s:'Marque todas.',multi:true,ops:[['0-1','🍼','Menos de 2 anos'],['2-4','🧸','De 2 a 4 anos'],['5-9','🎒','De 5 a 9 anos'],['10+','🧑','10 anos ou mais']]},
+    ultima:{t:'Última desparasitação da casa? 🗓️',ops:[['nunca','😬','Nunca fizeram'],['ano','⏳','Mais de 1 ano'],['seis','📆','6 meses a 1 ano'],['recente','✅','Menos de 6 meses']]}
+  };
+  var EXCL=['so','ninguem'], ELOGIOS=['Boa! 👏','Anotado ✍️','Quase lá! 🔥'];
+
+  function fluxo(){
+    var f=[], r=S.r;
+    if(S.p==='adulto'){f.push('moraA'); if(has(r.moraA,'filho'))f.push('idades');}
+    else{f.push('casa'); if(has(r.casa,'filho'))f.push('idades');}
+    if(!has(r.moraA,'so')&&!has(r.moraA,'ninguem'))f.push('ultima');
+    return f;
+  }
+
+  function telaIntro(){
+    var pr=CFG.prod[S.p], n=kits();
+    var ok='<div class="vfq__ok"><img src="'+pr.img+'" alt="">✅ '+(n>1?'No carrinho: '+noCarrinho():pr.curto+' adicionado')+'</div>';
+    if(n>=3){
+      barra(90,'Presentes liberados 🎉');
+      el('vfq-corpo').innerHTML=ok+'<div class="vfq__festa"><span class="emo">🎉</span><h2 class="vfq__q" id="vfq-t">Você liberou todos os presentes!</h2></div>'+
+        '<p class="vfq__s" style="text-align:center">App, frete grátis e Manual + '+Math.round(tier(n)*100)+'% OFF em tudo.</p>'+presentes(n);
+      pe('<button type="button" class="vfq__btn" id="vfq-go">Finalizar compra 👉</button>'+pular());
+      el('vfq-go').onclick=CFG.downsellOleo&&CFG.oleo.ok&&!S.temOleo?oleo:irCheckout; return;
+    }
+    barra(4,'Leva 30 segundos ⏱️');
+    var cab=(n===2
+      ?'<h2 class="vfq__q" id="vfq-t">🎉 Frete grátis liberado!</h2><p class="vfq__s">Falta 1 kit pro Manual 📘</p>'
+      :'<h2 class="vfq__q" id="vfq-t">Libere presentes no seu pedido 🎁</h2><p class="vfq__s">Perguntas rápidas. 30 segundos.</p>');
+    el('vfq-corpo').innerHTML=ok+cab+presentes(n);
+    pe('<button type="button" class="vfq__btn" id="vfq-go">Começar 👉</button>'+pular());
+    el('vfq-go').onclick=function(){S.passo=0;telaQ()};
+  }
+
+  function telaQ(){
+    var f=fluxo(), id=f[S.passo], q=Q[id], tot=f.length;
+    if(id==='idades'&&kidsNoCarrinho()){
+      var faixa={k24:'2-4',k59:'5-9'}, noCar=S.kits.filter(function(k){return faixa[k]}).map(function(k){return faixa[k]});
+      var nomes=noCar.filter(function(x,i,a){return a.indexOf(x)===i}).map(function(x){return 'Kids '+x.replace('-',' a ')});
+      q={t:'Quantos anos têm os outros filhos? 🎂',s:'O '+nomes.join(' e o ')+' já está no carrinho. Marque a idade dos outros.',multi:true,
+         ops:q.ops.map(function(o){return noCar.indexOf(o[0])>-1?[o[0],o[1],o[2]+' <span class="ja">🛒 já tem</span>']:o})};
+    }
+    // carrinho com 2+ Adultos ou com Kids: ela não mora sozinha, então troca a opção por "Mais ninguém"
+    if(id==='moraA'&&(nAdultos()>=2||kidsNoCarrinho()))q={t:q.t,s:q.s,multi:true,ops:q.ops.filter(function(o){return o[0]!=='so'}).concat([['ninguem','🙅','Mais ninguém']])};
+    barra(Math.round(8+(S.passo/tot)*72),'Pergunta '+(S.passo+1)+' de '+tot);
+    var sel=S.r[id];
+    var elog=S.passo>0?'<span class="vfq__elogio">'+ELOGIOS[Math.min(S.passo-1,ELOGIOS.length-1)]+'</span>':'';
+    el('vfq-corpo').innerHTML=elog+'<h2 class="vfq__q" id="vfq-t">'+q.t+'</h2>'+(q.s?'<p class="vfq__s">'+q.s+'</p>':'')+
+      '<div class="vfq__ops" role="group">'+q.ops.map(function(o){var on=q.multi?has(sel,o[0]):sel===o[0];
+        return '<button type="button" class="vfq__op" data-v="'+o[0]+'" aria-pressed="'+on+'"><span class="em">'+o[1]+'</span>'+o[2]+'</button>'}).join('')+'</div>';
+    var temSel=q.multi?(sel&&sel.length):!!sel;
+    pe(q.multi?'<button type="button" class="vfq__btn" id="vfq-cont" '+(temSel?'':'disabled')+'>Continuar 👉</button>'+pular():pular());
+    [].forEach.call(el('vfq-corpo').querySelectorAll('.vfq__op'),function(b){b.onclick=function(){
+      var v=b.dataset.v;
+      if(q.multi){var a=(S.r[id]||[]).slice();
+        if(EXCL.indexOf(v)>-1)a=[v];else{a=a.filter(function(x){return EXCL.indexOf(x)<0});var i=a.indexOf(v);i>-1?a.splice(i,1):a.push(v);}
+        S.r[id]=a;telaQ();}
+      else{S.r[id]=v;[].forEach.call(el('vfq-corpo').querySelectorAll('.vfq__op'),function(x){x.setAttribute('aria-pressed',x===b)});setTimeout(avanca,260);}
+    }});
+    if(q.multi&&el('vfq-cont'))el('vfq-cont').onclick=avanca;
+  }
+  function avanca(){var f=fluxo();if(S.passo+1<f.length){S.passo++;telaQ();}else recomenda();}
+
+  function recomenda(){
+    var r=S.r, recs=[], filho=S.p==='adulto'?has(r.moraA,'filho'):has(r.casa,'filho');
+    if(filho)(r.idades||[]).forEach(function(i){
+      if(i==='2-4')recs.push({k:'k24',quem:'Filho · 2 a 4 anos'});
+      if(i==='5-9')recs.push({k:'k59',quem:'Filho · 5 a 9 anos'});
+      if(i==='10+')recs.push({k:'adulto',quem:'Filho · 10 anos ou mais',obs:'Adulto: a partir de 10 anos'});
+    });
+    var L=[];
+    if(S.p==='adulto'){L.push('eu');if(has(r.moraA,'parc'))L.push('parc');if(has(r.moraA,'adultos'))L.push('outros');}
+    else{if(has(r.casa,'eu'))L.push('eu');if(has(r.casa,'parc'))L.push('parc');if(has(r.casa,'avos'))L.push('outros');}
+    var QUEM={eu:'Você',parc:'Parceiro(a)',outros:'Outros adultos'};
+    L.slice(nAdultos()).forEach(function(x){recs.push({k:'adulto',quem:QUEM[x]})});
+    recs=recs.filter(function(x){return CFG.prod[x.k].ok});
+    recs.forEach(function(x,i){x.q=i===0?1:0});
+    S.recs=recs;
+    processando(recs.length?oferta:(CFG.downsellOleo&&CFG.oleo.ok&&!S.temOleo?oleo:function(){final(false)}));
+  }
+
+  function processando(dep){
+    barra(86,'Montando sua recomendação…');
+    var fr=['Cruzando as respostas… 🔎','Olhando quem mora junto… 🏠','Checando presentes liberados… 🎁'],k=0;
+    el('vfq-corpo').innerHTML='<div class="vfq__proc"><div class="big">🔎</div><div class="vfq__barra"><i id="vfq-pb"></i></div><p id="vfq-pf">'+fr[0]+'</p></div>';
+    pe(''); setTimeout(function(){el('vfq-pb').style.width='100%'},40);
+    var t=setInterval(function(){k++;if(k<fr.length)el('vfq-pf').textContent=fr[k];},650);
+    setTimeout(function(){clearInterval(t);dep();},2000);
+  }
+
+  // desconto automático por volume (degraus que somam: 10% / +5% / +5%)
+  function tier(n){return n>=5?.17:n>=3?.15:n>=1?.12:0}
+  // desconto que vale para o pedido, conforme as regras reais da loja
+  function desc(n2,tiposNovos){
+    if(n2>=1){var t=tier(n2);return {pct:t,todos:true,txt:'💚 Verme Week: '+Math.round(t*100)+'% OFF em todos os kits'};}
+    return {pct:0,txt:''};
+  }
+
+  function oferta(){
+    barra(94,'Monte o pedido da sua casa 🏡');
+    el('vfq-corpo').innerHTML='<h2 class="vfq__q" id="vfq-t">Monte o kit da sua casa 🏡</h2>'+
+      '<p class="vfq__s">Quem mora junto se expõe junto.</p><p class="vfq__lbl" id="vfq-lbl"></p>'+
+      '<div class="vfq__recs">'+S.recs.map(function(x,i){var pr=CFG.prod[x.k];
+        return '<div class="vfq__rc" id="vfq-rc-'+i+'"><img src="'+pr.img+'" alt=""><div class="vfq__rc-t"><span class="vfq__rc-q">'+x.quem+'</span><b>'+pr.curto+'</b>'+(x.obs?'<small>'+x.obs+'</small>':'')+
+          '<span class="vfq__rc-p" id="vfq-p-'+i+'"></span></div>'+
+          '<div class="vfq__step"><button type="button" id="vfq-m-'+i+'" data-i="'+i+'" data-d="-1" aria-label="Menos">−</button><span id="vfq-q-'+i+'">'+x.q+'</span><button type="button" id="vfq-mais-'+i+'" data-i="'+i+'" data-d="1" aria-label="Mais">+</button></div></div>'}).join('')+'</div>'+
+      '<div class="vfq__lib" id="vfq-lib"></div><div id="vfq-pres"></div>';
+    [].forEach.call(el('vfq-corpo').querySelectorAll('.vfq__step button'),function(b){b.onclick=function(){
+      var x=S.recs[+b.dataset.i]; x.q=Math.max(0,Math.min(3,x.q+(+b.dataset.d))); atualiza();}});
+    atualiza();
+  }
+  function atualiza(){
+    var tiposNovos=[];S.recs.forEach(function(x){for(var j=0;j<x.q;j++)tiposNovos.push(x.k)});
+    var add=tiposNovos.length, n2=kits()+add, d=desc(n2,tiposNovos);
+    el('vfq-lbl').textContent=d.pct?(d.code?Math.round(d.pct*100)+'% OFF em 1 kit do pedido':Math.round(d.pct*100)+'% OFF em cada kit'):'';
+    S.recs.forEach(function(x,i){
+      var pr=CFG.prod[x.k];
+      el('vfq-q-'+i).textContent=x.q; el('vfq-rc-'+i).classList.toggle('on',x.q>0); el('vfq-m-'+i).disabled=x.q===0;
+      el('vfq-p-'+i).innerHTML=d.todos?'<s>'+brl(pr.p)+'</s> '+brl(pr.p*(1-d.pct)):(pr.de>pr.p?'<s>'+brl(pr.de)+'</s> '+brl(pr.p):brl(pr.p));
+    });
+    // estimativa igual à da Shopify: desconto em todos os kits, ou cupom no kit de menor valor do pedido
+    var novos=tiposNovos.map(function(k){return CFG.prod[k].p});
+    var somaNovos=novos.reduce(function(a,b){return a+b},0), tot;
+    if(d.todos)tot=(S.total+S.descAutoKits)-S.totalKitsOrig*d.pct+somaNovos*(1-d.pct);
+    else if(d.code&&novos.length)tot=S.total+somaNovos-Math.min.apply(null,S.unitOrig.concat(novos))*d.pct;
+    else tot=S.total+somaNovos;
+    var lib;
+    if(!add)lib='Adicione 1 kit pra liberar presentes 🎁';
+    else{var g=[];if(n2>=2&&kits()<2)g.push('🚚 Frete grátis');if(n2>=3&&kits()<3)g.push('📘 Manual');
+      lib=(g.length?'🎁 Você libera: '+g.join(' + ')+'<br>':'')+(d.txt?d.txt+'<br>':'')+
+        '<b>Pedido: '+n2+' kits · '+brl(tot)+'</b> <span class="vfq__parc-mini">ou 3x de '+brl(tot/3)+' sem juros 💳</span>';}
+    el('vfq-lib').innerHTML=lib; el('vfq-pres').innerHTML=presentes(n2);
+    pe('<button type="button" class="vfq__btn" id="vfq-sim" '+(add?'':'disabled')+'>'+(add?'✅ Adicionar '+add+' kit'+(add>1?'s':''):'Escolha um kit')+'</button><button type="button" class="vfq__btn vfq__btn--sec" id="vfq-nao">Não, obrigada</button>');
+    el('vfq-sim').onclick=function(){
+      var items=[];S.recs.forEach(function(x){if(x.q)items.push({id:CFG.prod[x.k].id,quantity:x.q})});
+      this.disabled=true;this.textContent='Adicionando…';
+      S.cupom=d.code||null; S.cupomPct=d.pct;
+      adicionar(items).then(function(){return final(true)}).catch(function(){irCarrinho()});
+    };
+    el('vfq-nao').onclick=function(){if(CFG.downsellOleo&&CFG.oleo.ok&&!S.temOleo)oleo();else final(false);};
+  }
+
+  function oleo(){
+    barra(96,'Uma última coisa ✨');
+    var por=CFG.oleo.p*0.85;
+    el('vfq-corpo').innerHTML='<h2 class="vfq__q" id="vfq-t">Leva o Óleo de Alho? 🧄</h2>'+
+      '<p class="vfq__s">Manutenção mensal do protocolo.</p>'+
+      '<div class="vfq__oleo"><img src="'+CFG.oleo.img+'" alt=""><div><h3>🧄 Óleo de Alho desodorizado 500mg</h3><span class="vfq__de">'+brl(CFG.oleo.p)+'</span><span class="vfq__por">'+brl(por)+'</span><br><small style="color:#7D9287">30 cápsulas · 15% OFF com o protocolo</small></div></div>'+presentes(kits());
+    pe('<button type="button" class="vfq__btn" id="vfq-sim">🧄 Adicionar · '+brl(por)+'</button><button type="button" class="vfq__btn vfq__btn--sec" id="vfq-nao">Não, ir pro carrinho</button>');
+    el('vfq-sim').onclick=function(){this.disabled=true;this.textContent='Adicionando…';
+      adicionar([{id:CFG.oleo.id,quantity:1}]).then(function(){return final(false)}).catch(function(){irCarrinho()})};
+    el('vfq-nao').onclick=function(){final(false)};
+  }
+
+  function final(ganhou){
+    barra(100,'Tudo pronto 🛒');
+    return lerCarrinho().then(function(){
+      var n=kits(), tot=S.total, vCupom=0;
+      // cupom do quiz (CASA5): % no kit de menor valor. Entra pelo link /discount ao ir pro carrinho.
+      if(S.cupom&&S.unitOrig.length){vCupom=Math.min.apply(null,S.unitOrig)*S.cupomPct;tot-=vCupom;}
+      var linhas=S.linhas.map(function(l){return '<div><span>'+l.t+(l.q>1?' ×'+l.q:'')+'</span><span>'+brl(l.v)+'</span></div>'}).join('');
+      var frete=tot>=CFG.freteMin?'<div><span>🚚 Frete</span><span style="color:#1B5E20;font-weight:700">Grátis</span></div>':'';
+      el('vfq-corpo').innerHTML='<div class="vfq__festa"><span class="emo">'+(ganhou?'🎉':'🛒')+'</span><h2 class="vfq__q" id="vfq-t">'+(ganhou?'Presentes liberados!':'Seu carrinho está pronto')+'</h2></div>'+
+        presentes(n)+'<div class="vfq__resumo">'+linhas+(vCupom?'<div><span>🎁 '+Math.round(S.cupomPct*100)+'% OFF do quiz</span><span>− '+brl(vCupom)+'</span></div>':'')+frete+'<div><span>Total</span><span>'+brl(tot)+'</span></div></div>'+
+        '<div class="vfq__parc"><span class="vfq__parc-ic">💳</span><div><span class="vfq__parc-g">3x de '+brl(tot/3)+'</span><span class="vfq__parc-s">sem juros no cartão</span></div></div>'+
+        '<p class="vfq__s" style="margin-top:10px">📱 Acesso ao App no e-mail da compra.</p>'+
+        (n===2?'<p class="vfq__dica">Com 3 kits: 15% OFF em tudo · com 5, 17%.</p>':'');
+      pe('<button type="button" class="vfq__btn" id="vfq-fim">Finalizar compra 👉</button>');
+      el('vfq-fim').onclick=irCheckout;
+    });
+  }
+
+  // ---------- carrinho real ----------
+  function adicionar(items){
+    return fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({items:items})})
+      .then(function(r){if(!r.ok)throw new Error('add');return r.json()})
+      .then(function(){});
+  }
+  function lerCarrinho(){
+    return fetch('/cart.js',{headers:{'Accept':'application/json'}}).then(function(r){return r.json()}).then(function(c){
+      // conta só descontos automáticos: cupom que já estava no carrinho (ex.: de outra tentativa) fica de fora;
+      // o cupom do quiz é somado à parte
+      S.kits=[];S.linhas=[];S.temOleo=false;S.totalKitsOrig=0;S.unitOrig=[];S.descAutoKits=0;S.total=0;
+      c.items.forEach(function(it){
+        var k=tipoDe(it.handle), auto=0;
+        (it.line_level_discount_allocations||[]).forEach(function(a){if(a.discount_application&&a.discount_application.type!=='discount_code')auto+=a.amount});
+        var v=(it.original_line_price-auto)/100;
+        if(k){for(var j=0;j<it.quantity;j++){S.kits.push(k);S.unitOrig.push(it.price/100);}S.totalKitsOrig+=it.original_line_price/100;S.descAutoKits+=auto/100;}
+        if(it.variant_id===CFG.oleo.id)S.temOleo=true;
+        S.linhas.push({t:it.product_title,q:it.quantity,v:v});
+        S.total+=v;
+      });
+    });
+  }
+
+  function abre(handle){
+    S={p:tipoDe(handle),passo:0,r:{},recs:[],cupom:false};
+    return lerCarrinho().then(function(){
+      if(!S.p||!kits())return irCarrinho();
+      root.hidden=false;document.documentElement.style.overflow='hidden';
+      // na pré-visualização do tema, a barra da Shopify fica por cima do rodapé: abre espaço pra ela
+      var pb=document.getElementById('PBarNextFrameWrapper')||document.getElementById('PBarNextFrame');
+      if(pb&&pb.getBoundingClientRect().height)el('vfq-pe').style.paddingBottom=(pb.getBoundingClientRect().height+16)+'px';
+      telaIntro();
+      var b=el('vfq-go'); if(b)b.focus();
+    });
+  }
+
+  root.addEventListener('click',function(e){
+    if(e.target.closest('[data-vfq-fechar]'))fechar();
+    else if(e.target.closest('[data-vfq-pular]'))irCarrinho();
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!root.hidden)fechar();});
+
+  // Intercepta o "Adicionar ao carrinho" das páginas de produto (formulário principal e barra fixa)
+  document.addEventListener('submit',function(e){
+    var form=e.target;
+    if(!form.matches||!form.matches('form.vf-pdp__form, form.vf-pdp-sticky__form'))return;
+    var idEl=form.querySelector('[name="id"]'); if(!idEl)return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    var qty=parseInt((form.querySelector('[name="quantity"]')||{}).value||'1',10)||1;
+    var items=[{id:parseInt(idEl.value,10),quantity:qty}];
+    var addon=document.getElementById('vf-addon-oleo');
+    if(addon&&addon.checked)items.push({id:parseInt(addon.getAttribute('data-variant-id'),10),quantity:1});
+    var btn=form.querySelector('[type="submit"]'); if(btn)btn.disabled=true;
+    // Quiz abre 1 vez por visita. Se o carrinho estiver sem kit (ex.: ela esvaziou), conta como compra nova e abre de novo.
+    fetch('/cart.js',{headers:{'Accept':'application/json'}})
+      .then(function(r){return r.json()})
+      .then(function(c){
+        if(!c.items.some(function(it){return tipoDe(it.handle)}))desmarca();
+        return fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({items:items})});
+      })
+      .then(function(r){
+        if(!r.ok)throw new Error('add');
+        if(feito()){window.location.href='/cart';return;} // já fez o quiz e ainda tem kit no carrinho: fluxo normal
+        // já adicionou: se o quiz falhar, vai pro carrinho (não reenviar o formulário, senão duplica o kit)
+        return abre({{ product.handle | json }}).catch(function(){window.location.href='/cart';});
+      })
+      .catch(function(){if(btn)btn.disabled=false;form.submit();})
+      .then(function(){if(btn)btn.disabled=false;});
+  },true);
+})();
+</script>
+{%- endif -%}

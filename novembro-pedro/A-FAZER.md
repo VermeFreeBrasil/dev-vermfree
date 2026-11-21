@@ -1,0 +1,31 @@
+# A fazer (guardado em 12/11, pedido do Pedro)
+
+## 12/11 (hoje)
+- [x] **Cashback 11/11** aplicado em 14/11 (100 clientes, R$ 8.221,49). Falta: Pedro conferir o Flow e avisar a Sarah · lista pronta (100 clientes, R$ 8.221,49, pedidos #4510–#4612 sem os reembolsados #4578/#4581/#4589). Falta o **ok do Pedro** para aplicar as tags `cashback-1111-<centavos>`. Depois: conferir Flow e saldos, avisar a Sarah.
+- [x] Brinde Verme November: conferido de manhã (nenhum pedido > R$ 1.000 até 08h40). Repetir amanhã cedo.
+- [ ] Marcar no Alliance: "11/11 — Editar os 10 vídeos de venda" (9 entregues).
+
+## 13/11
+- [ ] ⏸️ STAND BY (Pedro, 17/11: "quando alguém me cobrar eu volto aqui") Sorteio do 11/11 entre os 300 primeiros pedidos. Plano pronto: puxar os 300 primeiros pedidos do 11/11 sem reembolsados (só leitura), sortear 1 com número registrado, passar ganhador + print ao Pedro.
+- [ ] ⚠️ ATRASADO (venceu 13/11 18h) 8 vídeos do 2º lote · depende do bruto da Mafe (cobrar).
+
+## Decisões pendentes (Pedro / Vitor)
+- [ ] Kit Família conta como 4 itens para o brinde do Kit Kids? (#4527, #4553)
+- [ ] Cupom de influenciadora não soma com o compre 4 leve 5 (perde atribuição). Definir antes da Verme Friday (27/11).
+
+## Feito em 16/11
+- [x] Tema da Verme Friday aprovado (falta só o link do grupo VIP Black)
+- [x] 9:16 dos 10 estáticos da Verme Friday + 20 ads novos (neon e sale), todos no Drive
+- [x] Drive organizado por campanha (251 cópias; originais intactos)
+- [x] Mensagens escritas para a Sarah (link VIP + guia/manual) e para o Vitor (cupom × compre 4 leve 5; Kit Família)
+
+## Próximas entregas
+- [~] Tema da Verme Friday + fechar o site com o banner do grupo VIP · 23–24/11 · montado no tema 169018949851 (16/11), **aprovado pelo Pedro em 16/11; falta o link do grupo VIP Black**; depois agendar no Supreme 27/11 00h
+- [ ] Brindes da Verme Friday (guia/manual com a Sarah) · 24/11 · esperando o link dos arquivos e como foi no 11/11 (mensagem enviada pelo Pedro em 16/11)
+- [ ] 10 vídeos de venda da Verme Friday · 19/11 · 8 vídeos do 3º lote · 19/11
+- [ ] 4º lote de estáticos universais (8) e de vídeos (8) · 25/11
+- [ ] Free Monday: 10 estáticos, 10 vídeos, tema, oferta/frete, brindes, fechar site · 25–27/11
+
+## Conferência diária do brinde Verme November
+- 14/11 08h40: 27 pedidos desde 12/11; os 2 acima de R$ 1.000 (#4859, #4868) com tag e nota ✅
+- 16/11 09h17: desde 14/11, 2 pedidos acima de R$ 1.000 (#4882, #4894), ambos com a tag ✅
