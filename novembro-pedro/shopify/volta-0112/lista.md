@@ -16,3 +16,8 @@ Base: ficha (novembro só cupom de influenciadora a 2%; volta ao normal em 01/12
 - **CASA5** (Quiz do carrinho · 2º kit com 5%): ativo, sem fim. O quiz dos temas de campanha usa esse cupom; nas prévias o quiz não apareceu. Pausar até 30/11?
 - **VERMEFREE10** (Pesquisa de clientes · 10%): ativo de 13/11 a 13/12. Saiu de outra frente; avisar o Vitor.
 - **Avaliação 5% e 10% próxima compra** (pós-compra/pós-avaliação): ativos; mesma lógica do AVALIEI10, que foi mantido em 03/11.
+
+## 23/11 (ok do Pedro)
+- ✅ Item 2 feito: os 12 cupons (5OFF, FRETEGRATIS, ANOVASAUDE10, Presente15, LIVE8, ALUNO12, ALUNO10, QUIZ10, QUIZ12, QUIZ15, OBRIGADO10, VOLTA) agendados: início 01/12 00h (03:00 UTC), sem fim. Status SCHEDULED conferido.
+- CASA5: Pedro decidiu manter ativo (não pausar) até 30/11.
+- Item 1 (influenciadoras 2% → 5%): fazer 01/12 00h05, com ok do Pedro. Item 3 (descontos de kit) e VERMEFREE10: aguardando Vitor.
