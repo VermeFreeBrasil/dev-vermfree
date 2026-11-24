@@ -1,4 +1,6 @@
 # Verme Friday · 10 estáticos de venda
+**v8 (24/11, sem preço e sem o 5º grátis, que saiu da oferta):** 10 peças no estilo neon aprovado (v6), 4:5 + 9:16. Ângulos: 01 só 48 horas · 02 18% OFF no site todo · 03 fez e voltou? (dor: se só um faz, volta pra casa) · 04 de novo pra depois? · 05 em fases, não dose única · 06 +100 tipos de vermes e parasitas · 07 a casa toda num pedido · 08 frete grátis sem mínimo · 09 comece 2027 desparasitado · 10 sorteio dos 300 primeiros. Pílula: 18% OFF · frete grátis · só 27 e 28/11. Gerador: gerar8-sem5.cjs · png8/ · provas prova8-*.jpg. Aguardando aprovação do Pedro.
+
 
 **17/11 · sem preço total (nova recomendação):** nas versões que estão no Drive (v5 + 9:16, neon e sale) as peças de produto mostram só a parcela "3x de R$ … sem juros"; a peça dos 5 Adultos virou "5 por 4" / "Pague 4" + 18% OFF em cada um. Mudaram: v5 03, 04, 05, 06, 09 · neon 03, 04, 05, 07, 09 · sale 03, 04, 05, 07, 09. Prova: prova-sem-preco-*.jpg.
 
