@@ -20,6 +20,8 @@ Ao marcar, mova a linha para "Já marcadas".
 
 ## Já marcadas
 
+24/11: marcada pelo Claude via MCP (ok do Pedro, com comentário): VF — Configurar a entrega dos brindes (Sarah envia; lista de compradores em 29/11).
+
 18/11: marcadas pelo Claude via MCP (com comentário de entrega): VF tema, FM tema, FM oferta e frete, FM brindes, FM 10 estáticos, 4º lote de estáticos universais.
 
 Em 04/11 o Claude marcou estas como "feito" pelo MCP, com um comentário de entrega em cada uma. Os 30 universais entraram como os lotes 1 (16) e 2 (8) da tarefa "Criar os 40 estáticos universais do mês". A tarefa-mãe continua aberta, com os lotes 3 e 4.
