@@ -35,3 +35,7 @@ Flow "Verme Friday · guia e manual (27–28/11)": gatilho Order created → con
 ## Conferência
 - Antes: Pedro manda print do e-mail de confirmação editado; Claude confere datas e links.
 - 27/11 de manhã (só leitura): pedidos desde 00h com a tag; Sarah confirma que a mensagem saiu.
+
+## 24/11 · decisão do Pedro (opção 1)
+Quem envia o guia e o manual é a Sarah. O bloco do e-mail de confirmação da Shopify SAI do plano (não precisa dos links).
+Em 29/11 08h45 (lembrete agendado) o Claude tira da Shopify, só leitura, a lista dos pedidos pagos de 27/11 00h a 28/11 23h59 e entrega ao Pedro para a Sarah. Dados de cliente não vão para o repositório.

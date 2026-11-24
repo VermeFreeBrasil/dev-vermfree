@@ -5,7 +5,7 @@
 | # | Para quem | Pergunta / risco | Por que importa | Prazo para resolver |
 |---|---|---|---|---|
 | P40 | Pedro / Vitor | Free Monday promete "chega a tempo da última lua nova do ano" (ficha), mas o calendário da PDP mostra "Peça até 11/12 · lua nova 07/01". Pedro (17/11): "pode deixar tudo igual" (a confirmar se vale para isto) | Mensagem desencontrada no dia 30/11 | antes de 29/11 |
-| P41 | Sarah | ~~Link do grupo VIP Black para os temas 3 e 4~~ (23/11: aplicado o link do 11/11, confirmado pelo Pedro) + guia/manual dos brindes da VF | Site fechado sem link; brinde da VF | 24/11 |
+| P41 | Sarah | ~~Link do grupo VIP Black para os temas 3 e 4~~ (23/11: aplicado o link do 11/11, confirmado pelo Pedro) + ~~guia/manual dos brindes da VF~~ (24/11: Sarah envia; Claude entrega a lista de compradores em 29/11) | Site fechado sem link; brinde da VF | 24/11 |
 | P42 | Mafe / Ítalo | Bruto dos 10 vídeos de venda da Verme Friday + roteiros (18/11: chegaram 7; faltam roteiros 2, 9 e 10) | Entrega 19/11 12h | 18/11 |
 | P43 | Pedro (republicar) / Claude (código) | Upload de vídeo grande no Drive: o receptor do Apps Script só aceita ~35 MB por arquivo. 18/11 os 7 originais da VF (53–120 MB) falharam e o Pedro subiu na mão. Fazer o receptor aceitar envio em partes (chunks) e o Pedro reimplantar o script. Até lá: conferir o tamanho ANTES de prometer subir e avisar na hora | Próximos lotes de vídeo (FM, 4º lote) | quando o Pedro puder |
 | P44 | RESOLVIDO 19/11 | PDP da Verme Friday (kit de 5): selo "MELHOR PREÇO DO ANO" e "−34%" não estão na ficha. Tirar? | Claim fora da ficha | antes de 27/11 |
