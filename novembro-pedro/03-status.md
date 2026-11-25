@@ -110,7 +110,7 @@ Detalhes em shopify/verme-november-tema/LEIA.md. Falta: publicar à 00h de 12/11
 | ⬜ | 02/12/2026 18h00 | BLACK FRIDAY · FREE MONDAY · SITE E SHOPIFY | `mcp-1793232474314-9-25522` |  |
 | ⬜ | 02/12/2026 18h00 | BLACK FRIDAY · VERME FRIDAY · SITE E SHOPIFY | `mcp-1793234832210-1-54a21` |  |
 | ⬜ | 02/12/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Fazer o sorteio e avisar o ganhador | `mcp-1793234832211-6-dac04` |  |
-| ⬜ | 02/12/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Organizar o sorteio dos 300 primeiros pedidos | `mcp-1793234832211-5-0f901` |  |
+| 🟡 | 02/12/2026 18h00 | BLACK FRIDAY · VERME FRIDAY — Organizar o sorteio dos 300 primeiros pedidos | `mcp-1793234832211-5-0f901` | **24/11: organização pronta** (regulamento no ar desde 18/11, comentário no Alliance). Conclusão travada pela subtarefa de 02/12: fechar as duas juntas após o sorteio (decisão do Pedro). |
 | ⬜ | sem prazo | AÇÕES DE RECOMPRA — Acompanhar conversão de cada toque do funil / VERMEFREE | `86ak0nq8j` |  |
 | ⬜ | sem prazo | AÇÕES DE RECOMPRA — Acompanhar faturamento por SKU / VERMEFREE | `86ak0nq8k` |  |
 | ⬜ | sem prazo | AÇÕES DE RECOMPRA — Identificar etapa com maior perda de clientes / VERMEFREE | `86ak0nq8x` |  |
@@ -177,3 +177,5 @@ Detalhes em shopify/verme-november-tema/LEIA.md. Falta: publicar à 00h de 12/11
 | ⬜ | 30/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar a landing page de captação para o grupo | `mcp-1793219208869-17-9fa23` | depende: BLACK FRIDAY · 11/11 — Criar o grupo VIP do 11/11 e mandar os links para todo mundo (Sarah Brito, a fazer) |
 | ⬜ | 30/10/2026 12h00 | BLACK FRIDAY · 11/11 — Criar os 10 criativos estáticos de captação | `mcp-1793219208869-19-784a4` |  |
 | ⬜ | 30/10/2026 12h00 | BLACK FRIDAY — Criar os 15 primeiros estáticos universais | `mcp-1793220047120-8-702b7` |  |
+
+**24/11 · Verme Friday sem o "compre 4, leve 5":** tema 3 corrigido (shopify/ajuste-2411-sem5/), desconto desativado, 7 vídeos refeitos e subidos como AD152–AD158 _SEM5 (https://drive.google.com/drive/folders/14PfXWgVWKuT8YBQAIb1MNAJH_soL-I4X), 10 estáticos v8 sem preço (https://drive.google.com/drive/folders/1qaX_HE4Mg3ntAEoX5VnMLjNmF5SRiFRE). Falta o Pedro apagar os antigos e avisar o Otávio (P48).
