@@ -1,0 +1,18 @@
+{
+ "id": "v8135", "entrada": "brutos/IMG_8135.MOV", "saida": "vf-verme-friday-video-roteiro7-dois-tipos.mp4",
+ "pip": {"x": 734, "y": 1250, "w": 300, "h": 533},
+ "vermelho": ["dois", "resolvido", "certo", "fases", "pedido", "botão", "acabe"],
+ "segs": [
+  {"de": 10.65, "ate": 13.38, "legenda": "Tem dois tipos de pessoas nessa Black da Verme Friday.",
+   "fx": [{"tipo": "tarja", "texto": "2 tipos de pessoas", "y": 235, "ini": 0.1, "fim": 2.6}]},
+  {"de": 20.15, "ate": 24.78, "legenda": "Uma entrou, garantiu o protocolo da casa inteira e vai virar o ano com isso resolvido."},
+  {"de": 32.2, "ate": 35.3, "legenda": "E a que ficou olhando, achando bom, mas esperando o momento certo."},
+  {"de": 40.5, "ate": 43.7, "legenda": "Mas você ainda consegue fazer desse o momento certo.", "cards": [{"tipo": "off", "ini": 0.6}]},
+  {"de": 46.77, "ate": 53.59, "legenda": "É o protocolo completo em fases, feito em casa, e que alcança mais de 100 tipos de vermes e parasitas.", "cards": [{"tipo": "fases", "ini": 0.3, "fim": 3.4}]},
+  {"de": 64.75, "ate": 68.11, "legenda": "Com adulto e criança, cada um com o seu, num pedido só.", "cards": [{"tipo": "casa", "ini": 0.3}]},
+  {"de": 75.28, "ate": 81.96, "legenda": "Então toca no botão que está aparecendo aqui embaixo e garante o seu protocolo agora mesmo, antes que a Black da Verme Friday acabe.",
+   "legFim": 5.0,
+   "fx": [{"tipo": "botao", "texto": "Garantir no site ↓", "ini": 0.9, "fim": 4.4}],
+   "cards": [{"tipo": "final", "ini": 4.5}]}
+ ]
+}

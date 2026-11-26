@@ -1,0 +1,21 @@
+{
+ "id": "v8130", "entrada": "brutos/IMG_8130.MOV", "saida": "vf-verme-friday-video-roteiro3-casa-inteira.mp4",
+ "pip": {"x": 734, "y": 1250, "w": 300, "h": 533},
+ "vermelho": ["casa", "ano", "problema", "dentro", "nunca", "junto", "agora", "idade", "última", "botão", "encerre"],
+ "segs": [
+  {"de": 7.35, "ate": 9.73, "legenda": "Conta quantas pessoas moram na sua casa.",
+   "fx": [{"tipo": "tarja", "texto": "Quantas pessoas?", "y": 235, "ini": 0.1, "fim": 2.3}]},
+  {"de": 13.4, "ate": 16.98, "legenda": "Agora me fala quantas fizeram desparasitação esse ano."},
+  {"de": 19.75, "ate": 23.56, "legenda": "Se a resposta foi nenhuma, ou só você, é aí que está o problema."},
+  {"de": 30.1, "ate": 33.89, "legenda": "Porque enquanto um da casa não faz, ele continua circulando ali dentro,"},
+  {"de": 35.9, "ate": 40.88, "legenda": "no banheiro, na cozinha, na roupa de cama, e ele volta pra quem já tinha feito a desparasitação."},
+  {"de": 42.65, "ate": 46.01, "legenda": "E é por isso que às vezes a gente faz e sente que nunca resolve."},
+  {"de": 47.9, "ate": 50.83, "legenda": "Mas, quando a casa faz junto, essa conta muda."},
+  {"de": 52.7, "ate": 56.71, "legenda": "E é isso que a Black da Verme Friday deixa fazer agora, em um pedido só.", "cards": [{"tipo": "off", "ini": 0.8}]},
+  {"de": 58.85, "ate": 62.44, "legenda": "Cada um no protocolo da idade dele, todo mundo ao mesmo tempo.", "cards": [{"tipo": "casa", "ini": 0.3}]},
+  {"de": 64.6, "ate": 66.5, "legenda": "É a última janela do ano.", "cards": [{"tipo": "eclipse", "ini": 0.2}]},
+  {"de": 71.15, "ate": 76.41, "legenda": "Então toca no botão que está aparecendo aqui embaixo e garante o seu protocolo da casa inteira no site.",
+   "fx": [{"tipo": "botao", "texto": "Garantir no site ↓", "ini": 1.0}]},
+  {"de": 79.75, "ate": 82.36, "legenda": "Corre antes que a Black da Verme Friday se encerre.", "cards": [{"tipo": "final", "ini": 0.3}]}
+ ]
+}

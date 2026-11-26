@@ -12,3 +12,4 @@
 ## Ferramentas da VermeFree para os chats
 - Para subir arquivos no Google Drive da VermeFree, use a skill `subir-no-drive` (`.claude/skills/subir-no-drive/SKILL.md`). Ela precisa da variável de ambiente `DRIVE_UPLOAD_TOKEN`; nunca grave o token no repositório.
 - O acompanhamento de novembro do Pedro começa em `novembro-pedro/00-LEIA-PRIMEIRO.md`.
+- O briefing para o chat de dezembro da VermeFree está em `dezembro-vermefree/00-BRIEFING.md` (ler antes de qualquer tarefa de dezembro).
