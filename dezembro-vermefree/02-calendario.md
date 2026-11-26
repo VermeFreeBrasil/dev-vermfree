@@ -6,7 +6,7 @@ Reuniões fixas: daily às 09h40 (exceto quinta) · KPI na quinta às 10h35 · V
 
 ---
 
-## Antes de dezembro (ainda no chat de novembro, salvo decisão em P2)
+## Antes de dezembro · chat de novembro (não fazer aqui)
 
 ### SEX 27/11
 - ⚠️ **18h** · Dia D: configurar as regras do mês na Shopify (influenciadora a 5%, roleta, 1ª compra, Nova Saúde, entrando ter 01/12 00h)
@@ -21,19 +21,19 @@ Reuniões fixas: daily às 09h40 (exceto quinta) · KPI na quinta às 10h35 · V
 ### TER 01/12
 - 🔴 **00h** · ★ PADRÃO entra pelo Supreme · os 12 cupons pausados voltam sozinhos
 - **00h05** · 29 cupons de influenciadora de 2% para 5% (na mão, com ok) · conferência da virada
-- **12h** · Free Monday: reverter o site, a oferta e as regras de novembro
+- (chat de novembro) 12h · Free Monday: reverter o site, a oferta e as regras de novembro
 - 18h · Growth: indexação dos 10 artigos (P1)
 - Decisão do Vitor: os descontos de kit voltam? (P4)
 
 ### QUA 02/12
-- **18h** · Sorteio da Verme Friday (300 primeiros pedidos de 27–28/11) e fechar a tarefa-mãe Free Monday · Pós-campanha (P7)
+- (chat de novembro) 18h · Sorteio da Verme Friday e pós-campanha do Free Monday
 
 ### QUI 03/12
 - 10h35 KPI
 - 18h · Growth: rodapé, dados estruturados, snippet do Judge.me (P1)
 
 ### SEX 04/12
-- **18h** · Aviso no site com os números oficiais da VermeFree (tarefa do 11/11)
+- 18h · Aviso no site com os números oficiais da VermeFree (tarefa do 11/11, de novembro: confirmar se fica com este chat)
 - **18h** · Rotina: vídeos das UGCs fixas ➡️ Otávio · 15 estáticos do perpétuo (só a parte VF, P8)
 - 18h · Growth: página Kids "remédio de verme infantil" (P1)
 - 14h Vanessa

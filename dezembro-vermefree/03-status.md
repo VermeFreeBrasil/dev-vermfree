@@ -17,14 +17,16 @@ A coluna **Status** é o status no Alliance em 26/11. A coluna **Obs** registra 
 | **Total campanhas** | **40** | **20** | | |
 
 
-## Herdado de novembro
+## Herdado de novembro · NÃO FAZER AQUI (chat de novembro)
+
+Só pra referência: são tarefas de campanha de novembro, mesmo com prazo em dezembro (decisão do Pedro em 26/11).
 
 | Status | Prazo | Tarefa | Id | Obs |
 |---|---|---|---|---|
 | ⬜ | ter 01/12 12h | Reverter o site, a oferta e as regras de novembro | `mcp-1795715558925-6-bc5a4` |  |
 | ✅ | qua 02/12 18h | BLACK FRIDAY · FREE MONDAY · SITE E SHOPIFY **(mãe)** | `mcp-1793232474314-9-25522` |  |
-| ✅ | qua 02/12 18h | Fazer o sorteio e avisar o ganhador | `mcp-1793234832211-6-dac04` | Já está "feito" no Alliance. Conferir (P7) |
-| ✅ | qua 02/12 18h | Organizar o sorteio dos 300 primeiros pedidos | `mcp-1793234832211-5-0f901` | Já está "feito" no Alliance. Conferir (P7) |
+| ✅ | qua 02/12 18h | Fazer o sorteio e avisar o ganhador | `mcp-1793234832211-6-dac04` | Novembro: não fazer aqui |
+| ✅ | qua 02/12 18h | Organizar o sorteio dos 300 primeiros pedidos | `mcp-1793234832211-5-0f901` | Novembro: não fazer aqui |
 | ✅ | qua 02/12 18h | BLACK FRIDAY · VERME FRIDAY · SITE E SHOPIFY **(mãe)** | `mcp-1793234832210-1-54a21` |  |
 | ⬜ | qua 02/12 18h | BLACK FRIDAY · FREE MONDAY · PÓS-CAMPANHA **(mãe)** | `mcp-1795108471043-3-7fc62` |  |
 
@@ -32,7 +34,7 @@ A coluna **Status** é o status no Alliance em 26/11. A coluna **Obs** registra 
 
 | Status | Prazo | Tarefa | Id | Obs |
 |---|---|---|---|---|
-| ⬜ | sex 27/11 18h | Configurar as regras do mês na Shopify | `mcp-1795711341176-10-dd4ef` | Vence amanhã. Quem faz? (P2) |
+| ⬜ | sex 27/11 18h | Configurar as regras do mês na Shopify | `mcp-1795711341176-10-dd4ef` | Tarefa de novembro (prazo 27/11): fica com o chat de novembro |
 | ⬜ | ter 08/12 18h | Criar os 5 criativos estáticos de venda | `mcp-1795711145454-10-02094` |  |
 | ⬜ | ter 08/12 18h | Editar os 10 vídeos de venda | `mcp-1795711145454-9-ae4e9` |  |
 | ⬜ | ter 08/12 18h | DEZEMBRO · DIA D · CRIATIVOS **(mãe)** | `mcp-1795711145453-1-c37fc` |  |

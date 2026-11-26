@@ -27,7 +27,8 @@ Montado em 26/11/2026 a partir do Alliance OS (campanhas, fichas da oferta, tare
 4. **Escopo de dezembro: a confirmar com o Pedro (P1).** Em novembro foi só promoções e cronograma, sem Growth.
 5. **Repositório ligado ao Lovable:** sem force-push, rebase ou amend em commit já enviado.
 6. **Segredos e dados pessoais:** token só em variável de ambiente. Nada de nome, e-mail, telefone ou endereço de cliente no repositório.
-7. **Comentários no Alliance começam com "(Pedro)"**, porque o MCP está na conta do Vitor. Uma tarefa-mãe não fecha com subtarefa aberta.
+7. **Nenhuma tarefa de novembro (Pedro, 26/11).** Este chat faz só o que é de 01/12 em diante. O que é de campanha de novembro (Free Monday, Verme Friday, sorteio, regras do mês com prazo 27/11) fica com o chat de novembro, mesmo que o prazo caia em dezembro.
+8. **Comentários no Alliance começam com "(Pedro)"**, porque o MCP está na conta do Vitor. Uma tarefa-mãe não fecha com subtarefa aberta.
 
 ## Meta do mês
 
