@@ -1,0 +1,20 @@
+{
+ "id": "v8133", "entrada": "brutos/IMG_8133.MOV", "saida": "vf-verme-friday-video-roteiro5-comecar-o-ano.mp4",
+ "pip": {"x": 734, "y": 1250, "w": 300, "h": 533},
+ "vermelho": ["ano", "desparasitado", "adiando", "agora", "fases", "lua", "botão"],
+ "segs": [
+  {"de": 15.78, "ate": 19.49, "legenda": "Antes de você rolar o vídeo, eu quero que você responda uma coisa pra você mesma.",
+   "fx": [{"tipo": "tarja", "texto": "Responde pra você", "y": 235, "ini": 0.1, "fim": 2.8}]},
+  {"de": 23.95, "ate": 25.54, "legenda": "Como você quer começar o ano?"},
+  {"de": 35.45, "ate": 39.78, "legenda": "Com o corpo desparasitado, a casa inteira feita, com isso fora da sua lista?"},
+  {"de": 72.5, "ate": 79.64, "legenda": "Ou da mesma forma que você começou esse, falando o que ia fazer, adiando e chegando no final do ano de novo sem ninguém ter feito?"},
+  {"de": 83.55, "ate": 87.49, "legenda": "A diferença entre os dois é uma decisão que você toma agora."},
+  {"de": 113.25, "ate": 115.44, "legenda": "E é agora que a Black da Verme Friday está no ar.", "cards": [{"tipo": "off", "ini": 0.3}]},
+  {"de": 119.6, "ate": 126.36, "legenda": "Um protocolo completo em fases, feito em casa, e que alcança mais de 100 tipos de vermes e parasitas.", "cards": [{"tipo": "fases", "ini": 0.3, "fim": 3.6}]},
+  {"de": 130.1, "ate": 133.47, "legenda": "E ainda dá tempo de começar na última lua nova do ano."},
+  {"de": 140.6, "ate": 146.64, "legenda": "Então toca no botão que está aparecendo aqui embaixo e já garante o seu protocolo no site antes que a Black da Verme Friday acabe.",
+   "legFim": 4.6,
+   "fx": [{"tipo": "botao", "texto": "Garantir no site ↓", "ini": 0.9, "fim": 4.0}],
+   "cards": [{"tipo": "final", "ini": 4.1}]}
+ ]
+}

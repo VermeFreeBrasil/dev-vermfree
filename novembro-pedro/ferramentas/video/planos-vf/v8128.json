@@ -1,0 +1,20 @@
+{
+ "id": "v8128", "entrada": "brutos/IMG_8128.MOV", "saida": "vf-verme-friday-video-roteiro1-ultima-lua-nova.mp4",
+ "pip": {"x": 734, "y": 1250, "w": 300, "h": 533},
+ "vermelho": ["última", "agora", "dezembro", "fases", "normal", "janeiro", "botão", "encerre"],
+ "segs": [
+  {"de": 4.05, "ate": 8.89, "legenda": "Essa é a última chance de fazer o protocolo da VermeFree na última lua nova do ano.",
+   "fx": [{"tipo": "tarja", "texto": "Última lua nova", "y": 235, "ini": 0.1, "fim": 3.2}]},
+  {"de": 10.55, "ate": 15.46, "legenda": "Eu sei que você viu isso o mês inteiro, achou que fazia sentido, mas foi deixando pra depois."},
+  {"de": 16.35, "ate": 20.28, "legenda": "Só que a última lua nova do ano é dia 9 de dezembro.",
+   "fx": [{"tipo": "tarja", "texto": "Lua nova · 9/12", "y": 235, "ini": 1.0, "fim": 3.8}]},
+  {"de": 22.0, "ate": 26.61, "legenda": "E pro protocolo chegar a tempo de você começar nela, o pedido tem que sair agora."},
+  {"de": 33.65, "ate": 37.56, "legenda": "Enquanto a Black da Verme Friday está no ar, dá pra garantir o protocolo completo,", "cards": [{"tipo": "off", "ini": 0.6}]},
+  {"de": 45.88, "ate": 50.99, "legenda": "em fases, feito em casa, e que alcança mais de 100 tipos de vermes e parasitas.", "cards": [{"tipo": "fases", "ini": 0.2, "fim": 3.2}]},
+  {"de": 54.7, "ate": 57.44, "legenda": "Quando ela acabar, tudo volta ao preço normal.", "cards": [{"tipo": "eclipse", "ini": 0.6}]},
+  {"de": 62.8, "ate": 65.99, "legenda": "E a próxima lua nova depois dessa é só em janeiro."},
+  {"de": 77.45, "ate": 81.51, "legenda": "Então toca no botão que está aparecendo aqui embaixo e garante o seu protocolo agora!",
+   "fx": [{"tipo": "botao", "texto": "Garantir no site ↓", "ini": 0.9}]},
+  {"de": 85.2, "ate": 87.66, "legenda": "Corre antes que a Black da Verme Friday encerre.", "cards": [{"tipo": "final", "ini": 0.3}]}
+ ]
+}

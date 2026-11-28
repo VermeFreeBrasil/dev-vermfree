@@ -1,0 +1,21 @@
+{
+ "id": "v8131",
+ "entrada": "brutos/IMG_8131.MOV",
+ "saida": "vf-verme-friday-video-roteiro4-volta-ao-normal.mp4",
+ "pip": {"x": 734, "y": 1250, "w": 300, "h": 533},
+ "vermelho": ["acabar", "prorrogação", "agora", "18%", "fases", "inteira", "botão", "encerre"],
+ "segs": [
+  {"de": 5.0, "ate": 8.61, "legenda": "Quando a Black da Verme Friday acabar, tudo volta ao preço normal.",
+   "fx": [{"tipo": "tarja", "texto": "Só 27 e 28/11", "y": 235, "ini": 0.1, "fim": 3.0}]},
+  {"de": 10.9, "ate": 13.74, "legenda": "Não tem prorrogação e não tem versão estendida.", "cards": [{"tipo": "eclipse", "ini": 0.4}]},
+  {"de": 16.8, "ate": 19.12, "legenda": "O site volta a ser o mesmo de sempre."},
+  {"de": 22.2, "ate": 25.16, "legenda": "E o protocolo volta a custar o mesmo valor que custava."},
+  {"de": 26.7, "ate": 30.57, "legenda": "Então, o que você garantir agora é o que você não vai pagar cheio depois.", "cards": [{"tipo": "off", "ini": 0.8}]},
+  {"de": 38.9, "ate": 45.9, "legenda": "E é o protocolo completo em fases, feito em casa, e que alcança mais de 100 tipos de vermes e parasitas.", "cards": [{"tipo": "fases", "ini": 0.3, "fim": 3.6}]},
+  {"de": 47.6, "ate": 51.42, "legenda": "Dá pra resolver a casa inteira enquanto a condição ainda está de pé.", "cards": [{"tipo": "casa", "ini": 0.4}]},
+  {"de": 54.55, "ate": 56.56, "legenda": "Não deixa essa oportunidade passar."},
+  {"de": 62.0, "ate": 66.35, "legenda": "Toca no botão que está aparecendo aqui embaixo e garante o seu protocolo no site agora mesmo.",
+   "fx": [{"tipo": "botao", "texto": "Garantir no site ↓", "ini": 0.9}]},
+  {"de": 72.3, "ate": 74.32, "legenda": "Corre antes que a Black da Verme Friday se encerre.", "cards": [{"tipo": "final", "ini": 0.3}]}
+ ]
+}

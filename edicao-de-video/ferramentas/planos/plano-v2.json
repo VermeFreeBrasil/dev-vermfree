@@ -1,0 +1,15 @@
+{"id":"v2","entrada":"bruto/vermefree-2.mp4","saida":"vf-ugc-captacao-1111-02.mp4","duracao":30.3,
+ "gancho":{"ini":0,"fim":2.6,"texto":"Dorme 8 horas e <b>acorda cansado</b>?"},
+ "selo":{"ini":17.9,"fim":24.4},
+ "cta":{"ini":27.5},
+ "destaques":["cansado","café","exame","rotina","desparasitação","intestino","ordem","agradece","grupo","protocolo","especial"],
+ "vermelho":["11","imperdíveis"],
+ "frases":[
+  {"ini":0.0,"fim":3.92,"texto":"Você dorme 8 horas e acorda cansado, como se não tivesse dormido?"},
+  {"ini":3.92,"fim":8.0,"texto":"Café de manhã, café à tarde, e mesmo assim parece que o corpo não liga."},
+  {"ini":8.0,"fim":11.04,"texto":"Você já fez exame, já mudou a rotina, e nada."},
+  {"ini":11.04,"fim":14.4,"texto":"Uma coisa que quase ninguém olha é a desparasitação."},
+  {"ini":14.4,"fim":17.88,"texto":"Quando o intestino está em ordem, o corpo inteiro agradece."},
+  {"ini":17.88,"fim":24.44,"texto":"No dia 11 do 11, a VermeFree vai liberar uma condição muito especial, com descontos imperdíveis, para quem estiver no grupo."},
+  {"ini":24.44,"fim":27.5,"texto":"É o melhor dia para começar e garantir o seu protocolo."}
+ ]}

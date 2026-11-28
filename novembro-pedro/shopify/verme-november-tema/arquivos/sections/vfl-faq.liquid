@@ -1,0 +1,62 @@
+{%- comment -%} vfl-faq — Perguntas em sanfona, título à esquerda (LP do Adulto). {%- endcomment -%}
+<section class="vfl vfl-section vfl-faq">
+  <div class="vfl-wrap vfl-faq__grid">
+    <div>
+      {%- if section.settings.eyebrow != blank -%}<p class="vfl-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2>{{ section.settings.heading | remove: '<p>' | remove: '</p>' }}</h2>
+      {%- if section.settings.text != blank -%}<p class="vfl-lede">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    <div>
+      {%- for block in section.blocks -%}
+        <details {{ block.shopify_attributes }}>
+          <summary>{{ block.settings.q }}</summary>
+          <div class="vfl-faq__a">{{ block.settings.a }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- comment -%} FAQPage com as perguntas visíveis acima; resposta em texto puro. {%- endcomment -%}
+{%- assign vf_faq_n = 0 -%}
+{%- capture vf_faq_items -%}
+  {%- for block in section.blocks -%}
+    {%- assign vf_q = block.settings.q | strip_html | strip -%}
+    {%- assign vf_a = block.settings.a | strip_html | strip -%}
+    {%- if vf_q != blank and vf_a != blank -%}
+      {%- if vf_faq_n > 0 -%},{%- endif -%}
+      {"@type":"Question","name":{{ vf_q | json }},"acceptedAnswer":{"@type":"Answer","text":{{ vf_a | json }}}}
+      {%- assign vf_faq_n = vf_faq_n | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if vf_faq_n > 0 -%}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","@id":{{ canonical_url | append: '#faq' | json }},"mainEntity":[{{ vf_faq_items }}]}
+</script>
+{%- endif -%}
+<style>
+  .vfl-faq__grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 80px; }
+  .vfl-faq details { border-bottom: 1px solid var(--vf-line); }
+  .vfl-faq summary { padding: 23px 34px 23px 0; cursor: pointer; font-weight: 600; font-size: 1rem; list-style: none; position: relative; }
+  .vfl-faq summary::-webkit-details-marker { display: none; }
+  .vfl-faq summary::after { content: '+'; position: absolute; right: 0; top: 20px; font-size: 1.4rem; font-weight: 400; }
+  .vfl-faq details[open] summary::after { content: '−'; }
+  .vfl-faq__a p { padding: 0 15px 22px 0; font-size: .95rem; color: var(--vf-muted); }
+  @media (max-width: 1000px) { .vfl-faq__grid { grid-template-columns: 1fr; gap: 28px; } }
+</style>
+{% schema %}
+{
+  "name": "VF · Perguntas",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Chamada pequena", "default": "Antes de decidir" },
+    { "type": "richtext", "id": "heading", "label": "Título", "default": "<p>Pode perguntar.</p>" },
+    { "type": "text", "id": "text", "label": "Texto", "default": "Informação faz parte do cuidado." }
+  ],
+  "blocks": [ { "type": "q", "name": "Pergunta", "settings": [
+    { "type": "text", "id": "q", "label": "Pergunta", "default": "Pergunta" },
+    { "type": "richtext", "id": "a", "label": "Resposta", "default": "<p>Resposta</p>" }
+  ] } ],
+  "presets": [{ "name": "VF · Perguntas" }]
+}
+{% endschema %}

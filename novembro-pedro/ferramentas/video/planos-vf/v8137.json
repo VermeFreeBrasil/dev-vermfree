@@ -1,0 +1,20 @@
+{
+ "id": "v8137",
+ "entrada": "brutos/IMG_8137.MOV",
+ "saida": "vf-verme-friday-video-roteiro8-ultima-chamada.mp4",
+ "pip": {"x": 734, "y": 1250, "w": 300, "h": 533},
+ "vermelho": ["agora", "últimas", "sempre", "fases", "lua", "cinco", "botão", "vez"],
+ "segs": [
+  {"de": 9.0, "ate": 11.73, "legenda": "Se você está vendo isso, ainda dá, mas é agora!",
+   "fx": [{"tipo": "tarja", "texto": "Última chamada", "y": 235, "ini": 0.1, "fim": 2.6}]},
+  {"de": 20.9, "ate": 24.82, "legenda": "A Black da Verme Friday está nas últimas e eu não queria que você deixasse passar.", "cards": [{"tipo": "eclipse", "ini": 1.2}]},
+  {"de": 31.15, "ate": 34.63, "legenda": "Depois dela, o protocolo continua lá, mas no preço de sempre.", "cards": [{"tipo": "off", "ini": 1.0}]},
+  {"de": 46.55, "ate": 53.23, "legenda": "É o protocolo completo em fases, feito em casa, e que alcança mais de 100 tipos de vermes e parasitas.", "cards": [{"tipo": "fases", "ini": 0.3, "fim": 3.4}]},
+  {"de": 58.5, "ate": 61.93, "legenda": "E ainda dá tempo de chegar até a última lua nova do ano."},
+  {"de": 66.6, "ate": 69.24, "legenda": "Não vai levar nem cinco minutos pra você resolver.", "cards": [{"tipo": "frete", "ini": 0.5}]},
+  {"de": 73.95, "ate": 79.74, "legenda": "Então toca no botão que está aqui embaixo e finaliza o seu protocolo antes que a Black da Verme Friday encerre de vez.",
+   "legFim": 4.4,
+   "fx": [{"tipo": "botao", "texto": "Garantir no site ↓", "ini": 0.8, "fim": 3.2}],
+   "cards": [{"tipo": "final", "ini": 3.3}]}
+ ]
+}

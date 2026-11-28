@@ -1,0 +1,359 @@
+{%- comment -%}
+  vf-pdp-buy-c — Bloco de compra "parcela em destaque" (conceito C, versão 1) dos protocolos (Adulto e Kids).
+  Incluído dentro do form da vf-pdp-main (p3), antes do botão antigo. Usa as variáveis do include:
+  unit_price_cents, pdp_main, vf_rating_count, vf_rating_value.
+  A escolha de 1/2/3 kits "clica" no cartão antigo (escondido), então quantidade, barra fixa,
+  complemento e carrinho seguem o script da p6.
+  Preço igual ao do carrinho: desconto automático por unidade (centavos para baixo); parcela 3x arredondada ao centavo mais próximo.
+{%- endcomment -%}
+{%- liquid
+  assign vfc_unit = unit_price_cents
+  case product.handle
+    when 'protocolo-desparasitacao-adulto-vermefree'
+      assign vfc_title = 'Protocolo VermeFree Adulto'
+    when 'antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos'
+      assign vfc_title = 'VermeFree Kids · 2 a 4 anos'
+    when 'antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos'
+      assign vfc_title = 'VermeFree Kids · 5 a 9 anos'
+    else
+      assign vfc_title = product.title
+  endcase
+  assign vfc_img = pdp_main | default: product.featured_image
+  comment
+    Recorte da foto no bloco de preço: área dos frascos dentro do PNG 2048x2048 de cada produto
+    (proporção da caixa, largura, deslocamento à esquerda e ao topo). Padrão = Adulto.
+  endcomment
+  assign vfc_crop = '--ar: 1588 / 1217; --w: 129%; --l: -15.3%; --t: -41%;'
+  if vfc_img.src contains 'kids-2a4'
+    assign vfc_crop = '--ar: 1263 / 1464; --w: 162.2%; --l: -31%; --t: -22.3%;'
+  elsif vfc_img.src contains 'kids-5a9'
+    assign vfc_crop = '--ar: 1229 / 1427; --w: 166.6%; --l: -33.2%; --t: -23.9%;'
+  endif
+-%}
+<div class="vfc" data-vfc data-threshold="29900">
+  <p class="vfc__t">{{ vfc_title }}</p>
+  <div class="vfc__meta">
+    {%- if vf_rating_count > 0 -%}
+      <a class="vfc__stars" href="#avaliacoes" data-vf-reviews-link aria-label="Nota {{ vf_rating_value }} de 5. Ver avaliações">{%- render 'vf-stars', rating: vf_rating_value, size: 17 -%}</a>
+    {%- endif -%}
+    {%- if section.settings.show_age_badge and section.settings.age_badge_text != blank -%}
+      <span class="vfc__chip">{{ section.settings.age_badge_text | replace: 'Indicado a partir', 'A partir' | replace: 'Indicado de', 'De' }}</span>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Bloco de preço: começa em 1 kit; o script troca conforme a escolha {%- endcomment -%}
+  <div class="vfc__hero">
+    <div class="vfc__img" style="{{ vfc_crop }}">
+      {%- if vfc_img != blank -%}<img src="{{ vfc_img | image_url: width: 500 }}" alt="" width="250" height="250">{%- endif -%}
+      <span class="vfc__x" data-vfc-x hidden>×1</span>
+    </div>
+    <div class="vfc__pr">
+      <p class="vfc__k" data-vfc-k>1 kit</p>
+      <p class="vfc__big"><small>3x</small><span data-vfc-inst></span></p>
+      <p class="vfc__sj">sem juros no cartão</p>
+      <p class="vfc__av"><s data-vfc-cmp></s> <span data-vfc-tot></span> à vista</p>
+      <span class="vfc__ec" data-vfc-ec></span>
+    </div>
+  </div>
+
+  <div class="vfc__opts" role="radiogroup" aria-label="Quantos kits">
+    {%- assign vfc_qs = '1,3,5' | split: ',' -%}
+    {%- for qs in vfc_qs -%}
+      {%- liquid
+        assign q = qs | plus: 0
+        assign d = 12
+        if q == 3
+          assign d = 15
+        elsif q == 5
+          assign d = 17
+        endif
+        assign unit_off = vfc_unit | times: d | divided_by: 100
+        assign total = vfc_unit | minus: unit_off | times: q
+        assign full = vfc_unit | times: q
+        assign save = full | minus: total
+        assign inst = total | plus: 1 | divided_by: 3
+      -%}
+      <button type="button" class="vfc__opt{% if q == 1 %} is-on{% endif %}" role="radio" aria-checked="{% if q == 1 %}true{% else %}false{% endif %}"
+        data-q="{{ q }}" data-d="{{ d }}" data-inst="{{ inst | money }}" data-tot="{{ total | money }}" data-cmp="{% if full > total %}{{ full | money }}{% endif %}" data-save="{% if save > 0 %}{{ save | money }}{% endif %}" data-totc="{{ total }}">
+        {%- if q == 5 -%}<span class="vfc__tg">Maior desconto</span>{%- endif -%}<span class="vfc__ck" aria-hidden="true"></span>
+        <b>{{ q }} kit{% if q > 1 %}s{% endif %}</b>
+        <span>3x {{ inst | money }}</span>
+        <i>−{{ d }}%</i>
+      </button>
+    {%- endfor -%}
+  </div>
+
+  {%- comment -%} Barra de benefícios: o que cada kit a mais desbloqueia (frete grátis vem do limite em data-threshold) {%- endcomment -%}
+  <div class="vfc__unl">
+    <p class="vfc__ut" data-vfc-ut></p>
+    <div class="vfc__track">
+      <span class="vfc__fill" data-vfc-fill></span>
+      {%- assign vf_frete_ok = false -%}
+      {%- for qs in vfc_qs -%}
+        {%- liquid
+          assign q = qs | plus: 0
+          assign d = 12
+          if q == 3
+            assign d = 15
+          elsif q == 5
+            assign d = 17
+          endif
+          assign unit_off = vfc_unit | times: d | divided_by: 100
+          assign total = vfc_unit | minus: unit_off | times: q
+        -%}
+        <button type="button" class="vfc__st" data-st="{{ q }}" aria-label="Escolher {{ q }} kit{% if q > 1 %}s{% endif %}">
+          <em aria-hidden="true"></em>
+          <small><b>{{ q }} kit{% if q > 1 %}s{% endif %}</b>{% if total >= 29900 and vf_frete_ok != true %}Frete grátis + {% assign vf_frete_ok = true %}{% endif %}{{ d }}% OFF</small>
+        </button>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <button type="submit" class="vfc__btn" {% unless product.available %}disabled{% endunless %}>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+    {%- if product.available -%}COMPRAR AGORA{%- else -%}ESGOTADO{%- endif -%}
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </button>
+  <p class="vfc__under" data-vfc-under>Frete grátis · App incluso · <b>1 kit por pessoa</b></p>
+  <a class="vf-pdp__prova" href="/pages/vermefree-funciona">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+    Funciona? Veja o que dizem os clientes &rarr;
+  </a>
+
+  {%- comment -%} Estimativa de entrega em dias úteis: envio em até data-ship, entrega entre data-d1 e data-d2 dias úteis depois do envio {%- endcomment -%}
+  <div class="vfc__eta" data-vfc-eta data-ship="2" data-d1="3" data-d2="8" hidden>
+    <div class="vfc__es"><span class="vfc__ei"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.4a1.5 1.5 0 0 0 1.5 1.1h8.8a1.5 1.5 0 0 0 1.5-1.1L21 7H6"/></svg></span><b data-eta="0"></b><small>Pedido feito</small></div>
+    <div class="vfc__es"><span class="vfc__ei"><svg viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 9h4l4 4v3h-8"/><circle cx="6.5" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></svg></span><b data-eta="1"></b><small>Enviado</small></div>
+    <div class="vfc__es"><span class="vfc__ei"><svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span><b data-eta="2"></b><small>Entregue 🇧🇷</small></div>
+  </div>
+
+  <div class="vfc__pay">
+    <p><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Pagamento 100% seguro</p>
+    <div class="vfc__pis">
+      <span class="vfc__pix" aria-label="Pix"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l3.3 3.3-3.3 3.3-3.3-3.3zM2.6 12l3.3-3.3 3.3 3.3-3.3 3.3zM14.8 12l3.3-3.3 3.3 3.3-3.3 3.3zM12 14.8l3.3 3.3-3.3 3.3-3.3-3.3z" fill="#32BCAD"/></svg>pix</span>
+      {%- for type in shop.enabled_payment_types -%}
+        {%- unless type == 'pix' -%}{{ type | payment_type_svg_tag: class: 'vfc__pi' }}{%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="vfc__trust">
+    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.4-7 10-4-1.6-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>Garantia<br>7 dias</span>
+    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>Envio em<br>3 dias úteis</span>
+    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Suporte<br>humano</span>
+  </div>
+
+  <div class="vfc__moon" data-vfc-moon hidden>
+    <span class="vfc__mi" aria-hidden="true">🌙</span>
+    <span class="vfc__mt"><b data-vfc-m1></b><small data-vfc-m2></small></span>
+    <span class="vfc__dd"><b data-vfc-dd></b><small>dias</small></span>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var root = document.currentScript.previousElementSibling;
+    if (!root || !root.hasAttribute('data-vfc')) return;
+    var opts = [].slice.call(root.querySelectorAll('.vfc__opt'));
+    var $ = function (s) { return root.querySelector(s); };
+    var thr = parseInt(root.getAttribute('data-threshold'), 10) || 29900;
+    function paint(b) {
+      opts.forEach(function (o) { var on = o === b; o.classList.toggle('is-on', on); o.setAttribute('aria-checked', on ? 'true' : 'false'); });
+      var q = +b.dataset.q, d = +b.dataset.d;
+      $('[data-vfc-x]').textContent = '×' + q; $('[data-vfc-x]').hidden = q === 1;
+      $('[data-vfc-k]').textContent = q + (q > 1 ? ' kits' : ' kit') + (d ? ' · −' + d + '%' : '');
+      $('[data-vfc-inst]').textContent = b.dataset.inst;
+      $('[data-vfc-tot]').textContent = b.dataset.tot;
+      $('[data-vfc-cmp]').textContent = b.dataset.cmp || '';
+      var ec = $('[data-vfc-ec]'); ec.textContent = b.dataset.save ? 'Economize ' + b.dataset.save : ''; ec.hidden = !b.dataset.save;
+      var frete = (+b.dataset.totc) >= thr ? 'Frete grátis' : 'Frete grátis acima de R$ 299';
+      $('[data-vfc-under]').innerHTML = frete + ' · App incluso · <b>1 kit por pessoa</b>';
+      unlock(q);
+    }
+    /* Barra de benefícios */
+    function perks(q) {
+      var o = root.querySelector('.vfc__opt[data-q="' + q + '"]');
+      return o ? { d: +o.dataset.d, f: (+o.dataset.totc) >= thr } : null;
+    }
+    function unlock(q) {
+      var qs = opts.map(function (o) { return +o.dataset.q; }), i = qs.indexOf(q), max = opts.length, cur = perks(q), nx = i > -1 && i < max - 1 ? perks(qs[i + 1]) : null, msg;
+      $('[data-vfc-fill]').style.width = (Math.max(i, 0) / (max - 1) * 100) + '%';
+      root.querySelectorAll('.vfc__st').forEach(function (s) { s.classList.toggle('is-done', +s.dataset.st <= q); });
+      if (nx) {
+        var g = [];
+        if (nx.f && !cur.f) g.push('frete grátis');
+        if (nx.d > cur.d) g.push(nx.d + '% OFF');
+        msg = 'Leve <b>' + qs[i + 1] + ' kits</b> e ganhe <b>' + g.join(' + ') + '</b>';
+      } else {
+        msg = '🎉 Desbloqueado: <b>' + (cur.f ? 'frete grátis + ' : '') + cur.d + '% OFF</b>';
+      }
+      $('[data-vfc-ut]').innerHTML = msg;
+    }
+    root.querySelectorAll('.vfc__st').forEach(function (s) {
+      s.addEventListener('click', function () { var b = root.querySelector('.vfc__opt[data-q="' + s.dataset.st + '"]'); if (b) pick(b, true); });
+    });
+    /* Estimativa de entrega (dias úteis, seg a sex) */
+    function eta() {
+      var el = $('[data-vfc-eta]'); if (!el) return;
+      var M = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+      var f = function (d) { return d.getDate() + ' ' + M[d.getMonth()]; };
+      var add = function (d, n) { var x = new Date(d.getTime()); while (n > 0) { x.setDate(x.getDate() + 1); if (x.getDay() % 6) n--; } return x; };
+      var hoje = new Date(); hoje.setHours(12, 0, 0, 0);
+      var env = add(hoje, +el.dataset.ship), e1 = add(env, +el.dataset.d1), e2 = add(env, +el.dataset.d2);
+      el.querySelector('[data-eta="0"]').textContent = 'Hoje, ' + f(hoje);
+      el.querySelector('[data-eta="1"]').textContent = 'Até ' + f(env);
+      el.querySelector('[data-eta="2"]').textContent = f(e1) + ' – ' + f(e2);
+      el.hidden = false;
+    }
+    function pick(b, fromUser) {
+      paint(b);
+      var card = document.querySelector('.vf-pdp__kit-card[data-qty="' + b.dataset.q + '"]');
+      if (card && !card.classList.contains('is-active')) card.click();
+      else if (!card) { var qi = document.getElementById('vf-pdp-qty'); if (qi) qi.value = b.dataset.q; }
+    }
+    opts.forEach(function (b) { b.addEventListener('click', function () { pick(b, true); }); });
+    /* Barra fixa ou outro lugar mudou a quantidade: acompanha */
+    document.querySelectorAll('.vf-pdp__kit-card[data-qty]').forEach(function (c) {
+      new MutationObserver(function () {
+        if (!c.classList.contains('is-active')) return;
+        var b = root.querySelector('.vfc__opt[data-q="' + c.dataset.qty + '"]');
+        if (b && !b.classList.contains('is-on')) paint(b);
+      }).observe(c, { attributes: true, attributeFilter: ['class'] });
+    });
+    function moon() {
+      var src = document.querySelector('[data-vf-moon-line][data-dates]');
+      if (!src) return;
+      var lead = parseInt(src.getAttribute('data-lead'), 10); if (isNaN(lead)) lead = 12;
+      var hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+      var f = function (d) { return ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth() + 1)).slice(-2); };
+      var next = null;
+      src.getAttribute('data-dates').split(/[\s,]+/).filter(Boolean).map(function (x) {
+        var p = x.split('|'), l = p[0].split('-'), q = (p[1] || p[0]).split('-');
+        var lua = new Date(+l[0], +l[1] - 1, +l[2]), prep = new Date(+q[0], +q[1] - 1, +q[2]);
+        var prazo = new Date(prep.getTime()); prazo.setDate(prazo.getDate() - lead);
+        return { lua: lua, prazo: prazo };
+      }).sort(function (a, b) { return a.lua - b.lua; }).some(function (c) { if (c.prazo >= hoje) { next = c; return true; } return false; });
+      if (!next) return;
+      var dias = Math.round((next.prazo - hoje) / 86400000);
+      $('[data-vfc-m1]').textContent = dias === 0 ? 'Último dia: peça hoje' : 'Peça até ' + f(next.prazo);
+      $('[data-vfc-m2]').textContent = 'e comece na lua nova de ' + f(next.lua);
+      $('[data-vfc-dd]').textContent = dias;
+      $('[data-vfc-moon]').hidden = false;
+    }
+    function init() {
+      pick(root.querySelector('.vfc__opt.is-on'));
+      moon();
+      eta();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+  })();
+</script>
+
+<style>
+  /* Some o que o bloco novo substitui */
+  .vf-pdp__buy:has(.vfc) .vf-pdp__title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .vf-pdp__buy:has(.vfc) .vf-pdp__vendor,
+  .vf-pdp__buy:has(.vfc) .vf-pdp__protocol-link,
+  .vf-pdp__buy:has(.vfc) .vf-pdp__age-badge,
+  .vf-pdp__buy:has(.vfc) .vf-pdp__rating,
+  .vf-pdp__buy:has(.vfc) .vf-pdp__short,
+  .vf-pdp__buy:has(.vfc) .vf-pdp__price-box,
+  .vf-pdp__buy:has(.vfc) .vf-pdp__kits,
+  .vf-pdp__buy:has(.vfc) .vf-pdp__cta--primary,
+  .vf-pdp__buy:has(.vfc) .vf-pdp__badges,
+  .vf-pdp__buy:has(.vfc) .vf-pdp__prova--p3 { display: none !important; }
+  .vf-pdp__prova { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 10px 0 0; font-family: Inter, system-ui, sans-serif; font-size: 13.5px; font-weight: 700; color: #1B5E20; text-decoration: underline; text-underline-offset: 3px; }
+  .vf-pdp__prova:hover { color: #5EBC43; }
+  .vf-pdp__prova svg { width: 15px; height: 15px; flex: 0 0 auto; }
+
+  .vfc { --vfc-deep: #153C2C; --vfc-green: #5EBC43; --vfc-g2: #3E8E2E; --vfc-muted: #5C6B61; font-family: Inter, system-ui, sans-serif; color: #1D2A22; }
+  .vfc p { margin: 0; }
+  .vfc__t { font-family: Caprasimo, Georgia, serif; font-weight: 400; font-size: 25px; line-height: 1.12; color: var(--vfc-deep); }
+  .vfc__meta { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+  .vfc__stars { display: inline-flex; text-decoration: none; }
+  .vfc__chip { font-size: 12px; font-weight: 700; color: #2E6B22; background: #EDF5E4; border-radius: 999px; padding: 5px 11px; }
+
+  .vfc__hero { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 14px; align-items: center; margin-top: 14px; padding: 16px 14px; border-radius: 20px; background: linear-gradient(160deg, #F7F3EA, #EFE7D6); }
+  .vfc__img { position: relative; aspect-ratio: var(--ar, 1588 / 1217); overflow: hidden; }
+  .vfc__img img { position: absolute; left: var(--l, -15.3%); top: var(--t, -41%); width: var(--w, 129%); height: auto; max-width: none; filter: drop-shadow(0 6px 10px rgba(21,60,44,.18)); }
+  .vfc__x { position: absolute; right: 0; top: 0; background: var(--vfc-deep); color: #fff; font-size: 13px; font-weight: 800; border-radius: 999px; padding: 4px 8px; }
+  .vfc__x[hidden] { display: none; }
+  .vfc__k { font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--vfc-g2); }
+  .vfc__big { white-space: nowrap; font-family: Caprasimo, Georgia, serif; font-size: 33px; line-height: 1; color: var(--vfc-deep); margin-top: 4px !important; }
+  .vfc__big small { font-family: Inter, sans-serif; font-weight: 800; font-size: 16px; vertical-align: top; margin-right: 3px; }
+  .vfc__sj { font-size: 13.5px; font-weight: 700; color: var(--vfc-deep); margin-top: 4px !important; }
+  .vfc__av { font-size: 12.5px; font-weight: 600; color: var(--vfc-muted); margin-top: 3px !important; }
+  .vfc__av s { color: #A3ABA5; }
+  .vfc__ec { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 800; color: #fff; background: var(--vfc-green); border-radius: 999px; padding: 4px 11px; }
+  .vfc__ec[hidden] { display: none; }
+
+  .vfc__opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 16px; }
+  .vfc__opt { position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 12px 4px 10px; border: 2px solid #E3E8DF; border-radius: 16px; background: #fff; cursor: pointer; font-family: inherit; color: inherit; transition: border-color .2s, background .2s, box-shadow .2s; }
+  .vfc__opt b { font-size: 16px; font-weight: 800; color: var(--vfc-deep); }
+  .vfc__opt > span:not(.vfc__tg):not(.vfc__ck) { font-size: 12px; font-weight: 700; color: var(--vfc-muted); }
+  .vfc__opt i { font-style: normal; margin-top: 4px; font-size: 11px; font-weight: 800; color: #fff; background: var(--vfc-green); border-radius: 999px; padding: 3px 9px; }
+  .vfc__opt i.z { background: #EEF0EA; color: #8A948D; }
+  .vfc__opt.is-on { border-color: var(--vfc-green); background: #F3FAEC; box-shadow: 0 8px 18px rgba(94,188,67,.22); }
+  .vfc__opt:focus-visible { outline: 2px solid var(--vfc-deep); outline-offset: 2px; }
+  .vfc__tg { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); white-space: nowrap; background: var(--vfc-deep); color: #fff; font-size: 9px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; }
+  .vfc__ck { position: absolute; top: 8px; right: 8px; width: 18px; height: 18px; border-radius: 50%; display: none; background: var(--vfc-green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 11px no-repeat; }
+  .vfc__opt.is-on .vfc__ck { display: block; }
+
+  .vfc__btn { width: 100%; margin-top: 14px; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border: 0; border-radius: 16px; background: var(--vfc-green); color: #fff; font: 800 17px/1 Inter, sans-serif; letter-spacing: .02em; cursor: pointer; box-shadow: 0 3px 0 #2F7A22, 0 12px 24px rgba(94,188,67,.35); transition: transform .15s, background .2s; }
+  .vfc__btn:hover { background: #52A93A; }
+  .vfc__btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #2F7A22; }
+  .vfc__btn[disabled] { background: #9AA59E; box-shadow: none; cursor: not-allowed; }
+  .vfc__btn svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .vfc__under { text-align: center; margin-top: 8px !important; font-size: 12.5px; font-weight: 600; color: var(--vfc-muted); }
+  .vfc__under b { color: var(--vfc-deep); }
+
+  .vfc__trust { display: flex; justify-content: space-between; margin-top: 14px; padding: 12px 4px 0; border-top: 1px solid #EDF0EA; }
+  .vfc__trust span { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; line-height: 1.2; color: #3F5045; }
+  .vfc__trust svg { width: 21px; height: 21px; flex: 0 0 21px; fill: none; stroke: var(--vfc-g2); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+
+  .vfc__unl { margin-top: 16px; padding: 12px 14px 10px; border-radius: 16px; background: #F4F8EF; }
+  .vfc__ut { text-align: center; font-size: 13.5px; font-weight: 600; color: var(--vfc-deep); }
+  .vfc__ut b { font-weight: 800; color: var(--vfc-g2); }
+  .vfc__track { position: relative; display: flex; justify-content: space-between; margin: 12px 6px 0; }
+  .vfc__track::before, .vfc__fill { content: ""; position: absolute; left: 9px; right: 9px; top: 7px; height: 5px; border-radius: 5px; background: #DCE6D3; }
+  .vfc__fill { right: auto; width: 0; max-width: calc(100% - 18px); background: var(--vfc-green); transition: width .35s ease; }
+  .vfc__st { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; width: 33%; padding: 0; border: 0; background: none; cursor: pointer; font-family: inherit; }
+  .vfc__st:first-of-type { align-items: flex-start; } .vfc__st:last-of-type { align-items: flex-end; }
+  .vfc__st em { width: 19px; height: 19px; border-radius: 50%; background: #fff; border: 3px solid #DCE6D3; transition: background .2s, border-color .2s; }
+  .vfc__st.is-done em { background: var(--vfc-green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 10px no-repeat; border-color: var(--vfc-green); }
+  .vfc__st small { font-size: 11.5px; font-weight: 700; color: #8A948D; line-height: 1.25; white-space: nowrap; }
+  .vfc__st small b { display: block; font-size: 13px; font-weight: 800; }
+  .vfc__st:nth-of-type(2) small { text-align: center; } .vfc__st:last-of-type small { text-align: right; }
+  .vfc__st.is-done small { color: var(--vfc-deep); }
+
+  .vfc__eta { display: flex; justify-content: space-between; margin-top: 18px; padding-top: 16px; border-top: 1px solid #EDF0EA; position: relative; }
+  .vfc__eta[hidden] { display: none; }
+  .vfc__eta::before { content: ""; position: absolute; left: 16.6%; right: 16.6%; top: 36px; height: 2px; background: var(--vfc-deep); }
+  .vfc__es { position: relative; width: 33.3%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .vfc__ei { width: 40px; height: 40px; border-radius: 50%; background: var(--vfc-deep); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 5px #fff; }
+  .vfc__ei svg { width: 19px; height: 19px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .vfc__es b { margin-top: 8px; font-size: 13.5px; font-weight: 800; color: var(--vfc-deep); white-space: nowrap; }
+  .vfc__es small { font-size: 12px; font-weight: 600; color: var(--vfc-muted); margin-top: 1px; }
+
+  .vfc__pay { margin-top: 16px; text-align: center; }
+  .vfc__pay p { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 800; color: var(--vfc-deep); }
+  .vfc__pay p svg { width: 16px; height: 16px; fill: none; stroke: var(--vfc-deep); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .vfc__pis { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 8px; }
+  .vfc__pi { width: 38px; height: 24px; }
+  .vfc__pix { display: inline-flex; align-items: center; gap: 3px; height: 24px; padding: 0 6px; border: 1px solid #E3E6E0; border-radius: 4px; background: #fff; font-size: 11px; font-weight: 700; color: #555; }
+  .vfc__pix svg { width: 13px; height: 13px; }
+
+  .vfc__moon { display: flex; align-items: center; gap: 12px; margin-top: 12px; padding: 12px 14px; border-radius: 16px; background: linear-gradient(135deg, #1E5039, #153C2C); color: #fff; }
+  .vfc__moon[hidden] { display: none; }
+  .vfc__mi { flex: 0 0 38px; height: 38px; border-radius: 50%; background: rgba(192,222,150,.18); display: flex; align-items: center; justify-content: center; font-size: 19px; }
+  .vfc__mt b { display: block; font-size: 14px; font-weight: 800; }
+  .vfc__mt small { display: block; font-size: 12px; font-weight: 600; color: #C0DE96; margin-top: 2px; }
+  .vfc__dd { margin-left: auto; text-align: center; background: rgba(255,255,255,.1); border-radius: 10px; padding: 6px 10px; }
+  .vfc__dd b { display: block; font-family: Caprasimo, Georgia, serif; font-weight: 400; font-size: 21px; line-height: 1; }
+  .vfc__dd small { font-size: 9px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #C0DE96; }
+  @media (min-width: 990px) {
+    .vfc__t { font-size: 32px; }
+    .vfc__hero { grid-template-columns: 170px minmax(0, 1fr); }
+    .vfc__big { font-size: 40px; }
+  }
+</style>

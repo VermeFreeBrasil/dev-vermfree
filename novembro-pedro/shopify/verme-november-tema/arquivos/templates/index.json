@@ -1,0 +1,841 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "vf_garantias": {
+      "type": "vf-garantias",
+      "blocks": {
+        "g1": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "Garantia de 7 dias",
+            "text": "após receber o pedido"
+          }
+        },
+        "g2": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Frete grátis",
+            "text": "acima de R$ 299"
+          }
+        },
+        "g3": {
+          "type": "item",
+          "settings": {
+            "icon": "phone",
+            "title": "App em toda compra",
+            "text": "cronograma no celular"
+          }
+        },
+        "g4": {
+          "type": "item",
+          "settings": {
+            "icon": "leaf",
+            "title": "100% vegetal",
+            "text": "padrão farmacêutico"
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ],
+      "settings": {
+        "aria": "Garantias VermeFree",
+        "lift": true
+      }
+    },
+    "como_funciona": {
+      "type": "vf-stats",
+      "name": "Como funciona",
+      "settings": {
+        "eyebrow": "Simples de seguir",
+        "heading": "Seu próximo ciclo, no calendário.",
+        "sub_tpl": "Duas fases de 15 dias. Peça até {prazo}: o preparo começa em {inicio} e a lua nova é {lua}.",
+        "sub_fallback": "Duas fases de 15 dias, sempre começando antes da próxima lua nova.",
+        "legend_1": "Fase 1 · Preparo",
+        "legend_moon": "Lua nova",
+        "legend_2": "Fase 2",
+        "show_app": true,
+        "app_eyebrow": "App em toda compra",
+        "app_title": "O app acompanha cada dia com você.",
+        "app_item_1": "Seu calendário dos 30 dias, já na lua nova certa",
+        "app_item_2": "O que tomar em cada momento do dia",
+        "app_item_3": "Guia de Alimentos para ajudar o protocolo",
+        "phone_eyebrow": "Fase 2 · Lua nova",
+        "phone_title": "Dia 12 de 30",
+        "phone_row_1": "Manhã",
+        "phone_row_2": "Tarde",
+        "phone_row_3": "Noite",
+        "phone_chip": "Guia de Alimentos",
+        "button_label": "Escolher meu protocolo",
+        "button_tpl": "Garantir o ciclo de {mes}",
+        "button_link": "/#vf-protocolos",
+        "footnote": "Repita de 1 a 4 vezes por ano. A gente avisa as próximas datas.",
+        "background_color": "#ffffff"
+      }
+    },
+    "vf_ingredientes_KNFjBF": {
+      "type": "vf-ingredientes",
+      "blocks": {
+        "nogueira": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/vf-planta-nogueira-negra.jpg",
+            "name": "Nogueira Negra",
+            "latin": "Juglans nigra",
+            "description": "A erva-base da fitoterapia tradicional de desparasitação, usada há gerações.",
+            "in_adulto": true,
+            "in_kids": true
+          }
+        },
+        "cravo": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/vf-planta-cravo.jpg",
+            "name": "Cravo",
+            "latin": "Syzygium aromaticum",
+            "description": "Rico em eugenol, um dos compostos mais estudados entre as plantas da fitoterapia.",
+            "in_adulto": true,
+            "in_kids": true
+          }
+        },
+        "erva": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/vf-planta-erva-santa-maria.png",
+            "name": "Erva-Santa-Maria",
+            "latin": "Chenopodium ambrosioides",
+            "description": "De uso tradicional na fitoterapia brasileira há gerações.",
+            "in_adulto": true,
+            "in_kids": true
+          }
+        },
+        "absinto": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/vf-planta-absinto.jpg",
+            "name": "Absinto",
+            "latin": "Artemisia absinthium",
+            "description": "Planta amarga de uso tradicional milenar nas fitoterapias chinesa, ayurvédica e europeia.",
+            "in_adulto": true,
+            "in_kids": true
+          }
+        },
+        "berberis": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/vf-planta-berberis.png",
+            "name": "Berberis",
+            "latin": "Berberis vulgaris",
+            "description": "Usada tradicionalmente para apoiar a digestão durante o protocolo.",
+            "in_adulto": true,
+            "in_kids": true
+          }
+        },
+        "oregano": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/vf-planta-oregano.jpg",
+            "name": "Orégano",
+            "latin": "Origanum vulgare",
+            "description": "Em óleo padronizado com 70% de carvacrol, na cápsula do Adulto.",
+            "in_adulto": true,
+            "in_kids": false
+          }
+        },
+        "cardo": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/vf-planta-cardo-mariano.jpg",
+            "name": "Cardo Mariano",
+            "latin": "Silybum marianum",
+            "description": "Fonte de silimarina, tradicionalmente usada para apoiar o fígado durante o protocolo.",
+            "in_adulto": true,
+            "in_kids": true
+          }
+        }
+      },
+      "block_order": [
+        "nogueira",
+        "cravo",
+        "erva",
+        "absinto",
+        "berberis",
+        "oregano",
+        "cardo"
+      ],
+      "name": "VF Ingredientes",
+      "settings": {
+        "eyebrow": "O que tem dentro",
+        "heading": "7 plantas. Nada escondido.",
+        "subheading": "Cada uma com um papel na fórmula, em dose de adulto ou de criança.",
+        "stat_1_n": "7",
+        "stat_1_label": "plantas",
+        "stat_2_n": "1",
+        "stat_2_label": "aminoácido",
+        "stat_3_n": "0",
+        "stat_3_label": "química pesada",
+        "footnote": "No Adulto, 5 dessas plantas vêm na tintura, o Orégano em cápsula de óleo e o Cardo Mariano em cápsula de silimarina, junto com a Ornitina, aminoácido de apoio ao fígado. Nos Kids, a dose é ajustada para cada idade.",
+        "button_label": "Ver os protocolos",
+        "button_link": "/#vf-protocolos",
+        "background_color": "#ffffff"
+      }
+    },
+    "avaliacoes_home": {
+      "type": "vf-judgeme-reviews",
+      "settings": {
+        "product": "protocolo-desparasitacao-adulto-vermefree",
+        "eyebrow": "",
+        "heading": "",
+        "subheading": "",
+        "write_label": "",
+        "hide_jdgm_header": true,
+        "hide_until_reviews": false,
+        "compact": true,
+        "max_cards": 3,
+        "all_label": "Ver todas as avaliações",
+        "all_url": "/products/protocolo-desparasitacao-adulto-vermefree#judgeme_product_reviews",
+        "ask_products": [
+          "protocolo-desparasitacao-adulto-vermefree",
+          "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
+          "antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
+          "kit-familia-vermefree-2-adultos-2-criancas"
+        ]
+      }
+    },
+    "vf_faq_JdUfcX": {
+      "type": "vf-faq",
+      "blocks": {
+        "q_protocolo": {
+          "type": "question",
+          "settings": {
+            "question": "Qual protocolo é o meu?",
+            "answer": "<p><strong>Adulto:</strong> a partir de 10 anos. <strong>Kids 2 a 4 anos</strong> e <strong>Kids 5 a 9 anos:</strong> fórmulas com dose ajustada para cada idade. <strong>Kit Família:</strong> 2 adultos e 2 crianças, para todos começarem na mesma lua nova.</p>"
+          }
+        },
+        "q_reacao": {
+          "type": "question",
+          "settings": {
+            "question": "Tem efeito colateral?",
+            "answer": "<p>A fórmula é fitoterápica e, no Adulto, começa com 15 dias de preparação do fígado. A maioria das pessoas segue a rotina normalmente. Algumas sentem reações leves e passageiras, como enjoo ou intestino solto. Se incomodar, fale com a gente ou com seu médico.</p>"
+          }
+        },
+        "q_quem": {
+          "type": "question",
+          "settings": {
+            "question": "Quem não pode tomar?",
+            "answer": "<p>Gestantes, lactantes e pessoas com sensibilidade ao álcool (a tintura é alcoólica). Os Kids são a partir de 2 anos. Se você tem alguma doença ou usa remédio contínuo, converse com seu médico antes de começar.</p>"
+          }
+        },
+        "q_remedios": {
+          "type": "question",
+          "settings": {
+            "question": "Posso tomar com outros remédios?",
+            "answer": "<p>Em geral, sim. Recomendamos espaçar 2 horas entre o protocolo e outros medicamentos. Se você usa medicação contínua, fale com seu médico antes.</p>"
+          }
+        },
+        "q_lua": {
+          "type": "question",
+          "settings": {
+            "question": "Como funciona e por que começar na lua nova?",
+            "answer": "<p>São <strong>30 dias em 2 fases</strong>. No Adulto, a preparação do fígado começa 15 dias antes da lua nova; na lua nova entram a tintura e as cápsulas. A lua nova segue a tradição fitoterápica, e você não precisa calcular nada: o cronograma com as datas chega por e-mail no dia da compra.</p>"
+          }
+        },
+        "q_individual": {
+          "type": "question",
+          "settings": {
+            "question": "Um kit serve para quantas pessoas?",
+            "answer": "<p>Cada kit é para <strong>uma pessoa</strong>. Se mais alguém da casa for fazer, cada um precisa do seu kit. O Kit Família já vem com 2 adultos e 2 crianças.</p>"
+          }
+        },
+        "q_repetir": {
+          "type": "question",
+          "settings": {
+            "question": "Posso repetir o protocolo?",
+            "answer": "<p>Pode, de <strong>1 a 4 vezes por ano</strong>, com pelo menos 3 meses entre um ciclo e outro. A validade é de 1 ano no Adulto e 6 meses nos Kids.</p>"
+          }
+        },
+        "q_entrega": {
+          "type": "question",
+          "settings": {
+            "question": "Em quanto tempo chega?",
+            "answer": "<p>Despachamos em até 3 dias úteis depois da confirmação do pagamento, pelos Correios, com código de rastreio. O prazo exato aparece no checkout quando você digita o CEP. Frete grátis em pedidos a partir de R$ 299.</p>"
+          }
+        },
+        "q_pagamento": {
+          "type": "question",
+          "settings": {
+            "question": "Como posso pagar?",
+            "answer": "<p>Cartão de crédito em até <strong>3x sem juros</strong> ou PIX.</p>"
+          }
+        },
+        "q_garantia": {
+          "type": "question",
+          "settings": {
+            "question": "E se eu não gostar?",
+            "answer": "<p>Você tem <strong>7 dias</strong> a partir do recebimento para desistir, com o produto lacrado. A postagem de volta é por nossa conta e devolvemos 100% do valor.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q_protocolo",
+        "q_reacao",
+        "q_quem",
+        "q_remedios",
+        "q_lua",
+        "q_individual",
+        "q_repetir",
+        "q_entrega",
+        "q_pagamento",
+        "q_garantia"
+      ],
+      "name": "VF FAQ",
+      "settings": {
+        "eyebrow": "Dúvidas comuns",
+        "heading": "A farmacêutica responde.",
+        "subheading": "As perguntas que mais recebemos, respondidas por quem entende da fórmula.",
+        "video": "shopify://files/videos/AD - A1_ BOX DE PERGUNTAS.mov",
+        "video_name": "Graziele Antonini",
+        "video_role": "Farmacêutica · CRF/SC 6177",
+        "open_first": false,
+        "show_schema": false,
+        "support_label": "Ainda ficou dúvida?",
+        "support_cta": "Pessoa de verdade no WhatsApp, resposta em até 4h úteis.",
+        "support_link": "https://api.whatsapp.com/send/?phone=553131573845&text=Ol%C3%A1,%20preciso%20de%20ajuda!&type=phone_number&app_absent=0",
+        "button_label": "Escolher meu protocolo",
+        "button_link": "/#vf-protocolos"
+      }
+    },
+    "cta_final": {
+      "type": "vf-cta-final",
+      "settings": {
+        "heading": "Comece no próximo ciclo da lua nova.",
+        "subheading": "Garantia de 7 dias · 3x sem juros · App em toda compra",
+        "button_label": "Adicionar ao carrinho",
+        "background_color": "#5ebc43",
+        "text_color": "#ffffff",
+        "layout": "home",
+        "product": "protocolo-desparasitacao-adulto-vermefree",
+        "deadline_tpl": "Peça até {prazo} para começar no ciclo de {lua}.",
+        "deadline_fallback": "Comece no próximo ciclo da lua nova.",
+        "capture_text": "Ainda não vai comprar? Receba o lembrete da próxima lua nova.",
+        "capture_button": "Me avisar",
+        "capture_tags": "newsletter,home-cta",
+        "capture_success": "Pronto! Você vai receber o lembrete da próxima lua nova.",
+        "button_link": "/#vf-protocolos",
+        "add_tpl": "Adicionar ao carrinho · {nome}",
+        "more_label": "Quer mais de um? Monte o protocolo da casa"
+      },
+      "blocks": {
+        "k_adulto": {
+          "type": "kit",
+          "settings": {
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "name": "Adulto",
+            "image": "shopify://shop_images/vf-pv2-adulto.png"
+          }
+        },
+        "k_familia": {
+          "type": "kit",
+          "settings": {
+            "product": "kit-familia-vermefree-2-adultos-2-criancas",
+            "name": "Kit Família",
+            "image": "shopify://shop_images/vf-pv2-kit-familia-v3.png",
+            "discount_pct": 0
+          }
+        },
+        "k_kids24": {
+          "type": "kit",
+          "settings": {
+            "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
+            "name": "Kids 2 a 4",
+            "image": "shopify://shop_images/vf-pv2-kids-2a4.png"
+          }
+        },
+        "k_kids59": {
+          "type": "kit",
+          "settings": {
+            "product": "antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
+            "name": "Kids 5 a 9",
+            "image": "shopify://shop_images/vf-pv2-kids-5a9.png"
+          }
+        }
+      },
+      "block_order": [
+        "k_adulto",
+        "k_familia",
+        "k_kids24",
+        "k_kids59"
+      ]
+    },
+    "vf_app": {
+      "type": "vf-app",
+      "blocks": {
+        "feature_app1": {
+          "type": "feature",
+          "settings": {
+            "icon": "lua",
+            "title": "Cronograma na lua nova",
+            "text": "Seu calendário dos 30 dias, começando na lua nova certa."
+          }
+        },
+        "feature_app2": {
+          "type": "feature",
+          "settings": {
+            "icon": "relogio",
+            "title": "O que tomar em cada momento",
+            "text": "O app mostra o que tomar em cada momento do dia."
+          }
+        },
+        "feature_app3": {
+          "type": "feature",
+          "settings": {
+            "icon": "prato",
+            "title": "Guia de Alimentos",
+            "text": "O que colocar no prato para ajudar o seu protocolo."
+          }
+        },
+        "feature_app4": {
+          "type": "feature",
+          "settings": {
+            "icon": "email",
+            "title": "Entra com o e-mail da compra",
+            "text": "Use o mesmo e-mail do seu pedido para acessar."
+          }
+        }
+      },
+      "block_order": [
+        "feature_app1",
+        "feature_app2",
+        "feature_app3",
+        "feature_app4"
+      ],
+      "settings": {
+        "eyebrow": "Novo · App VermeFree",
+        "heading": "Seu protocolo",
+        "heading_accent": "na palma da mão.",
+        "text": "Quem compra o protocolo VermeFree acessa o app com o e-mail da compra. Tudo o que você precisa para seguir os 30 dias, no seu celular.",
+        "app_url": "https://app.vermefree.com.br/",
+        "primary_label": "Já comprei: acessar o app",
+        "secondary_label": "Ainda não tenho o protocolo",
+        "secondary_link": "#vf-protocolos",
+        "note": "Sem baixar nada: o app abre direto no navegador do celular."
+      },
+      "disabled": true
+    },
+    "vf_hero_cards": {
+      "type": "vf-hero-cards",
+      "blocks": {
+        "proto_adulto": {
+          "type": "protocolo",
+          "settings": {
+            "pill": "",
+            "heading": "Desparasitação natural para a família toda.",
+            "sub": "Protocolos 100% vegetais de 30 dias, no ritmo da lua nova, com cronograma pronto e app.",
+            "show_moon": true,
+            "moon_dates": "2026-11-08|2026-10-24,2026-12-09|2026-11-24,2027-01-07|2026-12-23,2027-02-06|2027-01-22,2027-03-08|2027-02-21,2027-04-06|2027-03-22,2027-05-06|2027-04-21,2027-06-04|2027-05-20,2027-07-04|2027-06-19,2027-08-02|2027-07-18,2027-08-31|2027-08-16",
+            "chip_1": "",
+            "chip_2": "",
+            "chip_3": "",
+            "chip_4": "",
+            "cta": "Escolher meu protocolo",
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "price_label": "Protocolo Adulto",
+            "image": "shopify://shop_images/vf-hero-pedestal.png",
+            "image_alt": "Protocolos VermeFree Adulto e Kids lado a lado sobre um pedestal de pedra com ervas",
+            "img_label": "",
+            "img_caption": "",
+            "moon_tpl": "🌙 Peça até {prazo} para começar no ciclo da lua nova de {lua}",
+            "lead_days": 12,
+            "proof": "+3 mil pedidos",
+            "rating_fallback": "4,9",
+            "show_price": true,
+            "photo_asset": "",
+            "photo_crop": "1142x1333",
+            "eyebrow": "Adultos e crianças a partir de 2 anos",
+            "image_region": "140,330,2060,1310",
+            "cta_link": "/#vf-protocolos",
+            "price_text": "A partir de <b>3x de R$ 81,00</b> sem juros · 10% OFF"
+          }
+        }
+      },
+      "block_order": [
+        "proto_adulto"
+      ],
+      "settings": {
+        "interval": 7,
+        "aria": "Destaques VermeFree"
+      }
+    },
+    "vf_sinais": {
+      "type": "vf-sinais",
+      "blocks": {
+        "s1": {
+          "type": "sinal",
+          "settings": {
+            "icon": "wind",
+            "text": "Barriga inchada e gases frequentes"
+          }
+        },
+        "s2": {
+          "type": "sinal",
+          "settings": {
+            "icon": "battery",
+            "text": "Cansaço sem explicação"
+          }
+        },
+        "s3": {
+          "type": "sinal",
+          "settings": {
+            "icon": "candy",
+            "text": "Vontade de doce fora do normal"
+          }
+        },
+        "s4": {
+          "type": "sinal",
+          "settings": {
+            "icon": "moon",
+            "text": "Coceira anal, principalmente à noite"
+          }
+        },
+        "s5": {
+          "type": "sinal",
+          "settings": {
+            "icon": "wave",
+            "text": "Intestino desregulado"
+          }
+        },
+        "s6": {
+          "type": "sinal",
+          "settings": {
+            "icon": "sleep",
+            "text": "Sono agitado ou ranger de dentes"
+          }
+        },
+        "k1": {
+          "type": "sinal_kids",
+          "settings": {
+            "icon": "teeth",
+            "text": "Ranger os dentes dormindo"
+          }
+        },
+        "k2": {
+          "type": "sinal_kids",
+          "settings": {
+            "icon": "moon",
+            "text": "Coceira no bumbum, à noite"
+          }
+        },
+        "k3": {
+          "type": "sinal_kids",
+          "settings": {
+            "icon": "wind",
+            "text": "Barriga estufada ou dor de barriga"
+          }
+        },
+        "k4": {
+          "type": "sinal_kids",
+          "settings": {
+            "icon": "plate",
+            "text": "Pouco apetite ou fome exagerada"
+          }
+        },
+        "k5": {
+          "type": "sinal_kids",
+          "settings": {
+            "icon": "bolt",
+            "text": "Agitação e sono inquieto"
+          }
+        },
+        "k6": {
+          "type": "sinal_kids",
+          "settings": {
+            "icon": "eye",
+            "text": "Olheiras e cansaço"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6"
+      ],
+      "settings": {
+        "eyebrow": "Você se identifica?",
+        "heading": "Seu corpo pode estar pedindo uma limpeza.",
+        "body": "Parasitas intestinais são comuns no Brasil e podem passar anos sem diagnóstico. Muita gente faz a desparasitação de 1 a 4 vezes por ano, como rotina.",
+        "disclaimer": "Esses sinais podem ter várias causas. Na dúvida, procure um profissional de saúde.",
+        "button_label": "Ver os protocolos",
+        "product": "protocolo-desparasitacao-adulto-vermefree",
+        "button_link": "/#vf-protocolos",
+        "subheading": "Toque nos sinais que você percebe:",
+        "tab_me": "Em mim",
+        "tab_kids": "Nas crianças",
+        "result_zero": "Marque os sinais acima",
+        "result_me": "Você marcou {n} de {t} sinais",
+        "result_kids": "{n} de {t} sinais na criança"
+      }
+    },
+    "vf_montador": {
+      "type": "vf-montador",
+      "blocks": {
+        "adulto": {
+          "type": "kit",
+          "settings": {
+            "product": "protocolo-desparasitacao-adulto-vermefree",
+            "image": "shopify://shop_images/vf-pv2-adulto.png",
+            "badge": "Mais escolhido",
+            "age": "A partir de 10 anos",
+            "name": "Protocolo Adulto",
+            "text": "Tintura de 5 ervas, Óleo de Orégano, Ornitina e Silimarina.",
+            "qty": 1
+          }
+        },
+        "kids24": {
+          "type": "kit",
+          "settings": {
+            "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
+            "image": "shopify://shop_images/vf-pv2-kids-2a4.png",
+            "badge": "",
+            "age": "Crianças pequenas",
+            "name": "Kids 2 a 4 anos",
+            "text": "Duas tinturas com a dose da idade, diluídas em água ou suco.",
+            "qty": 0
+          }
+        },
+        "kids59": {
+          "type": "kit",
+          "settings": {
+            "product": "antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
+            "image": "shopify://shop_images/vf-pv2-kids-5a9.png",
+            "badge": "",
+            "age": "Idade escolar",
+            "name": "Kids 5 a 9 anos",
+            "text": "Duas tinturas com a dose para a criança em idade escolar.",
+            "qty": 0
+          }
+        },
+        "familia": {
+          "type": "kit",
+          "settings": {
+            "product": "kit-familia-vermefree-2-adultos-2-criancas",
+            "image": "shopify://shop_images/vf-pv2-kit-familia-v3.png",
+            "badge": "",
+            "age": "Para a casa toda",
+            "name": "Kit Família",
+            "text": "2 Adultos + Kids 2 a 4 + Kids 5 a 9, todo mundo no mesmo ciclo.",
+            "discount_pct": 0,
+            "qty": 0,
+            "save_items": ""
+          }
+        }
+      },
+      "block_order": [
+        "adulto",
+        "kids24",
+        "kids59",
+        "familia"
+      ],
+      "settings": {
+        "eyebrow": "Escolha seu protocolo",
+        "heading": "Monte o protocolo da sua casa.",
+        "text": "Escolha quantos de cada. Cada idade tem sua dose e todos chegam com o cronograma no app.",
+        "more_label": "ver detalhes",
+        "button_one": "Garantir meu protocolo",
+        "button_many": "Garantir meus {n} protocolos",
+        "bar_label": "Garantir",
+        "moon_tpl": "🌙 Peça até {prazo} para começar na lua nova de {lua}",
+        "note": "🔒 Compra segura · Garantia de 7 dias · Envio em até 3 dias úteis",
+        "lad_1": "App",
+        "lad_2": "Frete grátis",
+        "lad_3": "Manual",
+        "ship_threshold": 299,
+        "gift_qty": 3,
+        "tiers": "1:10,3:12,5:15"
+      }
+    },
+    "vf_depoimentos": {
+      "type": "vf-depoimentos",
+      "settings": {
+        "eyebrow": "Quem fez, conta",
+        "heading": "Clientes de verdade, no dia a dia.",
+        "subheading": "Toque para assistir. Vídeos de quem fez o protocolo em casa.",
+        "tipos": "Cliente",
+        "max_items": 10,
+        "pdp_mode": "first",
+        "show_filter": true,
+        "show_tag": true,
+        "cta_label": "Adicionar ao carrinho",
+        "stories_title": "Clientes marcando a gente",
+        "stories_assets": "vf-depoimento-01.jpg,vf-depoimento-02.jpg,vf-depoimento-03.jpg"
+      }
+    },
+    "vf_curadoria": {
+      "type": "vf-curadoria",
+      "blocks": {
+        "william": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-william-araujo.jpg",
+            "focus_y": 20,
+            "name": "Dr. William Araújo",
+            "specialty": "Curadoria científica do protocolo VermeFree",
+            "credential": "CRM-MG 76.962",
+            "badge": "Curadoria científica",
+            "quote": "Acompanho a formulação desde o início e vejo no protocolo VermeFree o critério que busco para indicar aos meus pacientes."
+          }
+        },
+        "giovanna": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-giovanna-eller.jpg",
+            "focus_y": 25,
+            "name": "Dra. Giovanna Eller",
+            "specialty": "Nutróloga · saúde intestinal e emagrecimento",
+            "credential": "CRM-ES 20.998",
+            "badge": "",
+            "quote": "Saúde intestinal é a base de quase tudo que trato no consultório, e a VermeFree entra nessa conversa com seriedade de formulação."
+          }
+        },
+        "robson": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-robson-araujo.jpg",
+            "focus_y": 25,
+            "name": "Dr. Robson Araújo",
+            "specialty": "Emagrecimento e saúde integrativa",
+            "credential": "CRM-MG 93.787",
+            "badge": "",
+            "quote": "Acompanho pacientes em processos de emagrecimento e vejo a VermeFree como uma aliada segura na rotina deles."
+          }
+        },
+        "raquel": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-raquel-cembranelli.jpg",
+            "focus_y": 25,
+            "name": "Dra. Raquel Cembranelli",
+            "specialty": "Cirurgiã-dentista · odontologia integrativa",
+            "credential": "CRO-SP 83.705",
+            "badge": "",
+            "quote": "Na odontologia integrativa, qualidade não é opcional. Por isso conheço e indico o protocolo VermeFree."
+          }
+        },
+        "thiago": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-thiago-goncalves.jpg",
+            "focus_y": 20,
+            "name": "Dr. Thiago Barbosa Gonçalves",
+            "specialty": "Médico",
+            "credential": "CRM-ES 16.079",
+            "badge": "",
+            "quote": "Desparasitação feita com critério faz diferença na rotina do paciente, e é isso que encontro na VermeFree."
+          }
+        },
+        "kalil": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-kalil-gibran.jpg",
+            "focus_y": 20,
+            "name": "Dr. Kalil Gibran Ferreira Lima",
+            "specialty": "Médico",
+            "credential": "CRM-BA 34.392",
+            "badge": "",
+            "quote": "A VermeFree entrega o padrão de formulação que busco para indicar no consultório."
+          }
+        },
+        "carlos": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-carlos-osorio.jpg",
+            "focus_y": 40,
+            "name": "Dr. Carlos Mateus Santos Osório",
+            "specialty": "Médico",
+            "credential": "CRM-SP 215.405",
+            "badge": "",
+            "quote": "Indico a VermeFree pela consistência do protocolo e pelo cuidado na formulação."
+          }
+        },
+        "grace": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-grace-dessirre.jpg",
+            "focus_y": 20,
+            "name": "Dra. Grace Dessirre",
+            "specialty": "Cirurgiã-dentista",
+            "credential": "CFO-SP 084169",
+            "badge": "",
+            "quote": "Incluo a VermeFree no cuidado que ofereço, sempre com atenção à qualidade."
+          }
+        },
+        "eglife": {
+          "type": "prescritor",
+          "settings": {
+            "photo_filename": "vf-prescritor-eglife-brauher.jpg",
+            "focus_y": 15,
+            "name": "Dr. Eglife Brauher",
+            "specialty": "Médico",
+            "credential": "CRM-BA 32.688",
+            "badge": "",
+            "quote": "Conheço de perto o protocolo da VermeFree e indico com tranquilidade aos meus pacientes."
+          }
+        }
+      },
+      "block_order": [
+        "william",
+        "giovanna",
+        "robson",
+        "raquel",
+        "thiago",
+        "kalil",
+        "carlos",
+        "grace",
+        "eglife"
+      ],
+      "settings": {
+        "eyebrow": "Profissionais de saúde",
+        "heading": "Quem conhece a fórmula, indica.",
+        "subheading": "Médicos e dentistas de 4 estados que conhecem o protocolo VermeFree.",
+        "interval": 6,
+        "count_tpl": "Profissionais que indicam",
+        "footnote": "Profissionais que conhecem o protocolo VermeFree. Não substitui a orientação do seu médico."
+      }
+    }
+  },
+  "order": [
+    "vf_hero_cards",
+    "vf_garantias",
+    "vf_montador",
+    "vf_sinais",
+    "como_funciona",
+    "vf_depoimentos",
+    "avaliacoes_home",
+    "vf_ingredientes_KNFjBF",
+    "vf_curadoria",
+    "vf_faq_JdUfcX",
+    "cta_final",
+    "vf_app"
+  ]
+}

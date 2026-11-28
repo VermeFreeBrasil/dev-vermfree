@@ -1,0 +1,306 @@
+
+<script>
+  (function() {
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest && e.target.closest('[data-vf-reviews-link]');
+      if (!link) return;
+      var target = document.getElementById('avaliacoes');
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(function() {
+        var top = target.getBoundingClientRect().top;
+        if (top > 140 || top < 40) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 900);
+    });
+  })();
+
+  (function() {
+    var thumbs = document.querySelectorAll('.vf-pdp__thumb[data-src]');
+    var mainImg = document.getElementById('vf-pdp-main-img');
+    thumbs.forEach(function(t) {
+      t.addEventListener('click', function() {
+        if (!mainImg) return;
+        mainImg.src = t.dataset.src;
+        thumbs.forEach(function(x) { x.classList.remove('is-active'); });
+        t.classList.add('is-active');
+      });
+    });
+
+    var qtyInput = document.getElementById('vf-pdp-qty');
+
+    /* ===== ATUALIZAÇÃO DE PREÇO COM DESCONTO PROGRESSIVO ===== */
+    var priceBox = document.querySelector('.vf-pdp__price-box');
+    var unitPriceCents = priceBox ? parseInt(priceBox.dataset.unitPrice, 10) || 0 : 0;
+    var elInstallment = document.getElementById('vf-pdp-installment');
+    var elCash = document.getElementById('vf-pdp-cash');
+    var elBadge = document.getElementById('vf-pdp-volume-badge');
+    var elBadgeText = document.getElementById('vf-pdp-volume-badge-text');
+
+    function formatBRL(cents) {
+      var value = cents / 100;
+      return 'R$ ' + value.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
+    /* Desconto = o do card da quantidade (ex.: Adulto 2 Kits 5%, 3 Kits 10%).
+       Quantidade sem card (barra fixa): vale o maior card até ela. */
+    function getDiscountPct(qty) {
+            var best = -1, pct = 0;
+      document.querySelectorAll('.vf-pdp__kit-card[data-qty]').forEach(function (c) {
+        var q = parseInt(c.dataset.qty, 10) || 0;
+        if (q <= qty && q > best) { best = q; pct = parseFloat(c.dataset.discount) || 0; }
+      });
+      if (best > -1) return pct;
+      if (qty >= 5) return 17;
+      if (qty >= 3) return 15;
+      if (qty >= 1) return 12;
+      return 0;
+    }
+
+    var elStickyPrice = document.getElementById('vf-pdp-sticky-price');
+
+    // Valor fixo da parcela 10x (em centavos) vindo da section settings
+    var installment10xCents = priceBox ? parseInt(priceBox.dataset.installment10x, 10) || 0 : 0;
+    // Razão parcela10x/preço base (escala linear pra qualquer quantidade)
+    var INSTALLMENT_RATIO = (installment10xCents > 0 && unitPriceCents > 0)
+      ? (installment10xCents / unitPriceCents)
+      : (1 / 3);  // 3x sem juros
+
+    function calc10xParcela(totalCents) {
+      // Escala linear preservando o valor fixo do setting
+      return Math.round(totalCents * INSTALLMENT_RATIO);
+    }
+
+    function updatePrices(qty) {
+      if (!unitPriceCents) return;
+      var subtotal = unitPriceCents * qty;
+      var discountPct = getDiscountPct(qty);
+      /* Igual ao carrinho: desconto automático por unidade, centavos para baixo */
+      var totalWithDiscount = (unitPriceCents - Math.floor(unitPriceCents * discountPct / 100)) * qty;
+      var installment;
+      if (qty === 1 && discountPct === 0 && installment10xCents > 0) {
+        // qty=1: usa valor fixo do setting (mais preciso)
+        installment = installment10xCents;
+      } else {
+        // qty>1: escala linear sobre o total com desconto
+        installment = calc10xParcela(totalWithDiscount);
+      }
+
+      if (elInstallment) elInstallment.textContent = '3x de ' + formatBRL(installment) + ' sem juros';
+      if (elCash) elCash.textContent = 'ou ' + formatBRL(totalWithDiscount) + ' à vista';
+
+      // Sticky CTA price atualiza junto
+      if (elStickyPrice) {
+        elStickyPrice.innerHTML = '<strong>3x ' + formatBRL(installment) + ' sem juros</strong><span>ou ' + formatBRL(totalWithDiscount) + ' à vista</span>';
+      }
+
+      if (elBadge && elBadgeText) {
+        var FRETE_GRATIS_THRESHOLD = 29900; // R$ 299 em centavos (Verme Week)
+        var temFreteGratis = totalWithDiscount >= FRETE_GRATIS_THRESHOLD;
+
+        if (discountPct > 0) {
+          /* Próxima faixa: o card de quantidade maior com desconto maior. */
+          var nextTier = null, nextPct = null;
+          document.querySelectorAll('.vf-pdp__kit-card[data-qty]').forEach(function (c) {
+            var q = parseInt(c.dataset.qty, 10) || 0, d = parseFloat(c.dataset.discount) || 0;
+            if (q > qty && d > discountPct && (nextTier === null || q < nextTier)) { nextTier = q; nextPct = d; }
+          });
+          var msg = '✓ ' + discountPct + '% OFF aplicado';
+          if (temFreteGratis) msg += ' · frete grátis ativo';
+          if (nextTier && qty < nextTier && nextTier <= kitMaxQty) {
+            msg += ' · adicione +' + (nextTier - qty) + ' pra ganhar ' + nextPct + '% off';
+          }
+          elBadgeText.textContent = msg;
+          elBadge.hidden = false;
+        } else if (temFreteGratis) {
+          elBadgeText.textContent = '✓ Frete grátis garantido';
+          elBadge.hidden = false;
+        } else {
+          var faltaCentavos = FRETE_GRATIS_THRESHOLD - totalWithDiscount;
+          var faltaBRL = 'R$ ' + (faltaCentavos / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+          elBadgeText.textContent = '🚚 Falta ' + faltaBRL + ' pra frete grátis';
+          elBadge.hidden = false;
+        }
+      }
+    }
+
+    /* Sincroniza buy box → sticky (definido aqui pra usar nos handlers abaixo) */
+    function syncBuyBoxToSticky(val) {
+      var sQty = document.getElementById('vf-pdp-sticky-qty');
+      var sQtyHidden = document.getElementById('vf-pdp-sticky-qty-hidden');
+      if (sQty) sQty.value = val;
+      if (sQtyHidden) sQtyHidden.value = val;
+    }
+
+    /* ===== SELETOR DE KITS (cards) ===== */
+    var kitCards = document.querySelectorAll('.vf-pdp__kit-card');
+    var kitMaxQty = 0;
+    kitCards.forEach(function(c) { var q = parseInt(c.dataset.qty, 10) || 0; if (q > kitMaxQty) kitMaxQty = q; });
+    var kitLegendValue = document.getElementById('vf-pdp-kits-legend-value');
+
+    function updateKitLegend(card) {
+      if (!kitLegendValue) return;
+      var title = card.querySelector('.vf-pdp__kit-title');
+      kitLegendValue.textContent = title ? title.textContent.trim() : '';
+    }
+
+    var kitbarEl = document.getElementById('vf-pdp-kitbar');
+    var kitbarFill = document.getElementById('vf-pdp-kitbar-fill');
+    var kitbarMsg = document.getElementById('vf-pdp-kitbar-msg');
+    function updateKitbar(qty) {
+      if (!kitbarEl) return;
+      var pct = qty >= 3 ? 100 : (qty === 2 ? 50 : 8);
+      if (kitbarFill) kitbarFill.style.width = pct + '%';
+      kitbarEl.classList.remove('vf-pdp__kitbar--mid', 'vf-pdp__kitbar--low');
+      var m;
+      if (qty >= 3) {
+        m = '🎉 Vantagem máxima: 17% OFF + frete grátis desbloqueados';
+      } else if (qty === 2) {
+        kitbarEl.classList.add('vf-pdp__kitbar--mid');
+        m = '🎉 15% OFF + frete grátis · leve 5 Kits e ganhe 17% OFF';
+      } else {
+        kitbarEl.classList.add('vf-pdp__kitbar--low');
+        m = '12% OFF já aplicado · leve 3 e ganhe 15% · leve 5 e ganhe 17%';
+      }
+      if (kitbarMsg) kitbarMsg.textContent = m;
+    }
+
+    function selectKitCard(card) {
+      kitCards.forEach(function(c) {
+        c.classList.remove('is-active');
+        c.setAttribute('aria-checked', 'false');
+      });
+      card.classList.add('is-active');
+      card.setAttribute('aria-checked', 'true');
+      updateKitLegend(card);
+
+      if (!qtyInput) return;
+      var qty = parseInt(card.dataset.qty, 10) || 1;
+      qtyInput.value = qty;
+      updatePrices(qty);
+      updateKitbar(qty);
+      syncBuyBoxToSticky(qty);
+    }
+
+    function syncActiveCardFromQty(qty) {
+      var matched = false;
+      kitCards.forEach(function(c) {
+        var isMatch = parseInt(c.dataset.qty, 10) === qty;
+        c.classList.toggle('is-active', isMatch);
+        c.setAttribute('aria-checked', isMatch ? 'true' : 'false');
+        if (isMatch) { matched = true; updateKitLegend(c); }
+      });
+      return matched;
+    }
+
+    kitCards.forEach(function(card) {
+      card.addEventListener('click', function() { selectKitCard(card); });
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          selectKitCard(card);
+        }
+      });
+    });
+
+    var initialActiveCard = document.querySelector('.vf-pdp__kit-card.is-active');
+    if (initialActiveCard) {
+      updateKitLegend(initialActiveCard);
+      var initialQty = parseInt(initialActiveCard.dataset.qty, 10) || 1;
+      if (qtyInput) qtyInput.value = initialQty;
+      updatePrices(initialQty);
+      updateKitbar(initialQty);
+      syncBuyBoxToSticky(initialQty);
+    }
+
+    if (qtyInput) {
+      qtyInput.addEventListener('change', function() {
+        var v = parseInt(qtyInput.value, 10) || 1;
+        if (v < 1) v = 1;
+        qtyInput.value = v;
+        updatePrices(v);
+        syncBuyBoxToSticky(v);
+      });
+      qtyInput.addEventListener('input', function() {
+        var v = parseInt(qtyInput.value, 10) || 1;
+        if (v >= 1) {
+          updatePrices(v);
+          syncBuyBoxToSticky(v);
+        }
+      });
+      // Estado inicial
+      updatePrices(parseInt(qtyInput.value, 10) || 1);
+      syncBuyBoxToSticky(parseInt(qtyInput.value, 10) || 1);
+    }
+
+    /* ===== STICKY CTA BAR ===== */
+    var sticky = document.getElementById('vf-pdp-sticky');
+    if (sticky) {
+      var triggerPx = parseInt(sticky.dataset.triggerPx, 10) || 600;
+      var ticking = false;
+      function onScroll() {
+        if (window.scrollY > triggerPx) {
+          sticky.classList.add('is-visible');
+          sticky.setAttribute('aria-hidden', 'false');
+        } else {
+          sticky.classList.remove('is-visible');
+          sticky.setAttribute('aria-hidden', 'true');
+        }
+        ticking = false;
+      }
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // Sticky qty buttons + sync com input hidden
+      var stickyQty = document.getElementById('vf-pdp-sticky-qty');
+      var stickyQtyHidden = document.getElementById('vf-pdp-sticky-qty-hidden');
+      var stickyBtns = sticky.querySelectorAll('.vf-pdp-sticky__qty-btn');
+      function syncStickyQty() {
+        if (!stickyQty || !stickyQtyHidden) return;
+        var v = parseInt(stickyQty.value, 10) || 1;
+        if (v < 1) v = 1;
+        stickyQty.value = v;
+        stickyQtyHidden.value = v;
+      }
+      stickyBtns.forEach(function(b) {
+        b.addEventListener('click', function() {
+          if (!stickyQty) return;
+          var val = parseInt(stickyQty.value, 10) || 1;
+          if (b.dataset.action === 'plus') val++;
+          else if (b.dataset.action === 'minus' && val > 1) val--;
+          stickyQty.value = val;
+          syncStickyQty();
+          // Sincroniza com o input do buy box e recalcula preços
+          if (qtyInput) {
+            qtyInput.value = val;
+            updatePrices(val);
+            syncActiveCardFromQty(val);
+          }
+        });
+      });
+      if (stickyQty) {
+        stickyQty.addEventListener('change', function() {
+          syncStickyQty();
+          if (qtyInput) {
+            qtyInput.value = stickyQty.value;
+            updatePrices(parseInt(stickyQty.value, 10) || 1);
+            syncActiveCardFromQty(parseInt(stickyQty.value, 10) || 1);
+          }
+        });
+        stickyQty.addEventListener('input', function() {
+          syncStickyQty();
+          if (qtyInput) {
+            qtyInput.value = stickyQty.value;
+            updatePrices(parseInt(stickyQty.value, 10) || 1);
+            syncActiveCardFromQty(parseInt(stickyQty.value, 10) || 1);
+          }
+        });
+      }
+    }
+  })();
+</script>
+

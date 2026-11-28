@@ -1,0 +1,20 @@
+{
+ "id": "v8134", "entrada": "brutos/IMG_8134.MOV", "saida": "vf-verme-friday-video-roteiro6-ultimo-dia.mp4",
+ "pip": {"x": 734, "y": 1250, "w": 300, "h": 533},
+ "vermelho": ["último", "Decide", "cupom", "finalizar", "fases", "seu", "lua", "oportunidade", "botão", "acabe"],
+ "segs": [
+  {"de": 33.55, "ate": 36.15, "legenda": "Hoje é o último dia da Black da Verme Friday.",
+   "fx": [{"tipo": "tarja", "texto": "Último dia · 28/11", "y": 235, "ini": 0.1, "fim": 2.5}]},
+  {"de": 42.15, "ate": 46.04, "legenda": "E é tempo suficiente pra você fazer só uma coisa. Decide!", "cards": [{"tipo": "eclipse", "ini": 0.4}]},
+  {"de": 51.85, "ate": 55.41, "legenda": "Você não precisa pesquisar mais nada e não precisa de cupom.", "cards": [{"tipo": "off", "ini": 1.6}]},
+  {"de": 59.15, "ate": 61.23, "legenda": "É só escolher o seu e finalizar."},
+  {"de": 66.45, "ate": 73.74, "legenda": "É o protocolo completo em fases, feito em casa, e que alcança mais de 100 tipos de vermes e parasitas.", "cards": [{"tipo": "fases", "ini": 0.3, "fim": 3.6}]},
+  {"de": 80.75, "ate": 83.29, "legenda": "Com adulto e criança, cada um com o seu.", "cards": [{"tipo": "casa", "ini": 0.2}]},
+  {"de": 87.0, "ate": 90.07, "legenda": "E ainda chegar a tempo da última lua nova do ano."},
+  {"de": 97.25, "ate": 99.43, "legenda": "Então não deixe essa oportunidade passar."},
+  {"de": 103.35, "ate": 110.13, "legenda": "Então toca no botão que está aparecendo aqui embaixo e já garante o seu protocolo no site agora mesmo, antes que a Black da Verme Friday acabe.",
+   "legFim": 5.2,
+   "fx": [{"tipo": "botao", "texto": "Garantir no site ↓", "ini": 0.9, "fim": 4.6}],
+   "cards": [{"tipo": "final", "ini": 4.7}]}
+ ]
+}

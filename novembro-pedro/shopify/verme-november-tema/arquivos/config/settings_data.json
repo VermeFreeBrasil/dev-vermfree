@@ -1,0 +1,257 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "brand_primary": "#5EBC43",
+    "brand_accent": "#1b5e20",
+    "brand_light": "#C0DE96",
+    "bg_default": "#FAFAFA",
+    "text_default": "#1A1A1A",
+    "surface": "#FFFFFF",
+    "heading_font_picker_setting": "caprasimo_n4",
+    "body_font_picker_setting": "inter_n4",
+    "container_max_width": 1280,
+    "section_padding": 80,
+    "button_radius": 10,
+    "button_padding": 12,
+    "card_radius": 16,
+    "card_shadow": true,
+    "favicon": "shopify://shop_images/favicon-v1-verde-sobre-branco.png",
+    "sections": {
+      "header": {
+        "type": "header",
+        "blocks": {
+          "p1": {
+            "type": "card",
+            "settings": {
+              "product": "protocolo-desparasitacao-adulto-vermefree",
+              "title": "Protocolo Adulto",
+              "desc": "Tintura, Óleo de Orégano, Ornitina e Silimarina.",
+              "tag": "",
+              "image": "shopify://shop_images/vf-pv2-adulto.png"
+            }
+          },
+          "p2": {
+            "type": "card",
+            "settings": {
+              "product": "antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos",
+              "title": "Kids 2 a 4 anos",
+              "desc": "Tintura + Fitoterapia em dose infantil.",
+              "tag": "",
+              "image": "shopify://shop_images/vf-pv2-kids-2a4.png"
+            }
+          },
+          "p3": {
+            "type": "card",
+            "settings": {
+              "product": "antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos",
+              "title": "Kids 5 a 9 anos",
+              "desc": "Tintura + Fitoterapia, dose para a idade.",
+              "tag": "",
+              "image": "shopify://shop_images/vf-pv2-kids-5a9.png"
+            }
+          },
+          "p4": {
+            "type": "card",
+            "settings": {
+              "product": "kit-familia-vermefree-2-adultos-2-criancas",
+              "title": "Kit Família",
+              "desc": "2 adultos + 2 crianças, no mesmo ciclo.",
+              "tag": "Mais completo",
+              "image": "shopify://shop_images/vf-pv2-kit-familia.png"
+            }
+          },
+          "l2": {
+            "type": "link",
+            "settings": {
+              "label": "Calendário da lua nova",
+              "url": "/#vf-cal-h-template--24252310978779__como_funciona"
+            }
+          },
+          "l3": {
+            "type": "link",
+            "settings": {
+              "label": "Conteúdo",
+              "url": "/blogs/guia-de-saude"
+            }
+          },
+          "l4": {
+            "type": "link",
+            "settings": {
+              "label": "Sobre",
+              "url": "/pages/sobre-a-vermefree"
+            }
+          },
+          "l_quiz": {
+            "type": "link",
+            "settings": {
+              "label": "Teste infantil",
+              "url": "/pages/teste-infantil"
+            }
+          },
+          "l_funciona": {
+            "type": "link",
+            "settings": {
+              "label": "VermeFree funciona?",
+              "url": "/pages/vermefree-funciona"
+            }
+          }
+        },
+        "block_order": [
+          "p1",
+          "p2",
+          "p3",
+          "p4",
+          "l_quiz",
+          "l_funciona",
+          "l2",
+          "l3",
+          "l4"
+        ],
+        "settings": {
+          "logo": "shopify://shop_images/logo-shopify-medium.png",
+          "logo_height": 56,
+          "search_placeholder": "Buscar",
+          "mega_label": "Protocolos",
+          "installments": 10,
+          "help_title": "Não sabe por onde começar?",
+          "help_text": "Conte quem mora com você e a nossa equipe indica o protocolo certo para a sua casa.",
+          "help_button": "Falar com a equipe no WhatsApp",
+          "help_url": "https://api.whatsapp.com/send/?phone=553131573845&text=Ol%C3%A1,%20preciso%20de%20ajuda!&type=phone_number&app_absent=0",
+          "extra_product": "",
+          "extra_title": "",
+          "extra_note": "complemento",
+          "menu": "main-menu",
+          "color_scheme": "light"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "marca": {
+            "type": "column",
+            "settings": {
+              "title": "VermeFree",
+              "text": "<p>Protocolos naturais de desparasitação para adultos e crianças, com dose certa para cada idade.</p>",
+              "show_social": true,
+              "show_address": true
+            }
+          },
+          "protocolos": {
+            "type": "column",
+            "settings": {
+              "title": "Protocolos",
+              "menu": "rodape-protocolos-novo",
+              "show_social": false,
+              "show_address": false
+            }
+          },
+          "ajuda": {
+            "type": "column",
+            "settings": {
+              "title": "Ajuda",
+              "menu": "rodape-ajuda",
+              "show_social": false,
+              "show_address": false
+            }
+          },
+          "newsletter": {
+            "type": "newsletter",
+            "settings": {
+              "title": "Receba nossas novidades",
+              "text": "<p>Conteúdo sobre saúde intestinal e ofertas exclusivas para quem está na lista.</p>",
+              "button_label": "Quero receber",
+              "success_text": "Pronto! Você está na lista.",
+              "privacy_text": "Ao se cadastrar, você aceita receber e-mails da VermeFree. Pode sair quando quiser.",
+              "webhook_url": "https://n8n.vermefree.com.br/webhook/vermefree-newsletter-rodape-ac"
+            }
+          },
+          "institucional": {
+            "type": "column",
+            "settings": {
+              "title": "Institucional",
+              "menu": "rodape-institucional",
+              "show_social": false,
+              "show_address": false
+            }
+          }
+        },
+        "block_order": [
+          "marca",
+          "protocolos",
+          "institucional",
+          "ajuda",
+          "newsletter"
+        ],
+        "settings": {
+          "bg_color": "#1a1a1a",
+          "text_color": "#ffffff",
+          "show_badges": true,
+          "instagram_url": "https://www.instagram.com/vermefree/",
+          "tiktok_url": "",
+          "facebook_url": "",
+          "youtube_url": "",
+          "whatsapp_url": "https://wa.me/553131573845?text=Ol%C3%A1%2C%20preciso%20de%20ajuda!",
+          "show_google_badge": true,
+          "reclameaqui_url": "",
+          "cnpj": "Sintonia Pharma Farmácia com Manipulação Ltda · CNPJ 37.560.104/0001-60 · Rua 2870, 453, Sala 06, Centro, Balneário Camboriú/SC, CEP 88330-358",
+          "address": "Rua 2870, 453, Sala 06 · Centro\nBalneário Camboriú/SC · CEP 88330-358",
+          "whatsapp_label": "(31) 3157-3845",
+          "email": "atendimento@vermefree.com.br",
+          "show_secure_badge": true
+        }
+      },
+      "vf-announcement-bar": {
+        "type": "vf-announcement-bar",
+        "settings": {
+          "show": true,
+          "free_shipping_min": 299,
+          "show_moon": true,
+          "coupon_code": "",
+          "coupon_pct": "5% OFF"
+        }
+      }
+    },
+    "content_for_index": [],
+    "blocks": {
+      "15539626159989124859": {
+        "type": "shopify://apps/maxbundle/blocks/app-embed/469560a3-d600-4f5e-a767-2a4cdaceacca",
+        "disabled": true,
+        "settings": {}
+      },
+      "9752555012629308362": {
+        "type": "shopify://apps/parkour-facebook-pixel/blocks/threasury_pixel/f23b2ffe-4c53-446e-ad3a-7976ffbee5c2",
+        "disabled": false,
+        "settings": {}
+      },
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      }
+    }
+  },
+  "presets": {
+    "Default": {
+      "brand_primary": "#5EBC43",
+      "brand_accent": "#009933",
+      "brand_light": "#C0DE96",
+      "bg_default": "#FAFAFA",
+      "text_default": "#1A1A1A",
+      "surface": "#FFFFFF",
+      "container_max_width": 1280,
+      "section_padding": 80,
+      "button_radius": 10,
+      "button_padding": 12,
+      "card_radius": 16,
+      "card_shadow": true
+    }
+  }
+}

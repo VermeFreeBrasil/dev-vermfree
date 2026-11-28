@@ -1,0 +1,152 @@
+{%- comment -%} vf-1111-kits · seletor de kits da PDP no 11/11 (cards + barra de benefícios + prazo). Renderizado dentro de vf-1111-promo (parte: 'pdp'), usa as variáveis de cor dele. kk = brinde Kit Kids na compra de 4 (pendente de confirmação do Vitor: trocar para false tira a promessa daqui). {%- endcomment -%}
+{%- assign kk = true -%}
+{%- assign p80 = v.price | times: 0.8 -%}
+{%- assign hs = 'protocolo-desparasitacao-adulto-vermefree,antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos,antiparasitario-infantil-natural-vermefree-kids-5-a-9-anos,kit-familia-vermefree-2-adultos-2-criancas' | split: ',' -%}
+{%- assign ps = 'vf-pv2-adulto.png,vf-pv2-kids-2a4.png,vf-pv2-kids-5a9.png,vf-pv2-kit-familia-v3.png' | split: ',' -%}
+{%- assign img = product.featured_image -%}
+{%- assign l1 = 'Para começar' -%}{%- assign l2 = 'Para o casal' -%}
+{%- if product.handle contains 'kids' -%}{%- assign l1 = 'Para uma criança' -%}{%- assign l2 = 'Para os irmãos' -%}{%- endif -%}
+{%- if product.handle contains 'kit-familia' -%}{%- assign l1 = 'Para a casa toda' -%}{%- assign l2 = 'Para duas famílias' -%}{%- endif -%}
+{%- for h in hs -%}{%- if h == product.handle -%}{%- assign pk = ps[forloop.index0] -%}{%- if images[pk] -%}{%- assign img = images[pk] -%}{%- endif -%}{%- endif -%}{%- endfor -%}
+<style>
+.ve-k h3{margin:24px 0 12px!important;font:800 13px Inter,Arial,sans-serif!important;letter-spacing:2px;text-transform:uppercase;color:var(--lime)}
+.ve-op{display:grid;gap:10px}
+.ve-o{position:relative;display:grid;grid-template-columns:22px 64px 1fr auto;align-items:center;gap:14px;width:100%;padding:16px 18px;border-radius:16px;border:1.5px solid #ffffff1f;background:#ffffff07;color:var(--cream);font-family:inherit;text-align:left;cursor:pointer;transition:border-color .2s,background .2s}
+.ve-o .im{position:relative;width:64px;height:64px;border-radius:14px;background:#fff;display:grid;place-items:center;overflow:visible}
+.ve-o .im img{width:100%;height:100%;object-fit:contain;padding:4px;border-radius:14px}
+.ve-o .im i{position:absolute;right:-6px;bottom:-6px;min-width:24px;height:24px;padding:0 5px;border-radius:12px;background:var(--red);color:#fff;font:900 12px/24px Inter,Arial,sans-serif;font-style:normal;text-align:center;box-shadow:0 0 0 2px #070a08}
+.ve-k .ve-btn{animation:vePulse 2.4s ease-in-out infinite}
+@keyframes vePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03);box-shadow:0 0 0 6px #e0262f22,0 12px 34px #e0262f66}}
+@media(prefers-reduced-motion:reduce){.ve-k .ve-btn{animation:none}}
+.ve-o .r{width:22px;height:22px;border-radius:50%;border:2px solid #ffffff44;display:grid;place-items:center}
+.ve-o.on{border-color:var(--red);background:#e0262f14;box-shadow:0 0 0 4px #e0262f1f}
+.ve-o.on .r{border-color:var(--red);background:var(--red)}
+.ve-o.on .r:after{content:'';width:8px;height:8px;border-radius:50%;background:#fff}
+.ve-o .a b{display:block;font-size:17px;font-weight:800}
+.ve-o .a small{display:block;font-size:12.5px;color:var(--mut);margin-top:2px}
+.ve-o .a small.g{color:var(--lime);font-weight:700}
+.ve-o .a em{font-style:normal;margin-left:6px;padding:2px 8px;border-radius:20px;background:var(--red);color:#fff;font-size:11.5px;font-weight:800}
+.ve-o .c{text-align:right;line-height:1.2}
+.ve-o .c s{display:block;font-size:12.5px;color:#7f8e86}
+.ve-o .c b{display:block;font-size:20px;font-weight:900;font-variant-numeric:tabular-nums}
+.ve-o .c small{font-size:12px;color:#ff6b72}
+.ve-o .tag{position:absolute;top:-10px;right:16px;padding:3px 10px;border-radius:20px;background:var(--lime);color:#0c2219;font:800 10.5px/1.3 Inter,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.ve-oth{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;font-size:13.5px;color:var(--mut)}
+.ve-oth div{display:flex;align-items:center;border:1.5px solid #ffffff22;border-radius:99px;height:40px}
+.ve-oth button{width:38px;height:100%;border:0;background:none;color:#ff6b72;font:800 20px/1 Inter,sans-serif;cursor:pointer}
+.ve-oth output{min-width:20px;text-align:center;font-weight:800;color:#fff}
+.ve-pg{margin-top:18px;padding:18px 18px 14px;border-radius:18px;background:#ffffff07;border:1px solid #ffffff14}
+.ve-pg>p{margin:0 0 14px!important;font-size:14px;color:#e4e9e6;text-align:center}
+.ve-pg>p b{color:#ff6b72}
+.ve-tr{position:relative;margin:0 26px}
+.ve-tr .bg,.ve-tr .fl{position:absolute;left:0;top:15px;height:6px;border-radius:6px;background:#ffffff1a;width:100%}
+.ve-tr .fl{background:linear-gradient(90deg,#9e0f17,#ff4a52);width:0;transition:width .4s}
+.ve-ms{position:relative;display:flex;justify-content:space-between;list-style:none;margin:0;padding:0}
+.ve-ms li{width:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.ve-ms li i{width:36px;height:36px;flex:0 0 36px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:15px;background:#161a18;border:2px solid #ffffff2a;filter:grayscale(1);transition:all .3s}
+.ve-ms li b{margin-top:6px;font-size:12px;white-space:nowrap;color:var(--mut)}
+.ve-ms li small{font-size:11px;white-space:nowrap;color:#6f7d76}
+.ve-ms li.on i{background:var(--red);border-color:#ff6b72;filter:none;box-shadow:0 0 18px #e0262f88}
+.ve-ms li.on b{color:#fff}
+.ve-k .ve-pay .t span{display:block;font-size:13px;color:#ff6b72}
+.ve-eta{position:relative;display:flex;justify-content:space-between;margin-top:20px;padding:16px 0 4px;border-top:1px solid #ffffff14}
+.ve-eta:before{content:'';position:absolute;left:16.6%;right:16.6%;top:36px;height:2px;background:linear-gradient(90deg,#c0de96,#c0de9640)}
+.ve-eta div{position:relative;width:33.3%;display:flex;flex-direction:column;align-items:center;text-align:center}
+.ve-eta span{width:40px;height:40px;border-radius:50%;background:#101814;border:2px solid var(--lime);display:grid;place-items:center;box-shadow:0 0 0 5px #070a08}
+.ve-eta svg{width:19px;height:19px;fill:none;stroke:#c0de96;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ve-eta b{margin-top:8px;font-size:13.5px;color:#fff}
+.ve-eta small{font-size:12px;color:var(--mut)}
+.ve-lua{margin:12px 0 0!important;text-align:center;font-size:13px;color:#cfd8d2}
+.ve-lua b{color:var(--lime)}
+@media(max-width:860px){
+  .ve-k h3{text-align:center}
+  .ve-o{padding:14px 12px;gap:10px;grid-template-columns:20px 52px 1fr auto}.ve-o .im{width:52px;height:52px}.ve-o .a b{font-size:15.5px}.ve-o .c b{font-size:17px}
+  .ve-pg{padding:16px 12px 12px}.ve-tr{margin:0 22px}
+  .ve-ms li small{display:none}.ve-ms li b{font-size:10.5px}
+  .ve-eta b{font-size:11.5px}.ve-eta small{font-size:11px}
+}
+</style>
+<div class="ve-k" data-ve-q-box data-id="{{ v.id }}" data-preco="{{ v.price }}" data-kk="{{ kk }}">
+  <h3>Escolha seu kit</h3>
+  <div class="ve-op">
+    {%- assign ks = '1,2,5' | split: ',' -%}
+    {%- for k in ks -%}
+      {%- assign kn = k | plus: 0 -%}{%- assign cheio = v.price | times: kn -%}
+      {%- if kn == 5 -%}{%- assign tot = p80 | times: 4 -%}{%- else -%}{%- assign tot = p80 | times: kn -%}{%- endif -%}
+      {%- assign un = tot | divided_by: kn -%}
+      <button type="button" class="ve-o{% if kn == 5 %} on{% endif %}" data-ve-k="{{ k }}">
+        {%- if kn == 5 -%}<span class="tag">Melhor preço do ano</span>{%- endif -%}
+        <span class="r"></span>
+        <span class="im">{{ img | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}{%- if kn > 1 -%}<i>×{{ kn }}</i>{%- endif -%}</span>
+        <span class="a">
+          {%- if kn == 5 -%}<b>5 unidades, pague 4<em>−36%</em></b><small>20% OFF + o 5º grátis</small>{%- if kk -%}<small class="g">+ Kit Kids 2 a 4 anos de presente</small>{%- endif -%}
+          {%- else -%}<b>{{ k }} {% if kn == 1 %}unidade{% else %}unidades{% endif %}<em>−20%</em></b><small>{% if kn == 1 %}{{ l1 }}{% else %}{{ l2 }}{% endif %}</small>{%- endif -%}
+        </span>
+        <span class="c"><s>{{ cheio | money }}</s><b>{{ tot | money }}</b><small>{{ un | money }} cada</small></span>
+      </button>
+    {%- endfor -%}
+  </div>
+  <div class="ve-oth"><span>Outra quantidade? Ajuste aqui:</span><div><button type="button" data-ve-st="-1" aria-label="Menos">−</button><output data-ve-qty>5</output><button type="button" data-ve-st="1" aria-label="Mais">+</button></div></div>
+  <div class="ve-pg">
+    <p data-ve-qmsg></p>
+    <div class="ve-tr"><span class="bg"></span><span class="fl" data-ve-fill></span><ol class="ve-ms" data-ve-ms></ol></div>
+  </div>
+  <div class="ve-pay">
+    <div class="t"><small>Você paga</small><b data-ve-pay>{{ p80 | money }}</b><span data-ve-pay3></span></div>
+    <button class="ve-btn" type="button" data-ve-buy>Colocar 1 no carrinho</button>
+  </div>
+  <div class="ve-eta">
+    <div><span><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.4a1.5 1.5 0 0 0 1.5 1.1h8.8a1.5 1.5 0 0 0 1.5-1.1L21 7H6"/></svg></span><b data-ve-eta="0"></b><small>Pedido feito</small></div>
+    <div><span><svg viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 9h4l4 4v3h-8"/><circle cx="6.5" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></svg></span><b data-ve-eta="1"></b><small>Despachado</small></div>
+    <div><span><svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span><b data-ve-eta="2"></b><small>Chega na sua casa</small></div>
+  </div>
+  <p class="ve-lua">🌑 Chega a tempo de começar na <b>última lua nova de 2026 (09/12)</b></p>
+</div>
+<script>
+  (function () {
+  var box = document.querySelector('[data-ve-q-box]'); if (!box) return;
+  var preco = +box.dataset.preco, id = +box.dataset.id, kk = box.dataset.kk === 'true', n = 5;
+  var $ = function (q) { return box.querySelector(q); };
+  var brl = function (c) { return 'R$ ' + (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); };
+  var gratis = function (k) { return Math.floor(k / 5); };
+  var tot = function (k) { return Math.round(preco * 0.8 * (k - gratis(k))); };
+  var ms = [{ q: 1, i: '🌑', b: '20% OFF', s: '+ frete grátis' }];
+  if (kk) ms.push({ q: 4, i: '🎁', b: 'Kit Kids', s: 'de presente' });
+  ms.push({ q: 5, i: '🏆', b: '5º grátis', s: 'leve 5, pague 4' });
+  $('[data-ve-ms]').innerHTML = ms.map(function (m) { return '<li><i>' + m.i + '</i><b>' + m.b + '</b><small>' + m.s + '</small></li>'; }).join('');
+  var lis = box.querySelectorAll('[data-ve-ms] li');
+  var un = function (k) { return k + (k === 1 ? ' unidade' : ' unidades'); };
+  var desenha = function () {
+      var t = tot(n), g = gratis(n);
+      box.querySelectorAll('[data-ve-k]').forEach(function (o) { o.classList.toggle('on', +o.dataset.veK === n); });
+      $('[data-ve-qty]').textContent = n;
+      $('[data-ve-pay]').textContent = brl(t);
+      $('[data-ve-pay3]').textContent = '3x de ' + brl(Math.round(t / 3)) + ' sem juros · economia de ' + brl(preco * n - t);
+      var sp = document.querySelector('[data-ve-sp]'); if (sp) sp.textContent = brl(t);
+      $('[data-ve-buy]').textContent = 'Colocar ' + n + ' no carrinho';
+      var r = 0; ms.forEach(function (m, i) { var ok = n >= m.q; lis[i].classList.toggle('on', ok); if (ok) r = i; });
+      var nx = ms[r + 1], f = ms.length > 1 ? r / (ms.length - 1) : 1;
+      if (nx) f += (n - ms[r].q) / (nx.q - ms[r].q) / (ms.length - 1);
+      $('[data-ve-fill]').style.width = (Math.min(1, f) * 100) + '%';
+      var falta = ms.filter(function (m) { return n < m.q; })[0], txt;
+      if (n === 4) txt = 'Mais <b>1 unidade</b> e o 5º sai grátis: <b>pelo mesmo preço de 4</b>';
+      else if (falta) txt = 'Mais <b>' + un(falta.q - n) + '</b> e você ganha <b>' + (falta.q === 5 ? 'o 5º grátis' : 'o Kit Kids de 2 a 4 anos') + '</b>';
+      else if (n % 5) txt = '🎉 <b>' + un(g) + ' grátis</b> no seu pedido. Mais ' + un(5 - n % 5) + ' e ganha <b>outro grátis</b>';
+      else txt = '🎉 <b>Tudo liberado:</b> 20% OFF, ' + (g === 1 ? 'o 5º grátis' : g + ' unidades grátis') + (kk ? ' e o Kit Kids' : '') + ' + frete grátis';
+      $('[data-ve-qmsg]').innerHTML = txt;
+  };
+  box.querySelectorAll('[data-ve-k]').forEach(function (o) { o.addEventListener('click', function () { n = +o.dataset.veK; desenha(); }); });
+  box.querySelectorAll('[data-ve-st]').forEach(function (b) { b.addEventListener('click', function () { n = Math.max(1, Math.min(10, n + +b.dataset.veSt)); desenha(); }); });
+  $('[data-ve-buy]').addEventListener('click', function () {
+      var b = this; b.disabled = true; b.textContent = 'Colocando...';
+      fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: [{ id: id, quantity: n }] }) })
+        .then(function () { location.href = '/cart'; }).catch(function () { b.disabled = false; desenha(); });
+  });
+  var M = 'jan fev mar abr mai jun jul ago set out nov dez'.split(' '), fd = function (d) { return d.getDate() + ' ' + M[d.getMonth()]; };
+  var add = function (d, k) { var x = new Date(d.getTime()); while (k > 0) { x.setDate(x.getDate() + 1); if (x.getDay() % 6) k--; } return x; };
+  var hoje = new Date(Date.now()); hoje.setHours(12, 0, 0, 0); var env = add(hoje, 2);
+  var et = ['Hoje, ' + fd(hoje), 'Até ' + fd(env), fd(add(env, 3)) + ' – ' + fd(add(env, 8))];
+  box.querySelectorAll('[data-ve-eta]').forEach(function (el) { el.textContent = et[+el.dataset.veEta]; });
+  desenha();
+  })();
+</script>
